@@ -1,0 +1,735 @@
+# Copyright (C) 2015 ThemeGrill
+# This file is distributed under the same license as the RestaurantPress package.
+# Translators:
+# Shiva Poudel <dev.shivapoudel@gmail.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: RestaurantPress\n"
+"Report-Msgid-Bugs-To: themegrill@gmail.com\n"
+"POT-Creation-Date: 2015-11-04 06:32:25+00:00\n"
+"PO-Revision-Date: 2015-11-04 06:32+0000\n"
+"Last-Translator: Shiva Poudel <dev.shivapoudel@gmail.com>\n"
+"Language-Team: Nepali (Nepal) (http://www.transifex.com/themegrill/restaurantpress/language/ne_NP/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ne_NP\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: grunt-wp-i18n 0.5.3\n"
+
+#: includes/admin/class-rp-admin-meta-boxes.php:44
+msgid "Item Price"
+msgstr ""
+
+#: includes/admin/class-rp-admin-meta-boxes.php:45
+msgid "Group Data"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:63
+msgid "Menu Item updated. <a href=\"%s\">View Menu Item</a>"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:64
+#: includes/admin/class-rp-admin-post-types.php:79
+msgid "Custom field updated."
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:65
+#: includes/admin/class-rp-admin-post-types.php:80
+msgid "Custom field deleted."
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:66
+msgid "Menu Item updated."
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:67
+msgid "Menu Item restored to revision from %s"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:68
+msgid "Menu Item published. <a href=\"%s\">View Menu Item</a>"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:69
+msgid "Menu Item saved."
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:70
+msgid "Menu Item submitted. <a target=\"_blank\" href=\"%s\">Preview Menu Item</a>"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:71
+msgid ""
+"Menu Item scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" "
+"href=\"%2$s\">Preview Menu Item</a>"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:72
+#: includes/admin/class-rp-admin-post-types.php:87
+msgid "M j, Y @ G:i"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:73
+msgid ""
+"Menu Item draft updated. <a target=\"_blank\" href=\"%s\">Preview Menu "
+"Item</a>"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:78
+#: includes/admin/class-rp-admin-post-types.php:81
+#: includes/admin/class-rp-admin-post-types.php:83
+msgid "Group updated."
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:82
+msgid "Group restored to revision from %s"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:84
+msgid "Group saved."
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:85
+msgid "Group submitted."
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:86
+msgid "Group scheduled for: <strong>%1$s</strong>."
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:88
+msgid "Group draft updated."
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:103
+msgid "%s menu item updated."
+msgid_plural "%s menu items updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/class-rp-admin-post-types.php:104
+msgid "%s menu item not updated, somebody is editing it."
+msgid_plural "%s menu items not updated, somebody is editing them."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/class-rp-admin-post-types.php:105
+msgid "%s menu item permanently deleted."
+msgid_plural "%s menu items permanently deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/class-rp-admin-post-types.php:106
+msgid "%s menu item moved to the Trash."
+msgid_plural "%s menu items moved to the Trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/class-rp-admin-post-types.php:107
+msgid "%s menu item restored from the Trash."
+msgid_plural "%s menu items restored from the Trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/class-rp-admin-post-types.php:111
+msgid "%s group updated."
+msgid_plural "%s groups updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/class-rp-admin-post-types.php:112
+msgid "%s group not updated, somebody is editing it."
+msgid_plural "%s groups not updated, somebody is editing them."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/class-rp-admin-post-types.php:113
+msgid "%s group permanently deleted."
+msgid_plural "%s groups permanently deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/class-rp-admin-post-types.php:114
+msgid "%s group moved to the Trash."
+msgid_plural "%s groups moved to the Trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/class-rp-admin-post-types.php:115
+msgid "%s group restored from the Trash."
+msgid_plural "%s groups restored from the Trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/class-rp-admin-post-types.php:135
+#: includes/admin/class-rp-admin-taxonomies.php:227
+msgid "Image"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:136
+#: includes/admin/class-rp-admin-post-types.php:152
+msgid "Name"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:137
+msgid "Price"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:138
+msgid "Categories"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:139
+#: includes/admin/rp-shortcodes-editor-i18n.php:31
+msgid "Date"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:153
+#: includes/admin/rp-shortcodes-editor-i18n.php:29
+msgid "Group ID"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:154
+msgid "Description"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:254
+msgid "Edit this item"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:254
+#: includes/admin/class-rp-admin-post-types.php:341
+#: includes/class-rp-post-types.php:100 includes/class-rp-post-types.php:141
+msgid "Edit"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:255
+msgid "Edit this item inline"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:255
+msgid "Quick&nbsp;Edit"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:259
+#: includes/admin/class-rp-admin-post-types.php:347
+msgid "Restore this item from the Trash"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:259
+#: includes/admin/class-rp-admin-post-types.php:347
+msgid "Restore"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:261
+#: includes/admin/class-rp-admin-post-types.php:349
+msgid "Move this item to the Trash"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:261
+#: includes/admin/class-rp-admin-post-types.php:349
+msgid "Trash"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:265
+#: includes/admin/class-rp-admin-post-types.php:353
+msgid "Delete this item permanently"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:265
+#: includes/admin/class-rp-admin-post-types.php:353
+msgid "Delete Permanently"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:271
+msgid "Preview &#8220;%s&#8221;"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:271
+msgid "Preview"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:273
+msgid "View &#8220;%s&#8221;"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:273
+msgid "View"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:448
+msgid "Menu Item name"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:451
+msgid "Group name"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:469
+msgid "Insert into %s"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:470
+msgid "Uploaded to this %s"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:483
+msgid "Description (optional)"
+msgstr ""
+
+#: includes/admin/class-rp-admin-taxonomies.php:64
+#: includes/admin/class-rp-admin-taxonomies.php:143
+msgid "Upload Image Icon"
+msgstr ""
+
+#: includes/admin/class-rp-admin-taxonomies.php:68
+#: includes/admin/class-rp-admin-taxonomies.php:148
+msgid "Upload/Add image"
+msgstr ""
+
+#: includes/admin/class-rp-admin-taxonomies.php:69
+#: includes/admin/class-rp-admin-taxonomies.php:149
+msgid "Remove image"
+msgstr ""
+
+#: includes/admin/class-rp-admin-taxonomies.php:72
+#: includes/admin/class-rp-admin-taxonomies.php:152
+msgid "Recommended Size: 24x24px"
+msgstr ""
+
+#: includes/admin/class-rp-admin-taxonomies.php:95
+#: includes/admin/class-rp-admin-taxonomies.php:175
+msgid "Choose an image"
+msgstr ""
+
+#: includes/admin/class-rp-admin-taxonomies.php:97
+#: includes/admin/class-rp-admin-taxonomies.php:177
+msgid "Use image"
+msgstr ""
+
+#: includes/admin/class-rp-admin-taxonomies.php:256
+msgid "Thumbnail"
+msgstr ""
+
+#: includes/admin/class-rp-admin-taxonomies.php:267
+msgid ""
+"Menu Item categories for your food can be managed here. To see more "
+"categories listed click the \"screen options\" link at the top of the page."
+msgstr ""
+
+#: includes/admin/class-rp-admin.php:58
+msgid ""
+"If you like <strong>RestaurantPress</strong> please leave us a "
+"%s&#9733;&#9733;&#9733;&#9733;&#9733;%s rating. A huge thank you from "
+"ThemeGrill in advance!"
+msgstr ""
+
+#: includes/admin/class-rp-admin.php:58
+msgid "Thanks :)"
+msgstr ""
+
+#: includes/admin/class-rp-admin.php:66
+msgid "Thank you for creating with RestaurantPress."
+msgstr ""
+
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:40
+msgid "General"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:45
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:115
+msgid "Grouping"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:67
+msgid "Layout Type"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:69
+msgid "One Column"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:70
+msgid "Two Column"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:71
+msgid "Grid Image"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:74
+msgid ""
+"Define whether or not the entire layout should be column based, or just with"
+" the grid image."
+msgstr ""
+
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:85
+msgid "Category Icon"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:85
+msgid "Show category image icon."
+msgstr ""
+
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:99
+msgid "Featured Image"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:99
+msgid "Disable the featured image."
+msgstr ""
+
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:102
+msgid "Image Lightbox"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:102
+msgid "Show the image in lightbox."
+msgstr ""
+
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:116
+msgid "Any category"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:125
+msgid "A food must be in this category for the group to remain valid."
+msgstr ""
+
+#: includes/admin/meta-boxes/class-rp-meta-box-menu-data.php:37
+msgid "Set Price"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-rp-meta-box-menu-data.php:38
+msgid "Enter the item Price&hellip;"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-rp-meta-box-menu-data.php:42
+msgid "Enable Chef Recommended Badge."
+msgstr ""
+
+#: includes/admin/rp-shortcodes-editor-i18n.php:30
+msgid "Order BY"
+msgstr ""
+
+#: includes/admin/rp-shortcodes-editor-i18n.php:32
+msgid "Random"
+msgstr ""
+
+#: includes/admin/rp-shortcodes-editor-i18n.php:33
+msgid "Title"
+msgstr ""
+
+#: includes/admin/rp-shortcodes-editor-i18n.php:34
+msgid "Menu Order"
+msgstr ""
+
+#: includes/admin/rp-shortcodes-editor-i18n.php:35
+msgid "None"
+msgstr ""
+
+#: includes/admin/rp-shortcodes-editor-i18n.php:36
+msgid "Order"
+msgstr ""
+
+#: includes/admin/rp-shortcodes-editor-i18n.php:37
+msgid "ASC"
+msgstr ""
+
+#: includes/admin/rp-shortcodes-editor-i18n.php:38
+msgid "DESC"
+msgstr ""
+
+#: includes/admin/rp-shortcodes-editor-i18n.php:39
+msgid "Insert Food Menu"
+msgstr ""
+
+#: includes/admin/rp-shortcodes-editor-i18n.php:40
+msgid "You need to use a Group ID!"
+msgstr ""
+
+#: includes/class-rp-install.php:246
+msgid "View RestaurantPress Documentation"
+msgstr ""
+
+#: includes/class-rp-install.php:246
+msgid "Docs"
+msgstr ""
+
+#: includes/class-rp-install.php:247
+msgid "Free Support Forum"
+msgstr ""
+
+#: includes/class-rp-install.php:247
+msgid "Free Support"
+msgstr ""
+
+#: includes/class-rp-post-types.php:47 includes/class-rp-post-types.php:49
+msgid "Menu Item Categories"
+msgstr ""
+
+#: includes/class-rp-post-types.php:50
+msgid "Menu Item Category"
+msgstr ""
+
+#: includes/class-rp-post-types.php:52
+msgid "Search Menu Item Categories"
+msgstr ""
+
+#: includes/class-rp-post-types.php:53
+msgid "All Menu Item Categories"
+msgstr ""
+
+#: includes/class-rp-post-types.php:54
+msgid "Parent Menu Item Category"
+msgstr ""
+
+#: includes/class-rp-post-types.php:55
+msgid "Parent Menu Item Category:"
+msgstr ""
+
+#: includes/class-rp-post-types.php:56
+msgid "Edit Menu Item Category"
+msgstr ""
+
+#: includes/class-rp-post-types.php:57
+msgid "Update Menu Item Category"
+msgstr ""
+
+#: includes/class-rp-post-types.php:58
+msgid "Add New Menu Item Category"
+msgstr ""
+
+#: includes/class-rp-post-types.php:59
+msgid "New Menu Item Category Name"
+msgstr ""
+
+#: includes/class-rp-post-types.php:94
+msgid "Menu Items"
+msgstr ""
+
+#: includes/class-rp-post-types.php:95
+msgid "Menu Item"
+msgstr ""
+
+#: includes/class-rp-post-types.php:97
+msgid "All Menu Items"
+msgstr ""
+
+#: includes/class-rp-post-types.php:98
+msgid "Add Menu Item"
+msgstr ""
+
+#: includes/class-rp-post-types.php:99
+msgid "Add New Menu Item"
+msgstr ""
+
+#: includes/class-rp-post-types.php:101
+msgid "Edit Menu Item"
+msgstr ""
+
+#: includes/class-rp-post-types.php:102
+msgid "New Menu Item"
+msgstr ""
+
+#: includes/class-rp-post-types.php:103 includes/class-rp-post-types.php:104
+msgid "View Menu Item"
+msgstr ""
+
+#: includes/class-rp-post-types.php:105
+msgid "Search Menu Items"
+msgstr ""
+
+#: includes/class-rp-post-types.php:106
+msgid "No Menu Items found"
+msgstr ""
+
+#: includes/class-rp-post-types.php:107
+msgid "No Menu Items found in trash"
+msgstr ""
+
+#: includes/class-rp-post-types.php:108
+msgid "Parent Menu Item"
+msgstr ""
+
+#: includes/class-rp-post-types.php:109
+msgid "Menu Item Image"
+msgstr ""
+
+#: includes/class-rp-post-types.php:110
+msgid "Set menu image"
+msgstr ""
+
+#: includes/class-rp-post-types.php:111
+msgid "Remove menu image"
+msgstr ""
+
+#: includes/class-rp-post-types.php:112
+msgid "Use as menu image"
+msgstr ""
+
+#: includes/class-rp-post-types.php:115
+msgid "This is where you can add new menu items to your restaurant."
+msgstr ""
+
+#: includes/class-rp-post-types.php:136
+msgid "Groups"
+msgstr ""
+
+#: includes/class-rp-post-types.php:137
+msgid "Group"
+msgstr ""
+
+#: includes/class-rp-post-types.php:139
+msgid "Add Group"
+msgstr ""
+
+#: includes/class-rp-post-types.php:140
+msgid "Add New Group"
+msgstr ""
+
+#: includes/class-rp-post-types.php:142
+msgid "Edit Group"
+msgstr ""
+
+#: includes/class-rp-post-types.php:143
+msgid "New Group"
+msgstr ""
+
+#: includes/class-rp-post-types.php:144
+msgid "View Groups"
+msgstr ""
+
+#: includes/class-rp-post-types.php:145
+msgid "View Group"
+msgstr ""
+
+#: includes/class-rp-post-types.php:146
+msgid "Search Groups"
+msgstr ""
+
+#: includes/class-rp-post-types.php:147
+msgid "No Groups found"
+msgstr ""
+
+#: includes/class-rp-post-types.php:148
+msgid "No Groups found in trash"
+msgstr ""
+
+#: includes/class-rp-post-types.php:149
+msgid "Parent Group"
+msgstr ""
+
+#: includes/class-rp-post-types.php:151
+msgid "This is where you can add new group for your food menu."
+msgstr ""
+
+#: includes/functions-rp-core.php:157
+msgid "Placeholder"
+msgstr ""
+
+#: restaurantpress.php:65 restaurantpress.php:73
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "RestaurantPress"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.themegrill.com/plugins/restaurantpress/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Allows you to create awesome restaurant menu for restaurant, bars, cafes in "
+"no time. Smartly :)"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "ThemeGrill"
+msgstr "थिमग्रिल"
+
+#. Author URI of the plugin/theme
+msgid "http://themegrill.com"
+msgstr ""
+
+#: includes/admin/class-rp-admin-assets.php:70
+msgctxt "enhanced select"
+msgid "One result is available, press enter to select it."
+msgstr ""
+
+#: includes/admin/class-rp-admin-assets.php:71
+msgctxt "enhanced select"
+msgid "%qty% results are available, use up and down arrow keys to navigate."
+msgstr ""
+
+#: includes/admin/class-rp-admin-assets.php:72
+msgctxt "enhanced select"
+msgid "No matches found"
+msgstr ""
+
+#: includes/admin/class-rp-admin-assets.php:73
+msgctxt "enhanced select"
+msgid "Loading failed"
+msgstr ""
+
+#: includes/admin/class-rp-admin-assets.php:74
+msgctxt "enhanced select"
+msgid "Please enter 1 or more characters"
+msgstr ""
+
+#: includes/admin/class-rp-admin-assets.php:75
+msgctxt "enhanced select"
+msgid "Please enter %qty% or more characters"
+msgstr ""
+
+#: includes/admin/class-rp-admin-assets.php:76
+msgctxt "enhanced select"
+msgid "Please delete 1 character"
+msgstr ""
+
+#: includes/admin/class-rp-admin-assets.php:77
+msgctxt "enhanced select"
+msgid "Please delete %qty% characters"
+msgstr ""
+
+#: includes/admin/class-rp-admin-assets.php:78
+msgctxt "enhanced select"
+msgid "You can only select 1 item"
+msgstr ""
+
+#: includes/admin/class-rp-admin-assets.php:79
+msgctxt "enhanced select"
+msgid "You can only select %qty% items"
+msgstr ""
+
+#: includes/admin/class-rp-admin-assets.php:80
+msgctxt "enhanced select"
+msgid "Loading more results&hellip;"
+msgstr ""
+
+#: includes/admin/class-rp-admin-assets.php:81
+msgctxt "enhanced select"
+msgid "Searching&hellip;"
+msgstr ""
+
+#: includes/class-rp-post-types.php:51
+msgctxt "Admin menu name"
+msgid "Categories"
+msgstr ""
+
+#: includes/class-rp-post-types.php:96
+msgctxt "Admin menu name"
+msgid "Menu Items"
+msgstr ""
+
+#: includes/class-rp-post-types.php:138
+msgctxt "Admin menu name"
+msgid "Groups"
+msgstr ""
+
+#: includes/class-rp-post-types.php:70
+msgctxt "slug"
+msgid "food-menu-category"
+msgstr ""

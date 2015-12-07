@@ -1,0 +1,624 @@
+/**
+ * admin.scss
+ * General AxisComposer admin styles.
+ */
+
+/**
+ * Imports
+ */
+@import "bourbon";
+@import "mixins";
+@import "variables";
+@import "animation";
+@import "select2";
+@import "fonts";
+
+/**
+ * Styling begins
+ */
+#restaurantpress-menu-data,
+#restaurantpress-group-data,
+.restaurantpress {
+	.panel-wrap {
+		overflow: hidden;
+	}
+
+	ul.rp-tabs {
+		margin: 0;
+		width: 20%;
+		float: left;
+		line-height: 1em;
+		padding: 0 0 10px;
+		position: relative;
+		background-color: #fafafa;
+		border-right: 1px solid #eee;
+		box-sizing: border-box;
+
+		&:after {
+			content: "";
+			display: block;
+			width: 100%;
+			height: 9999em;
+			position: absolute;
+			bottom: -9999em;
+			left: 0;
+			background-color: #fafafa;
+			border-right: 1px solid #eee;
+		}
+
+		li {
+			margin: 0;
+			padding: 0;
+			display: block;
+			position: relative;
+
+			a {
+				margin: 0;
+				padding: 10px;
+				display: block;
+				box-shadow: none;
+				text-decoration: none;
+				line-height: 20px !important;
+				border-bottom: 1px solid #eee;
+
+				&:before {
+					@include iconbefore( "\e004" );
+				}
+			}
+
+			&.general_options {
+				a:before {
+					content: "\e003";
+				}
+			}
+
+			&.grouping_options {
+				a:before {
+					content: "\e004";
+				}
+			}
+
+			&.active {
+				a {
+					color: #555;
+					position: relative;
+					background-color: #eee;
+				}
+			}
+		}
+	}
+}
+
+#restaurantpress-group-data {
+	.inside {
+		margin: 0;
+		padding: 0;
+	}
+}
+
+.restaurantpress_options_panel,
+.panel {
+	padding: 0;
+	color: #555;
+}
+
+.restaurantpress_options_panel p,
+.restaurantpress_options_panel fieldset.form-field {
+	margin: 0 0 9px;
+	font-size: 12px;
+	padding: 5px 9px;
+	line-height: 24px;
+
+	&:after {
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+}
+
+.restaurantpress_options_panel .checkbox {
+	width: auto;
+	margin: 3px 0;
+	vertical-align: middle;
+}
+
+.restaurantpress_options_panel {
+	min-height: 175px;
+	box-sizing: border-box;
+
+	p {
+		margin: 9px 0;
+	}
+
+	p.form-field,
+	fieldset.form-field {
+		padding: 5px 20px 5px 162px !important; /** Padding for aligning labels left - 12px + 150 label width **/
+	}
+
+	label,
+	legend {
+		float: left;
+		width: 150px;
+		padding: 0;
+		margin: 0 0 0 -150px;
+
+		.req {
+			font-weight: 700;
+			font-style: normal;
+			color: $red;
+		}
+	}
+
+	.description {
+		padding: 0;
+		margin: 0 0 0 7px;
+		clear: none;
+		display: inline;
+	}
+
+	.description-block {
+		margin-left: 0;
+		display: block;
+	}
+
+	textarea,
+	input,
+	select {
+		margin: 0;
+	}
+
+	textarea {
+		height: 3.5em;
+		line-height: 1.5em;
+		vertical-align: top;
+	}
+
+	input[type="text"],
+	input[type="email"],
+	input[type="number"] {
+		width: 50%;
+		float: left;
+	}
+
+	input.button {
+		width: auto;
+		margin-left: 8px;
+	}
+
+	select {
+		float: left;
+	}
+
+	input[type="text"].short,
+	input[type="email"].short,
+	input[type="number"].short,
+	.short {
+		width: 50%;
+	}
+
+	.sized {
+		width: auto !important;
+		margin-right: 6px;
+	}
+
+	.options_group {
+		border-top: 1px solid white;
+		border-bottom: 1px solid #eee;
+
+		&:first-child {
+			border-top: 0;
+		}
+
+		&:last-child {
+			border-bottom: 0;
+		}
+
+		fieldset {
+			margin: 9px 0;
+			font-size: 12px;
+			padding: 5px 9px;
+			line-height: 24px;
+
+			label {
+				width: auto;
+				float: none;
+			}
+
+			ul {
+				float: left;
+				width: 50%;
+				margin: 0;
+				padding: 0;
+
+				li {
+					margin: 0;
+					width: auto;
+
+					input {
+						width: auto;
+						float: none;
+						margin-right: 4px;
+					}
+				}
+			}
+
+			ul.rp-radios {
+				label {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+
+	&.padded {
+		padding: 1em;
+	}
+
+	.select2-container {
+		float: left;
+	}
+}
+
+#restaurantpress-group-description {
+	padding: 3px 8px;
+	font-size: 1.7em;
+	line-height: 1.42em;
+	height: auto;
+	width: 100%;
+	outline: 0;
+	margin: 10px 0 10px;
+	display: block;
+
+	&::-webkit-input-placeholder {
+		line-height: 1.42em;
+		color: #bbb;
+	}
+
+	&::-moz-placeholder {
+		line-height:
+		1.42em;
+		color: #bbb;
+	}
+
+	&:-ms-input-placeholder {
+		line-height: 1.42em;
+		color: #bbb;
+	}
+
+	&:-moz-placeholder {
+		line-height: 1.42em;
+		color: #bbb;
+	}
+}
+
+#restaurantpress-menu-data,
+#restaurantpress-group-data {
+	.panel-wrap {
+		background: #fff;
+	}
+
+	.restaurantpress_options_panel {
+		float: left;
+		width: 80%;
+
+		.rp-radios {
+			display: block;
+			float: left;
+			margin: 0;
+
+			li {
+				display: block;
+				padding: 0 0 10px 0;
+
+				input {
+					width: auto;
+				}
+			}
+		}
+	}
+}
+
+table.wp-list-table {
+	.column-thumb {
+		width: 52px;
+		text-align: center;
+		white-space: nowrap
+	}
+
+	.column-name {
+		width: 22%;
+	}
+
+	.column-price,
+	.column-group_id {
+		width: 11% !important;
+	}
+
+	img {
+		margin: 1px 2px;
+	}
+
+	.row-actions {
+		color: #999;
+	}
+
+	td.column-thumb img {
+		margin: 0;
+		width: auto;
+		height: auto;
+		max-width: 40px;
+		max-height: 40px;
+		vertical-align: middle;
+	}
+
+	span.na {
+		color: #999;
+	}
+
+	span.rp-image {
+		@include ir();
+		margin: 0 auto;
+
+		&:before {
+			@include icon( "\e00b" );
+		}
+	}
+}
+
+#food_menu_cat_thumbnail {
+	float: left;
+	margin-right: 10px;
+
+	img {
+		margin: 0;
+		width: auto;
+		height: auto;
+		max-width: 40px;
+		max-height: 40px;
+		vertical-align: middle;
+	}
+}
+
+img.help_tip {
+	margin: 0 0 0 9px;
+	vertical-align: middle;
+}
+
+.postbox img.help_tip {
+	margin-top: 0px;
+}
+
+.postbox .restaurantpress-help-tip {
+	margin: 0 0 0 9px;
+}
+
+/**
+ * Tooltips
+ */
+.tips {
+	cursor: help;
+	text-decoration: none;
+}
+
+img.tips {
+	padding: 5px 0 0 0;
+}
+
+#tiptip_holder {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 9999999;
+}
+
+#tiptip_holder {
+	&.tip_top {
+		padding-bottom: 5px;
+
+		#tiptip_arrow_inner {
+			margin-top: -7px;
+			margin-left: -6px;
+			border-top-color: #333;
+		}
+	}
+
+	&.tip_bottom {
+		padding-top: 5px;
+
+		#tiptip_arrow_inner {
+			margin-top: -5px;
+			margin-left: -6px;
+			border-bottom-color: #333;
+		}
+	}
+
+	&.tip_right {
+		padding-left: 5px;
+
+		#tiptip_arrow_inner {
+			margin-top: -6px;
+			margin-left: -5px;
+			border-right-color: #333;
+		}
+	}
+
+	&.tip_left {
+		padding-right: 5px;
+
+		#tiptip_arrow_inner {
+			margin-top: -6px;
+			margin-left: -7px;
+			border-left-color: #333;
+		}
+	}
+}
+
+#tiptip_content,
+.rp_error_tip {
+	color: #fff;
+	font-size: .8em;
+	max-width: 150px;
+	background: #333;
+	text-align: center;
+	border-radius: 3px;
+	padding: .618em 1em;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+
+	code {
+		padding: 1px;
+		background: #888;
+	}
+}
+
+#tiptip_arrow,
+#tiptip_arrow_inner {
+	position: absolute;
+	border-color: transparent;
+	border-style: solid;
+	border-width: 6px;
+	height: 0;
+	width: 0;
+}
+
+.rp_error_tip {
+	max-width: 20em;
+	line-height: 1.8em;
+	position: absolute;
+	white-space: normal;
+	background: #d82223;
+	margin: 1.5em 1px 0 -1em;
+	z-index: 9999999;
+
+	&:after {
+		content: "";
+		display: block;
+		border: 8px solid #d82223;
+		border-right-color: transparent;
+		border-left-color: transparent;
+		border-top-color: transparent;
+		position: absolute;
+		top: -3px;
+		left: 50%;
+		margin: -1em 0 0 -3px;
+	}
+}
+
+/**
+ * Help Tip
+ */
+.restaurantpress-help-tip {
+	color: #666;
+	display: inline-block;
+	font-size: 13px;
+	font-style: normal;
+	height: 16px;
+	line-height: 16px;
+	position: relative;
+	vertical-align: middle;
+	width: 16px;
+
+	&:after {
+		@include icon( "\e00a" );
+		cursor: help;
+	}
+}
+
+/**
+ * Small screen optimisation
+ */
+@media only screen and (max-width: 1280px) {
+	.restaurantpress_options_panel {
+		.description {
+			display: block;
+			clear: both;
+			margin-left: 0;
+		}
+
+		.short,
+		input[type=email].short,
+		input[type=number].short,
+		input[type=text].short,
+		.dimensions_field .wrap {
+			width: 80%;
+		}
+	}
+}
+
+/**
+ * Optimisation for screens 900px and smaller
+ */
+@media only screen and (max-width: 900px) {
+	#restaurantpress-menu-data ul.food_data_tabs,
+	#restaurantpress-group-data ul.group_data_tabs {
+		width: 10%;
+	}
+
+	#restaurantpress-menu-data .restaurantpress_options_panel,
+	#restaurantpress-group-data .restaurantpress_options_panel {
+		width: 90%;
+	}
+
+	#restaurantpress-menu-data ul.food_data_tabs li a,
+	#restaurantpress-group-data ul.group_data_tabs li a {
+		position: relative;
+		text-indent: -999px;
+		padding: 10px;
+
+		&:before {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			text-indent: 0;
+			text-align: center;
+			line-height: 40px;
+			width: 100%;
+			height: 40px;
+		}
+	}
+}
+
+/**
+ * Optimisation for screens 782px and smaller
+ */
+@media only screen and (max-width: 782px) {
+	#restaurantpress-product-data .checkbox {
+		width: 25px;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	.restaurantpress_options_panel label,
+	.restaurantpress_options_panel legend {
+		float: none;
+		width: auto;
+		display: block;
+		margin: 0;
+	}
+
+	.restaurantpress_options_panel fieldset.form-field,
+	.restaurantpress_options_panel p.form-field {
+		padding: 5px 20px 5px 20px !important;
+	}
+}
+
+/**
+ * Select2
+ */
+.select2-drop {
+	z-index: 999999 !important;
+}
+.select2-container-multi .select2-choices .select2-search-field input {
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	padding: 3px 5px;
+}
+.select2-container {
+	line-height: 1.85em;
+	font-size: 14px;
+}

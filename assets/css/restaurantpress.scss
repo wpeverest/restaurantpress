@@ -1,0 +1,356 @@
+/**
+ * restaurantpress.scss
+ * Governs the general look and feel of RestaurantPress sections of shortcodes using themes that do not
+ * integrate with RestaurantPress specifically.
+ */
+
+/**
+ * Imports
+ */
+@import "bourbon";
+@import "mixins";
+@import "variables";
+@import "animation";
+@import "fonts";
+
+/**
+ * Styling begins
+ */
+#restaurant-press-section {
+	color: #333;
+	font-size: 14px;
+	line-height: 1.3;
+	font-weight: 400;
+
+	a {
+		color: #d40305;
+
+		&:focus {
+			border: none;
+			color: transparent;
+		}
+	}
+
+	.rp-column-wrapper {
+		margin-left: -3%;
+
+		.rp-column-1,
+		.rp-column-2,
+		.rp-column-3 {
+			float: left;
+			margin-left: 3%;
+		}
+
+		.rp-column-1 {
+			width: 97%;
+		}
+
+		.rp-column-2 {
+			width: 47%;
+		}
+
+		.rp-column-3 {
+			width: 30.33%;
+		}
+
+		.rp-column-margin {
+			margin-bottom: 4%;
+		}
+	}
+}
+
+.rp-category-title {
+	padding: 7px 0;
+	text-align: center;
+	margin-bottom: 15px;
+	border-top: 1px dashed #b0aeab;
+	border-bottom: 1px dashed #b0aeab;
+
+	.category-icon {
+		margin-right: 7px;
+		display: inline-block;
+		line-height: 24px;
+		vertical-align: middle;
+		height: 24px;
+		margin-top: -3px;
+
+		img {
+			width: auto;
+			height: auto;
+			max-width: 24px;
+			max-height: 24px;
+			box-shadow: none;
+			border-radius: 0;
+			vertical-align: middle;
+		}
+	}
+}
+
+.rp-list-design-layout {
+
+	.rp-column-block {
+		padding-bottom: 23px;
+
+		.rp-column-single-block {
+			padding:15px 0;
+			border-bottom: 1px solid #deded7;
+
+			.rp-img {
+				float: left;
+				margin: 0 20px 0 0;
+				position: relative;
+
+				img {
+					box-shadow: none;
+					border-radius: 3px;
+				}
+
+				.rp-chef-badge {
+					position: absolute;
+					top: -10px;
+					left: -15px;
+					width: 30px;
+					height: 30px;
+					color: #fff;
+					background: #c00;
+					display: block;
+					font-size: 10px;
+					text-align: center;
+					line-height: 3em;
+					border-radius: 3em;
+					text-transform: capitalize;
+
+					.chef-icon {
+						&:before {
+							content: "\e00c";
+							font-family: "RestaurantPress";
+							font-size: 14px;
+							color: #fff;
+							font-style: normal;
+						}
+					}
+				}
+			}
+
+			.rp-content-wrapper {
+
+				.rp-desc {
+					color: #8c8787;
+					margin-top: 10px;
+				}
+
+				.rp-title-price-wrap {
+					margin-bottom: 5px;
+
+					.rp-title {
+						display: inline;
+						margin: 0 0 4px;
+						padding: 0 0 4px;
+					}
+
+					.rp-price {
+						color:#fff;
+						float: right;
+						font-size: 14px;
+						font-weight: 600;
+						line-height: 1.5;
+						background: #c00;
+						padding: 0 10px;
+						margin-right: 15px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.rp-single-column-layout.rp-list-design-layout {
+	.rp-column-block {
+		background: none;
+	}
+}
+
+.rp-grid-design-layout {
+
+	.rp-img {
+		margin: 0;
+		position: relative;
+
+		a {
+			display: block;
+		}
+
+		img {
+			width: 100%;
+			display: block;
+			box-shadow: none;
+			border-radius: 0;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		.rp-chef-badge {
+			position: absolute;
+			top: 0;
+			left: 20px;
+			color: #fff;
+			background: #c00;
+			font-size: 12px;
+			padding: 5px 10px;
+			text-align: center;
+			text-transform: capitalize;
+
+			&:before,
+			&:after {
+				position: absolute;
+				bottom: -10px;
+				left: 0px;
+				content: "";
+				border-left: 0 solid transparent;
+				border-top: 10px solid #c00;
+				border-right: 18px solid transparent;
+			}
+
+			&:after {
+				bottom: -10px;
+				border-left: 18px solid transparent;
+				border-top: 10px solid #c00;
+				border-right: 0 solid transparent;
+				left: auto;
+				right: 0;
+			}
+
+			.chef-icon {
+				&:before {
+					content: "\e00c";
+					font-family: "RestaurantPress";
+					font-size: 14px;
+					color: #fff;
+					font-style: normal;
+				}
+			}
+		}
+
+		.image-magnify {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 85%;
+			height: 85%;
+			display: block;
+			opacity: 0;
+			visibility: hidden;
+			background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+			@include transform( translate(-50%,-50%) scale(0.3) );
+			@include transition( all 0.3s ease-in-out );
+
+			span {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				color: #fff;
+				width: 30px;
+				height: 30px;
+				display: block;
+				cursor: pointer;
+				font-size: 30px;
+				line-height: 30px;
+				text-align: center;
+				border-radius: 100%;
+				border: 1px solid #fff;
+				@include transform( translate(-50%,-50%) );
+				@include transition( all 0.5s ease-in-out );
+
+				&:hover {
+					background: #d60e10;
+					border-color: #d60e10;
+				}
+			}
+		}
+
+		&:hover {
+			.image-magnify {
+				opacity: 1;
+				visibility: visible;
+				@include transform( translate(-50%,-50%) scale(1) );
+			}
+		}
+	}
+
+	.rp-content-wrapper {
+		position: relative;
+		padding: 20px 20px 60px;
+		border-bottom: 3px solid #d60e10;
+		background: #f9f9f9 none repeat scroll 0 0;
+
+		.rp-title {
+			margin: 0 0 10px;
+			padding: 0 0 10px;
+		}
+
+		.rp-desc {
+			color: #8c8787;
+			line-height: 22px;
+		}
+
+		.rp-price {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			color: #fff;
+			font-size: 18px;
+			font-weight: 400;
+			padding: 6px 10px 6px 5px;
+			background: #d60e10 none repeat scroll 0 0;
+
+			&:before {
+				position: absolute;
+				top: 0;
+				left: -16px;
+				content: "";
+				border-top: 36px solid transparent;
+				border-right: 16px solid #d60e10;
+				border-bottom: 0 solid transparent;
+			}
+		}
+	}
+}
+
+/**
+ * Clearfix
+ */
+.clearpress {
+	@include clearfix;
+
+	&:before {
+		content: '';
+		display: table;
+	}
+}
+
+.clear {
+	clear: both;
+}
+
+/**
+ * Optimisation for screens 768px and smaller
+ */
+@media (max-width: 768px) {
+	#restaurant-press-section .rp-column-wrapper .rp-column-2 {
+		display: block;
+		float: none;
+		width: 96%;
+	}
+}
+
+/**
+ * Optimisation for screens 480px and smaller
+ */
+@media (max-width: 480px) {
+	.rp-list-design-layout .rp-column-block .rp-column-single-block {
+		.rp-img {
+			width: 60px;
+		}
+	}
+}

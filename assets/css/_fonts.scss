@@ -1,0 +1,14 @@
+/**
+ * _fonts.scss
+ * Custom RestaurantPress fonts.
+ */
+@font-face {
+	font-family: 'RestaurantPress';
+	src: url('../fonts/RestaurantPress.eot');
+	src: url('../fonts/RestaurantPress.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/RestaurantPress.woff') format('woff'),
+		url('../fonts/RestaurantPress.ttf') format('truetype'),
+		url('../fonts/RestaurantPress.svg#RestaurantPress') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
