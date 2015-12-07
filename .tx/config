@@ -1,8 +1,0 @@
-[main]
-host = https://www.transifex.com
-
-[restaurantpress.restaurantpress-pot]
-file_filter = languages/restaurantpress-<lang>.po
-source_file = languages/restaurantpress.pot
-source_lang = en
-type = PO

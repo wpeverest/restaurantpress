@@ -114,20 +114,15 @@ module.exports = function( grunt ){
 
 		// Generate POT files.
 		makepot: {
-			options: {
-				type: 'wp-plugin',
-				domainPath: 'languages',
-				potHeaders: {
-					'report-msgid-bugs-to': 'themegrill@gmail.com',
-					'language-team': 'LANGUAGE <EMAIL@ADDRESS>'
-				}
-			},
 			dist: {
 				options: {
+					type: 'wp-plugin',
+					domainPath: 'languages',
 					potFilename: 'restaurantpress.pot',
-					exclude: [
-						'deploy/.*'
-					]
+					potHeaders: {
+						'report-msgid-bugs-to': 'themegrill@gmail.com',
+						'language-team': 'LANGUAGE <EMAIL@ADDRESS>'
+					}
 				}
 			}
 		},
@@ -160,68 +155,10 @@ module.exports = function( grunt ){
 				],
 				expand: true
 			}
-		},
-
-		// Exec shell commands.
-		shell: {
-			options: {
-				stdout: true,
-				stderr: true
-			},
-			txpush: {
-				command: 'tx push -s' // push the resources
-			},
-			txpull: {
-				command: 'tx pull -a -f' // pull the .po files
-			}
-		},
-
-		// Compile .po to .mo files.
-		potomo: {
-			options: {
-				poDel: false
-			},
-			dist: {
-				files: [{
-					expand: true,
-					cwd: 'languages/',
-					src: ['*.po'],
-					dest: 'languages/',
-					ext: '.mo',
-					nonull: true
-				}]
-			}
-		},
-
-		// Copy files to deploy.
-		copy: {
-			deploy: {
-				src: [
-					'**',
-					'!.*',
-					'!*.md',
-					'!.*/**',
-					'!tmp/**',
-					'!deploy.ini',
-					'!Gruntfile.js',
-					'!package.json',
-					'!node_modules/**'
-				],
-				dest: 'deploy',
-				expand: true,
-				dot: true
-			}
-		},
-
-		// Clean the directory.
-		clean: {
-			deploy: ['deploy']
 		}
 	});
 
 	// Load NPM tasks to be used here
-	grunt.loadNpmTasks( 'grunt-shell' );
-	grunt.loadNpmTasks( 'grunt-potomo' );
 	grunt.loadNpmTasks( 'grunt-wp-i18n' );
 	grunt.loadNpmTasks( 'grunt-checktextdomain' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
@@ -229,8 +166,6 @@ module.exports = function( grunt ){
 	grunt.loadNpmTasks( 'grunt-contrib-sass' );
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
-	grunt.loadNpmTasks( 'grunt-contrib-copy' );
-	grunt.loadNpmTasks( 'grunt-contrib-clean' );
 
 	// Register tasks
 	grunt.registerTask( 'default', [
@@ -247,22 +182,5 @@ module.exports = function( grunt ){
 	grunt.registerTask( 'dev', [
 		'default',
 		'makepot'
-	]);
-
-	grunt.registerTask( 'resources', [
-		'makepot',
-		'shell:txpush'
-	]);
-
-	grunt.registerTask( 'tx_update', [
-		'shell:txpull',
-		'potomo'
-	]);
-
-	grunt.registerTask( 'deploy', [
-		'resources',
-		'tx_update',
-		'clean:deploy',
-		'copy:deploy'
 	]);
 };
