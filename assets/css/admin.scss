@@ -394,6 +394,146 @@ img.help_tip {
 	margin: 0 0 0 9px;
 }
 
+.restaurantpress {
+	.rp-nav-tab-wrapper {
+		margin-bottom: 16px !important;
+	}
+
+	.subsubsub {
+		margin: -8px 0 0;
+	}
+
+	textarea[disabled="disabled"] {
+		background: #DFDFDF !important;
+	}
+
+	table.form-table {
+		margin: 0;
+		position: relative;
+
+		.select2-container {
+			display: block;
+			max-width: 350px;
+		}
+
+		.forminp-radio ul {
+			margin: 0;
+			li {
+				line-height: 1.4em;
+			}
+		}
+
+		textarea.input-text {
+			height: 100%;
+			min-width: 150px;
+			display: block;
+		}
+
+		input.regular-input {
+			width: 25em;
+		}
+
+		textarea.wide-input {
+			width: 100%;
+		}
+
+		img.help_tip,
+		.restaurantpress-help-tip {
+			padding: 0;
+			margin: -4px 0 0 5px;
+			vertical-align: middle;
+			cursor: help;
+			line-height: 1;
+		}
+
+		span.help_tip {
+			cursor: help;
+			color: $blue;
+		}
+
+		th {
+			position: relative;
+			padding-right: 24px;
+		}
+
+		.select2-container {
+			vertical-align: top;
+			margin-bottom: 3px;
+		}
+
+		table.widefat th {
+			padding-right: inherit;
+		}
+
+		th img.help_tip,
+		th .restaurantpress-help-tip {
+			margin: 0 -24px 0 0;
+			float: right;
+		}
+
+		.wp-list-table .restaurantpress-help-tip {
+			float: none;
+		}
+
+		fieldset {
+			margin-top: 4px;
+
+			img.help_tip,
+			.restaurantpress-help-tip {
+				margin: -3px 0 0 5px;
+			}
+
+			p.description {
+				margin-bottom: 8px;
+			}
+
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+
+		.iris-picker {
+			z-index: 100;
+			display: none;
+			position: absolute;
+			border: 1px solid #ccc;
+			border-radius: 3px;
+			box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+
+			.ui-slider {
+				border: 0 !important;
+				margin: 0 !important;
+				width: auto !important;
+				height: auto !important;
+				background: none transparent !important;
+
+				.ui-slider-handle {
+					margin-bottom: 0 !important;
+				}
+			}
+		}
+
+		.colorpickpreview {
+			padding: 3px;
+			padding-left: 20px;
+			border: 1px solid #ddd;
+			border-right: 0;
+		}
+
+		.colorpick {
+			border-left: 0;
+		}
+
+		.image_width_settings {
+			vertical-align: middle;
+
+			label {
+				margin-left: 10px;
+			}
+		}
+	}
+}
+
 /**
  * Tooltips
  */

@@ -31,12 +31,41 @@ class RP_Install {
 	 * Install RP
 	 */
 	public static function install() {
+		self::create_options();
 		self::create_tables();
 		self::create_roles();
 
 		// Register post types
 		RP_Post_Types::register_post_types();
 		RP_Post_Types::register_taxonomies();
+	}
+
+	/**
+	 * Default options
+	 *
+	 * Sets up the default options used on the settings page
+	 */
+	private static function create_options() {
+		// Include settings so that we can run through defaults
+		include_once( 'admin/class-rp-admin-settings.php' );
+
+		$settings = RP_Admin_Settings::get_settings_pages();
+
+		foreach ( $settings as $section ) {
+			if ( ! method_exists( $section, 'get_settings' ) ) {
+				continue;
+			}
+			$subsections = array_unique( array_merge( array( '' ), array_keys( $section->get_sections() ) ) );
+
+			foreach ( $subsections as $subsection ) {
+				foreach ( $section->get_settings( $subsection ) as $value ) {
+					if ( isset( $value['default'] ) && isset( $value['id'] ) ) {
+						$autoload = isset( $value['autoload'] ) ? (bool) $value['autoload'] : true;
+						add_option( $value['id'], $value['default'], '', ( $autoload ? 'yes' : 'no' ) );
+					}
+				}
+			}
+		}
 	}
 
 	/**

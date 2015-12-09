@@ -130,14 +130,19 @@ class RP_Frontend_Scripts {
 		}
 
 		$suffix               = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		$lightbox_en          = 'yes' === get_option( 'restaurantpress_enable_lightbox' );
 		$assets_path          = str_replace( array( 'http:', 'https:' ), '', RP()->plugin_url() ) . '/assets/';
 		$frontend_script_path = $assets_path . 'js/frontend/';
 
+		// Register frontend scripts conditionally
+		if ( $lightbox_en ) {
+			self::enqueue_script( 'prettyPhoto', $assets_path . 'js/prettyPhoto/jquery.prettyPhoto' . $suffix . '.js', array( 'jquery' ), '3.1.6', true );
+			self::enqueue_script( 'prettyPhoto-init', $assets_path . 'js/prettyPhoto/jquery.prettyPhoto.init' . $suffix . '.js', array( 'jquery','prettyPhoto' ) );
+			self::enqueue_style( 'restaurantpress_prettyPhoto_css', $assets_path . 'css/prettyPhoto.css' );
+		}
+
 		// Global frontend scripts
 		self::enqueue_script( 'restaurantpress', $frontend_script_path . 'restaurantpress' . $suffix . '.js', array( 'jquery' ) );
-		self::enqueue_script( 'prettyPhoto', $assets_path . 'js/prettyPhoto/jquery.prettyPhoto' . $suffix . '.js', array( 'jquery' ), '3.1.6', true );
-		self::enqueue_script( 'prettyPhoto-init', $assets_path . 'js/prettyPhoto/jquery.prettyPhoto.init' . $suffix . '.js', array( 'jquery','prettyPhoto' ) );
-		self::enqueue_style( 'restaurantpress_prettyPhoto_css', $assets_path . 'css/prettyPhoto.css' );
 
 		// CSS Styles
 		if ( $enqueue_styles = self::get_styles() ) {

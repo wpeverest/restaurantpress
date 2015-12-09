@@ -116,17 +116,17 @@ function rp_get_image_size( $image_size ) {
 		$image_size = $width . '_' . $height;
 
 	} elseif ( in_array( $image_size, array( 'food_grid' ) ) ) {
-		$size = array(
-			'width'  => '370',
-			'height' => '245',
-			'crop'   => 1
-		);
+		$size           = get_option( $image_size . '_image_size', array() );
+		$size['width']  = isset( $size['width'] ) ? $size['width'] : '370';
+		$size['height'] = isset( $size['height'] ) ? $size['height'] : '245';
+		$size['crop']   = isset( $size['crop'] ) ? $size['crop'] : 0;
+
 	} elseif ( in_array( $image_size, array( 'food_thumbnail' ) ) ) {
-		$size = array(
-			'width'  => '100',
-			'height' => '100',
-			'crop'   => 1
-		);
+		$size           = get_option( $image_size . '_image_size', array() );
+		$size['width']  = isset( $size['width'] ) ? $size['width'] : '100';
+		$size['height'] = isset( $size['height'] ) ? $size['height'] : '100';
+		$size['crop']   = isset( $size['crop'] ) ? $size['crop'] : 0;
+
 	} else {
 		$size = array(
 			'width'  => '100',

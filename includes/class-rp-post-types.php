@@ -155,7 +155,7 @@ class RP_Post_Types {
 					'map_meta_cap'        => true,
 					'publicly_queryable'  => false,
 					'exclude_from_search' => true,
-					'show_in_menu'        => current_user_can( 'manage_restaurantpress' ) ? 'edit.php?post_type=food_menu' : true,
+					'show_in_menu'        => current_user_can( 'manage_restaurantpress' ) ? 'restaurantpress' : true,
 					'hierarchical'        => false,
 					'rewrite'             => false,
 					'query_var'           => false,

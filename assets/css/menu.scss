@@ -15,6 +15,12 @@
 /**
  * Styling begins
  */
+#adminmenu #toplevel_page_restaurantpress .menu-icon-generic div.wp-menu-image:before {
+	font-family: 'RestaurantPress' !important;
+	content: "\e001";
+	font-size: 1.3em !important;
+}
+
 #adminmenu #menu-posts-food_menu .menu-icon-post div.wp-menu-image:before,
 #adminmenu #menu-posts-food_menu .menu-icon-food_menu div.wp-menu-image:before {
 	font-family: 'RestaurantPress' !important;
