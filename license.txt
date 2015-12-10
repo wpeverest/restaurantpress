@@ -694,3 +694,8 @@ Public License instead of this License.  But first, please read
 <http://www.gnu.org/philosophy/why-not-lgpl.html>.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+The source code for any program binaries or compressed scripts that are
+included with RestaurantPress can be freely obtained at the following URL:
+
+	https://github.com/themegrill/restaurantpress
