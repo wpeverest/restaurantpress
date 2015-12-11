@@ -50,7 +50,7 @@ class RP_Admin_Taxonomies {
 
 		$term_id = absint( $term_id );
 
-		if ( $term_id ) {
+		if ( $term_id && get_option( 'db_version' ) < 34370 ) {
 			$wpdb->delete( $wpdb->restaurantpress_termmeta, array( 'restaurantpress_term_id' => $term_id ), array( '%d' ) );
 		}
 	}
