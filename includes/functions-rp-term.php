@@ -67,15 +67,17 @@ add_action( 'split_shared_term', 'rp_taxonomy_metadata_update_content_for_split_
  * @param string $wp_db_version The new $wp_db_version.
  * @param string $wp_current_db_version The old (current) $wp_db_version.
  */
-function rp_taxonomy_metadata_migrate_data( $wp_db_version, $wp_current_db_version ) {
-	if ( $wp_db_version >= 34370 && $wp_current_db_version < 34370 ) {
-		global $wpdb;
+function rp_taxonomy_metadata_migrate_data() {
+	global $wpdb, $wp_version;
+
+	$sql = $wpdb->get_var( "SHOW TABLES LIKE '{$wpdb->restaurantpress_termmeta}'" );
+	if ( $sql && version_compare( $wp_version, '4.4', '>=' ) ) {
 		if ( $wpdb->query( "INSERT INTO {$wpdb->termmeta} ( term_id, meta_key, meta_value ) SELECT restaurantpress_term_id, meta_key, meta_value FROM {$wpdb->prefix}restaurantpress_termmeta;" ) ) {
 			$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}restaurantpress_termmeta" );
 		}
 	}
 }
-add_action( 'wp_upgrade', 'rp_taxonomy_metadata_migrate_data', 10, 2 );
+add_action( 'init', 'rp_taxonomy_metadata_migrate_data', 0 );
 
 /**
  * RestaurantPress Term Meta API
