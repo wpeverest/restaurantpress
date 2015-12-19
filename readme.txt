@@ -42,6 +42,10 @@ Check the docs at http://themegrill.com/docs/restaurantpress/
 
 * This plugin is released under a GPL license.
 
+= RestaurantPress is awesome! Can I contribute? =
+
+Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/restaurantpress/) :)
+
 == Screenshots ==
 
 1. One Column Layout
