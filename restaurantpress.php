@@ -34,7 +34,7 @@ final class RestaurantPress {
 	/**
 	 * @var string
 	 */
-	public $version = '1.0.0';
+	public $version = '1.1.0';
 
 	/**
 	 * @var RestaurantPress The single instance of the class.
