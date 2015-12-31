@@ -85,7 +85,7 @@ class RP_Settings_General extends RP_Settings_Page {
 				'type'     => 'checkbox'
 			),
 
-			array( 'type' => 'sectionend', 'id'   => 'image_options' )
+			array( 'type' => 'sectionend', 'id' => 'image_options' )
 
 		) );
 
