@@ -37,4 +37,24 @@ class RP_Widget_Menu extends RP_Widget {
 		);
 		parent::__construct();
 	}
+
+	/**
+	 * widget function.
+	 *
+	 * @see WP_Widget
+	 *
+	 * @param array $args
+	 * @param array $instance
+	 */
+	public function widget( $args, $instance ) {
+
+		extract( $args );
+
+		$title = $instance['title'];
+		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
+
+		echo $before_widget;
+
+		echo $after_widget;
+	}
 }
