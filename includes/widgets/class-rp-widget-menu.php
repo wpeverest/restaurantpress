@@ -29,11 +29,40 @@ class RP_Widget_Menu extends RP_Widget {
 		$this->widget_id          = 'restaurantpress_widget_menu';
 		$this->widget_name        = __( 'RestaurantPress Menu', 'restaurantpress' );
 		$this->settings           = array(
-			'title'  => array(
+			'title' => array(
 				'type'  => 'text',
 				'std'   => __( 'Group Menu', 'restaurantpress' ),
 				'label' => __( 'Title', 'restaurantpress' )
 			),
+			'group' => array(
+				'type'  => 'number',
+				'step'  => 1,
+				'min'   => 1,
+				'max'   => '',
+				'std'   => 5,
+				'label' => __( 'Group ID', 'restaurantpress' )
+			),
+			'orderby' => array(
+				'type'  => 'select',
+				'std'   => 'date',
+				'label' => __( 'Order by', 'restaurantpress' ),
+				'options' => array(
+					'date'       => __( 'Date', 'restaurantpress' ),
+					'title'      => __( 'Title', 'restaurantpress' ),
+					'rand'       => __( 'Random', 'restaurantpress' ),
+					'menu_order' => __( 'Menu Order', 'restaurantpress' ),
+					'none'       => __( 'None', 'restaurantpress' ),
+				)
+			),
+			'order' => array(
+				'type'  => 'select',
+				'std'   => 'desc',
+				'label' => _x( 'Order', 'Sorting order', 'restaurantpress' ),
+				'options' => array(
+					'asc'  => __( 'ASC', 'restaurantpress' ),
+					'desc' => __( 'DESC', 'restaurantpress' ),
+				)
+			)
 		);
 		parent::__construct();
 	}
@@ -47,14 +76,10 @@ class RP_Widget_Menu extends RP_Widget {
 	 * @param array $instance
 	 */
 	public function widget( $args, $instance ) {
+		$this->widget_start( $args, $instance );
 
-		extract( $args );
+		echo do_shortcode( '[restaurantpress_menu id=' . $instance['group'] . ' orderby=' . $instance['orderby'] . ' order=' . $instance['order'] . ']' );
 
-		$title = $instance['title'];
-		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
-
-		echo $before_widget;
-
-		echo $after_widget;
+		$this->widget_end( $args );
 	}
 }
