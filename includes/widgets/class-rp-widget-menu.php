@@ -39,7 +39,7 @@ class RP_Widget_Menu extends RP_Widget {
 				'step'  => 1,
 				'min'   => 1,
 				'max'   => '',
-				'std'   => 5,
+				'std'   => '',
 				'label' => __( 'Group ID', 'restaurantpress' )
 			),
 			'orderby' => array(
