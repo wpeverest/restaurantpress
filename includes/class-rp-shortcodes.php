@@ -142,7 +142,7 @@ class RP_Shortcodes {
 
 			// Include a layout specific file
 			if ( $include_path && is_readable( $include_path ) ) {
-				include_once( $include_path );
+				include( $include_path );
 			}
 		}
 	}
