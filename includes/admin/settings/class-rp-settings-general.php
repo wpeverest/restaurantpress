@@ -62,7 +62,6 @@ class RP_Settings_General extends RP_Settings_Page {
 				'desc_tip' =>  true,
 			),
 
-
 			array(
 				'title'    => __( 'Food Thumbnails', 'restaurantpress' ),
 				'desc'     => __( 'This size is usually used for the images on the food menu page.', 'restaurantpress' ),
@@ -86,10 +85,7 @@ class RP_Settings_General extends RP_Settings_Page {
 				'type'     => 'checkbox'
 			),
 
-			array(
-				'type' => 'sectionend',
-				'id'   => 'image_options'
-			)
+			array( 'type' => 'sectionend', 'id'   => 'image_options' )
 
 		) );
 
