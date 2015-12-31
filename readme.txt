@@ -2,8 +2,8 @@
 Contributors: themegrill, shivapoudel
 Tags: restaurant, appetizer, food, cafe, menu, dining, drink
 Requires at least: 4.2
-Tested up to: 4.3
-Stable tag: 1.0.0
+Tested up to: 4.4
+Stable tag: 1.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -42,6 +42,10 @@ Check the docs at http://themegrill.com/docs/restaurantpress/
 
 * This plugin is released under a GPL license.
 
+= RestaurantPress is awesome! Can I contribute? =
+
+Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/restaurantpress/) :)
+
 == Screenshots ==
 
 1. One Column Layout
@@ -51,6 +55,9 @@ Check the docs at http://themegrill.com/docs/restaurantpress/
 5. Menu Grouping
 
 == Changelog ==
+= 1.1 =
+* Fix - Broken thumbnail issue fixed.
+* Refactor - Migrated to termmeta from custom table since WP 4.4
 
 = 1.0 =
 * Initial Public Release

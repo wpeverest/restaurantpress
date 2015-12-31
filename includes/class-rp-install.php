@@ -105,7 +105,11 @@ class RP_Install {
 			}
 		}
 
-		return "
+		$tables = '';
+
+		// Term meta is only needed for old installs.
+		if ( get_option( 'db_version' ) < 34370 || ! function_exists( 'get_term_meta' ) ) {
+			$tables .= "
 CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
   meta_id bigint(20) NOT NULL auto_increment,
   restaurantpress_term_id bigint(20) NOT NULL,
@@ -115,7 +119,10 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
   KEY restaurantpress_term_id (restaurantpress_term_id),
   KEY meta_key (meta_key)
 ) $collate;
-		";
+			";
+		}
+
+		return $tables;
 	}
 
 	/**

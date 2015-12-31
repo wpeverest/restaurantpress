@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * RestaurantPress Term Meta API - set table name
+ * RestaurantPress Term Meta API - set table name.
  */
 function rp_taxonomy_metadata_wpdbfix() {
 	global $wpdb;
@@ -29,7 +29,63 @@ add_action( 'init', 'rp_taxonomy_metadata_wpdbfix', 0 );
 add_action( 'switch_blog', 'rp_taxonomy_metadata_wpdbfix', 0 );
 
 /**
- * RestaurantPress Term Meta API - Update term meta
+ * When a term is split, ensure meta data maintained.
+ * @param int    $old_term_id
+ * @param int    $new_term_id
+ * @param string $term_taxonomy_id
+ * @param string $taxonomy
+ */
+function rp_taxonomy_metadata_update_content_for_split_terms( $old_term_id, $new_term_id, $term_taxonomy_id, $taxonomy ) {
+	global $wpdb;
+
+	if ( 'food_menu_cat' === $taxonomy && get_option( 'db_version' ) < 34370 ) {
+		$old_meta_data = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}restaurantpress_termmeta WHERE restaurantpress_term_id = %d;", $old_term_id ) );
+
+		// Copy across to split term
+		if ( $old_meta_data ) {
+			foreach ( $old_meta_data as $meta_data ) {
+				$wpdb->insert(
+					"{$wpdb->prefix}restaurantpress_termmeta",
+					array(
+						'restaurantpress_term_id' => $new_term_id,
+						'meta_key'            => $meta_data->meta_key,
+						'meta_value'          => $meta_data->meta_value
+					)
+				);
+			}
+		}
+	}
+}
+add_action( 'split_shared_term', 'rp_taxonomy_metadata_update_content_for_split_terms', 10, 4 );
+
+/**
+ * Migrate data from RP term meta to WP term meta.
+ *
+ * When the database is updated to support term meta, migrate RP term meta data across.
+ * We do this when the new version is >= 34370, and the old version is < 34370 (34370 is when term meta table was added).
+ *
+ * @param string $wp_db_version The new $wp_db_version.
+ * @param string $wp_current_db_version The old (current) $wp_db_version.
+ */
+function rp_taxonomy_metadata_migrate_data() {
+	global $wpdb, $wp_version;
+
+	$sql = $wpdb->get_var( "SHOW TABLES LIKE '{$wpdb->restaurantpress_termmeta}'" );
+	if ( $sql && version_compare( $wp_version, '4.4', '>=' ) ) {
+		if ( $wpdb->query( "INSERT INTO {$wpdb->termmeta} ( term_id, meta_key, meta_value ) SELECT restaurantpress_term_id, meta_key, meta_value FROM {$wpdb->prefix}restaurantpress_termmeta;" ) ) {
+			$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}restaurantpress_termmeta" );
+		}
+	}
+}
+add_action( 'init', 'rp_taxonomy_metadata_migrate_data', 0 );
+
+/**
+ * RestaurantPress Term Meta API
+ *
+ * RP tables for storing term meta are @deprecated from WordPress 4.4 since 4.4 has its own table.
+ * This function serves as a wrapper, using the new table if present, or falling back to the RP table.
+ *
+ * @todo These functions should be deprecated with notices in a future RP version, allowing users a chance to upgrade WordPress.
  *
  * @param  mixed  $term_id
  * @param  string $meta_key
@@ -38,11 +94,21 @@ add_action( 'switch_blog', 'rp_taxonomy_metadata_wpdbfix', 0 );
  * @return bool
  */
 function update_restaurantpress_term_meta( $term_id, $meta_key, $meta_value, $prev_value = '' ) {
-	return update_metadata( 'restaurantpress_term', $term_id, $meta_key, $meta_value, $prev_value );
+	// If term meta table is not installed (pre-wp-4.4), use RP tables.
+	if ( get_option( 'db_version' ) < 34370 || ! function_exists( 'update_term_meta' ) ) {
+		return update_metadata( 'restaurantpress_term', $term_id, $meta_key, $meta_value, $prev_value );
+	} else {
+		return update_term_meta( $term_id, $meta_key, $meta_value, $prev_value );
+	}
 }
 
 /**
- * RestaurantPress Term Meta API - Add term meta
+ * RestaurantPress Term Meta API
+ *
+ * RP tables for storing term meta are @deprecated from WordPress 4.4 since 4.4 has its own table.
+ * This function serves as a wrapper, using the new table if present, or falling back to the RP table.
+ *
+ * @todo These functions should be deprecated with notices in a future RP version, allowing users a chance to upgrade WordPress.
  *
  * @param  mixed $term_id
  * @param  mixed $meta_key
@@ -51,24 +117,44 @@ function update_restaurantpress_term_meta( $term_id, $meta_key, $meta_value, $pr
  * @return bool
  */
 function add_restaurantpress_term_meta( $term_id, $meta_key, $meta_value, $unique = false ) {
-	return add_metadata( 'restaurantpress_term', $term_id, $meta_key, $meta_value, $unique );
+	// If term meta table is not installed (pre-wp-4.4), use RP tables.
+	if ( get_option( 'db_version' ) < 34370 || ! function_exists( 'add_term_meta' ) ) {
+		return add_metadata( 'restaurantpress_term', $term_id, $meta_key, $meta_value, $unique );
+	} else {
+		return add_term_meta( $term_id, $meta_key, $meta_value, $unique );
+	}
 }
 
 /**
- * RestaurantPress Term Meta API - Delete term meta
+ * RestaurantPress Term Meta API
+ *
+ * RP tables for storing term meta are @deprecated from WordPress 4.4 since 4.4 has its own table.
+ * This function serves as a wrapper, using the new table if present, or falling back to the RP table.
+ *
+ * @todo These functions should be deprecated with notices in a future RP version, allowing users a chance to upgrade WordPress.
  *
  * @param  mixed  $term_id
  * @param  mixed  $meta_key
  * @param  string $meta_value (default: '')
- * @param  bool   $delete_all (default: false)
+ * @param  bool   $deprecated (default: false)
  * @return bool
  */
-function delete_restaurantpress_term_meta( $term_id, $meta_key, $meta_value = '', $delete_all = false ) {
-	return delete_metadata( 'restaurantpress_term', $term_id, $meta_key, $meta_value, $delete_all );
+function delete_restaurantpress_term_meta( $term_id, $meta_key, $meta_value = '', $deprecated = false ) {
+	// If term meta table is not installed (pre-wp-4.4), use RP tables.
+	if ( get_option( 'db_version' ) < 34370 || ! function_exists( 'delete_term_meta' ) ) {
+		return delete_metadata( 'restaurantpress_term', $term_id, $meta_key, $meta_value );
+	} else {
+		return delete_term_meta( $term_id, $meta_key, $meta_value );
+	}
 }
 
 /**
- * RestaurantPress Term Meta API - Get term meta
+ * RestaurantPress Term Meta API
+ *
+ * RP tables for storing term meta are @deprecated from WordPress 4.4 since 4.4 has its own table.
+ * This function serves as a wrapper, using the new table if present, or falling back to the RP table.
+ *
+ * @todo These functions should be deprecated with notices in a future RP version, allowing users a chance to upgrade WordPress.
  *
  * @param  mixed  $term_id
  * @param  string $key
@@ -76,5 +162,10 @@ function delete_restaurantpress_term_meta( $term_id, $meta_key, $meta_value = ''
  * @return mixed
  */
 function get_restaurantpress_term_meta( $term_id, $key, $single = true ) {
-	return get_metadata( 'restaurantpress_term', $term_id, $key, $single );
+	// If term meta table is not installed (pre-wp-4.4), use RP tables.
+	if ( get_option( 'db_version' ) < 34370 || ! function_exists( 'get_term_meta' ) ) {
+		return get_metadata( 'restaurantpress_term', $term_id, $key, $single );
+	} else {
+		return get_term_meta( $term_id, $key, $single );
+	}
 }
