@@ -135,6 +135,7 @@ final class RestaurantPress {
 	 */
 	public function includes() {
 		include_once( 'includes/functions-rp-core.php' );
+		include_once( 'includes/functions-rp-widget.php' );
 		include_once( 'includes/class-rp-autoloader.php' );
 		include_once( 'includes/class-rp-install.php' );
 		include_once( 'includes/class-rp-ajax.php' );
