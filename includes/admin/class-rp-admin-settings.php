@@ -32,6 +32,7 @@ class RP_Admin_Settings {
 			include_once( 'settings/class-rp-settings-page.php' );
 
 			$settings[] = include( 'settings/class-rp-settings-general.php' );
+			$settings[] = include( 'settings/class-rp-settings-shortcode.php' );
 
 			self::$settings = apply_filters( 'restaurantpress_get_settings_pages', $settings );
 		}
