@@ -42,6 +42,37 @@ class RP_Settings_General extends RP_Settings_Page {
 		$settings = apply_filters( 'restaurantpress_general_settings', array(
 
 			array(
+				'title' => __( 'Chef Badge', 'restaurantpress' ),
+				'type'  => 'title',
+				'desc'  => __( 'This section lets you customize the chef badge icon text colour and its background colour.', 'restaurantpress' ),
+				'id'    => 'chef_badge_options'
+			),
+
+			array(
+				'title'    => __( 'Icon Text Colour', 'restaurantpress' ),
+				'desc'     => __( 'The main icon text colour for RestaurantPress chef badge. Default <code>#ffffff</code>.', 'restaurantpress' ),
+				'id'       => 'restaurantpress_chef_icon_text_color',
+				'type'     => 'color',
+				'css'      => 'width:6em;',
+				'default'  => '#ffffff',
+				'autoload' => false,
+				'desc_tip' => true
+			),
+
+			array(
+				'title'    => __( 'Background Colour', 'restaurantpress' ),
+				'desc'     => __( 'The background colour for RestaurantPress chef badge. Default <code>#f40000</code>.', 'restaurantpress' ),
+				'id'       => 'restaurantpress_chef_background_color',
+				'type'     => 'color',
+				'css'      => 'width:6em;',
+				'default'  => '#f40000',
+				'autoload' => false,
+				'desc_tip' => true
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'chef_badge_options' ),
+
+			array(
 				'title' => __( 'Food Item Images', 'restaurantpress' ),
 				'type'  => 'title',
 				'desc' 	=> sprintf( __( 'These settings affect the display and dimensions of images in your menu - the display on the front-end will still be affected by CSS styles. After changing these settings you may need to <a href="%s">regenerate your thumbnails</a>.', 'restaurantpress' ), 'http://wordpress.org/extend/plugins/regenerate-thumbnails/' ),
