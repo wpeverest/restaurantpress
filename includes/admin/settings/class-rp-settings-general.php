@@ -42,27 +42,16 @@ class RP_Settings_General extends RP_Settings_Page {
 		$settings = apply_filters( 'restaurantpress_general_settings', array(
 
 			array(
-				'title' => __( 'Chef Badge', 'restaurantpress' ),
+				'title' => __( 'Color Options', 'restaurantpress' ),
 				'type'  => 'title',
-				'desc'  => __( 'This section lets you customize the chef badge icon text colour and its background colour.', 'restaurantpress' ),
+				'desc'  => __( 'This section lets you customize the color for all the group layouts.', 'restaurantpress' ),
 				'id'    => 'chef_badge_options'
 			),
 
 			array(
-				'title'    => __( 'Icon Text Colour', 'restaurantpress' ),
-				'desc'     => __( 'The main icon text colour for RestaurantPress chef badge. Default <code>#ffffff</code>.', 'restaurantpress' ),
-				'id'       => 'restaurantpress_chef_icon_text_color',
-				'type'     => 'color',
-				'css'      => 'width:6em;',
-				'default'  => '#ffffff',
-				'autoload' => false,
-				'desc_tip' => true
-			),
-
-			array(
-				'title'    => __( 'Background Colour', 'restaurantpress' ),
-				'desc'     => __( 'The background colour for RestaurantPress chef badge. Default <code>#f40000</code>.', 'restaurantpress' ),
-				'id'       => 'restaurantpress_chef_background_color',
+				'title'    => __( 'Primary Color', 'restaurantpress' ),
+				'desc'     => __( 'The primary color for RestaurantPress group layouts. Default <code>#f40000</code>.', 'restaurantpress' ),
+				'id'       => 'restaurantpress_primary_color',
 				'type'     => 'color',
 				'css'      => 'width:6em;',
 				'default'  => '#f40000',

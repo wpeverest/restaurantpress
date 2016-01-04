@@ -151,32 +151,40 @@ class RP_Frontend_Scripts {
 
 			// Inline Styles
 			if ( current_user_can( 'manage_restaurantpress' ) ) {
-				$inline_styles = self::create_chef_styles();
+				$inline_styles = self::create_primary_styles();
 				wp_add_inline_style( 'restaurantpress-general', $inline_styles );
 			}
 		}
 	}
 
 	/**
-	 * Create chef badge icon styles.
+	 * Create primary color styles.
 	 * @return string
 	 */
-	private static function create_chef_styles() {
-		$chef_icon_text  = get_option( 'restaurantpress_chef_icon_text_color' );
-		$chef_background = get_option( 'restaurantpress_chef_background_color' );
+	private static function create_primary_styles() {
+		$primary_color  = get_option( 'restaurantpress_primary_color' );
 
 		// Load styles
 		return "
-		.restaurantpress .chef-icon:before {
-			color: {$chef_icon_text} !important;
-		}
 		.restaurantpress .rp-chef-badge {
-			background: {$chef_background} !important;
+			background: {$primary_color} !important;
 		}
 
 		.restaurantpress .rp-chef-badge:before,
 		.restaurantpress .rp-chef-badge:after {
-			border-top-color: {$chef_background} !important;
+			border-top-color: {$primary_color} !important;
+		}
+
+		.restaurantpress .rp-price {
+			background: {$primary_color} !important;
+		}
+
+		.restaurantpress .rp-price:before {
+			border-right-color: {$primary_color} !important;
+		}
+
+		.restaurantpress .rp-content-wrapper {
+			border-bottom-color: {$primary_color} !important;
 		}
 		";
 
