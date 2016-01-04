@@ -186,6 +186,11 @@ class RP_Frontend_Scripts {
 		.restaurantpress .rp-content-wrapper {
 			border-bottom-color: {$primary_color} !important;
 		}
+
+		.restaurantpress .image-magnify span:hover {
+			background: {$primary_color} !important;
+			border-color: {$primary_color} !important;
+		}
 		";
 
 		return $inline_css;
