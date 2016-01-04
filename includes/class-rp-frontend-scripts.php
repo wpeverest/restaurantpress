@@ -148,7 +148,39 @@ class RP_Frontend_Scripts {
 					self::enqueue_style( $handle, $args['src'], $args['deps'], $args['version'], $args['media'] );
 				}
 			}
+
+			// Inline Styles
+			if ( current_user_can( 'manage_restaurantpress' ) ) {
+				$inline_styles = self::create_chef_styles();
+				wp_add_inline_style( 'restaurantpress-general', $inline_styles );
+			}
 		}
+	}
+
+	/**
+	 * Create chef badge icon styles.
+	 * @return string
+	 */
+	private static function create_chef_styles() {
+		$chef_icon_text  = get_option( 'restaurantpress_chef_icon_text_color' );
+		$chef_background = get_option( 'restaurantpress_chef_background_color' );
+
+		// Load styles
+		return "
+		.restaurantpress .chef-icon:before {
+			color: {$chef_icon_text} !important;
+		}
+		.restaurantpress .rp-chef-badge {
+			background: {$chef_background} !important;
+		}
+
+		.restaurantpress .rp-chef-badge:before,
+		.restaurantpress .rp-chef-badge:after {
+			border-top-color: {$chef_background} !important;
+		}
+		";
+
+		return $inline_css;
 	}
 }
 
