@@ -184,7 +184,7 @@ class RP_Admin_Post_Types {
 
 		switch ( $column ) {
 			case 'thumb' :
-				echo '<a href="' . get_edit_post_link( $post->ID ) . '">' . $this->get_image( 'post-thumbnail' ) . '</a>';
+				echo '<a href="' . get_edit_post_link( $post->ID ) . '">' . $this->get_image( 'thumbnail' ) . '</a>';
 			break;
 			case 'name' :
 				$edit_link = get_edit_post_link( $post->ID );
