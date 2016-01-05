@@ -79,9 +79,6 @@ class RP_Meta_Box_Group_Data {
 
 				echo '<div class="options_group">';
 
-					// Enable Toggle
-					// restaurantpress_wp_checkbox( array( 'id' => '_enable_toggle', 'wrapper_class' => 'hide_if_grid_image', 'label' => __( 'Enable Toggle', 'restaurantpress' ), 'description' => __( 'Enable accordian toggle.', 'restaurantpress' ) ) );
-
 					// Category Icon
 					restaurantpress_wp_checkbox( array( 'id' => '_category_icon', 'wrapper_class' => 'show_to_all_layout', 'label' => __( 'Category Icon', 'restaurantpress' ), 'description' => __( 'Show category image icon.', 'restaurantpress' ) ) );
 
