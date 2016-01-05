@@ -207,8 +207,10 @@ class RP_Admin_Taxonomies {
 	}
 
 	/**
-	 * Save category iconfont fields.
-	 * @param mixed $term_id Term ID being saved
+	 * Save category icon fields.
+	 * @param mixed  $term_id Term ID being saved
+	 * @param mixed  $tt_id
+	 * @param string $taxonomy
 	 */
 	public function save_category_fields( $term_id, $tt_id = '', $taxonomy = '' ) {
 		if ( isset( $_POST['food_menu_cat_thumbnail_id'] ) && 'food_menu_cat' === $taxonomy ) {
@@ -233,9 +235,9 @@ class RP_Admin_Taxonomies {
 
 	/**
 	 * Thumbnail column value added to category admin.
-	 * @param  mixed $columns
-	 * @param  mixed $column
-	 * @param  mixed $id
+	 * @param  string $columns
+	 * @param  string $column
+	 * @param  int    $id
 	 * @return array
 	 */
 	public function food_menu_cat_column( $columns, $column, $id ) {
