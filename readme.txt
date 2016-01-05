@@ -56,9 +56,10 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/re
 
 == Changelog ==
 
-= 1.2 - TBD =
+= 1.2 - 06/1/2016 =
 * Feature - New widget to render group menu.
 * Feature - New settings interface to control options.
+* Tweak - Moved Lightbox settings to main backend panel.
 * Tweak - Moved Groups CPT next to main RestaurantPress menu.
 
 = 1.1 =

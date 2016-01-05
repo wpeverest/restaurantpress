@@ -12,15 +12,6 @@ jQuery( function( $ ) {
 			$( 'select#layout_type' )
 				.on( 'change', this.type_options )
 				.change();
-
-			// Lightbox Options
-			$( 'input#_featured_image' ).change( function() {
-				if ( $( this ).is( ':checked' ) ) {
-					$( '._lightbox_image_field' ).hide();
-				} else {
-					$( '._lightbox_image_field' ).show();
-				}
-			}).change();
 		},
 
 		/**

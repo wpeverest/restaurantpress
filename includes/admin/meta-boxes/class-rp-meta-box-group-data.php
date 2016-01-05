@@ -82,15 +82,8 @@ class RP_Meta_Box_Group_Data {
 					// Category Icon
 					restaurantpress_wp_checkbox( array( 'id' => '_category_icon', 'wrapper_class' => 'show_to_all_layout', 'label' => __( 'Category Icon', 'restaurantpress' ), 'description' => __( 'Show category image icon.', 'restaurantpress' ) ) );
 
-				echo '</div>';
-
-				echo '<div class="options_group">';
-
 					// Featured Image
 					restaurantpress_wp_checkbox( array( 'id' => '_featured_image', 'wrapper_class' => 'hide_if_grid_image', 'label' => __( 'Featured Image', 'restaurantpress' ), 'description' => __( 'Disable the featured image.', 'restaurantpress' ) ) );
-
-					// Image Popup
-					restaurantpress_wp_checkbox( array( 'id' => '_lightbox_image', 'wrapper_class' => 'show_if_grid_image', 'label' => __( 'Image Lightbox', 'restaurantpress' ), 'description' => __( 'Show the image in lightbox.', 'restaurantpress' ) ) );
 
 				echo '</div>';
 
@@ -134,14 +127,12 @@ class RP_Meta_Box_Group_Data {
 		$layout_type    = rp_clean( $_POST['layout_type'] );
 		$category_icon  = isset( $_POST['_category_icon'] ) ? 'yes' : 'no';
 		$featured_image = isset( $_POST['_featured_image'] ) ? 'yes' : 'no';
-		$lightbox_image = isset( $_POST['_lightbox_image'] ) ? 'yes' : 'no';
 		$food_grouping  = isset( $_POST['food_grouping'] ) ? array_map( 'rp_clean', $_POST['food_grouping'] ) : array();
 
 		// Save
 		update_post_meta( $post_id, 'layout_type', $layout_type );
 		update_post_meta( $post_id, '_category_icon', $category_icon );
 		update_post_meta( $post_id, '_featured_image', $featured_image );
-		update_post_meta( $post_id, '_lightbox_image', $lightbox_image );
 		update_post_meta( $post_id, 'food_grouping', $food_grouping );
 
 		do_action( 'restaurantpress_group_options_save', $post_id );

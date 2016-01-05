@@ -18,7 +18,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 			// Get post meta data
 			$category_icon  = get_post_meta( $group_id, '_category_icon', true );
 			$featured_image = get_post_meta( $group_id, '_featured_image', true );
-			$lightbox_image = get_post_meta( $group_id, '_lightbox_image', true );
 
 			// Get category image
 			$image = '';
@@ -40,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<div class="rp-column-3 clearpress rp-column-margin">
 								<?php if ( 'no' == $featured_image ) : ?>
 									<figure class ="rp-img">
-										<?php if ( 'yes' == $lightbox_image && 'yes' == $food_menu['popup'] ) : ?>
+										<?php if ( 'yes' === get_option( 'restaurantpress_enable_lightbox' ) && 'yes' == $food_menu['popup'] ) : ?>
 											<a href="<?php echo $food_menu['attach_url']; ?>" itemprop="image" class="restaurentpress-main-image zoom" title="" data-rel="prettyPhoto"><?php echo $food_menu['image_grid']; ?><span class="image-magnify"> <span> + </span> </span></a>
 										<?php else : ?>
 											<?php echo $food_menu['image_grid']; ?>
