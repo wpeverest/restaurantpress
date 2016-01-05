@@ -19,7 +19,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class RP_Meta_Box_Menu_Data {
 
 	/**
-	 * Output the meta box
+	 * Output the meta box.
+	 * @param WP_Post $post
 	 */
 	public static function output( $post ) {
 		wp_nonce_field( 'restaurantpress_save_data', 'restaurantpress_meta_nonce' );
@@ -48,7 +49,8 @@ class RP_Meta_Box_Menu_Data {
 	}
 
 	/**
-	 * Save meta box data
+	 * Save meta box data.
+	 * @param int $post_id
 	 */
 	public static function save( $post_id ) {
 		// Add/Replace data to array
