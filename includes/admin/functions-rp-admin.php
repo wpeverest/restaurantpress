@@ -77,8 +77,8 @@ function restaurantpress_update_options( $options ) {
 
 /**
  * Get a setting from the settings API.
- * @param  mixed  $option_name
- * @param  string $default
+ * @param  mixed $option_name
+ * @param  mixed $default
  * @return string
  */
 function restaurantpress_settings_get_option( $option_name, $default = '' ) {
