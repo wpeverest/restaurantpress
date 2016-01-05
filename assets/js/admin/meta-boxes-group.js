@@ -3,7 +3,7 @@ jQuery( function( $ ) {
 	/**
 	 * Group actions
 	 */
-	var rp_meta_boxes_coupon_actions = {
+	var rp_meta_boxes_group_actions = {
 
 		/**
 		 * Initialize group actions.
@@ -55,5 +55,5 @@ jQuery( function( $ ) {
 		}
 	};
 
-	rp_meta_boxes_coupon_actions.init();
+	rp_meta_boxes_group_actions.init();
 });
