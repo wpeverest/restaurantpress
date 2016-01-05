@@ -19,7 +19,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class RP_Meta_Box_Group_Data {
 
 	/**
-	 * Output the meta box
+	 * Output the meta box.
+	 * @param WP_Post $post
 	 */
 	public static function output( $post ) {
 		global $post, $thepostid;
@@ -135,7 +136,8 @@ class RP_Meta_Box_Group_Data {
 	}
 
 	/**
-	 * Save meta box data
+	 * Save meta box data.
+	 * @param int $post_id
 	 */
 	public static function save( $post_id ) {
 		// Add/Replace data to array
