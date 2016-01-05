@@ -20,6 +20,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class RP_Admin_Meta_Boxes {
 
+	/**
+	 * Is meta boxes saved once?
+	 *
+	 * @var boolean
+	 */
 	private static $saved_meta_boxes = false;
 
 	/**
