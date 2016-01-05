@@ -131,19 +131,15 @@ class RP_Meta_Box_Group_Data {
 	 */
 	public static function save( $post_id ) {
 		// Add/Replace data to array
-		$layout_type      = rp_clean( $_POST['layout_type'] );
-		$enable_toggle    = isset( $_POST['_enable_toggle'] ) ? 'yes' : 'no';
-		$category_icon    = isset( $_POST['_category_icon'] ) ? 'yes' : 'no';
-		$page_flip_effect = isset( $_POST['_page_flip_effect'] ) ? 'yes' : 'no';
-		$featured_image   = isset( $_POST['_featured_image'] ) ? 'yes' : 'no';
-		$lightbox_image   = isset( $_POST['_lightbox_image'] ) ? 'yes' : 'no';
-		$food_grouping    = isset( $_POST['food_grouping'] ) ? array_map( 'rp_clean', $_POST['food_grouping'] ) : array();
+		$layout_type    = rp_clean( $_POST['layout_type'] );
+		$category_icon  = isset( $_POST['_category_icon'] ) ? 'yes' : 'no';
+		$featured_image = isset( $_POST['_featured_image'] ) ? 'yes' : 'no';
+		$lightbox_image = isset( $_POST['_lightbox_image'] ) ? 'yes' : 'no';
+		$food_grouping  = isset( $_POST['food_grouping'] ) ? array_map( 'rp_clean', $_POST['food_grouping'] ) : array();
 
 		// Save
 		update_post_meta( $post_id, 'layout_type', $layout_type );
-		update_post_meta( $post_id, '_enable_toggle', $enable_toggle );
 		update_post_meta( $post_id, '_category_icon', $category_icon );
-		update_post_meta( $post_id, '_page_flip_effect', $page_flip_effect );
 		update_post_meta( $post_id, '_featured_image', $featured_image );
 		update_post_meta( $post_id, '_lightbox_image', $lightbox_image );
 		update_post_meta( $post_id, 'food_grouping', $food_grouping );
