@@ -84,13 +84,6 @@ class RP_Meta_Box_Group_Data {
 
 				echo '</div>';
 
-				// echo '<div class="options_group show_if_two_column">';
-
-				// 	// Page Flip
-				// 	restaurantpress_wp_checkbox( array( 'id' => '_page_flip_effect', 'wrapper_class' => 'show_if_two_column', 'label' => __( 'Page Flip Effect', 'restaurantpress' ), 'description' => __( 'Enable Page flipping effect.', 'restaurantpress' ) ) );
-
-				// echo '</div>';
-
 				echo '<div class="options_group">';
 
 					// Featured Image
