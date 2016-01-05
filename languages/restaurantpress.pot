@@ -1,17 +1,29 @@
-# Copyright (C) 2015 ThemeGrill
+# Copyright (C) 2016 ThemeGrill
 # This file is distributed under the same license as the RestaurantPress package.
 msgid ""
 msgstr ""
-"Project-Id-Version: RestaurantPress 1.0.0\n"
+"Project-Id-Version: RestaurantPress 1.2\n"
 "Report-Msgid-Bugs-To: themegrill@gmail.com\n"
-"POT-Creation-Date: 2015-11-04 06:32:25+00:00\n"
+"POT-Creation-Date: 2016-01-05 08:51:57+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "X-Generator: grunt-wp-i18n 0.5.3\n"
+
+#. Plugin Name of the plugin/theme
+msgid "RestaurantPress"
+msgstr ""
+
+#: includes/admin/class-rp-admin-menus.php:50
+msgid "RestaurantPress Settings"
+msgstr ""
+
+#: includes/admin/class-rp-admin-menus.php:50
+msgid "Settings"
+msgstr ""
 
 #: includes/admin/class-rp-admin-meta-boxes.php:44
 msgid "Item Price"
@@ -178,11 +190,13 @@ msgstr ""
 
 #: includes/admin/class-rp-admin-post-types.php:139
 #: includes/admin/rp-shortcodes-editor-i18n.php:31
+#: includes/widgets/class-rp-widget-menu.php:50
 msgid "Date"
 msgstr ""
 
 #: includes/admin/class-rp-admin-post-types.php:153
 #: includes/admin/rp-shortcodes-editor-i18n.php:29
+#: includes/widgets/class-rp-widget-menu.php:43
 msgid "Group ID"
 msgstr ""
 
@@ -274,6 +288,36 @@ msgstr ""
 msgid "Description (optional)"
 msgstr ""
 
+#: includes/admin/class-rp-admin-settings.php:49
+msgid "Action failed. Please refresh the page and retry."
+msgstr ""
+
+#: includes/admin/class-rp-admin-settings.php:60
+msgid "Your settings have been saved."
+msgstr ""
+
+#: includes/admin/class-rp-admin-settings.php:115
+msgid "The changes you made will be lost if you navigate away from this page."
+msgstr ""
+
+#: includes/admin/class-rp-admin-settings.php:370
+msgid "Select all"
+msgstr ""
+
+#: includes/admin/class-rp-admin-settings.php:370
+msgid "Select none"
+msgstr ""
+
+#: includes/admin/class-rp-admin-settings.php:494
+msgid ""
+"The settings of this image size have been disabled because its values are "
+"being overwritten by a filter."
+msgstr ""
+
+#: includes/admin/class-rp-admin-settings.php:503
+msgid "Hard Crop?"
+msgstr ""
+
 #: includes/admin/class-rp-admin-taxonomies.php:64
 #: includes/admin/class-rp-admin-taxonomies.php:143
 msgid "Upload Image Icon"
@@ -314,93 +358,86 @@ msgid ""
 "categories listed click the \"screen options\" link at the top of the page."
 msgstr ""
 
-#: includes/admin/class-rp-admin.php:58
+#: includes/admin/class-rp-admin.php:59
 msgid ""
 "If you like <strong>RestaurantPress</strong> please leave us a "
 "%s&#9733;&#9733;&#9733;&#9733;&#9733;%s rating. A huge thank you from "
 "ThemeGrill in advance!"
 msgstr ""
 
-#: includes/admin/class-rp-admin.php:58
+#: includes/admin/class-rp-admin.php:59
 msgid "Thanks :)"
 msgstr ""
 
-#: includes/admin/class-rp-admin.php:66
+#: includes/admin/class-rp-admin.php:67
 msgid "Thank you for creating with RestaurantPress."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:40
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:41
+#: includes/admin/settings/class-rp-settings-general.php:29
 msgid "General"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:45
-#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:115
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:46
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:99
 msgid "Grouping"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:67
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:68
 msgid "Layout Type"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:69
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:70
 msgid "One Column"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:70
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:71
 msgid "Two Column"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:71
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:72
 msgid "Grid Image"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:74
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:75
 msgid ""
 "Define whether or not the entire layout should be column based, or just "
 "with the grid image."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:85
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:83
 msgid "Category Icon"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:85
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:83
 msgid "Show category image icon."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:99
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:86
 msgid "Featured Image"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:99
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:86
 msgid "Disable the featured image."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:102
-msgid "Image Lightbox"
-msgstr ""
-
-#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:102
-msgid "Show the image in lightbox."
-msgstr ""
-
-#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:116
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:100
 msgid "Any category"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:125
+#: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:109
 msgid "A food must be in this category for the group to remain valid."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-rp-meta-box-menu-data.php:37
+#: includes/admin/meta-boxes/class-rp-meta-box-menu-data.php:38
 msgid "Set Price"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-rp-meta-box-menu-data.php:38
+#: includes/admin/meta-boxes/class-rp-meta-box-menu-data.php:39
 msgid "Enter the item Price&hellip;"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-rp-meta-box-menu-data.php:42
+#: includes/admin/meta-boxes/class-rp-meta-box-menu-data.php:43
 msgid "Enable Chef Recommended Badge."
 msgstr ""
 
@@ -409,18 +446,23 @@ msgid "Order BY"
 msgstr ""
 
 #: includes/admin/rp-shortcodes-editor-i18n.php:32
+#: includes/widgets/class-rp-widget-menu.php:52
 msgid "Random"
 msgstr ""
 
 #: includes/admin/rp-shortcodes-editor-i18n.php:33
+#: includes/widgets/class-rp-widget-menu.php:35
+#: includes/widgets/class-rp-widget-menu.php:51
 msgid "Title"
 msgstr ""
 
 #: includes/admin/rp-shortcodes-editor-i18n.php:34
+#: includes/widgets/class-rp-widget-menu.php:53
 msgid "Menu Order"
 msgstr ""
 
 #: includes/admin/rp-shortcodes-editor-i18n.php:35
+#: includes/widgets/class-rp-widget-menu.php:54
 msgid "None"
 msgstr ""
 
@@ -429,10 +471,12 @@ msgid "Order"
 msgstr ""
 
 #: includes/admin/rp-shortcodes-editor-i18n.php:37
+#: includes/widgets/class-rp-widget-menu.php:62
 msgid "ASC"
 msgstr ""
 
 #: includes/admin/rp-shortcodes-editor-i18n.php:38
+#: includes/widgets/class-rp-widget-menu.php:63
 msgid "DESC"
 msgstr ""
 
@@ -444,19 +488,81 @@ msgstr ""
 msgid "You need to use a Group ID!"
 msgstr ""
 
-#: includes/class-rp-install.php:246
+#: includes/admin/settings/class-rp-settings-general.php:45
+msgid "Color Options"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-general.php:47
+msgid "This section lets you customize the color for all the group layouts."
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-general.php:52
+msgid "Primary Color"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-general.php:53
+msgid ""
+"The primary color for RestaurantPress group layouts. Default "
+"<code>#d60e10</code>."
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-general.php:65
+msgid "Food Item Images"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-general.php:67
+msgid ""
+"These settings affect the display and dimensions of images in your menu - "
+"the display on the front-end will still be affected by CSS styles. After "
+"changing these settings you may need to <a href=\"%s\">regenerate your "
+"thumbnails</a>."
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-general.php:72
+msgid "Food Grid Images"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-general.php:73
+msgid "This size is usually used in food grid listings"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-general.php:86
+msgid "Food Thumbnails"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-general.php:87
+msgid "This size is usually used for the images on the food menu page."
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-general.php:100
+msgid "Food Image Lightbox"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-general.php:101
+msgid "Enable Lightbox for food images"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-general.php:104
+msgid "Include RestaurantPress's lightbox. Food images will open in a lightbox."
+msgstr ""
+
+#: includes/admin/views/html-admin-settings.php:34
+msgid "Save Changes"
+msgstr ""
+
+#: includes/class-rp-install.php:282
 msgid "View RestaurantPress Documentation"
 msgstr ""
 
-#: includes/class-rp-install.php:246
+#: includes/class-rp-install.php:282
 msgid "Docs"
 msgstr ""
 
-#: includes/class-rp-install.php:247
+#: includes/class-rp-install.php:283
 msgid "Free Support Forum"
 msgstr ""
 
-#: includes/class-rp-install.php:247
+#: includes/class-rp-install.php:283
 msgid "Free Support"
 msgstr ""
 
@@ -624,12 +730,24 @@ msgstr ""
 msgid "Placeholder"
 msgstr ""
 
-#: restaurantpress.php:65 restaurantpress.php:73
-msgid "Cheatin&#8217; huh?"
+#: includes/widgets/class-rp-widget-menu.php:28
+msgid "Displays RestaurantPress Menu."
 msgstr ""
 
-#. Plugin Name of the plugin/theme
-msgid "RestaurantPress"
+#: includes/widgets/class-rp-widget-menu.php:30
+msgid "RestaurantPress Menu"
+msgstr ""
+
+#: includes/widgets/class-rp-widget-menu.php:34
+msgid "Group Menu"
+msgstr ""
+
+#: includes/widgets/class-rp-widget-menu.php:48
+msgid "Order by"
+msgstr ""
+
+#: restaurantpress.php:65 restaurantpress.php:73
+msgid "Cheatin&#8217; huh?"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
@@ -728,4 +846,9 @@ msgstr ""
 #: includes/class-rp-post-types.php:70
 msgctxt "slug"
 msgid "food-menu-category"
+msgstr ""
+
+#: includes/widgets/class-rp-widget-menu.php:60
+msgctxt "Sorting order"
+msgid "Order"
 msgstr ""
