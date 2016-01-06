@@ -27,17 +27,21 @@ if ( ! class_exists( 'RestaurantPress' ) ) :
  * Main RestaurantPress Class.
  *
  * @class   RestaurantPress
- * @version 1.0.0
+ * @version 1.2.0
  */
 final class RestaurantPress {
 
 	/**
+	 * RestaurantPress Version.
+	 *
 	 * @var string
 	 */
 	public $version = '1.2';
 
 	/**
-	 * @var RestaurantPress The single instance of the class.
+	 * The single instance of the class.
+	 *
+	 * @var RestaurantPress
 	 */
 	protected static $_instance = null;
 
