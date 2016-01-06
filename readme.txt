@@ -1,5 +1,5 @@
 === RestaurantPress ===
-Contributors: themegrill, shivapoudel
+Contributors: ThemeGrill, shivapoudel
 Tags: restaurant, appetizer, food, cafe, menu, dining, drink
 Requires at least: 4.2
 Tested up to: 4.4
