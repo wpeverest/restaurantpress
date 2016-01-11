@@ -34,6 +34,11 @@ class RP_Widget_Menu extends RP_Widget {
 				'std'   => __( 'Group Menu', 'restaurantpress' ),
 				'label' => __( 'Title', 'restaurantpress' )
 			),
+			'description'  => array(
+				'type'  => 'textarea',
+				'std'   => '',
+				'label' => __( 'Description', 'restaurantpress' )
+			),
 			'group' => array(
 				'type'  => 'number',
 				'step'  => 1,
@@ -76,14 +81,18 @@ class RP_Widget_Menu extends RP_Widget {
 	 * @param array $instance
 	 */
 	public function widget( $args, $instance ) {
+		do_action( 'restaurantpress_widget_menu_before', $args, $instance );
+
 		$this->widget_start( $args, $instance );
 
-		do_action( 'restaurantpress_widget_menu_before', $args, $instance );
+		if ( ! empty( $instance['description'] ) ) {
+			echo '<p>' . $instance['description'] . '</p>';
+		}
 
 		echo do_shortcode( '[restaurantpress_menu id=' . $instance['group'] . ' orderby=' . $instance['orderby'] . ' order=' . $instance['order'] . ']' );
 
-		do_action( 'restaurantpress_widget_menu_after', $args, $instance );
-
 		$this->widget_end( $args );
+
+		do_action( 'restaurantpress_widget_menu_after', $args, $instance );
 	}
 }
