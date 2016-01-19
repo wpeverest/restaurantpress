@@ -86,7 +86,7 @@ class RP_Widget_Menu extends RP_Widget {
 		$this->widget_start( $args, $instance );
 
 		if ( ! empty( $instance['description'] ) ) {
-			echo '<p>' . $instance['description'] . '</p>';
+			echo '<p class="sub-title">' . $instance['description'] . '</p>';
 		}
 
 		echo do_shortcode( '[restaurantpress_menu id=' . $instance['group'] . ' orderby=' . $instance['orderby'] . ' order=' . $instance['order'] . ']' );
