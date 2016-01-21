@@ -40,6 +40,7 @@ class RP_Admin_Assets {
 		// Register admin styles
 		wp_register_style( 'restaurantpress-menu', RP()->plugin_url() . '/assets/css/menu.css', array(), RP_VERSION );
 		wp_register_style( 'restaurantpress-admin', RP()->plugin_url() . '/assets/css/admin.css', array(), RP_VERSION );
+		wp_register_style( 'restaurantpress-admin-widgets', RP()->plugin_url() . '/assets/css/widgets.css', array(), AC_VERSION );
 		wp_register_style( 'jquery-ui-style', '//code.jquery.com/ui/' . $jquery_version . '/themes/smoothness/jquery-ui.css', array(), $jquery_version );
 
 		// Sitewide menu CSS
@@ -50,6 +51,10 @@ class RP_Admin_Assets {
 			wp_enqueue_style( 'restaurantpress-admin' );
 			wp_enqueue_style( 'jquery-ui-style' );
 			wp_enqueue_style( 'wp-color-picker' );
+		}
+
+		if ( in_array( $screen->id, array( 'widgets', 'customize' ) ) ) {
+			wp_enqueue_style( 'restaurantpress-admin-widgets' );
 		}
 	}
 
@@ -104,6 +109,12 @@ class RP_Admin_Assets {
 		if ( in_array( $screen->id, array( 'food_group', 'edit-food_group' ) ) ) {
 			wp_register_script( 'rp-admin-group-meta-boxes', RP()->plugin_url() . '/assets/js/admin/meta-boxes-group' . $suffix . '.js', array( 'rp-admin-meta-boxes' ), RP_VERSION );
 			wp_enqueue_script( 'rp-admin-group-meta-boxes' );
+		}
+
+		// Widgets Specific
+		if ( in_array( $screen->id, array( 'widgets', 'customize' ) ) ) {
+			wp_register_script( 'rp-admin-widgets', RP()->plugin_url() . '/assets/js/admin/widgets' . $suffix . '.js', array( 'jquery', 'wp-color-picker' ), RP_VERSION );
+			wp_enqueue_script( 'rp-admin-widgets' );
 		}
 	}
 }
