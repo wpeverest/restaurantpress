@@ -28,7 +28,7 @@ class RP_Widget_Menu extends RP_Widget {
 		$this->widget_description = __( 'Displays RestaurantPress Menu.', 'restaurantpress' );
 		$this->widget_id          = 'restaurantpress_widget_menu';
 		$this->widget_name        = __( 'RestaurantPress Menu', 'restaurantpress' );
-		$this->settings           = array(
+		$this->settings           = apply_filters( 'restaurantpress_widget_menu_settings', array(
 			'title' => array(
 				'type'  => 'text',
 				'std'   => __( 'Group Menu', 'restaurantpress' ),
@@ -68,7 +68,7 @@ class RP_Widget_Menu extends RP_Widget {
 					'desc' => __( 'DESC', 'restaurantpress' ),
 				)
 			)
-		);
+		) );
 		parent::__construct();
 	}
 
