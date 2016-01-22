@@ -43,7 +43,7 @@ class RP_Post_Types {
 		register_taxonomy( 'food_menu_cat',
 			apply_filters( 'restaurantpress_taxonomy_objects_food_menu_cat', array( 'food_menu' ) ),
 			apply_filters( 'restaurantpress_taxonomy_args_food_menu_cat', array(
-				'hierarchical' => false,
+				'hierarchical' => true,
 				'label'        => __( 'Menu Item Categories', 'restaurantpress' ),
 				'labels'       => array(
 						'name'              => __( 'Menu Item Categories', 'restaurantpress' ),

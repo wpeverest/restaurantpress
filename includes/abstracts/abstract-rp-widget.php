@@ -214,6 +214,15 @@ abstract class RP_Widget extends WP_Widget {
 					<?php
 				break;
 
+				case 'color':
+					?>
+					<p>
+						<label for="<?php echo $this->get_field_id( $key ); ?>" style="display:block;"><?php echo $setting['label']; ?></label>
+						<input class="widefat color-picker <?php echo esc_attr( $class ); ?>" id="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>" name="<?php echo $this->get_field_name( $key ); ?>" type="text" value="<?php echo esc_attr( $value ); ?>" data-default-color="<?php echo $setting['std']; ?>" />
+					</p>
+					<?php
+				break;
+
 				case 'number' :
 					?>
 					<p>
