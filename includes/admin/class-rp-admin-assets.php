@@ -40,7 +40,7 @@ class RP_Admin_Assets {
 		// Register admin styles
 		wp_register_style( 'restaurantpress-menu', RP()->plugin_url() . '/assets/css/menu.css', array(), RP_VERSION );
 		wp_register_style( 'restaurantpress-admin', RP()->plugin_url() . '/assets/css/admin.css', array(), RP_VERSION );
-		wp_register_style( 'restaurantpress-admin-widgets', RP()->plugin_url() . '/assets/css/widgets.css', array(), AC_VERSION );
+		wp_register_style( 'restaurantpress-admin-widgets', RP()->plugin_url() . '/assets/css/widgets.css', array(), RP_VERSION );
 		wp_register_style( 'jquery-ui-style', '//code.jquery.com/ui/' . $jquery_version . '/themes/smoothness/jquery-ui.css', array(), $jquery_version );
 
 		// Sitewide menu CSS
