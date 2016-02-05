@@ -1,4 +1,4 @@
-Copyright 2015 by the ThemeGrill
+Copyright 2016 by the ThemeGrill
 
 RestaurantPress is released under the GPL
 
@@ -692,10 +692,3 @@ may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <http://www.gnu.org/philosophy/why-not-lgpl.html>.
-
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-The source code for any program binaries or compressed scripts that are
-included with RestaurantPress can be freely obtained at the following URL:
-
-	https://github.com/themegrill/restaurantpress
