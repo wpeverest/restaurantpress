@@ -14,6 +14,8 @@ if( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
+global $wpdb;
+
 $uninstall_data = apply_filters( 'restaurantpress_uninstall_data', false );
 
 if ( $uninstall_data ) {
