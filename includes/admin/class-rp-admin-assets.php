@@ -35,6 +35,7 @@ class RP_Admin_Assets {
 		global $wp_scripts;
 
 		$screen         = get_current_screen();
+		$screen_id      = $screen ? $screen->id : '';
 		$jquery_version = isset( $wp_scripts->registered['jquery-ui-core']->ver ) ? $wp_scripts->registered['jquery-ui-core']->ver : '1.9.2';
 
 		// Register admin styles
@@ -47,13 +48,13 @@ class RP_Admin_Assets {
 		wp_enqueue_style( 'restaurantpress-menu' );
 
 		// Admin styles for RP pages only
-		if ( in_array( $screen->id, rp_get_screen_ids() ) ) {
+		if ( in_array( $screen_id, rp_get_screen_ids() ) ) {
 			wp_enqueue_style( 'restaurantpress-admin' );
 			wp_enqueue_style( 'jquery-ui-style' );
 			wp_enqueue_style( 'wp-color-picker' );
 		}
 
-		if ( in_array( $screen->id, array( 'widgets', 'customize' ) ) ) {
+		if ( in_array( $screen_id, array( 'widgets', 'customize' ) ) ) {
 			wp_enqueue_style( 'restaurantpress-admin-widgets' );
 		}
 	}
@@ -62,8 +63,9 @@ class RP_Admin_Assets {
 	 * Enqueue scripts.
 	 */
 	public function admin_scripts() {
-		$screen = get_current_screen();
-		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		$screen    = get_current_screen();
+		$screen_id = $screen ? $screen->id : '';
+		$suffix    = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		// Register Scripts
 		wp_register_script( 'restaurantpress-admin', RP()->plugin_url() . '/assets/js/admin/admin' . $suffix . '.js', array( 'jquery', 'jquery-ui-sortable', 'jquery-ui-widget', 'jquery-ui-core', 'jquery-tiptip' ), RP_VERSION );
@@ -87,7 +89,7 @@ class RP_Admin_Assets {
 		) );
 
 		// RestaurantPress admin pages
-		if ( in_array( $screen->id, rp_get_screen_ids() ) ) {
+		if ( in_array( $screen_id, rp_get_screen_ids() ) ) {
 			wp_enqueue_script( 'iris' );
 			wp_enqueue_script( 'restaurantpress-admin' );
 			wp_enqueue_script( 'jquery-ui-sortable' );
@@ -101,18 +103,18 @@ class RP_Admin_Assets {
 		}
 
 		// Edit food menu category pages
-		if ( in_array( $screen->id, array( 'edit-food_menu_cat' ) ) ) {
+		if ( in_array( $screen_id, array( 'edit-food_menu_cat' ) ) ) {
 			wp_enqueue_media();
 		}
 
 		// Meta boxes
-		if ( in_array( $screen->id, array( 'food_group', 'edit-food_group' ) ) ) {
+		if ( in_array( $screen_id, array( 'food_group', 'edit-food_group' ) ) ) {
 			wp_register_script( 'rp-admin-group-meta-boxes', RP()->plugin_url() . '/assets/js/admin/meta-boxes-group' . $suffix . '.js', array( 'rp-admin-meta-boxes' ), RP_VERSION );
 			wp_enqueue_script( 'rp-admin-group-meta-boxes' );
 		}
 
 		// Widgets Specific
-		if ( in_array( $screen->id, array( 'widgets', 'customize' ) ) ) {
+		if ( in_array( $screen_id, array( 'widgets', 'customize' ) ) ) {
 			wp_register_script( 'rp-admin-widgets', RP()->plugin_url() . '/assets/js/admin/widgets' . $suffix . '.js', array( 'jquery', 'wp-color-picker' ), RP_VERSION );
 			wp_enqueue_script( 'rp-admin-widgets' );
 		}
