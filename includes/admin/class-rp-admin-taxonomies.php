@@ -56,11 +56,11 @@ class RP_Admin_Taxonomies {
 	}
 
 	/**
-	 * Category iconfont fields.
+	 * Category thumbnail fields.
 	 */
 	public function add_category_fields() {
 		?>
-		<div class="form-field">
+		<div class="form-field term-thumbnail-wrap">
 			<label><?php _e( 'Upload Image Icon', 'restaurantpress' ); ?></label>
 			<div id="food_menu_cat_thumbnail"><img src="<?php echo esc_url( rp_placeholder_img_src() ); ?>" width="48px" height="48px" /></div>
 			<div style="line-height: 48px;">
