@@ -202,34 +202,26 @@ class RP_Install {
 
 		$wpdb->hide_errors();
 
-		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-
-		/**
-		 * Updating with DBDELTA.
-		 */
-		dbDelta( self::get_schema() );
-	}
-
-	/**
-	 * Get Table schema.
-	 * @return string
-	 */
-	private static function get_schema() {
-		global $wpdb;
-
-		$collate = '';
-
-		$collate = '';
+		$charset_collate = '';
 
 		if ( $wpdb->has_cap( 'collation' ) ) {
-			$collate = $wpdb->get_charset_collate();
+			$charset_collate = $wpdb->get_charset_collate();
 		}
 
-		$tables = '';
+		/*
+		 * Indexes have a maximum size of 767 bytes. Historically, we haven't need to be concerned about that.
+		 * As of WordPress 4.2, however, we moved to utf8mb4, which uses 4 bytes per character. This means that an index which
+		 * used to have room for floor(767/3) = 255 characters, now only has room for floor(767/4) = 191 characters.
+		 */
+		$max_index_length = 191;
+
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+
+		$sql = '';
 
 		// Term meta is only needed for old installs.
 		if ( ! function_exists( 'get_term_meta' ) ) {
-			$tables .= "
+			$sql .= "
 CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
   meta_id bigint(20) NOT NULL auto_increment,
   restaurantpress_term_id bigint(20) NOT NULL,
@@ -238,11 +230,11 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
   PRIMARY KEY  (meta_id),
   KEY restaurantpress_term_id (restaurantpress_term_id),
   KEY meta_key (meta_key($max_index_length))
-) $collate;
+) $charset_collate;
 			";
 		}
 
-		return $tables;
+		dbDelta( $sql );
 	}
 
 	/**
