@@ -59,7 +59,7 @@ function rp_taxonomy_metadata_update_content_for_split_terms( $old_term_id, $new
 add_action( 'split_shared_term', 'rp_taxonomy_metadata_update_content_for_split_terms', 10, 4 );
 
 /**
- * Migrate data from RP term meta to WP term meta.
+ * Migrate data from RP term meta to WP term meta
  *
  * When the database is updated to support term meta, migrate RP term meta data across.
  * We do this when the new version is >= 34370, and the old version is < 34370 (34370 is when term meta table was added).
@@ -67,17 +67,15 @@ add_action( 'split_shared_term', 'rp_taxonomy_metadata_update_content_for_split_
  * @param string $wp_db_version The new $wp_db_version.
  * @param string $wp_current_db_version The old (current) $wp_db_version.
  */
-function rp_taxonomy_metadata_migrate_data() {
-	global $wpdb, $wp_version;
-
-	$sql = $wpdb->get_var( "SHOW TABLES LIKE '{$wpdb->restaurantpress_termmeta}'" );
-	if ( $sql && version_compare( $wp_version, '4.4', '>=' ) ) {
+function rp_taxonomy_metadata_migrate_data( $wp_db_version, $wp_current_db_version ) {
+	if ( $wp_db_version >= 34370 && $wp_current_db_version < 34370 ) {
+		global $wpdb;
 		if ( $wpdb->query( "INSERT INTO {$wpdb->termmeta} ( term_id, meta_key, meta_value ) SELECT restaurantpress_term_id, meta_key, meta_value FROM {$wpdb->prefix}restaurantpress_termmeta;" ) ) {
 			$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}restaurantpress_termmeta" );
 		}
 	}
 }
-add_action( 'init', 'rp_taxonomy_metadata_migrate_data', 0 );
+add_action( 'wp_upgrade', 'rp_taxonomy_metadata_migrate_data', 0 );
 
 /**
  * RestaurantPress Term Meta API
@@ -94,12 +92,7 @@ add_action( 'init', 'rp_taxonomy_metadata_migrate_data', 0 );
  * @return bool
  */
 function update_restaurantpress_term_meta( $term_id, $meta_key, $meta_value, $prev_value = '' ) {
-	// If term meta table is not installed (pre-wp-4.4), use RP tables.
-	if ( get_option( 'db_version' ) < 34370 || ! function_exists( 'update_term_meta' ) ) {
-		return update_metadata( 'restaurantpress_term', $term_id, $meta_key, $meta_value, $prev_value );
-	} else {
-		return update_term_meta( $term_id, $meta_key, $meta_value, $prev_value );
-	}
+	return function_exists( 'update_term_meta' ) ? update_term_meta( $term_id, $meta_key, $meta_value, $prev_value ) : update_metadata( 'restaurantpress_term', $term_id, $meta_key, $meta_value, $prev_value );
 }
 
 /**
@@ -117,12 +110,7 @@ function update_restaurantpress_term_meta( $term_id, $meta_key, $meta_value, $pr
  * @return bool
  */
 function add_restaurantpress_term_meta( $term_id, $meta_key, $meta_value, $unique = false ) {
-	// If term meta table is not installed (pre-wp-4.4), use RP tables.
-	if ( get_option( 'db_version' ) < 34370 || ! function_exists( 'add_term_meta' ) ) {
-		return add_metadata( 'restaurantpress_term', $term_id, $meta_key, $meta_value, $unique );
-	} else {
-		return add_term_meta( $term_id, $meta_key, $meta_value, $unique );
-	}
+	return function_exists( 'add_term_meta' ) ? add_term_meta( $term_id, $meta_key, $meta_value, $unique ) : add_metadata( 'restaurantpress_term', $term_id, $meta_key, $meta_value, $unique );
 }
 
 /**
@@ -140,12 +128,7 @@ function add_restaurantpress_term_meta( $term_id, $meta_key, $meta_value, $uniqu
  * @return bool
  */
 function delete_restaurantpress_term_meta( $term_id, $meta_key, $meta_value = '', $deprecated = false ) {
-	// If term meta table is not installed (pre-wp-4.4), use RP tables.
-	if ( get_option( 'db_version' ) < 34370 || ! function_exists( 'delete_term_meta' ) ) {
-		return delete_metadata( 'restaurantpress_term', $term_id, $meta_key, $meta_value );
-	} else {
-		return delete_term_meta( $term_id, $meta_key, $meta_value );
-	}
+	return function_exists( 'delete_term_meta' ) ? delete_term_meta( $term_id, $meta_key, $meta_value ) : delete_metadata( 'restaurantpress_term', $term_id, $meta_key, $meta_value );
 }
 
 /**
@@ -162,10 +145,5 @@ function delete_restaurantpress_term_meta( $term_id, $meta_key, $meta_value = ''
  * @return mixed
  */
 function get_restaurantpress_term_meta( $term_id, $key, $single = true ) {
-	// If term meta table is not installed (pre-wp-4.4), use RP tables.
-	if ( get_option( 'db_version' ) < 34370 || ! function_exists( 'get_term_meta' ) ) {
-		return get_metadata( 'restaurantpress_term', $term_id, $key, $single );
-	} else {
-		return get_term_meta( $term_id, $key, $single );
-	}
+	return function_exists( 'get_term_meta' ) ? get_term_meta( $term_id, $key, $single ) : get_metadata( 'restaurantpress_term', $term_id, $key, $single );
 }
