@@ -3,7 +3,7 @@
  * Plugin Name: RestaurantPress
  * Plugin URI: http://www.themegrill.com/plugins/restaurantpress/
  * Description: Allows you to create awesome restaurant menu for restaurant, bars, cafes in no time. Smartly :)
- * Version: 1.3
+ * Version: 1.3-dev
  * Author: ThemeGrill
  * Author URI: http://themegrill.com
  * Requires at least: 4.2
