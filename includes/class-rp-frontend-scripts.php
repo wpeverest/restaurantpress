@@ -130,7 +130,7 @@ class RP_Frontend_Scripts {
 		$assets_path          = str_replace( array( 'http:', 'https:' ), '', RP()->plugin_url() ) . '/assets/';
 		$frontend_script_path = $assets_path . 'js/frontend/';
 
-		if ( apply_filters( 'restaurantpress_is_widget_menu_active', is_active_widget( false, false, 'restaurantpress_widget_menu', true ) ) || rp_shortcode_tag( 'restaurantpress_menu' ) ) {
+		if ( apply_filters( 'restaurantpress_is_widget_menu_active', is_active_widget( false, false, 'restaurantpress_widget_menu', true ) ) || rp_post_content_has_shortcode( 'restaurantpress_menu' ) ) {
 
 			// Register frontend scripts conditionally
 			if ( $lightbox_en ) {

@@ -16,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Include core functions (available in both admin and frontend).
 include( 'functions-rp-term.php' );
+include( 'functions-rp-deprecated.php' );
 
 /**
  * Clean variables using sanitize_text_field
@@ -45,17 +46,6 @@ function rp_sanitize_tooltip( $var ) {
 		'ol'     => array(),
 		'p'      => array(),
 	) ) );
-}
-
-/**
- * Returns true when the shortcode tag is found.
- * @param  string $tag Shortcode tag to check.
- * @return bool
- */
-function rp_shortcode_tag( $tag = '' ) {
-	global $post;
-
-	return is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, $tag );
 }
 
 /**
@@ -155,4 +145,24 @@ function rp_placeholder_img( $size = 'food_thumbnail' ) {
 	$thumb_size = $dimensions['width'] == 100 ? 'small' : 'large';
 
 	return apply_filters( 'restaurantpress_placeholder_img', '<img src="' . rp_placeholder_img_src( $thumb_size ) . '" alt="' . esc_attr__( 'Placeholder', 'restaurantpress' ) . '" width="' . esc_attr( $dimensions['width'] ) . '" class="restaurantpress-placeholder wp-post-image" height="' . esc_attr( $dimensions['height'] ) . '" />', $size, $dimensions );
+}
+
+/**
+ * RestaurantPress Core Supported Themes.
+ * @return string[]
+ */
+function rp_get_core_supported_themes() {
+	return array( 'twentysixteen', 'twentyfifteen', 'twentyfourteen', 'twentythirteen', '','twentyeleven', 'twentyten' );
+}
+
+/**
+ * Checks whether the content passed contains a specific short code.
+ *
+ * @param  string $tag Shortcode tag to check.
+ * @return bool
+ */
+function rp_post_content_has_shortcode( $tag = '' ) {
+	global $post;
+
+	return is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, $tag );
 }

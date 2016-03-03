@@ -36,6 +36,7 @@ class RP_Admin {
 		include_once( 'class-rp-admin-post-types.php' );
 		include_once( 'class-rp-admin-taxonomies.php' );
 		include_once( 'class-rp-admin-menus.php' );
+		include_once( 'class-rp-admin-notices.php' );
 		include_once( 'class-rp-admin-assets.php' );
 		include_once( 'class-rp-admin-tinymce.php' );
 	}

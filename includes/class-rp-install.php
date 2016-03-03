@@ -14,23 +14,75 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * RP_Install Class
+ * RP_Install Class.
  */
 class RP_Install {
+
+	/** @var array DB updates that need to be run */
+	private static $db_updates = array(
+		'1.3.0' => 'updates/restaurantpress-update-1.3.php'
+	);
 
 	/**
 	 * Hook in tabs.
 	 */
 	public static function init() {
+		add_action( 'init', array( __CLASS__, 'check_version' ), 5 );
+		add_action( 'admin_init', array( __CLASS__, 'install_actions' ) );
 		add_action( 'in_plugin_update_message-restaurantpress/restaurantpress.php', array( __CLASS__, 'in_plugin_update_message' ) );
 		add_filter( 'plugin_action_links_' . RP_PLUGIN_BASENAME, array( __CLASS__, 'plugin_action_links' ) );
 		add_filter( 'plugin_row_meta', array( __CLASS__, 'plugin_row_meta' ), 10, 2 );
 	}
 
 	/**
-	 * Install RP
+	 * Check RestaurantPress version and run the updater is required.
+	 *
+	 * This check is done on all requests and runs if the versions do not match.
+	 */
+	public static function check_version() {
+		if ( ! defined( 'IFRAME_REQUEST' ) && get_option( 'restaurantpress_version' ) !== RP()->version ) {
+			self::install();
+			do_action( 'restaurantpress_updated' );
+		}
+	}
+
+	/**
+	 * Install actions when a update button is clicked within the admin area.
+	 *
+	 * This function is hooked into admin_init to affect admin only.
+	 */
+	public static function install_actions() {
+		if ( ! empty( $_GET['do_update_restaurantpress'] ) ) {
+			self::update();
+			RP_Admin_Notices::remove_notice( 'update' );
+			add_action( 'admin_notices', array( __CLASS__, 'updated_notice' ) );
+		}
+	}
+
+	/**
+	 * Show notice stating update was successful.
+	 */
+	public static function updated_notice() {
+		?>
+		<div id="message" class="updated restaurantpress-message rp-connect">
+			<p><?php _e( 'RestaurantPress data update complete. Thank you for updating to the latest version!', 'restaurantpress' ); ?></p>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Install RP.
 	 */
 	public static function install() {
+		global $wpdb;
+
+		if ( ! defined( 'RP_INSTALLING' ) ) {
+			define( 'RP_INSTALLING', true );
+		}
+
+		// Ensure needed classes are loaded
+		include_once( 'admin/class-rp-admin-notices.php' );
+
 		self::create_options();
 		self::create_tables();
 		self::create_roles();
@@ -38,6 +90,77 @@ class RP_Install {
 		// Register post types
 		RP_Post_Types::register_post_types();
 		RP_Post_Types::register_taxonomies();
+
+		// Queue upgrades/setup wizard
+		$current_rp_version    = get_option( 'restaurantpress_version', null );
+		$current_db_version    = get_option( 'restaurantpress_db_version', null );
+		$major_rp_version      = substr( RP()->version, 0, strrpos( RP()->version, '.' ) );
+
+		RP_Admin_Notices::remove_all_notices();
+
+		if ( ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( self::$db_updates ) ), '<' ) ) {
+			RP_Admin_Notices::add_notice( 'update' );
+		} else {
+			self::update_db_version();
+		}
+
+		self::update_rp_version();
+
+		// Flush rules after install
+		flush_rewrite_rules();
+
+		/*
+		 * Deletes all expired transients. The multi-table delete syntax is used
+		 * to delete the transient record from table a, and the corresponding
+		 * transient_timeout record from table b.
+		 *
+		 * Based on code inside core's upgrade_network() function.
+		 */
+		$sql = "DELETE a, b FROM $wpdb->options a, $wpdb->options b
+			WHERE a.option_name LIKE %s
+			AND a.option_name NOT LIKE %s
+			AND b.option_name = CONCAT( '_transient_timeout_', SUBSTRING( a.option_name, 12 ) )
+			AND b.option_value < %d";
+		$wpdb->query( $wpdb->prepare( $sql, $wpdb->esc_like( '_transient_' ) . '%', $wpdb->esc_like( '_transient_timeout_' ) . '%', time() ) );
+
+		// Trigger action
+		do_action( 'restaurantpress_installed' );
+	}
+
+	/**
+	 * Update RP version to current.
+	 */
+	private static function update_rp_version() {
+		delete_option( 'restaurantpress_version' );
+		add_option( 'restaurantpress_version', RP()->version );
+	}
+
+	/**
+	 * Update DB version to current.
+	 */
+	private static function update_db_version( $version = null ) {
+		delete_option( 'restaurantpress_db_version' );
+		add_option( 'restaurantpress_db_version', is_null( $version ) ? RP()->version : $version );
+	}
+
+	/**
+	 * Handle updates.
+	 */
+	private static function update() {
+		if ( ! defined( 'RP_UPDATING' ) ) {
+			define( 'RP_UPDATING', true );
+		}
+
+		$current_db_version = get_option( 'restaurantpress_db_version' );
+
+		foreach ( self::$db_updates as $version => $updater ) {
+			if ( version_compare( $current_db_version, $version, '<' ) ) {
+				include( $updater );
+				self::update_db_version( $version );
+			}
+		}
+
+		self::update_db_version();
 	}
 
 	/**
@@ -262,31 +385,35 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 	}
 
 	/**
-	 * Show action links on the plugin screen.
-	 * @param  mixed $links Plugin Action links
+	 * Display action links in the Plugins list table.
+	 * @param  array $actions
 	 * @return array
 	 */
-	public static function plugin_action_links( $links ) {
-		return $links;
+	public static function plugin_action_links( $actions ) {
+		$new_actions = array(
+			'settings' => '<a href="' . admin_url( 'admin.php?page=rp-settings' ) . '" title="' . esc_attr( __( 'View AxisComposer Settings', 'axiscomposer' ) ) . '">' . __( 'Settings', 'axiscomposer' ) . '</a>',
+		);
+
+		return array_merge( $new_actions, $actions );
 	}
 
 	/**
-	 * Show row meta on the plugin screen.
-	 * @param  mixed $links Plugin Row Meta
-	 * @param  mixed $file  Plugin Base file
+	 * Display row meta in the Plugins list table.
+	 * @param  array  $plugin_meta
+	 * @param  string $plugin_file
 	 * @return array
 	 */
-	public static function plugin_row_meta( $links, $file ) {
-		if ( $file == RP_PLUGIN_BASENAME ) {
-			$row_meta = array(
+	public static function plugin_row_meta( $plugin_meta, $plugin_file ) {
+		if ( $plugin_file == RP_PLUGIN_BASENAME ) {
+			$new_plugin_meta = array(
 				'docs'    => '<a href="' . esc_url( apply_filters( 'restaurantpress_docs_url', 'http://themegrill.com/docs/restaurantpress/' ) ) . '" title="' . esc_attr( __( 'View RestaurantPress Documentation', 'restaurantpress' ) ) . '">' . __( 'Docs', 'restaurantpress' ) . '</a>',
-				'support' => '<a href="' . esc_url( apply_filters( 'restaurantpress_support_url', 'http://themegrill.com/support-forum/' ) ) . '" title="' . esc_attr( __( 'Free Support Forum', 'restaurantpress' ) ) . '">' . __( 'Free Support', 'restaurantpress' ) . '</a>',
+				'support' => '<a href="' . esc_url( apply_filters( 'restaurantpress_support_url', 'http://themegrill.com/support-forum/' ) ) . '" title="' . esc_attr( __( 'Visit Free Customer Support Forum', 'restaurantpress' ) ) . '">' . __( 'Free Support', 'restaurantpress' ) . '</a>',
 			);
 
-			return array_merge( $links, $row_meta );
+			return array_merge( $plugin_meta, $new_plugin_meta );
 		}
 
-		return (array) $links;
+		return (array) $plugin_meta;
 	}
 }
 
