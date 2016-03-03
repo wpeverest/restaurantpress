@@ -4,10 +4,10 @@
  *
  * Where functions come to die.
  *
- * @author   AxisThemes
+ * @author   ThemeGrill
  * @category Core
- * @package  AxisComposer/Functions
- * @version  1.0.0
+ * @package  RestaurantPress/Functions
+ * @version  1.3.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

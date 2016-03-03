@@ -391,7 +391,7 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 	 */
 	public static function plugin_action_links( $actions ) {
 		$new_actions = array(
-			'settings' => '<a href="' . admin_url( 'admin.php?page=rp-settings' ) . '" title="' . esc_attr( __( 'View AxisComposer Settings', 'axiscomposer' ) ) . '">' . __( 'Settings', 'axiscomposer' ) . '</a>',
+			'settings' => '<a href="' . admin_url( 'admin.php?page=rp-settings' ) . '" title="' . esc_attr( __( 'View RestaurantPress Settings', 'restaurantpress' ) ) . '">' . __( 'Settings', 'restaurantpress' ) . '</a>',
 		);
 
 		return array_merge( $new_actions, $actions );
