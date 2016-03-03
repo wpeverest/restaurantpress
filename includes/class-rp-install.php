@@ -202,6 +202,18 @@ class RP_Install {
 
 		$wpdb->hide_errors();
 
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+
+		dbDelta( self::get_schema() );
+	}
+
+	/**
+	 * Get Table schema.
+	 * @return string
+	 */
+	private static function get_schema() {
+		global $wpdb;
+
 		$charset_collate = '';
 
 		if ( $wpdb->has_cap( 'collation' ) ) {
@@ -215,13 +227,11 @@ class RP_Install {
 		 */
 		$max_index_length = 191;
 
-		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-
-		$sql = '';
+		$tables = '';
 
 		// Term meta is only needed for old installs.
 		if ( ! function_exists( 'get_term_meta' ) ) {
-			$sql .= "
+			$tables .= "
 CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
   meta_id bigint(20) NOT NULL auto_increment,
   restaurantpress_term_id bigint(20) NOT NULL,
@@ -234,7 +244,7 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 			";
 		}
 
-		dbDelta( $sql );
+		return $tables;
 	}
 
 	/**
