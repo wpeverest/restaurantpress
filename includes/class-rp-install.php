@@ -219,28 +219,25 @@ class RP_Install {
 
 		$collate = '';
 
+		$collate = '';
+
 		if ( $wpdb->has_cap( 'collation' ) ) {
-			if ( ! empty( $wpdb->charset ) ) {
-				$collate .= "DEFAULT CHARACTER SET $wpdb->charset";
-			}
-			if ( ! empty( $wpdb->collate ) ) {
-				$collate .= " COLLATE $wpdb->collate";
-			}
+			$collate = $wpdb->get_charset_collate();
 		}
 
 		$tables = '';
 
 		// Term meta is only needed for old installs.
-		if ( get_option( 'db_version' ) < 34370 || ! function_exists( 'get_term_meta' ) ) {
+		if ( ! function_exists( 'get_term_meta' ) ) {
 			$tables .= "
 CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
   meta_id bigint(20) NOT NULL auto_increment,
   restaurantpress_term_id bigint(20) NOT NULL,
-  meta_key varchar(255) NULL,
+  meta_key varchar(255) default NULL,
   meta_value longtext NULL,
   PRIMARY KEY  (meta_id),
   KEY restaurantpress_term_id (restaurantpress_term_id),
-  KEY meta_key (meta_key)
+  KEY meta_key (meta_key($max_index_length))
 ) $collate;
 			";
 		}
