@@ -1,0 +1,38 @@
+/**
+ * activation.scss
+ * Styles applied to elements displayed on activation
+ */
+
+/**
+ * Imports
+ */
+@import "bourbon";
+
+/**
+ * Styling begins
+ */
+.restaurantpress-message {
+	overflow: hidden;
+	position: relative;
+	border-left-color: #2ea2cc !important;
+
+	a.skip,
+	a.docs {
+		opacity: 0.5;
+
+		&:hover, &:focus {
+			opacity: 1;
+		}
+	}
+
+	a.button-primary,
+	a.button-secondary {
+		text-decoration: none !important;
+	}
+
+	.twitter-share-button {
+		margin-left: 3px;
+		margin-top: -3px;
+		vertical-align: middle;
+	}
+}
