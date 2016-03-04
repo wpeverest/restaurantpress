@@ -56,7 +56,17 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/re
 
 == Changelog ==
 
-= 1.2 - 06/1/2016 =
+= 1.3 - TBD =
+* Dev - Registered Grunt `js` task.
+* Fix - Error handling for screen ids.
+* Fix - Select2 library scroll on ios.
+* Fix - Missing `global $wpdb` in `uninstall.php`.
+* Tweak - Hide the Food Menu category parent field.
+* Tweak - Appropriate hook reqd for official FoodHunt theme.
+* Feature - Introduced upgrade and theme support notice display.
+* Deprecated - Added deprecated notice for `rp_shortcode_tag()`.
+
+= 1.2 - 06/01/2016 =
 * Feature - New widget to render group menu.
 * Feature - New settings interface to control options.
 * Tweak - Moved Lightbox settings to main backend panel.
