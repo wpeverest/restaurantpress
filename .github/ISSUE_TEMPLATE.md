@@ -2,7 +2,7 @@
 Before submitting your issue, please go through the following checklist. Thanks!
 
 - [ ] I have searched this repository (top of the page) for the issue and it has not been fixed or reported already.
-- [ ] I am not asking for support (general support - https://wordpress.org/support/plugin/restaurantpress, free plugin support - http://themegrill.com/support/).
+- [ ] I am not asking for support (general support - https://wordpress.org/support/plugin/restaurantpress, free plugin support - http://themegrill.com/support).
 
 FOR BUG REPORTS
 
