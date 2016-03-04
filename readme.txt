@@ -3,7 +3,7 @@ Contributors: ThemeGrill, shivapoudel
 Tags: restaurant, appetizer, food, cafe, menu, dining, drink
 Requires at least: 4.2
 Tested up to: 4.4
-Stable tag: 1.2
+Stable tag: 1.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -56,7 +56,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/re
 
 == Changelog ==
 
-= 1.3 - TBD =
+= 1.3.0 - TBD =
 * Dev - Registered Grunt `js` task.
 * Fix - Error handling for screen ids.
 * Fix - Select2 library scroll on ios.
@@ -66,15 +66,9 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/re
 * Feature - Introduced upgrade and theme support notice display.
 * Deprecated - Added deprecated notice for `rp_shortcode_tag()`.
 
-= 1.2 - 06/01/2016 =
-* Feature - New widget to render group menu.
-* Feature - New settings interface to control options.
-* Tweak - Moved Lightbox settings to main backend panel.
-* Tweak - Moved Groups CPT next to main RestaurantPress menu.
+[See changelog for all versions](https://raw.githubusercontent.com/themegrill/restaurantpress/master/CHANGELOG.txt).
 
-= 1.1 =
-* Fix - Broken thumbnail issue fixed.
-* Refactor - Migrated to termmeta from custom table since WP 4.4
+== Upgrade Notice ==
 
-= 1.0 =
-* Initial Public Release
+= 1.3.0 =
+1.3.0 is a major update so it is important that you make backups, and ensure themes and extensions are 1.3 compatible.

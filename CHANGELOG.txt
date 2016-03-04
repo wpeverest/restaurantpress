@@ -1,0 +1,14 @@
+== Changelog ==
+
+= 1.2 - 06/01/2016 =
+* Feature - New widget to render group menu.
+* Feature - New settings interface to control options.
+* Tweak - Moved Lightbox settings to main backend panel.
+* Tweak - Moved Groups CPT next to main RestaurantPress menu.
+
+= 1.1 =
+* Fix - Broken thumbnail issue fixed.
+* Refactor - Migrated to termmeta from custom table since WP 4.4
+
+= 1.0 =
+* Initial Public Release
