@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * RP_Admin_Settings Class
+ * RP_Admin_Settings Class.
  */
 class RP_Admin_Settings {
 
@@ -70,9 +70,6 @@ class RP_Admin_Settings {
 		do_action( 'restaurantpress_settings_save_' . $current_tab );
 		do_action( 'restaurantpress_update_options_' . $current_tab );
 		do_action( 'restaurantpress_update_options' );
-
-		// Clear any unwanted data
-		delete_transient( 'restaurantpress_cache_excluded_uris' );
 
 		self::add_message( __( 'Your settings have been saved.', 'restaurantpress' ) );
 
@@ -258,7 +255,7 @@ class RP_Admin_Settings {
 				// Section Titles
 				case 'title':
 					if ( ! empty( $value['title'] ) ) {
-						echo '<h3>' . esc_html( $value['title'] ) . '</h3>';
+						echo '<h2>' . esc_html( $value['title'] ) . '</h2>';
 					}
 					if ( ! empty( $value['desc'] ) ) {
 						echo wpautop( wptexturize( wp_kses_post( $value['desc'] ) ) );
