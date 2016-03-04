@@ -229,9 +229,6 @@ class RP_Admin_Settings {
 			if ( ! isset( $value['desc_tip'] ) ) {
 				$value['desc_tip'] = false;
 			}
-			if ( ! isset( $value['buttons'] ) ) {
-				$value['buttons'] = false;
-			}
 			if ( ! isset( $value['placeholder'] ) ) {
 				$value['placeholder'] = '';
 			}
@@ -300,7 +297,7 @@ class RP_Admin_Settings {
 						</th>
 						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
 							<?php
-								if ( $value['type'] == 'color' ) {
+								if ( 'color' == $value['type'] ) {
 									echo '<span class="colorpickpreview" style="background: ' . esc_attr( $option_value ) . ';"></span>';
 								}
 							?>
@@ -378,12 +375,8 @@ class RP_Admin_Settings {
 										<?php
 									}
 								?>
-							</select><?php
-								echo $description;
-								if ( 'multiselect' == $value['type'] && $value['buttons'] ) : ?>
-									</br><a class="select_all button" href="#"><?php _e( 'Select all', 'restaurantpress' ); ?></a> <a class="select_none button" href="#"><?php _e( 'Select none', 'restaurantpress' ); ?></a><?php
-								endif;
-						?></td>
+							</select> <?php echo $description; ?>
+						</td>
 					</tr><?php
 					break;
 
@@ -533,8 +526,8 @@ class RP_Admin_Settings {
 	 * given form field. Plugins can call this when implementing their own custom
 	 * settings types.
 	 *
-	 * @param array $value The form field value array
-	 * @returns array The description and tip as a 2 element array
+	 * @param  array $value The form field value array
+	 * @return array The description and tip as a 2 element array
 	 */
 	public static function get_field_description( $value ) {
 		$description  = '';
@@ -574,7 +567,7 @@ class RP_Admin_Settings {
 	 *
 	 * Loops though the restaurantpress options array and outputs each field.
 	 *
-	 * @param  array $options Opens array to output
+	 * @param  array $options Options array to output
 	 * @return bool
 	 */
 	public static function save_fields( $options ) {
@@ -582,16 +575,16 @@ class RP_Admin_Settings {
 			return false;
 		}
 
-		// Options to update will be stored here and saved later
+		// Options to update will be stored here and saved later.
 		$update_options = array();
 
-		// Loop options and get values to save
+		// Loop options and get values to save.
 		foreach ( $options as $option ) {
 			if ( ! isset( $option['id'] ) || ! isset( $option['type'] ) ) {
 				continue;
 			}
 
-			// Get posted value
+			// Get posted value.
 			if ( strstr( $option['id'], '[' ) ) {
 				parse_str( $option['id'], $option_name_array );
 				$option_name  = current( array_keys( $option_name_array ) );
@@ -603,7 +596,7 @@ class RP_Admin_Settings {
 				$raw_value    = isset( $_POST[ $option['id'] ] ) ? wp_unslash( $_POST[ $option['id'] ] ) : null;
 			}
 
-			// Format the value based on option type
+			// Format the value based on option type.
 			switch ( $option['type'] ) {
 				case 'checkbox' :
 					$value = is_null( $raw_value ) ? 'no' : 'yes';
@@ -612,7 +605,6 @@ class RP_Admin_Settings {
 					$value = wp_kses_post( trim( $raw_value ) );
 					break;
 				case 'multiselect' :
-				case 'multi_select_screens' :
 					$value = array_filter( array_map( 'rp_clean', (array) $raw_value ) );
 					break;
 				case 'image_width' :
@@ -633,12 +625,12 @@ class RP_Admin_Settings {
 			}
 
 			/**
-			 * Sanitize the value of an option
+			 * Sanitize the value of an option.
 			 */
 			$value = apply_filters( 'restaurantpress_admin_settings_sanitize_option', $value, $option, $raw_value );
 
 			/**
-			 * Sanitize the value of an option by option name
+			 * Sanitize the value of an option by option name.
 			 */
 			$value = apply_filters( "restaurantpress_admin_settings_sanitize_option_$option_name", $value, $option, $raw_value );
 
@@ -660,7 +652,7 @@ class RP_Admin_Settings {
 			}
 		}
 
-		// Save all options in our array
+		// Save all options in our array.
 		foreach ( $update_options as $name => $value ) {
 			update_option( $name, $value );
 		}
