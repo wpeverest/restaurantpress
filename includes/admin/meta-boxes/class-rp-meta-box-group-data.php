@@ -99,11 +99,11 @@ class RP_Meta_Box_Group_Data {
 				<p class="form-field"><label for="food_grouping"><?php _e( 'Grouping', 'restaurantpress' ); ?></label>
 				<select id="food_grouping" name="food_grouping[]" style="width: 50%;"  class="rp-enhanced-select" multiple="multiple" data-placeholder="<?php esc_attr_e( 'Any category', 'restaurantpress' ); ?>">
 					<?php
-						$category_slug = (array) get_post_meta( $post->ID, 'food_grouping', true );
-						$categories    = get_terms( 'food_menu_cat', 'orderby=name&hide_empty=0' );
+						$category_ids = (array) get_post_meta( $post->ID, 'food_grouping', true );
+						$categories   = get_terms( 'food_menu_cat', 'orderby=name&hide_empty=0' );
 
 						if ( $categories ) foreach ( $categories as $cat ) {
-							echo '<option value="' . esc_attr( $cat->slug ) . '"' . selected( in_array( $cat->slug, $category_slug ), true, false ) . '>' . esc_html( $cat->name ) . '</option>';
+							echo '<option value="' . esc_attr( $cat->term_id ) . '"' . selected( in_array( $cat->term_id, $category_ids ), true, false ) . '>' . esc_html( $cat->name ) . '</option>';
 						}
 					?>
 				</select> <?php echo rp_help_tip( __( 'A food must be in this category for the group to remain valid.', 'restaurantpress' ) ); ?></p>
