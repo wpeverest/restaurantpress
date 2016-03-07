@@ -51,10 +51,7 @@ if ( $existing_food_groups ) {
 			if ( $needs_update ) {
 				$new_value = serialize( $new_value );
 
-				echo '<pre>' . print_r( $new_value, true ) . '</pre>';
-				echo '<pre>' . print_r( $existing_food_group->meta_value, true ) . '</pre>';
-
-				// $wpdb->query( $wpdb->prepare( "UPDATE {$wpdb->postmeta} SET meta_key = %s, meta_value = %s WHERE meta_id = %d", 'food_grouping', $new_value, $existing_food_group->meta_id ) );
+				$wpdb->query( $wpdb->prepare( "UPDATE {$wpdb->postmeta} SET meta_key = %s, meta_value = %s WHERE meta_id = %d", 'food_grouping', $new_value, $existing_food_group->meta_id ) );
 			}
 		}
 	}
