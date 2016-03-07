@@ -104,8 +104,8 @@ class RP_Shortcodes {
 			}
 
 			foreach ( $food_terms as $term ) {
-				if ( in_array( $term->slug, $food_group ) ) {
-					$food_data[ $term->slug ][] = array(
+				if ( in_array( $term->term_id, $food_group ) ) {
+					$food_data[ $term->term_id ][] = array(
 						'title'      => $title,
 						'content'    => $content,
 						'price'      => $price,
@@ -203,7 +203,7 @@ class RP_Shortcodes {
 				array(
 					'taxonomy' => 'food_menu_cat',
 					'terms'    => array_map( 'sanitize_title', $category ),
-					'field'    => 'slug',
+					'field'    => 'id',
 					'operator' => $operator
 				)
 			);

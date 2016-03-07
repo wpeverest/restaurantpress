@@ -12,8 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="resturant-press-wrapper">
 		<div class="rp-single-column-layout rp-list-design-layout clearpress">
 			<div class="rp-column-wrapper clearpress">
-				<?php foreach ( $food_group as $food_slug ) {
-					$food_term = get_term_by( 'slug', $food_slug, 'food_menu_cat' );
+				<?php foreach ( $food_group as $food_id ) {
+					$food_term = get_term_by( 'id', $food_id, 'food_menu_cat' );
 					$term_id   = intval( $food_term->term_id );
 
 					// Get post meta data
@@ -34,8 +34,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<?php echo esc_html( $food_term->name ); ?>
 							<?php endif; ?>
 						</h3>
-						<?php if ( ! empty( $food_data[ $food_slug ] ) ) {
-							foreach ( $food_data[ $food_slug ] as $food_menu ) { ?>
+						<?php if ( ! empty( $food_data[ $food_id ] ) ) {
+							foreach ( $food_data[ $food_id ] as $food_menu ) { ?>
 								<div class="rp-column-single-block clearpress">
 									<?php if ( 'no' == $featured_image ) : ?>
 										<figure class ="rp-img">
