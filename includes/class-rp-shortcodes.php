@@ -202,8 +202,7 @@ class RP_Shortcodes {
 			$args['tax_query'] = array(
 				array(
 					'taxonomy' => 'food_menu_cat',
-					'terms'    => array_map( 'sanitize_title', $category ),
-					'field'    => 'id',
+					'terms'    => array_map( 'absint', $category ),
 					'operator' => $operator
 				)
 			);
