@@ -61,6 +61,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/re
 * Fix - Error handling for screen ids.
 * Fix - Select2 library scroll on ios.
 * Fix - Missing `global $wpdb` in `uninstall.php`.
+* Fix - Save food grouping date with the `term_id`.
 * Tweak - Hide the Food Menu category parent field.
 * Tweak - Appropriate hook reqd for official FoodHunt theme.
 * Feature - Introduced upgrade and theme support notice display.
