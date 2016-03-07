@@ -2,16 +2,16 @@
 # This file is distributed under the same license as the RestaurantPress package.
 msgid ""
 msgstr ""
-"Project-Id-Version: RestaurantPress 1.2\n"
+"Project-Id-Version: RestaurantPress 1.3-dev\n"
 "Report-Msgid-Bugs-To: themegrill@gmail.com\n"
-"POT-Creation-Date: 2016-01-05 08:54:07+00:00\n"
+"POT-Creation-Date: 2016-03-07 11:53:19+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
-"X-Generator: grunt-wp-i18n 0.5.3\n"
+"X-Generator: grunt-wp-i18n 0.5.4\n"
 
 #. Plugin Name of the plugin/theme
 msgid "RestaurantPress"
@@ -21,16 +21,26 @@ msgstr ""
 msgid "RestaurantPress Settings"
 msgstr ""
 
-#: includes/admin/class-rp-admin-menus.php:50
+#: includes/admin/class-rp-admin-menus.php:50 includes/class-rp-install.php:393
 msgid "Settings"
 msgstr ""
 
-#: includes/admin/class-rp-admin-meta-boxes.php:44
+#: includes/admin/class-rp-admin-meta-boxes.php:49
 msgid "Item Price"
 msgstr ""
 
-#: includes/admin/class-rp-admin-meta-boxes.php:45
+#: includes/admin/class-rp-admin-meta-boxes.php:50
 msgid "Group Data"
+msgstr ""
+
+#: includes/admin/class-rp-admin-notices.php:92
+#: includes/admin/class-rp-admin-settings.php:66
+msgid "Action failed. Please refresh the page and retry."
+msgstr ""
+
+#: includes/admin/class-rp-admin-notices.php:96 restaurantpress.php:69
+#: restaurantpress.php:77
+msgid "Cheatin&#8217; huh?"
 msgstr ""
 
 #: includes/admin/class-rp-admin-post-types.php:63
@@ -171,7 +181,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: includes/admin/class-rp-admin-post-types.php:135
-#: includes/admin/class-rp-admin-taxonomies.php:227
+#: includes/admin/class-rp-admin-taxonomies.php:229
 msgid "Image"
 msgstr ""
 
@@ -190,17 +200,18 @@ msgstr ""
 
 #: includes/admin/class-rp-admin-post-types.php:139
 #: includes/admin/rp-shortcodes-editor-i18n.php:31
-#: includes/widgets/class-rp-widget-menu.php:50
+#: includes/widgets/class-rp-widget-menu.php:55
 msgid "Date"
 msgstr ""
 
 #: includes/admin/class-rp-admin-post-types.php:153
 #: includes/admin/rp-shortcodes-editor-i18n.php:29
-#: includes/widgets/class-rp-widget-menu.php:43
+#: includes/widgets/class-rp-widget-menu.php:48
 msgid "Group ID"
 msgstr ""
 
 #: includes/admin/class-rp-admin-post-types.php:154
+#: includes/widgets/class-rp-widget-menu.php:40
 msgid "Description"
 msgstr ""
 
@@ -288,33 +299,21 @@ msgstr ""
 msgid "Description (optional)"
 msgstr ""
 
-#: includes/admin/class-rp-admin-settings.php:49
-msgid "Action failed. Please refresh the page and retry."
-msgstr ""
-
-#: includes/admin/class-rp-admin-settings.php:60
+#: includes/admin/class-rp-admin-settings.php:74
 msgid "Your settings have been saved."
 msgstr ""
 
-#: includes/admin/class-rp-admin-settings.php:115
+#: includes/admin/class-rp-admin-settings.php:129
 msgid "The changes you made will be lost if you navigate away from this page."
 msgstr ""
 
-#: includes/admin/class-rp-admin-settings.php:370
-msgid "Select all"
-msgstr ""
-
-#: includes/admin/class-rp-admin-settings.php:370
-msgid "Select none"
-msgstr ""
-
-#: includes/admin/class-rp-admin-settings.php:494
+#: includes/admin/class-rp-admin-settings.php:501
 msgid ""
 "The settings of this image size have been disabled because its values are "
 "being overwritten by a filter."
 msgstr ""
 
-#: includes/admin/class-rp-admin-settings.php:503
+#: includes/admin/class-rp-admin-settings.php:510
 msgid "Hard Crop?"
 msgstr ""
 
@@ -348,28 +347,28 @@ msgstr ""
 msgid "Use image"
 msgstr ""
 
-#: includes/admin/class-rp-admin-taxonomies.php:256
+#: includes/admin/class-rp-admin-taxonomies.php:258
 msgid "Thumbnail"
 msgstr ""
 
-#: includes/admin/class-rp-admin-taxonomies.php:267
+#: includes/admin/class-rp-admin-taxonomies.php:269
 msgid ""
 "Menu Item categories for your food can be managed here. To see more "
 "categories listed click the \"screen options\" link at the top of the page."
 msgstr ""
 
-#: includes/admin/class-rp-admin.php:59
+#: includes/admin/class-rp-admin.php:60
 msgid ""
 "If you like <strong>RestaurantPress</strong> please leave us a "
 "%s&#9733;&#9733;&#9733;&#9733;&#9733;%s rating. A huge thank you from "
 "ThemeGrill in advance!"
 msgstr ""
 
-#: includes/admin/class-rp-admin.php:59
+#: includes/admin/class-rp-admin.php:60
 msgid "Thanks :)"
 msgstr ""
 
-#: includes/admin/class-rp-admin.php:67
+#: includes/admin/class-rp-admin.php:68
 msgid "Thank you for creating with RestaurantPress."
 msgstr ""
 
@@ -446,23 +445,23 @@ msgid "Order BY"
 msgstr ""
 
 #: includes/admin/rp-shortcodes-editor-i18n.php:32
-#: includes/widgets/class-rp-widget-menu.php:52
+#: includes/widgets/class-rp-widget-menu.php:57
 msgid "Random"
 msgstr ""
 
 #: includes/admin/rp-shortcodes-editor-i18n.php:33
 #: includes/widgets/class-rp-widget-menu.php:35
-#: includes/widgets/class-rp-widget-menu.php:51
+#: includes/widgets/class-rp-widget-menu.php:56
 msgid "Title"
 msgstr ""
 
 #: includes/admin/rp-shortcodes-editor-i18n.php:34
-#: includes/widgets/class-rp-widget-menu.php:53
+#: includes/widgets/class-rp-widget-menu.php:58
 msgid "Menu Order"
 msgstr ""
 
 #: includes/admin/rp-shortcodes-editor-i18n.php:35
-#: includes/widgets/class-rp-widget-menu.php:54
+#: includes/widgets/class-rp-widget-menu.php:59
 msgid "None"
 msgstr ""
 
@@ -471,12 +470,12 @@ msgid "Order"
 msgstr ""
 
 #: includes/admin/rp-shortcodes-editor-i18n.php:37
-#: includes/widgets/class-rp-widget-menu.php:62
+#: includes/widgets/class-rp-widget-menu.php:67
 msgid "ASC"
 msgstr ""
 
 #: includes/admin/rp-shortcodes-editor-i18n.php:38
-#: includes/widgets/class-rp-widget-menu.php:63
+#: includes/widgets/class-rp-widget-menu.php:68
 msgid "DESC"
 msgstr ""
 
@@ -550,19 +549,65 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
-#: includes/class-rp-install.php:282
+#: includes/admin/views/html-notice-theme-support.php:12
+msgid ""
+"<strong>Your theme does not declare RestaurantPress support</strong> "
+"&#8211; Please read our %sintegration%s guide or check out our %sFoodHunt%s "
+"theme which is totally free to download and designed specifically for use "
+"with RestaurantPress."
+msgstr ""
+
+#: includes/admin/views/html-notice-theme-support.php:14
+msgid "Read More About FoodHunt"
+msgstr ""
+
+#: includes/admin/views/html-notice-theme-support.php:15
+msgid "Theme Integration Guide"
+msgstr ""
+
+#: includes/admin/views/html-notice-theme-support.php:16
+msgid "Hide This Notice"
+msgstr ""
+
+#: includes/admin/views/html-notice-update.php:12
+msgid ""
+"<strong>RestaurantPress Data Update Required</strong> &#8211; We just need "
+"to update your install to the latest version"
+msgstr ""
+
+#: includes/admin/views/html-notice-update.php:13
+msgid "Run the updater"
+msgstr ""
+
+#: includes/admin/views/html-notice-update.php:17
+msgid ""
+"It is strongly recommended that you backup your database before proceeding. "
+"Are you sure you wish to run the updater now?"
+msgstr ""
+
+#: includes/class-rp-install.php:68
+msgid ""
+"RestaurantPress data update complete. Thank you for updating to the latest "
+"version!"
+msgstr ""
+
+#: includes/class-rp-install.php:393
+msgid "View RestaurantPress Settings"
+msgstr ""
+
+#: includes/class-rp-install.php:408
 msgid "View RestaurantPress Documentation"
 msgstr ""
 
-#: includes/class-rp-install.php:282
+#: includes/class-rp-install.php:408
 msgid "Docs"
 msgstr ""
 
-#: includes/class-rp-install.php:283
-msgid "Free Support Forum"
+#: includes/class-rp-install.php:409
+msgid "Visit Free Customer Support Forum"
 msgstr ""
 
-#: includes/class-rp-install.php:283
+#: includes/class-rp-install.php:409
 msgid "Free Support"
 msgstr ""
 
@@ -726,7 +771,7 @@ msgstr ""
 msgid "This is where you can add new group for your food menu."
 msgstr ""
 
-#: includes/functions-rp-core.php:157
+#: includes/functions-rp-core.php:147
 msgid "Placeholder"
 msgstr ""
 
@@ -742,12 +787,8 @@ msgstr ""
 msgid "Group Menu"
 msgstr ""
 
-#: includes/widgets/class-rp-widget-menu.php:48
+#: includes/widgets/class-rp-widget-menu.php:53
 msgid "Order by"
-msgstr ""
-
-#: restaurantpress.php:65 restaurantpress.php:73
-msgid "Cheatin&#8217; huh?"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
@@ -768,62 +809,62 @@ msgstr ""
 msgid "http://themegrill.com"
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:70
+#: includes/admin/class-rp-admin-assets.php:77
 msgctxt "enhanced select"
 msgid "One result is available, press enter to select it."
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:71
+#: includes/admin/class-rp-admin-assets.php:78
 msgctxt "enhanced select"
 msgid "%qty% results are available, use up and down arrow keys to navigate."
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:72
+#: includes/admin/class-rp-admin-assets.php:79
 msgctxt "enhanced select"
 msgid "No matches found"
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:73
+#: includes/admin/class-rp-admin-assets.php:80
 msgctxt "enhanced select"
 msgid "Loading failed"
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:74
+#: includes/admin/class-rp-admin-assets.php:81
 msgctxt "enhanced select"
 msgid "Please enter 1 or more characters"
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:75
+#: includes/admin/class-rp-admin-assets.php:82
 msgctxt "enhanced select"
 msgid "Please enter %qty% or more characters"
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:76
+#: includes/admin/class-rp-admin-assets.php:83
 msgctxt "enhanced select"
 msgid "Please delete 1 character"
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:77
+#: includes/admin/class-rp-admin-assets.php:84
 msgctxt "enhanced select"
 msgid "Please delete %qty% characters"
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:78
+#: includes/admin/class-rp-admin-assets.php:85
 msgctxt "enhanced select"
 msgid "You can only select 1 item"
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:79
+#: includes/admin/class-rp-admin-assets.php:86
 msgctxt "enhanced select"
 msgid "You can only select %qty% items"
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:80
+#: includes/admin/class-rp-admin-assets.php:87
 msgctxt "enhanced select"
 msgid "Loading more results&hellip;"
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:81
+#: includes/admin/class-rp-admin-assets.php:88
 msgctxt "enhanced select"
 msgid "Searching&hellip;"
 msgstr ""
@@ -848,7 +889,7 @@ msgctxt "slug"
 msgid "food-menu-category"
 msgstr ""
 
-#: includes/widgets/class-rp-widget-menu.php:60
+#: includes/widgets/class-rp-widget-menu.php:65
 msgctxt "Sorting order"
 msgid "Order"
 msgstr ""
