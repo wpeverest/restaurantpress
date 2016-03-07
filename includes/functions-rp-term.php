@@ -19,10 +19,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function rp_taxonomy_metadata_wpdbfix() {
 	global $wpdb;
+
 	$termmeta_name = 'restaurantpress_termmeta';
-
 	$wpdb->restaurantpress_termmeta = $wpdb->prefix . $termmeta_name;
-
 	$wpdb->tables[] = 'restaurantpress_termmeta';
 }
 add_action( 'init', 'rp_taxonomy_metadata_wpdbfix', 0 );
