@@ -98,10 +98,21 @@ class RP_Install {
 
 		RP_Admin_Notices::remove_all_notices();
 
-		// No versions? Also if food grouping meta exists it's not a new install :)
-		$existing_food_groups = $wpdb->get_results( "SELECT * FROM {$wpdb->postmeta} WHERE meta_key = 'food_grouping' AND meta_value != '';" );
-		if ( is_null( $current_rp_version ) && is_null( $current_db_version ) && $existing_food_groups ) {
-			RP_Admin_Notices::add_notice( 'update' );
+		// No versions? This is a new install :)
+		if ( is_null( $current_rp_version ) && is_null( $current_db_version ) ) {
+			$has_food_items = get_posts(
+				array(
+					'post_type'      => array( 'food_menu', 'food_group' ),
+					'posts_per_page' => -1,
+					'post_status'    => 'publish',
+					'fields'         => 'ids'
+				)
+			);
+
+			// No food? Let user run updater.
+			if ( ! empty( $has_food_items ) ) {
+				RP_Admin_Notices::add_notice( 'update' );
+			}
 		}
 
 		if ( ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( self::$db_updates ) ), '<' ) ) {
