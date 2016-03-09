@@ -98,9 +98,9 @@ class RP_Install {
 
 		RP_Admin_Notices::remove_all_notices();
 
-		// Back compat for RP 1.2 :)
-		if ( is_null( $current_db_version ) && version_compare( $major_rp_version, '1.2', '>' ) ) {
-			$current_db_version = '1.2';
+		// No versions? Also is not a new install.
+		if ( is_null( $current_rp_version ) && is_null( $current_db_version ) && get_option( 'restaurantpress_enable_lightbox' ) ) {
+			RP_Admin_Notices::add_notice( 'update' );
 		}
 
 		if ( ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( self::$db_updates ) ), '<' ) ) {
