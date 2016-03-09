@@ -99,7 +99,7 @@ class RP_Install {
 		RP_Admin_Notices::remove_all_notices();
 
 		// No versions? This is a new install :)
-		if ( is_null( $current_rp_version ) && is_null( $current_db_version ) ) {
+		if ( is_null( $current_rp_version ) && is_null( $current_db_version ) && apply_filters( 'restaurantpress_enable_setup_wizard', true ) ) {
 			$has_food_items = get_posts(
 				array(
 					'post_type'      => array( 'food_menu', 'food_group' ),
