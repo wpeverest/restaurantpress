@@ -98,8 +98,9 @@ class RP_Install {
 
 		RP_Admin_Notices::remove_all_notices();
 
-		// No versions? Also is not a new install.
-		if ( is_null( $current_rp_version ) && is_null( $current_db_version ) && get_option( 'restaurantpress_enable_lightbox' ) ) {
+		// No versions? Also if food grouping meta exists it's not a new install :)
+		$existing_food_groups = $wpdb->get_results( "SELECT * FROM {$wpdb->postmeta} WHERE meta_key = 'food_grouping' AND meta_value != '';" );
+		if ( is_null( $current_rp_version ) && is_null( $current_db_version ) && $existing_food_groups ) {
 			RP_Admin_Notices::add_notice( 'update' );
 		}
 
