@@ -109,7 +109,7 @@ class RP_Install {
 				)
 			);
 
-			// No food? Let user run updater.
+			// Yes food? Let user run updater.
 			if ( ! empty( $has_food_items ) ) {
 				RP_Admin_Notices::add_notice( 'update' );
 			}
