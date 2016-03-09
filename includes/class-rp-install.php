@@ -98,6 +98,11 @@ class RP_Install {
 
 		RP_Admin_Notices::remove_all_notices();
 
+		// Back compat for RP 1.2 :)
+		if ( is_null( $current_db_version ) && version_compare( $major_rp_version, '1.2', '>' ) ) {
+			$current_db_version = '1.2';
+		}
+
 		if ( ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( self::$db_updates ) ), '<' ) ) {
 			RP_Admin_Notices::add_notice( 'update' );
 		} else {
