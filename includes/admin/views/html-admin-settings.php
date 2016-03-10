@@ -10,9 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div class="wrap restaurantpress">
 	<form method="<?php echo esc_attr( apply_filters( 'restaurantpress_settings_form_method_tab_' . $current_tab, 'post' ) ); ?>" id="mainform" action="" enctype="multipart/form-data">
-		<div class="icon32 icon32-restaurantpress-settings" id="icon-restaurantpress"><br /></div>
-		<h1><?php printf( __( '%s Settings', 'restaurantpress' ), esc_html( $tabs[ $current_tab ] ) ); ?></h1>
-		<h2 class="nav-tab-wrapper rp-nav-tab-wrapper">
+		<nav class="nav-tab-wrapper rp-nav-tab-wrapper">
 			<?php
 				foreach ( $tabs as $name => $label ) {
 					echo '<a href="' . admin_url( 'admin.php?page=rp-settings&tab=' . $name ) . '" class="nav-tab ' . ( $current_tab == $name ? 'nav-tab-active' : '' ) . '">' . $label . '</a>';
@@ -20,7 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				do_action( 'restaurantpress_settings_tabs' );
 			?>
-		</h2>
+		</nav>
+		<h1 class="screen-reader-text"><?php echo esc_html( $tabs[ $current_tab ] ); ?></h1>
 		<?php
 			do_action( 'restaurantpress_sections_' . $current_tab );
 
