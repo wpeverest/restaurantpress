@@ -5,7 +5,7 @@ jQuery( function ( $ ) {
 		var code = event.keyCode || event.which;
 
 		// Tab key
-		if ( code === '9' && $( '#restaurantpress-group-description' ).size() > 0 ) {
+		if ( code === '9' && $( '#restaurantpress-group-description' ).length > 0 ) {
 			event.stopPropagation();
 			$( '#restaurantpress-group-description' ).focus();
 			return false;

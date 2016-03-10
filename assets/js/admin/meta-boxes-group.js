@@ -20,7 +20,7 @@ jQuery( function( $ ) {
 		type_options: function() {
 			// Get value
 			var select_val = $( this ).val();
-			var is_feature = $( 'input#_featured_image:checked' ).size();
+			var is_feature = $( 'input#_featured_image:checked' ).length;
 
 			// Shows rules
 			if ( select_val === 'two_column' ) {
