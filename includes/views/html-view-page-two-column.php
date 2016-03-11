@@ -15,6 +15,10 @@ $count = 1;
 		<div class="rp-two-column-layout rp-list-design-layout clearpress">
 			<div class="rp-column-wrapper clearpress">
 				<?php foreach ( $food_group as $food_id ) {
+					if ( ! is_numeric( $food_id ) ) {
+						continue;
+					}
+
 					$food_term = get_term_by( 'id', $food_id, 'food_menu_cat' );
 					$term_id   = intval( $food_term->term_id );
 

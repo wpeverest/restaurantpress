@@ -11,6 +11,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 <section id="restaurant-press-section">
 	<div class="resturant-press-wrapper">
 		<?php foreach ( $food_group as $food_id ) {
+			if ( ! is_numeric( $food_id ) ) {
+				continue;
+			}
+
 			$count = 1;
 			$food_term = get_term_by( 'id', $food_id, 'food_menu_cat' );
 			$term_id   = intval( $food_term->term_id );
