@@ -29,7 +29,8 @@ module.exports = function( grunt ){
 		// Minify all .js files.
 		uglify: {
 			options: {
-				preserveComments: false
+				// Preserve comments that start with a bang.
+				preserveComments: /^!/
 			},
 			admin: {
 				files: [{
