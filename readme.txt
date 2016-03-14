@@ -56,7 +56,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/re
 
 == Changelog ==
 
-= 1.3.0 - TBD =
+= 1.3.0 - 14/03/2016 =
 * Dev - Registered Grunt `js` task.
 * Fix - Error handling for screen ids.
 * Fix - Select2 library scroll on ios.
