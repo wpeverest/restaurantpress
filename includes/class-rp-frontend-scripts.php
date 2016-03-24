@@ -165,29 +165,29 @@ class RP_Frontend_Scripts {
 		// Load styles
 		return "
 		.restaurantpress .rp-chef-badge {
-			background: {$primary_color} !important;
+			background: ".esc_attr( $primary_color )." !important;
 		}
 
 		.restaurantpress .rp-chef-badge:before,
 		.restaurantpress .rp-chef-badge:after {
-			border-top-color: {$primary_color} !important;
+			border-top-color: ".esc_attr( $primary_color )." !important;
 		}
 
 		.restaurantpress .rp-price {
-			background: {$primary_color} !important;
+			background: ".esc_attr( $primary_color )." !important;
 		}
 
 		.restaurantpress .rp-price:before {
-			border-right-color: {$primary_color} !important;
+			border-right-color: ".esc_attr( $primary_color )." !important;
 		}
 
 		.restaurantpress .rp-content-wrapper {
-			border-bottom-color: {$primary_color} !important;
+			border-bottom-color: ".esc_attr( $primary_color)." !important;
 		}
 
 		.restaurantpress .image-magnify span:hover {
-			background: {$primary_color} !important;
-			border-color: {$primary_color} !important;
+			background: ".esc_attr( $primary_color )." !important;
+			border-color: ".esc_attr( $primary_color )." !important;
 		}
 		";
 
