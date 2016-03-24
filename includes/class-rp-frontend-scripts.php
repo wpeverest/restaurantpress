@@ -150,10 +150,8 @@ class RP_Frontend_Scripts {
 			}
 
 			// Inline Styles
-			if ( current_user_can( 'manage_restaurantpress' ) ) {
-				$inline_styles = self::create_primary_styles();
-				wp_add_inline_style( 'restaurantpress-general', $inline_styles );
-			}
+			$inline_styles = self::create_primary_styles();
+			wp_add_inline_style( 'restaurantpress-general', $inline_styles );
 		}
 	}
 
