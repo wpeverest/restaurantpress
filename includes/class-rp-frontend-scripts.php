@@ -150,52 +150,54 @@ class RP_Frontend_Scripts {
 			}
 
 			// Inline Styles
-			if ( $inline_styles = self::create_primary_styles() ) {
-				wp_add_inline_style( 'restaurantpress-general', $inline_styles );
-			}
+			self::create_primary_styles();
 		}
 	}
 
 	/**
-	 * Create primary color styles.
-	 * @return string
+	 * Enqueues front-end CSS for primary color.
+	 *
+	 * @uses   wp_add_inline_style()
+	 * @access private
+	 * @param  string $default_color
 	 */
-	private static function create_primary_styles() {
+	private static function create_primary_styles( $default_color = '#d60e10' ) {
 		$primary_color = get_option( 'restaurantpress_primary_color' );
 
-		// Check if default primary color?
-		if ( '#d60e10' === $primary_color ) {
+		// Check if the primary color is default?
+		if ( $primary_color === $default_color ) {
 			return;
 		}
 
-		// Load styles
-		return "
-		.restaurantpress .rp-chef-badge {
-			background: {$primary_color} !important;
-		}
+		$inline_css = '
+			.restaurantpress .rp-chef-badge {
+				background: %1$s !important;
+			}
 
-		.restaurantpress .rp-chef-badge:before,
-		.restaurantpress .rp-chef-badge:after {
-			border-top-color: {$primary_color} !important;
-		}
+			.restaurantpress .rp-chef-badge:before,
+			.restaurantpress .rp-chef-badge:after {
+				border-top-color: %1$s !important;
+			}
 
-		.restaurantpress .rp-price {
-			background: {$primary_color} !important;
-		}
+			.restaurantpress .rp-price {
+				background: %1$s !important;
+			}
 
-		.restaurantpress .rp-price:before {
-			border-right-color: {$primary_color} !important;
-		}
+			.restaurantpress .rp-price:before {
+				border-right-color: %1$s !important;
+			}
 
-		.restaurantpress .rp-content-wrapper {
-			border-bottom-color: {$primary_color} !important;
-		}
+			.restaurantpress .rp-content-wrapper {
+				border-bottom-color: %1$s !important;
+			}
 
-		.restaurantpress .image-magnify span:hover {
-			background: {$primary_color} !important;
-			border-color: {$primary_color} !important;
-		}
-		";
+			.restaurantpress .image-magnify span:hover {
+				background: %1$s !important;
+				border-color: %1$s !important;
+			}
+		';
+
+		wp_add_inline_style( 'restaurantpress-general', sprintf( $inline_css, esc_attr( $primary_color ) ) );
 	}
 }
 
