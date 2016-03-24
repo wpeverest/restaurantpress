@@ -150,8 +150,9 @@ class RP_Frontend_Scripts {
 			}
 
 			// Inline Styles
-			$inline_styles = self::create_primary_styles();
-			wp_add_inline_style( 'restaurantpress-general', $inline_styles );
+			if ( $inline_styles = self::create_primary_styles() ) {
+				wp_add_inline_style( 'restaurantpress-general', $inline_styles );
+			}
 		}
 	}
 
@@ -160,38 +161,41 @@ class RP_Frontend_Scripts {
 	 * @return string
 	 */
 	private static function create_primary_styles() {
-		$primary_color  = get_option( 'restaurantpress_primary_color' );
+		$primary_color = get_option( 'restaurantpress_primary_color' );
+
+		// Check if default primary color?
+		if ( '#d60e10' === $primary_color ) {
+			return;
+		}
 
 		// Load styles
 		return "
 		.restaurantpress .rp-chef-badge {
-			background: ".esc_attr( $primary_color )." !important;
+			background: {$primary_color} !important;
 		}
 
 		.restaurantpress .rp-chef-badge:before,
 		.restaurantpress .rp-chef-badge:after {
-			border-top-color: ".esc_attr( $primary_color )." !important;
+			border-top-color: {$primary_color} !important;
 		}
 
 		.restaurantpress .rp-price {
-			background: ".esc_attr( $primary_color )." !important;
+			background: {$primary_color} !important;
 		}
 
 		.restaurantpress .rp-price:before {
-			border-right-color: ".esc_attr( $primary_color )." !important;
+			border-right-color: {$primary_color} !important;
 		}
 
 		.restaurantpress .rp-content-wrapper {
-			border-bottom-color: ".esc_attr( $primary_color)." !important;
+			border-bottom-color: {$primary_color} !important;
 		}
 
 		.restaurantpress .image-magnify span:hover {
-			background: ".esc_attr( $primary_color )." !important;
-			border-color: ".esc_attr( $primary_color )." !important;
+			background: {$primary_color} !important;
+			border-color: {$primary_color} !important;
 		}
 		";
-
-		return $inline_css;
 	}
 }
 
