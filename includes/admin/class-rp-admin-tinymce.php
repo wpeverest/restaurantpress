@@ -28,6 +28,16 @@ class RP_Admin_TinyMCE {
 	}
 
 	/**
+	 * Returns whether or not shortcode is enabled.
+	 * @return bool
+	 */
+	private function is_shortcode_enabled() {
+		global $post, $post_type;
+
+		return apply_filters( 'restaurantpress_is_shortcodes_enabled', is_a( $post, 'WP_Post' ) && 'food_menu' !== $post_type );
+	}
+
+	/**
 	 * Add a button for shortcodes to the WP editor.
 	 */
 	public function add_shortcode_button() {
@@ -47,7 +57,9 @@ class RP_Admin_TinyMCE {
 	 * @return array $buttons
 	 */
 	public function register_shortcode_button( $buttons ) {
-		array_push( $buttons, '|', 'restaurantpress_shortcodes' );
+		if ( $this->is_shortcode_enabled() ) {
+			array_push( $buttons, '|', 'restaurantpress_shortcodes' );
+		}
 
 		return $buttons;
 	}
@@ -60,7 +72,9 @@ class RP_Admin_TinyMCE {
 	public function add_shortcode_tinymce_plugin( $plugins ) {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		$plugins['restaurantpress_shortcodes'] = RP()->plugin_url() . '/assets/js/admin/editor' . $suffix . '.js';
+		if ( $this->is_shortcode_enabled() ) {
+			$plugins['restaurantpress_shortcodes'] = RP()->plugin_url() . '/assets/js/admin/editor' . $suffix . '.js';
+		}
 
 		return $plugins;
 	}
@@ -83,7 +97,9 @@ class RP_Admin_TinyMCE {
 	 * @return array
 	 */
 	public function add_tinymce_locales( $locales ) {
-		$locales['restaurantpress_shortcodes'] = RP()->plugin_path() . '/includes/admin/rp-shortcodes-editor-i18n.php';
+		if ( $this->is_shortcode_enabled() ) {
+			$locales['restaurantpress_shortcodes'] = RP()->plugin_path() . '/includes/admin/rp-shortcodes-editor-i18n.php';
+		}
 
 		return $locales;
 	}
