@@ -511,7 +511,7 @@ class RP_Admin_Post_Types {
 	 * @return array             Array of post types supporting view mode, without food menu and group
 	 */
 	public function disable_view_mode_options( $post_types ) {
-		unset( $post_types['food_menu'], $post_types['food_menu'] );
+		unset( $post_types['food_menu'], $post_types['food_group'] );
 		return $post_types;
 	}
 }
