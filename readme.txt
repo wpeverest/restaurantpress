@@ -56,7 +56,15 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/re
 
 == Changelog ==
 
+= 1.3.1 - TBD =
+* Fix - Load inline styles if user logged out.
+* Fix - Hide TinyMCE shortcode for food_menu post type.
+* Tweak - Removed unused 'view mode' under screen options.
+* Tweak - Delete orphan terms and relationships on full uninstall.
+
 = 1.3.0 - 14/03/2016 =
+* Feature - Introduced upgrade and theme support notice display.
+* Dev - Migrated custom term meta implementation to WP Term Meta.
 * Dev - Registered Grunt `js` task.
 * Fix - Error handling for screen ids.
 * Fix - Select2 library scroll on ios.
@@ -64,7 +72,6 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/re
 * Fix - Save food grouping date with the `term_id`.
 * Tweak - Hide the Food Menu category parent field.
 * Tweak - Appropriate hook reqd for official FoodHunt theme.
-* Feature - Introduced upgrade and theme support notice display.
 * Deprecated - Added deprecated notice for `rp_shortcode_tag()`.
 
 [See changelog for all versions](https://raw.githubusercontent.com/themegrill/restaurantpress/master/CHANGELOG.txt).

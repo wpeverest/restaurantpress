@@ -1,6 +1,8 @@
 == Changelog ==
 
 = 1.3.0 - 14/03/2016 =
+* Feature - Introduced upgrade and theme support notice display.
+* Dev - Migrated custom term meta implementation to WP Term Meta.
 * Dev - Registered Grunt `js` task.
 * Fix - Error handling for screen ids.
 * Fix - Select2 library scroll on ios.
@@ -8,7 +10,6 @@
 * Fix - Save food grouping date with the `term_id`.
 * Tweak - Hide the Food Menu category parent field.
 * Tweak - Appropriate hook reqd for official FoodHunt theme.
-* Feature - Introduced upgrade and theme support notice display.
 * Deprecated - Added deprecated notice for `rp_shortcode_tag()`.
 
 = 1.2 - 06/01/2016 =
