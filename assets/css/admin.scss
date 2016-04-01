@@ -362,7 +362,7 @@ table.wp-list-table {
 		margin: 0 auto;
 
 		&:before {
-			@include icon( "\e00b" );
+			@include icon_dashicons( "\f128" );
 		}
 	}
 }
