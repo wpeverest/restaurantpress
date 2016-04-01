@@ -62,19 +62,19 @@
 				border-bottom: 1px solid #eee;
 
 				&:before {
-					@include iconbefore( "\e004" );
+					@include iconbeforedashicons( "\f107" );
 				}
 			}
 
 			&.general_options {
 				a:before {
-					content: "\e003";
+					content: "\f107";
 				}
 			}
 
 			&.grouping_options {
 				a:before {
-					content: "\e004";
+					content: "\f103";
 				}
 			}
 
