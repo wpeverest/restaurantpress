@@ -100,6 +100,12 @@
 .panel {
 	padding: 0;
 	color: #555;
+
+	.form-field {
+		.restaurantpress-help-tip {
+			font-size: 1.4em;
+		}
+	}
 }
 
 .restaurantpress_options_panel p,
@@ -658,7 +664,7 @@ img.tips {
 .restaurantpress-help-tip {
 	color: #666;
 	display: inline-block;
-	font-size: 13px;
+	font-size: 1.1em;
 	font-style: normal;
 	height: 16px;
 	line-height: 16px;
@@ -667,7 +673,7 @@ img.tips {
 	width: 16px;
 
 	&:after {
-		@include icon( "\e00a" );
+		@include icon_dashicons( "\f223" );
 		cursor: help;
 	}
 }
