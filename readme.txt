@@ -59,6 +59,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/re
 = 1.3.1 - TBD =
 * Fix - Load inline styles if user logged out.
 * Fix - Hide TinyMCE shortcode for food_menu post type.
+* Tweak - Update iconfonts to use dashicons if available.
 * Tweak - Removed unused 'view mode' under screen options.
 * Tweak - Delete orphan terms and relationships on full uninstall.
 
