@@ -406,8 +406,13 @@ img.help_tip {
 }
 
 .restaurantpress {
-	.rp-nav-tab-wrapper {
-		margin: 1.5em 0 1em !important;
+
+	h2.rp-nav-tab-wrapper {
+		margin-bottom: 1em;
+	}
+
+	nav.rp-nav-tab-wrapper {
+		margin: 1.5em 0 1em;
 		border-bottom: 1px solid #ccc;
 	}
 
