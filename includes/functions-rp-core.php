@@ -166,3 +166,20 @@ function rp_post_content_has_shortcode( $tag = '' ) {
 
 	return is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, $tag );
 }
+
+/**
+ * Display a RestaurantPress help tip.
+ *
+ * @param  string $tip Help tip text
+ * @param  bool   $allow_html Allow sanitized HTML if true or escape
+ * @return string
+ */
+function rp_help_tip( $tip, $allow_html = false ) {
+	if ( $allow_html ) {
+		$tip = rp_sanitize_tooltip( $tip );
+	} else {
+		$tip = esc_attr( $tip );
+	}
+
+	return '<span class="restaurantpress-help-tip" data-tip="' . $tip . '"></span>';
+}
