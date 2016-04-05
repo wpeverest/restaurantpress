@@ -3,7 +3,7 @@ Contributors: ThemeGrill, shivapoudel
 Tags: restaurant, appetizer, food, cafe, menu, dining, drink
 Requires at least: 4.2
 Tested up to: 4.4
-Stable tag: 1.3
+Stable tag: 1.3.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -56,7 +56,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/re
 
 == Changelog ==
 
-= 1.3.1 - TBD =
+= 1.3.1 - 05/04/2016 =
 * Fix - Load inline styles if user logged out.
 * Fix - Hide TinyMCE shortcode for food_menu post type.
 * Tweak - Update iconfonts to use dashicons if available.
