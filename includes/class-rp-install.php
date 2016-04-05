@@ -291,7 +291,7 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 	 * Get capabilities for RestaurantPress.
 	 * @return array
 	 */
-	 private static function get_core_capabilities() {
+	private static function get_core_capabilities() {
 		$capabilities = array();
 
 		$capabilities['core'] = array(
