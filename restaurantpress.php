@@ -7,7 +7,7 @@
  * Author: ThemeGrill
  * Author URI: http://themegrill.com
  * Requires at least: 4.2
- * Tested up to: 4.3
+ * Tested up to: 4.4
  *
  * Text Domain: restaurantpress
  * Domain Path: /languages/
