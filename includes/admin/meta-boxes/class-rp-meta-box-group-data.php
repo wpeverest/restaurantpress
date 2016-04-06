@@ -34,7 +34,7 @@ class RP_Meta_Box_Group_Data {
 			#edit-slug-box, #minor-publishing-actions { display:none }
 		</style>
 		<div id="group_options" class="panel-wrap group_data">
-			<ul class="group_data_tabs rp-tabs" style="display:none;">
+			<ul class="group_data_tabs rp-tabs">
 				<?php
 					$group_data_tabs = apply_filters( 'restaurantpress_group_data_tabs', array(
 						'general' => array(
@@ -58,7 +58,7 @@ class RP_Meta_Box_Group_Data {
 					do_action( 'restaurantpress_food_group_write_panel_tabs' );
 				?>
 			</ul>
-			<div id="general_group_data" class="panel restaurantpress_options_panel"><?php
+			<div id="general_group_data" class="panel restaurantpress_options_panel hidden"><?php
 
 				echo '<div class="options_group">';
 
@@ -90,7 +90,7 @@ class RP_Meta_Box_Group_Data {
 				do_action( 'restaurantpress_group_options_general' );
 
 			?></div>
-			<div id="grouping_group_data" class="panel restaurantpress_options_panel"><?php
+			<div id="grouping_group_data" class="panel restaurantpress_options_panel hidden"><?php
 
 				echo '<div class="options_group">';
 
