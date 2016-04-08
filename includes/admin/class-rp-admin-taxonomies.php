@@ -119,6 +119,21 @@ class RP_Admin_Taxonomies {
 					return false;
 				});
 
+				jQuery( document ).ajaxComplete( function( event, request, options ) {
+					if ( request && 4 === request.readyState && 200 === request.status && options.data && 0 <= options.data.indexOf( 'action=add-tag' ) ) {
+						/* global wpAjax */
+						var res = wpAjax.parseAjaxResponse( request.responseXML, 'ajax-response' );
+						if ( ! res || res.errors ) {
+							return;
+						}
+
+						// Clear Thumbnail fields on submit.
+						jQuery( '#food_menu_cat_thumbnail' ).find( 'img' ).attr( 'src', '<?php echo esc_js( rp_placeholder_img_src() ); ?>' );
+						jQuery( '#food_menu_cat_thumbnail_id' ).val( '' );
+						jQuery( '.remove_image_button' ).hide();
+						return;
+					}
+				});
 			</script>
 			<div class="clear"></div>
 		</div>
