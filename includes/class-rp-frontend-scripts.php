@@ -19,13 +19,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 class RP_Frontend_Scripts {
 
 	/**
-	 * Contains an array of script handles registered by RP
+	 * Contains an array of script handles registered by RP.
 	 * @var array
 	 */
 	private static $scripts = array();
 
 	/**
-	 * Contains an array of script handles registered by RP
+	 * Contains an array of script handles registered by RP.
 	 * @var array
 	 */
 	private static $styles = array();
