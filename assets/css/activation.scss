@@ -16,15 +16,6 @@
 	position: relative;
 	border-left-color: #2ea2cc !important;
 
-	a.skip,
-	a.docs {
-		opacity: 0.5;
-
-		&:hover, &:focus {
-			opacity: 1;
-		}
-	}
-
 	a.button-primary,
 	a.button-secondary {
 		text-decoration: none !important;
