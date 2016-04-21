@@ -1,35 +1,35 @@
 /* global restaurantpress_settings_params */
-jQuery( window ).load( function() {
+( function( $ ) {
 
 	// Color picker
-	jQuery( '.colorpick' ).iris({
+	$( '.colorpick' ).iris({
 		change: function( event, ui ) {
-			jQuery( this ).parent().find( '.colorpickpreview' ).css({ backgroundColor: ui.color.toString() });
+			$( this ).parent().find( '.colorpickpreview' ).css({ backgroundColor: ui.color.toString() });
 		},
 		hide: true,
 		border: true
 	}).click( function() {
-		jQuery( '.iris-picker' ).hide();
-		jQuery( this ).closest( 'td' ).find( '.iris-picker' ).show();
+		$( '.iris-picker' ).hide();
+		$( this ).closest( 'td' ).find( '.iris-picker' ).show();
 	});
 
-	jQuery( 'body' ).click( function() {
-		jQuery( '.iris-picker' ).hide();
+	$( 'body' ).click( function() {
+		$( '.iris-picker' ).hide();
 	});
 
-	jQuery( '.colorpick' ).click( function( event ) {
+	$( '.colorpick' ).click( function( event ) {
 		event.stopPropagation();
 	});
 
 	// Edit prompt
-	jQuery( function() {
+	$( function() {
 		var changed = false;
 
-		jQuery( 'input, textarea, select, checkbox' ).change( function() {
+		$( 'input, textarea, select, checkbox' ).change( function() {
 			changed = true;
 		});
 
-		jQuery( '.rp-nav-tab-wrapper a' ).click( function() {
+		$( '.rp-nav-tab-wrapper a' ).click( function() {
 			if ( changed ) {
 				window.onbeforeunload = function() {
 				    return restaurantpress_settings_params.i18n_nav_warning;
@@ -39,8 +39,8 @@ jQuery( window ).load( function() {
 			}
 		});
 
-		jQuery( '.submit input' ).click( function() {
+		$( '.submit input' ).click( function() {
 			window.onbeforeunload = '';
 		});
 	});
-});
+})( jQuery );
