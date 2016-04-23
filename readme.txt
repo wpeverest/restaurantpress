@@ -80,4 +80,4 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/re
 == Upgrade Notice ==
 
 = 1.3.0 =
-1.3.0 is a major update so it is important that you make backups, and ensure themes and extensions are 1.3 compatible.
+1.3.0 is a major update so it is important that you make backups, and ensure themes and extensions are 1.3 compatible before upgrading.
