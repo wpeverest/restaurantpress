@@ -239,11 +239,14 @@ class RP_Admin_Taxonomies {
 	 * @return array
 	 */
 	public function food_menu_cat_columns( $columns ) {
-		$new_columns          = array();
-		$new_columns['cb']    = $columns['cb'];
-		$new_columns['thumb'] = __( 'Image', 'restaurantpress' );
+		$new_columns = array();
 
-		unset( $columns['cb'] );
+		if ( isset( $columns['cb'] ) ) {
+			$new_columns['cb'] = $columns['cb'];
+			unset( $columns['cb'] );
+		}
+
+		$new_columns['thumb'] = __( 'Image', 'restaurantpress' );
 
 		return array_merge( $new_columns, $columns );
 	}
