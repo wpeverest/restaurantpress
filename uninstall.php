@@ -55,4 +55,7 @@ if ( $uninstall_data ) {
 			$wpdb->query( "DELETE tm FROM {$wpdb->termmeta} tm LEFT JOIN {$wpdb->term_taxonomy} tt ON tm.term_id = tt.term_id WHERE tt.term_id IS NULL;" );
 		}
 	}
+
+	// Clear any cached data that has been removed.
+	wp_cache_flush();
 }
