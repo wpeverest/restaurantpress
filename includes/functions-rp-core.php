@@ -69,15 +69,18 @@ function rp_print_js() {
 	global $rp_queued_js;
 
 	if ( ! empty( $rp_queued_js ) ) {
-
-		echo "<!-- RestaurantPress JavaScript -->\n<script type=\"text/javascript\">\njQuery(function($) {";
-
-		// Sanitize
+		// Sanitize.
 		$rp_queued_js = wp_check_invalid_utf8( $rp_queued_js );
 		$rp_queued_js = preg_replace( '/&#(x)?0*(?(1)27|39);?/i', "'", $rp_queued_js );
 		$rp_queued_js = str_replace( "\r", '', $rp_queued_js );
 
-		echo $rp_queued_js . "});\n</script>\n";
+		$js = "<!-- RestaurantPress JavaScript -->\n<script type=\"text/javascript\">\njQuery(function($) { $rp_queued_js });\n</script>\n";
+
+		/**
+		 * restaurantpress_queued_js filter.
+		 * @param string $js JavaScript code.
+		 */
+		echo apply_filters( 'restaurantpress_queued_js', $js );
 
 		unset( $rp_queued_js );
 	}
