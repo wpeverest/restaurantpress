@@ -16,7 +16,7 @@ if( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
 global $wpdb, $wp_version;
 
-$uninstall_data = apply_filters( 'restaurantpress_uninstall_data', false );
+$uninstall_data = apply_filters( 'restaurantpress_uninstall_data', true );
 
 if ( $uninstall_data ) {
 	// Roles + caps.
