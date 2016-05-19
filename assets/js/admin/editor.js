@@ -24,7 +24,7 @@
 		var ed = tinymce.activeEditor;
 
 		editor.addButton( 'restaurantpress_shortcodes', {
-			title : ed.getLang( 'restaurantpress_shortcodes.shortcode_title' ),
+			title: ed.getLang( 'restaurantpress_shortcodes.shortcode_title' ),
 			icon: 'restaurantpress-shortcodes',
 			onclick: function() {
 				editor.windowManager.open({
