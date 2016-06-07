@@ -96,6 +96,8 @@ final class RestaurantPress {
 		add_action( 'after_setup_theme', array( $this, 'setup_environment' ) );
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 		add_action( 'init', array( 'RP_Shortcodes', 'init' ) );
+		add_action( 'init', array( $this, 'wpdb_table_fix' ), 0 );
+		add_action( 'switch_blog', array( $this, 'wpdb_table_fix' ), 0 );
 	}
 
 	/**
@@ -206,6 +208,16 @@ final class RestaurantPress {
 
 		add_image_size( 'food_grid', $food_grid['width'], $food_grid['height'], $food_grid['crop'] );
 		add_image_size( 'food_thumbnail', $food_thumbnail['width'], $food_thumbnail['height'], $food_thumbnail['crop'] );
+	}
+
+	/**
+	 * RestaurantPress Term Meta API - set table name.
+	 */
+	public function wpdb_table_fix() {
+		global $wpdb;
+
+		$wpdb->restaurantpress_termmeta = $wpdb->prefix . 'restaurantpress_termmeta';
+		$wpdb->tables[]                 = 'restaurantpress_termmeta';
 	}
 
 	/**

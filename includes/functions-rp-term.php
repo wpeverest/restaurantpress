@@ -15,19 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * RestaurantPress Term Meta API - set table name.
- */
-function rp_taxonomy_metadata_wpdbfix() {
-	global $wpdb;
-
-	$termmeta_name = 'restaurantpress_termmeta';
-	$wpdb->restaurantpress_termmeta = $wpdb->prefix . $termmeta_name;
-	$wpdb->tables[] = 'restaurantpress_termmeta';
-}
-add_action( 'init', 'rp_taxonomy_metadata_wpdbfix', 0 );
-add_action( 'switch_blog', 'rp_taxonomy_metadata_wpdbfix', 0 );
-
-/**
  * When a term is split, ensure meta data maintained.
  * @param int    $old_term_id
  * @param int    $new_term_id
