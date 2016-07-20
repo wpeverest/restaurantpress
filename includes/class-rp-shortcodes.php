@@ -167,7 +167,7 @@ class RP_Shortcodes {
 			'orderby'  => 'date',
 			'order'    => 'desc',
 			'operator' => 'IN' // Possible values are 'IN', 'NOT IN', 'AND'.
-		), $atts );
+		), $atts, 'restaurantpress_menu' );
 
 		$group_id   = absint( $atts['id'] );
 		$query_args = array(
