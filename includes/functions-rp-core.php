@@ -167,7 +167,7 @@ function rp_get_core_supported_themes() {
 function rp_post_content_has_shortcode( $tag = '' ) {
 	global $post;
 
-	return is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, $tag );
+	return is_singular() && is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, $tag );
 }
 
 /**
