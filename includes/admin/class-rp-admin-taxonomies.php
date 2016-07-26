@@ -293,7 +293,7 @@ class RP_Admin_Taxonomies {
 	 * @return array
 	 */
 	public function disable_checked_ontop( $args ) {
-		if ( 'food_menu_cat' == $args['taxonomy'] ) {
+		if ( ! empty( $args['taxonomy'] ) && 'food_menu_cat' === $args['taxonomy'] ) {
 			$args['checked_ontop'] = false;
 		}
 
