@@ -215,9 +215,11 @@ final class RestaurantPress {
 	 */
 	public function wpdb_table_fix() {
 		global $wpdb;
-
-		$wpdb->restaurantpress_termmeta = $wpdb->prefix . 'restaurantpress_termmeta';
-		$wpdb->tables[]                 = 'restaurantpress_termmeta';
+		
+		if ( get_option( 'db_version' ) < 34370 ) {
+			$wpdb->restaurantpress_termmeta = $wpdb->prefix . 'restaurantpress_termmeta';
+			$wpdb->tables[]                 = 'restaurantpress_termmeta';
+		}
 	}
 
 	/**
