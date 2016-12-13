@@ -76,6 +76,10 @@ class RP_Install {
 	public static function install() {
 		global $wpdb;
 
+		if ( ! is_blog_installed() ) {
+			return;
+		}
+
 		if ( ! defined( 'RP_INSTALLING' ) ) {
 			define( 'RP_INSTALLING', true );
 		}

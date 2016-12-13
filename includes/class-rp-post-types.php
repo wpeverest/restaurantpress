@@ -34,6 +34,11 @@ class RP_Post_Types {
 	 * Register core taxonomies.
 	 */
 	public static function register_taxonomies() {
+
+		if ( ! is_blog_installed() ) {
+			return;
+		}
+
 		if ( taxonomy_exists( 'food_menu_cat' ) ) {
 			return;
 		}
@@ -81,6 +86,11 @@ class RP_Post_Types {
 	 * Register core post types.
 	 */
 	public static function register_post_types() {
+
+		if ( ! is_blog_installed() ) {
+			return;
+		}
+
 		if ( post_type_exists( 'food_menu' ) ) {
 			return;
 		}
