@@ -74,7 +74,7 @@ class RP_Admin_Settings {
 		self::add_message( __( 'Your settings have been saved.', 'restaurantpress' ) );
 
 		// Flush rules
-		flush_rewrite_rules();
+		wp_schedule_single_event( time(), 'restaurantpress_flush_rewrite_rules' );
 
 		do_action( 'restaurantpress_settings_saved' );
 	}
