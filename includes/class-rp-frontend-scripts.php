@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * RP_Frontend_Scripts Class
+ * RP_Frontend_Scripts Class.
  */
 class RP_Frontend_Scripts {
 

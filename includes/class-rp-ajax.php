@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * RP_AJAX Class
+ * RP_AJAX Class.
  */
 class RP_AJAX {
 
