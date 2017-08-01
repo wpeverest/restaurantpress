@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * RP_Autoloader Class
+ * RP_Autoloader Class.
  */
 class RP_Autoloader {
 

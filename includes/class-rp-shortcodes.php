@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * RP_Shortcodes Class
+ * RP_Shortcodes Class.
  */
 class RP_Shortcodes {
 

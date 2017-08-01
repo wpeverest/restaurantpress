@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * RP_Post_Types Class
+ * RP_Post_Types Class.
  */
 class RP_Post_Types {
 

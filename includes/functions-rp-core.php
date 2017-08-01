@@ -15,8 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Include core functions (available in both admin and frontend).
-include( 'functions-rp-term.php' );
-include( 'functions-rp-deprecated.php' );
+include( RP_ABSPATH . 'includes/functions-rp-term.php' );
+include( RP_ABSPATH . 'includes/functions-rp-deprecated.php' );
+include( RP_ABSPATH . 'includes/functions-rp-widget.php' );
 
 /**
  * Clean variables using sanitize_text_field

@@ -15,8 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Include Widget classes.
-include_once( 'abstracts/abstract-rp-widget.php' );
-include_once( 'widgets/class-rp-widget-menu.php' );
+include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-widget.php' );
+include_once( RP_ABSPATH . 'includes/widgets/class-rp-widget-menu.php' );
 
 /**
  * Register Widgets.
