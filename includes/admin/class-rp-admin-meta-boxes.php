@@ -8,7 +8,7 @@
  * @version  1.0.0
  * @package  RestaurantPress/Admin/Meta Boxes
  * @category Admin
- * @author   ThemeGrill
+ * @author   WPEverest
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

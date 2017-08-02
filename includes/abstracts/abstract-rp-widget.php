@@ -7,7 +7,7 @@
  * @version  1.0.0
  * @package  RestaurantPress/Abstracts
  * @category Widgets
- * @author   ThemeGrill
+ * @author   WPEverest
  */
 abstract class RP_Widget extends WP_Widget {
 

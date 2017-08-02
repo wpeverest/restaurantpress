@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: RestaurantPress
- * Plugin URI: http://www.themegrill.com/plugins/restaurantpress/
+ * Plugin URI: https://wpeverest.com/plugins/restaurantpress/
  * Description: Allows you to create awesome restaurant menu for restaurant, bars, cafes in no time. Smartly :)
  * Version: 1.3.2
  * Author: WPEverest
- * Author URI: http://themegrill.com
+ * Author URI: https://wpeverest.com
  * Requires at least: 4.2
  * Tested up to: 4.4
  *

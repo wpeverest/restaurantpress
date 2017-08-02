@@ -6,7 +6,7 @@
  * @version  1.0.0
  * @package  RestaurantPress/Admin
  * @category Admin
- * @author   ThemeGrill
+ * @author   WPEverest
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -270,7 +270,7 @@ class RP_Admin_Taxonomies {
 			}
 
 			// Prevent esc_url from breaking spaces in urls for image embeds
-			// Ref: http://core.trac.wordpress.org/ticket/23605
+			// Ref: https://core.trac.wordpress.org/ticket/23605
 			$image = str_replace( ' ', '%20', $image );
 
 			$columns .= '<img src="' . esc_url( $image ) . '" alt="' . esc_attr__( 'Thumbnail', 'restaurantpress' ) . '" class="wp-post-image" height="48" width="48" />';

@@ -121,7 +121,7 @@ module.exports = function( grunt ){
 					domainPath: 'languages',
 					potFilename: 'restaurantpress.pot',
 					potHeaders: {
-						'report-msgid-bugs-to': 'themegrill@gmail.com',
+						'report-msgid-bugs-to': 'https://github.com/wpeverest/restaurantpress/issues',
 						'language-team': 'LANGUAGE <EMAIL@ADDRESS>'
 					}
 				}

@@ -2,7 +2,7 @@
 /**
  * Update RP to 1.3.0
  *
- * @author   ThemeGrill
+ * @author   WPEverest
  * @category Admin
  * @package  RestaurantPress/Admin/Updates
  * @version  1.3.0

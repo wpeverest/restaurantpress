@@ -6,7 +6,7 @@
  * @version  1.0.0
  * @package  RestaurantPress/Classes
  * @category Admin
- * @author   ThemeGrill
+ * @author   WPEverest
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -426,10 +426,10 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 	 * @return array
 	 */
 	public static function plugin_row_meta( $plugin_meta, $plugin_file ) {
-		if ( $plugin_file == RP_PLUGIN_BASENAME ) {
+		if ( RP_PLUGIN_BASENAME == $plugin_file ) {
 			$new_plugin_meta = array(
-				'docs'    => '<a href="' . esc_url( apply_filters( 'restaurantpress_docs_url', 'http://themegrill.com/docs/restaurantpress/' ) ) . '" title="' . esc_attr( __( 'View RestaurantPress Documentation', 'restaurantpress' ) ) . '">' . __( 'Docs', 'restaurantpress' ) . '</a>',
-				'support' => '<a href="' . esc_url( apply_filters( 'restaurantpress_support_url', 'http://themegrill.com/support-forum/' ) ) . '" title="' . esc_attr( __( 'Visit Free Customer Support Forum', 'restaurantpress' ) ) . '">' . __( 'Free Support', 'restaurantpress' ) . '</a>',
+				'docs'    => '<a href="' . esc_url( apply_filters( 'restaurantpress_docs_url', 'https://wpeverest.com/docs/restaurantpress/' ) ) . '" title="' . esc_attr( __( 'View RestaurantPress Documentation', 'restaurantpress' ) ) . '">' . __( 'Docs', 'restaurantpress' ) . '</a>',
+				'support' => '<a href="' . esc_url( apply_filters( 'restaurantpress_support_url', 'https://wpeverest.com/support-forum/' ) ) . '" title="' . esc_attr( __( 'Visit Free Customer Support Forum', 'restaurantpress' ) ) . '">' . __( 'Free Support', 'restaurantpress' ) . '</a>',
 			);
 
 			return array_merge( $plugin_meta, $new_plugin_meta );

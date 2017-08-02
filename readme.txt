@@ -1,5 +1,5 @@
 === RestaurantPress ===
-Contributors: ThemeGrill, shivapoudel
+Contributors: WPEverest, shivapoudel
 Tags: restaurant, appetizer, food, cafe, menu, dining, drink
 Requires at least: 4.2
 Tested up to: 4.8
@@ -13,11 +13,11 @@ Allows you to create awesome restaurant menu for restaurant, bars, cafes in no t
 
 Allows you to create awesome restaurant menu for restaurant, bars, cafes in no time.
 
-Get free support at http://themegrill.com/support-forum/
+Get free support at https://wpeverest.com/support-forum/
 
-Check the demo at http://demo.themegrill.com/restaurantpress/
+Check the demo at https://demo.wpeverest.com/restaurantpress/
 
-Check the docs at http://themegrill.com/docs/restaurantpress/
+Check the docs at https://wpeverest.com/docs/restaurantpress/
 
 ### Features And Options:
 * Simple, Clean and Beautiful Designs.
@@ -34,7 +34,7 @@ Check the docs at http://themegrill.com/docs/restaurantpress/
 1. Install the plugin either via the WordPress.org plugin directory, or by uploading the files to your server (in the /wp-content/plugins/ directory).
 2. Activate the RestaurantPress plugin through the 'Plugins' menu in WordPress.
 3. Go to Menu Items->Add Menu Items and start adding new menu items.
-4. For more detail follow this link http://themegrill.com/docs/restaurantpress/
+4. For more detail follow this link https://wpeverest.com/docs/restaurantpress/
 
 == Frequently Asked Questions ==
 
@@ -44,7 +44,7 @@ Check the docs at http://themegrill.com/docs/restaurantpress/
 
 = RestaurantPress is awesome! Can I contribute? =
 
-Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/restaurantpress/) :)
+Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/restaurantpress/) :)
 
 == Screenshots ==
 
@@ -75,7 +75,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/re
 * Tweak - Appropriate hook reqd for official FoodHunt theme.
 * Deprecated - Added deprecated notice for `rp_shortcode_tag()`.
 
-[See changelog for all versions](https://raw.githubusercontent.com/themegrill/restaurantpress/master/CHANGELOG.txt).
+[See changelog for all versions](https://raw.githubusercontent.com/wpeverest/restaurantpress/master/CHANGELOG.txt).
 
 == Upgrade Notice ==
 
