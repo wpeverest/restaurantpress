@@ -4,13 +4,13 @@
  *
  * Uninstalls the plugin deletes user roles, tables, and options.
  *
- * @author   ThemeGrill
+ * @author   WPEverest
  * @category Core
  * @package  RestaurantPress/Uninstaller
  * @version  1.0.0
  */
 
-if( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
