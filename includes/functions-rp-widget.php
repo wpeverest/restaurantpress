@@ -4,7 +4,7 @@
  *
  * Widget related functions and widget registration.
  *
- * @author   ThemeGrill
+ * @author   WPEverest
  * @category Core
  * @package  RestaurantPress/Functions
  * @version  1.2.0

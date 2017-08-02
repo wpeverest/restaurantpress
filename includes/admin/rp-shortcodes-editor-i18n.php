@@ -4,7 +4,7 @@
  *
  * @package  RestaurantPress/i18n
  * @category i18n
- * @author   ThemeGrill
+ * @author   WPEverest
  * @version  1.0.0
  */
 

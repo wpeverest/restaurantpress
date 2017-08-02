@@ -6,7 +6,7 @@
  * @version  1.3.0
  * @package  RestaurantPress/Admin
  * @category Admin
- * @author   ThemeGrill
+ * @author   WPEverest
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

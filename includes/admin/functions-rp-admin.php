@@ -2,7 +2,7 @@
 /**
  * RestaurantPress Admin Functions
  *
- * @author   ThemeGrill
+ * @author   WPEverest
  * @category Core
  * @package  RestaurantPress/Admin/Functions
  * @version  1.0.0

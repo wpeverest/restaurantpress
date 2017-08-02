@@ -4,7 +4,7 @@
  *
  * Functions for handling terms/term meta.
  *
- * @author   ThemeGrill
+ * @author   WPEverest
  * @category Core
  * @package  RestaurantPress/Functions
  * @version  1.0.0

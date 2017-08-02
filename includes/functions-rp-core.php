@@ -4,7 +4,7 @@
  *
  * General core functions available on both the front-end and admin.
  *
- * @author   ThemeGrill
+ * @author   WPEverest
  * @category Core
  * @package  RestaurantPress/Functions
  * @version  1.0.0

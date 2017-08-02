@@ -8,7 +8,7 @@
  * @version  1.0.0
  * @package  RestaurantPress/Widgets
  * @category Widgets
- * @author   ThemeGrill
+ * @author   WPEverest
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
