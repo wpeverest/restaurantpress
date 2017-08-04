@@ -1,21 +1,23 @@
 /**
  * admin.scss
- * General RestaurantPress admin styles.
+ * General RestaurantPress admin styles. Settings, food data tabs, etc.
  */
 
 /**
  * Imports
  */
-@import "bourbon";
 @import "mixins";
 @import "variables";
 @import "animation";
-@import "select2";
 @import "fonts";
 
 /**
  * Styling begins
  */
+.blockUI.blockOverlay {
+	@include loader();
+}
+
 #restaurantpress-menu-data,
 #restaurantpress-group-data,
 .restaurantpress {
@@ -34,8 +36,8 @@
 		border-right: 1px solid #eee;
 		box-sizing: border-box;
 
-		&:after {
-			content: "";
+		&::after {
+			content: '';
 			display: block;
 			width: 100%;
 			height: 9999em;
@@ -61,29 +63,28 @@
 				line-height: 20px !important;
 				border-bottom: 1px solid #eee;
 
-				&:before {
-					@include iconbeforedashicons( "\f107" );
+				span {
+					margin-left: 0.618em;
+					margin-right: 0.618em;
+				}
+
+				&::before {
+					@include iconbeforedashicons( '\f107' );
 				}
 			}
 
-			&.general_options {
-				a:before {
-					content: "\f107";
-				}
+			&.general_options a::before {
+				content: '\f107';
 			}
 
-			&.grouping_options {
-				a:before {
-					content: "\f103";
-				}
+			&.grouping_options a::before {
+				content: '\f103';
 			}
 
-			&.active {
-				a {
-					color: #555;
-					position: relative;
-					background-color: #eee;
-				}
+			&.active a {
+				color: #555;
+				position: relative;
+				background-color: #eee;
 			}
 		}
 	}
@@ -115,8 +116,8 @@
 	padding: 5px 9px;
 	line-height: 24px;
 
-	&:after {
-		content: ".";
+	&::after {
+		content: '.';
 		display: block;
 		height: 0;
 		clear: both;
@@ -181,10 +182,10 @@
 		vertical-align: top;
 	}
 
-	input[type="text"],
-	input[type="email"],
-	input[type="number"],
-	input[type="password"] {
+	input[type='text'],
+	input[type='email'],
+	input[type='number'],
+	input[type='password'] {
 		width: 50%;
 		float: left;
 	}
@@ -198,10 +199,10 @@
 		float: left;
 	}
 
-	input[type="text"].short,
-	input[type="email"].short,
-	input[type="number"].short,
-	input[type="password"].short,
+	input[type='text'].short,
+	input[type='email'].short,
+	input[type='number'].short,
+	input[type='password'].short,
 	.short {
 		width: 50%;
 	}
@@ -252,10 +253,8 @@
 				}
 			}
 
-			ul.rp-radios {
-				label {
-					margin-left: 0;
-				}
+			ul.rp-radios label {
+				margin-left: 0;
 			}
 		}
 	}
@@ -307,7 +306,8 @@
 		background: #fff;
 	}
 
-	.restaurantpress_options_panel {
+	.restaurantpress_options_panel,
+	.rp-metaboxes-wrapper {
 		float: left;
 		width: 80%;
 
@@ -370,7 +370,7 @@ table.wp-list-table {
 		margin: 0 auto;
 
 		&:before {
-			@include icon_dashicons( "\f128" );
+			@include icon_dashicons( '\f128' );
 		}
 	}
 }
@@ -422,18 +422,13 @@ img.help_tip {
 		margin: -8px 0 0;
 	}
 
-	textarea[disabled="disabled"] {
+	textarea[disabled='disabled'] {
 		background: #DFDFDF !important;
 	}
 
 	table.form-table {
 		margin: 0;
 		position: relative;
-
-		.select2-container {
-			display: block;
-			max-width: 350px;
-		}
 
 		.forminp-radio ul {
 			margin: 0;
@@ -442,14 +437,30 @@ img.help_tip {
 			}
 		}
 
+		input[type='text'],
+		input[type='number'],
+		input[type='email'] {
+			padding: 6px;
+			height: auto;
+		}
+
 		textarea.input-text {
 			height: 100%;
 			min-width: 150px;
 			display: block;
 		}
 
+		// Give regular settings inputs a standard width and padding.
+		select,
+		textarea,
+		input[type='text'],
+		input[type='email'],
+		input[type='number'],
 		input.regular-input {
-			width: 25em;
+			width: 400px;
+			margin: 0;
+			padding: 6px;
+			box-sizing: border-box;
 		}
 
 		textarea.wide-input {
@@ -486,7 +497,7 @@ img.help_tip {
 
 		th img.help_tip,
 		th .restaurantpress-help-tip {
-			margin: 0 -24px 0 0;
+			margin: 2px -24px 0 0;
 			float: right;
 		}
 
@@ -517,7 +528,7 @@ img.help_tip {
 			position: absolute;
 			border: 1px solid #ccc;
 			border-radius: 3px;
-			box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 
 			.ui-slider {
 				border: 0 !important;
@@ -533,13 +544,17 @@ img.help_tip {
 		}
 
 		.colorpickpreview {
-			padding: 3px;
+			padding: 6px;
 			padding-left: 20px;
 			border: 1px solid #ddd;
+			/* rtl:ignore */
 			border-right: 0;
+			/* rtl:ignore */
+			margin-left: -3px;
 		}
 
 		.colorpick {
+			/* rtl:ignore */
 			border-left: 0;
 		}
 
@@ -567,13 +582,12 @@ img.tips {
 
 #tiptip_holder {
 	display: none;
+	z-index: 8675309;
 	position: absolute;
 	top: 0;
+	/*rtl:ignore*/
 	left: 0;
-	z-index: 9999999;
-}
 
-#tiptip_holder {
 	&.tip_top {
 		padding-bottom: 5px;
 
@@ -618,13 +632,13 @@ img.tips {
 #tiptip_content,
 .rp_error_tip {
 	color: #fff;
-	font-size: .8em;
+	font-size: 0.8em;
 	max-width: 150px;
 	background: #333;
 	text-align: center;
 	border-radius: 3px;
-	padding: .618em 1em;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+	padding: 0.618em 1em;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 
 	code {
 		padding: 1px;
@@ -651,8 +665,8 @@ img.tips {
 	margin: 1.5em 1px 0 -1em;
 	z-index: 9999999;
 
-	&:after {
-		content: "";
+	&::after {
+		content: '';
 		display: block;
 		border: 8px solid #d82223;
 		border-right-color: transparent;
@@ -679,8 +693,8 @@ img.tips {
 	vertical-align: middle;
 	width: 16px;
 
-	&:after {
-		@include icon_dashicons( "\f223" );
+	&::after {
+		@include icon_dashicons( '\f223' );
 		cursor: help;
 	}
 }
@@ -697,10 +711,10 @@ img.tips {
 		}
 
 		.short,
-		input[type=text].short,
-		input[type=email].short,
-		input[type=number].short,
-		input[type="password"].short,
+		input[type='text'].short,
+		input[type='email'].short,
+		input[type='number'].short,
+		input[type='password'].short,
 		.dimensions_field .wrap {
 			width: 80%;
 		}
@@ -727,7 +741,7 @@ img.tips {
 		text-indent: -999px;
 		padding: 10px;
 
-		&:before {
+		&::before {
 			position: absolute;
 			top: 0;
 			right: 0;
@@ -762,24 +776,80 @@ img.tips {
 
 	.restaurantpress_options_panel fieldset.form-field,
 	.restaurantpress_options_panel p.form-field {
-		padding: 5px 20px 5px 20px !important;
+		padding: 5px 20px !important;
 	}
 }
 
 /**
- * Select2
+ * Select2 elements.
  */
-.select2-drop {
+.select2-drop,
+.select2-dropdown {
 	z-index: 999999 !important;
 }
-.select2-container-multi .select2-choices .select2-search-field input {
-	font-family: inherit;
-	font-size: inherit;
-	font-weight: inherit;
-	padding: 3px 5px;
-	width: 100% !important;
+.select2-results {
+	line-height: 1.5em;
+	.select2-results__option, .select2-results__group {
+		margin: 0;
+		padding: 8px;
+	}
+}
+.select2-dropdown {
+	border-color: #ddd;
+}
+.select2-dropdown--below {
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+.select2-dropdown--above {
+	box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.1);
 }
 .select2-container {
-	line-height: 1.85em;
-	font-size: 14px;
+	.select2-selection__rendered.ui-sortable li {
+		cursor: move;
+	}
+	.select2-selection {
+		border-color: #ddd;
+	}
+	.select2-search__field {
+		min-width: 150px;
+	}
+	.select2-selection--single {
+		height: 32px;
+		.select2-selection__rendered {
+			line-height: 32px;
+			padding-right: 24px;
+		}
+		.select2-selection__arrow {
+			right: 3px;
+			height: 30px;
+		}
+	}
+	.select2-selection--multiple  {
+		min-height: 28px;
+		border-radius: 0;
+		line-height: 1.5;
+		li {
+			margin: 0;
+		}
+		.select2-selection__choice {
+			padding: 2px 6px;
+		}
+	}
+	.select2-selection__clear {
+		color: #999;
+		margin-top: -1px;
+	}
+	.select2-search--inline {
+		.select2-search__field {
+			font-family: inherit;
+			font-size: inherit;
+			font-weight: inherit;
+			padding: 3px 0;
+		}
+	}
+}
+.restaurantpress table.form-table {
+	.select2-container {
+		min-width: 400px !important;
+	}
 }

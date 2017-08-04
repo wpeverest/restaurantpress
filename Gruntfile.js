@@ -6,10 +6,8 @@ module.exports = function( grunt ){
 
 		// Setting folder templates.
 		dirs: {
-			css: 'assets/css',
-			fonts: 'assets/fonts',
-			images: 'assets/images',
-			js: 'assets/js'
+			js: 'assets/js',
+			css: 'assets/css'
 		},
 
 		// JavaScript linting with JSHint.
@@ -26,11 +24,27 @@ module.exports = function( grunt ){
 			]
 		},
 
+		// Sass linting with Stylelint.
+		stylelint: {
+			options: {
+				stylelintrc: '.stylelintrc'
+			},
+			all: [
+				'<%= dirs.css %>/*.scss',
+				'<%= dirs.css %>/**/*.scss'
+			]
+		},
+
 		// Minify all .js files.
 		uglify: {
 			options: {
-				// Preserve comments that start with a bang.
-				preserveComments: /^!/
+				ie8: true,
+				parse: {
+					strict: false
+				},
+				output: {
+					comments : /@license|@preserve|^!/
+				}
 			},
 			admin: {
 				files: [{
@@ -69,8 +83,7 @@ module.exports = function( grunt ){
 		// Compile all .scss files.
 		sass: {
 			options: {
-				sourcemap: 'none',
-				loadPath: require( 'node-bourbon' ).includePaths
+				sourcemap: 'none'
 			},
 			compile: {
 				files: [{
@@ -80,6 +93,21 @@ module.exports = function( grunt ){
 					dest: '<%= dirs.css %>/',
 					ext: '.css'
 				}]
+			}
+		},
+
+		// Generate all RTL .css files
+		rtlcss: {
+			generate: {
+				expand: true,
+				cwd: '<%= dirs.css %>',
+				src: [
+					'*.css',
+					'!select2.css',
+					'!*-rtl.css'
+				],
+				dest: '<%= dirs.css %>/',
+				ext: '-rtl.css'
 			}
 		},
 
@@ -94,13 +122,23 @@ module.exports = function( grunt ){
 			}
 		},
 
+		// Concatenate select2.css onto the admin.css files.
+		concat: {
+			admin: {
+				files: {
+					'<%= dirs.css %>/admin.css' : ['<%= dirs.css %>/select2.css', '<%= dirs.css %>/admin.css'],
+					'<%= dirs.css %>/admin-rtl.css' : ['<%= dirs.css %>/select2.css', '<%= dirs.css %>/admin-rtl.css']
+				}
+			}
+		},
+
 		// Watch changes for assets.
 		watch: {
 			css: {
 				files: [
 					'<%= dirs.css %>/*.scss'
 				],
-				tasks: ['sass', 'cssmin']
+				tasks: ['sass', 'rtlcss', 'cssmin', 'concat']
 			},
 			js: {
 				files: [
@@ -115,15 +153,20 @@ module.exports = function( grunt ){
 
 		// Generate POT files.
 		makepot: {
+			options: {
+				type: 'wp-plugin',
+				domainPath: 'languages',
+				potHeaders: {
+					'report-msgid-bugs-to': 'https://github.com/wpeverest/restaurantpress/issues',
+					'language-team': 'LANGUAGE <EMAIL@ADDRESS>'
+				}
+			},
 			dist: {
 				options: {
-					type: 'wp-plugin',
-					domainPath: 'languages',
 					potFilename: 'restaurantpress.pot',
-					potHeaders: {
-						'report-msgid-bugs-to': 'https://github.com/wpeverest/restaurantpress/issues',
-						'language-team': 'LANGUAGE <EMAIL@ADDRESS>'
-					}
+					exclude: [
+						'vendor/.*'
+					]
 				}
 			}
 		},
@@ -156,16 +199,56 @@ module.exports = function( grunt ){
 				],
 				expand: true
 			}
+		},
+
+		// PHP Code Sniffer.
+		phpcs: {
+			options: {
+				bin: 'vendor/bin/phpcs',
+				standard: './phpcs.ruleset.xml'
+			},
+			dist: {
+				src:  [
+					'**/*.php',         // Include all files
+					'!node_modules/**', // Exclude node_modules/
+					'!vendor/**'        // Exclude vendor/
+				]
+			}
+		},
+
+		// Autoprefixer.
+		postcss: {
+			options: {
+				processors: [
+					require( 'autoprefixer' )({
+						browsers: [
+							'> 0.1%',
+							'ie 8',
+							'ie 9'
+						]
+					})
+				]
+			},
+			dist: {
+				src: [
+					'<%= dirs.css %>/*.css'
+				]
+			}
 		}
 	});
 
 	// Load NPM tasks to be used here
+	grunt.loadNpmTasks( 'grunt-sass' );
+	grunt.loadNpmTasks( 'grunt-phpcs' );
+	grunt.loadNpmTasks( 'grunt-rtlcss' );
+	grunt.loadNpmTasks( 'grunt-postcss' );
+	grunt.loadNpmTasks( 'grunt-stylelint' );
 	grunt.loadNpmTasks( 'grunt-wp-i18n' );
 	grunt.loadNpmTasks( 'grunt-checktextdomain' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
-	grunt.loadNpmTasks( 'grunt-contrib-sass' );
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
+	grunt.loadNpmTasks( 'grunt-contrib-concat' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 
 	// Register tasks
@@ -183,7 +266,10 @@ module.exports = function( grunt ){
 
 	grunt.registerTask( 'css', [
 		'sass',
-		'cssmin'
+		'rtlcss',
+		'postcss',
+		'cssmin',
+		'concat'
 	]);
 
 	grunt.registerTask( 'dev', [

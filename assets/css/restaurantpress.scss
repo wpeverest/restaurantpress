@@ -7,7 +7,6 @@
 /**
  * Imports
  */
-@import "bourbon";
 @import "mixins";
 @import "variables";
 @import "animation";
@@ -122,8 +121,8 @@
 
 					.chef-icon {
 						&:before {
-							content: "\e003";
-							font-family: "RestaurantPress";
+							content: '\e003';
+							font-family: 'RestaurantPress';
 							font-size: 14px;
 							color: #fff;
 							font-style: normal;
@@ -223,8 +222,8 @@
 
 			.chef-icon {
 				&:before {
-					content: "\e003";
-					font-family: "RestaurantPress";
+					content: '\e003';
+					font-family: 'RestaurantPress';
 					font-size: 14px;
 					color: #fff;
 					font-style: normal;
@@ -242,8 +241,8 @@
 			opacity: 0;
 			visibility: hidden;
 			background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
-			@include transform( translate(-50%,-50%) scale(0.3) );
-			@include transition( all 0.3s ease-in-out );
+			transform: translate(-50%,-50%) scale(0.3);
+			transition: all 0.3s ease-in-out;
 
 			span {
 				position: absolute;
@@ -259,8 +258,8 @@
 				text-align: center;
 				border-radius: 100%;
 				border: 1px solid #fff;
-				@include transform( translate(-50%,-50%) );
-				@include transition( all 0.5s ease-in-out );
+				transform: translate(-50%,-50%);
+				transition: all 0.5s ease-in-out;
 
 				&:hover {
 					background: #d60e10;
@@ -273,7 +272,7 @@
 			.image-magnify {
 				opacity: 1;
 				visibility: visible;
-				@include transform( translate(-50%,-50%) scale(1) );
+				transform: translate(-50%,-50%) scale(1);
 			}
 		}
 	}

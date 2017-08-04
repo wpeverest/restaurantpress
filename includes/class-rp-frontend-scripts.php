@@ -45,12 +45,22 @@ class RP_Frontend_Scripts {
 	public static function get_styles() {
 		return apply_filters( 'restaurantpress_enqueue_styles', array(
 			'restaurantpress-general' => array(
-				'src'     => str_replace( array( 'http:', 'https:' ), '', RP()->plugin_url() ) . '/assets/css/restaurantpress.css',
+				'src'     => self::get_asset_url( 'assets/css/restaurantpress.css' ),
 				'deps'    => '',
 				'version' => RP_VERSION,
-				'media'   => 'all'
+				'media'   => 'all',
+				'has_rtl' => true,
 			)
 		) );
+	}
+
+	/**
+	 * Return protocol relative asset URL.
+	 *
+	 * @param string $path
+	 */
+	private static function get_asset_url( $path ) {
+		return apply_filters( 'restaurantpress_get_asset_url', plugins_url( $path, RP_PLUGIN_FILE ), $path );
 	}
 
 	/**
@@ -58,6 +68,7 @@ class RP_Frontend_Scripts {
 	 *
 	 * @uses   wp_register_script()
 	 * @access private
+	 *
 	 * @param  string   $handle
 	 * @param  string   $path
 	 * @param  string[] $deps
@@ -74,6 +85,7 @@ class RP_Frontend_Scripts {
 	 *
 	 * @uses   wp_enqueue_script()
 	 * @access private
+	 *
 	 * @param  string   $handle
 	 * @param  string   $path
 	 * @param  string[] $deps
@@ -92,15 +104,21 @@ class RP_Frontend_Scripts {
 	 *
 	 * @uses   wp_register_style()
 	 * @access private
+	 *
 	 * @param  string   $handle
 	 * @param  string   $path
 	 * @param  string[] $deps
 	 * @param  string   $version
 	 * @param  string   $media
+	 * @param  boolean  $has_rtl
 	 */
-	private static function register_style( $handle, $path, $deps = array(), $version = RP_VERSION, $media = 'all' ) {
+	private static function register_style( $handle, $path, $deps = array(), $version = RP_VERSION, $media = 'all', $has_rtl = false ) {
 		self::$styles[] = $handle;
 		wp_register_style( $handle, $path, $deps, $version, $media );
+
+		if ( $has_rtl ) {
+			wp_style_add_data( $handle, 'rtl', 'replace' );
+		}
 	}
 
 	/**
@@ -108,15 +126,17 @@ class RP_Frontend_Scripts {
 	 *
 	 * @uses   wp_enqueue_style()
 	 * @access private
+	 *
 	 * @param  string   $handle
 	 * @param  string   $path
 	 * @param  string[] $deps
 	 * @param  string   $version
 	 * @param  string   $media
+	 * @param  boolean  $has_rtl
 	 */
-	private static function enqueue_style( $handle, $path = '', $deps = array(), $version = RP_VERSION, $media = 'all' ) {
+	private static function enqueue_style( $handle, $path = '', $deps = array(), $version = RP_VERSION, $media = 'all', $has_rtl = false ) {
 		if ( ! in_array( $handle, self::$styles ) && $path ) {
-			self::register_style( $handle, $path, $deps, $version, $media );
+			self::register_style( $handle, $path, $deps, $version, $media, $has_rtl );
 		}
 		wp_enqueue_style( $handle );
 	}
