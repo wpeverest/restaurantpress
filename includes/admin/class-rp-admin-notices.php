@@ -111,6 +111,10 @@ class RP_Admin_Notices {
 
 		if ( $notices ) {
 			wp_enqueue_style( 'restaurantpress-activation', RP()->plugin_url() . '/assets/css/activation.css', array(), RP_VERSION );
+
+			// Add RTL support
+			wp_style_add_data( 'restaurantpress-activation', 'rtl', 'replace' );
+
 			foreach ( $notices as $notice ) {
 				if ( ! empty( $this->core_notices[ $notice ] ) && apply_filters( 'restaurantpress_show_admin_notice', true, $notice ) ) {
 					add_action( 'admin_notices', array( $this, $this->core_notices[ $notice ] ) );
