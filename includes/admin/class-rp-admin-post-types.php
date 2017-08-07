@@ -47,7 +47,10 @@ class RP_Admin_Post_Types {
 		add_filter( 'default_hidden_meta_boxes', array( $this, 'hidden_meta_boxes' ), 10, 2 );
 
 		// Meta-Box Class
-		include_once( 'class-rp-admin-meta-boxes.php' );
+		include_once( dirname( __FILE__ ) . '/class-rp-admin-meta-boxes.php' );
+
+		// Disable DFW feature pointer
+		add_action( 'admin_footer', array( $this, 'disable_dfw_feature_pointer' ) );
 
 		// Disable post type view mode options
 		add_filter( 'view_mode_post_types', array( $this, 'disable_view_mode_options' ) );
@@ -500,6 +503,17 @@ class RP_Admin_Post_Types {
 		}
 
 		return $hidden;
+	}
+
+	/**
+	 * Disable DFW feature pointer.
+	 */
+	public function disable_dfw_feature_pointer() {
+		$screen = get_current_screen();
+
+		if ( $screen && 'food_menu' === $screen->id && 'post' === $screen->base ) {
+			remove_action( 'admin_print_footer_scripts', array( 'WP_Internal_Pointers', 'pointer_wp410_dfw' ) );
+		}
 	}
 
 	/**
