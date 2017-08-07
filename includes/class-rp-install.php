@@ -18,20 +18,42 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class RP_Install {
 
-	/** @var array DB updates that need to be run */
+	/** @var array DB updates and callbacks that need to be run per version */
 	private static $db_updates = array(
-		'1.3.0' => 'updates/restaurantpress-update-1.3.php'
+		'1.3.0' => array(
+			'rp_update_130_termmeta',
+			'rp_update_130_food_groups',
+			'rp_update_130_db_version',
+		),
+		'1.3.1' => array(
+			'rp_update_131_db_version',
+		),
+		'1.3.2' => array(
+			'rp_update_132_db_version',
+		),
 	);
+
+	/** @var object Background update class */
+	private static $background_updater;
 
 	/**
 	 * Hook in tabs.
 	 */
 	public static function init() {
 		add_action( 'init', array( __CLASS__, 'check_version' ), 5 );
+		add_action( 'init', array( __CLASS__, 'init_background_updater' ), 5 );
 		add_action( 'admin_init', array( __CLASS__, 'install_actions' ) );
 		add_action( 'in_plugin_update_message-restaurantpress/restaurantpress.php', array( __CLASS__, 'in_plugin_update_message' ) );
 		add_filter( 'plugin_action_links_' . RP_PLUGIN_BASENAME, array( __CLASS__, 'plugin_action_links' ) );
 		add_filter( 'plugin_row_meta', array( __CLASS__, 'plugin_row_meta' ), 10, 2 );
+	}
+
+	/**
+	 * Init background updates.
+	 */
+	public static function init_background_updater() {
+		include_once( dirname( __FILE__ ) . '/class-rp-background-updater.php' );
+		self::$background_updater = new RP_Background_Updater();
 	}
 
 	/**
@@ -54,20 +76,13 @@ class RP_Install {
 	public static function install_actions() {
 		if ( ! empty( $_GET['do_update_restaurantpress'] ) ) {
 			self::update();
-			RP_Admin_Notices::remove_notice( 'update' );
-			add_action( 'admin_notices', array( __CLASS__, 'updated_notice' ) );
+			RP_Admin_Notices::add_notice( 'update' );
 		}
-	}
-
-	/**
-	 * Show notice stating update was successful.
-	 */
-	public static function updated_notice() {
-		?>
-		<div id="message" class="updated restaurantpress-message rp-connect">
-			<p><?php _e( 'RestaurantPress data update complete. Thank you for updating to the latest version!', 'restaurantpress' ); ?></p>
-		</div>
-		<?php
+		if ( ! empty( $_GET['force_update_restaurantpress'] ) ) {
+			do_action( 'wp_rp_updater_cron' );
+			wp_safe_redirect( admin_url( 'admin.php?page=rp-settings' ) );
+			exit;
+		}
 	}
 
 	/**
@@ -85,7 +100,7 @@ class RP_Install {
 		}
 
 		// Ensure needed classes are loaded
-		include_once( 'admin/class-rp-admin-notices.php' );
+		include_once( dirname( __FILE__ ) . '/admin/class-rp-admin-notices.php' );
 
 		self::create_options();
 		self::create_tables();
@@ -104,19 +119,7 @@ class RP_Install {
 
 		// No versions? This is a new install :)
 		if ( is_null( $current_rp_version ) && is_null( $current_db_version ) && apply_filters( 'restaurantpress_enable_setup_wizard', true ) ) {
-			$has_food_items = get_posts(
-				array(
-					'post_type'      => array( 'food_menu', 'food_group' ),
-					'posts_per_page' => -1,
-					'post_status'    => 'publish',
-					'fields'         => 'ids'
-				)
-			);
-
-			// Yes food? Let user run updater.
-			if ( ! empty( $has_food_items ) ) {
-				RP_Admin_Notices::add_notice( 'update' );
-			}
+			set_transient( '_rp_activation_redirect', 1, 30 );
 		}
 
 		if ( ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( self::$db_updates ) ), '<' ) ) {
@@ -157,31 +160,43 @@ class RP_Install {
 	}
 
 	/**
-	 * Update DB version to current.
+	 * Get list of DB update callbacks.
+	 *
+	 * @since  1.3.2
+	 * @return array
 	 */
-	private static function update_db_version( $version = null ) {
-		delete_option( 'restaurantpress_db_version' );
-		add_option( 'restaurantpress_db_version', is_null( $version ) ? RP()->version : $version );
+	public static function get_db_update_callbacks() {
+		return self::$db_updates;
 	}
 
 	/**
-	 * Handle updates.
+	 * Push all needed DB updates to the queue for processing.
 	 */
 	private static function update() {
-		if ( ! defined( 'RP_UPDATING' ) ) {
-			define( 'RP_UPDATING', true );
-		}
-
 		$current_db_version = get_option( 'restaurantpress_db_version' );
+		$update_queued      = false;
 
-		foreach ( self::$db_updates as $version => $updater ) {
+		foreach ( self::get_db_update_callbacks() as $version => $update_callbacks ) {
 			if ( version_compare( $current_db_version, $version, '<' ) ) {
-				include( $updater );
-				self::update_db_version( $version );
+				foreach ( $update_callbacks as $update_callback ) {
+					self::$background_updater->push_to_queue( $update_callback );
+					$update_queued = true;
+				}
 			}
 		}
 
-		self::update_db_version();
+		if ( $update_queued ) {
+			self::$background_updater->save()->dispatch();
+		}
+	}
+
+	/**
+	 * Update DB version to current.
+	 * @param string $version
+	 */
+	public static function update_db_version( $version = null ) {
+		delete_option( 'restaurantpress_db_version' );
+		add_option( 'restaurantpress_db_version', is_null( $version ) ? RP()->version : $version );
 	}
 
 	/**
