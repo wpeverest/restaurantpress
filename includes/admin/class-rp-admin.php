@@ -39,14 +39,14 @@ class RP_Admin {
 	 * Include any classes we need within admin.
 	 */
 	public function includes() {
-		include_once( 'functions-rp-admin.php' );
-		include_once( 'functions-rp-meta-box.php' );
-		include_once( 'class-rp-admin-post-types.php' );
-		include_once( 'class-rp-admin-taxonomies.php' );
-		include_once( 'class-rp-admin-menus.php' );
-		include_once( 'class-rp-admin-notices.php' );
-		include_once( 'class-rp-admin-assets.php' );
-		include_once( 'class-rp-admin-tinymce.php' );
+		include_once( dirname( __FILE__ ) . '/functions-rp-admin.php' );
+		include_once( dirname( __FILE__ ) . '/functions-rp-meta-box.php' );
+		include_once( dirname( __FILE__ ) . '/class-rp-admin-post-types.php' );
+		include_once( dirname( __FILE__ ) . '/class-rp-admin-taxonomies.php' );
+		include_once( dirname( __FILE__ ) . '/class-rp-admin-menus.php' );
+		include_once( dirname( __FILE__ ) . '/class-rp-admin-notices.php' );
+		include_once( dirname( __FILE__ ) . '/class-rp-admin-assets.php' );
+		include_once( dirname( __FILE__ ) . '/class-rp-admin-tinymce.php' );
 	}
 
 	/**

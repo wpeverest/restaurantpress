@@ -206,7 +206,7 @@ class RP_Install {
 	 */
 	private static function create_options() {
 		// Include settings so that we can run through defaults
-		include_once( 'admin/class-rp-admin-settings.php' );
+		include_once( dirname( __FILE__ ) . '/admin/class-rp-admin-settings.php' );
 
 		$settings = RP_Admin_Settings::get_settings_pages();
 

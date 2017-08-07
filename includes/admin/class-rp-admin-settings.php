@@ -46,7 +46,7 @@ class RP_Admin_Settings {
 		if ( empty( self::$settings ) ) {
 			$settings = array();
 
-			include_once( 'settings/class-rp-settings-page.php' );
+			include_once( dirname( __FILE__ ) . '/settings/class-rp-settings-page.php' );
 
 			$settings[] = include( 'settings/class-rp-settings-general.php' );
 

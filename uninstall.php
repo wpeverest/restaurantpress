@@ -23,7 +23,7 @@ global $wpdb, $wp_version;
  */
 if ( defined( 'RP_REMOVE_ALL_DATA' ) && true === RP_REMOVE_ALL_DATA ) {
 	// Roles + caps.
-	include_once( 'includes/class-rp-install.php' );
+	include_once( dirname( __FILE__ ) . '/includes/class-rp-install.php' );
 	RP_Install::remove_roles();
 
 	// Tables.
