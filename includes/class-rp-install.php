@@ -443,7 +443,7 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 	public static function plugin_row_meta( $plugin_meta, $plugin_file ) {
 		if ( RP_PLUGIN_BASENAME == $plugin_file ) {
 			$new_plugin_meta = array(
-				'docs'    => '<a href="' . esc_url( apply_filters( 'restaurantpress_docs_url', 'https://wpeverest.com/docs/restaurantpress/' ) ) . '" title="' . esc_attr( __( 'View RestaurantPress Documentation', 'restaurantpress' ) ) . '">' . __( 'Docs', 'restaurantpress' ) . '</a>',
+				'docs'    => '<a href="' . esc_url( apply_filters( 'restaurantpress_docs_url', 'https://docs.wpeverest.com/docs/restaurantpress/' ) ) . '" title="' . esc_attr( __( 'View RestaurantPress Documentation', 'restaurantpress' ) ) . '">' . __( 'Docs', 'restaurantpress' ) . '</a>',
 				'support' => '<a href="' . esc_url( apply_filters( 'restaurantpress_support_url', 'https://wpeverest.com/support-forum/' ) ) . '" title="' . esc_attr( __( 'Visit Free Customer Support Forum', 'restaurantpress' ) ) . '">' . __( 'Free Support', 'restaurantpress' ) . '</a>',
 			);
 

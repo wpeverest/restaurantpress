@@ -30,7 +30,7 @@ class RP_Admin_Notices {
 	 */
 	private static $core_notices = array(
 		'update'        => 'update_notice',
-		// 'theme_support' => 'theme_check_notice'
+		'theme_support' => 'theme_check_notice'
 	);
 
 	/**
@@ -196,7 +196,7 @@ class RP_Admin_Notices {
 	 * Show the Theme Check notice.
 	 */
 	public static function theme_check_notice() {
-		if ( ! current_theme_supports( 'restaurantpress' ) && ! in_array( get_option( 'template' ), rp_get_core_supported_themes ) ) {
+		if ( ! current_theme_supports( 'restaurantpress' ) && ! in_array( get_option( 'template' ), rp_get_core_supported_themes() ) ) {
 			include( 'views/html-notice-theme-support.php' );
 		} else {
 			self::remove_notice( 'theme_support' );
