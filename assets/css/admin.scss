@@ -656,6 +656,13 @@ img.tips {
 	width: 0;
 }
 
+/*rtl:raw:
+#tiptip_arrow {
+	right: 50%;
+	margin-right: -6px;
+}
+*/
+
 .rp_error_tip {
 	max-width: 20em;
 	line-height: 1.8em;
@@ -697,6 +704,11 @@ img.tips {
 		@include icon_dashicons( '\f223' );
 		cursor: help;
 	}
+}
+
+h2 .restaurantpress-help-tip {
+	margin-top: -5px;
+	margin-left: 0.25em;
 }
 
 /**
