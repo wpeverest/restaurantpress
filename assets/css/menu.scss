@@ -7,30 +7,30 @@
 /**
  * Imports
  */
-@import "mixins";
-@import "variables";
-@import "fonts";
+@import 'mixins';
+@import 'variables';
+@import 'fonts';
 
 /**
  * Styling begins
  */
 #adminmenu #toplevel_page_restaurantpress .menu-icon-generic div.wp-menu-image:before {
 	font-family: 'RestaurantPress' !important;
-	content: "\e001";
+	content: '\e001';
 }
 
 #adminmenu #menu-posts-food_menu .menu-icon-post div.wp-menu-image:before,
 #adminmenu #menu-posts-food_menu .menu-icon-food_menu div.wp-menu-image:before {
 	font-family: 'RestaurantPress' !important;
-	content: "\e002";
+	content: '\e002';
 }
 
 span.mce_restaurantpress_shortcodes_button {
 	background-image: none !important;
 	@include ir();
 
-	&:before {
-		@include icon( "\e002" );
+	&::before {
+		@include icon( '\e002' );
 		font-size: .9em;
 		line-height: 1.2;
 	}
@@ -39,8 +39,8 @@ span.mce_restaurantpress_shortcodes_button {
 i.mce-i-restaurantpress-shortcodes {
 	position: relative;
 
-	&:before {
-		@include icon( "\e002" );
+	&::before {
+		@include icon( '\e002' );
 		line-height: inherit;
 	}
 }
@@ -57,8 +57,8 @@ i.mce-i-restaurantpress-shortcodes {
 		text-decoration: underline;
 	}
 
-	&:before {
-		content: "\f348";
+	&::before {
+		content: '\f348';
 		display: inline-block;
 		font: 400 18px/1 dashicons;
 		speak: none;
@@ -95,7 +95,7 @@ ul.food_menu_data {
 		}
 
 		input[type='checkbox'] {
-			margin: -4px 3px 0 0px;
+			margin: -4px 3px 0 0;
 		}
 	}
 }

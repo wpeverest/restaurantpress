@@ -7,10 +7,10 @@
 /**
  * Imports
  */
-@import "mixins";
-@import "variables";
-@import "animation";
-@import "fonts";
+@import 'mixins';
+@import 'variables';
+@import 'animation';
+@import 'fonts';
 
 /**
  * Styling begins
@@ -200,12 +200,12 @@
 			text-align: center;
 			text-transform: capitalize;
 
-			&:before,
-			&:after {
+			&::before,
+			&::after {
 				position: absolute;
 				bottom: -10px;
-				left: 0px;
-				content: "";
+				left: 0;
+				content: '';
 				border-left: 0 solid transparent;
 				border-top: 10px solid #c00;
 				border-right: 18px solid transparent;

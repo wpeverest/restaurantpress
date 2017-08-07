@@ -6,10 +6,10 @@
 /**
  * Imports
  */
-@import "mixins";
-@import "variables";
-@import "animation";
-@import "fonts";
+@import 'mixins';
+@import 'variables';
+@import 'animation';
+@import 'fonts';
 
 /**
  * Styling begins
@@ -369,7 +369,7 @@ table.wp-list-table {
 		@include ir();
 		margin: 0 auto;
 
-		&:before {
+		&::before {
 			@include icon_dashicons( '\f128' );
 		}
 	}
@@ -400,7 +400,7 @@ img.help_tip {
 }
 
 .postbox img.help_tip {
-	margin-top: 0px;
+	margin-top: 0;
 }
 
 .postbox .restaurantpress-help-tip {
@@ -423,7 +423,7 @@ img.help_tip {
 	}
 
 	textarea[disabled='disabled'] {
-		background: #DFDFDF !important;
+		background: #dfdfdf !important;
 	}
 
 	table.form-table {
@@ -836,7 +836,7 @@ h2 .restaurantpress-help-tip {
 			height: 30px;
 		}
 	}
-	.select2-selection--multiple  {
+	.select2-selection--multiple {
 		min-height: 28px;
 		border-radius: 0;
 		line-height: 1.5;
