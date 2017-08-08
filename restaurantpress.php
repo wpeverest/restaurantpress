@@ -6,8 +6,8 @@
  * Version: 1.3.2
  * Author: WPEverest
  * Author URI: https://wpeverest.com
- * Requires at least: 4.2
- * Tested up to: 4.4
+ * Requires at least: 4.4
+ * Tested up to: 4.8
  *
  * Text Domain: restaurantpress
  * Domain Path: /languages/
