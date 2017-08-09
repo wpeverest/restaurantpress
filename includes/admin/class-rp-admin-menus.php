@@ -47,7 +47,37 @@ class RP_Admin_Menu {
 	 * Add menu item.
 	 */
 	public function settings_menu() {
-		add_submenu_page( 'restaurantpress', __( 'RestaurantPress Settings', 'restaurantpress' ),  __( 'Settings', 'restaurantpress' ) , 'manage_restaurantpress', 'rp-settings', array( $this, 'settings_page' ) );
+		$settings_page = add_submenu_page( 'restaurantpress', __( 'RestaurantPress Settings', 'restaurantpress' ),  __( 'Settings', 'restaurantpress' ) , 'manage_restaurantpress', 'rp-settings', array( $this, 'settings_page' ) );
+
+		add_action( 'load-' . $settings_page, array( $this, 'settings_page_init' ) );
+	}
+
+	/**
+	 * Loads gateways and shipping methods into memory for use within settings.
+	 */
+	public function settings_page_init() {
+		global $current_tab, $current_section;
+
+		// Include settings pages
+		RP_Admin_Settings::get_settings_pages();
+
+		// Get current tab/section
+		$current_tab     = empty( $_GET['tab'] ) ? 'general' : sanitize_title( $_GET['tab'] );
+		$current_section = empty( $_REQUEST['section'] ) ? '' : sanitize_title( $_REQUEST['section'] );
+
+		// Save settings if data has been posted
+		if ( ! empty( $_POST ) ) {
+			RP_Admin_Settings::save();
+		}
+
+		// Add any posted messages
+		if ( ! empty( $_GET['rp_error'] ) ) {
+			RP_Admin_Settings::add_error( stripslashes( $_GET['rp_error'] ) );
+		}
+
+		if ( ! empty( $_GET['rp_message'] ) ) {
+			RP_Admin_Settings::add_message( stripslashes( $_GET['rp_message'] ) );
+		}
 	}
 
 	/**

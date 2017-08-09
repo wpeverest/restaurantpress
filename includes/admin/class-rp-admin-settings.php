@@ -129,31 +129,10 @@ class RP_Admin_Settings {
 			'i18n_nav_warning' => __( 'The changes you made will be lost if you navigate away from this page.', 'restaurantpress' )
 		) );
 
-		// Include settings pages
-		self::get_settings_pages();
-
-		// Get current tab/section
-		$current_tab     = empty( $_GET['tab'] ) ? 'general' : sanitize_title( $_GET['tab'] );
-		$current_section = empty( $_REQUEST['section'] ) ? '' : sanitize_title( $_REQUEST['section'] );
-
-		// Save settings if data has been posted
-		if ( ! empty( $_POST ) ) {
-			self::save();
-		}
-
-		// Add any posted messages
-		if ( ! empty( $_GET['rp_error'] ) ) {
-			self::add_error( stripslashes( $_GET['rp_error'] ) );
-		}
-
-		if ( ! empty( $_GET['rp_message'] ) ) {
-			self::add_message( stripslashes( $_GET['rp_message'] ) );
-		}
-
 		// Get tabs for the settings page
 		$tabs = apply_filters( 'restaurantpress_settings_tabs_array', array() );
 
-		include 'views/html-admin-settings.php';
+		include( dirname( __FILE__ ) . '/views/html-admin-settings.php' );
 	}
 
 	/**
