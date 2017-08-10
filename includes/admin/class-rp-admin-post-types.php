@@ -53,6 +53,9 @@ class RP_Admin_Post_Types {
 
 		// Disable post type view mode options
 		add_filter( 'view_mode_post_types', array( $this, 'disable_view_mode_options' ) );
+
+		// Show blank state
+		add_action( 'manage_posts_extra_tablenav', array( $this, 'maybe_render_blank_state' ) );
 	}
 
 	/**
@@ -431,7 +434,6 @@ class RP_Admin_Post_Types {
 	 * @return array
 	 */
 	public function row_actions( $actions, $post ) {
-
 		if ( 'food_group' === $post->post_type ) {
 			if ( isset( $actions['inline hide-if-no-js'] ) ) {
 				unset( $actions['inline hide-if-no-js'] );
@@ -508,6 +510,44 @@ class RP_Admin_Post_Types {
 	public function disable_view_mode_options( $post_types ) {
 		unset( $post_types['food_menu'], $post_types['food_group'] );
 		return $post_types;
+	}
+
+	/**
+	 * Show blank slate.
+	 *
+	 * @param string $which
+	 */
+	public function maybe_render_blank_state( $which ) {
+		global $post_type;
+
+		if ( in_array( $post_type, array( 'food_group', 'food_menu' ) ) && 'bottom' === $which ) {
+			$counts = (array) wp_count_posts( $post_type );
+			unset( $counts['auto-draft'] );
+			$count  = array_sum( $counts );
+
+			if ( 0 < $count ) {
+				return;
+			}
+
+			echo '<div class="restaurantpress-BlankState">';
+
+			switch ( $post_type ) {
+				case 'food_group' :
+					?>
+					<h2 class="restaurantpress-BlankState-message"><?php _e( 'Groups are a great way to organize and categorize your food items. They will appear here once created.', 'restaurantpress' ); ?></h2>
+					<a class="restaurantpress-BlankState-cta button-primary button" href="<?php echo esc_url( admin_url( 'post-new.php?post_type=food_group' ) ); ?>"><?php _e( 'Create your first food group!', 'restaurantpress' ); ?></a>
+					<?php
+				break;
+				case 'food_menu' :
+					?>
+					<h2 class="restaurantpress-BlankState-message"><?php _e( 'Create elegant food/restaurant menus!', 'restaurantpress' ); ?></h2>
+					<a class="restaurantpress-BlankState-cta button-primary button" href="<?php echo esc_url( admin_url( 'post-new.php?post_type=food_menu&tutorial=true' ) ); ?>"><?php _e( 'Add your first menu item!', 'restaurantpress' ); ?></a>
+					<?php
+				break;
+			}
+
+			echo '<style type="text/css">#posts-filter .wp-list-table, #posts-filter .tablenav.top, .tablenav.bottom .actions, .wrap .subsubsub  { display: none; } </style></div>';
+		}
 	}
 }
 

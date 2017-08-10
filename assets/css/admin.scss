@@ -18,6 +18,40 @@
 	@include loader();
 }
 
+.clear {
+	clear: both;
+}
+
+.wrap.restaurantpress div.updated,
+.wrap.restaurantpress div.error {
+	margin-top: 10px;
+}
+
+/**
+ * Help Tip
+ */
+.restaurantpress-help-tip {
+	color: #666;
+	display: inline-block;
+	font-size: 1.1em;
+	font-style: normal;
+	height: 16px;
+	line-height: 16px;
+	position: relative;
+	vertical-align: middle;
+	width: 16px;
+
+	&::after {
+		@include icon_dashicons( '\f223' );
+		cursor: help;
+	}
+}
+
+h2 .restaurantpress-help-tip {
+	margin-top: -5px;
+	margin-left: 0.25em;
+}
+
 #restaurantpress-menu-data,
 #restaurantpress-group-data,
 .restaurantpress {
@@ -686,30 +720,7 @@ img.tips {
 	}
 }
 
-/**
- * Help Tip
- */
-.restaurantpress-help-tip {
-	color: #666;
-	display: inline-block;
-	font-size: 1.1em;
-	font-style: normal;
-	height: 16px;
-	line-height: 16px;
-	position: relative;
-	vertical-align: middle;
-	width: 16px;
 
-	&::after {
-		@include icon_dashicons( '\f223' );
-		cursor: help;
-	}
-}
-
-h2 .restaurantpress-help-tip {
-	margin-top: -5px;
-	margin-left: 0.25em;
-}
 
 /**
  * Small screen optimisation
@@ -766,6 +777,46 @@ h2 .restaurantpress-help-tip {
 			height: 40px;
 		}
 	}
+}
+
+.restaurantpress-BlankState {
+	text-align: center;
+	padding: 5em 0 0;
+
+	.restaurantpress-BlankState-message {
+		color: #aaa;
+		margin: 0 auto 1.5em;
+		line-height: 1.5em;
+		font-size: 1.2em;
+		max-width: 500px;
+
+		&::before {
+			color: #ddd;
+			text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.8);
+			font-size: 8em;
+			display: block;
+			position: relative !important;
+			top: auto;
+			left: auto;
+			line-height: 1em;
+			margin: 0 0 0.1875em;
+		}
+	}
+
+	.restaurantpress-BlankState-cta {
+		font-size: 1.2em;
+		padding: 0.75em 1.5em;
+		height: auto;
+		display: inline-block !important
+	}
+}
+
+.post-type-food_menu .restaurantpress-BlankState-message::before {
+	@include icon( '\e002' );
+}
+
+.post-type-food_group .restaurantpress-BlankState-message::before {
+	@include icon_dashicons( '\f325' );
 }
 
 /**
