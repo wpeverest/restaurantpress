@@ -45,19 +45,20 @@ class RP_Post_Types {
 			apply_filters( 'restaurantpress_taxonomy_objects_food_menu_cat', array( 'food_menu' ) ),
 			apply_filters( 'restaurantpress_taxonomy_args_food_menu_cat', array(
 				'hierarchical' => true,
-				'label'        => __( 'Menu Item Categories', 'restaurantpress' ),
+				'label'        => __( 'Categories', 'restaurantpress' ),
 				'labels'       => array(
-						'name'              => __( 'Menu Item Categories', 'restaurantpress' ),
-						'singular_name'     => __( 'Menu Item Category', 'restaurantpress' ),
+						'name'              => __( 'Menu Item categories', 'restaurantpress' ),
+						'singular_name'     => __( 'Category', 'restaurantpress' ),
 						'menu_name'         => _x( 'Categories', 'Admin menu name', 'restaurantpress' ),
-						'search_items'      => __( 'Search Menu Item Categories', 'restaurantpress' ),
-						'all_items'         => __( 'All Menu Item Categories', 'restaurantpress' ),
-						'parent_item'       => __( 'Parent Menu Item Category', 'restaurantpress' ),
-						'parent_item_colon' => __( 'Parent Menu Item Category:', 'restaurantpress' ),
-						'edit_item'         => __( 'Edit Menu Item Category', 'restaurantpress' ),
-						'update_item'       => __( 'Update Menu Item Category', 'restaurantpress' ),
-						'add_new_item'      => __( 'Add New Menu Item Category', 'restaurantpress' ),
-						'new_item_name'     => __( 'New Menu Item Category Name', 'restaurantpress' )
+						'search_items'      => __( 'Search categories', 'restaurantpress' ),
+						'all_items'         => __( 'All categories', 'restaurantpress' ),
+						'parent_item'       => __( 'Parent category', 'restaurantpress' ),
+						'parent_item_colon' => __( 'Parent category:', 'restaurantpress' ),
+						'edit_item'         => __( 'Edit category', 'restaurantpress' ),
+						'update_item'       => __( 'Update category', 'restaurantpress' ),
+						'add_new_item'      => __( 'Add new category', 'restaurantpress' ),
+						'new_item_name'     => __( 'New category name', 'restaurantpress' ),
+						'not_found'         => __( 'No categories found', 'restaurantpress' ),
 					),
 				'show_ui'      => true,
 				'query_var'    => true,
@@ -129,7 +130,8 @@ class RP_Post_Types {
 					'rewrite'             => array( 'slug' => 'menu-item', 'with_front' => false, 'feeds' => true ),
 					'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'comments', 'custom-fields', 'page-attributes', 'publicize', 'wpcom-markdown' ),
 					'has_archive'         => true,
-					'show_in_nav_menus'   => true
+					'show_in_nav_menus'   => true,
+					'show_in_rest'        => true,
 				)
 			)
 		);
