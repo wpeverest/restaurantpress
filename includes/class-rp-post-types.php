@@ -35,12 +35,7 @@ class RP_Post_Types {
 	 * Register core taxonomies.
 	 */
 	public static function register_taxonomies() {
-
-		if ( ! is_blog_installed() ) {
-			return;
-		}
-
-		if ( taxonomy_exists( 'food_menu_cat' ) ) {
+		if ( ! is_blog_installed() || taxonomy_exists( 'food_menu_cat' ) ) {
 			return;
 		}
 
@@ -87,12 +82,7 @@ class RP_Post_Types {
 	 * Register core post types.
 	 */
 	public static function register_post_types() {
-
-		if ( ! is_blog_installed() ) {
-			return;
-		}
-
-		if ( post_type_exists( 'food_menu' ) ) {
+		if ( ! is_blog_installed() || post_type_exists( 'food_menu' ) ) {
 			return;
 		}
 
@@ -121,7 +111,11 @@ class RP_Post_Types {
 							'set_featured_image'    => __( 'Set menu image', 'restaurantpress' ),
 							'remove_featured_image' => __( 'Remove menu image', 'restaurantpress' ),
 							'use_featured_image'    => __( 'Use as menu image', 'restaurantpress' ),
-
+							'insert_into_item'      => __( 'Insert into menu item', 'restaurantpress' ),
+							'uploaded_to_this_item' => __( 'Uploaded to this menu item', 'restaurantpress' ),
+							'filter_items_list'     => __( 'Filter menu items', 'restaurantpress' ),
+							'items_list_navigation' => __( 'Menu items navigation', 'restaurantpress' ),
+							'items_list'            => __( 'Menu items list', 'restaurantpress' ),
 						),
 					'description'         => __( 'This is where you can add new menu items to your restaurant.', 'restaurantpress' ),
 					'public'              => true,
@@ -144,20 +138,23 @@ class RP_Post_Types {
 			apply_filters( 'restaurantpress_register_post_type_food_group',
 				array(
 					'labels'              => array(
-							'name'               => __( 'Groups', 'restaurantpress' ),
-							'singular_name'      => __( 'Group', 'restaurantpress' ),
-							'menu_name'          => _x( 'Groups', 'Admin menu name', 'restaurantpress' ),
-							'add_new'            => __( 'Add Group', 'restaurantpress' ),
-							'add_new_item'       => __( 'Add New Group', 'restaurantpress' ),
-							'edit'               => __( 'Edit', 'restaurantpress' ),
-							'edit_item'          => __( 'Edit Group', 'restaurantpress' ),
-							'new_item'           => __( 'New Group', 'restaurantpress' ),
-							'view'               => __( 'View Groups', 'restaurantpress' ),
-							'view_item'          => __( 'View Group', 'restaurantpress' ),
-							'search_items'       => __( 'Search Groups', 'restaurantpress' ),
-							'not_found'          => __( 'No Groups found', 'restaurantpress' ),
-							'not_found_in_trash' => __( 'No Groups found in trash', 'restaurantpress' ),
-							'parent'             => __( 'Parent Group', 'restaurantpress' )
+							'name'                  => __( 'Groups', 'restaurantpress' ),
+							'singular_name'         => __( 'Group', 'restaurantpress' ),
+							'menu_name'             => _x( 'Groups', 'Admin menu name', 'restaurantpress' ),
+							'add_new'               => __( 'Add Group', 'restaurantpress' ),
+							'add_new_item'          => __( 'Add New Group', 'restaurantpress' ),
+							'edit'                  => __( 'Edit', 'restaurantpress' ),
+							'edit_item'             => __( 'Edit Group', 'restaurantpress' ),
+							'new_item'              => __( 'New Group', 'restaurantpress' ),
+							'view'                  => __( 'View Groups', 'restaurantpress' ),
+							'view_item'             => __( 'View Group', 'restaurantpress' ),
+							'search_items'          => __( 'Search Groups', 'restaurantpress' ),
+							'not_found'             => __( 'No Groups found', 'restaurantpress' ),
+							'not_found_in_trash'    => __( 'No Groups found in trash', 'restaurantpress' ),
+							'parent'                => __( 'Parent Group', 'restaurantpress' ),
+							'filter_items_list'     => __( 'Filter Groups', 'restaurantpress' ),
+							'items_list_navigation' => __( 'Groups navigation', 'restaurantpress' ),
+							'items_list'            => __( 'Groups list', 'restaurantpress' ),
 						),
 					'description'         => __( 'This is where you can add new group for your food menu.', 'restaurantpress' ),
 					'public'              => false,
