@@ -47,6 +47,7 @@ class RP_Admin {
 		include_once( dirname( __FILE__ ) . '/class-rp-admin-notices.php' );
 		include_once( dirname( __FILE__ ) . '/class-rp-admin-assets.php' );
 		include_once( dirname( __FILE__ ) . '/class-rp-admin-tinymce.php' );
+		include_once( dirname( __FILE__ ) . '/class-rp-admin-pointers.php' );
 	}
 
 	/**
