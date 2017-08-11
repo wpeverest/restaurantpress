@@ -71,7 +71,7 @@ class RP_Admin_Pointers {
 					'next'         => 'postexcerpt',
 					'next_trigger' => array(),
 					'options'      => array(
-						'content'  => '<h3>' . esc_html__( 'Menu item description', 'woocommerce' ) . '</h3>' .
+						'content'  => '<h3>' . esc_html__( 'Menu item description', 'restaurantpress' ) . '</h3>' .
 										'<p>' . esc_html__( 'This is your menu item main body of content. Here you should describe your menu item in detail.', 'restaurantpress' ) . '</p>',
 						'position' => array(
 							'edge'  => 'bottom',
