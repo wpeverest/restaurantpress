@@ -452,7 +452,7 @@ class RP_Admin_Post_Types {
 	public function enter_title_here( $text, $post ) {
 		switch ( $post->post_type ) {
 			case 'food_menu' :
-				$text = __( 'Menu Item name', 'restaurantpress' );
+				$text = __( 'Menu item name', 'restaurantpress' );
 			break;
 			case 'food_group':
 				$text = __( 'Group name', 'restaurantpress' );

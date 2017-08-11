@@ -720,7 +720,54 @@ img.tips {
 	}
 }
 
+.restaurantpress-BlankState {
+	text-align: center;
+	padding: 5em 0 0;
 
+	.restaurantpress-BlankState-message {
+		color: #aaa;
+		margin: 0 auto 1.5em;
+		line-height: 1.5em;
+		font-size: 1.2em;
+		max-width: 500px;
+
+		&::before {
+			color: #ddd;
+			text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.8);
+			font-size: 8em;
+			display: block;
+			position: relative !important;
+			top: auto;
+			left: auto;
+			line-height: 1em;
+			margin: 0 0 0.1875em;
+		}
+	}
+
+	.restaurantpress-BlankState-cta {
+		font-size: 1.2em;
+		padding: 0.75em 1.5em;
+		height: auto;
+		display: inline-block !important
+	}
+}
+
+.post-type-food_menu .restaurantpress-BlankState-message::before {
+	@include icon( '\e002' );
+}
+
+.post-type-food_group .restaurantpress-BlankState-message::before {
+	@include icon_dashicons( '\f325' );
+}
+
+.rp-pointer {
+	.rp-pointer-buttons {
+		.close {
+			float: left;
+			margin: 6px 0 0 15px;
+		}
+	}
+}
 
 /**
  * Small screen optimisation
@@ -777,46 +824,6 @@ img.tips {
 			height: 40px;
 		}
 	}
-}
-
-.restaurantpress-BlankState {
-	text-align: center;
-	padding: 5em 0 0;
-
-	.restaurantpress-BlankState-message {
-		color: #aaa;
-		margin: 0 auto 1.5em;
-		line-height: 1.5em;
-		font-size: 1.2em;
-		max-width: 500px;
-
-		&::before {
-			color: #ddd;
-			text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.8);
-			font-size: 8em;
-			display: block;
-			position: relative !important;
-			top: auto;
-			left: auto;
-			line-height: 1em;
-			margin: 0 0 0.1875em;
-		}
-	}
-
-	.restaurantpress-BlankState-cta {
-		font-size: 1.2em;
-		padding: 0.75em 1.5em;
-		height: auto;
-		display: inline-block !important
-	}
-}
-
-.post-type-food_menu .restaurantpress-BlankState-message::before {
-	@include icon( '\e002' );
-}
-
-.post-type-food_group .restaurantpress-BlankState-message::before {
-	@include icon_dashicons( '\f325' );
 }
 
 /**
