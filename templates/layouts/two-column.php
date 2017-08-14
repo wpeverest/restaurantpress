@@ -56,7 +56,6 @@ $count = 1;
 										</figure>
 									<?php endif; ?>
 									<div class="rp-content-wrapper">
-										
 											<div class="rp-title-price-wrap">
 												<h4 class="rp-title">
 													<a href="<?php echo $food_menu['permalink']; ?>" class="restaurantpress-foodItem-link restaurantpress-loop-foodItem__link"><?php echo $food_menu['title']; ?></a>
