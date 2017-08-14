@@ -83,6 +83,7 @@ final class RestaurantPress {
 	private function init_hooks() {
 		register_activation_hook( RP_PLUGIN_FILE, array( 'RP_Install', 'install' ) );
 		add_action( 'after_setup_theme', array( $this, 'setup_environment' ) );
+		add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 11 );
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 		add_action( 'init', array( 'RP_Shortcodes', 'init' ) );
 		add_action( 'init', array( $this, 'wpdb_table_fix' ), 0 );
@@ -164,6 +165,13 @@ final class RestaurantPress {
 	}
 
 	/**
+	 * Function used to Init RestaurantPress Template Functions - This makes them pluggable by plugins and themes.
+	 */
+	public function include_template_functions() {
+		include_once( RP_ABSPATH . 'includes/functions-rp-template.php' );
+	}
+
+	/**
 	 * Load Localisation files.
 	 *
 	 * Note: the first-loaded translation file overrides any following ones if the same translation is present.
@@ -222,6 +230,14 @@ final class RestaurantPress {
 	 */
 	public function plugin_path() {
 		return untrailingslashit( plugin_dir_path( RP_PLUGIN_FILE ) );
+	}
+
+	/**
+	 * Get the template path.
+	 * @return string
+	 */
+	public function template_path() {
+		return apply_filters( 'restaurantpress_template_path', 'restaurantpress/' );
 	}
 
 	/**
