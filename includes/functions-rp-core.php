@@ -156,7 +156,7 @@ function rp_placeholder_img( $size = 'food_thumbnail' ) {
  * @return string[]
  */
 function rp_get_core_supported_themes() {
-	return array( 'twentysixteen', 'twentyfifteen', 'twentyfourteen', 'twentythirteen', 'twentytwelve','twentyeleven', 'twentyten' );
+	return array( 'twentyseventeen', 'twentysixteen', 'twentyfifteen', 'twentyfourteen', 'twentythirteen', 'twentytwelve','twentyeleven', 'twentyten' );
 }
 
 /**
