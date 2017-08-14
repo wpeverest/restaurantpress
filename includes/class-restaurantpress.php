@@ -97,6 +97,7 @@ final class RestaurantPress {
 		$this->define( 'RP_ABSPATH', dirname( RP_PLUGIN_FILE ) . '/' );
 		$this->define( 'RP_PLUGIN_BASENAME', plugin_basename( RP_PLUGIN_FILE ) );
 		$this->define( 'RP_VERSION', $this->version );
+		$this->define( 'RP_TEMPLATE_DEBUG_MODE', false );
 	}
 
 	/**
