@@ -20,6 +20,128 @@ include( RP_ABSPATH . 'includes/functions-rp-deprecated.php' );
 include( RP_ABSPATH . 'includes/functions-rp-widget.php' );
 
 /**
+ * Get template part (for templates like the layout-loop).
+ *
+ * RP_TEMPLATE_DEBUG_MODE will prevent overrides in themes from taking priority.
+ *
+ * @param mixed  $slug
+ * @param string $name (default: '')
+ */
+function rp_get_template_part( $slug, $name = '' ) {
+	$template = '';
+
+	// Look in yourtheme/slug-name.php and yourtheme/restaurantpress/slug-name.php
+	if ( $name && ! RP_TEMPLATE_DEBUG_MODE ) {
+		$template = locate_template( array( "{$slug}-{$name}.php", RP()->template_path() . "{$slug}-{$name}.php" ) );
+	}
+
+	// Get default slug-name.php
+	if ( ! $template && $name && file_exists( RP()->plugin_path() . "/templates/{$slug}-{$name}.php" ) ) {
+		$template = RP()->plugin_path() . "/templates/{$slug}-{$name}.php";
+	}
+
+	// If template file doesn't exist, look in yourtheme/slug.php and yourtheme/restaurantpress/slug.php
+	if ( ! $template && ! RP_TEMPLATE_DEBUG_MODE ) {
+		$template = locate_template( array( "{$slug}.php", RP()->template_path() . "{$slug}.php" ) );
+	}
+
+	// Allow 3rd party plugins to filter template file from their plugin.
+	$template = apply_filters( 'rp_get_template_part', $template, $slug, $name );
+
+	if ( $template ) {
+		load_template( $template, false );
+	}
+}
+
+/**
+ * Get other templates (e.g. layout attributes) passing attributes and including the file.
+ *
+ * @param string $template_name
+ * @param array  $args (default: array())
+ * @param string $template_path (default: '')
+ * @param string $default_path (default: '')
+ */
+function rp_get_template( $template_name, $args = array(), $template_path = '', $default_path = '' ) {
+	if ( ! empty( $args ) && is_array( $args ) ) {
+		extract( $args );
+	}
+
+	$located = rp_locate_template( $template_name, $template_path, $default_path );
+
+	if ( ! file_exists( $located ) ) {
+		_doing_it_wrong( __FUNCTION__, sprintf( '<code>%s</code> does not exist.', $located ), '1.0' );
+		return;
+	}
+
+	// Allow 3rd party plugin filter template file from their plugin.
+	$located = apply_filters( 'rp_get_template', $located, $template_name, $args, $template_path, $default_path );
+
+	do_action( 'restaurantpress_before_template_part', $template_name, $template_path, $located, $args );
+
+	include( $located );
+
+	do_action( 'restaurantpress_after_template_part', $template_name, $template_path, $located, $args );
+}
+
+/**
+ * Like rp_get_template, but returns the HTML instead of outputting.
+ *
+ * @see   rp_get_template
+ * @since 1.4.0
+ * @param string $template_name
+ * @param array  $args
+ * @param string $template_path
+ * @param string $default_path
+ *
+ * @return string
+ */
+function rp_get_template_html( $template_name, $args = array(), $template_path = '', $default_path = '' ) {
+	ob_start();
+	rp_get_template( $template_name, $args, $template_path, $default_path );
+	return ob_get_clean();
+}
+
+/**
+ * Locate a template and return the path for inclusion.
+ *
+ * This is the load order:
+ *
+ *      yourtheme       /   $template_path   /   $template_name
+ *      yourtheme       /   $template_name
+ *      $default_path   /   $template_name
+ *
+ * @param  string $template_name
+ * @param  string $template_path (default: '')
+ * @param  string $default_path (default: '')
+ * @return string
+ */
+function rp_locate_template( $template_name, $template_path = '', $default_path = '' ) {
+	if ( ! $template_path ) {
+		$template_path = RP()->template_path();
+	}
+
+	if ( ! $default_path ) {
+		$default_path = RP()->plugin_path() . '/templates/';
+	}
+
+	// Look within passed path within the theme - this is priority.
+	$template = locate_template(
+		array(
+			trailingslashit( $template_path ) . $template_name,
+			$template_name,
+		)
+	);
+
+	// Get default template/
+	if ( ! $template || RP_TEMPLATE_DEBUG_MODE ) {
+		$template = $default_path . $template_name;
+	}
+
+	// Return what we found.
+	return apply_filters( 'restaurantpress_locate_template', $template, $template_name, $template_path );
+}
+
+/**
  * Clean variables using sanitize_text_field
  * @param  string|array $var
  * @return string
