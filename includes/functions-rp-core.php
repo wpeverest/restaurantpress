@@ -15,8 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Include core functions (available in both admin and frontend).
-include( RP_ABSPATH . 'includes/functions-rp-term.php' );
 include( RP_ABSPATH . 'includes/functions-rp-deprecated.php' );
+include( RP_ABSPATH . 'includes/functions-rp-formatting.php' );
+include( RP_ABSPATH . 'includes/functions-rp-term.php' );
 include( RP_ABSPATH . 'includes/functions-rp-widget.php' );
 
 /**
@@ -142,74 +143,6 @@ function rp_locate_template( $template_name, $template_path = '', $default_path 
 }
 
 /**
- * Clean variables using sanitize_text_field
- * @param  string|array $var
- * @return string
- */
-function rp_clean( $var ) {
-	return is_array( $var ) ? array_map( 'rp_clean', $var ) : sanitize_text_field( $var );
-}
-
-/**
- * Sanitize a string destined to be a tooltip.
- *
- * @since  1.0.0  Tooltips are encoded with htmlspecialchars to prevent XSS. Should not be used in conjunction with esc_attr()
- * @param  string $var
- * @return string
- */
-function rp_sanitize_tooltip( $var ) {
-	return htmlspecialchars( wp_kses( html_entity_decode( $var ), array(
-		'br'     => array(),
-		'em'     => array(),
-		'strong' => array(),
-		'small'  => array(),
-		'span'   => array(),
-		'ul'     => array(),
-		'li'     => array(),
-		'ol'     => array(),
-		'p'      => array(),
-	) ) );
-}
-
-/**
- * Queue some JavaScript code to be output in the footer.
- * @param string $code
- */
-function rp_enqueue_js( $code ) {
-	global $rp_queued_js;
-
-	if ( empty( $rp_queued_js ) ) {
-		$rp_queued_js = '';
-	}
-
-	$rp_queued_js .= "\n" . $code . "\n";
-}
-
-/**
- * Output any queued javascript code in the footer.
- */
-function rp_print_js() {
-	global $rp_queued_js;
-
-	if ( ! empty( $rp_queued_js ) ) {
-		// Sanitize.
-		$rp_queued_js = wp_check_invalid_utf8( $rp_queued_js );
-		$rp_queued_js = preg_replace( '/&#(x)?0*(?(1)27|39);?/i', "'", $rp_queued_js );
-		$rp_queued_js = str_replace( "\r", '', $rp_queued_js );
-
-		$js = "<!-- RestaurantPress JavaScript -->\n<script type=\"text/javascript\">\njQuery(function($) { $rp_queued_js });\n</script>\n";
-
-		/**
-		 * restaurantpress_queued_js filter.
-		 * @param string $js JavaScript code.
-		 */
-		echo apply_filters( 'restaurantpress_queued_js', $js );
-
-		unset( $rp_queued_js );
-	}
-}
-
-/**
  * Get an image size.
  *
  * Variable is filtered by restaurantpress_get_image_size_{image_size}.
@@ -252,6 +185,46 @@ function rp_get_image_size( $image_size ) {
 	}
 
 	return apply_filters( 'restaurantpress_get_image_size_' . $image_size, $size );
+}
+
+/**
+ * Queue some JavaScript code to be output in the footer.
+ * @param string $code
+ */
+function rp_enqueue_js( $code ) {
+	global $rp_queued_js;
+
+	if ( empty( $rp_queued_js ) ) {
+		$rp_queued_js = '';
+	}
+
+	$rp_queued_js .= "\n" . $code . "\n";
+}
+
+/**
+ * Output any queued javascript code in the footer.
+ */
+function rp_print_js() {
+	global $rp_queued_js;
+
+	if ( ! empty( $rp_queued_js ) ) {
+		// Sanitize.
+		$rp_queued_js = wp_check_invalid_utf8( $rp_queued_js );
+		$rp_queued_js = preg_replace( '/&#(x)?0*(?(1)27|39);?/i', "'", $rp_queued_js );
+		$rp_queued_js = str_replace( "\r", '', $rp_queued_js );
+
+		/* jshint ignore:start */
+		$js = "<!-- RestaurantPress JavaScript -->\n<script type=\"text/javascript\">\njQuery(function($) { $rp_queued_js });\n</script>\n";
+		/* jshint ignore:end */
+
+		/**
+		 * restaurantpress_queued_js filter.
+		 * @param string $js JavaScript code.
+		 */
+		echo apply_filters( 'restaurantpress_queued_js', $js );
+
+		unset( $rp_queued_js );
+	}
 }
 
 /**
@@ -308,4 +281,42 @@ function rp_help_tip( $tip, $allow_html = false ) {
 	}
 
 	return '<span class="restaurantpress-help-tip" data-tip="' . $tip . '"></span>';
+}
+
+/**
+ * Prints human-readable information about a variable.
+ *
+ * Some server environments blacklist some debugging functions. This function provides a safe way to
+ * turn an expression into a printable, readable form without calling blacklisted functions.
+ *
+ * @since 1.4
+ *
+ * @param mixed $expression The expression to be printed.
+ * @param bool  $return Optional. Default false. Set to true to return the human-readable string.
+ * @return string|bool False if expression could not be printed. True if the expression was printed.
+ *     If $return is true, a string representation will be returned.
+ */
+function rp_print_r( $expression, $return = false ) {
+	$alternatives = array(
+		array( 'func' => 'print_r', 'args' => array( $expression, true ) ),
+		array( 'func' => 'var_export', 'args' => array( $expression, true ) ),
+		array( 'func' => 'json_encode', 'args' => array( $expression ) ),
+		array( 'func' => 'serialize', 'args' => array( $expression ) ),
+	);
+
+	$alternatives = apply_filters( 'restaurantpress_print_r_alternatives', $alternatives, $expression );
+
+	foreach ( $alternatives as $alternative ) {
+		if ( function_exists( $alternative['func'] ) ) {
+			$res = call_user_func_array( $alternative['func'], $alternative['args'] );
+			if ( $return ) {
+				return $res;
+			} else {
+				echo $res;
+				return true;
+			}
+		}
+	}
+
+	return false;
 }
