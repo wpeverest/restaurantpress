@@ -54,15 +54,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 										</figure>
 									<?php endif; ?>
 									<div class="rp-content-wrapper">
-										<a href="<?php echo $food_menu['permalink']; ?>" class="restaurantpress-foodItem-link restaurantpress-loop-foodItem__link">
-											<div class="rp-title-price-wrap">
-												<h4 class="rp-title">
-													<a href="<?php echo $food_menu['permalink']; ?>" class="restaurantpress-foodItem-link restaurantpress-loop-foodItem__link"><?php echo $food_menu['title']; ?></a>
-												</h4>
-												<div class="rp-price"><?php echo $food_menu['price']; ?></div>
-											</div> <!--rp-title-price-wrap end -->
-											<div class="rp-desc"><?php echo $food_menu['content']; ?></div>
-										</a>
+										<div class="rp-title-price-wrap">
+											<h4 class="rp-title">
+												<a href="<?php echo $food_menu['permalink']; ?>" class="restaurantpress-foodItem-link restaurantpress-loop-foodItem__link"><?php echo $food_menu['title']; ?></a>
+											</h4>
+											<span class="rp-price"><?php echo $food_menu['price']; ?></span>
+										</div> <!--rp-title-price-wrap end -->
+										<p class="rp-desc"><?php echo $food_menu['content']; ?></p>
 									</div> <!--rp-content-wrapper end-->
 								</div> <!--rp-column-single-block end -->
 							<?php }

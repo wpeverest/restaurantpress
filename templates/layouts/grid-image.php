@@ -58,9 +58,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 										<div class="rp-title-price-wrap clearpress">
 											<h4 class="rp-title"><?php echo $food_menu['title']; ?></h4>
 										</div> <!--rp-title-price-wrap end -->
-										<div class="rp-desc"><?php echo $food_menu['content']; ?></div>
+										<p class="rp-desc"><?php echo $food_menu['content']; ?></p>
 										<?php if ( ! empty( $food_menu['price'] ) ) : ?>
-											<div class="rp-price"><?php echo $food_menu['price']; ?></div>
+											<span class="rp-price"><?php echo $food_menu['price']; ?></span>
 										<?php endif; ?>
 									</a>
 								</div> <!--rp-content-wrapper end-->

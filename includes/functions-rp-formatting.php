@@ -45,7 +45,7 @@ function rp_sanitize_textarea( $var ) {
  * @param string $var
  * @return string
  */
-function wc_sanitize_tooltip( $var ) {
+function rp_sanitize_tooltip( $var ) {
 	return htmlspecialchars( wp_kses( html_entity_decode( $var ), array(
 		'br'     => array(),
 		'em'     => array(),
