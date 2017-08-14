@@ -56,12 +56,13 @@ $count = 1;
 										</figure>
 									<?php endif; ?>
 									<div class="rp-content-wrapper">
-										<div class="rp-title-price-wrap">
-											<h4 class="rp-title"><?php echo $food_menu['title']; ?></h4>
-											<div class="rp-price"><?php echo $food_menu['price']; ?></div>
-										</div><!-- rp-title-price-wrap end -->
-
-										<div class="rp-desc"><?php echo $food_menu['content']; ?></div>
+										<a href="<?php echo $food_menu['permalink']; ?>" class="restaurantpress-foodItem-link restaurantpress-loop-foodItem__link">
+											<div class="rp-title-price-wrap">
+												<h4 class="rp-title"><?php echo $food_menu['title']; ?></h4>
+												<div class="rp-price"><?php echo $food_menu['price']; ?></div>
+											</div><!-- rp-title-price-wrap end -->
+											<div class="rp-desc"><?php echo $food_menu['content']; ?></div>
+										</a>
 									</div><!--rp-content-wrapper end-->
 								</div> <!--rp-column-single-block end -->
 							<?php }

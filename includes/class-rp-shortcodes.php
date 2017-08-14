@@ -87,6 +87,7 @@ class RP_Shortcodes {
 		if ( $food_terms && ! is_wp_error( $food_terms ) ) {
 			$title      = get_the_title();
 			$content    = get_the_content();
+			$permalink  = get_the_permalink();
 			$price      = get_post_meta( $post->ID, 'food_item_price', true );
 			$chef_badge = get_post_meta( $post->ID, 'chef_badge_item', true );
 
@@ -108,6 +109,7 @@ class RP_Shortcodes {
 					$food_data[ $term->term_id ][] = array(
 						'title'      => $title,
 						'content'    => $content,
+						'permalink'  => $permalink,
 						'price'      => $price,
 						'image'      => $image,
 						'image_grid' => $image_grid,

@@ -54,13 +54,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 									</figure>
 								<?php endif; ?>
 								<div class="rp-content-wrapper">
-									<div class="rp-title-price-wrap clearpress">
-										<h4 class="rp-title"><?php echo $food_menu['title']; ?></h4>
-									</div> <!--rp-title-price-wrap end -->
-									<div class="rp-desc"><?php echo $food_menu['content']; ?></div>
-									<?php if ( ! empty( $food_menu['price'] ) ) : ?>
-										<div class="rp-price"><?php echo $food_menu['price']; ?></div>
-									<?php endif; ?>
+									<a href="<?php echo $food_menu['permalink']; ?>" class="restaurantpress-foodItem-link restaurantpress-loop-foodItem__link">
+										<div class="rp-title-price-wrap clearpress">
+											<h4 class="rp-title"><?php echo $food_menu['title']; ?></h4>
+										</div> <!--rp-title-price-wrap end -->
+										<div class="rp-desc"><?php echo $food_menu['content']; ?></div>
+										<?php if ( ! empty( $food_menu['price'] ) ) : ?>
+											<div class="rp-price"><?php echo $food_menu['price']; ?></div>
+										<?php endif; ?>
+									</a>
 								</div> <!--rp-content-wrapper end-->
 							</div> <!--rp-column-single-block end -->
 							<?php if ( $count%3 == 0 ) {
