@@ -57,3 +57,26 @@ function rp_body_class( $classes ) {
 
 	return array_unique( $classes );
 }
+
+/** Global ****************************************************************/
+
+if ( ! function_exists( 'restaurantpress_output_content_wrapper' ) ) {
+
+	/**
+	 * Output the start of the page wrapper.
+	 *
+	 */
+	function restaurantpress_output_content_wrapper() {
+		rp_get_template( 'global/wrapper-start.php' );
+	}
+}
+if ( ! function_exists( 'restaurantpress_output_content_wrapper_end' ) ) {
+
+	/**
+	 * Output the end of the page wrapper.
+	 *
+	 */
+	function restaurantpress_output_content_wrapper_end() {
+		rp_get_template( 'global/wrapper-end.php' );
+	}
+}
