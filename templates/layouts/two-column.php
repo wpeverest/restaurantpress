@@ -69,10 +69,11 @@ $count = 1;
 							<?php }
 						} ?>
 					</div><!-- .rp-column-2 -->
-					<?php if($count%2 == 0 ){
-						echo '<div class="clearpress"></div>';
-					}
-					$count++;
+					<?php
+						if ( $count%2 == 0 ) {
+							echo '<div class="clearpress"></div>';
+						}
+						$count++;
 					?>
 				<?php } ?>
 			</div><!-- .rp-column-wrapper -->
