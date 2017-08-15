@@ -47,7 +47,7 @@ class RP_Template_Loader {
 
 		if ( $default_file = self::get_template_loader_default_file() ) {
 			/**
-			 * Filter hook to choose which files to find before WooCommerce does it's own logic.
+			 * Filter hook to choose which files to find before RestaurantPress does it's own logic.
 			 *
 			 * @since 1.4.0
 			 * @var   array
