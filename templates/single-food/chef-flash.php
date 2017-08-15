@@ -23,4 +23,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $post;
 
 ?>
-<?php echo apply_filters( 'restaurantpress_chef_flash', '<span class="chef">' . esc_html__( 'Chef!', 'restaurantpress' ) . '</span>', $post ); ?>
+<?php if ( 'yes' === get_post_meta( $post->ID, 'chef_badge_item', true ) ) : ?>
+
+	<?php echo apply_filters( 'restaurantpress_chef_flash', '<span class="chef">' . esc_html__( 'Chef!', 'restaurantpress' ) . '</span>', $post ); ?>
+
+<?php endif;
+
+/* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */
