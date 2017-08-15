@@ -32,3 +32,17 @@ add_action( 'get_the_generator_xhtml', 'rp_generator_tag', 10, 2 );
  */
 add_action( 'restaurantpress_before_main_content', 'restaurantpress_output_content_wrapper', 10 );
 add_action( 'restaurantpress_after_main_content', 'restaurantpress_output_content_wrapper_end', 10 );
+
+/**
+ * Sidebar.
+ *
+ * @see restaurantpress_get_sidebar()
+ */
+add_action( 'restaurantpress_sidebar', 'restaurantpress_get_sidebar', 10 );
+
+/**
+ * Footer.
+ *
+ * @see rp_print_js()
+ */
+add_action( 'wp_footer', 'rp_print_js', 25 );

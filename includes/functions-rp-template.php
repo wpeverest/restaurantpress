@@ -80,3 +80,14 @@ if ( ! function_exists( 'restaurantpress_output_content_wrapper_end' ) ) {
 		rp_get_template( 'global/wrapper-end.php' );
 	}
 }
+
+if ( ! function_exists( 'restaurantpress_get_sidebar' ) ) {
+
+	/**
+	 * Get the food sidebar template.
+	 *
+	 */
+	function restaurantpress_get_sidebar() {
+		rp_get_template( 'global/sidebar.php' );
+	}
+}
