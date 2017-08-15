@@ -45,7 +45,72 @@ class RP_Template_Loader {
 			return $template;
 		}
 
+		if ( $default_file = self::get_template_loader_default_file() ) {
+			/**
+			 * Filter hook to choose which files to find before WooCommerce does it's own logic.
+			 *
+			 * @since 1.4.0
+			 * @var   array
+			 */
+			$search_files = self::get_template_loader_files( $default_file );
+			$template     = locate_template( $search_files );
+
+			if ( ! $template || RP_TEMPLATE_DEBUG_MODE ) {
+				$template = RP()->plugin_path() . '/templates/' . $default_file;
+			}
+		}
+
 		return $template;
+	}
+
+	/**
+	 * Get the default filename for a template.
+	 *
+	 * @since  1.4.0
+	 * @return string
+	 */
+	private static function get_template_loader_default_file() {
+		if ( is_singular( 'food_menu' ) ) {
+			$default_file = 'single-food_menu.php';
+		} elseif ( is_food_menu_taxonomy() ) {
+			$term = get_queried_object();
+
+			if ( is_tax( 'food_menu_cat' ) ) {
+				$default_file = 'taxonomy-' . $term->taxonomy . '.php';
+			} else {
+				$default_file = 'archive-food_menu.php';
+			}
+		} elseif ( is_post_type_archive( 'food_menu' ) ) {
+			$default_file = 'archive-food_menu.php';
+		} else {
+			$default_file = '';
+		}
+		return $default_file;
+	}
+
+	/**
+	 * Get an array of filenames to search for a given template.
+	 *
+	 * @since  1.4.0
+	 * @param  string $default_file The default file name.
+	 * @return string[]
+	 */
+	private static function get_template_loader_files( $default_file ) {
+		$search_files   = apply_filters( 'restaurantpress_template_loader_files', array(), $default_file );
+		$search_files[] = 'restaurantpress.php';
+
+		if ( is_food_menu_taxonomy() ) {
+			$term   = get_queried_object();
+			$search_files[] = 'taxonomy-' . $term->taxonomy . '-' . $term->slug . '.php';
+			$search_files[] = RP()->template_path() . 'taxonomy-' . $term->taxonomy . '-' . $term->slug . '.php';
+			$search_files[] = 'taxonomy-' . $term->taxonomy . '.php';
+			$search_files[] = RP()->template_path() . 'taxonomy-' . $term->taxonomy . '.php';
+		}
+
+		$search_files[] = $default_file;
+		$search_files[] = RP()->template_path() . $default_file;
+
+		return array_unique( $search_files );
 	}
 }
 

@@ -15,6 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Include core functions (available in both admin and frontend).
+include( RP_ABSPATH . 'includes/functions-rp-conditional.php' );
 include( RP_ABSPATH . 'includes/functions-rp-deprecated.php' );
 include( RP_ABSPATH . 'includes/functions-rp-formatting.php' );
 include( RP_ABSPATH . 'includes/functions-rp-term.php' );
@@ -250,18 +251,6 @@ function rp_placeholder_img( $size = 'food_thumbnail' ) {
  */
 function rp_get_core_supported_themes() {
 	return array( 'twentyseventeen', 'twentysixteen', 'twentyfifteen', 'twentyfourteen', 'twentythirteen', 'twentytwelve','twentyeleven', 'twentyten' );
-}
-
-/**
- * Checks whether the content passed contains a specific short code.
- *
- * @param  string $tag Shortcode tag to check.
- * @return bool
- */
-function rp_post_content_has_shortcode( $tag = '' ) {
-	global $post;
-
-	return is_singular() && is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, $tag );
 }
 
 /**
