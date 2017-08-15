@@ -84,7 +84,7 @@ final class RestaurantPress {
 		register_activation_hook( RP_PLUGIN_FILE, array( 'RP_Install', 'install' ) );
 		add_action( 'after_setup_theme', array( $this, 'setup_environment' ) );
 		add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 11 );
-		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+		add_action( 'init', array( $this, 'init' ), 0 );
 		add_action( 'init', array( 'RP_Shortcodes', 'init' ) );
 		add_action( 'init', array( $this, 'wpdb_table_fix' ), 0 );
 		add_action( 'switch_blog', array( $this, 'wpdb_table_fix' ), 0 );
@@ -175,6 +175,20 @@ final class RestaurantPress {
 	}
 
 	/**
+	 * Init RestaurantPress when WordPress Initialises.
+	 */
+	public function init() {
+		// Before init action.
+		do_action( 'before_restaurantpress_init' );
+
+		// Set up localisation.
+		$this->load_plugin_textdomain();
+
+		// Init action.
+		do_action( 'restaurantpress_init' );
+	}
+
+	/**
 	 * Load Localisation files.
 	 *
 	 * Note: the first-loaded translation file overrides any following ones if the same translation is present.
@@ -184,10 +198,12 @@ final class RestaurantPress {
 	 *      - WP_LANG_DIR/plugins/restaurantpress-LOCALE.mo
 	 */
 	public function load_plugin_textdomain() {
-		$locale = apply_filters( 'plugin_locale', get_locale(), 'restaurantpress' );
+		$locale = is_admin() && function_exists( 'get_user_locale' ) ? get_user_locale() : get_locale();
+		$locale = apply_filters( 'plugin_locale', $locale, 'restaurantpress' );
 
+		unload_textdomain( 'restaurantpress' );
 		load_textdomain( 'restaurantpress', WP_LANG_DIR . '/restaurantpress/restaurantpress-' . $locale . '.mo' );
-		load_plugin_textdomain( 'restaurantpress', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'restaurantpress', false, plugin_basename( dirname( RP_PLUGIN_FILE ) ) . '/languages' );
 	}
 
 	/**

@@ -63,7 +63,7 @@ if ( ! function_exists( 'is_group_menu_page' ) ) {
 	 * @return bool
 	 */
 	function is_group_menu_page() {
-		return rp_post_content_has_shortcode( 'restaurantpress_menu' ) || apply_filters( 'restaurantpress_is_group_menu_page', false );
+		return rp_post_content_has_shortcode( 'restaurantpress_menu' ) || apply_filters( 'restaurantpress_is_group_menu_page', false ) || apply_filters( 'restaurantpress_is_widget_menu_active', is_active_widget( false, false, 'restaurantpress_widget_menu', true ) );
 	}
 }
 

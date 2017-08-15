@@ -31,10 +31,32 @@ class RP_Frontend_Scripts {
 	private static $styles = array();
 
 	/**
+	 * Contains an array of script handles localized by RP.
+	 * @var array
+	 */
+	private static $wp_localize_scripts = array();
+
+	/**
 	 * Hooks in methods.
 	 */
 	public static function init() {
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'load_scripts' ) );
+		add_action( 'wp_print_scripts', array( __CLASS__, 'localize_printed_scripts' ), 5 );
+		add_action( 'wp_print_footer_scripts', array( __CLASS__, 'localize_printed_scripts' ), 5 );
+		add_action( 'setup_theme', array( __CLASS__, 'add_default_theme_support' ) );
+	}
+
+	/**
+	 * Add theme support for default WP themes.
+	 *
+	 * @since 1.4.0
+	 */
+	public static function add_default_theme_support() {
+		if ( in_array( get_option( 'template' ), rp_get_core_supported_themes() ) ) {
+			add_theme_support( 'rp-food-gallery-zoom' );
+			add_theme_support( 'rp-food-gallery-lightbox' );
+			add_theme_support( 'rp-food-gallery-slider' );
+		}
 	}
 
 	/**
@@ -55,9 +77,10 @@ class RP_Frontend_Scripts {
 	}
 
 	/**
-	 * Return protocol relative asset URL.
+	 * Return asset URL.
 	 *
-	 * @param string $path
+	 * @param  string $path
+	 * @return string
 	 */
 	private static function get_asset_url( $path ) {
 		return apply_filters( 'restaurantpress_get_asset_url', plugins_url( $path, RP_PLUGIN_FILE ), $path );
@@ -68,7 +91,6 @@ class RP_Frontend_Scripts {
 	 *
 	 * @uses   wp_register_script()
 	 * @access private
-	 *
 	 * @param  string   $handle
 	 * @param  string   $path
 	 * @param  string[] $deps
@@ -85,7 +107,6 @@ class RP_Frontend_Scripts {
 	 *
 	 * @uses   wp_enqueue_script()
 	 * @access private
-	 *
 	 * @param  string   $handle
 	 * @param  string   $path
 	 * @param  string[] $deps
@@ -104,7 +125,6 @@ class RP_Frontend_Scripts {
 	 *
 	 * @uses   wp_register_style()
 	 * @access private
-	 *
 	 * @param  string   $handle
 	 * @param  string   $path
 	 * @param  string[] $deps
@@ -126,7 +146,6 @@ class RP_Frontend_Scripts {
 	 *
 	 * @uses   wp_enqueue_style()
 	 * @access private
-	 *
 	 * @param  string   $handle
 	 * @param  string   $path
 	 * @param  string[] $deps
@@ -142,36 +161,133 @@ class RP_Frontend_Scripts {
 	}
 
 	/**
+	 * Register all RP scripts.
+	 */
+	private static function register_scripts() {
+		$suffix           = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		$register_scripts = array(
+			'flexslider' => array(
+				'src'     => self::get_asset_url( 'assets/js/flexslider/jquery.flexslider' . $suffix . '.js' ),
+				'deps'    => array( 'jquery' ),
+				'version' => '2.6.3',
+			),
+			'photoswipe' => array(
+				'src'     => self::get_asset_url( 'assets/js/photoswipe/photoswipe' . $suffix . '.js' ),
+				'deps'    => array(),
+				'version' => '4.1.1',
+			),
+			'photoswipe-ui-default'  => array(
+				'src'     => self::get_asset_url( 'assets/js/photoswipe/photoswipe-ui-default' . $suffix . '.js' ),
+				'deps'    => array( 'photoswipe' ),
+				'version' => '4.1.1',
+			),
+			'prettyPhoto' => array( // deprecated.
+				'src'     => self::get_asset_url( 'assets/js/prettyPhoto/jquery.prettyPhoto' . $suffix . '.js' ),
+				'deps'    => array( 'jquery' ),
+				'version' => '3.1.6',
+			),
+			'prettyPhoto-init' => array( // deprecated.
+				'src'     => self::get_asset_url( 'assets/js/prettyPhoto/jquery.prettyPhoto.init' . $suffix . '.js' ),
+				'deps'    => array( 'jquery', 'prettyPhoto' ),
+				'version' => RP_VERSION,
+			),
+			'rp-single-food' => array(
+				'src'     => self::get_asset_url( 'assets/js/frontend/single-food' . $suffix . '.js' ),
+				'deps'    => array( 'jquery' ),
+				'version' => RP_VERSION,
+			),
+			'restaurantpress' => array(
+				'src'     => self::get_asset_url( 'assets/js/frontend/restaurantpress' . $suffix . '.js' ),
+				'deps'    => array( 'jquery' ),
+				'version' => RP_VERSION,
+			),
+			'zoom' => array(
+				'src'     => self::get_asset_url( 'assets/js/zoom/jquery.zoom' . $suffix . '.js' ),
+				'deps'    => array( 'jquery' ),
+				'version' => '1.7.15',
+			),
+		);
+		foreach ( $register_scripts as $name => $props ) {
+			self::register_script( $name, $props['src'], $props['deps'], $props['version'] );
+		}
+	}
+
+	/**
+	 * Register all RP styles.
+	 */
+	private static function register_styles() {
+		$register_styles = array(
+			'photoswipe' => array(
+				'src'     => self::get_asset_url( 'assets/css/photoswipe/photoswipe.css' ),
+				'deps'    => array(),
+				'version' => RP_VERSION,
+				'has_rtl' => false,
+			),
+			'photoswipe-default-skin' => array(
+				'src'     => self::get_asset_url( 'assets/css/photoswipe/default-skin/default-skin.css' ),
+				'deps'    => array( 'photoswipe' ),
+				'version' => RP_VERSION,
+				'has_rtl' => false,
+			),
+			'restaurantpress_prettyPhoto_css' => array( // deprecated.
+				'src'     => self::get_asset_url( 'assets/css/prettyPhoto.css' ),
+				'deps'    => array(),
+				'version' => RP_VERSION,
+				'has_rtl' => true,
+			),
+		);
+		foreach ( $register_styles as $name => $props ) {
+			self::register_style( $name, $props['src'], $props['deps'], $props['version'], 'all', $props['has_rtl'] );
+		}
+	}
+
+	/**
 	 * Register/enqueue frontend scripts.
 	 */
 	public static function load_scripts() {
-		$suffix               = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-		$lightbox_en          = 'yes' === get_option( 'restaurantpress_enable_lightbox' );
-		$assets_path          = str_replace( array( 'http:', 'https:' ), '', RP()->plugin_url() ) . '/assets/';
-		$frontend_script_path = $assets_path . 'js/frontend/';
+		global $post;
 
-		if ( apply_filters( 'restaurantpress_is_widget_menu_active', is_active_widget( false, false, 'restaurantpress_widget_menu', true ) ) || rp_post_content_has_shortcode( 'restaurantpress_menu' ) ) {
+		if ( ! did_action( 'before_restaurantpress_init' ) ) {
+			return;
+		}
 
-			// Register frontend scripts conditionally
-			if ( $lightbox_en ) {
-				self::enqueue_script( 'prettyPhoto', $assets_path . 'js/prettyPhoto/jquery.prettyPhoto' . $suffix . '.js', array( 'jquery' ), '3.1.6', true );
-				self::enqueue_script( 'prettyPhoto-init', $assets_path . 'js/prettyPhoto/jquery.prettyPhoto.init' . $suffix . '.js', array( 'jquery','prettyPhoto' ) );
-				self::enqueue_style( 'restaurantpress_prettyPhoto_css', $assets_path . 'css/prettyPhoto.css' );
-			}
+		self::register_scripts();
+		self::register_styles();
 
-			// Global frontend scripts
-			self::enqueue_script( 'restaurantpress', $frontend_script_path . 'restaurantpress' . $suffix . '.js', array( 'jquery' ) );
-
-			// CSS Styles
-			if ( $enqueue_styles = self::get_styles() ) {
-				foreach ( $enqueue_styles as $handle => $args ) {
-					self::enqueue_style( $handle, $args['src'], $args['deps'], $args['version'], $args['media'] );
+		// Load gallery scripts on food pages only if supported.
+		if ( is_food_menu() || is_group_menu_page() || ( ! empty( $post->post_content ) && strstr( $post->post_content, '[restaurantpress_menu' ) ) ) {
+			if ( 'yes' === get_option( 'restaurantpress_enable_lightbox' ) ) {
+				if ( current_theme_supports( 'rp-food-gallery-zoom' ) ) {
+					self::enqueue_script( 'zoom' );
+				}
+				if ( current_theme_supports( 'rp-food-gallery-slider' ) ) {
+					self::enqueue_script( 'flexslider' );
+				}
+				if ( current_theme_supports( 'rp-food-gallery-lightbox' ) ) {
+					self::enqueue_script( 'photoswipe-ui-default' );
+					self::enqueue_style( 'photoswipe-default-skin' );
+					add_action( 'wp_footer', 'restaurantpress_photoswipe' );
 				}
 			}
-
-			// Inline Styles
-			self::create_primary_styles();
+			self::enqueue_script( 'rp-single-food' );
 		}
+
+		// Global frontend scripts
+		self::enqueue_script( 'restaurantpress' );
+
+		// CSS Styles
+		if ( $enqueue_styles = self::get_styles() ) {
+			foreach ( $enqueue_styles as $handle => $args ) {
+				if ( ! isset( $args['has_rtl'] ) ) {
+					$args['has_rtl'] = false;
+				}
+
+				self::enqueue_style( $handle, $args['src'], $args['deps'], $args['version'], $args['media'], $args['has_rtl'] );
+			}
+		}
+
+		// Inline Styles
+		self::create_primary_styles();
 	}
 
 	/**
@@ -218,6 +334,66 @@ class RP_Frontend_Scripts {
 		';
 
 		wp_add_inline_style( 'restaurantpress-general', sprintf( $inline_css, esc_attr( $primary_color ) ) );
+	}
+
+	/**
+	 * Localize a RP script once.
+	 * @access private
+	 * @since  1.4.0 this needs less wp_script_is() calls due to https://core.trac.wordpress.org/ticket/28404 being added in WP 4.0.
+	 * @param  string $handle
+	 */
+	private static function localize_script( $handle ) {
+		if ( ! in_array( $handle, self::$wp_localize_scripts ) && wp_script_is( $handle ) && ( $data = self::get_script_data( $handle ) ) ) {
+			$name                        = str_replace( '-', '_', $handle ) . '_params';
+			self::$wp_localize_scripts[] = $handle;
+			wp_localize_script( $handle, $name, apply_filters( $name, $data ) );
+		}
+	}
+
+	/**
+	 * Return data for script handles.
+	 * @access private
+	 * @param  string $handle
+	 * @return array|bool
+	 */
+	private static function get_script_data( $handle ) {
+		switch ( $handle ) {
+			case 'rp-single-food' :
+				return array(
+					'flexslider'         => apply_filters( 'restaurantpress_single_food_carousel_options', array(
+						'rtl'            => is_rtl(),
+						'animation'      => 'slide',
+						'smoothHeight'   => true,
+						'directionNav'   => false,
+						'controlNav'     => 'thumbnails',
+						'slideshow'      => false,
+						'animationSpeed' => 500,
+						'animationLoop'  => false, // Breaks photoswipe pagination if true.
+						'allowOneSlide'  => false,
+					) ),
+					'zoom_enabled'       => apply_filters( 'restaurantpress_single_food_zoom_enabled', get_theme_support( 'rp-food-gallery-zoom' ) ),
+					'photoswipe_enabled' => apply_filters( 'restaurantpress_single_food_photoswipe_enabled', get_theme_support( 'rp-food-gallery-lightbox' ) ),
+					'photoswipe_options' => apply_filters( 'restaurantpress_single_food_photoswipe_options', array(
+						'shareEl'               => false,
+						'closeOnScroll'         => false,
+						'history'               => false,
+						'hideAnimationDuration' => 0,
+						'showAnimationDuration' => 0,
+					) ),
+					'flexslider_enabled' => apply_filters( 'restaurantpress_single_food_flexslider_enabled', get_theme_support( 'rp-food-gallery-slider' ) ),
+				);
+			break;
+		}
+		return false;
+	}
+
+	/**
+	 * Localize scripts only when enqueued.
+	 */
+	public static function localize_printed_scripts() {
+		foreach ( self::$scripts as $handle ) {
+			self::localize_script( $handle );
+		}
 	}
 }
 

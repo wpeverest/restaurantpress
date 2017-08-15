@@ -116,3 +116,17 @@ if ( ! function_exists( 'restaurantpress_show_food_images' ) ) {
 		rp_get_template( 'single-food/food-image.php' );
 	}
 }
+
+if ( ! function_exists( 'restaurantpress_photoswipe' ) ) {
+
+	/**
+	 * Get the photoswipe template.
+	 *
+	 * @subpackage Food
+	 */
+	function restaurantpress_photoswipe() {
+		if ( current_theme_supports( 'rp-food-gallery-lightbox' ) ) {
+			rp_get_template( 'single-food/photoswipe.php' );
+		}
+	}
+}
