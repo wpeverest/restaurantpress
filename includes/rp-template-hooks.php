@@ -16,3 +16,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 add_filter( 'body_class', 'rp_body_class' );
 
+/**
+ * WP Header.
+ *
+ * @see rp_generator_tag()
+ */
+add_action( 'get_the_generator_html', 'rp_generator_tag', 10, 2 );
+add_action( 'get_the_generator_xhtml', 'rp_generator_tag', 10, 2 );
