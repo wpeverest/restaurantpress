@@ -56,6 +56,17 @@ if ( ! function_exists( 'is_food_menu' ) ) {
 	}
 }
 
+if ( ! function_exists( 'is_group_menu_page' ) ) {
+
+	/**
+	 * is_group_menu_page - Returns true when viewing an group menu page.
+	 * @return bool
+	 */
+	function is_group_menu_page() {
+		return rp_post_content_has_shortcode( 'restaurantpress_menu' ) || apply_filters( 'restaurantpress_is_group_menu_page', false );
+	}
+}
+
 if ( ! function_exists( 'is_ajax' ) ) {
 
 	/**

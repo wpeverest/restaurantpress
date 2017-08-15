@@ -161,6 +161,7 @@ final class RestaurantPress {
 	 * Include required frontend files.
 	 */
 	public function frontend_includes() {
+		include_once( RP_ABSPATH . 'includes/rp-template-hooks.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-template-loader.php' );    // Template Loader
 		include_once( RP_ABSPATH . 'includes/class-rp-frontend-scripts.php' );   // Frontend Scripts
 		include_once( RP_ABSPATH . 'includes/class-rp-shortcodes.php' );         // Shortcodes Class
