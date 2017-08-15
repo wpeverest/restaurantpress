@@ -33,7 +33,7 @@ get_header( 'food' ); ?>
 
 		<?php while ( have_posts() ) : the_post(); ?>
 
-			<?php rp_get_template_part( 'content', 'single-food_menu' ); ?>
+			<?php rp_get_template_part( 'content', 'single-food' ); ?>
 
 		<?php endwhile; // end of the loop. ?>
 

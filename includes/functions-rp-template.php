@@ -91,3 +91,28 @@ if ( ! function_exists( 'restaurantpress_get_sidebar' ) ) {
 		rp_get_template( 'global/sidebar.php' );
 	}
 }
+
+/** Single Food ***********************************************************/
+
+if ( ! function_exists( 'restaurantpress_show_food_chef_flash' ) ) {
+
+	/**
+	 * Output the food chef flash.
+	 *
+	 * @subpackage Food
+	 */
+	function restaurantpress_show_food_chef_flash() {
+		rp_get_template( 'single-food/chef-flash.php' );
+	}
+}
+if ( ! function_exists( 'restaurantpress_show_food_images' ) ) {
+
+	/**
+	 * Output the food image before the single food summary.
+	 *
+	 * @subpackage Food
+	 */
+	function restaurantpress_show_food_images() {
+		rp_get_template( 'single-food/food-image.php' );
+	}
+}

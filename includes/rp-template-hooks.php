@@ -34,11 +34,25 @@ add_action( 'restaurantpress_before_main_content', 'restaurantpress_output_conte
 add_action( 'restaurantpress_after_main_content', 'restaurantpress_output_content_wrapper_end', 10 );
 
 /**
+ * Chef flashes.
+ *
+ * @see restaurantpress_show_food_chef_flash()
+ */
+add_action( 'restaurantpress_before_single_food_summary', 'restaurantpress_show_food_chef_flash', 10 );
+
+/**
  * Sidebar.
  *
  * @see restaurantpress_get_sidebar()
  */
 add_action( 'restaurantpress_sidebar', 'restaurantpress_get_sidebar', 10 );
+
+/**
+ * Before Single Products Summary Div.
+ *
+ * @see restaurantpress_show_food_images()
+ */
+add_action( 'restaurantpress_before_single_food_summary', 'restaurantpress_show_food_images', 20 );
 
 /**
  * Footer.
