@@ -15,26 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Output generator tag to aid debugging.
- *
- * @param string $gen
- * @param string $type
- *
- * @return string
- */
-function rp_generator_tag( $gen, $type ) {
-	switch ( $type ) {
-		case 'html':
-			$gen .= "\n" . '<meta name="generator" content="RestaurantPress ' . esc_attr( RP_VERSION ) . '">';
-			break;
-		case 'xhtml':
-			$gen .= "\n" . '<meta name="generator" content="RestaurantPress ' . esc_attr( RP_VERSION ) . '" />';
-			break;
-	}
-	return $gen;
-}
-
-/**
  * Add body classes for RP pages.
  *
  * @param  array $classes
@@ -56,6 +36,26 @@ function rp_body_class( $classes ) {
 	}
 
 	return array_unique( $classes );
+}
+
+/**
+ * Output generator tag to aid debugging.
+ *
+ * @param string $gen
+ * @param string $type
+ *
+ * @return string
+ */
+function rp_generator_tag( $gen, $type ) {
+	switch ( $type ) {
+		case 'html':
+			$gen .= "\n" . '<meta name="generator" content="RestaurantPress ' . esc_attr( RP_VERSION ) . '">';
+			break;
+		case 'xhtml':
+			$gen .= "\n" . '<meta name="generator" content="RestaurantPress ' . esc_attr( RP_VERSION ) . '" />';
+			break;
+	}
+	return $gen;
 }
 
 /** Global ****************************************************************/
