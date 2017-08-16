@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 include( RP_ABSPATH . 'includes/functions-rp-conditional.php' );
 include( RP_ABSPATH . 'includes/functions-rp-deprecated.php' );
 include( RP_ABSPATH . 'includes/functions-rp-formatting.php' );
+include( RP_ABSPATH . 'includes/functions-rp-food.php' );
 include( RP_ABSPATH . 'includes/functions-rp-term.php' );
 include( RP_ABSPATH . 'includes/functions-rp-widget.php' );
 
@@ -224,25 +225,6 @@ function rp_print_js() {
 
 		unset( $rp_queued_js );
 	}
-}
-
-/**
- * Get the placeholder image URL.
- * @return string
- */
-function rp_placeholder_img_src( $thumb_size = 'small' ) {
-	return apply_filters( 'restaurantpress_placeholder_img_src', RP()->plugin_url() . '/assets/images/placeholder-' . $thumb_size . '.jpg' );
-}
-
-/**
- * Get the placeholder image.
- * @return string
- */
-function rp_placeholder_img( $size = 'food_thumbnail' ) {
-	$dimensions = rp_get_image_size( $size );
-	$thumb_size = $dimensions['width'] == 100 ? 'small' : 'large';
-
-	return apply_filters( 'restaurantpress_placeholder_img', '<img src="' . rp_placeholder_img_src( $thumb_size ) . '" alt="' . esc_attr__( 'Placeholder', 'restaurantpress' ) . '" width="' . esc_attr( $dimensions['width'] ) . '" class="restaurantpress-placeholder wp-post-image" height="' . esc_attr( $dimensions['height'] ) . '" />', $size, $dimensions );
 }
 
 /**
