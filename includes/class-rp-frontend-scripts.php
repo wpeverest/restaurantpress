@@ -66,6 +66,13 @@ class RP_Frontend_Scripts {
 	 */
 	public static function get_styles() {
 		return apply_filters( 'restaurantpress_enqueue_styles', array(
+			'restaurantpress-layout' => array(
+				'src'     => self::get_asset_url( 'assets/css/restaurantpress-layout.css' ),
+				'deps'    => '',
+				'version' => RP_VERSION,
+				'media'   => 'all',
+				'has_rtl' => true,
+			),
 			'restaurantpress-general' => array(
 				'src'     => self::get_asset_url( 'assets/css/restaurantpress.css' ),
 				'deps'    => '',

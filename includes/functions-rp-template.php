@@ -130,3 +130,14 @@ if ( ! function_exists( 'restaurantpress_photoswipe' ) ) {
 		}
 	}
 }
+if ( ! function_exists( 'restaurantpress_template_single_title' ) ) {
+
+	/**
+	 * Output the food title.
+	 *
+	 * @subpackage Food
+	 */
+	function restaurantpress_template_single_title() {
+		rp_get_template( 'single-food/title.php' );
+	}
+}
