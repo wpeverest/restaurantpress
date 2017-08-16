@@ -174,3 +174,14 @@ if ( ! function_exists( 'restaurantpress_template_single_meta' ) ) {
 		rp_get_template( 'single-food/meta.php' );
 	}
 }
+if ( ! function_exists( 'restaurantpress_template_single_sharing' ) ) {
+
+	/**
+	 * Output the food sharing.
+	 *
+	 * @subpackage Food
+	 */
+	function restaurantpress_template_single_sharing() {
+		rp_get_template( 'single-food/share.php' );
+	}
+}

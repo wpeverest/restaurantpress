@@ -67,7 +67,7 @@ add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_sin
 add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_price', 10 );
 add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_excerpt', 20 );
 add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_meta', 40 );
-// add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_sharing', 50 );
+add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_sharing', 50 );
 
 /**
  * Footer.
