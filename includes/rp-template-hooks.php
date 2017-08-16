@@ -67,12 +67,14 @@ add_action( 'restaurantpress_after_single_food_summary', 'restaurantpress_output
  * @see restaurantpress_template_single_title()
  * @see restaurantpress_template_single_price()
  * @see restaurantpress_template_single_excerpt()
+ * @see restaurantpress_template_single_contact()
  * @see restaurantpress_template_single_meta()
  * @see restaurantpress_template_single_sharing()
  */
 add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_title', 5 );
 add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_price', 10 );
 add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_excerpt', 20 );
+add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_contact', 30 );
 add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_meta', 40 );
 add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_sharing', 50 );
 

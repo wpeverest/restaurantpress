@@ -1,8 +1,8 @@
 <?php
 /**
- * Single Food Short Description
+ * Single Food Contact
  *
- * This template can be overridden by copying it to yourtheme/restaurantpress/single-food/short-description.php.
+ * This template can be overridden by copying it to yourtheme/restaurantpress/single-food/contact.php.
  *
  * HOWEVER, on occasion RestaurantPress will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -20,13 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-global $post;
-
-if ( ! $post->post_excerpt ) {
-	return;
-}
-
 ?>
-<div class="restaurantpress-food-details__short-description">
-    <?php echo apply_filters( 'restaurantpress_short_description', $post->post_excerpt ); ?>
-</div>
+
+<?php do_action( 'restaurantpress_contact' ); // Contact plugins can hook into here
+
+/* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */

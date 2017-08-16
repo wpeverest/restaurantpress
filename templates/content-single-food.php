@@ -55,6 +55,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			 * @hooked restaurantpress_template_single_title - 5
 			 * @hooked restaurantpress_template_single_price - 10
 			 * @hooked restaurantpress_template_single_excerpt - 20
+			 * @hooked restaurantpress_template_single_contact - 20
 			 * @hooked restaurantpress_template_single_meta - 40
 			 * @hooked restaurantpress_template_single_sharing - 50
 			 */
