@@ -51,8 +51,10 @@ add_action( 'restaurantpress_sidebar', 'restaurantpress_get_sidebar', 10 );
  * Before Single Products Summary Div.
  *
  * @see restaurantpress_show_food_images()
+ * @see restaurantpress_show_food_thumbnails()
  */
 add_action( 'restaurantpress_before_single_food_summary', 'restaurantpress_show_food_images', 20 );
+add_action( 'restaurantpress_food_thumbnails', 'restaurantpress_show_food_thumbnails', 20 );
 
 /**
  * After Single Products Summary Div.

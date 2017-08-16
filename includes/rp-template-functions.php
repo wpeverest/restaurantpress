@@ -116,6 +116,17 @@ if ( ! function_exists( 'restaurantpress_show_food_images' ) ) {
 		rp_get_template( 'single-food/food-image.php' );
 	}
 }
+if ( ! function_exists( 'restaurantpress_show_food_thumbnails' ) ) {
+
+	/**
+	 * Output the food thumbnails.
+	 *
+	 * @subpackage Food
+	 */
+	function restaurantpress_show_food_thumbnails() {
+		rp_get_template( 'single-food/food-thumbnails.php' );
+	}
+}
 
 if ( ! function_exists( 'restaurantpress_photoswipe' ) ) {
 

@@ -171,7 +171,7 @@ final class RestaurantPress {
 	 * Function used to Init RestaurantPress Template Functions - This makes them pluggable by plugins and themes.
 	 */
 	public function include_template_functions() {
-		include_once( RP_ABSPATH . 'includes/functions-rp-template.php' );
+		include_once( RP_ABSPATH . 'includes/rp-template-functions.php' );
 	}
 
 	/**
