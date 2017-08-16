@@ -2,23 +2,24 @@
 /**
  * Photoswipe markup
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/single-product/photoswipe.php.
+ * This template can be overridden by copying it to yourtheme/restaurantpress/single-food/photoswipe.php.
  *
- * HOWEVER, on occasion WooCommerce will need to update template files and you
+ * HOWEVER, on occasion RestaurantPress will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
  * maintain compatibility. We try to do this as little as possible, but it does
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see     https://docs.woocommerce.com/document/template-structure/
- * @author  WooThemes
- * @package WooCommerce/Templates
- * @version 3.0.0
+ * @see     https://docs.wpeverest.com/docs/restaurantpress/template-structure/
+ * @author  WPEverest
+ * @package RestaurantPress/Templates
+ * @version 1.4.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+	exit;
 }
+
 ?>
 
 <!-- Root element of PhotoSwipe. Must have class pswp. -->
@@ -48,13 +49,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				<div class="pswp__counter"></div>
 
-				<button class="pswp__button pswp__button--close" aria-label="<?php esc_attr_e( 'Close (Esc)', 'woocommerce' ); ?>"></button>
+				<button class="pswp__button pswp__button--close" aria-label="<?php esc_attr_e( 'Close (Esc)', 'restaurantpress' ); ?>"></button>
 
-				<button class="pswp__button pswp__button--share" aria-label="<?php esc_attr_e( 'Share', 'woocommerce' ); ?>"></button>
+				<button class="pswp__button pswp__button--share" aria-label="<?php esc_attr_e( 'Share', 'restaurantpress' ); ?>"></button>
 
-				<button class="pswp__button pswp__button--fs" aria-label="<?php esc_attr_e( 'Toggle fullscreen', 'woocommerce' ); ?>"></button>
+				<button class="pswp__button pswp__button--fs" aria-label="<?php esc_attr_e( 'Toggle fullscreen', 'restaurantpress' ); ?>"></button>
 
-				<button class="pswp__button pswp__button--zoom" aria-label="<?php esc_attr_e( 'Zoom in/out', 'woocommerce' ); ?>"></button>
+				<button class="pswp__button pswp__button--zoom" aria-label="<?php esc_attr_e( 'Zoom in/out', 'restaurantpress' ); ?>"></button>
 
 				<!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
 				<!-- element will get class pswp__preloader--active when preloader is running -->
@@ -71,9 +72,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div class="pswp__share-tooltip"></div>
 			</div>
 
-			<button class="pswp__button pswp__button--arrow--left" aria-label="<?php esc_attr_e( 'Previous (arrow left)', 'woocommerce' ); ?>"></button>
+			<button class="pswp__button pswp__button--arrow--left" aria-label="<?php esc_attr_e( 'Previous (arrow left)', 'restaurantpress' ); ?>"></button>
 
-			<button class="pswp__button pswp__button--arrow--right" aria-label="<?php esc_attr_e( 'Next (arrow right)', 'woocommerce' ); ?>"></button>
+			<button class="pswp__button pswp__button--arrow--right" aria-label="<?php esc_attr_e( 'Next (arrow right)', 'restaurantpress' ); ?>"></button>
 
 			<div class="pswp__caption">
 				<div class="pswp__caption__center"></div>
