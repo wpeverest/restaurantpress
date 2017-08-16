@@ -65,12 +65,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<?php
 		/**
-		 * restaurantpress_after_single_food_menu_summary hook.
+		 * restaurantpress_after_single_food_summary hook.
 		 *
-		 * @hooked woocommerce_output_product_data_tabs - 10
-		 * @hooked woocommerce_output_related_products - 20
+		 * @hooked restaurantpress_output_food_data_tabs - 10
 		 */
-		do_action( 'restaurantpress_after_single_food_menu_summary' );
+		do_action( 'restaurantpress_after_single_food_summary' );
 	?>
 
 </div><!-- #food-<?php the_ID(); ?> -->

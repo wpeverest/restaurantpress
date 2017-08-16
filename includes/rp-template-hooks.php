@@ -55,6 +55,13 @@ add_action( 'restaurantpress_sidebar', 'restaurantpress_get_sidebar', 10 );
 add_action( 'restaurantpress_before_single_food_summary', 'restaurantpress_show_food_images', 20 );
 
 /**
+ * After Single Products Summary Div.
+ *
+ * @see restaurantpress_output_food_data_tabs()
+ */
+add_action( 'restaurantpress_after_single_food_summary', 'restaurantpress_output_food_data_tabs', 10 );
+
+/**
  * Food Summary Box.
  *
  * @see restaurantpress_template_single_title()
@@ -68,6 +75,12 @@ add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_sin
 add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_excerpt', 20 );
 add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_meta', 40 );
 add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_sharing', 50 );
+
+/**
+ * Food page tabs.
+ */
+add_filter( 'restaurantpress_food_tabs', 'restaurantpress_default_food_tabs' );
+add_filter( 'restaurantpress_food_tabs', 'restaurantpress_sort_food_tabs', 99 );
 
 /**
  * Footer.

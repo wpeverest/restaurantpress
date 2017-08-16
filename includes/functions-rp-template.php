@@ -185,3 +185,81 @@ if ( ! function_exists( 'restaurantpress_template_single_sharing' ) ) {
 		rp_get_template( 'single-food/share.php' );
 	}
 }
+if ( ! function_exists( 'restaurantpress_output_food_data_tabs' ) ) {
+
+	/**
+	 * Output the food tabs.
+	 *
+	 * @subpackage Food/Tabs
+	 */
+	function restaurantpress_output_food_data_tabs() {
+		rp_get_template( 'single-food/tabs/tabs.php' );
+	}
+}
+if ( ! function_exists( 'restaurantpress_food_description_tab' ) ) {
+
+	/**
+	 * Output the description tab content.
+	 *
+	 * @subpackage Food/Tabs
+	 */
+	function restaurantpress_food_description_tab() {
+		rp_get_template( 'single-food/tabs/description.php' );
+	}
+}
+
+if ( ! function_exists( 'restaurantpress_default_food_tabs' ) ) {
+
+	/**
+	 * Add default food tabs to food pages.
+	 *
+	 * @param  array $tabs
+	 * @return array
+	 */
+	function restaurantpress_default_food_tabs( $tabs = array() ) {
+		global $post;
+
+		// Description tab - shows product content
+		if ( $post->post_content ) {
+			$tabs['description'] = array(
+				'title'    => __( 'Description', 'restaurantpress' ),
+				'priority' => 10,
+				'callback' => 'restaurantpress_food_description_tab',
+			);
+		}
+
+		return $tabs;
+	}
+}
+
+if ( ! function_exists( 'restaurantpress_sort_food_tabs' ) ) {
+
+	/**
+	 * Sort tabs by priority.
+	 *
+	 * @param  array $tabs
+	 * @return array
+	 */
+	function restaurantpress_sort_food_tabs( $tabs = array() ) {
+
+		// Make sure the $tabs parameter is an array
+		if ( ! is_array( $tabs ) ) {
+			trigger_error( "Function restaurantpress_sort_food_tabs() expects an array as the first parameter. Defaulting to empty array." );
+			$tabs = array();
+		}
+
+		// Re-order tabs by priority
+		if ( ! function_exists( '_sort_priority_callback' ) ) {
+			function _sort_priority_callback( $a, $b ) {
+				if ( $a['priority'] === $b['priority'] ) {
+					return 0;
+				}
+				return ( $a['priority'] < $b['priority'] ) ? -1 : 1;
+			}
+		}
+
+		uasort( $tabs, '_sort_priority_callback' );
+
+		return $tabs;
+	}
+}

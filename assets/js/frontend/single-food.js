@@ -6,6 +6,41 @@ jQuery( function( $ ) {
 		return false;
 	}
 
+	$( 'body' )
+		// Tabs
+		.on( 'init', '.rp-tabs-wrapper, .restaurantpress-tabs', function() {
+			$( '.rp-tab, .restaurantpress-tabs .panel:not(.panel .panel)' ).hide();
+
+			var hash  = window.location.hash;
+			var url   = window.location.href;
+			var $tabs = $( this ).find( '.rp-tabs, ul.tabs' ).first();
+
+			if ( hash.toLowerCase().indexOf( 'comment-' ) >= 0 || hash === '#reviews' || hash === '#tab-reviews' ) {
+				$tabs.find( 'li.reviews_tab a' ).click();
+			} else if ( url.indexOf( 'comment-page-' ) > 0 || url.indexOf( 'cpage=' ) > 0 ) {
+				$tabs.find( 'li.reviews_tab a' ).click();
+			} else if ( hash === '#tab-additional_information' ) {
+				$tabs.find( 'li.additional_information_tab a' ).click();
+			} else {
+				$tabs.find( 'li:first a' ).click();
+			}
+		} )
+		.on( 'click', '.rp-tabs li a, ul.tabs li a', function( e ) {
+			e.preventDefault();
+			var $tab          = $( this );
+			var $tabs_wrapper = $tab.closest( '.rp-tabs-wrapper, .restaurantpress-tabs' );
+			var $tabs         = $tabs_wrapper.find( '.rp-tabs, ul.tabs' );
+
+			$tabs.find( 'li' ).removeClass( 'active' );
+			$tabs_wrapper.find( '.rp-tab, .panel:not(.panel .panel)' ).hide();
+
+			$tab.closest( 'li' ).addClass( 'active' );
+			$tabs_wrapper.find( $tab.attr( 'href' ) ).show();
+		} );
+
+	// Init Tabs
+	$( '.rp-tabs-wrapper, .restaurantpress-tabs' ).trigger( 'init' );
+
 	/**
 	 * Food gallery class.
 	 */
