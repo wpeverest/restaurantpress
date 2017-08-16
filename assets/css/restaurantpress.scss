@@ -649,6 +649,10 @@
 	z-index: 999999;
 }
 
+.pswp img {
+	max-width: none;
+}
+
 .restaurantpress img.pswp__img,
 .restaurantpress-page img.pswp__img {
 	max-width: none; /* 2 */
