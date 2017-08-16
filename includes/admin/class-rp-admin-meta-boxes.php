@@ -28,24 +28,74 @@ class RP_Admin_Meta_Boxes {
 	private static $saved_meta_boxes = false;
 
 	/**
+	 * Meta box error messages.
+	 *
+	 * @var array
+	 */
+	public static $meta_box_errors  = array();
+
+	/**
 	 * Hook in tabs.
 	 */
 	public function __construct() {
 		add_action( 'add_meta_boxes', array( $this, 'remove_meta_boxes' ), 10 );
-		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ), 20 );
+		add_action( 'add_meta_boxes', array( $this, 'rename_meta_boxes' ), 20 );
+		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ), 30 );
 		add_action( 'save_post', array( $this, 'save_meta_boxes' ), 1, 2 );
 
-		// Save Menu Meta Boxes
+		// Save Food/Menu Meta Boxes
 		add_action( 'restaurantpress_process_food_menu_meta', 'RP_Meta_Box_Menu_Data::save', 10, 2 );
+		add_action( 'restaurantpress_process_food_menu_meta', 'RP_Meta_Box_Menu_Images::save', 20, 2 );
 
 		// Save Group Meta Boxes
 		add_action( 'restaurantpress_process_food_group_meta', 'RP_Meta_Box_Group_Data::save', 10, 2 );
+
+		// Error handling (for showing errors from meta boxes on next page load).
+		add_action( 'admin_notices', array( $this, 'output_errors' ) );
+		add_action( 'shutdown', array( $this, 'save_errors' ) );
+	}
+
+	/**
+	 * Add an error message.
+	 * @param string $text
+	 */
+	public static function add_error( $text ) {
+		self::$meta_box_errors[] = $text;
+	}
+
+	/**
+	 * Save errors to an option.
+	 */
+	public function save_errors() {
+		update_option( 'restaurantpress_meta_box_errors', self::$meta_box_errors );
+	}
+
+	/**
+	 * Show any stored error messages.
+	 */
+	public function output_errors() {
+		$errors = array_filter( (array) get_option( 'restaurantpress_meta_box_errors' ) );
+
+		if ( ! empty( $errors ) ) {
+
+			echo '<div id="restaurantpress_errors" class="error notice is-dismissible">';
+
+			foreach ( $errors as $error ) {
+				echo '<p>' . wp_kses_post( $error ) . '</p>';
+			}
+
+			echo '</div>';
+
+			// Clear
+			delete_option( 'restaurantpress_meta_box_errors' );
+		}
 	}
 
 	/**
 	 * Add RP Meta boxes.
 	 */
 	public function add_meta_boxes() {
+		add_meta_box( 'postexcerpt', __( 'Food short description', 'restaurantpress' ), 'RP_Meta_Box_Food_Short_Description::output', 'food_menu', 'normal' );
 		add_meta_box( 'restaurantpress-menu-data', __( 'Item Price', 'restaurantpress' ), 'RP_Meta_Box_Menu_Data::output', 'food_menu', 'side', 'default' );
 		add_meta_box( 'restaurantpress-group-data', __( 'Group Data', 'restaurantpress' ), 'RP_Meta_Box_Group_Data::output', 'food_group', 'normal', 'high' );
 	}
@@ -58,6 +108,19 @@ class RP_Admin_Meta_Boxes {
 		remove_meta_box( 'commentstatusdiv', 'food_menu', 'side' );
 		remove_meta_box( 'commentstatusdiv', 'food_group', 'normal' );
 		remove_meta_box( 'slugdiv', 'food_group', 'normal' );
+	}
+
+	/**
+	 * Rename core meta boxes.
+	 */
+	public function rename_meta_boxes() {
+		global $post;
+
+		// Comments/Reviews
+		if ( isset( $post ) && ( 'publish' == $post->post_status || 'private' == $post->post_status ) && post_type_supports( 'food_menu', 'comments' ) ) {
+			remove_meta_box( 'commentsdiv', 'food_menu', 'normal' );
+			// add_meta_box( 'commentsdiv', __( 'Reviews', 'restaurantpress' ), 'post_comment_meta_box', 'food_menu', 'normal' );
+		}
 	}
 
 	/**
