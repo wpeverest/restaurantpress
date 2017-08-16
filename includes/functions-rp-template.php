@@ -152,3 +152,14 @@ if ( ! function_exists( 'restaurantpress_template_single_price' ) ) {
 		rp_get_template( 'single-food/price.php' );
 	}
 }
+if ( ! function_exists( 'restaurantpress_template_single_excerpt' ) ) {
+
+	/**
+	 * Output the food short description (excerpt).
+	 *
+	 * @subpackage Food
+	 */
+	function restaurantpress_template_single_excerpt() {
+		rp_get_template( 'single-food/short-description.php' );
+	}
+}
