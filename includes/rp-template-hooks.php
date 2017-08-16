@@ -58,18 +58,16 @@ add_action( 'restaurantpress_before_single_food_summary', 'restaurantpress_show_
  * Food Summary Box.
  *
  * @see restaurantpress_template_single_title()
- * @see woocommerce_template_single_rating()
- * @see woocommerce_template_single_price()
- * @see woocommerce_template_single_excerpt()
- * @see woocommerce_template_single_meta()
- * @see woocommerce_template_single_sharing()
+ * @see restaurantpress_template_single_price()
+ * @see restaurantpress_template_single_excerpt()
+ * @see restaurantpress_template_single_meta()
+ * @see restaurantpress_template_single_sharing()
  */
 add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_title', 5 );
-// add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
-// add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
-// add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
-// add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
-// add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50 );
+add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_price', 10 );
+// add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_excerpt', 20 );
+// add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_meta', 40 );
+// add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_sharing', 50 );
 
 /**
  * Footer.

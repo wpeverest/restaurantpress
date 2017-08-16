@@ -141,3 +141,14 @@ if ( ! function_exists( 'restaurantpress_template_single_title' ) ) {
 		rp_get_template( 'single-food/title.php' );
 	}
 }
+if ( ! function_exists( 'restaurantpress_template_single_price' ) ) {
+
+	/**
+	 * Output the food price.
+	 *
+	 * @subpackage Food
+	 */
+	function restaurantpress_template_single_price() {
+		rp_get_template( 'single-food/price.php' );
+	}
+}

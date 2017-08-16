@@ -71,7 +71,7 @@ function rp_get_template( $template_name, $args = array(), $template_path = '', 
 	$located = rp_locate_template( $template_name, $template_path, $default_path );
 
 	if ( ! file_exists( $located ) ) {
-		_doing_it_wrong( __FUNCTION__, sprintf( '<code>%s</code> does not exist.', $located ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, sprintf( '<code>%s</code> does not exist.', $located ), '1.4.0' );
 		return;
 	}
 

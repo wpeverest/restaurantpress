@@ -53,10 +53,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 			 * restaurantpress_single_food_summary hook.
 			 *
 			 * @hooked restaurantpress_template_single_title - 5
-			 * @hooked woocommerce_template_single_price - 10
-			 * @hooked woocommerce_template_single_excerpt - 20
-			 * @hooked woocommerce_template_single_meta - 40
-			 * @hooked woocommerce_template_single_sharing - 50
+			 * @hooked restaurantpress_template_single_price - 10
+			 * @hooked restaurantpress_template_single_excerpt - 20
+			 * @hooked restaurantpress_template_single_meta - 40
+			 * @hooked restaurantpress_template_single_sharing - 50
 			 */
 			do_action( 'restaurantpress_single_food_summary' );
 		?>
