@@ -43,9 +43,9 @@ class RP_Admin_Meta_Boxes {
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ), 30 );
 		add_action( 'save_post', array( $this, 'save_meta_boxes' ), 1, 2 );
 
-		// Save Food/Menu Meta Boxes
-		add_action( 'restaurantpress_process_food_menu_meta', 'RP_Meta_Box_Menu_Data::save', 10, 2 );
-		add_action( 'restaurantpress_process_food_menu_meta', 'RP_Meta_Box_Menu_Images::save', 20, 2 );
+		// Save Food Meta Boxes
+		add_action( 'restaurantpress_process_food_menu_meta', 'RP_Meta_Box_Food_Data::save', 10, 2 );
+		add_action( 'restaurantpress_process_food_menu_meta', 'RP_Meta_Box_Food_Images::save', 20, 2 );
 
 		// Save Group Meta Boxes
 		add_action( 'restaurantpress_process_food_group_meta', 'RP_Meta_Box_Group_Data::save', 10, 2 );
@@ -95,15 +95,29 @@ class RP_Admin_Meta_Boxes {
 	 * Add RP Meta boxes.
 	 */
 	public function add_meta_boxes() {
+		$screen    = get_current_screen();
+		$screen_id = $screen ? $screen->id : '';
+
+		// Foods
 		add_meta_box( 'postexcerpt', __( 'Food short description', 'restaurantpress' ), 'RP_Meta_Box_Food_Short_Description::output', 'food_menu', 'normal' );
-		add_meta_box( 'restaurantpress-menu-data', __( 'Item Price', 'restaurantpress' ), 'RP_Meta_Box_Menu_Data::output', 'food_menu', 'side', 'default' );
+		add_meta_box( 'restaurantpress-food-data', __( 'Food data', 'restaurantpress' ), 'RP_Meta_Box_Food_Data::output', 'food_menu', 'normal', 'high' );
+		add_meta_box( 'restaurantpress-food-images', __( 'Food gallery', 'restaurantpress' ), 'RP_Meta_Box_Food_Images::output', 'food_menu', 'side', 'low' );
+
+		// Groups.
 		add_meta_box( 'restaurantpress-group-data', __( 'Group Data', 'restaurantpress' ), 'RP_Meta_Box_Group_Data::output', 'food_group', 'normal', 'high' );
+
+		// Comment rating.
+		if ( 'comment' === $screen_id && isset( $_GET['c'] ) && metadata_exists( 'comment', $_GET['c'], 'rating' ) ) {
+			// add_meta_box( 'restaurantpress-rating', __( 'Rating', 'restaurantpress' ), 'RP_Meta_Box_Food_Reviews::output', 'comment', 'normal', 'high' );
+		}
 	}
 
 	/**
 	 * Remove bloat.
 	 */
 	public function remove_meta_boxes() {
+		remove_meta_box( 'postexcerpt', 'food_menu', 'normal' );
+		remove_meta_box( 'commentsdiv', 'food_menu', 'normal' );
 		remove_meta_box( 'commentstatusdiv', 'food_menu', 'normal' );
 		remove_meta_box( 'commentstatusdiv', 'food_menu', 'side' );
 		remove_meta_box( 'commentstatusdiv', 'food_group', 'normal' );

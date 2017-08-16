@@ -1,9 +1,11 @@
 <?php
 /**
- * Food Menu Data
+ * Food Data
  *
- * @class    RP_Meta_Box_Menu_Data
- * @version  1.0.0
+ * Displays the food data box, tabbed, with several panels covering price, details etc.
+ *
+ * @class    RP_Meta_Box_Food_Data
+ * @version  1.4.0
  * @package  RestaurantPress/Admin/Meta Boxes
  * @category Admin
  * @author   WPEverest
@@ -14,9 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * RP_Meta_Box_Menu_Data Class
+ * RP_Meta_Box_Food_Data Class
  */
-class RP_Meta_Box_Menu_Data {
+class RP_Meta_Box_Food_Data {
 
 	/**
 	 * Output the meta box.

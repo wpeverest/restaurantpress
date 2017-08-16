@@ -47,7 +47,7 @@ class RP_Post_Types {
 				'hierarchical' => true,
 				'label'        => __( 'Categories', 'restaurantpress' ),
 				'labels'       => array(
-						'name'              => __( 'Menu Item categories', 'restaurantpress' ),
+						'name'              => __( 'Food categories', 'restaurantpress' ),
 						'singular_name'     => __( 'Category', 'restaurantpress' ),
 						'menu_name'         => _x( 'Categories', 'Admin menu name', 'restaurantpress' ),
 						'search_items'      => __( 'Search categories', 'restaurantpress' ),
@@ -89,6 +89,12 @@ class RP_Post_Types {
 
 		do_action( 'restaurantpress_register_post_type' );
 
+		$supports = array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'publicize', 'wpcom-markdown' );
+
+		if ( 'yes' === get_option( 'restaurantpress_enable_reviews', 'yes' ) ) {
+			$supports[] = 'comments';
+		}
+
 		register_post_type( 'food_menu',
 			apply_filters( 'restaurantpress_register_post_type_food_menu',
 				array(
@@ -108,7 +114,7 @@ class RP_Post_Types {
 							'not_found'             => __( 'No Menu Items found', 'restaurantpress' ),
 							'not_found_in_trash'    => __( 'No Menu Items found in trash', 'restaurantpress' ),
 							'parent'                => __( 'Parent Menu Item', 'restaurantpress' ),
-							'featured_image'        => __( 'Menu Item Image', 'restaurantpress' ),
+							'featured_image'        => __( 'Food image', 'restaurantpress' ),
 							'set_featured_image'    => __( 'Set menu image', 'restaurantpress' ),
 							'remove_featured_image' => __( 'Remove menu image', 'restaurantpress' ),
 							'use_featured_image'    => __( 'Use as menu image', 'restaurantpress' ),
@@ -118,7 +124,7 @@ class RP_Post_Types {
 							'items_list_navigation' => __( 'Menu items navigation', 'restaurantpress' ),
 							'items_list'            => __( 'Menu items list', 'restaurantpress' ),
 						),
-					'description'         => __( 'This is where you can add new menu items to your restaurant.', 'restaurantpress' ),
+					'description'         => __( 'This is where you can add new foods to your restaurant.', 'restaurantpress' ),
 					'public'              => true,
 					'show_ui'             => true,
 					'capability_type'     => 'food_menu',
@@ -127,8 +133,8 @@ class RP_Post_Types {
 					'exclude_from_search' => false,
 					'hierarchical'        => false,
 					'query_var'           => true,
-					'rewrite'             => array( 'slug' => 'menu-item', 'with_front' => false, 'feeds' => true ),
-					'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'comments', 'custom-fields', 'page-attributes', 'publicize', 'wpcom-markdown' ),
+					'rewrite'             => array( 'slug' => 'food', 'with_front' => false, 'feeds' => true ),
+					'supports'            => $supports,
 					'has_archive'         => true,
 					'show_in_nav_menus'   => true,
 					'show_in_rest'        => true,
