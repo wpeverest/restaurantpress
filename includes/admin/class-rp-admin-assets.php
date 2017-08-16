@@ -111,6 +111,11 @@ class RP_Admin_Assets {
 		}
 
 		// Meta boxes
+		if ( in_array( $screen_id, array( 'food_menu', 'edit-food_menu' ) ) ) {
+			wp_enqueue_media();
+			wp_register_script( 'rp-admin-food-meta-boxes', RP()->plugin_url() . '/assets/js/admin/meta-boxes-food' . $suffix . '.js', array( 'rp-admin-meta-boxes', 'media-models' ), RP_VERSION );
+			wp_enqueue_script( 'rp-admin-food-meta-boxes' );
+		}
 		if ( in_array( $screen_id, array( 'food_group', 'edit-food_group' ) ) ) {
 			wp_register_script( 'rp-admin-group-meta-boxes', RP()->plugin_url() . '/assets/js/admin/meta-boxes-group' . $suffix . '.js', array( 'rp-admin-meta-boxes' ), RP_VERSION );
 			wp_enqueue_script( 'rp-admin-group-meta-boxes' );
