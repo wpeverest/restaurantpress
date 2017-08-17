@@ -188,16 +188,6 @@ class RP_Frontend_Scripts {
 				'deps'    => array( 'photoswipe' ),
 				'version' => '4.1.1',
 			),
-			'prettyPhoto' => array( // deprecated.
-				'src'     => self::get_asset_url( 'assets/js/prettyPhoto/jquery.prettyPhoto' . $suffix . '.js' ),
-				'deps'    => array( 'jquery' ),
-				'version' => '3.1.6',
-			),
-			'prettyPhoto-init' => array( // deprecated.
-				'src'     => self::get_asset_url( 'assets/js/prettyPhoto/jquery.prettyPhoto.init' . $suffix . '.js' ),
-				'deps'    => array( 'jquery', 'prettyPhoto' ),
-				'version' => RP_VERSION,
-			),
 			'rp-single-food' => array(
 				'src'     => self::get_asset_url( 'assets/js/frontend/single-food' . $suffix . '.js' ),
 				'deps'    => array( 'jquery' ),
@@ -235,12 +225,6 @@ class RP_Frontend_Scripts {
 				'deps'    => array( 'photoswipe' ),
 				'version' => RP_VERSION,
 				'has_rtl' => false,
-			),
-			'restaurantpress_prettyPhoto_css' => array( // deprecated.
-				'src'     => self::get_asset_url( 'assets/css/prettyPhoto.css' ),
-				'deps'    => array(),
-				'version' => RP_VERSION,
-				'has_rtl' => true,
 			),
 		);
 		foreach ( $register_styles as $name => $props ) {
