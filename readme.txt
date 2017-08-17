@@ -7,11 +7,11 @@ Stable tag: 1.3.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Allows you to create awesome restaurant menu for restaurant, bars, cafes in no time.
+Allows you to create awesome restaurant menus for restaurants, bars, and cafes in no time.
 
 == Description ==
 
-Allows you to create awesome restaurant menu for restaurant, bars, cafes in no time.
+Allows you to create awesome restaurant menus for restaurants, bars, and cafes in no time.
 
 Get free support at https://wpeverest.com/support-forum/
 
@@ -61,7 +61,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 * Fix - Updated select2 library.
 * Fix - TinyMCE shortcode icon for Group menu.
 * Fix - Defer flush so CPT is updated before flush.
-* Fix - Undefinded index for key on widget checkbox save.
+* Fix - Undefined index for key on widget checkbox save.
 * Fix - Clear food menu category thumbnail field on submit.
 * Tweak - Disable DFW feature pointer.
 * Tweak - Remove opacity on non-disabled buttons.
