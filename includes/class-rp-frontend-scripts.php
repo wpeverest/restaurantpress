@@ -297,12 +297,12 @@ class RP_Frontend_Scripts {
 		}
 
 		$inline_css = '
-			.restaurantpress .rp-chef-badge {
+			.restaurantpress .chef {
 				background: %1$s !important;
 			}
 
-			.restaurantpress .rp-chef-badge:before,
-			.restaurantpress .rp-chef-badge:after {
+			.restaurantpress .chef::before,
+			.restaurantpress .chef::after {
 				border-top-color: %1$s !important;
 			}
 
@@ -310,17 +310,12 @@ class RP_Frontend_Scripts {
 				background: %1$s !important;
 			}
 
-			.restaurantpress .rp-price:before {
+			.restaurantpress .rp-price::before {
 				border-right-color: %1$s !important;
 			}
 
 			.restaurantpress .rp-content-wrapper {
 				border-bottom-color: %1$s !important;
-			}
-
-			.restaurantpress .image-magnify span:hover {
-				background: %1$s !important;
-				border-color: %1$s !important;
 			}
 		';
 
