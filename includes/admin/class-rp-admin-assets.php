@@ -76,8 +76,8 @@ class RP_Admin_Assets {
 		wp_register_script( 'restaurantpress-admin', RP()->plugin_url() . '/assets/js/admin/admin' . $suffix . '.js', array( 'jquery', 'jquery-ui-sortable', 'jquery-ui-widget', 'jquery-ui-core', 'jquery-tiptip' ), RP_VERSION );
 		wp_register_script( 'rp-admin-meta-boxes', RP()->plugin_url() . '/assets/js/admin/meta-boxes' . $suffix . '.js', array( 'jquery', 'jquery-ui-datepicker', 'jquery-ui-sortable', 'jquery-tiptip', 'rp-enhanced-select' ), RP_VERSION );
 		wp_register_script( 'jquery-tiptip', RP()->plugin_url() . '/assets/js/jquery-tiptip/jquery.tipTip' . $suffix . '.js', array( 'jquery' ), RP_VERSION, true );
-		wp_register_script( 'select2', RP()->plugin_url() . '/assets/js/select2/select2.full' . $suffix . '.js', array( 'jquery' ), '3.5.4' );
-		wp_register_script( 'rp-enhanced-select', RP()->plugin_url() . '/assets/js/admin/enhanced-select' . $suffix . '.js', array( 'jquery', 'select2' ), RP_VERSION );
+		wp_register_script( 'selectWoo', RP()->plugin_url() . '/assets/js/selectWoo/selectWoo.full' . $suffix . '.js', array( 'jquery' ), '1.0.0' );
+		wp_register_script( 'rp-enhanced-select', RP()->plugin_url() . '/assets/js/admin/enhanced-select' . $suffix . '.js', array( 'jquery', 'selectWoo' ), RP_VERSION );
 		wp_localize_script( 'rp-enhanced-select', 'rp_enhanced_select_params', array(
 			'i18n_no_matches'           => _x( 'No matches found', 'enhanced select', 'restaurantpress' ),
 			'i18n_ajax_error'           => _x( 'Loading failed', 'enhanced select', 'restaurantpress' ),
@@ -88,7 +88,9 @@ class RP_Admin_Assets {
 			'i18n_selection_too_long_1' => _x( 'You can only select 1 item', 'enhanced select', 'restaurantpress' ),
 			'i18n_selection_too_long_n' => _x( 'You can only select %qty% items', 'enhanced select', 'restaurantpress' ),
 			'i18n_load_more'            => _x( 'Loading more results&hellip;', 'enhanced select', 'restaurantpress' ),
-			'i18n_searching'            => _x( 'Searching&hellip;', 'enhanced select', 'restaurantpress' )
+			'i18n_searching'            => _x( 'Searching&hellip;', 'enhanced select', 'restaurantpress' ),
+			'ajax_url'                  => admin_url( 'admin-ajax.php' ),
+			'search_categories_nonce'   => wp_create_nonce( 'search-categories' ),
 		) );
 
 		// RestaurantPress admin pages

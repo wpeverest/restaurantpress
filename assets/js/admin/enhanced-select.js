@@ -71,13 +71,73 @@ jQuery( function( $ ) {
 
 					$( this ).select2( select2_args ).addClass( 'enhanced' );
 				});
+
+				// Ajax category search boxes
+				$( ':input.rp-category-search' ).filter( ':not(.enhanced)' ).each( function() {
+					var select2_args = $.extend( {
+						allowClear        : $( this ).data( 'allow_clear' ) ? true : false,
+						placeholder       : $( this ).data( 'placeholder' ),
+						minimumInputLength: $( this ).data( 'minimum_input_length' ) ? $( this ).data( 'minimum_input_length' ) : 3,
+						escapeMarkup      : function( m ) {
+							return m;
+						},
+						ajax: {
+							url:         rp_enhanced_select_params.ajax_url,
+							dataType:    'json',
+							delay:       250,
+							data:        function( params ) {
+								return {
+									term:     params.term,
+									action:   'restaurantpress_json_search_categories',
+									security: rp_enhanced_select_params.search_categories_nonce
+								};
+							},
+							processResults: function( data ) {
+								var terms = [];
+								if ( data ) {
+									$.each( data, function( id, term ) {
+										terms.push({
+											id:   term.term_id,
+											text: term.formatted_name
+										});
+									});
+								}
+								return {
+									results: terms
+								};
+							},
+							cache: true
+						}
+					}, getEnhancedSelectFormatString() );
+
+					$( this ).selectWoo( select2_args ).addClass( 'enhanced' );
+
+					if ( $( this ).data( 'sortable' ) ) {
+						var $select = $(this);
+						var $list   = $( this ).next( '.select2-container' ).find( 'ul.select2-selection__rendered' );
+
+						$list.sortable({
+							placeholder : 'ui-state-highlight select2-selection__choice',
+							forcePlaceholderSize: true,
+							items       : 'li:not(.select2-search__field)',
+							tolerance   : 'pointer',
+							stop: function() {
+								$( $list.find( '.select2-selection__choice' ).get().reverse() ).each( function() {
+									var id     = $( this ).data( 'data' ).id;
+									var option = $select.find( 'option[value="' + id + '"]' )[0];
+									$select.prepend( option );
+								} );
+							}
+						});
+					}
+				});
 			})
 
 			.trigger( 'rp-enhanced-select-init' );
 
 		$( 'html' ).on( 'click', function( event ) {
 			if ( this === event.target ) {
-				$( '.rp-enhanced-select, :input.rp-enhanced-select' ).filter( '.select2-hidden-accessible' ).select2( 'close' );
+				$( '.rp-enhanced-select, :input.rp-category-search' ).filter( '.select2-hidden-accessible' ).select2( 'close' );
 			}
 		} );
 	} catch( err ) {
