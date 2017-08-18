@@ -20,13 +20,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$count = 1;
-
 ?>
 <section id="restaurant-press-section">
 	<div class="resturant-press-wrapper">
-		<div class="rp-two-column-layout rp-list-design-layout clearpress">
-			<div class="rp-column-wrapper clearpress">
+		<div class="rp-two-column-layout rp-list-design-layout">
+			<div class="rp-column-wrapper">
 				<?php foreach ( $food_group as $food_id ) {
 					if ( ! is_numeric( $food_id ) ) {
 						continue;
@@ -45,7 +43,7 @@ $count = 1;
 						$image = wp_get_attachment_url( $image_id );
 					}
 
-					?><div class="rp-column-2 rp-column-block clearpress rp-column-margin">
+					?><div class="rp-column-2 rp-column-block rp-column-margin">
 						<h3 class="rp-category-title">
 							<?php if ( 'yes' == $category_icon && $image ) : ?>
 								<span class="category-icon"><img src="<?php echo esc_url( wp_get_attachment_url( $image_id ) ); ?>" width="24px" height="24px"></span> <?php echo esc_html( $food_term->name ); ?>
@@ -58,7 +56,7 @@ $count = 1;
 						<?php endif; ?>
 						<?php if ( ! empty( $food_data[ $food_id ] ) ) {
 							foreach ( $food_data[ $food_id ] as $food_menu ) { ?>
-								<div class="rp-column-single-block clearpress">
+								<div class="rp-column-single-block">
 									<?php if ( 'no' == $featured_image ) : ?>
 										<figure class ="rp-img">
 											<?php if ( 'yes' === get_option( 'restaurantpress_enable_lightbox' ) && 'yes' == $food_menu['popup'] ) : ?>
@@ -85,12 +83,6 @@ $count = 1;
 							<?php }
 						} ?>
 					</div><!-- .rp-column-2 -->
-					<?php
-						if ( $count%2 == 0 ) {
-							echo '<div class="clearpress"></div>';
-						}
-						$count++;
-					?>
 				<?php } ?>
 			</div><!-- .rp-column-wrapper -->
 		</div><!-- .rp-two-column-layout -->

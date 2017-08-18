@@ -28,7 +28,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 				continue;
 			}
 
-			$count = 1;
 			$food_term = get_term_by( 'id', $food_id, 'food_menu_cat' );
 			$term_id   = intval( $food_term->term_id );
 
@@ -42,7 +41,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				$image = wp_get_attachment_url( $image_id );
 			}
 
-			?><div class="rp-grid-design-layout clearpress">
+			?><div class="rp-grid-design-layout">
 				<h3 class="rp-category-title">
 					<?php if ( 'yes' == $category_icon && $image ) : ?>
 						<span class="category-icon"><img src="<?php echo esc_url( wp_get_attachment_url( $image_id ) ); ?>" width="24px" height="24px"></span> <?php echo esc_html( $food_term->name ); ?>
@@ -53,10 +52,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php if ( ! empty( $food_term->description ) ) : ?>
 					<p><?php echo esc_html( $food_term->description ); ?></p>
 				<?php endif; ?>
-				<div class="rp-column-wrapper clearpress">
+				<div class="rp-column-wrapper">
 					<?php if ( ! empty( $food_data[ $food_id ] ) ) {
 						foreach ( $food_data[ $food_id ] as $food_menu ) { ?>
-							<div class="rp-column-3 clearpress rp-column-margin">
+							<div class="rp-column-3 rp-column-margin">
 								<?php if ( 'no' == $featured_image ) : ?>
 									<figure class ="rp-img">
 										<?php if ( 'yes' === get_option( 'restaurantpress_enable_lightbox' ) && 'yes' == $food_menu['popup'] ) : ?>
@@ -71,7 +70,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<?php endif; ?>
 								<div class="rp-content-wrapper">
 									<a href="<?php echo $food_menu['permalink']; ?>" class="restaurantpress-foodItem-link restaurantpress-loop-foodItem__link">
-										<div class="rp-title-price-wrap clearpress">
+										<div class="rp-title-price-wrap">
 											<h4 class="rp-title"><?php echo $food_menu['title']; ?></h4>
 										</div> <!--rp-title-price-wrap end -->
 										<p class="rp-desc"><?php echo $food_menu['content']; ?></p>
@@ -81,12 +80,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 									</a>
 								</div> <!--rp-content-wrapper end-->
 							</div> <!--rp-column-single-block end -->
-							<?php if ( $count%3 == 0 ) {
-								echo '<div class="clearpress"></div>';
-							}
-
-							$count++;
-							?>
 						<?php }
 					} ?>
 				</div> <!-- rp column wrapper end -->

@@ -346,6 +346,7 @@
 		}
 
 		.rp-column-wrapper {
+			@include clearfix();
 			margin-left: -3%;
 
 			.rp-column-1,
@@ -401,11 +402,13 @@
 	}
 
 	.rp-list-design-layout {
+		@include clearfix();
 
 		.rp-column-block {
 			padding-bottom: 23px;
 
 			.rp-column-single-block {
+				@include clearfix();
 				padding:15px 0;
 				border-bottom: 1px solid #deded7;
 
@@ -485,6 +488,7 @@
 	}
 
 	.rp-grid-design-layout {
+		@include clearfix();
 
 		.rp-img {
 			margin: 0;
@@ -630,13 +634,6 @@
 			}
 		}
 	}
-}
-
-/**
- * Clearfix
- */
-.clearpress {
-	@include clearfix;
 }
 
 /**
