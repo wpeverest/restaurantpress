@@ -28,6 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				continue;
 			}
 
+			$count = 1;
 			$food_term = get_term_by( 'id', $food_id, 'food_menu_cat' );
 			$term_id   = intval( $food_term->term_id );
 
@@ -80,6 +81,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 									</a>
 								</div> <!--rp-content-wrapper end-->
 							</div> <!--rp-column-single-block end -->
+							<?php if ( $count%3 == 0 ) {
+								echo '<div class="clear"></div>';
+							}
+
+							$count++;
+							?>
 						<?php }
 					} ?>
 				</div> <!-- rp column wrapper end -->

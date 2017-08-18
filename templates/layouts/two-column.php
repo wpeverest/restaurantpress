@@ -20,6 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+$count = 1;
+
 ?>
 <section id="restaurant-press-section">
 	<div class="resturant-press-wrapper">
@@ -83,6 +85,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<?php }
 						} ?>
 					</div><!-- .rp-column-2 -->
+					<?php
+						if ( $count%2 == 0 ) {
+							echo '<div class="clear"></div>';
+						}
+						$count++;
+					?>
 				<?php } ?>
 			</div><!-- .rp-column-wrapper -->
 		</div><!-- .rp-two-column-layout -->
