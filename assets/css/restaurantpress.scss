@@ -637,11 +637,6 @@
  */
 .clearpress {
 	@include clearfix;
-
-	&:before {
-		content: '';
-		display: table;
-	}
 }
 
 /**
