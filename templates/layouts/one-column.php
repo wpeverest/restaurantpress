@@ -51,6 +51,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<?php echo esc_html( $food_term->name ); ?>
 							<?php endif; ?>
 						</h3>
+						<?php if ( ! empty( $food_term->description ) ) : ?>
+							<p><?php echo esc_html( $food_term->description ); ?></p>
+						<?php endif; ?>
 						<?php if ( ! empty( $food_data[ $food_id ] ) ) {
 							foreach ( $food_data[ $food_id ] as $food_menu ) { ?>
 								<div class="rp-column-single-block clearpress">
