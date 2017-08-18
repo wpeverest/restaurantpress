@@ -110,7 +110,7 @@ jQuery( function( $ ) {
 						}
 					}, getEnhancedSelectFormatString() );
 
-					$( this ).select2( select2_args ).addClass( 'enhanced' );
+					$( this ).selectWoo( select2_args ).addClass( 'enhanced' );
 
 					if ( $( this ).data( 'sortable' ) ) {
 						var $select = $(this);
