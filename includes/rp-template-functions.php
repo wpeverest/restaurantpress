@@ -15,6 +15,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Show the gallery if JS is disabled.
+ *
+ * @since 1.4.0
+ */
+function rp_gallery_noscript() {
+	?>
+	<noscript><style>.restaurantpress-food-gallery{ opacity: 1 !important; }</style></noscript>
+	<?php
+}
+add_action( 'wp_head', 'rp_gallery_noscript' );
+
+/**
  * Add body classes for RP pages.
  *
  * @param  array $classes
