@@ -60,7 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									<?php if ( 'no' == $featured_image ) : ?>
 										<figure class ="rp-img">
 											<?php if ( 'yes' === get_option( 'restaurantpress_enable_lightbox' ) && 'yes' == $food_menu['popup'] ) : ?>
-												<a href="<?php echo $food_menu['attach_url']; ?>" itemprop="image" class="restaurentpress-main-image zoom"><?php echo $food_menu['image']; ?></a>
+												<a href="<?php echo $food_menu['permalink']; ?>" itemprop="image" class="restaurentpress-main-image zoom"><?php echo $food_menu['image']; ?></a>
 											<?php else : ?>
 												<?php echo $food_menu['image']; ?>
 											<?php endif; ?>

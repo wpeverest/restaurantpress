@@ -123,7 +123,7 @@ class RP_Admin_Settings {
 
 		do_action( 'restaurantpress_settings_start' );
 
-		wp_enqueue_script( 'restaurantpress-settings', RP()->plugin_url() . '/assets/js/admin/settings' . $suffix . '.js', array( 'jquery', 'jquery-ui-datepicker', 'jquery-ui-sortable', 'iris', 'select2' ), RP_VERSION, true );
+		wp_enqueue_script( 'restaurantpress-settings', RP()->plugin_url() . '/assets/js/admin/settings' . $suffix . '.js', array( 'jquery', 'jquery-ui-datepicker', 'jquery-ui-sortable', 'iris', 'selectWoo' ), RP_VERSION, true );
 
 		wp_localize_script( 'restaurantpress-settings', 'restaurantpress_settings_params', array(
 			'i18n_nav_warning' => __( 'The changes you made will be lost if you navigate away from this page.', 'restaurantpress' )
