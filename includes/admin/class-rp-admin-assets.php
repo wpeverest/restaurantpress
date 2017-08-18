@@ -88,7 +88,9 @@ class RP_Admin_Assets {
 			'i18n_selection_too_long_1' => _x( 'You can only select 1 item', 'enhanced select', 'restaurantpress' ),
 			'i18n_selection_too_long_n' => _x( 'You can only select %qty% items', 'enhanced select', 'restaurantpress' ),
 			'i18n_load_more'            => _x( 'Loading more results&hellip;', 'enhanced select', 'restaurantpress' ),
-			'i18n_searching'            => _x( 'Searching&hellip;', 'enhanced select', 'restaurantpress' )
+			'i18n_searching'            => _x( 'Searching&hellip;', 'enhanced select', 'restaurantpress' ),
+			'ajax_url'                  => admin_url( 'admin-ajax.php' ),
+			'search_categories_nonce'   => wp_create_nonce( 'search-categories' ),
 		) );
 
 		// RestaurantPress admin pages

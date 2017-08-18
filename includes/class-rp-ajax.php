@@ -33,7 +33,8 @@ class RP_AJAX {
 	public static function add_ajax_events() {
 		// restaurantpress_EVENT => nopriv
 		$ajax_events = array(
-			'rated' => false
+			'json_search_categories' => false,
+			'rated'                  => false,
 		);
 
 		foreach ( $ajax_events as $ajax_event => $nopriv ) {
@@ -43,6 +44,53 @@ class RP_AJAX {
 				add_action( 'wp_ajax_nopriv_restaurantpress_' . $ajax_event, array( __CLASS__, $ajax_event ) );
 			}
 		}
+	}
+
+	/**
+	 * Search for categories and return json.
+	 */
+	public static function json_search_categories() {
+		ob_start();
+
+		check_ajax_referer( 'search-categories', 'security' );
+
+		if ( ! current_user_can( 'edit_food_menus' ) ) {
+			wp_die( -1 );
+		}
+
+		if ( ! $search_text = rp_clean( stripslashes( $_GET['term'] ) ) ) {
+			wp_die();
+		}
+
+		$found_categories = array();
+		$args             = array(
+			'taxonomy'   => array( 'food_menu_cat' ),
+			'orderby'    => 'id',
+			'order'      => 'ASC',
+			'hide_empty' => true,
+			'fields'     => 'all',
+			'name__like' => $search_text,
+		);
+
+		if ( $terms = get_terms( $args ) ) {
+			foreach ( $terms as $term ) {
+				$term->formatted_name = '';
+
+				if ( $term->parent ) {
+					$ancestors = array_reverse( get_ancestors( $term->term_id, 'food_menu_cat' ) );
+					foreach ( $ancestors as $ancestor ) {
+						if ( $ancestor_term = get_term( $ancestor, 'food_menu_cat' ) ) {
+							$term->formatted_name .= $ancestor_term->name . ' > ';
+						}
+					}
+				}
+
+				$term->formatted_name .= $term->name . ' (' . $term->count . ')';
+				$found_categories[ $term->term_id ] = $term;
+			}
+		}
+
+		wp_send_json( apply_filters( 'restaurantpress_json_search_found_categories', $found_categories ) );
 	}
 
 	/**

@@ -97,13 +97,15 @@ class RP_Meta_Box_Group_Data {
 				// Grouping Categories
 				?>
 				<p class="form-field"><label for="food_grouping"><?php _e( 'Grouping', 'restaurantpress' ); ?></label>
-				<select id="food_grouping" name="food_grouping[]" style="width: 50%;" class="rp-enhanced-select" multiple="multiple" data-placeholder="<?php esc_attr_e( 'Any category', 'restaurantpress' ); ?>">
+				<select id="food_grouping" name="food_grouping[]" class="rp-category-search" multiple="multiple" style="width: 50%;" data-placeholder="<?php esc_attr_e( 'Search for a food category&hellip;', 'restaurantpress' ); ?>" data-sortable="true">
 					<?php
 						$category_ids = (array) get_post_meta( $post->ID, 'food_grouping', true );
-						$categories   = get_terms( 'food_menu_cat', 'orderby=name&hide_empty=0' );
 
-						if ( $categories ) foreach ( $categories as $cat ) {
-							echo '<option value="' . esc_attr( $cat->term_id ) . '"' . selected( in_array( $cat->term_id, $category_ids ), true, false ) . '>' . esc_html( $cat->name ) . '</option>';
+						foreach ( $category_ids as $term_id ) {
+							$term = get_term_by( 'id', $term_id, 'food_menu_cat' );
+							if ( is_object( $term ) ) {
+								echo '<option value="' . esc_attr( $term_id ) . '"' . selected( true, true, false ) . '>' . wp_kses_post( $term->name . ' (' . $term->count . ')' ) . '</option>';
+							}
 						}
 					?>
 				</select> <?php echo rp_help_tip( __( 'A food must be in this category for the group to remain valid.', 'restaurantpress' ) ); ?></p>
