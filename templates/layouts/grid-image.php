@@ -44,7 +44,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<?php if ( 'no' == $featured_image ) : ?>
 									<figure class ="rp-img">
 										<?php if ( 'yes' === get_option( 'restaurantpress_enable_lightbox' ) && 'yes' == $food_menu['popup'] ) : ?>
-											<a href="<?php echo $food_menu['attach_url']; ?>" itemprop="image" class="restaurentpress-main-image zoom" title="" data-rel="prettyPhoto"><?php echo $food_menu['image_grid']; ?><span class="image-magnify"> <span> + </span> </span></a>
+											<a href="<?php echo $food_menu['attach_url']; ?>" itemprop="image" class="restaurentpress-main-image zoom"><?php echo $food_menu['image_grid']; ?><span class="image-magnify"> <span> + </span> </span></a>
 										<?php else : ?>
 											<?php echo $food_menu['image_grid']; ?>
 										<?php endif; ?>
@@ -54,13 +54,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 									</figure>
 								<?php endif; ?>
 								<div class="rp-content-wrapper">
-									<div class="rp-title-price-wrap clearpress">
-										<h4 class="rp-title"><?php echo $food_menu['title']; ?></h4>
-									</div> <!--rp-title-price-wrap end -->
-									<div class="rp-desc"><?php echo $food_menu['content']; ?></div>
-									<?php if ( ! empty( $food_menu['price'] ) ) : ?>
-										<div class="rp-price"><?php echo $food_menu['price']; ?></div>
-									<?php endif; ?>
+									<a href="<?php echo $food_menu['permalink']; ?>" class="restaurantpress-foodItem-link restaurantpress-loop-foodItem__link">
+										<div class="rp-title-price-wrap clearpress">
+											<h4 class="rp-title"><?php echo $food_menu['title']; ?></h4>
+										</div> <!--rp-title-price-wrap end -->
+										<p class="rp-desc"><?php echo $food_menu['content']; ?></p>
+										<?php if ( ! empty( $food_menu['price'] ) ) : ?>
+											<span class="rp-price"><?php echo $food_menu['price']; ?></span>
+										<?php endif; ?>
+									</a>
 								</div> <!--rp-content-wrapper end-->
 							</div> <!--rp-column-single-block end -->
 							<?php if ( $count%3 == 0 ) {

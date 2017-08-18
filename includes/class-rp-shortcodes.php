@@ -87,6 +87,7 @@ class RP_Shortcodes {
 		if ( $food_terms && ! is_wp_error( $food_terms ) ) {
 			$title      = get_the_title();
 			$content    = get_the_content();
+			$permalink  = get_the_permalink();
 			$price      = get_post_meta( $post->ID, 'food_item_price', true );
 			$chef_badge = get_post_meta( $post->ID, 'chef_badge_item', true );
 
@@ -108,6 +109,7 @@ class RP_Shortcodes {
 					$food_data[ $term->term_id ][] = array(
 						'title'      => $title,
 						'content'    => $content,
+						'permalink'  => $permalink,
 						'price'      => $price,
 						'image'      => $image,
 						'image_grid' => $image_grid,
@@ -135,15 +137,15 @@ class RP_Shortcodes {
 
 		$group_id = absint( $atts['id'] );
 
-		// Check for layout type
+		// Check for layout type and get its respective template.
 		if ( $layout_type = get_post_meta( $group_id, 'layout_type', true ) ) {
-			$include_file = 'html-view-page-' . str_replace( '_', '-', $layout_type ) . '.php';
-			$include_path = untrailingslashit( plugin_dir_path( RP_PLUGIN_FILE ) ) . '/includes/views/' . $include_file;
+			$layout_type = str_replace( '_', '-', $layout_type );
 
-			// Include a layout specific file
-			if ( $include_path && is_readable( $include_path ) ) {
-				include( $include_path );
-			}
+			rp_get_template( "layouts/{$layout_type}.php", array(
+				'group_id'   => $group_id,
+				'food_data'  => $food_data,
+				'food_group' => $food_group,
+			) );
 		}
 	}
 

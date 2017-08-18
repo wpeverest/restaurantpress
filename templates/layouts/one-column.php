@@ -44,7 +44,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									<?php if ( 'no' == $featured_image ) : ?>
 										<figure class ="rp-img">
 											<?php if ( 'yes' === get_option( 'restaurantpress_enable_lightbox' ) && 'yes' == $food_menu['popup'] ) : ?>
-												<a href="<?php echo $food_menu['attach_url']; ?>" itemprop="image" class="restaurentpress-main-image zoom" title="" data-rel="prettyPhoto"><?php echo $food_menu['image']; ?></a>
+												<a href="<?php echo $food_menu['attach_url']; ?>" itemprop="image" class="restaurentpress-main-image zoom"><?php echo $food_menu['image']; ?></a>
 											<?php else : ?>
 												<?php echo $food_menu['image']; ?>
 											<?php endif; ?>
@@ -55,10 +55,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 									<?php endif; ?>
 									<div class="rp-content-wrapper">
 										<div class="rp-title-price-wrap">
-											<h4 class="rp-title"><?php echo $food_menu['title']; ?></h4>
-											<div class="rp-price"><?php echo $food_menu['price']; ?></div>
+											<h4 class="rp-title">
+												<a href="<?php echo $food_menu['permalink']; ?>" class="restaurantpress-foodItem-link restaurantpress-loop-foodItem__link"><?php echo $food_menu['title']; ?></a>
+											</h4>
+											<span class="rp-price"><?php echo $food_menu['price']; ?></span>
 										</div> <!--rp-title-price-wrap end -->
-										<div class="rp-desc"><?php echo $food_menu['content']; ?></div>
+										<p class="rp-desc"><?php echo $food_menu['content']; ?></p>
 									</div> <!--rp-content-wrapper end-->
 								</div> <!--rp-column-single-block end -->
 							<?php }

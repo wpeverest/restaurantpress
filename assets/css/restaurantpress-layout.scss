@@ -1,0 +1,316 @@
+/**
+ * restaurantpress-layout.scss
+ * Applies layout to the default RestaurantPress frontend design
+ */
+
+/**
+ * Imports
+ */
+@import 'mixins';
+@import 'variables';
+
+/**
+ * Styling begins
+ */
+.restaurantpress, .restaurantpress-page {
+
+	/**
+	 * General layout styles
+	 */
+	.col2-set {
+		@include clearfix();
+		width: 100%;
+
+		.col-1 {
+			float: left;
+			width: 48%;
+		}
+		.col-2 {
+			float: right;
+			width: 48%;
+		}
+	}
+
+	img {
+		height: auto;
+		max-width: 100%;
+	}
+
+	/**
+	 * Food page
+	 */
+	div.food_menu,
+	#content div.food_menu {
+		div.images {
+			float: left;
+			width: 48%;
+		}
+
+		div.thumbnails {
+			@include clearfix();
+
+			a {
+				float: left;
+				width: 30.75%;
+				margin-right: 3.8%;
+				margin-bottom: 1em;
+			}
+
+			a.last {
+				margin-right: 0;
+			}
+
+			a.first {
+				clear: both;
+			}
+
+			&.columns-1 {
+				a {
+					width: 100%;
+					margin-right: 0;
+					float: none;
+				}
+			}
+
+			&.columns-2 {
+				a {
+					width: 48%;
+				}
+			}
+
+			&.columns-4 {
+				a {
+					width: 22.05%;
+				}
+			}
+
+			&.columns-5 {
+				a {
+					width: 16.9%;
+				}
+			}
+		}
+
+		div.summary {
+			float: right;
+			width: 48%;
+		}
+
+		.restaurantpress-tabs {
+			clear: both;
+
+			ul.tabs {
+				@include menu();
+			}
+		}
+	}
+
+	/**
+	 * oEmbeds
+	 */
+	.restaurantpress-oembed {
+		position: relative;
+	}
+}
+
+/**
+ * Twenty Eleven specific styles
+ */
+.restaurantpress-page {
+	&.left-sidebar {
+		#content.twentyeleven {
+			width: 58.4%;
+			margin: 0 7.6%;
+			float: right;
+		}
+	}
+
+	&.right-sidebar {
+		#content.twentyeleven {
+			margin: 0 7.6%;
+			width: 58.4%;
+			float: left;
+		}
+	}
+}
+
+/**
+ * Twenty Fourteen specific styles
+ */
+.twentyfourteen {
+	.tfrp {
+		padding: 12px 10px 0;
+		max-width: 474px;
+		margin: 0 auto;
+
+		.product .entry-summary {
+			padding: 0 !important;
+			margin: 0 0 1.618em !important;
+		}
+
+		div.product.hentry.has-post-thumbnail {
+			margin-top: 0;
+		}
+	}
+}
+
+@media screen and (min-width: 673px) {
+	.twentyfourteen {
+		.tfrp {
+			padding-right: 30px;
+			padding-left: 30px;
+		}
+	}
+}
+
+@media screen and (min-width: 1040px) {
+	.twentyfourteen {
+		.tfrp {
+			padding-right: 15px;
+			padding-left: 15px;
+		}
+	}
+}
+
+@media screen and (min-width: 1110px) {
+	.twentyfourteen {
+		.tfrp {
+			padding-right: 30px;
+			padding-left: 30px;
+		}
+	}
+}
+
+@media screen and (min-width: 1218px) {
+	.twentyfourteen {
+		.tfrp {
+			margin-right: 54px;
+		}
+	}
+	.full-width {
+		.twentyfourteen {
+			.tfrp {
+				margin-right: auto;
+			}
+		}
+	}
+}
+
+/**
+ * Twenty Fifteen specific styles
+ */
+.twentyfifteen {
+	.t15rp {
+		padding-left: 7.6923%;
+		padding-right: 7.6923%;
+		padding-top: 7.6923%;
+		margin-bottom: 7.6923%;
+		background: #fff;
+		box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+
+		.page-title {
+			margin-left: 0;
+		}
+	}
+}
+
+@media screen and (min-width: 38.75em) {
+	.twentyfifteen {
+		.t15rp {
+			margin-right: 7.6923%;
+			margin-left: 7.6923%;
+			margin-top: 8.3333%;
+		}
+	}
+}
+
+@media screen and (min-width: 59.6875em) {
+	.twentyfifteen {
+		.t15rp {
+			margin-left: 8.3333%;
+			margin-right: 8.3333%;
+			padding: 10%;
+		}
+	}
+
+	.single-product {
+		.twentyfifteen {
+			.entry-summary {
+				padding: 0 !important;
+			}
+		}
+	}
+}
+
+/**
+ * Twenty Sixteen specific styles
+ */
+.twentysixteen {
+	.site-main {
+		margin-right: 7.6923%;
+		margin-left: 7.6923%;
+	}
+
+	.entry-summary {
+		margin-right: 0;
+		margin-left: 0;
+	}
+}
+
+#content {
+	.twentysixteen {
+		div.food_menu {
+			div.images,
+			div.summary {
+				width: 46.42857%;
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 44.375em) {
+	.twentysixteen {
+		.site-main {
+			margin-right: 23.0769%;
+		}
+	}
+}
+
+@media screen and (min-width: 56.875em) {
+	.twentysixteen {
+		.site-main {
+			margin-right: 0;
+			margin-left: 0;
+		}
+	}
+
+	.no-sidebar {
+		.twentysixteen {
+			.site-main {
+				margin-right: 15%;
+				margin-left: 15%;
+			}
+
+			.entry-summary {
+				margin-right: 0;
+				margin-left: 0;
+			}
+		}
+	}
+}
+
+/**
+ * RTL styles.
+ */
+.rtl {
+	.restaurantpress, .restaurantpress-page {
+		.col2-set {
+			.col-1 {
+				float: right;
+			}
+			.col-2 {
+				float: left;
+			}
+		}
+	}
+}

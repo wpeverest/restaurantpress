@@ -83,7 +83,8 @@ final class RestaurantPress {
 	private function init_hooks() {
 		register_activation_hook( RP_PLUGIN_FILE, array( 'RP_Install', 'install' ) );
 		add_action( 'after_setup_theme', array( $this, 'setup_environment' ) );
-		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+		add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 11 );
+		add_action( 'init', array( $this, 'init' ), 0 );
 		add_action( 'init', array( 'RP_Shortcodes', 'init' ) );
 		add_action( 'init', array( $this, 'wpdb_table_fix' ), 0 );
 		add_action( 'switch_blog', array( $this, 'wpdb_table_fix' ), 0 );
@@ -96,6 +97,7 @@ final class RestaurantPress {
 		$this->define( 'RP_ABSPATH', dirname( RP_PLUGIN_FILE ) . '/' );
 		$this->define( 'RP_PLUGIN_BASENAME', plugin_basename( RP_PLUGIN_FILE ) );
 		$this->define( 'RP_VERSION', $this->version );
+		$this->define( 'RP_TEMPLATE_DEBUG_MODE', false );
 	}
 
 	/**
@@ -159,8 +161,31 @@ final class RestaurantPress {
 	 * Include required frontend files.
 	 */
 	public function frontend_includes() {
+		include_once( RP_ABSPATH . 'includes/rp-template-hooks.php' );
+		include_once( RP_ABSPATH . 'includes/class-rp-template-loader.php' );    // Template Loader
 		include_once( RP_ABSPATH . 'includes/class-rp-frontend-scripts.php' );   // Frontend Scripts
 		include_once( RP_ABSPATH . 'includes/class-rp-shortcodes.php' );         // Shortcodes Class
+	}
+
+	/**
+	 * Function used to Init RestaurantPress Template Functions - This makes them pluggable by plugins and themes.
+	 */
+	public function include_template_functions() {
+		include_once( RP_ABSPATH . 'includes/rp-template-functions.php' );
+	}
+
+	/**
+	 * Init RestaurantPress when WordPress Initialises.
+	 */
+	public function init() {
+		// Before init action.
+		do_action( 'before_restaurantpress_init' );
+
+		// Set up localisation.
+		$this->load_plugin_textdomain();
+
+		// Init action.
+		do_action( 'restaurantpress_init' );
 	}
 
 	/**
@@ -173,10 +198,12 @@ final class RestaurantPress {
 	 *      - WP_LANG_DIR/plugins/restaurantpress-LOCALE.mo
 	 */
 	public function load_plugin_textdomain() {
-		$locale = apply_filters( 'plugin_locale', get_locale(), 'restaurantpress' );
+		$locale = is_admin() && function_exists( 'get_user_locale' ) ? get_user_locale() : get_locale();
+		$locale = apply_filters( 'plugin_locale', $locale, 'restaurantpress' );
 
+		unload_textdomain( 'restaurantpress' );
 		load_textdomain( 'restaurantpress', WP_LANG_DIR . '/restaurantpress/restaurantpress-' . $locale . '.mo' );
-		load_plugin_textdomain( 'restaurantpress', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'restaurantpress', false, plugin_basename( dirname( RP_PLUGIN_FILE ) ) . '/languages' );
 	}
 
 	/**
@@ -222,6 +249,14 @@ final class RestaurantPress {
 	 */
 	public function plugin_path() {
 		return untrailingslashit( plugin_dir_path( RP_PLUGIN_FILE ) );
+	}
+
+	/**
+	 * Get the template path.
+	 * @return string
+	 */
+	public function template_path() {
+		return apply_filters( 'restaurantpress_template_path', 'restaurantpress/' );
 	}
 
 	/**
