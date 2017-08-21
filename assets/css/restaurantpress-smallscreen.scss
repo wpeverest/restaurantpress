@@ -1,0 +1,71 @@
+/**
+ * restaurantpress-smallscreen.scss
+ * Optimises the default RestaurantPress frontend layout when viewed on smaller screens.
+ */
+
+/**
+ * Imports
+ */
+@import 'mixins';
+@import 'variables';
+
+/**
+ * Style begins
+ */
+.restaurantpress,
+.restaurantpress-page {
+
+	/**
+	 * General layout
+	 */
+	.col2-set {
+		.col-1,
+		.col-2 {
+			float: none;
+			width: 100%;
+		}
+	}
+
+	/**
+	 * Foods
+	 */
+	&, &[class*='columns-'] {
+		ul.foods {
+			li.food {
+				width: 48%;
+				float: left;
+				clear: both;
+				margin: 0 0 2.992em;
+
+				&:nth-child( 2n ) {
+					float: right;
+					clear: none !important; // This should never clear.
+				}
+			}
+		}
+	}
+
+	/**
+	 * Food Details
+	 */
+	div.food_menu,
+	#content div.food_menu {
+		div.images,
+		div.summary {
+			float: none;
+			width: 100%;
+		}
+	}
+}
+
+/**
+ * Twenty Thirteen specific styles
+ */
+.single-food_menu {
+	.twentythirteen {
+		.panel {
+			padding-left: 20px !important;
+			padding-right: 20px !important;
+		}
+	}
+}
