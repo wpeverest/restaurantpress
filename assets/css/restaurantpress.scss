@@ -48,6 +48,7 @@
 			clear: none;
 			margin-top: 0;
 			padding: 0;
+			font-size: 1.8em;
 		}
 
 		span.price,
@@ -570,11 +571,11 @@
 				padding: 6px 10px 6px 5px;
 				background: #d60e10 none repeat scroll 0 0;
 
-				&:before {
+				&::before {
 					position: absolute;
 					top: 0;
 					left: -16px;
-					content: "";
+					content: '';
 					border-top: 36px solid transparent;
 					border-right: 16px solid #d60e10;
 					border-bottom: 0 solid transparent;
@@ -652,20 +653,49 @@ button.pswp__button--zoom:hover {
 }
 
 /**
- * Single post
+ * Twenty Eleven specific styles
  */
+#content.twentyeleven .restaurantpress-pagination a {
+	font-size: 1em;
+	line-height: 1;
+}
 
-.single-food_menu {
-	div.food,
-	div.food_menu {
-		.food_title {
-			font-size: 1.8em;
-		}
-
-		span.price {
-			font-size: 1.3em;
-			display: inline-block;
-			margin: 0 0 1em;
-		}
+/**
+ * Twenty Thirteen specific styles
+ */
+.single-food_menu .twentythirteen {
+	.entry-summary,
+	#reply-title,
+	#respond #commentform {
+		padding: 0;
 	}
+
+	p.stars {
+		clear: both;
+	}
+}
+
+.twentythirteen .restaurantpress-breadcrumb {
+	padding-top: 40px;
+}
+
+/**
+ * Twenty Fourteen specific styles
+ */
+.twentyfourteen ul.foods li.food {
+	margin-top: 0 !important;
+}
+
+/**
+ * Twenty Sixteen specific styles
+ */
+body:not( .search-results ) .twentysixteen .entry-summary {
+	color: inherit;
+	font-size: inherit;
+	line-height: inherit;
+}
+
+.twentysixteen .price ins {
+	background: inherit;
+	color: inherit;
 }
