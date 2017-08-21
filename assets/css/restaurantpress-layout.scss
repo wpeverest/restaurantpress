@@ -314,3 +314,21 @@
 		}
 	}
 }
+
+// Mobile device 
+@media only screen and ( max-width: 600px ) {
+	.single-food_menu {
+		div.food,
+		#content div.food_menu {
+			div.images {
+				margin-bottom: 0;
+			}
+			
+			div.images,
+			div.entry-summary {
+				float: none;
+				width: 100%;
+			}
+		}
+	}
+}
