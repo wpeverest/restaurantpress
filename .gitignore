@@ -5,6 +5,7 @@ project.properties
 .buildpath
 .project
 .settings*
+.vscode
 .idea
 
 # Grunt
@@ -21,4 +22,3 @@ Thumbs.db
 
 # Composer
 /vendor/
-.vscode
