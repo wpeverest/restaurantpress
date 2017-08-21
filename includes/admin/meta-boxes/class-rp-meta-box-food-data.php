@@ -142,10 +142,12 @@ class RP_Meta_Box_Food_Data {
 	 */
 	public static function save( $post_id ) {
 		// Add/Replace data to array
+		$menu_order = rp_clean( $_POST['menu_order'] );
 		$food_item_price = rp_clean( $_POST['food_item_price'] );
 		$chef_item_badge = isset( $_POST['chef_badge_item'] ) ? 'yes' : 'no';
 
 		// Save
+		update_post_meta( $post_id, 'menu_order', $menu_order );
 		update_post_meta( $post_id, 'food_item_price', $food_item_price );
 		update_post_meta( $post_id, 'chef_badge_item', $chef_item_badge );
 	}
