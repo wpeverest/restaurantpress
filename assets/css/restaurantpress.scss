@@ -450,15 +450,22 @@
 			}
 
 			.rp-chef-badge {
+				min-height: 3.236em;
+				min-width: 3.236em;
+				padding: 0.202em;
+				font-weight: 700;
 				position: absolute;
-				top: 0;
-				left: 20px;
-				color: #fff;
-				background: #c00;
-				font-size: 12px;
-				padding: 5px 10px;
 				text-align: center;
-				text-transform: capitalize;
+				line-height: 3.236;
+				top: -0.5em;
+				left: -0.5em;
+				margin: 0;
+				border-radius: 100%;
+				background-color: $highlight;
+				color: $highlightext;
+				font-size: 0.857em;
+				-webkit-font-smoothing: antialiased;
+				z-index: 9;
 
 				&::before,
 				&::after {
