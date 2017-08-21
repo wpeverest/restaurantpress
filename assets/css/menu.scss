@@ -68,34 +68,3 @@ i.mce-i-restaurantpress-shortcodes {
 		vertical-align: top;
 	}
 }
-
-/**
- * Food Menu Style
- */
-ul.food_menu_data {
-	p.form-field {
-		margin: 15px 0;
-
-		span,
-		label,
-		select {
-			width: 100%;
-		}
-
-		label {
-			float: left;
-			font-weight: 600;
-		}
-
-		span.side {
-			color: #777;
-			display: block;
-			font-style: normal;
-			margin-bottom: 5px;
-		}
-
-		input[type='checkbox'] {
-			margin: -4px 3px 0 0;
-		}
-	}
-}
