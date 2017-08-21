@@ -23,4 +23,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $post;
 
 ?>
-<p class="price"><?php echo get_post_meta( $post->ID, 'food_item_price', true ); ?></p>
+<span class="price"><?php echo get_post_meta( $post->ID, 'food_item_price', true ); ?></span>

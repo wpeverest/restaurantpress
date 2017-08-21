@@ -707,8 +707,14 @@ button.pswp__button--zoom:hover {
  * Single post
  */
 
-.food_menu {
-	.food_title {
-		font-size: 1.6em;
+.singel-food_menu {
+	.food_menu {
+		.food_title {
+			font-size: 1.6em;
+		}
+
+		.price {
+			font-size: 0.5em;
+		}
 	}
 }
