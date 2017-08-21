@@ -21,3 +21,4 @@ Thumbs.db
 
 # Composer
 /vendor/
+.vscode/tasks.json
