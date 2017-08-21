@@ -654,11 +654,13 @@ button.pswp__button--zoom:hover {
 	div.food,
 	div.food_menu {
 		.food_title {
-			font-size: 1.6em;
+			font-size: 1.8em;
 		}
 
 		span.price {
-			font-size: 1em;
+			font-size: 1.3em;
+			display: inline-block;
+			margin: 0 0 1em;
 		}
 	}
 }
