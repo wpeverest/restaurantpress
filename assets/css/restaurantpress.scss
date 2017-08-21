@@ -308,7 +308,6 @@
 		min-height: 3.236em;
 		min-width: 3.236em;
 		padding: 0.202em;
-		font-size: 1em;
 		font-weight: 700;
 		position: absolute;
 		text-align: center;
@@ -706,14 +705,15 @@ button.pswp__button--zoom:hover {
  * Single post
  */
 
-.singel-food_menu {
-	.food_menu {
+.single-food_menu {
+	div.food,
+	div.food_menu {
 		.food_title {
 			font-size: 1.6em;
 		}
 
-		.price {
-			font-size: 0.5em;
+		span.price {
+			font-size: 1em;
 		}
 	}
 }
