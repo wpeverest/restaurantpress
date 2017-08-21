@@ -127,6 +127,7 @@ function restaurantpress_wp_checkbox( $field ) {
 	$field['value']         = isset( $field['value'] ) ? $field['value'] : get_post_meta( $thepostid, $field['id'], true );
 	$field['cbvalue']       = isset( $field['cbvalue'] ) ? $field['cbvalue'] : 'yes';
 	$field['name']          = isset( $field['name'] ) ? $field['name'] : $field['id'];
+	$field['desc_tip']      = isset( $field['desc_tip'] ) ? $field['desc_tip'] : false;
 
 	// Custom attribute handling
 	$custom_attributes = array();
