@@ -42,10 +42,15 @@ class RP_Meta_Box_Food_Data {
 				<div class="options_group pricing">
 					<?php
 						restaurantpress_wp_text_input( array(
-							'id'          => 'food_item_price',
-							'type'        => 'text',
-							'label'       => __( 'Set Price', 'restaurantpress' ),
-							'placeholder' => __( 'Enter the item Price&hellip;', 'restaurantpress' )
+							'id'        => 'food_item_price', // _regular_price
+							'label'     => __( 'Regular price', 'restaurantpress' ) . ' (Rs)',
+							'data_type' => 'price',
+						) );
+
+						restaurantpress_wp_text_input( array(
+							'id'          => '_sale_price',
+							'label'       => __( 'Sale price', 'restaurantpress' ) . ' (Rs)',
+							'data_type'   => 'price',
 						) );
 
 						do_action( 'restaurantpress_food_options_pricing' );
