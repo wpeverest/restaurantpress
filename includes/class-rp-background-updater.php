@@ -96,7 +96,7 @@ class RP_Background_Updater extends WP_Background_Process {
 			define( 'RP_UPDATING', true );
 		}
 
-		include_once( dirname( __FILE__ ) . '/functions-rp-update.php' );
+		include_once( dirname( __FILE__ ) . '/rp-update-functions.php' );
 
 		if ( is_callable( $callback ) ) {
 			call_user_func( $callback );
