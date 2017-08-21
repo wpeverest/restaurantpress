@@ -27,7 +27,7 @@ $heading = esc_html( apply_filters( 'restaurantpress_food_description_heading', 
 ?>
 
 <?php if ( $heading ) : ?>
-  <h2><?php echo $heading; ?></h2>
+  <h2 class="screen-reader-text"><?php echo $heading; ?></h2>
 <?php endif; ?>
 
 <?php the_content(); ?>
