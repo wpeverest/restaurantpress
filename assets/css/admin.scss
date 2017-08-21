@@ -52,7 +52,7 @@ h2 .restaurantpress-help-tip {
 	margin-left: 0.25em;
 }
 
-#restaurantpress-menu-data,
+#restaurantpress-food-data,
 #restaurantpress-group-data,
 .restaurantpress {
 	.panel-wrap {
@@ -107,6 +107,10 @@ h2 .restaurantpress-help-tip {
 				}
 			}
 
+			&.advanced_options a::before {
+				content: '\f111';
+			}
+
 			&.general_options a::before {
 				content: '\f107';
 			}
@@ -124,6 +128,7 @@ h2 .restaurantpress-help-tip {
 	}
 }
 
+#restaurantpress-food-data,
 #restaurantpress-group-data {
 	.inside {
 		margin: 0;
@@ -334,7 +339,7 @@ h2 .restaurantpress-help-tip {
 	}
 }
 
-#restaurantpress-menu-data,
+#restaurantpress-food-data,
 #restaurantpress-group-data {
 	.panel-wrap {
 		background: #fff;
@@ -902,17 +907,17 @@ img.tips {
  * Optimisation for screens 900px and smaller
  */
 @media only screen and (max-width: 900px) {
-	#restaurantpress-menu-data ul.food_data_tabs,
+	#restaurantpress-food-data ul.food_data_tabs,
 	#restaurantpress-group-data ul.group_data_tabs {
 		width: 10%;
 	}
 
-	#restaurantpress-menu-data .restaurantpress_options_panel,
+	#restaurantpress-food-data .restaurantpress_options_panel,
 	#restaurantpress-group-data .restaurantpress_options_panel {
 		width: 90%;
 	}
 
-	#restaurantpress-menu-data ul.food_data_tabs li a,
+	#restaurantpress-food-data ul.food_data_tabs li a,
 	#restaurantpress-group-data ul.group_data_tabs li a {
 		position: relative;
 		text-indent: -999px;

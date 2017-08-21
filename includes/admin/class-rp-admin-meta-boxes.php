@@ -104,7 +104,7 @@ class RP_Admin_Meta_Boxes {
 		add_meta_box( 'restaurantpress-food-images', __( 'Food gallery', 'restaurantpress' ), 'RP_Meta_Box_Food_Images::output', 'food_menu', 'side', 'low' );
 
 		// Groups.
-		add_meta_box( 'restaurantpress-group-data', __( 'Group Data', 'restaurantpress' ), 'RP_Meta_Box_Group_Data::output', 'food_group', 'normal', 'high' );
+		add_meta_box( 'restaurantpress-group-data', __( 'Group data', 'restaurantpress' ), 'RP_Meta_Box_Group_Data::output', 'food_group', 'normal', 'high' );
 
 		// Comment rating.
 		if ( 'comment' === $screen_id && isset( $_GET['c'] ) && metadata_exists( 'comment', $_GET['c'], 'rating' ) ) {
