@@ -17,6 +17,6 @@ $secondarytext:     desaturate(darken($secondary, 60%), 21%);   // Text on secon
 $highlight:         adjust-hue($primary, 10deg);                // Prices, chef flash
 $highlightext:      desaturate(lighten($highlight, 50%), 18%);  // Text on highlight color bg
 
-$contentbg:         #fff;                                       // Content BG - Tabs (active state)
+$darkgraybg:        #252525;                                    // Content BG - Tabs (active state)
+$contentbg:         #fff;                                       // Content Background
 $subtext:           #777;                                       // small, breadcrumbs etc
-$darkgray:          #252525;

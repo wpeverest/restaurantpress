@@ -229,7 +229,7 @@
 						display: inline-block;
 						padding: 0.5em 0;
 						font-weight: 700;
-						color: $darkgray;
+						color: $darkgraybg;
 						text-decoration: none;
 
 						&:hover {
@@ -239,7 +239,7 @@
 					}
 
 					&.active {
-						border-bottom: 2px solid $darkgray;
+						border-bottom: 2px solid $darkgraybg;
 					}
 				}
 			}
@@ -252,19 +252,28 @@
 	}
 
 	span.chef {
-		padding: 0.5em 1em;
+		min-height: 3.236em;
+		min-width: 3.236em;
+		padding: 0.202em;
+		font-size: 1em;
 		font-weight: 700;
 		position: absolute;
 		text-align: center;
-		line-height: 1.6em;
+		line-height: 3.236;
 		top: -0.5em;
 		left: -0.5em;
 		margin: 0;
+		border-radius: 100%;
 		background-color: $highlight;
 		color: $highlightext;
-		font-size: 0.857em;
 		-webkit-font-smoothing: antialiased;
 		z-index: 9;
+
+		&::before {
+			@include iconbefore( '\e003' );
+			margin-right: 0;
+			color: $contentbg;
+		}
 	}
 }
 
@@ -380,7 +389,7 @@
 						text-transform: capitalize;
 
 						.chef-icon {
-							&:before {
+							&::before {
 								content: '\e003';
 								font-family: 'RestaurantPress';
 								font-size: 14px;
@@ -479,7 +488,7 @@
 					border-right: 18px solid transparent;
 				}
 
-				&:after {
+				&::after {
 					bottom: -10px;
 					border-left: 18px solid transparent;
 					border-top: 10px solid #c00;
@@ -489,58 +498,13 @@
 				}
 
 				.chef-icon {
-					&:before {
+					&::before {
 						content: '\e003';
 						font-family: 'RestaurantPress';
 						font-size: 14px;
 						color: #fff;
 						font-style: normal;
 					}
-				}
-			}
-
-			.image-magnify {
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				width: 85%;
-				height: 85%;
-				display: block;
-				opacity: 0;
-				visibility: hidden;
-				background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
-				transform: translate(-50%,-50%) scale(0.3);
-				transition: all 0.3s ease-in-out;
-
-				span {
-					position: absolute;
-					top: 50%;
-					left: 50%;
-					color: #fff;
-					width: 30px;
-					height: 30px;
-					display: block;
-					cursor: pointer;
-					font-size: 30px;
-					line-height: 30px;
-					text-align: center;
-					border-radius: 100%;
-					border: 1px solid #fff;
-					transform: translate(-50%,-50%);
-					transition: all 0.5s ease-in-out;
-
-					&:hover {
-						background: #d60e10;
-						border-color: #d60e10;
-					}
-				}
-			}
-
-			&:hover {
-				.image-magnify {
-					opacity: 1;
-					visibility: visible;
-					transform: translate(-50%,-50%) scale(1);
 				}
 			}
 		}

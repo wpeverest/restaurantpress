@@ -25,7 +25,7 @@ global $post;
 ?>
 <?php if ( 'yes' === get_post_meta( $post->ID, 'chef_badge_item', true ) ) : ?>
 
-	<?php echo apply_filters( 'restaurantpress_chef_flash', '<span class="chef">' . esc_html__( 'Chef!', 'restaurantpress' ) . '</span>', $post ); ?>
+	<?php echo apply_filters( 'restaurantpress_chef_flash', '<span class="chef"><p class="screen-reader-text">' . esc_html__( 'Chef!', 'restaurantpress' ) . '</p></span>', $post ); ?>
 
 <?php endif;
 
