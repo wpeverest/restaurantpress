@@ -73,6 +73,13 @@ class RP_Frontend_Scripts {
 				'media'   => 'all',
 				'has_rtl' => true,
 			),
+			'restaurantpress-smallscreen' => array(
+				'src'     => self::get_asset_url( 'assets/css/restaurantpress-smallscreen.css' ),
+				'deps'    => 'restaurantpress-layout',
+				'version' => RP_VERSION,
+				'media'   => 'only screen and (max-width: ' . apply_filters( 'restaurantpress_style_smallscreen_breakpoint', $breakpoint = '768px' ) . ')',
+				'has_rtl' => true,
+			),
 			'restaurantpress-general' => array(
 				'src'     => self::get_asset_url( 'assets/css/restaurantpress.css' ),
 				'deps'    => '',

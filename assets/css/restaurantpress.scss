@@ -48,6 +48,7 @@
 			clear: none;
 			margin-top: 0;
 			padding: 0;
+			font-size: 1.8em;
 		}
 
 		span.price,
@@ -215,26 +216,20 @@
 		.restaurantpress-tabs {
 			ul.tabs {
 				list-style: none;
-				padding: 0 0 0 1em;
-				margin: 0 0 1.618em;
-				overflow: hidden;
+				padding: 0;
 				position: relative;
+				border-bottom: 1px solid #ccc;
+				margin: 0 0 1.5em;
 
 				li {
-					border: 1px solid darken( $secondary, 10% );
-					background-color: $secondary;
 					display: inline-block;
-					position: relative;
-					z-index: 0;
-					border-radius: 4px 4px 0 0;
-					margin: 0 -5px;
-					padding: 0 1em;
+					padding: 1em;
 
 					a {
 						display: inline-block;
 						padding: 0.5em 0;
 						font-weight: 700;
-						color: $secondarytext;
+						color: $darkgraybg;
 						text-decoration: none;
 
 						&:hover {
@@ -244,57 +239,8 @@
 					}
 
 					&.active {
-						background: $contentbg;
-						z-index: 2;
-						border-bottom-color: $contentbg;
-
-						a {
-							color: inherit;
-							text-shadow: inherit;
-						}
-
-						&::before {
-							box-shadow: 2px 2px 0 $contentbg;
-						}
-
-						&::after {
-							box-shadow: -2px 2px 0 $contentbg;
-						}
+						border-bottom: 2px solid $darkgraybg;
 					}
-
-					&::before,
-					&::after {
-						border: 1px solid darken( $secondary, 10% );
-						position: absolute;
-						bottom: -1px;
-						width: 5px;
-						height: 5px;
-						content: ' ';
-					}
-
-					&::before {
-						left: -6px;
-						border-bottom-right-radius: 4px;
-						border-width: 0 1px 1px 0;
-						box-shadow: 2px 2px 0 $secondary;
-					}
-
-					&::after {
-						right: -6px;
-						border-bottom-left-radius: 4px;
-						border-width: 0 0 1px 1px;
-						box-shadow: -2px 2px 0 $secondary;
-					}
-				}
-
-				&::before {
-					position: absolute;
-					content: ' ';
-					width: 100%;
-					bottom: 0;
-					left: 0;
-					border-bottom: 1px solid darken( $secondary, 10% );
-					z-index: 1;
 				}
 			}
 
@@ -320,9 +266,14 @@
 		border-radius: 100%;
 		background-color: $highlight;
 		color: $highlightext;
-		font-size: 0.857em;
 		-webkit-font-smoothing: antialiased;
 		z-index: 9;
+
+		&::before {
+			@include iconbefore( '\e003' );
+			margin-right: 0;
+			color: $contentbg;
+		}
 	}
 }
 
@@ -438,7 +389,7 @@
 						text-transform: capitalize;
 
 						.chef-icon {
-							&:before {
+							&::before {
 								content: '\e003';
 								font-family: 'RestaurantPress';
 								font-size: 14px;
@@ -509,15 +460,22 @@
 			}
 
 			.rp-chef-badge {
+				min-height: 3.236em;
+				min-width: 3.236em;
+				padding: 0.202em;
+				font-weight: 700;
 				position: absolute;
-				top: 0;
-				left: 20px;
-				color: #fff;
-				background: #c00;
-				font-size: 12px;
-				padding: 5px 10px;
 				text-align: center;
-				text-transform: capitalize;
+				line-height: 3.236;
+				top: -0.5em;
+				left: -0.5em;
+				margin: 0;
+				border-radius: 100%;
+				background-color: $highlight;
+				color: $highlightext;
+				font-size: 0.857em;
+				-webkit-font-smoothing: antialiased;
+				z-index: 9;
 
 				&::before,
 				&::after {
@@ -530,7 +488,7 @@
 					border-right: 18px solid transparent;
 				}
 
-				&:after {
+				&::after {
 					bottom: -10px;
 					border-left: 18px solid transparent;
 					border-top: 10px solid #c00;
@@ -540,58 +498,13 @@
 				}
 
 				.chef-icon {
-					&:before {
+					&::before {
 						content: '\e003';
 						font-family: 'RestaurantPress';
 						font-size: 14px;
 						color: #fff;
 						font-style: normal;
 					}
-				}
-			}
-
-			.image-magnify {
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				width: 85%;
-				height: 85%;
-				display: block;
-				opacity: 0;
-				visibility: hidden;
-				background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
-				transform: translate(-50%,-50%) scale(0.3);
-				transition: all 0.3s ease-in-out;
-
-				span {
-					position: absolute;
-					top: 50%;
-					left: 50%;
-					color: #fff;
-					width: 30px;
-					height: 30px;
-					display: block;
-					cursor: pointer;
-					font-size: 30px;
-					line-height: 30px;
-					text-align: center;
-					border-radius: 100%;
-					border: 1px solid #fff;
-					transform: translate(-50%,-50%);
-					transition: all 0.5s ease-in-out;
-
-					&:hover {
-						background: #d60e10;
-						border-color: #d60e10;
-					}
-				}
-			}
-
-			&:hover {
-				.image-magnify {
-					opacity: 1;
-					visibility: visible;
-					transform: translate(-50%,-50%) scale(1);
 				}
 			}
 		}
@@ -622,11 +535,11 @@
 				padding: 6px 10px 6px 5px;
 				background: #d60e10 none repeat scroll 0 0;
 
-				&:before {
+				&::before {
 					position: absolute;
 					top: 0;
 					left: -16px;
-					content: "";
+					content: '';
 					border-top: 36px solid transparent;
 					border-right: 16px solid #d60e10;
 					border-bottom: 0 solid transparent;
@@ -701,4 +614,52 @@ button.pswp__button--zoom:hover {
 			width: 60px;
 		}
 	}
+}
+
+/**
+ * Twenty Eleven specific styles
+ */
+#content.twentyeleven .restaurantpress-pagination a {
+	font-size: 1em;
+	line-height: 1;
+}
+
+/**
+ * Twenty Thirteen specific styles
+ */
+.single-food_menu .twentythirteen {
+	.entry-summary,
+	#reply-title,
+	#respond #commentform {
+		padding: 0;
+	}
+
+	p.stars {
+		clear: both;
+	}
+}
+
+.twentythirteen .restaurantpress-breadcrumb {
+	padding-top: 40px;
+}
+
+/**
+ * Twenty Fourteen specific styles
+ */
+.twentyfourteen ul.foods li.food {
+	margin-top: 0 !important;
+}
+
+/**
+ * Twenty Sixteen specific styles
+ */
+body:not( .search-results ) .twentysixteen .entry-summary {
+	color: inherit;
+	font-size: inherit;
+	line-height: inherit;
+}
+
+.twentysixteen .price ins {
+	background: inherit;
+	color: inherit;
 }

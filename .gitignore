@@ -5,6 +5,7 @@ project.properties
 .buildpath
 .project
 .settings*
+.vscode
 .idea
 
 # Grunt
