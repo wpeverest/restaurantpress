@@ -143,12 +143,12 @@
 		max-width: 474px;
 		margin: 0 auto;
 
-		.product .entry-summary {
+		.food_menu .entry-summary {
 			padding: 0 !important;
 			margin: 0 0 1.618em !important;
 		}
 
-		div.product.hentry.has-post-thumbnail {
+		div.food_menu.hentry.has-post-thumbnail {
 			margin-top: 0;
 		}
 	}
@@ -233,7 +233,7 @@
 		}
 	}
 
-	.single-product {
+	.single-food_menu {
 		.twentyfifteen {
 			.entry-summary {
 				padding: 0 !important;
@@ -310,24 +310,6 @@
 			}
 			.col-2 {
 				float: left;
-			}
-		}
-	}
-}
-
-// Mobile device 
-@media only screen and ( max-width: 600px ) {
-	.single-food_menu {
-		div.food,
-		#content div.food_menu {
-			div.images {
-				margin-bottom: 0;
-			}
-			
-			div.images,
-			div.entry-summary {
-				float: none;
-				width: 100%;
 			}
 		}
 	}
