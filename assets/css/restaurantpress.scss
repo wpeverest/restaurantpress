@@ -663,3 +663,23 @@ body:not( .search-results ) .twentysixteen .entry-summary {
 	background: inherit;
 	color: inherit;
 }
+
+
+// Listings
+table.restaurantpress-listing {
+	border: none;
+	width: 100%;
+	
+	tr {
+		border-bottom: 1px solid #e7e7e8;
+	}
+	
+	th {
+		font-weight: bold;
+		width: 30%;
+	}
+
+	td {
+		padding: 0.8em 1.2em;
+	}
+}
