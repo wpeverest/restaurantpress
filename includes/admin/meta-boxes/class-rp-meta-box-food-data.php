@@ -42,7 +42,7 @@ class RP_Meta_Box_Food_Data {
 				<div class="options_group pricing">
 					<?php
 						restaurantpress_wp_text_input( array(
-							'id'        => 'food_item_price', // _regular_price
+							'id'        => '_regular_price',
 							'label'     => __( 'Regular price', 'restaurantpress' ) . ' (Rs)',
 							'data_type' => 'price',
 						) );
@@ -147,13 +147,15 @@ class RP_Meta_Box_Food_Data {
 	 */
 	public static function save( $post_id ) {
 		// Add/Replace data to array
-		$menu_order = rp_clean( $_POST['menu_order'] );
-		$food_item_price = rp_clean( $_POST['food_item_price'] );
+		$menu_order      = rp_clean( $_POST['menu_order'] );
+		$sale_price      = rp_clean( $_POST['_sale_price'] );
+		$regular_price   = rp_clean( $_POST['_regular_price'] );
 		$chef_item_badge = isset( $_POST['chef_badge_item'] ) ? 'yes' : 'no';
 
 		// Save
 		update_post_meta( $post_id, 'menu_order', $menu_order );
-		update_post_meta( $post_id, 'food_item_price', $food_item_price );
+		update_post_meta( $post_id, '_sale_price', $sale_price );
+		update_post_meta( $post_id, '_regular_price', $regular_price );
 		update_post_meta( $post_id, 'chef_badge_item', $chef_item_badge );
 	}
 }

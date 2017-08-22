@@ -27,6 +27,29 @@ function rp_gallery_noscript() {
 add_action( 'wp_head', 'rp_gallery_noscript' );
 
 /**
+ * When the_post is called, put food data into a global.
+ *
+ * @param mixed $post
+ * @return RP_Food
+ */
+function rp_setup_food_data( $post ) {
+	unset( $GLOBALS['food'] );
+
+	if ( is_int( $post ) ) {
+		$post = get_post( $post );
+	}
+
+	if ( empty( $post->post_type ) || ! in_array( $post->post_type, array( 'food_menu' ) ) ) {
+		return;
+	}
+
+	$GLOBALS['food'] = rp_get_food( $post );
+
+	return $GLOBALS['food'];
+}
+add_action( 'the_post', 'rp_setup_food_data' );
+
+/**
  * Add body classes for RP pages.
  *
  * @param  array $classes

@@ -20,9 +20,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-global $post;
+global $post, $food;
 
-$attachment_ids = wp_parse_id_list( get_post_meta( $post->ID, '_food_image_gallery', true ) );
+$attachment_ids = $food->get_gallery_image_ids();
 
 if ( $attachment_ids && has_post_thumbnail() ) {
 	foreach ( $attachment_ids as $attachment_id ) {

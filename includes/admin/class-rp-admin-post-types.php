@@ -218,7 +218,7 @@ class RP_Admin_Post_Types {
 				get_inline_data( $post );
 			break;
 			case 'price' :
-				$the_price = get_post_meta( $post->ID, 'food_item_price', true );
+				$the_price = get_post_meta( $post->ID, '_regular_price', true );
 				echo $the_price ? '<span class="amount">' . $the_price . '</span>' : '<span class="na">&ndash;</span>';
 			break;
 			case 'food_menu_cat' :

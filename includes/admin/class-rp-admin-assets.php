@@ -74,8 +74,9 @@ class RP_Admin_Assets {
 
 		// Register Scripts
 		wp_register_script( 'restaurantpress-admin', RP()->plugin_url() . '/assets/js/admin/admin' . $suffix . '.js', array( 'jquery', 'jquery-ui-sortable', 'jquery-ui-widget', 'jquery-ui-core', 'jquery-tiptip' ), RP_VERSION );
-		wp_register_script( 'rp-admin-meta-boxes', RP()->plugin_url() . '/assets/js/admin/meta-boxes' . $suffix . '.js', array( 'jquery', 'jquery-ui-datepicker', 'jquery-ui-sortable', 'jquery-tiptip', 'rp-enhanced-select' ), RP_VERSION );
 		wp_register_script( 'jquery-tiptip', RP()->plugin_url() . '/assets/js/jquery-tiptip/jquery.tipTip' . $suffix . '.js', array( 'jquery' ), RP_VERSION, true );
+		wp_register_script( 'accounting', RP()->plugin_url() . '/assets/js/accounting/accounting' . $suffix . '.js', array( 'jquery' ), '0.4.2' );
+		wp_register_script( 'rp-admin-meta-boxes', RP()->plugin_url() . '/assets/js/admin/meta-boxes' . $suffix . '.js', array( 'jquery', 'jquery-ui-datepicker', 'jquery-ui-sortable', 'jquery-tiptip', 'accounting', 'rp-enhanced-select' ), RP_VERSION );
 		wp_register_script( 'selectWoo', RP()->plugin_url() . '/assets/js/selectWoo/selectWoo.full' . $suffix . '.js', array( 'jquery' ), '1.0.0' );
 		wp_register_script( 'rp-enhanced-select', RP()->plugin_url() . '/assets/js/admin/enhanced-select' . $suffix . '.js', array( 'jquery', 'selectWoo' ), RP_VERSION );
 		wp_localize_script( 'rp-enhanced-select', 'rp_enhanced_select_params', array(
@@ -97,11 +98,21 @@ class RP_Admin_Assets {
 		if ( in_array( $screen_id, rp_get_screen_ids() ) ) {
 			wp_enqueue_script( 'iris' );
 			wp_enqueue_script( 'restaurantpress-admin' );
+			wp_enqueue_script( 'rp-enhanced-select' );
 			wp_enqueue_script( 'jquery-ui-sortable' );
 			wp_enqueue_script( 'jquery-ui-autocomplete' );
 
+			$locale  = localeconv();
+			$decimal = isset( $locale['decimal_point'] ) ? $locale['decimal_point'] : '.';
+
 			$params = array(
-				'ajax_url' => admin_url( 'admin-ajax.php' )
+				/* translators: %s: decimal */
+				'i18n_decimal_error'                => sprintf( __( 'Please enter in decimal (%s) format without thousand separators.', 'restaurantpress' ), $decimal ),
+				/* translators: %s: price decimal separator */
+				'i18n_mon_decimal_error'            => sprintf( __( 'Please enter in monetary decimal (%s) format without thousand separators and currency symbols.', 'restaurantpress' ), rp_get_price_decimal_separator() ),
+				'i18_sale_less_than_regular_error'  => __( 'Please enter in a value less than the regular price.', 'restaurantpress' ),
+				'decimal_point'                     => $decimal,
+				'mon_decimal_point'                 => rp_get_price_decimal_separator(),
 			);
 
 			wp_localize_script( 'restaurantpress-admin', 'restaurantpress_admin', $params );
