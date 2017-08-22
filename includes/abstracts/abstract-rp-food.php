@@ -78,7 +78,7 @@ class RP_Food {
 	 * @return string price
 	 */
 	public function get_price() {
-		return $this->get_sale_price() ? $this->get_sale_price() : $this->get_regular_price();
+		return get_post_meta( $this->get_id(), '_price', true );
 	}
 
 	/**

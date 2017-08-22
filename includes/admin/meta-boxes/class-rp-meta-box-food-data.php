@@ -158,9 +158,10 @@ class RP_Meta_Box_Food_Data {
 		}
 
 		// Save
-		update_post_meta( $post_id, 'menu_order', $menu_order );
-		update_post_meta( $post_id, '_sale_price', $sale_price );
+		update_post_meta( $post_id, '_price', $sale_price ? $sale_price : $regular_price );
 		update_post_meta( $post_id, '_regular_price', $regular_price );
+		update_post_meta( $post_id, '_sale_price', $sale_price );
+		update_post_meta( $post_id, 'menu_order', $menu_order );
 		update_post_meta( $post_id, 'chef_badge_item', $chef_item_badge );
 	}
 }
