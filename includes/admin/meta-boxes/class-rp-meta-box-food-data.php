@@ -152,6 +152,11 @@ class RP_Meta_Box_Food_Data {
 		$regular_price   = rp_clean( $_POST['_regular_price'] );
 		$chef_item_badge = isset( $_POST['chef_badge_item'] ) ? 'yes' : 'no';
 
+		// Prevent regular price being lower.
+		if ( $sale_price >= $regular_price ) {
+			$sale_price = '';
+		}
+
 		// Save
 		update_post_meta( $post_id, 'menu_order', $menu_order );
 		update_post_meta( $post_id, '_sale_price', $sale_price );
