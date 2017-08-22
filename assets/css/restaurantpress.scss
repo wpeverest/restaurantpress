@@ -89,7 +89,7 @@
 			}
 
 			.restaurantpress-food-gallery__wrapper {
-				transition: all cubic-bezier(0.795, -0.035, 0.000, 1.000) .5s;
+				transition: all cubic-bezier(0.795, -0.035, 0, 1) 0.5s;
 			}
 
 			.restaurantpress-food-gallery__wrapper .zoomImg {
@@ -103,8 +103,8 @@
 
 			.restaurantpress-food-gallery__trigger {
 				position: absolute;
-				top: .5em;
-				right: .5em;
+				top: 0.5em;
+				right: 0.5em;
 				font-size: 2em;
 				z-index: 9;
 				width: 36px;
@@ -114,8 +114,8 @@
 				border-radius: 100%;
 				box-sizing: content-box;
 
-				&:before {
-					content: "";
+				&::before {
+					content: '';
 					display: block;
 					width: 10px;
 					height: 10px;
@@ -127,8 +127,8 @@
 					box-sizing: content-box;
 				}
 
-				&:after {
-					content: "";
+				&::after {
+					content: '';
 					display: block;
 					width: 2px;
 					height: 8px;
@@ -156,7 +156,7 @@
 
 					img {
 						cursor: pointer;
-						opacity: .5;
+						opacity: 0.5;
 						margin: 0;
 
 						&.flex-active,
@@ -460,22 +460,15 @@
 			}
 
 			.rp-chef-badge {
-				min-height: 3.236em;
-				min-width: 3.236em;
-				padding: 0.202em;
-				font-weight: 700;
 				position: absolute;
+				top: 0;
+				left: 20px;
+				color: #fff;
+				background: #c00;
+				font-size: 12px;
+				padding: 5px 10px;
 				text-align: center;
-				line-height: 3.236;
-				top: -0.5em;
-				left: -0.5em;
-				margin: 0;
-				border-radius: 100%;
-				background-color: $highlight;
-				color: $highlightext;
-				font-size: 0.857em;
-				-webkit-font-smoothing: antialiased;
-				z-index: 9;
+				text-transform: capitalize;
 
 				&::before,
 				&::after {
@@ -505,6 +498,51 @@
 						color: #fff;
 						font-style: normal;
 					}
+				}
+			}
+
+			.image-magnify {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 85%;
+				height: 85%;
+				display: block;
+				opacity: 0;
+				visibility: hidden;
+				background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+				transform: translate(-50%, -50%) scale(0.3);
+				transition: all 0.3s ease-in-out;
+
+				span {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					color: #fff;
+					width: 30px;
+					height: 30px;
+					display: block;
+					cursor: pointer;
+					font-size: 30px;
+					line-height: 30px;
+					text-align: center;
+					border-radius: 100%;
+					border: 1px solid #fff;
+					transform: translate(-50%, -50%);
+					transition: all 0.5s ease-in-out;
+
+					&:hover {
+						background: #d60e10;
+						border-color: #d60e10;
+					}
+				}
+			}
+
+			&:hover {
+				.image-magnify {
+					opacity: 1;
+					visibility: visible;
+					transform: translate(-50%, -50%) scale(1);
 				}
 			}
 		}
