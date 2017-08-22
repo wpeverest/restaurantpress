@@ -78,10 +78,10 @@ class RP_Template_Loader {
 			if ( is_tax( 'food_menu_cat' ) ) {
 				$default_file = 'taxonomy-' . $term->taxonomy . '.php';
 			} else {
-				$default_file = 'archive-food_menu.php';
+				$default_file = 'archive-food.php';
 			}
 		} elseif ( is_post_type_archive( 'food_menu' ) ) {
-			$default_file = 'archive-food_menu.php';
+			$default_file = 'archive-food.php';
 		} else {
 			$default_file = '';
 		}
