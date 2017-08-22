@@ -62,7 +62,7 @@ class RP_Settings_General extends RP_Settings_Page {
 				'desc'     => __( 'This controls the position of the currency symbol.', 'restaurantpress' ),
 				'id'       => 'restaurantpress_currency_pos',
 				'class'    => 'rp-enhanced-select',
-				'default'  => 'left',
+				'default'  => 'left_space',
 				'type'     => 'select',
 				'options'  => array(
 					'left'        => __( 'Left', 'restaurantpress' ) . ' (' . get_restaurantpress_currency_symbol() . '99.99)',
