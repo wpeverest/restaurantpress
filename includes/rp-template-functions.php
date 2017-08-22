@@ -171,7 +171,7 @@ if ( ! function_exists( 'restaurantpress_photoswipe' ) ) {
 	 * @subpackage Food
 	 */
 	function restaurantpress_photoswipe() {
-		if ( current_theme_supports( 'rp-food-gallery-lightbox' ) ) {
+		if ( 'yes' === get_option( 'restaurantpress_enable_lightbox' ) ) {
 			rp_get_template( 'single-food/photoswipe.php' );
 		}
 	}
