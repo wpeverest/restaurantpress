@@ -158,21 +158,40 @@ class RP_Settings_Foods extends RP_Settings_Page {
 				array( 'type' => 'sectionend', 'id' => 'color_options' ),
 
 				array(
-					'title' => __( 'Lightbox options', 'restaurantpress' ),
+					'title' => __( 'Gallery options', 'restaurantpress' ),
 					'type'  => 'title',
-					'id'    => 'image_options'
+					'id'    => 'gallery_options'
 				),
 
 				array(
-					'title'    => __( 'Food Lightbox', 'restaurantpress' ),
-					'desc'     => __( 'Enable Lightbox for food images', 'restaurantpress' ),
-					'id'       => 'restaurantpress_enable_lightbox',
-					'default'  => 'yes',
-					'desc_tip' => __( 'Include RestaurantPress\'s lightbox. Food images will open in a lightbox.', 'restaurantpress' ),
-					'type'     => 'checkbox'
+					'title'           => __( 'Enable features', 'restaurantpress' ),
+					'desc'            => __( 'Enable gallery zoom', 'restaurantpress' ),
+					'id'              => 'restaurantpress_enable_gallery_zoom',
+					'default'         => 'yes',
+					'type'            => 'checkbox',
+					'checkboxgroup'   => 'start',
+					'show_if_checked' => 'option',
 				),
 
-				array( 'type' => 'sectionend', 'id' => 'image_options' )
+				array(
+					'desc'            => __( 'Enable gallery slider', 'restaurantpress' ),
+					'id'              => 'restaurantpress_enable_gallery_slider',
+					'default'         => 'yes',
+					'type'            => 'checkbox',
+					'checkboxgroup'   => '',
+					'autoload'        => false,
+				),
+
+				array(
+					'desc'            => __( 'Enable gallery lightbox', 'restaurantpress' ),
+					'id'              => 'restaurantpress_enable_gallery_lightbox',
+					'default'         => 'yes',
+					'type'            => 'checkbox',
+					'checkboxgroup'   => 'end',
+					'autoload'        => false,
+				),
+
+				array( 'type' => 'sectionend', 'id' => 'gallery_options' )
 
 			) );
 		}

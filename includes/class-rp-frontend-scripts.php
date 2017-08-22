@@ -240,13 +240,13 @@ class RP_Frontend_Scripts {
 
 		// Load gallery scripts on food pages only if supported.
 		if ( is_food_menu() || is_group_menu_page() || ( ! empty( $post->post_content ) && strstr( $post->post_content, '[restaurantpress_menu' ) ) ) {
-			if ( 'yes' === get_option( 'restaurantpress_enable_lightbox' ) ) {
+			if ( 'yes' === get_option( 'restaurantpress_enable_gallery_zoom' ) ) {
 				self::enqueue_script( 'zoom' );
 			}
-			if ( 'yes' === get_option( 'restaurantpress_enable_lightbox' ) ) {
+			if ( 'yes' === get_option( 'restaurantpress_enable_gallery_slider' ) ) {
 				self::enqueue_script( 'flexslider' );
 			}
-			if ( 'yes' === get_option( 'restaurantpress_enable_lightbox' ) ) {
+			if ( 'yes' === get_option( 'restaurantpress_enable_gallery_lightbox' ) ) {
 				self::enqueue_script( 'photoswipe-ui-default' );
 				self::enqueue_style( 'photoswipe-default-skin' );
 				add_action( 'wp_footer', 'restaurantpress_photoswipe' );
