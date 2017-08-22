@@ -15,12 +15,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Include core functions (available in both admin and frontend).
-include( RP_ABSPATH . 'includes/functions-rp-conditional.php' );
-include( RP_ABSPATH . 'includes/functions-rp-deprecated.php' );
-include( RP_ABSPATH . 'includes/functions-rp-formatting.php' );
-include( RP_ABSPATH . 'includes/functions-rp-food.php' );
-include( RP_ABSPATH . 'includes/functions-rp-term.php' );
-include( RP_ABSPATH . 'includes/functions-rp-widget.php' );
+include( RP_ABSPATH . 'includes/rp-conditional-functions.php' );
+include( RP_ABSPATH . 'includes/rp-deprecated-functions.php' );
+include( RP_ABSPATH . 'includes/rp-formatting-functions.php' );
+include( RP_ABSPATH . 'includes/rp-food-functions.php' );
+include( RP_ABSPATH . 'includes/rp-term-functions.php' );
+include( RP_ABSPATH . 'includes/rp-widget-functions.php' );
 
 /**
  * Get template part (for templates like the layout-loop).
