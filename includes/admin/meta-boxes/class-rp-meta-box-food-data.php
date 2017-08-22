@@ -60,7 +60,7 @@ class RP_Meta_Box_Food_Data {
 				<div class="options_group">
 					<?php
 						restaurantpress_wp_checkbox( array(
-							'id'      => 'chef_badge_item',
+							'id'      => '_chef_flash',
 							'label'   => __( 'Enable chef flash', 'restaurantpress' ),
 							'cbvalue' => 'yes',
 						) );
@@ -147,21 +147,21 @@ class RP_Meta_Box_Food_Data {
 	 */
 	public static function save( $post_id ) {
 		// Add/Replace data to array
-		$menu_order      = rp_clean( $_POST['menu_order'] );
-		$sale_price      = rp_clean( $_POST['_sale_price'] );
-		$regular_price   = rp_clean( $_POST['_regular_price'] );
-		$chef_item_badge = isset( $_POST['chef_badge_item'] ) ? 'yes' : 'no';
+		$sale_price    = rp_clean( $_POST['_sale_price'] );
+		$regular_price = rp_clean( $_POST['_regular_price'] );
+		$menu_order    = rp_clean( $_POST['menu_order'] );
+		$chef_flash    = isset( $_POST['_chef_flash'] ) ? 'yes' : 'no';
 
 		// Prevent regular price being lower.
 		if ( $sale_price >= $regular_price ) {
 			$sale_price = '';
 		}
 
-		// Save
+		// Save mata data.
 		update_post_meta( $post_id, '_price', $sale_price ? $sale_price : $regular_price );
 		update_post_meta( $post_id, '_regular_price', $regular_price );
 		update_post_meta( $post_id, '_sale_price', $sale_price );
 		update_post_meta( $post_id, 'menu_order', $menu_order );
-		update_post_meta( $post_id, 'chef_badge_item', $chef_item_badge );
+		update_post_meta( $post_id, '_chef_flash', $chef_flash );
 	}
 }
