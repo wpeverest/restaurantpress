@@ -43,20 +43,6 @@ class RP_Frontend_Scripts {
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'load_scripts' ) );
 		add_action( 'wp_print_scripts', array( __CLASS__, 'localize_printed_scripts' ), 5 );
 		add_action( 'wp_print_footer_scripts', array( __CLASS__, 'localize_printed_scripts' ), 5 );
-		add_action( 'setup_theme', array( __CLASS__, 'add_default_theme_support' ) );
-	}
-
-	/**
-	 * Add theme support for default WP themes.
-	 *
-	 * @since 1.4.0
-	 */
-	public static function add_default_theme_support() {
-		if ( in_array( get_option( 'template' ), rp_get_core_supported_themes() ) ) {
-			add_theme_support( 'rp-food-gallery-zoom' );
-			add_theme_support( 'rp-food-gallery-lightbox' );
-			add_theme_support( 'rp-food-gallery-slider' );
-		}
 	}
 
 	/**
@@ -254,18 +240,16 @@ class RP_Frontend_Scripts {
 
 		// Load gallery scripts on food pages only if supported.
 		if ( is_food_menu() || is_group_menu_page() || ( ! empty( $post->post_content ) && strstr( $post->post_content, '[restaurantpress_menu' ) ) ) {
-			if ( 'yes' === get_option( 'restaurantpress_enable_lightbox' ) ) {
-				if ( current_theme_supports( 'rp-food-gallery-zoom' ) ) {
-					self::enqueue_script( 'zoom' );
-				}
-				if ( current_theme_supports( 'rp-food-gallery-slider' ) ) {
-					self::enqueue_script( 'flexslider' );
-				}
-				if ( current_theme_supports( 'rp-food-gallery-lightbox' ) ) {
-					self::enqueue_script( 'photoswipe-ui-default' );
-					self::enqueue_style( 'photoswipe-default-skin' );
-					add_action( 'wp_footer', 'restaurantpress_photoswipe' );
-				}
+			if ( 'yes' === get_option( 'restaurantpress_enable_gallery_zoom' ) ) {
+				self::enqueue_script( 'zoom' );
+			}
+			if ( 'yes' === get_option( 'restaurantpress_enable_gallery_slider' ) ) {
+				self::enqueue_script( 'flexslider' );
+			}
+			if ( 'yes' === get_option( 'restaurantpress_enable_gallery_lightbox' ) ) {
+				self::enqueue_script( 'photoswipe-ui-default' );
+				self::enqueue_style( 'photoswipe-default-skin' );
+				add_action( 'wp_footer', 'restaurantpress_photoswipe' );
 			}
 			self::enqueue_script( 'rp-single-food' );
 		}
@@ -364,8 +348,8 @@ class RP_Frontend_Scripts {
 						'animationLoop'  => false, // Breaks photoswipe pagination if true.
 						'allowOneSlide'  => false,
 					) ),
-					'zoom_enabled'       => apply_filters( 'restaurantpress_single_food_zoom_enabled', get_theme_support( 'rp-food-gallery-zoom' ) ),
-					'photoswipe_enabled' => apply_filters( 'restaurantpress_single_food_photoswipe_enabled', get_theme_support( 'rp-food-gallery-lightbox' ) ),
+					'zoom_enabled'       => apply_filters( 'restaurantpress_single_food_zoom_enabled', 'yes' === get_option( 'restaurantpress_enable_lightbox' ) ),
+					'photoswipe_enabled' => apply_filters( 'restaurantpress_single_food_photoswipe_enabled', 'yes' === get_option( 'restaurantpress_enable_lightbox' ) ),
 					'photoswipe_options' => apply_filters( 'restaurantpress_single_food_photoswipe_options', array(
 						'shareEl'               => false,
 						'closeOnScroll'         => false,
@@ -373,7 +357,7 @@ class RP_Frontend_Scripts {
 						'hideAnimationDuration' => 0,
 						'showAnimationDuration' => 0,
 					) ),
-					'flexslider_enabled' => apply_filters( 'restaurantpress_single_food_flexslider_enabled', get_theme_support( 'rp-food-gallery-slider' ) ),
+					'flexslider_enabled' => apply_filters( 'restaurantpress_single_food_flexslider_enabled', 'yes' === get_option( 'restaurantpress_enable_lightbox' ) ),
 				);
 			break;
 		}

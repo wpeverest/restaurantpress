@@ -20,14 +20,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-global $post;
+global $post, $food;
 
 ?>
 <div class="food_meta">
 
 	<?php do_action( 'restaurantpress_product_meta_start' ); ?>
 
-	<?php echo rp_get_food_category_list( $post->ID, ', ', '<span class="posted_in">' . _n( 'Category:', 'Categories:', count( _rp_get_food_terms( $post->ID ) ), 'restaurantpress' ) . ' ', '</span>' ); ?>
+	<?php echo rp_get_food_category_list( $food->get_id(), ', ', '<span class="posted_in">' . _n( 'Category:', 'Categories:', count( $food->get_category_ids() ), 'restaurantpress' ) . ' ', '</span>' ); ?>
 
 	<?php do_action( 'restaurantpress_product_meta_end' ); ?>
 

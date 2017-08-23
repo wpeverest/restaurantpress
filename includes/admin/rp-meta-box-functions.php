@@ -30,6 +30,10 @@ function restaurantpress_wp_text_input( $field ) {
 	$data_type              = empty( $field['data_type'] ) ? '' : $field['data_type'];
 
 	switch ( $data_type ) {
+		case 'price' :
+			$field['class'] .= ' rp_input_price';
+			$field['value']  = rp_format_localized_price( $field['value'] );
+			break;
 		case 'url' :
 			$field['class'] .= ' rp_input_url';
 			$field['value']  = esc_url( $field['value'] );

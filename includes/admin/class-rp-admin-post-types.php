@@ -165,34 +165,24 @@ class RP_Admin_Post_Types {
 	}
 
 	/**
-	 * Returns the main menu image.
-	 * @param  string $size (default: 'food_thumbnail')
-	 * @return string
-	 */
-	private function get_image( $size = 'food_thumbnail', $attr = array() ) {
-		global $post;
-
-		if ( has_post_thumbnail( $post->ID ) ) {
-			$image = get_the_post_thumbnail( $post->ID, $size, $attr );
-		} elseif ( ( $parent_id = wp_get_post_parent_id( $post->ID ) ) && has_post_thumbnail( $parent_id ) ) {
-			$image = get_the_post_thumbnail( $parent_id, $size, $attr );
-		} else {
-			$image = rp_placeholder_img( $size );
-		}
-
-		return $image;
-	}
-
-	/**
 	 * Output custom columns for menu.
 	 * @param string $column
 	 */
 	public function render_food_menu_columns( $column ) {
-		global $post, $the_food_menu;
+		global $post, $the_food;
+
+		if ( empty( $the_food ) || $the_food->get_id() != $post->ID ) {
+			$the_food = rp_get_food( $post );
+		}
+
+		// Only continue if we have a product.
+		if ( empty( $the_food ) ) {
+			return;
+		}
 
 		switch ( $column ) {
 			case 'thumb' :
-				echo '<a href="' . get_edit_post_link( $post->ID ) . '">' . $this->get_image( 'thumbnail' ) . '</a>';
+				echo '<a href="' . get_edit_post_link( $post->ID ) . '">' . $the_food->get_image( 'thumbnail' ) . '</a>';
 			break;
 			case 'name' :
 				$edit_link = get_edit_post_link( $post->ID );
@@ -213,14 +203,11 @@ class RP_Admin_Post_Types {
 					echo apply_filters( 'the_excerpt', $post->post_excerpt );
 				}
 
-				$this->_render_food_menu_row_actions( $post, $title );
-
 				get_inline_data( $post );
 			break;
 			case 'price' :
-				$the_price = get_post_meta( $post->ID, 'food_item_price', true );
-				echo $the_price ? '<span class="amount">' . $the_price . '</span>' : '<span class="na">&ndash;</span>';
-			break;
+				echo $the_food->get_price_html() ? $the_food->get_price_html() : '<span class="na">&ndash;</span>';
+				break;
 			case 'food_menu_cat' :
 				if ( ! $terms = get_the_terms( $post->ID, $column ) ) {
 					echo '<span class="na">&ndash;</span>';
@@ -236,65 +223,6 @@ class RP_Admin_Post_Types {
 			default:
 				break;
 		}
-	}
-
-	/**
-	 * Render food_menu row actions for old version of WordPress.
-	 * Since WordPress 4.3 we don't have to build the row actions.
-	 *
-	 * @param WP_Post $post
-	 * @param string  $title
-	 */
-	private function _render_food_menu_row_actions( $post, $title ) {
-		global $wp_version;
-
-		if ( version_compare( $wp_version, '4.3-beta', '>=' ) ) {
-			return;
-		}
-
-		$post_type_object = get_post_type_object( $post->post_type );
-		$can_edit_post    = current_user_can( $post_type_object->cap->edit_post, $post->ID );
-
-		// Get actions
-		$actions = array();
-
-		if ( $can_edit_post && 'trash' != $post->post_status ) {
-			$actions['edit'] = '<a href="' . get_edit_post_link( $post->ID, true ) . '" title="' . esc_attr( __( 'Edit this item', 'restaurantpress' ) ) . '">' . __( 'Edit', 'restaurantpress' ) . '</a>';
-			$actions['inline hide-if-no-js'] = '<a href="#" class="editinline" title="' . esc_attr( __( 'Edit this item inline', 'restaurantpress' ) ) . '">' . __( 'Quick&nbsp;Edit', 'restaurantpress' ) . '</a>';
-		}
-		if ( current_user_can( $post_type_object->cap->delete_post, $post->ID ) ) {
-			if ( 'trash' == $post->post_status ) {
-				$actions['untrash'] = '<a title="' . esc_attr( __( 'Restore this item from the Trash', 'restaurantpress' ) ) . '" href="' . wp_nonce_url( admin_url( sprintf( $post_type_object->_edit_link . '&amp;action=untrash', $post->ID ) ), 'untrash-post_' . $post->ID ) . '">' . __( 'Restore', 'restaurantpress' ) . '</a>';
-			} elseif ( EMPTY_TRASH_DAYS ) {
-				$actions['trash'] = '<a class="submitdelete" title="' . esc_attr( __( 'Move this item to the Trash', 'restaurantpress' ) ) . '" href="' . get_delete_post_link( $post->ID ) . '">' . __( 'Trash', 'restaurantpress' ) . '</a>';
-			}
-
-			if ( 'trash' == $post->post_status || ! EMPTY_TRASH_DAYS ) {
-				$actions['delete'] = '<a class="submitdelete" title="' . esc_attr( __( 'Delete this item permanently', 'restaurantpress' ) ) . '" href="' . get_delete_post_link( $post->ID, '', true ) . '">' . __( 'Delete Permanently', 'restaurantpress' ) . '</a>';
-			}
-		}
-		if ( $post_type_object->public ) {
-			if ( in_array( $post->post_status, array( 'pending', 'draft', 'future' ) ) ) {
-				if ( $can_edit_post )
-					$actions['view'] = '<a href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post->ID ) ) ) . '" title="' . esc_attr( sprintf( __( 'Preview &#8220;%s&#8221;', 'restaurantpress' ), $title ) ) . '" rel="permalink">' . __( 'Preview', 'restaurantpress' ) . '</a>';
-			} elseif ( 'trash' != $post->post_status ) {
-				$actions['view'] = '<a href="' . get_permalink( $post->ID ) . '" title="' . esc_attr( sprintf( __( 'View &#8220;%s&#8221;', 'restaurantpress' ), $title ) ) . '" rel="permalink">' . __( 'View', 'restaurantpress' ) . '</a>';
-			}
-		}
-
-		$actions = apply_filters( 'post_row_actions', $actions, $post );
-
-		echo '<div class="row-actions">';
-
-		$i = 0;
-		$action_count = sizeof( $actions );
-
-		foreach ( $actions as $action => $link ) {
-			++$i;
-			( $i == $action_count ) ? $sep = '' : $sep = ' | ';
-			echo '<span class="' . $action . '">' . $link . $sep . '</span>';
-		}
-		echo '</div>';
 	}
 
 	/**
@@ -314,8 +242,6 @@ class RP_Admin_Post_Types {
 				_post_states( $post );
 
 				echo '</strong>';
-
-				$this->_render_food_group_row_actions( $post, $title );
 			break;
 			case 'group_id' :
 				echo '<span>' . $post->ID . '</span>';
@@ -324,57 +250,6 @@ class RP_Admin_Post_Types {
 				echo wp_kses_post( $post->post_excerpt );
 			break;
 		}
-	}
-
-	/**
-	 * Render food_group row actions for old version of WordPress.
-	 * Since WordPress 4.3 we don't have to build the row actions.
-	 *
-	 * @param WP_Post $post
-	 * @param string  $title
-	 */
-	private function _render_food_group_row_actions( $post, $title ) {
-		global $wp_version;
-
-		if ( version_compare( $wp_version, '4.3-beta', '>=' ) ) {
-			return;
-		}
-
-		$post_type_object = get_post_type_object( $post->post_type );
-
-		// Get actions
-		$actions = array();
-
-		if ( current_user_can( $post_type_object->cap->edit_post, $post->ID ) ) {
-			$actions['edit'] = '<a href="' . admin_url( sprintf( $post_type_object->_edit_link . '&amp;action=edit', $post->ID ) ) . '">' . __( 'Edit', 'restaurantpress' ) . '</a>';
-		}
-
-		if ( current_user_can( $post_type_object->cap->delete_post, $post->ID ) ) {
-
-			if ( 'trash' == $post->post_status ) {
-				$actions['untrash'] = "<a title='" . esc_attr( __( 'Restore this item from the Trash', 'restaurantpress' ) ) . "' href='" . wp_nonce_url( admin_url( sprintf( $post_type_object->_edit_link . '&amp;action=untrash', $post->ID ) ), 'untrash-post_' . $post->ID ) . "'>" . __( 'Restore', 'restaurantpress' ) . "</a>";
-			} elseif ( EMPTY_TRASH_DAYS ) {
-				$actions['trash'] = "<a class='submitdelete' title='" . esc_attr( __( 'Move this item to the Trash', 'restaurantpress' ) ) . "' href='" . get_delete_post_link( $post->ID ) . "'>" . __( 'Trash', 'restaurantpress' ) . "</a>";
-			}
-
-			if ( 'trash' == $post->post_status || ! EMPTY_TRASH_DAYS ) {
-				$actions['delete'] = "<a class='submitdelete' title='" . esc_attr( __( 'Delete this item permanently', 'restaurantpress' ) ) . "' href='" . get_delete_post_link( $post->ID, '', true ) . "'>" . __( 'Delete Permanently', 'restaurantpress' ) . "</a>";
-			}
-		}
-
-		$actions = apply_filters( 'post_row_actions', $actions, $post );
-
-		echo '<div class="row-actions">';
-
-		$i = 0;
-		$action_count = sizeof( $actions );
-
-		foreach ( $actions as $action => $link ) {
-			++$i;
-			( $i == $action_count ) ? $sep = '' : $sep = ' | ';
-			echo "<span class='$action'>$link$sep</span>";
-		}
-		echo '</div>';
 	}
 
 	/**

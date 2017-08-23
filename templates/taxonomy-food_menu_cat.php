@@ -1,8 +1,8 @@
 <?php
 /**
- * Single Food Chef Flash
+ * The Template for displaying foods in a food category. Simply includes the archive template
  *
- * This template can be overridden by copying it to yourtheme/restaurantpress/single-food/chef-flash.php.
+ * This template can be overridden by copying it to yourtheme/restaurantpress/taxonomy-food_menu.php.
  *
  * HOWEVER, on occasion RestaurantPress will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -20,13 +20,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-global $post, $food;
-
-?>
-<?php if ( $food->is_chef_enable() ) : ?>
-
-	<?php echo apply_filters( 'restaurantpress_chef_flash', '<span class="chef"><p class="screen-reader-text">' . esc_html__( 'Chef!', 'restaurantpress' ) . '</p></span>', $post, $food ); ?>
-
-<?php endif;
-
-/* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */
+rp_get_template( 'archive-food.php' );

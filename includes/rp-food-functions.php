@@ -15,6 +15,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Main function for returning foods, uses the RP_Food_Factory class.
+ *
+ * @param  mixed $the_food Post object or post ID of the food.
+ * @return RP_Food|null|false
+ */
+function rp_get_food( $the_food = false, $deprecated = array() ) {
+	if ( ! did_action( 'restaurantpress_init' ) ) {
+		/* translators: 1: rp_get_food 2: restaurantpress_init */
+		_doing_it_wrong( __FUNCTION__, sprintf( __( '%1$s should not be called before the %2$s action.', 'restaurantpress' ), 'rp_get_food', 'restaurantpress_init' ), '1.4' );
+		return false;
+	}
+
+	return RP()->food_factory->get_food( $the_food );
+}
+
+/**
  * Get the placeholder image URL.
  * @return string
  */

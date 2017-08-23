@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-global $post;
+global $post, $food;
 $columns           = apply_filters( 'restaurantpress_food_thumbnails_columns', 4 );
 $thumbnail_size    = apply_filters( 'restaurantpress_food_thumbnails_large_size', 'full' );
 $post_thumbnail_id = get_post_thumbnail_id( $post->ID );

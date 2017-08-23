@@ -49,6 +49,7 @@ class RP_Admin_Settings {
 			include_once( dirname( __FILE__ ) . '/settings/class-rp-settings-page.php' );
 
 			$settings[] = include( 'settings/class-rp-settings-general.php' );
+			$settings[] = include( 'settings/class-rp-settings-foods.php' );
 
 			self::$settings = apply_filters( 'restaurantpress_get_settings_pages', $settings );
 		}
@@ -400,7 +401,7 @@ class RP_Admin_Settings {
 				case 'checkbox' :
 
 					$option_value    = self::get_option( $value['id'], $value['default'] );
-					$visbility_class = array();
+					$visibility_class = array();
 
 					if ( ! isset( $value['hide_if_checked'] ) ) {
 						$value['hide_if_checked'] = false;
@@ -409,25 +410,25 @@ class RP_Admin_Settings {
 						$value['show_if_checked'] = false;
 					}
 					if ( 'yes' == $value['hide_if_checked'] || 'yes' == $value['show_if_checked'] ) {
-						$visbility_class[] = 'hidden_option';
+						$visibility_class[] = 'hidden_option';
 					}
 					if ( 'option' == $value['hide_if_checked'] ) {
-						$visbility_class[] = 'hide_options_if_checked';
+						$visibility_class[] = 'hide_options_if_checked';
 					}
 					if ( 'option' == $value['show_if_checked'] ) {
-						$visbility_class[] = 'show_options_if_checked';
+						$visibility_class[] = 'show_options_if_checked';
 					}
 
 					if ( ! isset( $value['checkboxgroup'] ) || 'start' == $value['checkboxgroup'] ) {
 						?>
-							<tr valign="top" class="<?php echo esc_attr( implode( ' ', $visbility_class ) ); ?>">
+							<tr valign="top" class="<?php echo esc_attr( implode( ' ', $visibility_class ) ); ?>">
 								<th scope="row" class="titledesc"><?php echo esc_html( $value['title'] ) ?></th>
 								<td class="forminp forminp-checkbox">
 									<fieldset>
 						<?php
 					} else {
 						?>
-							<fieldset class="<?php echo esc_attr( implode( ' ', $visbility_class ) ); ?>">
+							<fieldset class="<?php echo esc_attr( implode( ' ', $visibility_class ) ); ?>">
 						<?php
 					}
 
@@ -467,11 +468,11 @@ class RP_Admin_Settings {
 				// Image width settings
 				case 'image_width' :
 
-					$image_size       = str_replace( '_image_size', '', $value[ 'id' ] );
+					$image_size       = str_replace( '_image_size', '', $value['id'] );
 					$size             = rp_get_image_size( $image_size );
-					$width            = isset( $size[ 'width' ] ) ? $size[ 'width' ] : $value[ 'default' ][ 'width' ];
-					$height           = isset( $size[ 'height' ] ) ? $size[ 'height' ] : $value[ 'default' ][ 'height' ];
-					$crop             = isset( $size[ 'crop' ] ) ? $size[ 'crop' ] : $value[ 'default' ][ 'crop' ];
+					$width            = isset( $size['width'] ) ? $size['width'] : $value['default']['width'];
+					$height           = isset( $size['height'] ) ? $size['height'] : $value['default']['height'];
+					$crop             = isset( $size['crop'] ) ? $size['crop'] : $value['default']['crop'];
 					$disabled_attr    = '';
 					$disabled_message = '';
 
@@ -483,12 +484,9 @@ class RP_Admin_Settings {
 					?><tr valign="top">
 						<th scope="row" class="titledesc"><?php echo esc_html( $value['title'] ) ?> <?php echo $tooltip_html; echo $disabled_message; ?></th>
 						<td class="forminp image_width_settings">
-
 							<input name="<?php echo esc_attr( $value['id'] ); ?>[width]" <?php echo $disabled_attr; ?> id="<?php echo esc_attr( $value['id'] ); ?>-width" type="text" size="3" value="<?php echo $width; ?>" /> &times; <input name="<?php echo esc_attr( $value['id'] ); ?>[height]" <?php echo $disabled_attr; ?> id="<?php echo esc_attr( $value['id'] ); ?>-height" type="text" size="3" value="<?php echo $height; ?>" />px
-
-							<label><input name="<?php echo esc_attr( $value['id'] ); ?>[crop]" <?php echo $disabled_attr; ?> id="<?php echo esc_attr( $value['id'] ); ?>-crop" type="checkbox" value="1" <?php checked( 1, $crop ); ?> /> <?php _e( 'Hard Crop?', 'restaurantpress' ); ?></label>
-
-							</td>
+							<label><input name="<?php echo esc_attr( $value['id'] ); ?>[crop]" <?php echo $disabled_attr; ?> id="<?php echo esc_attr( $value['id'] ); ?>-crop" type="checkbox" value="1" <?php checked( 1, $crop ); ?> /> <?php _e( 'Hard crop?', 'restaurantpress' ); ?></label>
+						</td>
 					</tr><?php
 					break;
 

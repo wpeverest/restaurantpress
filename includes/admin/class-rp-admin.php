@@ -39,8 +39,8 @@ class RP_Admin {
 	 * Include any classes we need within admin.
 	 */
 	public function includes() {
-		include_once( dirname( __FILE__ ) . '/functions-rp-admin.php' );
-		include_once( dirname( __FILE__ ) . '/functions-rp-meta-box.php' );
+		include_once( dirname( __FILE__ ) . '/rp-admin-functions.php' );
+		include_once( dirname( __FILE__ ) . '/rp-meta-box-functions.php' );
 		include_once( dirname( __FILE__ ) . '/class-rp-admin-post-types.php' );
 		include_once( dirname( __FILE__ ) . '/class-rp-admin-taxonomies.php' );
 		include_once( dirname( __FILE__ ) . '/class-rp-admin-menus.php' );

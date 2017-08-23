@@ -69,7 +69,7 @@ class RP_Post_Types {
 					'assign_terms' => 'assign_food_menu_terms',
 				),
 				'rewrite'      => array(
-					'slug'         => _x( 'food-menu-category', 'slug', 'restaurantpress' ),
+					'slug'         => _x( 'food-category', 'slug', 'restaurantpress' ),
 					'with_front'   => false,
 					'hierarchical' => true,
 				),

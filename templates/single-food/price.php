@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-global $post;
+global $food;
 
 ?>
-<p class="price"><?php echo get_post_meta( $post->ID, 'food_item_price', true ); ?></p>
+<p class="price"><?php echo $food->get_price_html(); ?></p>

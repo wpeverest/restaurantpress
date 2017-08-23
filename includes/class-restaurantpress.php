@@ -35,6 +35,13 @@ final class RestaurantPress {
 	protected static $_instance = null;
 
 	/**
+	 * Food factory instance.
+	 *
+	 * @var RP_Food_Factory
+	 */
+	public $food_factory = null;
+
+	/**
 	 * Main RestaurantPress Instance.
 	 *
 	 * Ensure only one instance of RestaurantPress is loaded or can be loaded.
@@ -141,12 +148,18 @@ final class RestaurantPress {
 		include_once( RP_ABSPATH . 'includes/class-rp-autoloader.php' );
 
 		/**
+		 * Abstract classes.
+		 */
+		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-food.php' ); // Foods.
+
+		/**
 		 * Core classes.
 		 */
-		include_once( RP_ABSPATH . 'includes/functions-rp-core.php' );
+		include_once( RP_ABSPATH . 'includes/rp-core-functions.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-post-types.php' ); // Registers post types
 		include_once( RP_ABSPATH . 'includes/class-rp-install.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-ajax.php' );
+		include_once( RP_ABSPATH . 'includes/class-rp-food-factory.php' ); // Food factory.
 
 		if ( $this->is_request( 'admin' ) ) {
 			include_once( RP_ABSPATH . 'includes/admin/class-rp-admin.php' );
@@ -183,6 +196,9 @@ final class RestaurantPress {
 
 		// Set up localisation.
 		$this->load_plugin_textdomain();
+
+		// Load class instances.
+		$this->food_factory = new RP_Food_Factory(); // Food Factory to create new food instances.
 
 		// Init action.
 		do_action( 'restaurantpress_init' );
@@ -228,10 +244,12 @@ final class RestaurantPress {
 	 * Add RP Image sizes to WP.
 	 */
 	private function add_image_sizes() {
-		$food_grid	    = rp_get_image_size( 'food_grid' );
+		$food_grid      = rp_get_image_size( 'food_grid' );
+		$food_single    = rp_get_image_size( 'food_single' );
 		$food_thumbnail = rp_get_image_size( 'food_thumbnail' );
 
 		add_image_size( 'food_grid', $food_grid['width'], $food_grid['height'], $food_grid['crop'] );
+		add_image_size( 'food_single', $food_single['width'], $food_single['height'], $food_single['crop'] );
 		add_image_size( 'food_thumbnail', $food_thumbnail['width'], $food_thumbnail['height'], $food_thumbnail['crop'] );
 	}
 

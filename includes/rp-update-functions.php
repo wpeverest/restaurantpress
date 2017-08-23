@@ -77,3 +77,30 @@ function rp_update_131_db_version() {
 function rp_update_132_db_version() {
 	RP_Install::update_db_version( '1.3.2' );
 }
+
+function rp_update_140_chef_flash() {
+	global $wpdb;
+
+	// Update chef flash key.
+	$wpdb->update(
+		$wpdb->postmeta,
+		array(
+			'meta_key' => '_chef_flash',
+		),
+		array(
+			'meta_key' => 'chef_badge_item',
+		)
+	);
+}
+
+function rp_update_140_options() {
+	$restaurantpress_enable_lightbox = get_option( 'restaurantpress_enable_lightbox' );
+	if ( $restaurantpress_enable_lightbox ) {
+		update_option( 'restaurantpress_enable_gallery_lightbox', $restaurantpress_enable_lightbox );
+		delete_option( 'restaurantpress_enable_lightbox' );
+	}
+}
+
+function rp_update_140_db_version() {
+	RP_Install::update_db_version( '1.4.0' );
+}
