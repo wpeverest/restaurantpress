@@ -314,7 +314,7 @@ class RP_Admin_Post_Types {
 	}
 
 	/**
-	 * Set row actions for food group.
+	 * Set row actions for food and groups.
 	 *
 	 * @param  array $actions
 	 * @param  WP_Post $post
@@ -322,6 +322,10 @@ class RP_Admin_Post_Types {
 	 * @return array
 	 */
 	public function row_actions( $actions, $post ) {
+		if ( 'food_menu' === $post->post_type ) {
+			return array_merge( array( 'id' => 'ID: ' . $post->ID ), $actions );
+		}
+
 		if ( 'food_group' === $post->post_type ) {
 			if ( isset( $actions['inline hide-if-no-js'] ) ) {
 				unset( $actions['inline hide-if-no-js'] );
