@@ -144,6 +144,8 @@ class RP_Admin_Post_Types {
 		$columns['name']          = __( 'Name', 'restaurantpress' );
 		$columns['price']         = __( 'Price', 'restaurantpress' );
 		$columns['food_menu_cat'] = __( 'Categories', 'restaurantpress' );
+		$columns['food_menu_tag'] = __( 'Tags', 'restaurantpress' );
+		$columns['featured']      = '<span class="rp-featured parent-tips" data-tip="' . esc_attr__( 'Featured', 'restaurantpress' ) . '">' . __( 'Featured', 'restaurantpress' ) . '</span>';
 		$columns['date']          = __( 'Date', 'restaurantpress' );
 
 		return array_merge( $columns, $existing_columns );
@@ -209,6 +211,7 @@ class RP_Admin_Post_Types {
 				echo $the_food->get_price_html() ? $the_food->get_price_html() : '<span class="na">&ndash;</span>';
 				break;
 			case 'food_menu_cat' :
+			case 'food_menu_tag' :
 				if ( ! $terms = get_the_terms( $post->ID, $column ) ) {
 					echo '<span class="na">&ndash;</span>';
 				} else {
@@ -220,6 +223,16 @@ class RP_Admin_Post_Types {
 					echo implode( ', ', $termlist );
 				}
 			break;
+			case 'featured' :
+				$url = wp_nonce_url( admin_url( 'admin-ajax.php?action=restaurantpress_feature_food&food_id=' . $post->ID ), 'restaurantpress-feature-food' );
+				echo '<a href="' . esc_url( $url ) . '" aria-label="' . __( 'Toggle featured', 'restaurantpress' ) . '">';
+				if ( $the_food->is_featured() ) {
+					echo '<span class="rp-featured tips" data-tip="' . esc_attr__( 'Yes', 'restaurantpress' ) . '">' . __( 'Yes', 'restaurantpress' ) . '</span>';
+				} else {
+					echo '<span class="rp-featured not-featured tips" data-tip="' . esc_attr__( 'No', 'restaurantpress' ) . '">' . __( 'No', 'restaurantpress' ) . '</span>';
+				}
+				echo '</a>';
+				break;
 			default:
 				break;
 		}

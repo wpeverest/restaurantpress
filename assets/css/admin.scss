@@ -374,13 +374,52 @@ table.wp-list-table {
 		white-space: nowrap;
 	}
 
+	.column-handle {
+		width: 17px;
+	}
+
+	tbody {
+		td.column-handle {
+			cursor: move;
+			width: 17px;
+			text-align: center;
+			vertical-align: text-top;
+
+			&::before {
+				content: '\f333';
+				font-family: 'Dashicons';
+				text-align: center;
+				line-height: 1;
+				color: #999;
+				display: block;
+				width: 17px;
+				height: 100%;
+				margin: 4px 0 0;
+			}
+		}
+	}
+
 	.column-name {
 		width: 22%;
 	}
 
-	.column-price,
-	.column-group_id {
+	.column-group_id,
+	.column-food_menu_cat,
+	.column-food_menu_tag {
 		width: 11% !important;
+	}
+
+	.column-featured {
+		width: 48px;
+		text-align: left !important;
+	}
+
+	.manage-column.column-featured img {
+		padding-left: 2px;
+	}
+
+	.column-price .restaurantpress-price-suffix {
+		display: none;
 	}
 
 	img {
@@ -404,13 +443,28 @@ table.wp-list-table {
 		color: #999;
 	}
 
-	span.rp-image {
+	span.rp-image,
+	span.rp-featured {
 		@include ir();
 		margin: 0 auto;
 
 		&::before {
 			@include icon_dashicons( '\f128' );
 		}
+	}
+
+	span.rp-featured {
+		&::before {
+			content: '\f155';
+		}
+		&.not-featured::before {
+			content: '\f154';
+		}
+	}
+
+	td.column-featured span.rp-featured {
+		font-size: 1.6em;
+		cursor: pointer;
 	}
 }
 

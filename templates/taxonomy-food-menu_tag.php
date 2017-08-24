@@ -1,8 +1,8 @@
 <?php
 /**
- * The Template for displaying foods in a food category. Simply includes the archive template
+ * The Template for displaying products in a product category. Simply includes the archive template
  *
- * This template can be overridden by copying it to yourtheme/restaurantpress/taxonomy-food_menu_cat.php.
+ * This template can be overridden by copying it to yourtheme/restaurantpress/taxonomy-food_menu_tag.php.
  *
  * HOWEVER, on occasion RestaurantPress will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to

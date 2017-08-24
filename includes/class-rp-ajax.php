@@ -33,6 +33,7 @@ class RP_AJAX {
 	public static function add_ajax_events() {
 		// restaurantpress_EVENT => nopriv
 		$ajax_events = array(
+			'feature_food'           => false,
 			'json_search_categories' => false,
 			'rated'                  => false,
 		);
@@ -44,6 +45,22 @@ class RP_AJAX {
 				add_action( 'wp_ajax_nopriv_restaurantpress_' . $ajax_event, array( __CLASS__, $ajax_event ) );
 			}
 		}
+	}
+
+	/**
+	 * Toggle Featured status of a food from admin.
+	 */
+	public static function feature_food() {
+		if ( current_user_can( 'edit_food_menus' ) && check_admin_referer( 'restaurantpress-feature-food' ) ) {
+			$food = rp_get_food( absint( $_GET['food_id'] ) );
+
+			if ( $food ) {
+				update_post_meta( $food->get_id(), '_featured', 'yes' );
+			}
+		}
+
+		wp_safe_redirect( wp_get_referer() ? remove_query_arg( array( 'trashed', 'untrashed', 'deleted', 'ids' ), wp_get_referer() ) : admin_url( 'edit.php?post_type=food_menu' ) );
+		exit;
 	}
 
 	/**
