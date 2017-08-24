@@ -371,6 +371,11 @@
 					img {
 						box-shadow: none;
 						border-radius: 3px;
+
+						&.restaurantpress-placeholder {
+							max-width: 100px;
+							max-height: 100px;
+						}
 					}
 
 					.rp-chef-badge {
@@ -457,6 +462,10 @@
 				box-sizing: border-box;
 				margin: 0;
 				padding: 0;
+
+				&.restaurantpress-placeholder {
+					max-height: 245px;
+				}
 			}
 
 			.rp-chef-badge {
