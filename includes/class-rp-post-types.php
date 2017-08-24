@@ -76,6 +76,42 @@ class RP_Post_Types {
 			) )
 		);
 
+		register_taxonomy( 'food_menu_tag',
+			apply_filters( 'restaurantpress_taxonomy_objects_food_menu_tag', array( 'food_menu' ) ),
+			apply_filters( 'restaurantpress_taxonomy_args_food_menu_tag', array(
+				'hierarchical' => false,
+				'label'        => __( 'Tags', 'restaurantpress' ),
+				'labels'       => array(
+						'name'                       => __( 'Food tags', 'restaurantpress' ),
+						'singular_name'              => __( 'Tag', 'restaurantpress' ),
+						'menu_name'                  => _x( 'Tags', 'Admin menu name', 'restaurantpress' ),
+						'search_items'               => __( 'Search tags', 'restaurantpress' ),
+						'all_items'                  => __( 'All tags', 'restaurantpress' ),
+						'edit_item'                  => __( 'Edit tag', 'restaurantpress' ),
+						'update_item'                => __( 'Update tag', 'restaurantpress' ),
+						'add_new_item'               => __( 'Add new tag', 'restaurantpress' ),
+						'new_item_name'              => __( 'New tag name', 'restaurantpress' ),
+						'popular_items'              => __( 'Popular tags', 'restaurantpress' ),
+						'separate_items_with_commas' => __( 'Separate tags with commas', 'restaurantpress' ),
+						'add_or_remove_items'        => __( 'Add or remove tags', 'restaurantpress' ),
+						'choose_from_most_used'      => __( 'Choose from the most used tags', 'restaurantpress' ),
+						'not_found'                  => __( 'No tags found', 'restaurantpress' ),
+					),
+				'show_ui'      => true,
+				'query_var'    => true,
+				'capabilities' => array(
+					'manage_terms' => 'manage_food_menu_terms',
+					'edit_terms'   => 'edit_food_menu_terms',
+					'delete_terms' => 'delete_food_menu_terms',
+					'assign_terms' => 'assign_food_menu_terms',
+				),
+				'rewrite'               => array(
+					'slug'       => _x( 'food-tag', 'slug', 'restaurantpress' ),
+					'with_front' => false,
+				),
+			) )
+		);
+
 		do_action( 'restaurantpress_after_register_taxonomy' );
 	}
 
