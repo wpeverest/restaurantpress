@@ -29,6 +29,8 @@ global $post, $food;
 
 	<?php echo rp_get_food_category_list( $food->get_id(), ', ', '<span class="posted_in">' . _n( 'Category:', 'Categories:', count( $food->get_category_ids() ), 'restaurantpress' ) . ' ', '</span>' ); ?>
 
+	<?php echo rp_get_food_tag_list( $food->get_id(), ', ', '<span class="tagged_as">' . _n( 'Tag:', 'Tags:', count( $food->get_tag_ids() ), 'restaurantpress' ) . ' ', '</span>' ); ?>
+
 	<?php do_action( 'restaurantpress_product_meta_end' ); ?>
 
 </div>

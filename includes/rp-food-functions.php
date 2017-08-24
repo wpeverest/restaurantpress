@@ -71,3 +71,16 @@ function _rp_get_food_terms( $food_id ) {
 function rp_get_food_category_list( $food_id, $sep = ', ', $before = '', $after = '' ) {
 	return get_the_term_list( $food_id, 'food_menu_cat', $before, $sep, $after );
 }
+
+/**
+ * Returns the food tags in a list.
+ *
+ * @param int    $food_id
+ * @param string $sep (default: ', ').
+ * @param string $before (default: '').
+ * @param string $after (default: '').
+ * @return string
+ */
+function rp_get_food_tag_list( $food_id, $sep = ', ', $before = '', $after = '' ) {
+	return get_the_term_list( $food_id, 'food_menu_tag', $before, $sep, $after );
+}

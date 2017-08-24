@@ -127,6 +127,15 @@ class RP_Food {
 	}
 
 	/**
+	 * Get tag ids.
+	 *
+	 * @return array
+	 */
+	public function get_tag_ids() {
+		return get_the_terms( $this->get_id(), 'food_menu_tag' );
+	}
+
+	/**
 	 * Returns the gallery attachment ids.
 	 *
 	 * @return array
