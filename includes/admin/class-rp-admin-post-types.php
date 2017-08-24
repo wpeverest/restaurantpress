@@ -57,6 +57,9 @@ class RP_Admin_Post_Types {
 
 		// Show blank state
 		add_action( 'manage_posts_extra_tablenav', array( $this, 'maybe_render_blank_state' ) );
+
+		// Add a post display state for special RP pages.
+		add_filter( 'display_post_states', array( $this, 'add_display_post_states' ), 10, 2 );
 	}
 
 	/**
@@ -474,6 +477,20 @@ class RP_Admin_Post_Types {
 
 			echo '<style type="text/css">#posts-filter .wp-list-table, #posts-filter .tablenav.top, .tablenav.bottom .actions, .wrap .subsubsub  { display: none; } </style></div>';
 		}
+	}
+
+	/**
+	 * Add a post display state for special RP pages in the page list table.
+	 *
+	 * @param array   $post_states An array of post display states.
+	 * @param WP_Post $post        The current post object.
+	 */
+	public function add_display_post_states( $post_states, $post ) {
+		if ( has_shortcode( $post->post_content, 'restaurantpress_menu' ) ) {
+			$post_states['rp_page_for_group'] = __( 'Group Page', 'restaurantpress' );
+		}
+
+		return $post_states;
 	}
 }
 
