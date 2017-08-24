@@ -1,8 +1,8 @@
 <?php
 /**
- * Single Food Chef Flash
+ * Single Food Chef Badge
  *
- * This template can be overridden by copying it to yourtheme/restaurantpress/single-food/chef-flash.php.
+ * This template can be overridden by copying it to yourtheme/restaurantpress/single-food/chef-badge.php.
  *
  * HOWEVER, on occasion RestaurantPress will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -25,7 +25,7 @@ global $post, $food;
 ?>
 <?php if ( $food->is_chef_enable() ) : ?>
 
-	<?php echo apply_filters( 'restaurantpress_chef_flash', '<span class="chef"><p class="screen-reader-text">' . esc_html__( 'Chef!', 'restaurantpress' ) . '</p></span>', $post, $food ); ?>
+	<?php echo apply_filters( 'restaurantpress_chef_badge', '<span class="chef"><p class="screen-reader-text">' . esc_html__( 'Chef!', 'restaurantpress' ) . '</p></span>', $post, $food ); ?>
 
 <?php endif;
 

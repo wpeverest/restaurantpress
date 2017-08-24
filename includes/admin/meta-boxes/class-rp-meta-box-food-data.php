@@ -60,8 +60,8 @@ class RP_Meta_Box_Food_Data {
 				<div class="options_group">
 					<?php
 						restaurantpress_wp_checkbox( array(
-							'id'      => '_chef_flash',
-							'label'   => __( 'Enable chef flash', 'restaurantpress' ),
+							'id'      => '_chef_badge',
+							'label'   => __( 'Enable chef badge', 'restaurantpress' ),
 							'cbvalue' => 'yes',
 						) );
 					?>
@@ -151,7 +151,7 @@ class RP_Meta_Box_Food_Data {
 		$regular_price = rp_clean( $_POST['_regular_price'] );
 		$menu_order    = rp_clean( $_POST['menu_order'] );
 		$featured      = rp_bool_to_string( $_POST['_featured'] );
-		$chef_flash    = isset( $_POST['_chef_flash'] ) ? 'yes' : 'no';
+		$chef_flash    = isset( $_POST['_chef_badge'] ) ? 'yes' : 'no';
 
 		// Prevent regular price being lower.
 		if ( $sale_price >= $regular_price ) {
@@ -163,7 +163,7 @@ class RP_Meta_Box_Food_Data {
 		update_post_meta( $post_id, '_regular_price', $regular_price );
 		update_post_meta( $post_id, '_sale_price', $sale_price );
 		update_post_meta( $post_id, 'menu_order', $menu_order );
-		update_post_meta( $post_id, '_chef_flash', $chef_flash );
+		update_post_meta( $post_id, '_chef_badge', $chef_flash );
 		update_post_meta( $post_id, '_featured', $featured );
 	}
 }

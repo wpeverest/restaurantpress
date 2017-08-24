@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		/**
 		 * restaurantpress_before_single_food_summary hook.
 		 *
-		 * @hooked restaurantpress_show_food_chef_flash - 10
+		 * @hooked restaurantpress_show_food_chef_badge - 10
 		 * @hooked restaurantpress_show_food_images - 20
 		 */
 		do_action( 'restaurantpress_before_single_food_summary' );

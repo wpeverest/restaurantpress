@@ -89,7 +89,7 @@ class RP_Shortcodes {
 			$content    = get_the_content();
 			$permalink  = get_the_permalink();
 			$price      = get_post_meta( $post->ID, '_price', true );
-			$chef_badge = get_post_meta( $post->ID, '_chef_flash', true );
+			$chef_badge = get_post_meta( $post->ID, '_chef_badge', true );
 
 			$image_id   = get_post_thumbnail_id( $post ->ID );
 			$attach_url = wp_get_attachment_url( $image_id );

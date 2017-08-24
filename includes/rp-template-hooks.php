@@ -36,9 +36,9 @@ add_action( 'restaurantpress_after_main_content', 'restaurantpress_output_conten
 /**
  * Chef flashes.
  *
- * @see restaurantpress_show_food_chef_flash()
+ * @see restaurantpress_show_food_chef_badge()
  */
-add_action( 'restaurantpress_before_single_food_summary', 'restaurantpress_show_food_chef_flash', 10 );
+add_action( 'restaurantpress_before_single_food_summary', 'restaurantpress_show_food_chef_badge', 10 );
 
 /**
  * Sidebar.

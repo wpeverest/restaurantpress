@@ -114,7 +114,7 @@ class RP_Food {
 	 * @return string
 	 */
 	public function get_chef_badge() {
-		return get_post_meta( $this->get_id(), '_chef_flash', true );
+		return get_post_meta( $this->get_id(), '_chef_badge', true );
 	}
 
 	/**

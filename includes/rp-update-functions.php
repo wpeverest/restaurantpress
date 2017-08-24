@@ -78,14 +78,14 @@ function rp_update_132_db_version() {
 	RP_Install::update_db_version( '1.3.2' );
 }
 
-function rp_update_140_chef_flash() {
+function rp_update_140_chef_badge() {
 	global $wpdb;
 
 	// Update chef flash key.
 	$wpdb->update(
 		$wpdb->postmeta,
 		array(
-			'meta_key' => '_chef_flash',
+			'meta_key' => '_chef_badge',
 		),
 		array(
 			'meta_key' => 'chef_badge_item',
