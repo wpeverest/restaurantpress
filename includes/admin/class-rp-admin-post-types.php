@@ -27,6 +27,9 @@ class RP_Admin_Post_Types {
 		add_filter( 'post_updated_messages', array( $this, 'post_updated_messages' ) );
 		add_filter( 'bulk_post_updated_messages', array( $this, 'bulk_post_updated_messages' ), 10, 2 );
 
+		// Extra post data.
+		add_action( 'edit_form_top', array( $this, 'edit_form_top' ) );
+
 		// WP List table columns. Defined here so they are always available for events such as inline editing.
 		add_filter( 'manage_food_menu_posts_columns', array( $this, 'food_menu_columns' ) );
 		add_filter( 'manage_food_group_posts_columns', array( $this, 'food_group_columns' ) );
@@ -337,6 +340,14 @@ class RP_Admin_Post_Types {
 		}
 
 		return $actions;
+	}
+
+	/**
+	 * Output extra data on post forms.
+	 * @param WP_Post $post
+	 */
+	public function edit_form_top( $post ) {
+		echo '<input type="hidden" id="original_post_title" name="original_post_title" value="' . esc_attr( $post->post_title ) . '" />';
 	}
 
 	/**
