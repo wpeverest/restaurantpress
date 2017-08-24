@@ -1,4 +1,61 @@
+/*global restaurantpress_admin_meta_boxes */
 jQuery( function( $ ) {
+
+	// Scroll to first checked category - https://github.com/scribu/wp-category-checklist-tree/blob/d1c3c1f449e1144542efa17dde84a9f52ade1739/category-checklist-tree.php
+	$( function() {
+		$( '[id$="-all"] > ul.categorychecklist' ).each( function() {
+			var $list = $( this );
+			var $firstChecked = $list.find( ':checked' ).first();
+
+			if ( ! $firstChecked.length ) {
+				return;
+			}
+
+			var pos_first   = $list.find( 'input' ).position().top;
+			var pos_checked = $firstChecked.position().top;
+
+			$list.closest( '.tabs-panel' ).scrollTop( pos_checked - pos_first + 5 );
+		});
+	});
+
+	// Featured Visibility.
+	$( '#featured-visibility' ).find( '.edit-featured-visibility' ).click( function() {
+		if ( $( '#featured-visibility-select' ).is( ':hidden' ) ) {
+			$( '#featured-visibility-select' ).slideDown( 'fast' );
+			$( this ).hide();
+		}
+		return false;
+	});
+	$( '#featured-visibility' ).find( '.save-post-visibility' ).click( function() {
+		$( '#featured-visibility-select' ).slideUp( 'fast' );
+		$( '#featured-visibility' ).find( '.edit-featured-visibility' ).show();
+
+		var label = $( 'input[name=_featured]' ).data( 'no' );
+
+		if ( $( 'input[name=_featured]' ).is( ':checked' ) ) {
+			label = $( 'input[name=_featured]' ).data( 'yes' );
+			$( 'input[name=_featured]' ).attr( 'checked', 'checked' );
+		}
+
+		$( '#featured-visibility-display' ).text( label );
+		return false;
+	});
+	$( '#featured-visibility' ).find( '.cancel-post-visibility' ).click( function() {
+		$( '#featured-visibility-select' ).slideUp( 'fast' );
+		$( '#featured-visibility' ).find( '.edit-featured-visibility' ).show();
+
+		var label = $( 'input[name=_featured]' ).data( 'no' );
+
+		if ( 'yes' === $( '#current_featured' ).val() ) {
+			label = $( 'input[name=_featured]' ).data( 'yes' );
+			$( 'input[name=_featured]' ).attr( 'checked', 'checked' );
+		} else {
+			$( 'input[name=_featured]' ).removeAttr( 'checked' );
+		}
+
+		$( '#featured-visibility-display' ).text( label );
+		return false;
+	});
 
 	// Food gallery file uploads.
 	var food_gallery_frame;

@@ -150,6 +150,7 @@ class RP_Meta_Box_Food_Data {
 		$sale_price    = rp_clean( $_POST['_sale_price'] );
 		$regular_price = rp_clean( $_POST['_regular_price'] );
 		$menu_order    = rp_clean( $_POST['menu_order'] );
+		$featured      = rp_bool_to_string( $_POST['_featured'] );
 		$chef_flash    = isset( $_POST['_chef_flash'] ) ? 'yes' : 'no';
 
 		// Prevent regular price being lower.
@@ -163,5 +164,6 @@ class RP_Meta_Box_Food_Data {
 		update_post_meta( $post_id, '_sale_price', $sale_price );
 		update_post_meta( $post_id, 'menu_order', $menu_order );
 		update_post_meta( $post_id, '_chef_flash', $chef_flash );
+		update_post_meta( $post_id, '_featured', $featured );
 	}
 }

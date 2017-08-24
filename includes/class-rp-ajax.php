@@ -55,7 +55,7 @@ class RP_AJAX {
 			$food = rp_get_food( absint( $_GET['food_id'] ) );
 
 			if ( $food ) {
-				update_post_meta( $food->get_id(), '_featured', 'yes' );
+				update_post_meta( $food->get_id(), '_featured', rp_string_to_bool( ! $food->get_featured() ) );
 			}
 		}
 

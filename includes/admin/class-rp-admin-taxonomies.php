@@ -288,7 +288,7 @@ class RP_Admin_Taxonomies {
 	}
 
 	/**
-	 * Maintain term hierarchy when editing a food menu.
+	 * Maintain term hierarchy when editing a food.
 	 * @param  array $args
 	 * @return array
 	 */
@@ -296,7 +296,6 @@ class RP_Admin_Taxonomies {
 		if ( ! empty( $args['taxonomy'] ) && 'food_menu_cat' === $args['taxonomy'] ) {
 			$args['checked_ontop'] = false;
 		}
-
 		return $args;
 	}
 }

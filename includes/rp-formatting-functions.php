@@ -15,6 +15,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Converts a string (e.g. yes or no) to a bool.
+ * @since  1.4.0
+ * @param  string $string
+ * @return bool
+ */
+function rp_string_to_bool( $string ) {
+	return is_bool( $string ) ? $string : ( 'yes' === $string || 1 === $string || 'true' === $string || '1' === $string );
+}
+
+/**
+ * Converts a bool to a string.
+ * @since  1.4.0
+ * @param  bool $bool
+ * @return string yes or no
+ */
+function rp_bool_to_string( $bool ) {
+	if ( ! is_bool( $bool ) ) {
+		$bool = rp_string_to_bool( $bool );
+	}
+	return true === $bool ? 'yes' : 'no';
+}
+
+/**
  * Clean variables using sanitize_text_field. Arrays are cleaned recursively.
  * Non-scalar values are ignored.
  * @param string|array $var

@@ -156,7 +156,7 @@ class RP_Food {
 	 * @return bool
 	 */
 	public function is_featured() {
-		return 'yes' === $this->get_featured();
+		return true === rp_string_to_bool( $this->get_featured() );
 	}
 
 	/**
