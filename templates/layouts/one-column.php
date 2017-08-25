@@ -75,7 +75,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 									<div class="rp-content-wrapper">
 										<div class="rp-title-price-wrap">
 											<h4 class="rp-title">
-												<a href="<?php echo $food_menu['permalink']; ?>" class="restaurantpress-foodItem-link restaurantpress-loop-foodItem__link"><?php echo $food_menu['title']; ?></a>
+												<?php if ( 'yes' === get_option( 'restaurantpress_single_page_display' ) ) : ?>
+													<a href="<?php echo $food_menu['permalink']; ?>" class="restaurantpress-foodItem-link restaurantpress-loop-foodItem__link"><?php echo $food_menu['title']; ?></a>
+												<?php else : ?>
+													<?php echo $food_menu['title']; ?>
+												<?php endif; ?>
 											</h4>
 											<p class="price"><?php echo $food->get_price_html(); ?></p>
 										</div> <!--rp-title-price-wrap end -->

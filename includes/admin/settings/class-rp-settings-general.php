@@ -85,6 +85,25 @@ class RP_Settings_General extends RP_Settings_Page {
 			$settings = apply_filters( 'restaurantpress_food_settings', array(
 
 				array(
+					'title' => __( 'Single food page', 'restaurantpress' ),
+					'type' 	=> 'title',
+					'id' 	=> 'single_page_options',
+				),
+
+				array(
+					'title'   => __( 'Food page display', 'restaurantpress' ),
+					'desc'    => __( 'Enable single food page display', 'restaurantpress' ),
+					'id'      => 'restaurantpress_single_page_display',
+					'default' => 'no',
+					'type'    => 'checkbox',
+				),
+
+				array(
+					'type' 	=> 'sectionend',
+					'id' 	=> 'single_page_options',
+				),
+
+				array(
 					'title' => __( 'Food images', 'restaurantpress' ),
 					'type' 	=> 'title',
 					'desc' 	=> sprintf( __( 'These settings affect the display and dimensions of images in your menu catalog - the display on the front-end will still be affected by CSS styles. After changing these settings you may need to <a target="_blank" href="%s">regenerate your thumbnails</a>.', 'restaurantpress' ), 'https://wordpress.org/plugins/regenerate-thumbnails/' ),
