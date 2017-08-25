@@ -93,7 +93,7 @@ class RP_Settings_General extends RP_Settings_Page {
 
 				array(
 					'title'    => __( 'Food grid images', 'restaurantpress' ),
-					'desc'     => __( 'This size is usually used in food grid listings. (W x H)', 'woocommerce' ),
+					'desc'     => __( 'This size is usually used in food grid listings. (W x H)', 'restaurantpress' ),
 					'id'       => 'food_grid_image_size',
 					'css'      => '',
 					'type'     => 'image_width',
