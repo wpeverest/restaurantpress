@@ -64,7 +64,7 @@ $count = 1;
 									<?php if ( 'no' == $featured_image ) : ?>
 										<figure class ="rp-img">
 											<?php if ( 'yes' == $food_menu['popup'] ) : ?>
-												<a href="<?php echo $food_menu['permalink']; ?>" itemprop="image"><?php echo $food_menu['image']; ?></a>
+												<a href="<?php echo $food_menu['attach_url']; ?>" itemprop="image"><?php echo $food_menu['image']; ?></a>
 											<?php else : ?>
 												<?php echo $food_menu['image']; ?>
 											<?php endif; ?>
