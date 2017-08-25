@@ -76,7 +76,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 										<div class="rp-title-price-wrap">
 											<h4 class="rp-title"><?php echo $food_menu['title']; ?></h4>
 										</div> <!--rp-title-price-wrap end -->
-										<p class="rp-desc"><?php echo $food_menu['content']; ?></p>
+										<p class="rp-desc"><?php
+											if ( $food_menu['excerpt'] ) {
+												echo $food_menu['excerpt'];
+											} else {
+												echo rp_trim_string( $food_menu['content'], 255 );
+											}
+										?></p>
 										<?php if ( $food->get_price_html() ) : ?>
 											<span class="price"><?php echo $food->get_price_html(); ?></span>
 										<?php endif; ?>

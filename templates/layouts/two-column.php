@@ -80,7 +80,13 @@ $count = 1;
 												</h4>
 												<p class="price"><?php echo $food->get_price_html(); ?></p>
 											</div><!-- rp-title-price-wrap end -->
-											<p class="rp-desc"><?php echo $food_menu['content']; ?></p>
+											<p class="rp-desc"><?php
+												if ( $food_menu['excerpt'] ) {
+													echo $food_menu['excerpt'];
+												} else {
+													echo rp_trim_string( $food_menu['content'], 255 );
+												}
+											?></p>
 										</a>
 									</div><!--rp-content-wrapper end-->
 								</div> <!--rp-column-single-block end -->

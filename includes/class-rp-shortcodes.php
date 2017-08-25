@@ -88,6 +88,7 @@ class RP_Shortcodes {
 			$post_id    = $post->ID;
 			$title      = get_the_title();
 			$content    = get_the_content();
+			$excerpt    = get_the_excerpt();
 			$permalink  = get_the_permalink();
 			$price      = get_post_meta( $post->ID, '_price', true );
 			$chef_badge = get_post_meta( $post->ID, '_chef_badge', true );
@@ -111,6 +112,7 @@ class RP_Shortcodes {
 						'post_id'    => $post_id,
 						'title'      => $title,
 						'content'    => $content,
+						'excerpt'    => $excerpt,
 						'permalink'  => $permalink,
 						'image'      => $image,
 						'image_grid' => $image_grid,
