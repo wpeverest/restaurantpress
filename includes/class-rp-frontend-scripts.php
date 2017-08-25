@@ -312,6 +312,10 @@ class RP_Frontend_Scripts {
 			.restaurantpress .rp-content-wrapper {
 				border-bottom-color: %1$s !important;
 			}
+
+			.restaurantpress-group #restaurant-press-section a {
+				color: %1$s !important;
+			}
 		';
 
 		wp_add_inline_style( 'restaurantpress-general', sprintf( $inline_css, esc_attr( $primary_color ) ) );
