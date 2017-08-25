@@ -13,6 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! class_exists( 'RP_Admin_Post_Types', false ) ) :
+
 /**
  * RP_Admin_Post_Types Class
  *
@@ -494,4 +496,6 @@ class RP_Admin_Post_Types {
 	}
 }
 
-new RP_Admin_Post_Types();
+endif;
+
+return new RP_Admin_Post_Types();

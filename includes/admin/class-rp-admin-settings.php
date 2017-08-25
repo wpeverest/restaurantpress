@@ -13,6 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! class_exists( 'RP_Admin_Settings', false ) ) :
+
 /**
  * RP_Admin_Settings Class.
  */
@@ -636,3 +638,5 @@ class RP_Admin_Settings {
 		return true;
 	}
 }
+
+endif;

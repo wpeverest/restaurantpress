@@ -15,6 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! class_exists( 'RP_Admin_Assets', false ) ) :
+
 /**
  * RP_Admin_Assets Class
  */
@@ -152,4 +154,6 @@ class RP_Admin_Assets {
 	}
 }
 
-new RP_Admin_Assets();
+endif;
+
+return new RP_Admin_Assets();
