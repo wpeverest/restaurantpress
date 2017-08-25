@@ -217,3 +217,41 @@ function rp_trim_string( $string, $chars = 200, $suffix = '...' ) {
 	}
 	return $string;
 }
+
+/**
+ * Format decimal numbers ready for DB storage.
+ *
+ * Sanitize, remove decimals, and optionally round + trim off zeros.
+ *
+ * This function does not remove thousands - this should be done before passing a value to the function.
+ *
+ * @param  float|string $number Expects either a float or a string with a decimal separator only (no thousands)
+ * @param  mixed $dp number of decimal points to use, blank to use woocommerce_price_num_decimals, or false to avoid all rounding.
+ * @param  bool $trim_zeros from end of string
+ * @return string
+ */
+function rp_format_decimal( $number, $dp = false, $trim_zeros = false ) {
+	$locale   = localeconv();
+	$decimals = array( rp_get_price_decimal_separator(), $locale['decimal_point'], $locale['mon_decimal_point'] );
+
+	// Remove locale from string.
+	if ( ! is_float( $number ) ) {
+		$number = str_replace( $decimals, '.', $number );
+		$number = preg_replace( '/[^0-9\.,-]/', '', rp_clean( $number ) );
+	}
+
+	if ( false !== $dp ) {
+		$dp     = intval( '' == $dp ? rp_get_price_decimals() : $dp );
+		$number = number_format( floatval( $number ), $dp, '.', '' );
+
+	// DP is false - don't use number format, just return a string in our format
+	} elseif ( is_float( $number ) ) {
+		$number = rp_clean( str_replace( $decimals, '.', strval( $number ) ) );
+	}
+
+	if ( $trim_zeros && strstr( $number, '.' ) ) {
+		$number = rtrim( rtrim( $number, '0' ), '.' );
+	}
+
+	return $number;
+}
