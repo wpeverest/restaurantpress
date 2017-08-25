@@ -55,7 +55,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php endif; ?>
 				<div class="rp-column-wrapper">
 					<?php if ( ! empty( $food_data[ $food_id ] ) ) {
-						foreach ( $food_data[ $food_id ] as $food_menu ) { ?>
+						foreach ( $food_data[ $food_id ] as $food_menu ) {
+							$food = rp_get_food( $food_menu['post_id'] );
+							?>
 							<div class="rp-column-3 rp-column-margin">
 								<?php if ( 'no' == $featured_image ) : ?>
 									<figure class ="rp-img">
@@ -64,7 +66,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 										<?php else : ?>
 											<?php echo $food_menu['image_grid']; ?>
 										<?php endif; ?>
-										<?php if ( 'yes' == $food_menu['chef_badge'] ) : ?>
+										<?php if ( $food->is_chef_enable() ) : ?>
 											<mark class="rp-chef-badge"><i class="chef-icon"> </i></mark>
 										<?php endif; ?>
 									</figure>
@@ -75,8 +77,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 											<h4 class="rp-title"><?php echo $food_menu['title']; ?></h4>
 										</div> <!--rp-title-price-wrap end -->
 										<p class="rp-desc"><?php echo $food_menu['content']; ?></p>
-										<?php if ( ! empty( $food_menu['price'] ) ) : ?>
-											<span class="rp-price"><?php echo $food_menu['price']; ?></span>
+										<?php if ( $food->get_price_html() ) : ?>
+											<span class="price"><?php echo $food->get_price_html(); ?></span>
 										<?php endif; ?>
 									</a>
 								</div> <!--rp-content-wrapper end-->

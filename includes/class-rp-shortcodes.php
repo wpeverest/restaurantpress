@@ -85,6 +85,7 @@ class RP_Shortcodes {
 		$food_terms = get_the_terms( $post->ID, 'food_menu_cat' );
 
 		if ( $food_terms && ! is_wp_error( $food_terms ) ) {
+			$post_id    = $post->ID;
 			$title      = get_the_title();
 			$content    = get_the_content();
 			$permalink  = get_the_permalink();
@@ -107,14 +108,13 @@ class RP_Shortcodes {
 			foreach ( $food_terms as $term ) {
 				if ( in_array( $term->term_id, $food_group ) ) {
 					$food_data[ $term->term_id ][] = array(
+						'post_id'    => $post_id,
 						'title'      => $title,
 						'content'    => $content,
 						'permalink'  => $permalink,
-						'price'      => $price,
 						'image'      => $image,
 						'image_grid' => $image_grid,
 						'popup'      => $popup,
-						'chef_badge' => $chef_badge,
 						'attach_url' => $attach_url
 					);
 				}
