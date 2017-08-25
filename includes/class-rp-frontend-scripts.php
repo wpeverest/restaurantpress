@@ -288,6 +288,10 @@ class RP_Frontend_Scripts {
 		}
 
 		$inline_css = '
+			.restaurantpress .rp-chef-badge {
+				background: %1$s !important;
+			}
+
 			.restaurantpress .chef {
 				background: %1$s !important;
 			}
