@@ -43,6 +43,23 @@ if ( ! empty( $tabs ) ) : ?>
 				<?php call_user_func( $tab['callback'], $key, $tab ); ?>
 			</div>
 		<?php endforeach; ?>
+
+		<table class="restaurantpress-listing">
+			<tbody>
+				<tr>
+					<th>Servers for</th>
+					<td>4</td>
+				</tr>
+				<tr>
+					<th>Preparing time</th>
+					<td>10 Minutes</td>
+				</tr>
+				<tr>
+					<th>Cooking Time</th>
+					<td>15 Minutes</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 
 <?php endif; ?>
