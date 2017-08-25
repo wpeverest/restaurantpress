@@ -32,7 +32,7 @@ class RP_Install {
 			'rp_update_132_db_version',
 		),
 		'1.4.0' => array(
-			'rp_update_140_chef_flash',
+			'rp_update_140_chef_badge',
 			'rp_update_140_options',
 			'rp_update_140_db_version',
 		),

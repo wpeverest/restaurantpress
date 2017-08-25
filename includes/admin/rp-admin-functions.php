@@ -38,7 +38,7 @@ function rp_get_screen_ids() {
  */
 function restaurantpress_admin_fields( $options ) {
 
-	if ( ! class_exists( 'RP_Admin_Settings' ) ) {
+	if ( ! class_exists( 'RP_Admin_Settings', false ) ) {
 		include 'class-rp-admin-settings.php';
 	}
 
@@ -51,7 +51,7 @@ function restaurantpress_admin_fields( $options ) {
  */
 function restaurantpress_update_options( $options ) {
 
-	if ( ! class_exists( 'RP_Admin_Settings' ) ) {
+	if ( ! class_exists( 'RP_Admin_Settings', false ) ) {
 		include 'class-rp-admin-settings.php';
 	}
 
@@ -66,7 +66,7 @@ function restaurantpress_update_options( $options ) {
  */
 function restaurantpress_settings_get_option( $option_name, $default = '' ) {
 
-	if ( ! class_exists( 'RP_Admin_Settings' ) ) {
+	if ( ! class_exists( 'RP_Admin_Settings', false ) ) {
 		include 'class-rp-admin-settings.php';
 	}
 

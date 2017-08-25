@@ -13,6 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! class_exists( 'RP_Admin_Menu', false ) ) :
+
 /**
  * RP_Admin_Menu Class
  */
@@ -142,4 +144,6 @@ class RP_Admin_Menu {
 	}
 }
 
-new RP_Admin_Menu();
+endif;
+
+return new RP_Admin_Menu();

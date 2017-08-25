@@ -129,15 +129,15 @@ if ( ! function_exists( 'restaurantpress_get_sidebar' ) ) {
 
 /** Single Food ***********************************************************/
 
-if ( ! function_exists( 'restaurantpress_show_food_chef_flash' ) ) {
+if ( ! function_exists( 'restaurantpress_show_food_chef_badge' ) ) {
 
 	/**
-	 * Output the food chef flash.
+	 * Output the food chef badge.
 	 *
 	 * @subpackage Food
 	 */
-	function restaurantpress_show_food_chef_flash() {
-		rp_get_template( 'single-food/chef-flash.php' );
+	function restaurantpress_show_food_chef_badge() {
+		rp_get_template( 'single-food/chef-badge.php' );
 	}
 }
 if ( ! function_exists( 'restaurantpress_show_food_images' ) ) {

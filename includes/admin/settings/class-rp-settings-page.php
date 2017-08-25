@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'RP_Settings_Page' ) ) :
+if ( ! class_exists( 'RP_Settings_Page', false ) ) :
 
 /**
  * RP_Settings_Page Abstract

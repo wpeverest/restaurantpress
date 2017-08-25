@@ -13,6 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! class_exists( 'RP_Admin_Post_Types', false ) ) :
+
 /**
  * RP_Admin_Post_Types Class
  *
@@ -44,6 +46,7 @@ class RP_Admin_Post_Types {
 		add_filter( 'enter_title_here', array( $this, 'enter_title_here' ), 1, 2 );
 		add_action( 'edit_form_after_title', array( $this, 'edit_form_after_title' ) );
 		add_filter( 'default_hidden_meta_boxes', array( $this, 'hidden_meta_boxes' ), 10, 2 );
+		add_action( 'post_submitbox_misc_actions', array( $this, 'food_data_visibility' ) );
 
 		// Meta-Box Class
 		include_once( dirname( __FILE__ ) . '/class-rp-admin-meta-boxes.php' );
@@ -56,6 +59,9 @@ class RP_Admin_Post_Types {
 
 		// Show blank state
 		add_action( 'manage_posts_extra_tablenav', array( $this, 'maybe_render_blank_state' ) );
+
+		// Add a post display state for special RP pages.
+		add_filter( 'display_post_states', array( $this, 'add_display_post_states' ), 10, 2 );
 	}
 
 	/**
@@ -144,6 +150,8 @@ class RP_Admin_Post_Types {
 		$columns['name']          = __( 'Name', 'restaurantpress' );
 		$columns['price']         = __( 'Price', 'restaurantpress' );
 		$columns['food_menu_cat'] = __( 'Categories', 'restaurantpress' );
+		$columns['food_menu_tag'] = __( 'Tags', 'restaurantpress' );
+		$columns['featured']      = '<span class="rp-featured parent-tips" data-tip="' . esc_attr__( 'Featured', 'restaurantpress' ) . '">' . __( 'Featured', 'restaurantpress' ) . '</span>';
 		$columns['date']          = __( 'Date', 'restaurantpress' );
 
 		return array_merge( $columns, $existing_columns );
@@ -209,6 +217,7 @@ class RP_Admin_Post_Types {
 				echo $the_food->get_price_html() ? $the_food->get_price_html() : '<span class="na">&ndash;</span>';
 				break;
 			case 'food_menu_cat' :
+			case 'food_menu_tag' :
 				if ( ! $terms = get_the_terms( $post->ID, $column ) ) {
 					echo '<span class="na">&ndash;</span>';
 				} else {
@@ -220,6 +229,16 @@ class RP_Admin_Post_Types {
 					echo implode( ', ', $termlist );
 				}
 			break;
+			case 'featured' :
+				$url = wp_nonce_url( admin_url( 'admin-ajax.php?action=restaurantpress_feature_food&food_id=' . $post->ID ), 'restaurantpress-feature-food' );
+				echo '<a href="' . esc_url( $url ) . '" aria-label="' . __( 'Toggle featured', 'restaurantpress' ) . '">';
+				if ( $the_food->is_featured() ) {
+					echo '<span class="rp-featured tips" data-tip="' . esc_attr__( 'Yes', 'restaurantpress' ) . '">' . __( 'Yes', 'restaurantpress' ) . '</span>';
+				} else {
+					echo '<span class="rp-featured not-featured tips" data-tip="' . esc_attr__( 'No', 'restaurantpress' ) . '">' . __( 'No', 'restaurantpress' ) . '</span>';
+				}
+				echo '</a>';
+				break;
 			default:
 				break;
 		}
@@ -301,7 +320,7 @@ class RP_Admin_Post_Types {
 	}
 
 	/**
-	 * Set row actions for food group.
+	 * Set row actions for food and groups.
 	 *
 	 * @param  array $actions
 	 * @param  WP_Post $post
@@ -309,6 +328,10 @@ class RP_Admin_Post_Types {
 	 * @return array
 	 */
 	public function row_actions( $actions, $post ) {
+		if ( 'food_menu' === $post->post_type ) {
+			return array_merge( array( 'id' => 'ID: ' . $post->ID ), $actions );
+		}
+
 		if ( 'food_group' === $post->post_type ) {
 			if ( isset( $actions['inline hide-if-no-js'] ) ) {
 				unset( $actions['inline hide-if-no-js'] );
@@ -361,6 +384,39 @@ class RP_Admin_Post_Types {
 		}
 
 		return $hidden;
+	}
+
+	/**
+	 * Output food visibility options.
+	 */
+	public function food_data_visibility() {
+		global $post, $thepostid, $food_object;
+
+		if ( 'food_menu' !== $post->post_type ) {
+			return;
+		}
+
+		$thepostid          = $post->ID;
+		$food_object        = $thepostid ? rp_get_food( $thepostid ) : new RP_Food;
+		$current_featured   = rp_bool_to_string( $food_object->get_featured() );
+		?>
+		<div class="misc-pub-section" id="featured-visibility">
+			<?php _e( 'Featured:', 'restaurantpress' ); ?> <strong id="featured-visibility-display"><?php
+				echo 'yes' === $current_featured ? __( 'Yes', 'restaurantpress' ) : __( 'No', 'restaurantpress' );
+			?></strong>
+
+			<a href="#featured-visibility" class="edit-featured-visibility hide-if-no-js"><?php _e( 'Edit', 'restaurantpress' ); ?></a>
+
+			<div id="featured-visibility-select" class="hide-if-js">
+				<input type="hidden" name="current_featured" id="current_featured" value="<?php echo esc_attr( $current_featured ); ?>" />
+				<?php echo '<br /><input type="checkbox" name="_featured" id="_featured" ' . checked( $current_featured, 'yes', false ) . ' data-yes="' . esc_attr( 'Yes', 'restaurantpress' ) . '" data-no="' . esc_attr( 'No', 'restaurantpress' ) . '" /> <label for="_featured">' . __( 'This is a featured food', 'restaurantpress' ) . '</label><br />'; ?>
+				<p>
+					<a href="#featured-visibility" class="save-post-visibility hide-if-no-js button"><?php _e( 'OK', 'restaurantpress' ); ?></a>
+					<a href="#featured-visibility" class="cancel-post-visibility hide-if-no-js"><?php _e( 'Cancel', 'restaurantpress' ); ?></a>
+				</p>
+			</div>
+		</div>
+		<?php
 	}
 
 	/**
@@ -424,6 +480,22 @@ class RP_Admin_Post_Types {
 			echo '<style type="text/css">#posts-filter .wp-list-table, #posts-filter .tablenav.top, .tablenav.bottom .actions, .wrap .subsubsub  { display: none; } </style></div>';
 		}
 	}
+
+	/**
+	 * Add a post display state for special RP pages in the page list table.
+	 *
+	 * @param array   $post_states An array of post display states.
+	 * @param WP_Post $post        The current post object.
+	 */
+	public function add_display_post_states( $post_states, $post ) {
+		if ( has_shortcode( $post->post_content, 'restaurantpress_menu' ) ) {
+			$post_states['rp_page_for_group'] = __( 'Group Page', 'restaurantpress' );
+		}
+
+		return $post_states;
+	}
 }
 
-new RP_Admin_Post_Types();
+endif;
+
+return new RP_Admin_Post_Types();

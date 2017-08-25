@@ -371,6 +371,11 @@
 					img {
 						box-shadow: none;
 						border-radius: 3px;
+
+						&.restaurantpress-placeholder {
+							max-width: 100px;
+							max-height: 100px;
+						}
 					}
 
 					.rp-chef-badge {
@@ -416,15 +421,20 @@
 							padding: 0 0 4px;
 						}
 
-						.rp-price {
-							color:#fff;
+						span.price,
+						p.price {
 							float: right;
-							font-size: 14px;
-							font-weight: 600;
-							line-height: 1.5;
-							background: #c00;
-							padding: 0 10px;
-							margin-right: 15px;
+							color: $highlight;
+							font-size: 1.25em;
+
+							ins {
+								background: inherit;
+								font-weight: 700;
+							}
+
+							del {
+								opacity: 0.5;
+							}
 						}
 					}
 				}
@@ -457,6 +467,10 @@
 				box-sizing: border-box;
 				margin: 0;
 				padding: 0;
+
+				&.restaurantpress-placeholder {
+					max-height: 245px;
+				}
 			}
 
 			.rp-chef-badge {
@@ -563,15 +577,24 @@
 				line-height: 22px;
 			}
 
-			.rp-price {
+			span.price,
+			p.price {
 				position: absolute;
 				right: 0;
 				bottom: 0;
 				color: #fff;
-				font-size: 18px;
-				font-weight: 400;
+				font-size: 1.25em;
 				padding: 6px 10px 6px 5px;
 				background: #d60e10 none repeat scroll 0 0;
+
+				ins {
+					background: inherit;
+					font-weight: 700;
+				}
+
+				del {
+					opacity: 0.5;
+				}
 
 				&::before {
 					position: absolute;

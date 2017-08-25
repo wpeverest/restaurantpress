@@ -15,6 +15,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Converts a string (e.g. yes or no) to a bool.
+ * @since  1.4.0
+ * @param  string $string
+ * @return bool
+ */
+function rp_string_to_bool( $string ) {
+	return is_bool( $string ) ? $string : ( 'yes' === $string || 1 === $string || 'true' === $string || '1' === $string );
+}
+
+/**
+ * Converts a bool to a string.
+ * @since  1.4.0
+ * @param  bool $bool
+ * @return string yes or no
+ */
+function rp_bool_to_string( $bool ) {
+	if ( ! is_bool( $bool ) ) {
+		$bool = rp_string_to_bool( $bool );
+	}
+	return true === $bool ? 'yes' : 'no';
+}
+
+/**
  * Clean variables using sanitize_text_field. Arrays are cleaned recursively.
  * Non-scalar values are ignored.
  * @param string|array $var
@@ -175,4 +198,22 @@ function rp_format_sale_price( $regular_price, $sale_price ) {
  */
 function rp_format_localized_price( $value ) {
 	return apply_filters( 'restaurantpress_format_localized_price', str_replace( '.', rp_get_price_decimal_separator(), strval( $value ) ), $value );
+}
+
+/**
+ * Trim a string and append a suffix.
+ * @param  string  $string
+ * @param  integer $chars
+ * @param  string  $suffix
+ * @return string
+ */
+function rp_trim_string( $string, $chars = 200, $suffix = '...' ) {
+	if ( strlen( $string ) > $chars ) {
+		if ( function_exists( 'mb_substr' ) ) {
+			$string = mb_substr( $string, 0, ( $chars - mb_strlen( $suffix ) ) ) . $suffix;
+		} else {
+			$string = substr( $string, 0, ( $chars - strlen( $suffix ) ) ) . $suffix;
+		}
+	}
+	return $string;
 }

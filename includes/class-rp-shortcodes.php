@@ -85,11 +85,13 @@ class RP_Shortcodes {
 		$food_terms = get_the_terms( $post->ID, 'food_menu_cat' );
 
 		if ( $food_terms && ! is_wp_error( $food_terms ) ) {
+			$post_id    = $post->ID;
 			$title      = get_the_title();
 			$content    = get_the_content();
+			$excerpt    = get_the_excerpt();
 			$permalink  = get_the_permalink();
 			$price      = get_post_meta( $post->ID, '_price', true );
-			$chef_badge = get_post_meta( $post->ID, '_chef_flash', true );
+			$chef_badge = get_post_meta( $post->ID, '_chef_badge', true );
 
 			$image_id   = get_post_thumbnail_id( $post ->ID );
 			$attach_url = wp_get_attachment_url( $image_id );
@@ -107,14 +109,14 @@ class RP_Shortcodes {
 			foreach ( $food_terms as $term ) {
 				if ( in_array( $term->term_id, $food_group ) ) {
 					$food_data[ $term->term_id ][] = array(
+						'post_id'    => $post_id,
 						'title'      => $title,
 						'content'    => $content,
+						'excerpt'    => $excerpt,
 						'permalink'  => $permalink,
-						'price'      => $price,
 						'image'      => $image,
 						'image_grid' => $image_grid,
 						'popup'      => $popup,
-						'chef_badge' => $chef_badge,
 						'attach_url' => $attach_url
 					);
 				}

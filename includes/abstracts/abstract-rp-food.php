@@ -100,12 +100,21 @@ class RP_Food {
 	}
 
 	/**
+	 * If the food is featured.
+	 *
+	 * @return boolean
+	 */
+	public function get_featured() {
+		return get_post_meta( $this->get_id(), '_featured', true );
+	}
+
+	/**
 	 * Returns whether or not the product is on sale.
 	 *
 	 * @return string
 	 */
 	public function get_chef_badge() {
-		return get_post_meta( $this->get_id(), '_chef_flash', true );
+		return get_post_meta( $this->get_id(), '_chef_badge', true );
 	}
 
 	/**
@@ -115,6 +124,15 @@ class RP_Food {
 	 */
 	public function get_category_ids() {
 		return get_the_terms( $this->get_id(), 'food_menu_cat' );
+	}
+
+	/**
+	 * Get tag ids.
+	 *
+	 * @return array
+	 */
+	public function get_tag_ids() {
+		return get_the_terms( $this->get_id(), 'food_menu_tag' );
 	}
 
 	/**
@@ -133,12 +151,34 @@ class RP_Food {
 	*/
 
 	/**
+	 * Returns whether or not the product is featured.
+	 *
+	 * @return bool
+	 */
+	public function is_featured() {
+		return true === rp_string_to_bool( $this->get_featured() );
+	}
+
+	/**
 	 * Returns whether or not the food has chef flash.
 	 *
 	 * @return bool
 	 */
 	public function is_chef_enable() {
 		return apply_filters( 'restaurantpress_food_is_chef_enable', 'yes' === $this->get_chef_badge() );
+	}
+
+	/**
+	 * Get the suffix to display after prices > 0.
+	 *
+	 * @param  string $price to calculate, left blank to just use get_price()
+	 * @return string
+	 */
+	public function get_price_suffix( $price = '' ) {
+		if ( '' === $price ) {
+			$price = $this->get_price();
+		}
+		return apply_filters( 'restaurantpress_get_price_suffix', '', $this, $price );
 	}
 
 	/**
@@ -150,7 +190,7 @@ class RP_Food {
 		if ( '' === $this->get_price() ) {
 			$price = apply_filters( 'restaurantpress_empty_price_html', '', $this );
 		} elseif ( $this->get_sale_price() ) {
-			$price = rp_format_sale_price( $this->get_regular_price(), $this->get_price() );
+			$price = rp_format_sale_price( $this->get_regular_price(), $this->get_price() ). $this->get_price_suffix();
 		} else {
 			$price = rp_price( $this->get_price() );
 		}
