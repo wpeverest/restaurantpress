@@ -307,16 +307,16 @@ class RP_Frontend_Scripts {
 				background: %1$s !important;
 			}
 
-			.restaurantpress ins .amount {
-				color: #fff;
-			}
-
 			.restaurantpress span.price::before {
 				border-right-color: %1$s !important;
 			}
 
 			.restaurantpress .rp-content-wrapper {
 				border-bottom-color: %1$s !important;
+			}
+
+			.rp-grid-design-layout ins .amount {
+				color: #fff;
 			}
 
 			.restaurantpress-group #restaurant-press-section a {
