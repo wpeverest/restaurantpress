@@ -288,25 +288,39 @@ class RP_Frontend_Scripts {
 		}
 
 		$inline_css = '
-			.restaurantpress .chef {
+			.restaurantpress .chef,
+			.restaurantpress .rp-chef-badge {
 				background: %1$s !important;
 			}
 
-			.restaurantpress .chef::before,
-			.restaurantpress .chef::after {
+			.restaurantpress .rp-chef-badge::before,
+			.restaurantpress .rp-chef-badge::after {
 				border-top-color: %1$s !important;
 			}
 
-			.restaurantpress .rp-price {
+			.restaurantpress p.price,
+			.restaurantpress span.price {
+				color: %1$s !important;
+			}
+
+			.restaurantpress span.price {
 				background: %1$s !important;
 			}
 
-			.restaurantpress .rp-price::before {
+			.restaurantpress span.price::before {
 				border-right-color: %1$s !important;
 			}
 
 			.restaurantpress .rp-content-wrapper {
 				border-bottom-color: %1$s !important;
+			}
+
+			.rp-grid-design-layout ins .amount {
+				color: #fff;
+			}
+
+			.restaurantpress-group #restaurant-press-section a {
+				color: %1$s !important;
 			}
 		';
 

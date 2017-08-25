@@ -28,8 +28,8 @@ class RP_Autoloader {
 	 * Class Constructor Method.
 	 */
 	public function __construct() {
-		if ( function_exists( "__autoload" ) ) {
-			spl_autoload_register( "__autoload" );
+		if ( function_exists( '__autoload' ) ) {
+			spl_autoload_register( '__autoload' );
 		}
 
 		spl_autoload_register( array( $this, 'autoload' ) );
@@ -65,16 +65,21 @@ class RP_Autoloader {
 	 */
 	public function autoload( $class ) {
 		$class = strtolower( $class );
+
+		if ( 0 !== strpos( $class, 'rp_' ) ) {
+			return;
+		}
+
 		$file  = $this->get_file_name_from_class( $class );
 		$path  = '';
 
-		if ( strpos( $class, 'rp_meta_box' ) === 0 ) {
+		if ( 0 === strpos( $class, 'rp_meta_box' ) ) {
 			$path = $this->include_path . 'admin/meta-boxes/';
-		} elseif ( strpos( $class, 'rp_admin' ) === 0 ) {
+		} elseif ( 0 === strpos( $class, 'rp_admin' ) ) {
 			$path = $this->include_path . 'admin/';
 		}
 
-		if ( empty( $path ) || ( ! $this->load_file( $path . $file ) && strpos( $class, 'rp_' ) === 0 ) ) {
+		if ( empty( $path ) || ( ! $this->load_file( $path . $file ) ) ) {
 			$this->load_file( $this->include_path . $file );
 		}
 	}

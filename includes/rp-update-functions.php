@@ -78,6 +78,21 @@ function rp_update_132_db_version() {
 	RP_Install::update_db_version( '1.3.2' );
 }
 
+function rp_update_140_price() {
+	global $wpdb;
+
+	// Update price meta key.
+	$wpdb->update(
+		$wpdb->postmeta,
+		array(
+			'meta_key' => '_regular_price',
+		),
+		array(
+			'meta_key' => 'food_item_price',
+		)
+	);
+}
+
 function rp_update_140_chef_badge() {
 	global $wpdb;
 
