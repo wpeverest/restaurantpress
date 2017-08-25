@@ -288,6 +288,10 @@ class RP_Frontend_Scripts {
 		}
 
 		$inline_css = '
+			.restaurantpress .rp-chef-badge {
+				background: %1$s !important;
+			}
+
 			.restaurantpress .chef {
 				background: %1$s !important;
 			}
@@ -307,6 +311,15 @@ class RP_Frontend_Scripts {
 
 			.restaurantpress .rp-content-wrapper {
 				border-bottom-color: %1$s !important;
+			}
+
+			.restaurantpress-group #restaurant-press-section a {
+				color: %1$s !important;
+			}
+
+			.restaurantpress p.price, 
+			.restaurantpress span.price {
+				color: %1$s !important;
 			}
 		';
 
