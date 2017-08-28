@@ -1,4 +1,3 @@
-/*global restaurantpress_admin_meta_boxes */
 jQuery( function( $ ) {
 
 	// Scroll to first checked category - https://github.com/scribu/wp-category-checklist-tree/blob/d1c3c1f449e1144542efa17dde84a9f52ade1739/category-checklist-tree.php

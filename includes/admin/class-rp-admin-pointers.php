@@ -58,8 +58,8 @@ class RP_Admin_Pointers {
 						'event'  => 'input',
 					),
 					'options'      => array(
-						'content'  => '<h3>' . esc_html__( 'Menu item name', 'restaurantpress' ) . '</h3>' .
-										'<p>' . esc_html__( 'Give your new menu item a name here. This is a required field and will be what your users will see in your restaurant.', 'restaurantpress' ) . '</p>',
+						'content'  => '<h3>' . esc_html__( 'Food name', 'restaurantpress' ) . '</h3>' .
+										'<p>' . esc_html__( 'Give your new food a name here. This is a required field and will be what your users will see in your restaurant.', 'restaurantpress' ) . '</p>',
 						'position' => array(
 							'edge'  => 'top',
 							'align' => 'left',
@@ -68,11 +68,27 @@ class RP_Admin_Pointers {
 				),
 				'content' => array(
 					'target'       => "#wp-content-editor-container",
-					'next'         => 'postexcerpt',
+					'next'         => 'regular_price',
 					'next_trigger' => array(),
 					'options'      => array(
-						'content'  => '<h3>' . esc_html__( 'Menu item description', 'restaurantpress' ) . '</h3>' .
-										'<p>' . esc_html__( 'This is your menu item main body of content. Here you should describe your menu item in detail.', 'restaurantpress' ) . '</p>',
+						'content'  => '<h3>' . esc_html__( 'Food description', 'restaurantpress' ) . '</h3>' .
+										'<p>' . esc_html__( 'This is your food main body of content. Here you should describe your food in detail.', 'restaurantpress' ) . '</p>',
+						'position' => array(
+							'edge'  => 'bottom',
+							'align' => 'middle',
+						),
+					),
+				),
+				'regular_price' => array(
+					'target'       => "#_regular_price",
+					'next'         => 'postexcerpt',
+					'next_trigger' => array(
+						'target' => "#_regular_price",
+						'event'  => 'input',
+					),
+					'options' => array(
+						'content'  => '<h3>' . esc_html__( 'Prices', 'restaurantpress' ) . '</h3>' .
+										'<p>' . esc_html__( 'Next you need to give your food a price.', 'restaurantpress' ) . '</p>',
 						'position' => array(
 							'edge'  => 'bottom',
 							'align' => 'middle',
@@ -87,8 +103,8 @@ class RP_Admin_Pointers {
 						'event'  => 'input',
 					),
 					'options' => array(
-						'content'  => '<h3>' . esc_html__( 'Menu item short description', 'restaurantpress' ) . '</h3>' .
-										'<p>' . esc_html__( 'Add a quick summary for your menu item here. This will appear on the menu item page under the menu item name.', 'restaurantpress' ) . '</p>',
+						'content'  => '<h3>' . esc_html__( 'Food short description', 'restaurantpress' ) . '</h3>' .
+										'<p>' . esc_html__( 'Add a quick summary for your food here. This will appear on the menu item page under the food name.', 'restaurantpress' ) . '</p>',
 						'position' => array(
 							'edge'  => 'bottom',
 							'align' => 'middle',
@@ -97,26 +113,22 @@ class RP_Admin_Pointers {
 				),
 				'postimagediv' => array(
 					'target'       => "#postimagediv",
-					'next'         => 'food_menu_price',
+					'next'         => 'food_menu_tag',
 					'options' => array(
-						'content'  => '<h3>' . esc_html__( 'Menu item images', 'restaurantpress' ) . '</h3>' .
-										'<p>' . esc_html__( "Upload or assign an image to your menu item here. This image will be shown in your restaurant's catalog.", 'restaurantpress' ) . '</p>',
+						'content'  => '<h3>' . esc_html__( 'Food images', 'restaurantpress' ) . '</h3>' .
+										'<p>' . esc_html__( "Upload or assign an image to your food here. This image will be shown in your restaurant's catalog.", 'restaurantpress' ) . '</p>',
 						'position' => array(
 							'edge'  => 'right',
 							'align' => 'middle',
 						),
 					),
 				),
-				'food_menu_price' => array(
-					'target'       => "#restaurantpress-menu-data",
+				'food_menu_tag' => array(
+					'target'       => "#tagsdiv-food_menu_tag",
 					'next'         => 'food_menu_catdiv',
-					'next_trigger' => array(
-						'target' => "#restaurantpress-menu-data",
-						'event'  => 'input',
-					),
 					'options' => array(
-						'content'  => '<h3>' . esc_html__( 'Menu item price', 'restaurantpress' ) . '</h3>' .
-										'<p>' . esc_html__( 'Next you need to give your menu item a price.', 'restaurantpress' ) . '</p>',
+						'content'  => '<h3>' . esc_html__( 'Food tags', 'restaurantpress' ) . '</h3>' .
+										'<p>' . esc_html__( 'You can optionally "tag" your foods here. Tags are a method of labeling your foods to make them easier for customers to find.', 'restaurantpress' ) . '</p>',
 						'position' => array(
 							'edge'  => 'right',
 							'align' => 'middle',
@@ -127,8 +139,8 @@ class RP_Admin_Pointers {
 					'target'       => "#food_menu_catdiv",
 					'next'         => 'submitdiv',
 					'options' => array(
-						'content'  => '<h3>' . esc_html__( 'Menu item categories', 'restaurantpress' ) . '</h3>' .
-										'<p>' . esc_html__( 'Optionally assign categories to your menu item to make them easier to browse through and find in your restaurant.', 'restaurantpress' ) . '</p>',
+						'content'  => '<h3>' . esc_html__( 'Food categories', 'restaurantpress' ) . '</h3>' .
+										'<p>' . esc_html__( 'Optionally assign categories to your foods to make them easier to browse through and find in your restaurant.', 'restaurantpress' ) . '</p>',
 						'position' => array(
 							'edge'  => 'right',
 							'align' => 'middle',
