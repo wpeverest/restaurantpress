@@ -56,41 +56,31 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 
 == Changelog ==
 
-= 1.3.2 - 08/08/2017 =
-* Feature - Added RTL support.
-* Fix - Updated select2 library.
-* Fix - TinyMCE shortcode icon for Group menu.
-* Fix - Defer flush so CPT is updated before flush.
-* Fix - Undefined index for key on widget checkbox save.
-* Fix - Clear food menu category thumbnail field on submit.
-* Tweak - Disable DFW feature pointer.
-* Tweak - Remove opacity on non-disabled buttons.
-* Tweak - Introduced restaurantpress_queued_js filter.
-* Tweak - Check `is_singular` when looking for shortcode content.
-* Tweak - Prevent notice in `wpdb_table_fix` if termmeta table is not used.
-
-= 1.3.1 - 05/04/2016 =
-* Fix - Load inline styles if user logged out.
-* Fix - Hide TinyMCE shortcode for food_menu post type.
-* Tweak - Update iconfonts to use dashicons if available.
-* Tweak - Removed unused 'view mode' under screen options.
-* Tweak - Delete orphan terms and relationships on full uninstall.
-
-= 1.3.0 - 14/03/2016 =
-* Feature - Introduced upgrade and theme support notice display.
-* Dev - Migrated custom term meta implementation to WP Term Meta.
-* Dev - Registered Grunt `js` task.
-* Fix - Error handling for screen ids.
-* Fix - Select2 library scroll on ios.
-* Fix - Missing `global $wpdb` in `uninstall.php`.
-* Fix - Save food grouping date with the `term_id`.
-* Tweak - Hide the Food Menu category parent field.
-* Tweak - Appropriate hook reqd for official FoodHunt theme.
-* Deprecated - Added deprecated notice for `rp_shortcode_tag()`.
+= 1.4.0 - 28/08/2017 =
+* Feature - Added regular and sale price for food items.
+* Feature - UI - Added blank states for food menu and group.
+* Feature - Tutorial wizard for new users to create basic menu item.
+* Feature - Global wrapper and post type template loader.
+* Feature - Introduced multiple image selection for food gallery.
+* Tweak - Output generator tag to aid debugging.
+* Tweak - Output smallscreen styles in seperate file.
+* Tweak - Add body classes for RestaurantPress pages.
+* Tweak - Introduced `RP_TEMPLATE_DEBUG_MODE` constant.
+* Tweak - Made the single page template more editable via theme.
+* Tweak - Made `RP_Food` pluggable via `rp_get_food` function.
+* Fix - Prevent regular price being lower than the sale price.
+* Fix - Template html structure and some additional CSS styles.
+* Fix - Lingering tooltip after gallery image delete.
+* Fix - Move plugin headers to main RP POT file.
+* Fix - Fixed grammar of Plugin Description.
+* Fix - Category description in page view layout.
+* Fix - Trim a string for description in group page.
+* Deprecated - select2 with selectWoo for accessibility.
+* Deprecated - prettyPhoto with photoSwipe for gallery need.
 
 [See changelog for all versions](https://raw.githubusercontent.com/wpeverest/restaurantpress/master/CHANGELOG.txt).
 
 == Upgrade Notice ==
 
-= 1.3.0 =
-1.3.0 is a major update so it is important that you make backups, and ensure themes and extensions are 1.3 compatible before upgrading.
+= 1.4.0 =
+1.4.0 is a major update so it is important that you make backups, and ensure themes and extensions are 1.4 compatible before upgrading.
