@@ -81,16 +81,22 @@ function rp_update_132_db_version() {
 function rp_update_140_price() {
 	global $wpdb;
 
-	// Update price meta key.
-	$wpdb->update(
-		$wpdb->postmeta,
-		array(
-			'meta_key' => '_regular_price',
-		),
-		array(
-			'meta_key' => 'food_item_price',
-		)
-	);
+	// Upgrade old style price to support formatted price.
+	$existing_prices = $wpdb->get_results( "SELECT meta_key, meta_value, meta_id FROM {$wpdb->postmeta} WHERE meta_key = 'food_item_price' AND meta_value != '';" );
+
+	if ( $existing_prices ) {
+
+		foreach ( $existing_prices as $existing_price ) {
+
+			$old_price = trim( $existing_price->meta_value );
+
+			if ( ! empty( $old_price ) ) {
+				$regular_price = rp_format_decimal( $old_price );
+
+				$wpdb->query( $wpdb->prepare( "UPDATE {$wpdb->postmeta} SET meta_key = '_regular_price', meta_value = %s WHERE meta_id = %d", $regular_price, $existing_price->meta_id ) );
+			}
+		}
+	}
 }
 
 function rp_update_140_chef_badge() {
