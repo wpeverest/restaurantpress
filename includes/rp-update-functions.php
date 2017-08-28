@@ -82,7 +82,7 @@ function rp_update_140_price() {
 	global $wpdb;
 
 	// Upgrade old style price to support formatted price.
-	$existing_prices = $wpdb->get_results( "SELECT meta_key, meta_value, meta_id, post_id FROM {$wpdb->postmeta} WHERE meta_key = 'food_item_price' AND meta_value != '';" );
+	$existing_prices = $wpdb->get_results( "SELECT meta_value, post_id FROM {$wpdb->postmeta} WHERE meta_key = 'food_item_price' AND meta_value != '';" );
 
 	if ( $existing_prices ) {
 
@@ -95,7 +95,10 @@ function rp_update_140_price() {
 
 				// Update key with formatted value.
 				update_post_meta( $existing_price->post_id, '_price', $formatted_price );
-				$wpdb->query( $wpdb->prepare( "UPDATE {$wpdb->postmeta} SET meta_key = '_regular_price', meta_value = %s WHERE meta_id = %d", $formatted_price, $existing_price->meta_id ) );
+				update_post_meta( $existing_price->post_id, '_regular_price', $formatted_price );
+
+				// Delete unneeded old post meta value.
+				delete_post_meta( $existing_price->post_id, 'food_item_price', $old_price );
 			}
 		}
 	}
