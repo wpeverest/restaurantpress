@@ -91,9 +91,11 @@ function rp_update_140_price() {
 			$old_price = trim( $existing_price->meta_value );
 
 			if ( ! empty( $old_price ) ) {
-				$regular_price = rp_format_decimal( $old_price );
+				$formatted_price = rp_format_decimal( $old_price );
 
-				$wpdb->query( $wpdb->prepare( "UPDATE {$wpdb->postmeta} SET meta_key = '_regular_price', meta_value = %s WHERE meta_id = %d", $regular_price, $existing_price->meta_id ) );
+				$wpdb->query( $wpdb->prepare( "UPDATE {$wpdb->postmeta} SET meta_key = '_price', meta_value = %s WHERE meta_id = %d", $formatted_price, $existing_price->meta_id ) );
+
+				$wpdb->query( $wpdb->prepare( "UPDATE {$wpdb->postmeta} SET meta_key = '_regular_price', meta_value = %s WHERE meta_id = %d", $formatted_price, $existing_price->meta_id ) );
 			}
 		}
 	}
