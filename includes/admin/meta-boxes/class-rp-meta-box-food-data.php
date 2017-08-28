@@ -150,7 +150,7 @@ class RP_Meta_Box_Food_Data {
 		$sale_price    = rp_clean( $_POST['_sale_price'] );
 		$regular_price = rp_clean( $_POST['_regular_price'] );
 		$menu_order    = rp_clean( $_POST['menu_order'] );
-		$featured      = rp_bool_to_string( $_POST['_featured'] );
+		$featured      = isset( $_POST['_featured'] ) ? 'yes' : 'no';
 		$chef_flash    = isset( $_POST['_chef_badge'] ) ? 'yes' : 'no';
 
 		// Prevent regular price being lower.
