@@ -62,6 +62,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 * Feature - Tutorial wizard for new users to create basic menu item.
 * Feature - Global wrapper and post type template loader.
 * Feature - Introduced multiple image selection for food gallery.
+* Tweak - SelectWoo sorting for groups category.
 * Tweak - Output generator tag to aid debugging.
 * Tweak - Output smallscreen styles in seperate file.
 * Tweak - Add body classes for RestaurantPress pages.
