@@ -188,7 +188,7 @@ class RP_Settings_General extends RP_Settings_Page {
 					'title'    => __( 'Currency', 'restaurantpress' ),
 					'desc'     => __( 'This controls what currency prices are listed at in the menu catalog.', 'restaurantpress' ),
 					'id'       => 'restaurantpress_currency',
-					'default'  => 'NPR',
+					'default'  => 'USD',
 					'type'     => 'select',
 					'class'    => 'rp-enhanced-select',
 					'desc_tip' => true,
@@ -200,7 +200,7 @@ class RP_Settings_General extends RP_Settings_Page {
 					'desc'     => __( 'This controls the position of the currency symbol.', 'restaurantpress' ),
 					'id'       => 'restaurantpress_currency_pos',
 					'class'    => 'rp-enhanced-select',
-					'default'  => 'left_space',
+					'default'  => 'left',
 					'type'     => 'select',
 					'options'  => array(
 						'left'        => __( 'Left', 'restaurantpress' ) . ' (' . get_restaurantpress_currency_symbol() . '99.99)',
