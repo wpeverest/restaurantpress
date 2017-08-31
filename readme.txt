@@ -11,13 +11,13 @@ Allows you to create awesome restaurant menus for restaurants, bars, and cafes i
 
 == Description ==
 
-Allows you to create awesome restaurant menus for restaurants, bars, and cafes in no time.
+Allows you to create awesome restaurant menus for restaurants, bars, and cafes in no time. The plugin provides modern responsive menu templates that adapt to any devices. Choose from the single column, two column or grid layout templates. Supports unlimited menu items and menu grouping as per your need. The menus can be showcased in pages, posts, widgets using built-in shortcode.
 
-Get free support at https://wpeverest.com/support-forum/
+Get access to [free support](https://wpeverest.com/support-forum/)
 
-Check the demo at https://demo.wpeverest.com/restaurantpress/
+Check [RestaurantPress Plugin Demo](http://demo.wpeverest.com/restaurantpress/)
 
-Check the docs at https://wpeverest.com/docs/restaurantpress/
+Step by Step tutorial [ Check documentation](http://docs.wpeverest.com/docs/restaurantpress/)
 
 ### Features And Options:
 * Simple, Clean and Beautiful Designs.
@@ -28,6 +28,11 @@ Check the docs at https://wpeverest.com/docs/restaurantpress/
 * Shortcode to embed menu in Posts and Page.
 * Supports multiple menus
 * Lightbox support for menu Image.
+* Single Page support for the menu item.
+* Gallery support for each menu item.
+* Supports regular and sale Price.
+* Upload unique icons for menu categories.
+* Translation ready
 
 == Installation ==
 
