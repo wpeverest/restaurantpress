@@ -1,9 +1,9 @@
-=== RestaurantPress ===
+T=== RestaurantPress ===
 Contributors: WPEverest, shivapoudel
 Tags: restaurant, appetizer, food, cafe, menu, dining, drink
 Requires at least: 4.4
 Tested up to: 4.8
-Stable tag: 1.3.2
+Stable tag: 1.4.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -27,7 +27,6 @@ Step by Step tutorial [ Check documentation](http://docs.wpeverest.com/docs/rest
 * Responsive Design
 * Shortcode to embed menu in Posts and Page.
 * Supports multiple menus
-* Lightbox support for menu Image.
 * Single Page support for the menu item.
 * Gallery support for each menu item.
 * Supports regular and sale Price.
