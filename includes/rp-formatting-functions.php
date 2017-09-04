@@ -165,9 +165,10 @@ function rp_price( $price, $args = array() ) {
 		'price_format'       => get_restaurantpress_price_format(),
 	) ) ) );
 
-	$negative = $price < 0;
-	$price    = apply_filters( 'raw_restaurantpress_price', floatval( $negative ? $price * -1 : $price ) );
-	$price    = apply_filters( 'formatted_restaurantpress_price', number_format( $price, $decimals, $decimal_separator, $thousand_separator ), $price, $decimals, $decimal_separator, $thousand_separator );
+	$unformatted_price = $price;
+	$negative          = $price < 0;
+	$price             = apply_filters( 'raw_restaurantpress_price', floatval( $negative ? $price * -1 : $price ) );
+	$price             = apply_filters( 'formatted_restaurantpress_price', number_format( $price, $decimals, $decimal_separator, $thousand_separator ), $price, $decimals, $decimal_separator, $thousand_separator );
 
 	if ( apply_filters( 'restaurantpress_price_trim_zeros', false ) && $decimals > 0 ) {
 		$price = rp_trim_zeros( $price );
@@ -176,7 +177,14 @@ function rp_price( $price, $args = array() ) {
 	$formatted_price = ( $negative ? '-' : '' ) . sprintf( $price_format, '<span class="restaurantpress-Price-currencySymbol">' . get_restaurantpress_currency_symbol( $currency ) . '</span>', $price );
 	$return          = '<span class="restaurantpress-Price-amount amount">' . $formatted_price . '</span>';
 
-	return apply_filters( 'rp_price', $return, $price, $args );
+	/**
+	 * Filters the string of price markup.
+	 *
+	 * @param string $return 			Price HTML markup
+	 * @param float  $unformatted_price	Price as float to allow plugins custom formatting
+	 * @param array  $args     			Pass on the args
+	 */
+	return apply_filters( 'rp_price', $return, $unformatted_price, $args );
 }
 
 /**
