@@ -667,6 +667,41 @@ function rp_print_r( $expression, $return = false ) {
 }
 
 /**
+ * Convert plaintext phone number to clickable phone number.
+ *
+ * Remove formatting and allow "+".
+ * Example and specs: https://developer.mozilla.org/en/docs/Web/HTML/Element/a#Creating_a_phone_link
+ *
+ * @since 1.4.0
+ *
+ * @param string  $phone Content to convert phone number.
+ * @return string Content with converted phone number.
+ */
+function rp_make_phone_clickable( $phone ) {
+	$number = trim( preg_replace( '/[^\d|\+]/', '', $phone ) );
+
+	return '<a href="tel:' . esc_attr( $number ) . '">' . esc_html( $phone ) . '</a>';
+}
+
+/**
+ * Read in WooCommerce headers when reading plugin headers.
+ *
+ * @since  1.4.0
+ * @param  array $headers
+ * @return array $headers
+ */
+function rp_enable_rp_plugin_headers( $headers ) {
+	if ( ! class_exists( 'RP_Plugin_Updates' ) ) {
+		include_once( dirname( __FILE__ ) . '/admin/plugin-updates/class-rp-plugin-updates.php' );
+	}
+
+	$headers['RPRequires'] = RP_Plugin_Updates::VERSION_REQUIRED_HEADER;
+	$headers['RPTested']   = RP_Plugin_Updates::VERSION_TESTED_HEADER;
+	return $headers;
+}
+add_filter( 'extra_plugin_headers', 'rp_enable_rp_plugin_headers' );
+
+/**
  * Delete expired transients.
  *
  * Deletes all expired transients. The multi-table delete syntax is used.
