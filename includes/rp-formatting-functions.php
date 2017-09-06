@@ -180,11 +180,12 @@ function rp_price( $price, $args = array() ) {
 	/**
 	 * Filters the string of price markup.
 	 *
-	 * @param string $return 			Price HTML markup
-	 * @param float  $unformatted_price	Price as float to allow plugins custom formatting
-	 * @param array  $args     			Pass on the args
+	 * @param string $return 			Price HTML markup.
+	 * @param string $price	            Formatted price.
+	 * @param array  $args     			Pass on the args.
+	 * @param float  $unformatted_price	Price as float to allow plugins custom formatting.
 	 */
-	return apply_filters( 'rp_price', $return, $unformatted_price, $args );
+	return apply_filters( 'rp_price', $return, $price, $args, $unformatted_price );
 }
 
 /**
