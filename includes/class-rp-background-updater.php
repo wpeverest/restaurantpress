@@ -92,9 +92,7 @@ class RP_Background_Updater extends WP_Background_Process {
 	 * @return mixed
 	 */
 	protected function task( $callback ) {
-		if ( ! defined( 'RP_UPDATING' ) ) {
-			define( 'RP_UPDATING', true );
-		}
+		rp_maybe_define_constant( 'RP_UPDATING', true );
 
 		include_once( dirname( __FILE__ ) . '/rp-update-functions.php' );
 

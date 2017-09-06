@@ -23,6 +23,17 @@ include( RP_ABSPATH . 'includes/rp-term-functions.php' );
 include( RP_ABSPATH . 'includes/rp-widget-functions.php' );
 
 /**
+ * Define a constant if it is not already defined.
+ *
+ * @since 1.4.0
+ * @param string $name
+ * @param string $value
+ */
+function rp_maybe_define_constant( $name, $value ) {
+	RP()->define( $name, $value );
+}
+
+/**
  * Get template part (for templates like the layout-loop).
  *
  * RP_TEMPLATE_DEBUG_MODE will prevent overrides in themes from taking priority.

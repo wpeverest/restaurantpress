@@ -110,10 +110,12 @@ final class RestaurantPress {
 	/**
 	 * Define constant if not already set.
 	 *
+	 * For integrations prefer rp_maybe_define_constant() instead.
+	 *
 	 * @param string $name
 	 * @param string|bool $value
 	 */
-	private function define( $name, $value ) {
+	public function define( $name, $value ) {
 		if ( ! defined( $name ) ) {
 			define( $name, $value );
 		}
