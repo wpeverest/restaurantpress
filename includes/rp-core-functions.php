@@ -665,3 +665,36 @@ function rp_print_r( $expression, $return = false ) {
 
 	return false;
 }
+
+/**
+ * Delete expired transients.
+ *
+ * Deletes all expired transients. The multi-table delete syntax is used.
+ * to delete the transient record from table a, and the corresponding.
+ * transient_timeout record from table b.
+ *
+ * Based on code inside core's upgrade_network() function.
+ *
+ * @since  1.4.0
+ * @return int Number of transients that were cleared.
+ */
+function rp_delete_expired_transients() {
+	global $wpdb;
+
+	$sql = "DELETE a, b FROM $wpdb->options a, $wpdb->options b
+		WHERE a.option_name LIKE %s
+		AND a.option_name NOT LIKE %s
+		AND b.option_name = CONCAT( '_transient_timeout_', SUBSTRING( a.option_name, 12 ) )
+		AND b.option_value < %d";
+	$rows = $wpdb->query( $wpdb->prepare( $sql, $wpdb->esc_like( '_transient_' ) . '%', $wpdb->esc_like( '_transient_timeout_' ) . '%', time() ) );
+
+	$sql = "DELETE a, b FROM $wpdb->options a, $wpdb->options b
+		WHERE a.option_name LIKE %s
+		AND a.option_name NOT LIKE %s
+		AND b.option_name = CONCAT( '_site_transient_timeout_', SUBSTRING( a.option_name, 17 ) )
+		AND b.option_value < %d";
+	$rows2 = $wpdb->query( $wpdb->prepare( $sql, $wpdb->esc_like( '_site_transient_' ) . '%', $wpdb->esc_like( '_site_transient_timeout_' ) . '%', time() ) );
+
+	return absint( $rows + $rows2 );
+}
+add_action( 'restaurantpress_installed', 'rp_delete_expired_transients' );
