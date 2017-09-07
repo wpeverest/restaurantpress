@@ -26,11 +26,13 @@ include( RP_ABSPATH . 'includes/rp-widget-functions.php' );
  * Define a constant if it is not already defined.
  *
  * @since 1.4.0
- * @param string $name
- * @param string $value
+ * @param string $name  Constant name.
+ * @param string $value Value.
  */
 function rp_maybe_define_constant( $name, $value ) {
-	RP()->define( $name, $value );
+	if ( ! defined( $name ) ) {
+		define( $name, $value );
+	}
 }
 
 /**
