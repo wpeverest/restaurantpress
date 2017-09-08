@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the RestaurantPress package.
 msgid ""
 msgstr ""
-"Project-Id-Version: RestaurantPress 1.4.0\n"
+"Project-Id-Version: RestaurantPress 1.4.0-beta.1\n"
 "Report-Msgid-Bugs-To: https://github.com/wpeverest/restaurantpress/issues\n"
-"POT-Creation-Date: 2017-08-28 08:44:44+00:00\n"
+"POT-Creation-Date: 2017-09-08 06:45:37+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -37,7 +37,7 @@ msgstr ""
 msgid "RestaurantPress Settings"
 msgstr ""
 
-#: includes/admin/class-rp-admin-menus.php:52 includes/class-rp-install.php:437
+#: includes/admin/class-rp-admin-menus.php:52 includes/class-rp-install.php:474
 msgid "Settings"
 msgstr ""
 
@@ -156,256 +156,256 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:77
+#: includes/admin/class-rp-admin-post-types.php:80
 msgid "Menu Item updated. <a href=\"%s\">View Menu Item</a>"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:78
-#: includes/admin/class-rp-admin-post-types.php:93
+#: includes/admin/class-rp-admin-post-types.php:81
+#: includes/admin/class-rp-admin-post-types.php:96
 msgid "Custom field updated."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:79
-#: includes/admin/class-rp-admin-post-types.php:94
+#: includes/admin/class-rp-admin-post-types.php:82
+#: includes/admin/class-rp-admin-post-types.php:97
 msgid "Custom field deleted."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:80
+#: includes/admin/class-rp-admin-post-types.php:83
 msgid "Menu Item updated."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:81
+#: includes/admin/class-rp-admin-post-types.php:84
 msgid "Menu Item restored to revision from %s"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:82
+#: includes/admin/class-rp-admin-post-types.php:85
 msgid "Menu Item published. <a href=\"%s\">View Menu Item</a>"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:83
+#: includes/admin/class-rp-admin-post-types.php:86
 msgid "Menu Item saved."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:84
+#: includes/admin/class-rp-admin-post-types.php:87
 msgid "Menu Item submitted. <a target=\"_blank\" href=\"%s\">Preview Menu Item</a>"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:85
+#: includes/admin/class-rp-admin-post-types.php:88
 msgid ""
 "Menu Item scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" "
 "href=\"%2$s\">Preview Menu Item</a>"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:86
-#: includes/admin/class-rp-admin-post-types.php:101
+#: includes/admin/class-rp-admin-post-types.php:89
+#: includes/admin/class-rp-admin-post-types.php:104
 msgid "M j, Y @ G:i"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:87
+#: includes/admin/class-rp-admin-post-types.php:90
 msgid ""
 "Menu Item draft updated. <a target=\"_blank\" href=\"%s\">Preview Menu "
 "Item</a>"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:92
 #: includes/admin/class-rp-admin-post-types.php:95
-#: includes/admin/class-rp-admin-post-types.php:97
+#: includes/admin/class-rp-admin-post-types.php:98
+#: includes/admin/class-rp-admin-post-types.php:100
 msgid "Group updated."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:96
+#: includes/admin/class-rp-admin-post-types.php:99
 msgid "Group restored to revision from %s"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:98
+#: includes/admin/class-rp-admin-post-types.php:101
 msgid "Group saved."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:99
+#: includes/admin/class-rp-admin-post-types.php:102
 msgid "Group submitted."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:100
+#: includes/admin/class-rp-admin-post-types.php:103
 msgid "Group scheduled for: <strong>%1$s</strong>."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:102
+#: includes/admin/class-rp-admin-post-types.php:105
 msgid "Group draft updated."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:117
+#: includes/admin/class-rp-admin-post-types.php:120
 msgid "%s menu item updated."
 msgid_plural "%s menu items updated."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:118
+#: includes/admin/class-rp-admin-post-types.php:121
 msgid "%s menu item not updated, somebody is editing it."
 msgid_plural "%s menu items not updated, somebody is editing them."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:119
+#: includes/admin/class-rp-admin-post-types.php:122
 msgid "%s menu item permanently deleted."
 msgid_plural "%s menu items permanently deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:120
+#: includes/admin/class-rp-admin-post-types.php:123
 msgid "%s menu item moved to the Trash."
 msgid_plural "%s menu items moved to the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:121
+#: includes/admin/class-rp-admin-post-types.php:124
 msgid "%s menu item restored from the Trash."
 msgid_plural "%s menu items restored from the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:125
+#: includes/admin/class-rp-admin-post-types.php:128
 msgid "%s group updated."
 msgid_plural "%s groups updated."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:126
+#: includes/admin/class-rp-admin-post-types.php:129
 msgid "%s group not updated, somebody is editing it."
 msgid_plural "%s groups not updated, somebody is editing them."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:127
+#: includes/admin/class-rp-admin-post-types.php:130
 msgid "%s group permanently deleted."
 msgid_plural "%s groups permanently deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:128
+#: includes/admin/class-rp-admin-post-types.php:131
 msgid "%s group moved to the Trash."
 msgid_plural "%s groups moved to the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:129
+#: includes/admin/class-rp-admin-post-types.php:132
 msgid "%s group restored from the Trash."
 msgid_plural "%s groups restored from the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:149
+#: includes/admin/class-rp-admin-post-types.php:152
 #: includes/admin/class-rp-admin-taxonomies.php:249
 msgid "Image"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:150
-#: includes/admin/class-rp-admin-post-types.php:168
+#: includes/admin/class-rp-admin-post-types.php:153
+#: includes/admin/class-rp-admin-post-types.php:171
 msgid "Name"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:151
+#: includes/admin/class-rp-admin-post-types.php:154
 msgid "Price"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:152
+#: includes/admin/class-rp-admin-post-types.php:155
 #: includes/class-rp-post-types.php:48
 msgid "Categories"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:153
+#: includes/admin/class-rp-admin-post-types.php:156
 #: includes/class-rp-post-types.php:83
 msgid "Tags"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:154
+#: includes/admin/class-rp-admin-post-types.php:157
 msgid "Featured"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:155
+#: includes/admin/class-rp-admin-post-types.php:158
 #: includes/admin/rp-shortcodes-editor-i18n.php:31
 #: includes/widgets/class-rp-widget-menu.php:55
 msgid "Date"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:169
+#: includes/admin/class-rp-admin-post-types.php:172
 #: includes/admin/rp-shortcodes-editor-i18n.php:29
 #: includes/widgets/class-rp-widget-menu.php:48
 msgid "Group ID"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:170
+#: includes/admin/class-rp-admin-post-types.php:173
 #: includes/rp-template-functions.php:282
 #: includes/widgets/class-rp-widget-menu.php:40
 #: templates/single-food/tabs/description.php:25
 msgid "Description"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:234
+#: includes/admin/class-rp-admin-post-types.php:237
 msgid "Toggle featured"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:236
-#: includes/admin/class-rp-admin-post-types.php:405
+#: includes/admin/class-rp-admin-post-types.php:239
+#: includes/admin/class-rp-admin-post-types.php:416
 msgid "Yes"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:238
-#: includes/admin/class-rp-admin-post-types.php:405
+#: includes/admin/class-rp-admin-post-types.php:241
+#: includes/admin/class-rp-admin-post-types.php:416
 msgid "No"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:353
+#: includes/admin/class-rp-admin-post-types.php:364
 msgid "Menu item name"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:356
+#: includes/admin/class-rp-admin-post-types.php:367
 msgid "Group name"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:370
+#: includes/admin/class-rp-admin-post-types.php:381
 msgid "Description (optional)"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:404
+#: includes/admin/class-rp-admin-post-types.php:415
 msgid "Featured:"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:408
+#: includes/admin/class-rp-admin-post-types.php:419
 #: includes/class-rp-post-types.php:144 includes/class-rp-post-types.php:190
 msgid "Edit"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:412
+#: includes/admin/class-rp-admin-post-types.php:423
 msgid "This is a featured food"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:414
+#: includes/admin/class-rp-admin-post-types.php:425
 msgid "OK"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:415
+#: includes/admin/class-rp-admin-post-types.php:426
 msgid "Cancel"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:468
+#: includes/admin/class-rp-admin-post-types.php:479
 msgid ""
 "Groups are a great way to organize and categorize your food items. They "
 "will appear here once created."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:469
+#: includes/admin/class-rp-admin-post-types.php:480
 msgid "Create your first food group!"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:474
+#: includes/admin/class-rp-admin-post-types.php:485
 msgid "Create elegant food/restaurant menus!"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:475
+#: includes/admin/class-rp-admin-post-types.php:486
 msgid "Add your first menu item!"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:492
+#: includes/admin/class-rp-admin-post-types.php:503
 msgid "Group Page"
 msgstr ""
 
@@ -814,8 +814,9 @@ msgstr ""
 
 #: includes/admin/views/html-notice-updated.php:14
 msgid ""
-"RestaurantPress data update complete. Thank you for updating to the latest "
-"version!"
+"RestaurantPress data update complete. <strong>Please, update your "
+"restaurant %scurrency symbol%s now.</strong> Thank you for updating to the "
+"latest version!"
 msgstr ""
 
 #: includes/admin/views/html-notice-updating.php:12
@@ -826,23 +827,23 @@ msgstr ""
 msgid "Taking a while? Click here to run it now."
 msgstr ""
 
-#: includes/class-rp-install.php:437
+#: includes/class-rp-install.php:474
 msgid "View RestaurantPress Settings"
 msgstr ""
 
-#: includes/class-rp-install.php:452
+#: includes/class-rp-install.php:489
 msgid "View RestaurantPress Documentation"
 msgstr ""
 
-#: includes/class-rp-install.php:452
+#: includes/class-rp-install.php:489
 msgid "Docs"
 msgstr ""
 
-#: includes/class-rp-install.php:453
+#: includes/class-rp-install.php:490
 msgid "Visit Free Customer Support Forum"
 msgstr ""
 
-#: includes/class-rp-install.php:453
+#: includes/class-rp-install.php:490
 msgid "Free Support"
 msgstr ""
 
@@ -1090,647 +1091,647 @@ msgstr ""
 msgid "Every %d minutes"
 msgstr ""
 
-#: includes/rp-core-functions.php:165
+#: includes/rp-core-functions.php:181
 msgid "United Arab Emirates dirham"
 msgstr ""
 
-#: includes/rp-core-functions.php:166
+#: includes/rp-core-functions.php:182
 msgid "Afghan afghani"
 msgstr ""
 
-#: includes/rp-core-functions.php:167
+#: includes/rp-core-functions.php:183
 msgid "Albanian lek"
 msgstr ""
 
-#: includes/rp-core-functions.php:168
+#: includes/rp-core-functions.php:184
 msgid "Armenian dram"
 msgstr ""
 
-#: includes/rp-core-functions.php:169
+#: includes/rp-core-functions.php:185
 msgid "Netherlands Antillean guilder"
 msgstr ""
 
-#: includes/rp-core-functions.php:170
+#: includes/rp-core-functions.php:186
 msgid "Angolan kwanza"
 msgstr ""
 
-#: includes/rp-core-functions.php:171
+#: includes/rp-core-functions.php:187
 msgid "Argentine peso"
 msgstr ""
 
-#: includes/rp-core-functions.php:172
+#: includes/rp-core-functions.php:188
 msgid "Australian dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:173
+#: includes/rp-core-functions.php:189
 msgid "Aruban florin"
 msgstr ""
 
-#: includes/rp-core-functions.php:174
+#: includes/rp-core-functions.php:190
 msgid "Azerbaijani manat"
 msgstr ""
 
-#: includes/rp-core-functions.php:175
+#: includes/rp-core-functions.php:191
 msgid "Bosnia and Herzegovina convertible mark"
 msgstr ""
 
-#: includes/rp-core-functions.php:176
+#: includes/rp-core-functions.php:192
 msgid "Barbadian dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:177
+#: includes/rp-core-functions.php:193
 msgid "Bangladeshi taka"
 msgstr ""
 
-#: includes/rp-core-functions.php:178
+#: includes/rp-core-functions.php:194
 msgid "Bulgarian lev"
 msgstr ""
 
-#: includes/rp-core-functions.php:179
+#: includes/rp-core-functions.php:195
 msgid "Bahraini dinar"
 msgstr ""
 
-#: includes/rp-core-functions.php:180
+#: includes/rp-core-functions.php:196
 msgid "Burundian franc"
 msgstr ""
 
-#: includes/rp-core-functions.php:181
+#: includes/rp-core-functions.php:197
 msgid "Bermudian dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:182
+#: includes/rp-core-functions.php:198
 msgid "Brunei dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:183
+#: includes/rp-core-functions.php:199
 msgid "Bolivian boliviano"
 msgstr ""
 
-#: includes/rp-core-functions.php:184
+#: includes/rp-core-functions.php:200
 msgid "Brazilian real"
 msgstr ""
 
-#: includes/rp-core-functions.php:185
+#: includes/rp-core-functions.php:201
 msgid "Bahamian dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:186
+#: includes/rp-core-functions.php:202
 msgid "Bitcoin"
 msgstr ""
 
-#: includes/rp-core-functions.php:187
+#: includes/rp-core-functions.php:203
 msgid "Bhutanese ngultrum"
 msgstr ""
 
-#: includes/rp-core-functions.php:188
+#: includes/rp-core-functions.php:204
 msgid "Botswana pula"
 msgstr ""
 
-#: includes/rp-core-functions.php:189
+#: includes/rp-core-functions.php:205
 msgid "Belarusian ruble"
 msgstr ""
 
-#: includes/rp-core-functions.php:190
+#: includes/rp-core-functions.php:206
 msgid "Belize dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:191
+#: includes/rp-core-functions.php:207
 msgid "Canadian dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:192
+#: includes/rp-core-functions.php:208
 msgid "Congolese franc"
 msgstr ""
 
-#: includes/rp-core-functions.php:193
+#: includes/rp-core-functions.php:209
 msgid "Swiss franc"
 msgstr ""
 
-#: includes/rp-core-functions.php:194
+#: includes/rp-core-functions.php:210
 msgid "Chilean peso"
 msgstr ""
 
-#: includes/rp-core-functions.php:195
+#: includes/rp-core-functions.php:211
 msgid "Chinese yuan"
 msgstr ""
 
-#: includes/rp-core-functions.php:196
+#: includes/rp-core-functions.php:212
 msgid "Colombian peso"
 msgstr ""
 
-#: includes/rp-core-functions.php:197
+#: includes/rp-core-functions.php:213
 msgid "Costa Rican col&oacute;n"
 msgstr ""
 
-#: includes/rp-core-functions.php:198
+#: includes/rp-core-functions.php:214
 msgid "Cuban convertible peso"
 msgstr ""
 
-#: includes/rp-core-functions.php:199
+#: includes/rp-core-functions.php:215
 msgid "Cuban peso"
 msgstr ""
 
-#: includes/rp-core-functions.php:200
+#: includes/rp-core-functions.php:216
 msgid "Cape Verdean escudo"
 msgstr ""
 
-#: includes/rp-core-functions.php:201
+#: includes/rp-core-functions.php:217
 msgid "Czech koruna"
 msgstr ""
 
-#: includes/rp-core-functions.php:202
+#: includes/rp-core-functions.php:218
 msgid "Djiboutian franc"
 msgstr ""
 
-#: includes/rp-core-functions.php:203
+#: includes/rp-core-functions.php:219
 msgid "Danish krone"
 msgstr ""
 
-#: includes/rp-core-functions.php:204
+#: includes/rp-core-functions.php:220
 msgid "Dominican peso"
 msgstr ""
 
-#: includes/rp-core-functions.php:205
+#: includes/rp-core-functions.php:221
 msgid "Algerian dinar"
 msgstr ""
 
-#: includes/rp-core-functions.php:206
+#: includes/rp-core-functions.php:222
 msgid "Egyptian pound"
 msgstr ""
 
-#: includes/rp-core-functions.php:207
+#: includes/rp-core-functions.php:223
 msgid "Eritrean nakfa"
 msgstr ""
 
-#: includes/rp-core-functions.php:208
+#: includes/rp-core-functions.php:224
 msgid "Ethiopian birr"
 msgstr ""
 
-#: includes/rp-core-functions.php:209
+#: includes/rp-core-functions.php:225
 msgid "Euro"
 msgstr ""
 
-#: includes/rp-core-functions.php:210
+#: includes/rp-core-functions.php:226
 msgid "Fijian dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:211
+#: includes/rp-core-functions.php:227
 msgid "Falkland Islands pound"
 msgstr ""
 
-#: includes/rp-core-functions.php:212
+#: includes/rp-core-functions.php:228
 msgid "Pound sterling"
 msgstr ""
 
-#: includes/rp-core-functions.php:213
+#: includes/rp-core-functions.php:229
 msgid "Georgian lari"
 msgstr ""
 
-#: includes/rp-core-functions.php:214
+#: includes/rp-core-functions.php:230
 msgid "Guernsey pound"
 msgstr ""
 
-#: includes/rp-core-functions.php:215
+#: includes/rp-core-functions.php:231
 msgid "Ghana cedi"
 msgstr ""
 
-#: includes/rp-core-functions.php:216
+#: includes/rp-core-functions.php:232
 msgid "Gibraltar pound"
 msgstr ""
 
-#: includes/rp-core-functions.php:217
+#: includes/rp-core-functions.php:233
 msgid "Gambian dalasi"
 msgstr ""
 
-#: includes/rp-core-functions.php:218
+#: includes/rp-core-functions.php:234
 msgid "Guinean franc"
 msgstr ""
 
-#: includes/rp-core-functions.php:219
+#: includes/rp-core-functions.php:235
 msgid "Guatemalan quetzal"
 msgstr ""
 
-#: includes/rp-core-functions.php:220
+#: includes/rp-core-functions.php:236
 msgid "Guyanese dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:221
+#: includes/rp-core-functions.php:237
 msgid "Hong Kong dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:222
+#: includes/rp-core-functions.php:238
 msgid "Honduran lempira"
 msgstr ""
 
-#: includes/rp-core-functions.php:223
+#: includes/rp-core-functions.php:239
 msgid "Croatian kuna"
 msgstr ""
 
-#: includes/rp-core-functions.php:224
+#: includes/rp-core-functions.php:240
 msgid "Haitian gourde"
 msgstr ""
 
-#: includes/rp-core-functions.php:225
+#: includes/rp-core-functions.php:241
 msgid "Hungarian forint"
 msgstr ""
 
-#: includes/rp-core-functions.php:226
+#: includes/rp-core-functions.php:242
 msgid "Indonesian rupiah"
 msgstr ""
 
-#: includes/rp-core-functions.php:227
+#: includes/rp-core-functions.php:243
 msgid "Israeli new shekel"
 msgstr ""
 
-#: includes/rp-core-functions.php:228
+#: includes/rp-core-functions.php:244
 msgid "Manx pound"
 msgstr ""
 
-#: includes/rp-core-functions.php:229
+#: includes/rp-core-functions.php:245
 msgid "Indian rupee"
 msgstr ""
 
-#: includes/rp-core-functions.php:230
+#: includes/rp-core-functions.php:246
 msgid "Iraqi dinar"
 msgstr ""
 
-#: includes/rp-core-functions.php:231
+#: includes/rp-core-functions.php:247
 msgid "Iranian rial"
 msgstr ""
 
-#: includes/rp-core-functions.php:232
+#: includes/rp-core-functions.php:248
 msgid "Iranian toman"
 msgstr ""
 
-#: includes/rp-core-functions.php:233
+#: includes/rp-core-functions.php:249
 msgid "Icelandic kr&oacute;na"
 msgstr ""
 
-#: includes/rp-core-functions.php:234
+#: includes/rp-core-functions.php:250
 msgid "Jersey pound"
 msgstr ""
 
-#: includes/rp-core-functions.php:235
+#: includes/rp-core-functions.php:251
 msgid "Jamaican dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:236
+#: includes/rp-core-functions.php:252
 msgid "Jordanian dinar"
 msgstr ""
 
-#: includes/rp-core-functions.php:237
+#: includes/rp-core-functions.php:253
 msgid "Japanese yen"
 msgstr ""
 
-#: includes/rp-core-functions.php:238
+#: includes/rp-core-functions.php:254
 msgid "Kenyan shilling"
 msgstr ""
 
-#: includes/rp-core-functions.php:239
+#: includes/rp-core-functions.php:255
 msgid "Kyrgyzstani som"
 msgstr ""
 
-#: includes/rp-core-functions.php:240
+#: includes/rp-core-functions.php:256
 msgid "Cambodian riel"
 msgstr ""
 
-#: includes/rp-core-functions.php:241
+#: includes/rp-core-functions.php:257
 msgid "Comorian franc"
 msgstr ""
 
-#: includes/rp-core-functions.php:242
+#: includes/rp-core-functions.php:258
 msgid "North Korean won"
 msgstr ""
 
-#: includes/rp-core-functions.php:243
+#: includes/rp-core-functions.php:259
 msgid "South Korean won"
 msgstr ""
 
-#: includes/rp-core-functions.php:244
+#: includes/rp-core-functions.php:260
 msgid "Kuwaiti dinar"
 msgstr ""
 
-#: includes/rp-core-functions.php:245
+#: includes/rp-core-functions.php:261
 msgid "Cayman Islands dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:246
+#: includes/rp-core-functions.php:262
 msgid "Kazakhstani tenge"
 msgstr ""
 
-#: includes/rp-core-functions.php:247
+#: includes/rp-core-functions.php:263
 msgid "Lao kip"
 msgstr ""
 
-#: includes/rp-core-functions.php:248
+#: includes/rp-core-functions.php:264
 msgid "Lebanese pound"
 msgstr ""
 
-#: includes/rp-core-functions.php:249
+#: includes/rp-core-functions.php:265
 msgid "Sri Lankan rupee"
 msgstr ""
 
-#: includes/rp-core-functions.php:250
+#: includes/rp-core-functions.php:266
 msgid "Liberian dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:251
+#: includes/rp-core-functions.php:267
 msgid "Lesotho loti"
 msgstr ""
 
-#: includes/rp-core-functions.php:252
+#: includes/rp-core-functions.php:268
 msgid "Libyan dinar"
 msgstr ""
 
-#: includes/rp-core-functions.php:253
+#: includes/rp-core-functions.php:269
 msgid "Moroccan dirham"
 msgstr ""
 
-#: includes/rp-core-functions.php:254
+#: includes/rp-core-functions.php:270
 msgid "Moldovan leu"
 msgstr ""
 
-#: includes/rp-core-functions.php:255
+#: includes/rp-core-functions.php:271
 msgid "Malagasy ariary"
 msgstr ""
 
-#: includes/rp-core-functions.php:256
+#: includes/rp-core-functions.php:272
 msgid "Macedonian denar"
 msgstr ""
 
-#: includes/rp-core-functions.php:257
+#: includes/rp-core-functions.php:273
 msgid "Burmese kyat"
 msgstr ""
 
-#: includes/rp-core-functions.php:258
+#: includes/rp-core-functions.php:274
 msgid "Mongolian t&ouml;gr&ouml;g"
 msgstr ""
 
-#: includes/rp-core-functions.php:259
+#: includes/rp-core-functions.php:275
 msgid "Macanese pataca"
 msgstr ""
 
-#: includes/rp-core-functions.php:260
+#: includes/rp-core-functions.php:276
 msgid "Mauritanian ouguiya"
 msgstr ""
 
-#: includes/rp-core-functions.php:261
+#: includes/rp-core-functions.php:277
 msgid "Mauritian rupee"
 msgstr ""
 
-#: includes/rp-core-functions.php:262
+#: includes/rp-core-functions.php:278
 msgid "Maldivian rufiyaa"
 msgstr ""
 
-#: includes/rp-core-functions.php:263
+#: includes/rp-core-functions.php:279
 msgid "Malawian kwacha"
 msgstr ""
 
-#: includes/rp-core-functions.php:264
+#: includes/rp-core-functions.php:280
 msgid "Mexican peso"
 msgstr ""
 
-#: includes/rp-core-functions.php:265
+#: includes/rp-core-functions.php:281
 msgid "Malaysian ringgit"
 msgstr ""
 
-#: includes/rp-core-functions.php:266
+#: includes/rp-core-functions.php:282
 msgid "Mozambican metical"
 msgstr ""
 
-#: includes/rp-core-functions.php:267
+#: includes/rp-core-functions.php:283
 msgid "Namibian dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:268
+#: includes/rp-core-functions.php:284
 msgid "Nigerian naira"
 msgstr ""
 
-#: includes/rp-core-functions.php:269
+#: includes/rp-core-functions.php:285
 msgid "Nicaraguan c&oacute;rdoba"
 msgstr ""
 
-#: includes/rp-core-functions.php:270
+#: includes/rp-core-functions.php:286
 msgid "Norwegian krone"
 msgstr ""
 
-#: includes/rp-core-functions.php:271
+#: includes/rp-core-functions.php:287
 msgid "Nepalese rupee"
 msgstr ""
 
-#: includes/rp-core-functions.php:272
+#: includes/rp-core-functions.php:288
 msgid "New Zealand dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:273
+#: includes/rp-core-functions.php:289
 msgid "Omani rial"
 msgstr ""
 
-#: includes/rp-core-functions.php:274
+#: includes/rp-core-functions.php:290
 msgid "Panamanian balboa"
 msgstr ""
 
-#: includes/rp-core-functions.php:275
+#: includes/rp-core-functions.php:291
 msgid "Peruvian nuevo sol"
 msgstr ""
 
-#: includes/rp-core-functions.php:276
+#: includes/rp-core-functions.php:292
 msgid "Papua New Guinean kina"
 msgstr ""
 
-#: includes/rp-core-functions.php:277
+#: includes/rp-core-functions.php:293
 msgid "Philippine peso"
 msgstr ""
 
-#: includes/rp-core-functions.php:278
+#: includes/rp-core-functions.php:294
 msgid "Pakistani rupee"
 msgstr ""
 
-#: includes/rp-core-functions.php:279
+#: includes/rp-core-functions.php:295
 msgid "Polish z&#x142;oty"
 msgstr ""
 
-#: includes/rp-core-functions.php:280
+#: includes/rp-core-functions.php:296
 msgid "Transnistrian ruble"
 msgstr ""
 
-#: includes/rp-core-functions.php:281
+#: includes/rp-core-functions.php:297
 msgid "Paraguayan guaran&iacute;"
 msgstr ""
 
-#: includes/rp-core-functions.php:282
+#: includes/rp-core-functions.php:298
 msgid "Qatari riyal"
 msgstr ""
 
-#: includes/rp-core-functions.php:283
+#: includes/rp-core-functions.php:299
 msgid "Romanian leu"
 msgstr ""
 
-#: includes/rp-core-functions.php:284
+#: includes/rp-core-functions.php:300
 msgid "Serbian dinar"
 msgstr ""
 
-#: includes/rp-core-functions.php:285
+#: includes/rp-core-functions.php:301
 msgid "Russian ruble"
 msgstr ""
 
-#: includes/rp-core-functions.php:286
+#: includes/rp-core-functions.php:302
 msgid "Rwandan franc"
 msgstr ""
 
-#: includes/rp-core-functions.php:287
+#: includes/rp-core-functions.php:303
 msgid "Saudi riyal"
 msgstr ""
 
-#: includes/rp-core-functions.php:288
+#: includes/rp-core-functions.php:304
 msgid "Solomon Islands dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:289
+#: includes/rp-core-functions.php:305
 msgid "Seychellois rupee"
 msgstr ""
 
-#: includes/rp-core-functions.php:290
+#: includes/rp-core-functions.php:306
 msgid "Sudanese pound"
 msgstr ""
 
-#: includes/rp-core-functions.php:291
+#: includes/rp-core-functions.php:307
 msgid "Swedish krona"
 msgstr ""
 
-#: includes/rp-core-functions.php:292
+#: includes/rp-core-functions.php:308
 msgid "Singapore dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:293
+#: includes/rp-core-functions.php:309
 msgid "Saint Helena pound"
 msgstr ""
 
-#: includes/rp-core-functions.php:294
+#: includes/rp-core-functions.php:310
 msgid "Sierra Leonean leone"
 msgstr ""
 
-#: includes/rp-core-functions.php:295
+#: includes/rp-core-functions.php:311
 msgid "Somali shilling"
 msgstr ""
 
-#: includes/rp-core-functions.php:296
+#: includes/rp-core-functions.php:312
 msgid "Surinamese dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:297
+#: includes/rp-core-functions.php:313
 msgid "South Sudanese pound"
 msgstr ""
 
-#: includes/rp-core-functions.php:298
+#: includes/rp-core-functions.php:314
 msgid "S&atilde;o Tom&eacute; and Pr&iacute;ncipe dobra"
 msgstr ""
 
-#: includes/rp-core-functions.php:299
+#: includes/rp-core-functions.php:315
 msgid "Syrian pound"
 msgstr ""
 
-#: includes/rp-core-functions.php:300
+#: includes/rp-core-functions.php:316
 msgid "Swazi lilangeni"
 msgstr ""
 
-#: includes/rp-core-functions.php:301
+#: includes/rp-core-functions.php:317
 msgid "Thai baht"
 msgstr ""
 
-#: includes/rp-core-functions.php:302
+#: includes/rp-core-functions.php:318
 msgid "Tajikistani somoni"
 msgstr ""
 
-#: includes/rp-core-functions.php:303
+#: includes/rp-core-functions.php:319
 msgid "Turkmenistan manat"
 msgstr ""
 
-#: includes/rp-core-functions.php:304
+#: includes/rp-core-functions.php:320
 msgid "Tunisian dinar"
 msgstr ""
 
-#: includes/rp-core-functions.php:305
+#: includes/rp-core-functions.php:321
 msgid "Tongan pa&#x2bb;anga"
 msgstr ""
 
-#: includes/rp-core-functions.php:306
+#: includes/rp-core-functions.php:322
 msgid "Turkish lira"
 msgstr ""
 
-#: includes/rp-core-functions.php:307
+#: includes/rp-core-functions.php:323
 msgid "Trinidad and Tobago dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:308
+#: includes/rp-core-functions.php:324
 msgid "New Taiwan dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:309
+#: includes/rp-core-functions.php:325
 msgid "Tanzanian shilling"
 msgstr ""
 
-#: includes/rp-core-functions.php:310
+#: includes/rp-core-functions.php:326
 msgid "Ukrainian hryvnia"
 msgstr ""
 
-#: includes/rp-core-functions.php:311
+#: includes/rp-core-functions.php:327
 msgid "Ugandan shilling"
 msgstr ""
 
-#: includes/rp-core-functions.php:312
+#: includes/rp-core-functions.php:328
 msgid "United States dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:313
+#: includes/rp-core-functions.php:329
 msgid "Uruguayan peso"
 msgstr ""
 
-#: includes/rp-core-functions.php:314
+#: includes/rp-core-functions.php:330
 msgid "Uzbekistani som"
 msgstr ""
 
-#: includes/rp-core-functions.php:315
+#: includes/rp-core-functions.php:331
 msgid "Venezuelan bol&iacute;var"
 msgstr ""
 
-#: includes/rp-core-functions.php:316
+#: includes/rp-core-functions.php:332
 msgid "Vietnamese &#x111;&#x1ed3;ng"
 msgstr ""
 
-#: includes/rp-core-functions.php:317
+#: includes/rp-core-functions.php:333
 msgid "Vanuatu vatu"
 msgstr ""
 
-#: includes/rp-core-functions.php:318
+#: includes/rp-core-functions.php:334
 msgid "Samoan t&#x101;l&#x101;"
 msgstr ""
 
-#: includes/rp-core-functions.php:319
+#: includes/rp-core-functions.php:335
 msgid "Central African CFA franc"
 msgstr ""
 
-#: includes/rp-core-functions.php:320
+#: includes/rp-core-functions.php:336
 msgid "East Caribbean dollar"
 msgstr ""
 
-#: includes/rp-core-functions.php:321
+#: includes/rp-core-functions.php:337
 msgid "West African CFA franc"
 msgstr ""
 
-#: includes/rp-core-functions.php:322
+#: includes/rp-core-functions.php:338
 msgid "CFP franc"
 msgstr ""
 
-#: includes/rp-core-functions.php:323
+#: includes/rp-core-functions.php:339
 msgid "Yemeni rial"
 msgstr ""
 
-#: includes/rp-core-functions.php:324
+#: includes/rp-core-functions.php:340
 msgid "South African rand"
 msgstr ""
 
-#: includes/rp-core-functions.php:325
+#: includes/rp-core-functions.php:341
 msgid "Zambian kwacha"
 msgstr ""
 
@@ -1804,7 +1805,7 @@ msgid "Next (arrow right)"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "https://wpeverest.com/plugins/restaurantpress/"
+msgid "https://wpeverest.com/restaurantpress/"
 msgstr ""
 
 #. Description of the plugin/theme
