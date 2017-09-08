@@ -216,6 +216,6 @@ class RP_Food {
 		} else {
 			$image = '';
 		}
-		return str_replace( array( 'https://', 'http://' ), '//', $image );
+		return str_replace( 'http://', '//', $image );
 	}
 }
