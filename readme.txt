@@ -1,4 +1,4 @@
-T=== RestaurantPress ===
+=== RestaurantPress ===
 Contributors: WPEverest, shivapoudel
 Tags: restaurant, appetizer, food, cafe, menu, dining, drink
 Requires at least: 4.4
