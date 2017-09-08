@@ -735,3 +735,26 @@ function rp_delete_expired_transients() {
 	return absint( $rows + $rows2 );
 }
 add_action( 'restaurantpress_installed', 'rp_delete_expired_transients' );
+
+/**
+ * Make a URL relative, if possible.
+ *
+ * @since  1.4.0
+ * @param  string $url URL to make relative.
+ * @return string
+ */
+function rp_get_relative_url( $url ) {
+	return rp_is_external_resource( $url ) ? $url : str_replace( array( 'http://', 'https://' ), '//', $url );
+}
+
+/**
+ * See if a resource is remote.
+ *
+ * @since  1.4.0
+ * @param  string $url URL to check.
+ * @return bool
+ */
+function rp_is_external_resource( $url ) {
+	$wp_base = str_replace( array( 'http://', 'https://' ), '//', get_home_url( null, '/', 'http' ) );
+	return strstr( $url, '://' ) && strstr( $wp_base, $url );
+}
