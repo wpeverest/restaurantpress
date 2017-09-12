@@ -60,9 +60,10 @@ class RP_Meta_Box_Food_Data {
 				<div class="options_group">
 					<?php
 						restaurantpress_wp_checkbox( array(
-							'id'      => '_chef_badge',
-							'label'   => __( 'Enable chef badge', 'restaurantpress' ),
-							'cbvalue' => 'yes',
+							'id'          => '_chef_badge',
+							'label'       => __( 'Enable chef badge', 'restaurantpress' ),
+							'cbvalue'     => 'yes',
+							'description' => __( 'Enable this to only allow one of this item to be chef recommended', 'restaurantpress' ),
 						) );
 					?>
 				</div>
