@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the RestaurantPress package.
 msgid ""
 msgstr ""
-"Project-Id-Version: RestaurantPress 1.4.0-beta.1\n"
+"Project-Id-Version: RestaurantPress 1.4.0-beta.2\n"
 "Report-Msgid-Bugs-To: https://github.com/wpeverest/restaurantpress/issues\n"
-"POT-Creation-Date: 2017-09-08 07:06:13+00:00\n"
+"POT-Creation-Date: 2017-09-12 09:06:00+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -493,7 +493,11 @@ msgstr ""
 msgid "Enable chef badge"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-rp-meta-box-food-data.php:85
+#: includes/admin/meta-boxes/class-rp-meta-box-food-data.php:66
+msgid "Enable this to only allow one of this item to be chef recommended"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-rp-meta-box-food-data.php:86
 #: includes/admin/meta-boxes/class-rp-meta-box-group-data.php:41
 #: includes/admin/settings/class-rp-settings-general.php:28
 #: includes/admin/settings/class-rp-settings-general.php:41
