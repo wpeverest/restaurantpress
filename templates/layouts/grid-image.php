@@ -62,7 +62,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<?php if ( 'no' == $featured_image ) : ?>
 									<figure class ="rp-img">
 										<?php if ( 'yes' == $food_menu['popup'] ) : ?>
-											<a href="<?php echo $food_menu['permalink']; ?>" itemprop="image"><?php echo $food_menu['image_grid']; ?><span class="image-magnify"> <span> + </span> </span></a>
+											<a href="<?php echo $food_menu['attach_url']; ?>" itemprop="image"><?php echo $food_menu['image_grid']; ?><span class="image-magnify"> <span> + </span> </span></a>
 										<?php else : ?>
 											<?php echo $food_menu['image_grid']; ?>
 										<?php endif; ?>
@@ -72,21 +72,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 									</figure>
 								<?php endif; ?>
 								<div class="rp-content-wrapper">
-									<a href="<?php echo $food_menu['permalink']; ?>" class="restaurantpress-foodItem-link restaurantpress-loop-foodItem__link">
-										<div class="rp-title-price-wrap">
-											<h4 class="rp-title"><?php echo $food_menu['title']; ?></h4>
-										</div> <!--rp-title-price-wrap end -->
-										<p class="rp-desc"><?php
-											if ( $food_menu['excerpt'] ) {
-												echo $food_menu['excerpt'];
-											} else {
-												echo rp_trim_string( $food_menu['content'], 255 );
-											}
-										?></p>
-										<?php if ( $food->get_price_html() ) : ?>
-											<span class="price"><?php echo $food->get_price_html(); ?></span>
-										<?php endif; ?>
-									</a>
+									<div class="rp-title-price-wrap">
+										<h4 class="rp-title">
+											<?php if ( 'yes' === get_option( 'restaurantpress_single_page_display' ) ) : ?>
+												<a href="<?php echo $food_menu['permalink']; ?>" class="restaurantpress-foodItem-link restaurantpress-loop-foodItem__link"><?php echo $food_menu['title']; ?></a>
+											<?php else : ?>
+												<?php echo $food_menu['title']; ?>
+											<?php endif; ?>
+										</h4>
+									</div> <!--rp-title-price-wrap end -->
+									<p class="rp-desc"><?php
+										if ( $food_menu['excerpt'] ) {
+											echo $food_menu['excerpt'];
+										} else {
+											echo rp_trim_string( $food_menu['content'], 255 );
+										}
+									?></p>
+									<?php do_action( 'restaurantpress_after_food_loop_item', $food, 'grid_image' ); ?>
+									<?php if ( $food->get_price_html() ) : ?>
+										<span class="price"><?php echo $food->get_price_html(); ?></span>
+									<?php endif; ?>
 								</div> <!--rp-content-wrapper end-->
 							</div> <!--rp-column-single-block end -->
 							<?php if ( $count%3 == 0 ) {

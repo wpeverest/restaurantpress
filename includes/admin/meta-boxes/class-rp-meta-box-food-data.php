@@ -69,25 +69,6 @@ class RP_Meta_Box_Food_Data {
 
 				<?php do_action( 'restaurantpress_food_options_general' ); ?>
 			</div>
-			<div id="advanced_food_data" class="panel restaurantpress_options_panel hidden">
-
-				<div class="options_group">
-					<?php
-						restaurantpress_wp_text_input( array(
-							'id'                => 'menu_order',
-							'label'             => __( 'Menu order', 'restaurantpress' ),
-							'desc_tip'          => true,
-							'description'       => __( 'Custom ordering position.', 'restaurantpress' ),
-							'type'              => 'number',
-							'custom_attributes' => array(
-								'step' 	=> '1',
-							),
-						) );
-					?>
-				</div>
-
-				<?php do_action( 'restaurantpress_food_options_advanced' ); ?>
-			</div>
 			<?php do_action( 'restaurantpress_food_data_panels' ); ?>
 			<div class="clear"></div>
 		</div>
@@ -105,12 +86,6 @@ class RP_Meta_Box_Food_Data {
 				'target'   => 'general_food_data',
 				'class'    => array(),
 				'priority' => 10,
-			),
-			'advanced' => array(
-				'label'    => __( 'Advanced', 'restaurantpress' ),
-				'target'   => 'advanced_food_data',
-				'class'    => array(),
-				'priority' => 20,
 			),
 		) );
 
@@ -149,8 +124,7 @@ class RP_Meta_Box_Food_Data {
 		// Add/Replace data to array
 		$sale_price    = rp_clean( $_POST['_sale_price'] );
 		$regular_price = rp_clean( $_POST['_regular_price'] );
-		$menu_order    = rp_clean( $_POST['menu_order'] );
-		$featured      = rp_bool_to_string( $_POST['_featured'] );
+		$featured      = isset( $_POST['_featured'] ) ? 'yes' : 'no';
 		$chef_flash    = isset( $_POST['_chef_badge'] ) ? 'yes' : 'no';
 
 		// Prevent regular price being lower.
@@ -162,7 +136,6 @@ class RP_Meta_Box_Food_Data {
 		update_post_meta( $post_id, '_price', $sale_price ? $sale_price : $regular_price );
 		update_post_meta( $post_id, '_regular_price', $regular_price );
 		update_post_meta( $post_id, '_sale_price', $sale_price );
-		update_post_meta( $post_id, 'menu_order', $menu_order );
 		update_post_meta( $post_id, '_chef_badge', $chef_flash );
 		update_post_meta( $post_id, '_featured', $featured );
 	}

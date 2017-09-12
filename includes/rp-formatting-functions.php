@@ -165,9 +165,10 @@ function rp_price( $price, $args = array() ) {
 		'price_format'       => get_restaurantpress_price_format(),
 	) ) ) );
 
-	$negative = $price < 0;
-	$price    = apply_filters( 'raw_restaurantpress_price', floatval( $negative ? $price * -1 : $price ) );
-	$price    = apply_filters( 'formatted_restaurantpress_price', number_format( $price, $decimals, $decimal_separator, $thousand_separator ), $price, $decimals, $decimal_separator, $thousand_separator );
+	$unformatted_price = $price;
+	$negative          = $price < 0;
+	$price             = apply_filters( 'raw_restaurantpress_price', floatval( $negative ? $price * -1 : $price ) );
+	$price             = apply_filters( 'formatted_restaurantpress_price', number_format( $price, $decimals, $decimal_separator, $thousand_separator ), $price, $decimals, $decimal_separator, $thousand_separator );
 
 	if ( apply_filters( 'restaurantpress_price_trim_zeros', false ) && $decimals > 0 ) {
 		$price = rp_trim_zeros( $price );
@@ -176,7 +177,15 @@ function rp_price( $price, $args = array() ) {
 	$formatted_price = ( $negative ? '-' : '' ) . sprintf( $price_format, '<span class="restaurantpress-Price-currencySymbol">' . get_restaurantpress_currency_symbol( $currency ) . '</span>', $price );
 	$return          = '<span class="restaurantpress-Price-amount amount">' . $formatted_price . '</span>';
 
-	return apply_filters( 'rp_price', $return, $price, $args );
+	/**
+	 * Filters the string of price markup.
+	 *
+	 * @param string $return 			Price HTML markup.
+	 * @param string $price	            Formatted price.
+	 * @param array  $args     			Pass on the args.
+	 * @param float  $unformatted_price	Price as float to allow plugins custom formatting.
+	 */
+	return apply_filters( 'rp_price', $return, $price, $args, $unformatted_price );
 }
 
 /**
@@ -216,4 +225,42 @@ function rp_trim_string( $string, $chars = 200, $suffix = '...' ) {
 		}
 	}
 	return $string;
+}
+
+/**
+ * Format decimal numbers ready for DB storage.
+ *
+ * Sanitize, remove decimals, and optionally round + trim off zeros.
+ *
+ * This function does not remove thousands - this should be done before passing a value to the function.
+ *
+ * @param  float|string $number Expects either a float or a string with a decimal separator only (no thousands)
+ * @param  mixed $dp number of decimal points to use, blank to use woocommerce_price_num_decimals, or false to avoid all rounding.
+ * @param  bool $trim_zeros from end of string
+ * @return string
+ */
+function rp_format_decimal( $number, $dp = false, $trim_zeros = false ) {
+	$locale   = localeconv();
+	$decimals = array( rp_get_price_decimal_separator(), $locale['decimal_point'], $locale['mon_decimal_point'] );
+
+	// Remove locale from string.
+	if ( ! is_float( $number ) ) {
+		$number = str_replace( $decimals, '.', $number );
+		$number = preg_replace( '/[^0-9\.,-]/', '', rp_clean( $number ) );
+	}
+
+	if ( false !== $dp ) {
+		$dp     = intval( '' == $dp ? rp_get_price_decimals() : $dp );
+		$number = number_format( floatval( $number ), $dp, '.', '' );
+
+	// DP is false - don't use number format, just return a string in our format
+	} elseif ( is_float( $number ) ) {
+		$number = rp_clean( str_replace( $decimals, '.', strval( $number ) ) );
+	}
+
+	if ( $trim_zeros && strstr( $number, '.' ) ) {
+		$number = rtrim( rtrim( $number, '0' ), '.' );
+	}
+
+	return $number;
 }

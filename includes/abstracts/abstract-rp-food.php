@@ -216,6 +216,6 @@ class RP_Food {
 		} else {
 			$image = '';
 		}
-		return str_replace( array( 'https://', 'http://' ), '//', $image );
+		return apply_filters( 'restaurantpress_food_get_image', rp_get_relative_url( $image ), $this, $size, $attr, $placeholder );
 	}
 }

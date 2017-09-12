@@ -63,7 +63,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									<?php if ( 'no' == $featured_image ) : ?>
 										<figure class ="rp-img">
 											<?php if ( 'yes' == $food_menu['popup'] ) : ?>
-												<a href="<?php echo $food_menu['permalink']; ?>" itemprop="image"><?php echo $food_menu['image']; ?></a>
+												<a href="<?php echo $food_menu['attach_url']; ?>" itemprop="image"><?php echo $food_menu['image']; ?></a>
 											<?php else : ?>
 												<?php echo $food_menu['image']; ?>
 											<?php endif; ?>
@@ -75,7 +75,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 									<div class="rp-content-wrapper">
 										<div class="rp-title-price-wrap">
 											<h4 class="rp-title">
-												<a href="<?php echo $food_menu['permalink']; ?>" class="restaurantpress-foodItem-link restaurantpress-loop-foodItem__link"><?php echo $food_menu['title']; ?></a>
+												<?php if ( 'yes' === get_option( 'restaurantpress_single_page_display' ) ) : ?>
+													<a href="<?php echo $food_menu['permalink']; ?>" class="restaurantpress-foodItem-link restaurantpress-loop-foodItem__link"><?php echo $food_menu['title']; ?></a>
+												<?php else : ?>
+													<?php echo $food_menu['title']; ?>
+												<?php endif; ?>
 											</h4>
 											<p class="price"><?php echo $food->get_price_html(); ?></p>
 										</div> <!--rp-title-price-wrap end -->
@@ -86,6 +90,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 												echo rp_trim_string( $food_menu['content'], 255 );
 											}
 										?></p>
+										<?php do_action( 'restaurantpress_after_food_loop_item', $food, 'one_column' ); ?>
 									</div> <!--rp-content-wrapper end-->
 								</div> <!--rp-column-single-block end -->
 							<?php }
