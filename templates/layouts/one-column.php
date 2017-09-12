@@ -90,6 +90,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 												echo rp_trim_string( $food_menu['content'], 255 );
 											}
 										?></p>
+										<?php do_action( 'restaurantpress_after_food_loop_item', $food, 'one_column' ); ?>
 									</div> <!--rp-content-wrapper end-->
 								</div> <!--rp-column-single-block end -->
 							<?php }

@@ -91,6 +91,7 @@ $count = 1;
 													echo rp_trim_string( $food_menu['content'], 255 );
 												}
 											?></p>
+											<?php do_action( 'restaurantpress_after_food_loop_item', $food, 'two_column' ); ?>
 										</a>
 									</div><!--rp-content-wrapper end-->
 								</div> <!--rp-column-single-block end -->

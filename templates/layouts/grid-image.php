@@ -88,6 +88,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 											echo rp_trim_string( $food_menu['content'], 255 );
 										}
 									?></p>
+									<?php do_action( 'restaurantpress_after_food_loop_item', $food, 'grid_image' ); ?>
 									<?php if ( $food->get_price_html() ) : ?>
 										<span class="price"><?php echo $food->get_price_html(); ?></span>
 									<?php endif; ?>
