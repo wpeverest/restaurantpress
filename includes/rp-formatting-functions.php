@@ -189,6 +189,24 @@ function rp_price( $price, $args = array() ) {
 }
 
 /**
+ * RestaurantPress Date Format - Allows to change date format for everything RestaurantPress.
+ *
+ * @return string
+ */
+function rp_date_format() {
+	return apply_filters( 'restaurantpress_date_format', get_option( 'date_format' ) );
+}
+
+/**
+ * RestaurantPress Time Format - Allows to change time format for everything RestaurantPress.
+ *
+ * @return string
+ */
+function rp_time_format() {
+	return apply_filters( 'restaurantpress_time_format', get_option( 'time_format' ) );
+}
+
+/**
  * Format a sale price for display.
  *
  * @param  string $regular_price
