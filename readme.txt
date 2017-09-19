@@ -60,28 +60,10 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 
 == Changelog ==
 
-= 1.4.0 - 28/08/2017 =
-* Feature - Added regular and sale price for food items.
-* Feature - UI - Added blank states for food menu and group.
-* Feature - Tutorial wizard for new users to create basic menu item.
-* Feature - Global wrapper and post type template loader.
-* Feature - Introduced multiple image selection for food gallery.
-* Tweak - SelectWoo sorting for groups category.
-* Tweak - Output generator tag to aid debugging.
-* Tweak - Output smallscreen styles in seperate file.
-* Tweak - Add body classes for RestaurantPress pages.
-* Tweak - Introduced `RP_TEMPLATE_DEBUG_MODE` constant.
-* Tweak - Made the single page template more editable via theme.
-* Tweak - Made `RP_Food` pluggable via `rp_get_food` function.
-* Fix - Prevent regular price being lower than the sale price.
-* Fix - Template html structure and some additional CSS styles.
-* Fix - Lingering tooltip after gallery image delete.
-* Fix - Move plugin headers to main RP POT file.
-* Fix - Fixed grammar of Plugin Description.
-* Fix - Category description in page view layout.
-* Fix - Trim a string for description in group page.
-* Deprecated - select2 with selectWoo for accessibility.
-* Deprecated - prettyPhoto with photoSwipe for gallery need.
+= 1.4.1 - XX/09/2017 =
+* Feature - Added extensions page.
+* Tweak - Introduced `rp_date_format()` function.
+* Tweak - Introduced `rp_time_format()` function.
 
 [See changelog for all versions](https://raw.githubusercontent.com/wpeverest/restaurantpress/master/CHANGELOG.txt).
 
