@@ -198,12 +198,12 @@ h2 .restaurantpress-help-tip {
 				}
 			}
 
-			&.advanced_options a::before {
-				content: '\f111';
-			}
-
 			&.general_options a::before {
 				content: '\f107';
+			}
+
+			&.advanced_options a::before {
+				content: '\f111';
 			}
 
 			&.grouping_options a::before {
