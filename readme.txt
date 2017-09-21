@@ -65,7 +65,6 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 * Feature - Supporting Custom Post Type Template.
 * Tweak - Introduced `rp_date_format()` function.
 * Tweak - Introduced `rp_time_format()` function.
-* Tweak - Introduced `rp_time_format()` function.
 
 [See changelog for all versions](https://raw.githubusercontent.com/wpeverest/restaurantpress/master/CHANGELOG.txt).
 
