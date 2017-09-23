@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the RestaurantPress package.
 msgid ""
 msgstr ""
-"Project-Id-Version: RestaurantPress 1.4.0-beta.2\n"
+"Project-Id-Version: RestaurantPress 1.4.0\n"
 "Report-Msgid-Bugs-To: https://github.com/wpeverest/restaurantpress/issues\n"
-"POT-Creation-Date: 2017-09-12 09:06:00+00:00\n"
+"POT-Creation-Date: 2017-09-23 05:45:32+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -33,12 +33,20 @@ msgstr ""
 msgid "RestaurantPress"
 msgstr ""
 
-#: includes/admin/class-rp-admin-menus.php:52
+#: includes/admin/class-rp-admin-menus.php:57
 msgid "RestaurantPress Settings"
 msgstr ""
 
-#: includes/admin/class-rp-admin-menus.php:52 includes/class-rp-install.php:474
+#: includes/admin/class-rp-admin-menus.php:57 includes/class-rp-install.php:474
 msgid "Settings"
+msgstr ""
+
+#: includes/admin/class-rp-admin-menus.php:94
+msgid "RestaurantPress extensions"
+msgstr ""
+
+#: includes/admin/class-rp-admin-menus.php:94
+msgid "Extensions"
 msgstr ""
 
 #: includes/admin/class-rp-admin-meta-boxes.php:102
@@ -774,6 +782,43 @@ msgstr ""
 
 #: includes/admin/settings/class-rp-settings-general.php:276
 msgid "Enable gallery lightbox"
+msgstr ""
+
+#: includes/admin/views/html-admin-page-addons.php:15
+msgid "Browse Extensions"
+msgstr ""
+
+#: includes/admin/views/html-admin-page-addons.php:18
+msgid "RestaurantPress Extensions"
+msgstr ""
+
+#: includes/admin/views/html-admin-page-addons.php:45
+msgid ""
+"Our catalog of RestaurantPress Extensions can be found on WPEverest.com "
+"here: <a href=\"%s\">RestaurantPress Extensions Catalog</a>"
+msgstr ""
+
+#: includes/admin/views/html-admin-page-addons.php:51
+msgid "Looking for a RestaurantPress theme?"
+msgstr ""
+
+#: includes/admin/views/html-admin-page-addons.php:52
+msgid "We recommend FoodHunt, the <em>official</em> RestaurantPress theme."
+msgstr ""
+
+#: includes/admin/views/html-admin-page-addons.php:53
+msgid ""
+"FoodHunt is an intuitive, flexible and <strong>free</strong> WordPress "
+"theme offering deep integration with RestaurantPress and many of the most "
+"popular customer-facing extensions."
+msgstr ""
+
+#: includes/admin/views/html-admin-page-addons.php:55
+msgid "Read all about it"
+msgstr ""
+
+#: includes/admin/views/html-admin-page-addons.php:56
+msgid "Download &amp; install"
 msgstr ""
 
 #: includes/admin/views/html-admin-settings.php:33
