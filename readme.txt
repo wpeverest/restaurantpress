@@ -3,7 +3,7 @@ Contributors: WPEverest, shivapoudel
 Tags: restaurant, appetizer, food, cafe, menu, dining, drink
 Requires at least: 4.4
 Tested up to: 4.8
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -60,7 +60,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 
 == Changelog ==
 
-= 1.4.1 - XX/09/2017 =
+= 1.4.1 - 23/09/2017 =
 * Feature - Added extensions page.
 * Feature - Supporting Custom Post Type Template.
 * Tweak - Introduced `rp_date_format()` function.
