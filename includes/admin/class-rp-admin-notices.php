@@ -29,8 +29,7 @@ class RP_Admin_Notices {
 	 * @var array
 	 */
 	private static $core_notices = array(
-		'update'        => 'update_notice',
-		// 'theme_support' => 'theme_check_notice'
+		'update' => 'update_notice',
 	);
 
 	/**

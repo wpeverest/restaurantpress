@@ -39,7 +39,7 @@ if ( $attachment_ids && has_post_thumbnail() ) {
 
 		$html  = '<div data-thumb="' . esc_url( $thumbnail[0] ) . '" class="restaurantpress-food-gallery__image"><a href="' . esc_url( $full_size_image[0] ) . '">';
 		$html .= wp_get_attachment_image( $attachment_id, 'food_single', false, $attributes );
- 		$html .= '</a></div>';
+		$html .= '</a></div>';
 
 		echo apply_filters( 'restaurant_single_food_image_thumbnail_html', $html, $attachment_id );
 	}

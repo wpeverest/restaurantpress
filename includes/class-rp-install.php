@@ -392,7 +392,7 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 	}
 
 	/**
-	 * restaurantpress_remove_roles function.
+	 * Remove roles and capabilities.
 	 */
 	public static function remove_roles() {
 		global $wp_roles;
@@ -415,7 +415,9 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 	}
 
 	/**
-	 * Show plugin changes. Code adapted from W3 Total Cache.
+	 * Show plugin changes on the plugins screen. Code adapted from W3 Total Cache.
+	 *
+	 * @param array $args
 	 */
 	public static function in_plugin_update_message( $args ) {
 		$transient_name = 'rp_upgrade_notice_' . $args['Version'];

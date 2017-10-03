@@ -38,7 +38,7 @@ function rp_get_screen_ids() {
  *
  * Loops though the restaurantpress options array and outputs each field.
  *
- * @param array $options Opens array to output
+ * @param array $options Opens array to output.
  */
 function restaurantpress_admin_fields( $options ) {
 

@@ -140,8 +140,10 @@ class RP_Admin_Settings {
 	/**
 	 * Get a setting from the settings API.
 	 *
-	 * @param mixed $option_name
-	 * @return string
+	 * @param string $option_name
+	 * @param mixed $default
+	 *
+	 * @return mixed
 	 */
 	public static function get_option( $option_name, $default = '' ) {
 		// Array value
@@ -182,7 +184,7 @@ class RP_Admin_Settings {
 	 *
 	 * Loops though the restaurantpress options array and outputs each field.
 	 *
-	 * @param array $options Opens array to output
+	 * @param array $options Opens array to output.
 	 */
 	public static function output_fields( $options ) {
 		foreach ( $options as $value ) {
@@ -517,7 +519,7 @@ class RP_Admin_Settings {
 	 * given form field. Plugins can call this when implementing their own custom
 	 * settings types.
 	 *
-	 * @param  array $value The form field value array
+	 * @param  array $value The form field value array.
 	 * @return array The description and tip as a 2 element array
 	 */
 	public static function get_field_description( $value ) {
@@ -558,15 +560,7 @@ class RP_Admin_Settings {
 	 *
 	 * Loops though the restaurantpress options array and outputs each field.
 	 *
-	 * @param  array $options Options array to output
-	 * @return bool
-	 */
-	/**
-	 * Save admin fields.
-	 *
-	 * Loops though the restaurantpress options array and outputs each field.
-	 *
-	 * @param  array $options Options array to output
+	 * @param  array $options Options array to output.
 	 * @param  array $data Optional. Data to use for saving. Defaults to $_POST.
 	 * @return bool
 	 */

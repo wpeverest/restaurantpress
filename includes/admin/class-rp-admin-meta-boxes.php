@@ -105,11 +105,6 @@ class RP_Admin_Meta_Boxes {
 
 		// Groups.
 		add_meta_box( 'restaurantpress-group-data', __( 'Group data', 'restaurantpress' ), 'RP_Meta_Box_Group_Data::output', 'food_group', 'normal', 'high' );
-
-		// Comment rating.
-		if ( 'comment' === $screen_id && isset( $_GET['c'] ) && metadata_exists( 'comment', $_GET['c'], 'rating' ) ) {
-			// add_meta_box( 'restaurantpress-rating', __( 'Rating', 'restaurantpress' ), 'RP_Meta_Box_Food_Reviews::output', 'comment', 'normal', 'high' );
-		}
 	}
 
 	/**
@@ -133,7 +128,6 @@ class RP_Admin_Meta_Boxes {
 		// Comments/Reviews
 		if ( isset( $post ) && ( 'publish' == $post->post_status || 'private' == $post->post_status ) && post_type_supports( 'food_menu', 'comments' ) ) {
 			remove_meta_box( 'commentsdiv', 'food_menu', 'normal' );
-			// add_meta_box( 'commentsdiv', __( 'Reviews', 'restaurantpress' ), 'post_comment_meta_box', 'food_menu', 'normal' );
 		}
 	}
 

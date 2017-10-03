@@ -9,6 +9,14 @@
  * @category Widgets
  * @author   WPEverest
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * RP_Widget class.
+ */
 abstract class RP_Widget extends WP_Widget {
 
 	/**
@@ -109,6 +117,7 @@ abstract class RP_Widget extends WP_Widget {
 	 * Output the html at the start of a widget.
 	 *
 	 * @param  array $args
+	 * @param  array $instance
 	 * @return string
 	 */
 	public function widget_start( $args, $instance ) {

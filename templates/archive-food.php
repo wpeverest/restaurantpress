@@ -31,7 +31,7 @@ get_header( 'food' ); ?>
 		do_action( 'restaurantpress_before_main_content' );
 	?>
 
-    <header class="restaurantpress-foods-header">
+	<header class="restaurantpress-foods-header">
 
 		<?php if ( apply_filters( 'restaurantpress_show_page_title', true ) ) : ?>
 
@@ -39,7 +39,7 @@ get_header( 'food' ); ?>
 
 		<?php endif; ?>
 
-    </header>
+	</header>
 
 	<?php
 		/**

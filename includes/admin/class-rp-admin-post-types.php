@@ -73,21 +73,49 @@ class RP_Admin_Post_Types {
 	 * @return array
 	 */
 	public function post_updated_messages( $messages ) {
-		global $post, $post_ID;
+		global $post, $post_type_object, $post_ID;
+
+		$preview_menu_item_link_html = $scheduled_menu_item_link_html = $view_menu_item_link_html = '';
+
+		$viewable = is_post_type_viewable( $post_type_object );
+
+		if ( $viewable ) {
+
+			// Preview menu item link.
+			$preview_menu_item_link_html = sprintf( ' <a target="_blank" href="%1$s">%2$s</a>',
+				esc_url( get_preview_post_link( $post ) ),
+				__( 'Preview menu item' )
+			);
+
+			// Scheduled menu item preview link.
+			$scheduled_menu_item_link_html = sprintf( ' <a target="_blank" href="%1$s">%2$s</a>',
+				esc_url( get_permalink( $post_ID ) ),
+				__( 'Preview menu item' )
+			);
+
+			// View menu item link.
+			$view_menu_item_link_html = sprintf( ' <a href="%1$s">%2$s</a>',
+				esc_url( get_permalink( $post_ID ) ),
+				__( 'View menu item' )
+			);
+		}
+
+		/* translators: Publish box date format, see https://secure.php.net/date */
+		$scheduled_date = date_i18n( __( 'M j, Y @ H:i', 'restaurantpress' ), strtotime( $post->post_date ) );
 
 		$messages['food_menu'] = array(
 			0 => '', // Unused. Messages start at index 1.
-			1 => sprintf( __( 'Menu Item updated. <a href="%s">View Menu Item</a>', 'restaurantpress' ), esc_url( get_permalink( $post_ID ) ) ),
+			1 => __( 'Menu Item updated.', 'restaurantpress' ) . $view_menu_item_link_html,
 			2 => __( 'Custom field updated.', 'restaurantpress' ),
 			3 => __( 'Custom field deleted.', 'restaurantpress' ),
 			4 => __( 'Menu Item updated.', 'restaurantpress' ),
+			/* translators: %s: date and time of the revision */
 			5 => isset( $_GET['revision'] ) ? sprintf( __( 'Menu Item restored to revision from %s', 'restaurantpress' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-			6 => sprintf( __( 'Menu Item published. <a href="%s">View Menu Item</a>', 'restaurantpress' ), esc_url( get_permalink( $post_ID ) ) ),
+			6 => __( 'Menu Item published.', 'restaurantpress' ) . $view_menu_item_link_html,
 			7 => __( 'Menu Item saved.', 'restaurantpress' ),
-			8 => sprintf( __( 'Menu Item submitted. <a target="_blank" href="%s">Preview Menu Item</a>', 'restaurantpress' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) ),
-			9 => sprintf( __( 'Menu Item scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview Menu Item</a>', 'restaurantpress' ),
-			  date_i18n( __( 'M j, Y @ G:i', 'restaurantpress' ), strtotime( $post->post_date ) ), esc_url( get_permalink( $post_ID ) ) ),
-			10 => sprintf( __( 'Menu Item draft updated. <a target="_blank" href="%s">Preview Menu Item</a>', 'restaurantpress' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) ),
+			8 => __( 'Menu Item submitted.', 'restaurantpress' ) . $preview_menu_item_link_html,
+			9 => sprintf( __( 'Menu Item scheduled for: %s.' ), '<strong>' . $scheduled_date . '</strong>' ) . $scheduled_menu_item_link_html,
+			10 => __( 'Menu Item draft updated.' ) . $preview_menu_item_link_html,
 		);
 
 		$messages['food_group'] = array(
@@ -96,12 +124,12 @@ class RP_Admin_Post_Types {
 			2 => __( 'Custom field updated.', 'restaurantpress' ),
 			3 => __( 'Custom field deleted.', 'restaurantpress' ),
 			4 => __( 'Group updated.', 'restaurantpress' ),
+			/* translators: %s: date and time of the revision */
 			5 => isset( $_GET['revision'] ) ? sprintf( __( 'Group restored to revision from %s', 'restaurantpress' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
 			6 => __( 'Group updated.', 'restaurantpress' ),
 			7 => __( 'Group saved.', 'restaurantpress' ),
 			8 => __( 'Group submitted.', 'restaurantpress' ),
-			9 => sprintf( __( 'Group scheduled for: <strong>%1$s</strong>.', 'restaurantpress' ),
-			  date_i18n( __( 'M j, Y @ G:i', 'restaurantpress' ), strtotime( $post->post_date ) ) ),
+			9 => sprintf( __( 'Group scheduled for: %s.', 'restaurantpress' ), '<strong>' . $scheduled_date . '</strong>' ),
 			10 => __( 'Group draft updated.', 'restaurantpress' ),
 		);
 
@@ -446,7 +474,7 @@ class RP_Admin_Post_Types {
 	 * View mode is seen on posts where you can switch between list or excerpt. Our post types don't support
 	 * it, so we want to hide the useless UI from the screen options tab.
 	 *
-	 * @param  array $post_types Array of post types supporting view mode
+	 * @param  array $post_types Array of post types supporting view mode.
 	 * @return array             Array of post types supporting view mode, without food menu and group
 	 */
 	public function disable_view_mode_options( $post_types ) {

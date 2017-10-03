@@ -93,13 +93,12 @@ function rp_generator_tag( $gen, $type ) {
 	return $gen;
 }
 
-/** Global ****************************************************************/
+/* Global *****************************************************************/
 
 if ( ! function_exists( 'restaurantpress_output_content_wrapper' ) ) {
 
 	/**
 	 * Output the start of the page wrapper.
-	 *
 	 */
 	function restaurantpress_output_content_wrapper() {
 		rp_get_template( 'global/wrapper-start.php' );
@@ -109,7 +108,6 @@ if ( ! function_exists( 'restaurantpress_output_content_wrapper_end' ) ) {
 
 	/**
 	 * Output the end of the page wrapper.
-	 *
 	 */
 	function restaurantpress_output_content_wrapper_end() {
 		rp_get_template( 'global/wrapper-end.php' );
@@ -120,14 +118,13 @@ if ( ! function_exists( 'restaurantpress_get_sidebar' ) ) {
 
 	/**
 	 * Get the food sidebar template.
-	 *
 	 */
 	function restaurantpress_get_sidebar() {
 		rp_get_template( 'global/sidebar.php' );
 	}
 }
 
-/** Single Food ***********************************************************/
+/* Single Food ************************************************************/
 
 if ( ! function_exists( 'restaurantpress_show_food_chef_badge' ) ) {
 
@@ -301,7 +298,7 @@ if ( ! function_exists( 'restaurantpress_sort_food_tabs' ) ) {
 
 		// Make sure the $tabs parameter is an array
 		if ( ! is_array( $tabs ) ) {
-			trigger_error( "Function restaurantpress_sort_food_tabs() expects an array as the first parameter. Defaulting to empty array." );
+			trigger_error( 'Function restaurantpress_sort_food_tabs() expects an array as the first parameter. Defaulting to empty array.' );
 			$tabs = array();
 		}
 
