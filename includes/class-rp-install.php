@@ -107,6 +107,13 @@ class RP_Install {
 			return;
 		}
 
+		// Check if we are not already running this routine.
+		if ( 'yes' === get_transient( 'rp_installing' ) ) {
+			return;
+		}
+
+		// If we made it till here nothing is running yet, lets set the transient now.
+		set_transient( 'rp_installing', 'yes', MINUTE_IN_SECONDS * 10 );
 		rp_maybe_define_constant( 'RP_INSTALLING', true );
 
 		self::remove_admin_notices();
@@ -117,6 +124,8 @@ class RP_Install {
 		self::maybe_enable_setup_wizard();
 		self::update_rp_version();
 		self::maybe_update_db_version();
+
+		delete_transient( 'rp_installing' );
 
 		do_action( 'restaurantpress_flush_rewrite_rules' );
 		do_action( 'restaurantpress_installed' );
