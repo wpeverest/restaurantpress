@@ -99,7 +99,7 @@ $count = 1;
 						} ?>
 					</div><!-- .rp-column-2 -->
 					<?php
-						if ( $count%2 == 0 ) {
+						if ( 0 == $count % 2 ) {
 							echo '<div class="clear"></div>';
 						}
 						$count++;

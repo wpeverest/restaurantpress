@@ -66,7 +66,12 @@ class RP_Admin {
 		if ( isset( $current_screen->id ) && apply_filters( 'restaurantpress_display_admin_footer_text', in_array( $current_screen->id, $rp_pages ) ) ) {
 			// Change the footer text
 			if ( ! get_option( 'restaurantpress_admin_footer_text_rated' ) ) {
-				$footer_text = sprintf( __( 'If you like <strong>RestaurantPress</strong> please leave us a %s&#9733;&#9733;&#9733;&#9733;&#9733;%s rating. A huge thanks in advance!', 'restaurantpress' ), '<a href="https://wordpress.org/support/plugin/restaurantpress/reviews?rate=5#new-post" target="_blank" class="rp-rating-link" data-rated="' . esc_attr__( 'Thanks :)', 'restaurantpress' ) . '">', '</a>' );
+				$footer_text = sprintf(
+					/* translators: 1: RestaurantPress 2:: five stars */
+					__( 'If you like %1$s please leave us a %2$s rating. A huge thanks in advance!', 'restaurantpress' ),
+					sprintf( '<strong>%s</strong>', esc_html__( 'RestaurantPress', 'restaurantpress' ) ),
+					'<a href="https://wordpress.org/support/plugin/restaurantpress/reviews?rate=5#new-post" target="_blank" class="rp-rating-link" data-rated="' . esc_attr__( 'Thanks :)', 'restaurantpress' ) . '">&#9733;&#9733;&#9733;&#9733;&#9733;</a>'
+				);
 				rp_enqueue_js( "
 					jQuery( 'a.rp-rating-link' ).click( function() {
 						jQuery.post( '" . RP()->ajax_url() . "', { action: 'restaurantpress_rated' } );

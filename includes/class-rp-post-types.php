@@ -213,7 +213,7 @@ class RP_Post_Types {
 					'query_var'           => false,
 					'supports'            => array( 'title' ),
 					'show_in_nav_menus'   => false,
-					'show_in_admin_bar'   => true
+					'show_in_admin_bar'   => true,
 				)
 			)
 		);

@@ -66,7 +66,7 @@ class RP_Plugin_Updates {
 		$matches = array();
 
 		foreach ( $plugins as $file => $plugin ) {
-			if ( $plugin['Name'] !== 'RestaurantPress' && ( stristr( $plugin['Name'], 'restaurantpress' ) || stristr( $plugin['Description'], 'restaurantpress' ) ) ) {
+			if ( 'RestaurantPress' !== $plugin['Name'] && ( stristr( $plugin['Name'], 'restaurantpress' ) || stristr( $plugin['Description'], 'restaurantpress' ) ) ) {
 				$matches[ $file ] = $plugin;
 			}
 		}

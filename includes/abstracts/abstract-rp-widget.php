@@ -53,7 +53,7 @@ abstract class RP_Widget extends WP_Widget {
 
 		$widget_ops = array(
 			'classname'   => $this->widget_cssclass,
-			'description' => $this->widget_description
+			'description' => $this->widget_description,
 		);
 
 		parent::__construct( $this->widget_id, $this->widget_name, $widget_ops );

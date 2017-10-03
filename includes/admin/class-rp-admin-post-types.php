@@ -102,7 +102,7 @@ class RP_Admin_Post_Types {
 			8 => __( 'Group submitted.', 'restaurantpress' ),
 			9 => sprintf( __( 'Group scheduled for: <strong>%1$s</strong>.', 'restaurantpress' ),
 			  date_i18n( __( 'M j, Y @ G:i', 'restaurantpress' ), strtotime( $post->post_date ) ) ),
-			10 => __( 'Group draft updated.', 'restaurantpress' )
+			10 => __( 'Group draft updated.', 'restaurantpress' ),
 		);
 
 		return $messages;
@@ -206,7 +206,7 @@ class RP_Admin_Post_Types {
 				echo '</strong>';
 
 				if ( $post->post_parent > 0 ) {
-					echo '&nbsp;&nbsp;&larr; <a href="'. get_edit_post_link( $post->post_parent ) .'">'. get_the_title( $post->post_parent ) .'</a>';
+					echo '&nbsp;&nbsp;&larr; <a href="' . get_edit_post_link( $post->post_parent ) . '">' . get_the_title( $post->post_parent ) . '</a>';
 				}
 
 				// Excerpt view
@@ -282,7 +282,7 @@ class RP_Admin_Post_Types {
 	public function food_menu_sortable_columns( $columns ) {
 		$custom = array(
 			'name'  => 'title',
-			'price' => 'price'
+			'price' => 'price',
 		);
 		return wp_parse_args( $custom, $columns );
 	}
@@ -295,7 +295,7 @@ class RP_Admin_Post_Types {
 	public function food_group_sortable_columns( $columns ) {
 		$custom = array(
 			'name'     => 'title',
-			'group_id' => 'group_id'
+			'group_id' => 'group_id',
 		);
 		return wp_parse_args( $custom, $columns );
 	}

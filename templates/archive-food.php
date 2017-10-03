@@ -35,7 +35,7 @@ get_header( 'food' ); ?>
 
 		<?php if ( apply_filters( 'restaurantpress_show_page_title', true ) ) : ?>
 
-			<h1 class="restaurantpress-foods-header__title page-title"><?php //restaurantpress_page_title(); ?></h1>
+			<h1 class="restaurantpress-foods-header__title page-title"><?php restaurantpress_page_title(); ?></h1>
 
 		<?php endif; ?>
 

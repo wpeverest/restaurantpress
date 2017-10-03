@@ -37,7 +37,7 @@ function restaurantpress_tinymce_plugin_translation() {
 		'asc'             => __( 'ASC', 'restaurantpress' ),
 		'desc'            => __( 'DESC', 'restaurantpress' ),
 		'shortcode_title' => __( 'Insert Food Menu', 'restaurantpress' ),
-		'need_group_id'   => __( 'You need to use a Group ID!', 'restaurantpress' )
+		'need_group_id'   => __( 'You need to use a Group ID!', 'restaurantpress' ),
 	);
 
 	/**

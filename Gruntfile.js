@@ -208,9 +208,11 @@ module.exports = function( grunt ){
 		phpcs: {
 			options: {
 				bin: 'vendor/bin/phpcs',
-				standard: './phpcs.ruleset.xml'
 			},
 			dist: {
+				options: {
+					standard: './phpcs.ruleset.xml'
+				},
 				src:  [
 					'**/*.php',         // Include all files
 					'!node_modules/**', // Exclude node_modules/

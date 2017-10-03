@@ -133,7 +133,6 @@ class RP_Admin_Menu {
 			} elseif ( ! in_array( $item, array( 'separator-restaurantpress' ) ) ) {
 				$restaurantpress_menu_order[] = $item;
 			}
-
 		}
 
 		// Return order

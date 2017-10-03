@@ -34,15 +34,6 @@ class RP_Background_Updater extends WP_Background_Process {
 	protected $action = 'rp_updater';
 
 	/**
-	 * Dispatch updater.
-	 *
-	 * Updater will still run via cron job if this fails for any reason.
-	 */
-	public function dispatch() {
-		parent::dispatch();
-	}
-
-	/**
 	 * Handle cron healthcheck
 	 *
 	 * Restart the background process if not already running

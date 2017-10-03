@@ -34,9 +34,10 @@ If you think something could be improved and you're able to do so, make your cha
 
 * Fork the repository on GitHub
 * Make the changes to your forked repository
-  * **Ensure you stick to the [WordPress Coding Standards](https://make.wordpress.org/core/handbook/coding-standards/php/).**
+  * **Ensure you stick to the [WordPress Coding Standards](https://make.wordpress.org/core/handbook/coding-standards/php/)**
+    * Install our pre-commit hook using composer. It'll help with the Coding Standards. To install just run `composer install`
   * Ensure you use LF line endings - no crazy Windows line endings please :)
-* When committing, reference your issue number (#1234) and include a note about the fix
+    * Optionally it's possible install [EditorConfig](http://editorconfig.org/) on your editor to auto configure with indentation, line endings and other settings* When committing, reference your issue number (#1234) and include a note about the fix
 * Push the changes to your fork and submit a pull request on the master branch of the RestaurantPress repository. Existing maintenance branches will be maintained by RestaurantPress developers
 * Please **don't** modify the changelog - this will be maintained by the RestaurantPress developers.
 * Please **don't** add your localizations or update the .pot files - these will also be maintained by the RestaurantPress developers. To contribute to the localization of RestaurantPress, please join the [translate.wordpress.org project](https://translate.wordpress.org/projects/wp-plugins/restaurantpress). This is much needed, if you speak a language that needs translating consider yourself officially invited to the party.

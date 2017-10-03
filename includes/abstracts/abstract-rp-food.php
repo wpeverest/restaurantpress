@@ -190,7 +190,7 @@ class RP_Food {
 		if ( '' === $this->get_price() ) {
 			$price = apply_filters( 'restaurantpress_empty_price_html', '', $this );
 		} elseif ( $this->get_sale_price() ) {
-			$price = rp_format_sale_price( $this->get_regular_price(), $this->get_price() ). $this->get_price_suffix();
+			$price = rp_format_sale_price( $this->get_regular_price(), $this->get_price() ) . $this->get_price_suffix();
 		} else {
 			$price = rp_price( $this->get_price() );
 		}

@@ -32,12 +32,12 @@ class RP_Widget_Menu extends RP_Widget {
 			'title' => array(
 				'type'  => 'text',
 				'std'   => __( 'Group Menu', 'restaurantpress' ),
-				'label' => __( 'Title', 'restaurantpress' )
+				'label' => __( 'Title', 'restaurantpress' ),
 			),
 			'description'  => array(
 				'type'  => 'textarea',
 				'std'   => '',
-				'label' => __( 'Description', 'restaurantpress' )
+				'label' => __( 'Description', 'restaurantpress' ),
 			),
 			'group' => array(
 				'type'  => 'number',
@@ -45,7 +45,7 @@ class RP_Widget_Menu extends RP_Widget {
 				'min'   => 1,
 				'max'   => '',
 				'std'   => '',
-				'label' => __( 'Group ID', 'restaurantpress' )
+				'label' => __( 'Group ID', 'restaurantpress' ),
 			),
 			'orderby' => array(
 				'type'  => 'select',
@@ -57,7 +57,7 @@ class RP_Widget_Menu extends RP_Widget {
 					'rand'       => __( 'Random', 'restaurantpress' ),
 					'menu_order' => __( 'Menu Order', 'restaurantpress' ),
 					'none'       => __( 'None', 'restaurantpress' ),
-				)
+				),
 			),
 			'order' => array(
 				'type'  => 'select',
@@ -66,8 +66,8 @@ class RP_Widget_Menu extends RP_Widget {
 				'options' => array(
 					'asc'  => __( 'ASC', 'restaurantpress' ),
 					'desc' => __( 'DESC', 'restaurantpress' ),
-				)
-			)
+				),
+			),
 		) );
 		parent::__construct();
 	}

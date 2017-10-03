@@ -72,14 +72,14 @@ class RP_Template_Loader {
 	private static function get_template_loader_default_file() {
 		if ( is_singular( 'food_menu' ) ) {
 			$default_file = 'single-food_menu.php';
-		// } elseif ( is_food_menu_taxonomy() ) {
-		// 	$term = get_queried_object();
+		} elseif ( is_food_menu_taxonomy() ) {
+			$term = get_queried_object();
 
-		// 	if ( is_tax( 'food_menu_cat' ) ) {
-		// 		$default_file = 'taxonomy-' . $term->taxonomy . '.php';
-		// 	} else {
-		// 		$default_file = 'archive-food.php';
-		// 	}
+			if ( is_tax( 'food_menu_cat' ) ) {
+				$default_file = 'taxonomy-' . $term->taxonomy . '.php';
+			} else {
+				$default_file = 'archive-food.php';
+			}
 		} elseif ( is_post_type_archive( 'food_menu' ) ) {
 			$default_file = 'archive-food.php';
 		} else {
@@ -110,7 +110,7 @@ class RP_Template_Loader {
 		$search_files[] = $default_file;
 		$search_files[] = RP()->template_path() . $default_file;
 
-		if ( is_page_template()) {
+		if ( is_page_template() ) {
 			$search_files[] = get_page_template_slug(); // Supporting Custom Post Type Template
 		}
 

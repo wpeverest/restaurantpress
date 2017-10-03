@@ -384,7 +384,7 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 				"manage_{$capability_type}_terms",
 				"edit_{$capability_type}_terms",
 				"delete_{$capability_type}_terms",
-				"assign_{$capability_type}_terms"
+				"assign_{$capability_type}_terms",
 			);
 		}
 
@@ -446,7 +446,7 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 
 		if ( preg_match( $regexp, $content, $matches ) ) {
 			$version = trim( $matches[1] );
-			$notices = (array) preg_split('~[\r\n]+~', trim( $matches[2] ) );
+			$notices = (array) preg_split( '~[\r\n]+~', trim( $matches[2] ) );
 
 			// Check the latest stable version and ignore trunk.
 			if ( $version === $new_version && version_compare( RP_VERSION, $version, '<' ) ) {

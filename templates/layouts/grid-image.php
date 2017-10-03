@@ -94,7 +94,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									<?php endif; ?>
 								</div> <!--rp-content-wrapper end-->
 							</div> <!--rp-column-single-block end -->
-							<?php if ( $count%3 == 0 ) {
+							<?php if ( 0 == $count % 3 ) {
 								echo '<div class="clear"></div>';
 							}
 

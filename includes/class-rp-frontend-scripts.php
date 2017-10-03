@@ -72,7 +72,7 @@ class RP_Frontend_Scripts {
 				'version' => RP_VERSION,
 				'media'   => 'all',
 				'has_rtl' => true,
-			)
+			),
 		) );
 	}
 

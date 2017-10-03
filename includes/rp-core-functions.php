@@ -545,7 +545,7 @@ function rp_get_image_size( $image_size ) {
 		$size = array(
 			'width'  => $width,
 			'height' => $height,
-			'crop'   => $crop
+			'crop'   => $crop,
 		);
 
 		$image_size = $width . '_' . $height;
@@ -560,7 +560,7 @@ function rp_get_image_size( $image_size ) {
 		$size = array(
 			'width'  => '300',
 			'height' => '300',
-			'crop'   => 0
+			'crop'   => 0,
 		);
 	}
 

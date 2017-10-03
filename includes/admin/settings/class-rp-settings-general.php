@@ -166,7 +166,7 @@ class RP_Settings_General extends RP_Settings_Page {
 					'title' => __( 'Color options', 'restaurantpress' ),
 					'type'  => 'title',
 					'desc'  => __( 'This section lets you customize the color for all the group layouts.', 'restaurantpress' ),
-					'id'    => 'color_options'
+					'id'    => 'color_options',
 				),
 
 				array(
@@ -177,7 +177,7 @@ class RP_Settings_General extends RP_Settings_Page {
 					'css'      => 'width:6em;',
 					'default'  => '#d60e10',
 					'autoload' => false,
-					'desc_tip' => true
+					'desc_tip' => true,
 				),
 
 				array( 'type' => 'sectionend', 'id' => 'color_options' ),
@@ -250,7 +250,7 @@ class RP_Settings_General extends RP_Settings_Page {
 				array(
 					'title' => __( 'Gallery options', 'restaurantpress' ),
 					'type'  => 'title',
-					'id'    => 'gallery_options'
+					'id'    => 'gallery_options',
 				),
 
 				array(
@@ -281,7 +281,7 @@ class RP_Settings_General extends RP_Settings_Page {
 					'autoload'        => false,
 				),
 
-				array( 'type' => 'sectionend', 'id' => 'gallery_options' )
+				array( 'type' => 'sectionend', 'id' => 'gallery_options' ),
 
 			) );
 		}
