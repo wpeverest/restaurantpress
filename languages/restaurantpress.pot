@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RestaurantPress 1.4.2\n"
 "Report-Msgid-Bugs-To: https://github.com/wpeverest/restaurantpress/issues\n"
-"POT-Creation-Date: 2017-10-04 09:27:33+00:00\n"
+"POT-Creation-Date: 2017-10-04 09:41:29+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -795,32 +795,32 @@ msgstr ""
 msgid "RestaurantPress Extensions"
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:46
+#: includes/admin/views/html-admin-page-addons.php:48
 msgid ""
 "Our catalog of RestaurantPress Extensions can be found on WPEverest.com "
 "here: <a href=\"%s\">RestaurantPress Extensions Catalog</a>"
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:52
+#: includes/admin/views/html-admin-page-addons.php:54
 msgid "Looking for a RestaurantPress theme?"
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:53
+#: includes/admin/views/html-admin-page-addons.php:55
 msgid "We recommend FoodHunt, the <em>official</em> RestaurantPress theme."
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:54
+#: includes/admin/views/html-admin-page-addons.php:56
 msgid ""
 "FoodHunt is an intuitive, flexible and <strong>free</strong> WordPress "
 "theme offering deep integration with RestaurantPress and many of the most "
 "popular customer-facing extensions."
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:56
+#: includes/admin/views/html-admin-page-addons.php:58
 msgid "Read all about it"
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:57
+#: includes/admin/views/html-admin-page-addons.php:59
 msgid "Download &amp; install"
 msgstr ""
 
