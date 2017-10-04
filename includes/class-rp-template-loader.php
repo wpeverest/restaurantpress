@@ -99,6 +99,10 @@ class RP_Template_Loader {
 		$search_files   = apply_filters( 'restaurantpress_template_loader_files', array(), $default_file );
 		$search_files[] = 'restaurantpress.php';
 
+		if ( is_page_template() ) {
+			$search_files[] = get_page_template_slug();
+		}
+
 		if ( is_food_menu_taxonomy() ) {
 			$term   = get_queried_object();
 			$search_files[] = 'taxonomy-' . $term->taxonomy . '-' . $term->slug . '.php';
@@ -109,10 +113,6 @@ class RP_Template_Loader {
 
 		$search_files[] = $default_file;
 		$search_files[] = RP()->template_path() . $default_file;
-
-		if ( is_page_template() ) {
-			$search_files[] = get_page_template_slug(); // Supporting Custom Post Type Template
-		}
 
 		return array_unique( $search_files );
 	}
