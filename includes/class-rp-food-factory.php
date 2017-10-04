@@ -21,7 +21,7 @@ class RP_Food_Factory {
 	/**
 	 * Get a food.
 	 *
-	 * @param mixed $food_id (default: false).
+	 * @param mixed $food_id (default: false)
 	 * @return RP_Food|bool Food object or null if the food cannot be loaded.
 	 */
 	public function get_food( $food_id = false ) {

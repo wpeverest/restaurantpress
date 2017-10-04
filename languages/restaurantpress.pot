@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the RestaurantPress package.
 msgid ""
 msgstr ""
-"Project-Id-Version: RestaurantPress 1.4.0\n"
+"Project-Id-Version: RestaurantPress 1.4.1\n"
 "Report-Msgid-Bugs-To: https://github.com/wpeverest/restaurantpress/issues\n"
-"POT-Creation-Date: 2017-09-23 05:45:32+00:00\n"
+"POT-Creation-Date: 2017-10-04 09:05:51+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -37,7 +37,7 @@ msgstr ""
 msgid "RestaurantPress Settings"
 msgstr ""
 
-#: includes/admin/class-rp-admin-menus.php:57 includes/class-rp-install.php:474
+#: includes/admin/class-rp-admin-menus.php:57 includes/class-rp-install.php:485
 msgid "Settings"
 msgstr ""
 
@@ -66,12 +66,12 @@ msgstr ""
 msgid "Group data"
 msgstr ""
 
-#: includes/admin/class-rp-admin-notices.php:115
+#: includes/admin/class-rp-admin-notices.php:114
 #: includes/admin/class-rp-admin-settings.php:68
 msgid "Action failed. Please refresh the page and retry."
 msgstr ""
 
-#: includes/admin/class-rp-admin-notices.php:119
+#: includes/admin/class-rp-admin-notices.php:118
 #: includes/class-restaurantpress.php:65 includes/class-restaurantpress.php:73
 msgid "Cheatin&#8217; huh?"
 msgstr ""
@@ -164,256 +164,260 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:80
-msgid "Menu Item updated. <a href=\"%s\">View Menu Item</a>"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:81
-#: includes/admin/class-rp-admin-post-types.php:96
-msgid "Custom field updated."
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:82
-#: includes/admin/class-rp-admin-post-types.php:97
-msgid "Custom field deleted."
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:83
-msgid "Menu Item updated."
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:84
-msgid "Menu Item restored to revision from %s"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:85
-msgid "Menu Item published. <a href=\"%s\">View Menu Item</a>"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:86
-msgid "Menu Item saved."
-msgstr ""
-
 #: includes/admin/class-rp-admin-post-types.php:87
-msgid "Menu Item submitted. <a target=\"_blank\" href=\"%s\">Preview Menu Item</a>"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:88
-msgid ""
-"Menu Item scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" "
-"href=\"%2$s\">Preview Menu Item</a>"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:89
-#: includes/admin/class-rp-admin-post-types.php:104
-msgid "M j, Y @ G:i"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:90
-msgid ""
-"Menu Item draft updated. <a target=\"_blank\" href=\"%s\">Preview Menu "
-"Item</a>"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:95
-#: includes/admin/class-rp-admin-post-types.php:98
-#: includes/admin/class-rp-admin-post-types.php:100
-msgid "Group updated."
+#: includes/admin/class-rp-admin-post-types.php:93
+msgid "Preview menu item"
 msgstr ""
 
 #: includes/admin/class-rp-admin-post-types.php:99
+msgid "View menu item"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:104
+#. translators: Publish box date format, see https:secure.php.net/date
+msgid "M j, Y @ H:i"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:108
+#: includes/admin/class-rp-admin-post-types.php:111
+msgid "Menu Item updated."
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:109
+#: includes/admin/class-rp-admin-post-types.php:124
+msgid "Custom field updated."
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:110
+#: includes/admin/class-rp-admin-post-types.php:125
+msgid "Custom field deleted."
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:113
+#. translators: %s: date and time of the revision
+msgid "Menu Item restored to revision from %s"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:114
+msgid "Menu Item published."
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:115
+msgid "Menu Item saved."
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:116
+msgid "Menu Item submitted."
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:117
+msgid "Menu Item scheduled for: %s."
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:118
+msgid "Menu Item draft updated."
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:123
+#: includes/admin/class-rp-admin-post-types.php:126
+#: includes/admin/class-rp-admin-post-types.php:129
+msgid "Group updated."
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:128
+#. translators: %s: date and time of the revision
 msgid "Group restored to revision from %s"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:101
+#: includes/admin/class-rp-admin-post-types.php:130
 msgid "Group saved."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:102
+#: includes/admin/class-rp-admin-post-types.php:131
 msgid "Group submitted."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:103
-msgid "Group scheduled for: <strong>%1$s</strong>."
+#: includes/admin/class-rp-admin-post-types.php:132
+msgid "Group scheduled for: %s."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:105
+#: includes/admin/class-rp-admin-post-types.php:133
 msgid "Group draft updated."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:120
+#: includes/admin/class-rp-admin-post-types.php:148
 msgid "%s menu item updated."
 msgid_plural "%s menu items updated."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:121
+#: includes/admin/class-rp-admin-post-types.php:149
 msgid "%s menu item not updated, somebody is editing it."
 msgid_plural "%s menu items not updated, somebody is editing them."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:122
+#: includes/admin/class-rp-admin-post-types.php:150
 msgid "%s menu item permanently deleted."
 msgid_plural "%s menu items permanently deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:123
+#: includes/admin/class-rp-admin-post-types.php:151
 msgid "%s menu item moved to the Trash."
 msgid_plural "%s menu items moved to the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:124
+#: includes/admin/class-rp-admin-post-types.php:152
 msgid "%s menu item restored from the Trash."
 msgid_plural "%s menu items restored from the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:128
+#: includes/admin/class-rp-admin-post-types.php:156
 msgid "%s group updated."
 msgid_plural "%s groups updated."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:129
+#: includes/admin/class-rp-admin-post-types.php:157
 msgid "%s group not updated, somebody is editing it."
 msgid_plural "%s groups not updated, somebody is editing them."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:130
+#: includes/admin/class-rp-admin-post-types.php:158
 msgid "%s group permanently deleted."
 msgid_plural "%s groups permanently deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:131
+#: includes/admin/class-rp-admin-post-types.php:159
 msgid "%s group moved to the Trash."
 msgid_plural "%s groups moved to the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:132
+#: includes/admin/class-rp-admin-post-types.php:160
 msgid "%s group restored from the Trash."
 msgid_plural "%s groups restored from the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:152
+#: includes/admin/class-rp-admin-post-types.php:180
 #: includes/admin/class-rp-admin-taxonomies.php:249
 msgid "Image"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:153
-#: includes/admin/class-rp-admin-post-types.php:171
+#: includes/admin/class-rp-admin-post-types.php:181
+#: includes/admin/class-rp-admin-post-types.php:199
 msgid "Name"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:154
+#: includes/admin/class-rp-admin-post-types.php:182
 msgid "Price"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:155
+#: includes/admin/class-rp-admin-post-types.php:183
 #: includes/class-rp-post-types.php:48
 msgid "Categories"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:156
+#: includes/admin/class-rp-admin-post-types.php:184
 #: includes/class-rp-post-types.php:83
 msgid "Tags"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:157
+#: includes/admin/class-rp-admin-post-types.php:185
 msgid "Featured"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:158
+#: includes/admin/class-rp-admin-post-types.php:186
 #: includes/admin/rp-shortcodes-editor-i18n.php:31
 #: includes/widgets/class-rp-widget-menu.php:55
 msgid "Date"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:172
+#: includes/admin/class-rp-admin-post-types.php:200
 #: includes/admin/rp-shortcodes-editor-i18n.php:29
 #: includes/widgets/class-rp-widget-menu.php:48
 msgid "Group ID"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:173
-#: includes/rp-template-functions.php:282
+#: includes/admin/class-rp-admin-post-types.php:201
+#: includes/rp-template-functions.php:279
 #: includes/widgets/class-rp-widget-menu.php:40
 #: templates/single-food/tabs/description.php:25
 msgid "Description"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:237
+#: includes/admin/class-rp-admin-post-types.php:265
 msgid "Toggle featured"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:239
-#: includes/admin/class-rp-admin-post-types.php:416
+#: includes/admin/class-rp-admin-post-types.php:267
+#: includes/admin/class-rp-admin-post-types.php:444
 msgid "Yes"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:241
-#: includes/admin/class-rp-admin-post-types.php:416
+#: includes/admin/class-rp-admin-post-types.php:269
+#: includes/admin/class-rp-admin-post-types.php:444
 msgid "No"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:364
+#: includes/admin/class-rp-admin-post-types.php:392
 msgid "Menu item name"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:367
+#: includes/admin/class-rp-admin-post-types.php:395
 msgid "Group name"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:381
+#: includes/admin/class-rp-admin-post-types.php:409
 msgid "Description (optional)"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:415
+#: includes/admin/class-rp-admin-post-types.php:443
 msgid "Featured:"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:419
+#: includes/admin/class-rp-admin-post-types.php:447
 #: includes/class-rp-post-types.php:144 includes/class-rp-post-types.php:190
 msgid "Edit"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:423
+#: includes/admin/class-rp-admin-post-types.php:451
 msgid "This is a featured food"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:425
+#: includes/admin/class-rp-admin-post-types.php:453
 msgid "OK"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:426
+#: includes/admin/class-rp-admin-post-types.php:454
 msgid "Cancel"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:479
+#: includes/admin/class-rp-admin-post-types.php:507
 msgid ""
 "Groups are a great way to organize and categorize your food items. They "
 "will appear here once created."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:480
+#: includes/admin/class-rp-admin-post-types.php:508
 msgid "Create your first food group!"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:485
+#: includes/admin/class-rp-admin-post-types.php:513
 msgid "Create elegant food/restaurant menus!"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:486
+#: includes/admin/class-rp-admin-post-types.php:514
 msgid "Add your first menu item!"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:503
+#: includes/admin/class-rp-admin-post-types.php:531
 msgid "Group Page"
 msgstr ""
 
@@ -425,13 +429,13 @@ msgstr ""
 msgid "The changes you made will be lost if you navigate away from this page."
 msgstr ""
 
-#: includes/admin/class-rp-admin-settings.php:482
+#: includes/admin/class-rp-admin-settings.php:497
 msgid ""
 "The settings of this image size have been disabled because its values are "
 "being overwritten by a filter."
 msgstr ""
 
-#: includes/admin/class-rp-admin-settings.php:489
+#: includes/admin/class-rp-admin-settings.php:504
 msgid "Hard crop?"
 msgstr ""
 
@@ -475,17 +479,16 @@ msgid ""
 "categories listed click the \"screen options\" link at the top of the page."
 msgstr ""
 
-#: includes/admin/class-rp-admin.php:69
-msgid ""
-"If you like <strong>RestaurantPress</strong> please leave us a "
-"%s&#9733;&#9733;&#9733;&#9733;&#9733;%s rating. A huge thanks in advance!"
+#: includes/admin/class-rp-admin.php:71
+#. translators: 1: RestaurantPress 2:: five stars
+msgid "If you like %1$s please leave us a %2$s rating. A huge thanks in advance!"
 msgstr ""
 
-#: includes/admin/class-rp-admin.php:69
+#: includes/admin/class-rp-admin.php:73
 msgid "Thanks :)"
 msgstr ""
 
-#: includes/admin/class-rp-admin.php:77
+#: includes/admin/class-rp-admin.php:82
 msgid "Thank you for creating with RestaurantPress."
 msgstr ""
 
@@ -784,40 +787,40 @@ msgstr ""
 msgid "Enable gallery lightbox"
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:15
+#: includes/admin/views/html-admin-page-addons.php:16
 msgid "Browse Extensions"
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:18
+#: includes/admin/views/html-admin-page-addons.php:19
 msgid "RestaurantPress Extensions"
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:45
+#: includes/admin/views/html-admin-page-addons.php:46
 msgid ""
 "Our catalog of RestaurantPress Extensions can be found on WPEverest.com "
 "here: <a href=\"%s\">RestaurantPress Extensions Catalog</a>"
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:51
+#: includes/admin/views/html-admin-page-addons.php:52
 msgid "Looking for a RestaurantPress theme?"
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:52
+#: includes/admin/views/html-admin-page-addons.php:53
 msgid "We recommend FoodHunt, the <em>official</em> RestaurantPress theme."
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:53
+#: includes/admin/views/html-admin-page-addons.php:54
 msgid ""
 "FoodHunt is an intuitive, flexible and <strong>free</strong> WordPress "
 "theme offering deep integration with RestaurantPress and many of the most "
 "popular customer-facing extensions."
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:55
+#: includes/admin/views/html-admin-page-addons.php:56
 msgid "Read all about it"
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:56
+#: includes/admin/views/html-admin-page-addons.php:57
 msgid "Download &amp; install"
 msgstr ""
 
@@ -864,8 +867,8 @@ msgstr ""
 #: includes/admin/views/html-notice-updated.php:14
 msgid ""
 "RestaurantPress data update complete. <strong>Please, update your "
-"restaurant %scurrency symbol%s now.</strong> Thank you for updating to the "
-"latest version!"
+"restaurant %1$scurrency symbol%2$s now.</strong> Thank you for updating to "
+"the latest version!"
 msgstr ""
 
 #: includes/admin/views/html-notice-updating.php:12
@@ -876,23 +879,23 @@ msgstr ""
 msgid "Taking a while? Click here to run it now."
 msgstr ""
 
-#: includes/class-rp-install.php:474
+#: includes/class-rp-install.php:485
 msgid "View RestaurantPress Settings"
 msgstr ""
 
-#: includes/class-rp-install.php:489
+#: includes/class-rp-install.php:500
 msgid "View RestaurantPress Documentation"
 msgstr ""
 
-#: includes/class-rp-install.php:489
+#: includes/class-rp-install.php:500
 msgid "Docs"
 msgstr ""
 
-#: includes/class-rp-install.php:490
+#: includes/class-rp-install.php:501
 msgid "Visit Free Customer Support Forum"
 msgstr ""
 
-#: includes/class-rp-install.php:490
+#: includes/class-rp-install.php:501
 msgid "Free Support"
 msgstr ""
 
@@ -1789,7 +1792,7 @@ msgstr ""
 msgid "%1$s should not be called before the %2$s action."
 msgstr ""
 
-#: includes/rp-food-functions.php:48
+#: includes/rp-food-functions.php:50
 msgid "Placeholder"
 msgstr ""
 

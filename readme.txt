@@ -60,11 +60,12 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 
 == Changelog ==
 
-= 1.4.1 - 23/09/2017 =
-* Feature - Added extensions page.
-* Feature - Supporting Custom Post Type Template.
-* Tweak - Introduced `rp_date_format()` function.
-* Tweak - Introduced `rp_time_format()` function.
+= 1.4.2 - 04/10/2017 =
+* Fix - Custom tab with no class error.
+* Fix - Amount color being changed by themes.
+* Tweak - Disable the use of embeds for groups.
+* Tweak - Lock install routine to only allow for one execution.
+* Dev - Introduced pre-commit Git hook for linting and PHP coding standard.
 
 [See changelog for all versions](https://raw.githubusercontent.com/wpeverest/restaurantpress/master/CHANGELOG.txt).
 

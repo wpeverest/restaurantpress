@@ -201,7 +201,7 @@ class RP_Food {
 	/**
 	 * Returns the main food image.
 	 *
-	 * @param string $size (default: 'food_thumbnail').
+	 * @param string $size (default: 'food_thumbnail')
 	 * @param array $attr
 	 * @param bool $placeholder True to return $placeholder if no image is found, or false to return an empty string.
 	 * @return string
