@@ -63,6 +63,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 = 1.4.2 - 04/10/2017 =
 * Fix - Custom tab with no class error.
 * Fix - Amount color being changed by themes.
+* Tweak - Support customize selective refresh.
 * Tweak - Disable the use of embeds for groups.
 * Tweak - Lock install routine to only allow for one execution.
 * Dev - Introduced pre-commit Git hook for linting and PHP coding standard.
