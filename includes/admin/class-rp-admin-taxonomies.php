@@ -142,7 +142,7 @@ class RP_Admin_Taxonomies {
 
 	/**
 	 * Edit category iconfont fields.
-	 * @param mixed $term Term (category) being edited
+	 * @param mixed $term Term (category) being edited.
 	 */
 	public function edit_category_fields( $term ) {
 
@@ -223,7 +223,7 @@ class RP_Admin_Taxonomies {
 
 	/**
 	 * Save category icon fields.
-	 * @param mixed  $term_id Term ID being saved
+	 * @param mixed  $term_id Term ID being saved.
 	 * @param mixed  $tt_id
 	 * @param string $taxonomy
 	 */

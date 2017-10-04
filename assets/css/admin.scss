@@ -18,6 +18,95 @@
 	@include loader();
 }
 
+.rp_addons_wrap {
+
+	.products {
+		overflow: hidden;
+
+		li {
+			margin: 0 1% 1% 0 !important;
+			padding: 0;
+			vertical-align: top;
+			width: 19.2%;
+			float: left;
+
+			&:nth-child(5n) {
+				margin: 0 0 1% 0!important;
+			}
+
+			a {
+				text-decoration: none;
+				color: inherit;
+				border: 1px solid #ddd;
+				display: block;
+				min-height: 220px;
+				overflow: hidden;
+				background: #f5f5f5;
+				box-shadow:
+					inset 0 1px 0 rgba(255, 255, 255, 0.2),
+					inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+
+				.product-image {
+					display: block;
+					background: #ffffff;
+
+					img {
+						max-width: 100%;
+						display: block;
+						margin: 0;
+					}
+				}
+
+				img.extension-thumb + h3 {
+					display: none;
+				}
+
+				.price {
+					display: none;
+				}
+
+				h2, h3 {
+					margin: 0 !important;
+					padding: 20px !important;
+					background: #fff;
+				}
+
+				p {
+					padding: 20px !important;
+					margin: 0 !important;
+					border-top: 1px solid #f1f1f1;
+				}
+
+				&:hover,
+				&:focus {
+					background-color: #fff;
+				}
+			}
+		}
+	}
+
+	.foodhunt {
+		background: url( '../images/foodhunt-bg.jpg' ) bottom right #f6f6f6;
+		border: 1px solid #ddd;
+		padding: 20px;
+		overflow: hidden;
+		zoom: 1;
+		display: none;
+
+		img {
+			width: 278px;
+			height: auto;
+			float: left;
+			margin: 0 20px 0 0;
+			box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+		}
+
+		p {
+			max-width: 750px;
+		}
+	}
+}
+
 .clear {
 	clear: both;
 }
@@ -107,12 +196,12 @@ h2 .restaurantpress-help-tip {
 				}
 			}
 
-			&.advanced_options a::before {
-				content: '\f111';
-			}
-
 			&.general_options a::before {
 				content: '\f107';
+			}
+
+			&.advanced_options a::before {
+				content: '\f111';
 			}
 
 			&.grouping_options a::before {
@@ -527,7 +616,6 @@ img.help_tip {
 		input[type='text'],
 		input[type='number'],
 		input[type='email'] {
-			padding: 6px;
 			height: auto;
 		}
 
@@ -548,6 +636,18 @@ img.help_tip {
 			margin: 0;
 			padding: 6px;
 			box-sizing: border-box;
+		}
+
+		// Ignore nested inputs.
+		table {
+			select,
+			textarea,
+			input[type='text'],
+			input[type='email'],
+			input[type='number'],
+			input.regular-input {
+				width: auto;
+			}
 		}
 
 		textarea.wide-input {
@@ -937,6 +1037,32 @@ img.tips {
 /**
  * Small screen optimisation
  */
+@media only screen and (max-width: 1599px) {
+	.rp_addons_wrap .products li {
+		width: 32.66%;
+	}
+	.rp_addons_wrap .products li:nth-child(5n) {
+		margin: 0 1% 1% 0 !important;
+	}
+	.rp_addons_wrap .products li:nth-child(3n) {
+		margin: 0 0 1% !important;
+	}
+}
+
+@media only screen and (max-width: 1120px) {
+	.rp_addons_wrap .products li {
+		width: 49%;
+		margin: 0 2% 2% 0 !important;
+	}
+	.rp_addons_wrap .products li:nth-child(5n),
+	.rp_addons_wrap .products li:nth-child(3n) {
+		margin: 0 2% 2% 0 !important;
+	}
+	.rp_addons_wrap .products li:nth-child(2n) {
+		margin: 0 0 2% 0 !important;
+	}
+}
+
 @media only screen and (max-width: 1280px) {
 	.restaurantpress_options_panel {
 		.description {
@@ -989,6 +1115,10 @@ img.tips {
 			height: 40px;
 		}
 	}
+
+	.rp_addons_wrap .products li {
+		width: 49%;
+	}
 }
 
 /**
@@ -1012,6 +1142,16 @@ img.tips {
 	.restaurantpress_options_panel fieldset.form-field,
 	.restaurantpress_options_panel p.form-field {
 		padding: 5px 20px !important;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.rp_addons_wrap .products li,
+	.rp_addons_wrap .products li:nth-child(5n),
+	.rp_addons_wrap .products li:nth-child(3n),
+	.rp_addons_wrap .products li:nth-child(2n) {
+		width: 100%;
+		margin: 0 0 3% !important;
 	}
 }
 

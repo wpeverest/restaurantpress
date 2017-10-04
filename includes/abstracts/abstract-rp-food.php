@@ -171,7 +171,7 @@ class RP_Food {
 	/**
 	 * Get the suffix to display after prices > 0.
 	 *
-	 * @param  string $price to calculate, left blank to just use get_price()
+	 * @param  string $price to calculate, left blank to just use get_price().
 	 * @return string
 	 */
 	public function get_price_suffix( $price = '' ) {
@@ -190,7 +190,7 @@ class RP_Food {
 		if ( '' === $this->get_price() ) {
 			$price = apply_filters( 'restaurantpress_empty_price_html', '', $this );
 		} elseif ( $this->get_sale_price() ) {
-			$price = rp_format_sale_price( $this->get_regular_price(), $this->get_price() ). $this->get_price_suffix();
+			$price = rp_format_sale_price( $this->get_regular_price(), $this->get_price() ) . $this->get_price_suffix();
 		} else {
 			$price = rp_price( $this->get_price() );
 		}
@@ -201,7 +201,7 @@ class RP_Food {
 	/**
 	 * Returns the main food image.
 	 *
-	 * @param string $size (default: 'food_thumbnail')
+	 * @param string $size (default: 'food_thumbnail').
 	 * @param array $attr
 	 * @param bool $placeholder True to return $placeholder if no image is found, or false to return an empty string.
 	 * @return string
@@ -216,6 +216,6 @@ class RP_Food {
 		} else {
 			$image = '';
 		}
-		return str_replace( array( 'https://', 'http://' ), '//', $image );
+		return apply_filters( 'restaurantpress_food_get_image', rp_get_relative_url( $image ), $this, $size, $attr, $placeholder );
 	}
 }

@@ -18,7 +18,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class RP_Install {
 
-	/** @var array DB updates and callbacks that need to be run per version */
+	/**
+	 * DB updates and callbacks that need to be run per version.
+	 *
+	 * @var array
+	 */
 	private static $db_updates = array(
 		'1.3.0' => array(
 			'rp_update_130_termmeta',
@@ -32,13 +36,18 @@ class RP_Install {
 			'rp_update_132_db_version',
 		),
 		'1.4.0' => array(
+			'rp_update_140_price',
 			'rp_update_140_chef_badge',
 			'rp_update_140_options',
 			'rp_update_140_db_version',
 		),
 	);
 
-	/** @var object Background update class */
+	/**
+	 * Background update class.
+	 *
+	 * @var object
+	 */
 	private static $background_updater;
 
 	/**
@@ -94,66 +103,104 @@ class RP_Install {
 	 * Install RP.
 	 */
 	public static function install() {
-		global $wpdb;
-
 		if ( ! is_blog_installed() ) {
 			return;
 		}
 
-		if ( ! defined( 'RP_INSTALLING' ) ) {
-			define( 'RP_INSTALLING', true );
+		// Check if we are not already running this routine.
+		if ( 'yes' === get_transient( 'rp_installing' ) ) {
+			return;
 		}
 
-		// Ensure needed classes are loaded
-		include_once( dirname( __FILE__ ) . '/admin/class-rp-admin-notices.php' );
+		// If we made it till here nothing is running yet, lets set the transient now.
+		set_transient( 'rp_installing', 'yes', MINUTE_IN_SECONDS * 10 );
+		rp_maybe_define_constant( 'RP_INSTALLING', true );
 
+		self::remove_admin_notices();
 		self::create_options();
 		self::create_tables();
 		self::create_roles();
+		self::setup_environment();
+		self::maybe_enable_setup_wizard();
+		self::update_rp_version();
+		self::maybe_update_db_version();
 
-		// Register post types
+		delete_transient( 'rp_installing' );
+
+		do_action( 'restaurantpress_flush_rewrite_rules' );
+		do_action( 'restaurantpress_installed' );
+	}
+
+	/**
+	 * Reset any notices added to admin.
+	 *
+	 * @since 1.4.0
+	 */
+	private static function remove_admin_notices() {
+		include_once( dirname( __FILE__ ) . '/admin/class-rp-admin-notices.php' );
+		RP_Admin_Notices::remove_all_notices();
+	}
+
+	/**
+	 * Setup RP environment - post types, taxonomies, endpoints.
+	 *
+	 * @since 1.4.0
+	 */
+	private static function setup_environment() {
 		RP_Post_Types::register_post_types();
 		RP_Post_Types::register_taxonomies();
+	}
 
-		// Queue upgrades/setup wizard
-		$current_rp_version    = get_option( 'restaurantpress_version', null );
-		$current_db_version    = get_option( 'restaurantpress_db_version', null );
-		$major_rp_version      = substr( RP()->version, 0, strrpos( RP()->version, '.' ) );
+	/**
+	 * Is this a brand new RP install?
+	 *
+	 * @since  1.4.0
+	 * @return boolean
+	 */
+	private static function is_new_install() {
+		return is_null( get_option( 'restaurantpress_version', null ) ) && is_null( get_option( 'restaurantpress_db_version', null ) );
+	}
 
-		RP_Admin_Notices::remove_all_notices();
+	/**
+	 * Is a DB update needed?
+	 *
+	 * @since  1.4.0
+	 * @return boolean
+	 */
+	private static function needs_db_update() {
+		$current_db_version = get_option( 'restaurantpress_db_version', null );
+		$updates            = self::get_db_update_callbacks();
 
-		// No versions? This is a new install :)
-		if ( is_null( $current_rp_version ) && is_null( $current_db_version ) && apply_filters( 'restaurantpress_enable_setup_wizard', true ) ) {
+		return ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( $updates ) ), '<' );
+	}
+
+	/**
+	 * See if we need the wizard or not.
+	 *
+	 * @since 1.4.0
+	 */
+	private static function maybe_enable_setup_wizard() {
+		if ( apply_filters( 'restaurantpress_enable_setup_wizard', self::is_new_install() ) ) {
 			set_transient( '_rp_activation_redirect', 1, 30 );
 		}
+	}
 
-		if ( ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( self::$db_updates ) ), '<' ) ) {
-			RP_Admin_Notices::add_notice( 'update' );
+	/**
+	 * See if we need to show or run database updates during install.
+	 *
+	 * @since 1.4.0
+	 */
+	private static function maybe_update_db_version() {
+		if ( self::needs_db_update() ) {
+			if ( apply_filters( 'restaurantpress_enable_auto_update_db', false ) ) {
+				self::init_background_updater();
+				self::update();
+			} else {
+				RP_Admin_Notices::add_notice( 'update' );
+			}
 		} else {
 			self::update_db_version();
 		}
-
-		self::update_rp_version();
-
-		// Flush rules after install
-		do_action( 'restaurantpress_flush_rewrite_rules' );
-
-		/*
-		 * Deletes all expired transients. The multi-table delete syntax is used
-		 * to delete the transient record from table a, and the corresponding
-		 * transient_timeout record from table b.
-		 *
-		 * Based on code inside core's upgrade_network() function.
-		 */
-		$sql = "DELETE a, b FROM $wpdb->options a, $wpdb->options b
-			WHERE a.option_name LIKE %s
-			AND a.option_name NOT LIKE %s
-			AND b.option_name = CONCAT( '_transient_timeout_', SUBSTRING( a.option_name, 12 ) )
-			AND b.option_value < %d";
-		$wpdb->query( $wpdb->prepare( $sql, $wpdb->esc_like( '_transient_' ) . '%', $wpdb->esc_like( '_transient_timeout_' ) . '%', time() ) );
-
-		// Trigger action
-		do_action( 'restaurantpress_installed' );
 	}
 
 	/**
@@ -346,7 +393,7 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 				"manage_{$capability_type}_terms",
 				"edit_{$capability_type}_terms",
 				"delete_{$capability_type}_terms",
-				"assign_{$capability_type}_terms"
+				"assign_{$capability_type}_terms",
 			);
 		}
 
@@ -354,7 +401,7 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 	}
 
 	/**
-	 * restaurantpress_remove_roles function.
+	 * Remove roles and capabilities.
 	 */
 	public static function remove_roles() {
 		global $wp_roles;
@@ -377,7 +424,9 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 	}
 
 	/**
-	 * Show plugin changes. Code adapted from W3 Total Cache.
+	 * Show plugin changes on the plugins screen. Code adapted from W3 Total Cache.
+	 *
+	 * @param array $args
 	 */
 	public static function in_plugin_update_message( $args ) {
 		$transient_name = 'rp_upgrade_notice_' . $args['Version'];
@@ -408,7 +457,7 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 
 		if ( preg_match( $regexp, $content, $matches ) ) {
 			$version = trim( $matches[1] );
-			$notices = (array) preg_split('~[\r\n]+~', trim( $matches[2] ) );
+			$notices = (array) preg_split( '~[\r\n]+~', trim( $matches[2] ) );
 
 			// Check the latest stable version and ignore trunk.
 			if ( $version === $new_version && version_compare( RP_VERSION, $version, '<' ) ) {

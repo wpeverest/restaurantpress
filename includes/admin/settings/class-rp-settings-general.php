@@ -85,6 +85,25 @@ class RP_Settings_General extends RP_Settings_Page {
 			$settings = apply_filters( 'restaurantpress_food_settings', array(
 
 				array(
+					'title' => __( 'Single food page', 'restaurantpress' ),
+					'type' 	=> 'title',
+					'id' 	=> 'single_page_options',
+				),
+
+				array(
+					'title'   => __( 'Food page display', 'restaurantpress' ),
+					'desc'    => __( 'Enable single food page display', 'restaurantpress' ),
+					'id'      => 'restaurantpress_single_page_display',
+					'default' => 'no',
+					'type'    => 'checkbox',
+				),
+
+				array(
+					'type' 	=> 'sectionend',
+					'id' 	=> 'single_page_options',
+				),
+
+				array(
 					'title' => __( 'Food images', 'restaurantpress' ),
 					'type' 	=> 'title',
 					'desc' 	=> sprintf( __( 'These settings affect the display and dimensions of images in your menu catalog - the display on the front-end will still be affected by CSS styles. After changing these settings you may need to <a target="_blank" href="%s">regenerate your thumbnails</a>.', 'restaurantpress' ), 'https://wordpress.org/plugins/regenerate-thumbnails/' ),
@@ -93,7 +112,7 @@ class RP_Settings_General extends RP_Settings_Page {
 
 				array(
 					'title'    => __( 'Food grid images', 'restaurantpress' ),
-					'desc'     => __( 'This size is usually used in food grid listings. (W x H)', 'woocommerce' ),
+					'desc'     => __( 'This size is usually used in food grid listings. (W x H)', 'restaurantpress' ),
 					'id'       => 'food_grid_image_size',
 					'css'      => '',
 					'type'     => 'image_width',
@@ -147,7 +166,7 @@ class RP_Settings_General extends RP_Settings_Page {
 					'title' => __( 'Color options', 'restaurantpress' ),
 					'type'  => 'title',
 					'desc'  => __( 'This section lets you customize the color for all the group layouts.', 'restaurantpress' ),
-					'id'    => 'color_options'
+					'id'    => 'color_options',
 				),
 
 				array(
@@ -158,7 +177,7 @@ class RP_Settings_General extends RP_Settings_Page {
 					'css'      => 'width:6em;',
 					'default'  => '#d60e10',
 					'autoload' => false,
-					'desc_tip' => true
+					'desc_tip' => true,
 				),
 
 				array( 'type' => 'sectionend', 'id' => 'color_options' ),
@@ -169,7 +188,7 @@ class RP_Settings_General extends RP_Settings_Page {
 					'title'    => __( 'Currency', 'restaurantpress' ),
 					'desc'     => __( 'This controls what currency prices are listed at in the menu catalog.', 'restaurantpress' ),
 					'id'       => 'restaurantpress_currency',
-					'default'  => 'NPR',
+					'default'  => 'USD',
 					'type'     => 'select',
 					'class'    => 'rp-enhanced-select',
 					'desc_tip' => true,
@@ -181,7 +200,7 @@ class RP_Settings_General extends RP_Settings_Page {
 					'desc'     => __( 'This controls the position of the currency symbol.', 'restaurantpress' ),
 					'id'       => 'restaurantpress_currency_pos',
 					'class'    => 'rp-enhanced-select',
-					'default'  => 'left_space',
+					'default'  => 'left',
 					'type'     => 'select',
 					'options'  => array(
 						'left'        => __( 'Left', 'restaurantpress' ) . ' (' . get_restaurantpress_currency_symbol() . '99.99)',
@@ -231,7 +250,7 @@ class RP_Settings_General extends RP_Settings_Page {
 				array(
 					'title' => __( 'Gallery options', 'restaurantpress' ),
 					'type'  => 'title',
-					'id'    => 'gallery_options'
+					'id'    => 'gallery_options',
 				),
 
 				array(
@@ -262,7 +281,7 @@ class RP_Settings_General extends RP_Settings_Page {
 					'autoload'        => false,
 				),
 
-				array( 'type' => 'sectionend', 'id' => 'gallery_options' )
+				array( 'type' => 'sectionend', 'id' => 'gallery_options' ),
 
 			) );
 		}

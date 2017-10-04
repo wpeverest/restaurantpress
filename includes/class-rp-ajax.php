@@ -115,11 +115,10 @@ class RP_AJAX {
 	 */
 	public static function rated() {
 		if ( ! current_user_can( 'manage_restaurantpress' ) ) {
-			die(-1);
+			wp_die( -1 );
 		}
-
 		update_option( 'restaurantpress_admin_footer_text_rated', 1 );
-		die();
+		wp_die();
 	}
 }
 

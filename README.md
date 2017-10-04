@@ -11,7 +11,7 @@ If you are not a developer, please use the [RestaurantPress plugin page](https:/
 To disclose a security issue to our team, [please submit a report via HackerOne here](https://hackerone.com/wpeverest/).
 
 ## Support
-This repository is not suitable for support. Please don't use our issue tracker for support requests, but for core, RestaurantPress issues only. Support can take place through the appropriate channels:
+This repository is not suitable for support. Please don't use our issue tracker for support requests, but for core RestaurantPress issues only. Support can take place through the appropriate channels:
 
 * [WPEverest free customer support forum](https://wpeverest.com/support-forum/) for customers who have purchased themes or extensions.
 * [Our community forum on wp.org](https://wordpress.org/support/plugin/restaurantpress) which is available for all RestaurantPress users.

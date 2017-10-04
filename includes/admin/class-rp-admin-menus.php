@@ -27,6 +27,11 @@ class RP_Admin_Menu {
 		// Add menus
 		add_action( 'admin_menu', array( $this, 'admin_menu' ), 9 );
 		add_action( 'admin_menu', array( $this, 'settings_menu' ), 50 );
+
+		if ( apply_filters( 'restaurantpress_show_addons_page', true ) ) {
+			add_action( 'admin_menu', array( $this, 'addons_menu' ), 70 );
+		}
+
 		add_action( 'admin_head', array( $this, 'menu_unset' ) );
 		add_filter( 'menu_order', array( $this, 'menu_order' ) );
 		add_filter( 'custom_menu_order', array( $this, 'custom_menu_order' ) );
@@ -83,6 +88,13 @@ class RP_Admin_Menu {
 	}
 
 	/**
+	 * Addons menu item.
+	 */
+	public function addons_menu() {
+		add_submenu_page( 'restaurantpress', __( 'RestaurantPress extensions', 'restaurantpress' ),  __( 'Extensions', 'restaurantpress' ) , 'manage_restaurantpress', 'rp-addons', array( $this, 'addons_page' ) );
+	}
+
+	/**
 	 * Remove the RP menu item in admin.
 	 */
 	public function menu_unset() {
@@ -121,7 +133,6 @@ class RP_Admin_Menu {
 			} elseif ( ! in_array( $item, array( 'separator-restaurantpress' ) ) ) {
 				$restaurantpress_menu_order[] = $item;
 			}
-
 		}
 
 		// Return order
@@ -141,6 +152,13 @@ class RP_Admin_Menu {
 	 */
 	public function settings_page() {
 		RP_Admin_Settings::output();
+	}
+
+	/**
+	 * Init the addons page.
+	 */
+	public function addons_page() {
+		RP_Admin_Addons::output();
 	}
 }
 

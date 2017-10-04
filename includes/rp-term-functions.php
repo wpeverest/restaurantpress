@@ -35,7 +35,7 @@ function rp_taxonomy_metadata_update_content_for_split_terms( $old_term_id, $new
 					array(
 						'restaurantpress_term_id' => $new_term_id,
 						'meta_key'            => $meta_data->meta_key,
-						'meta_value'          => $meta_data->meta_value
+						'meta_value'          => $meta_data->meta_value,
 					)
 				);
 			}

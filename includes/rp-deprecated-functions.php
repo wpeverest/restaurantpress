@@ -16,6 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * @deprecated
+ *
+ * @param string $tag
  */
 function rp_shortcode_tag( $tag = '' ) {
 	_deprecated_function( 'rp_shortcode_tag', '1.3', 'rp_post_content_has_shortcode' );

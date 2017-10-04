@@ -135,16 +135,6 @@ class RP_Admin_Assets {
 			wp_register_script( 'rp-admin-group-meta-boxes', RP()->plugin_url() . '/assets/js/admin/meta-boxes-group' . $suffix . '.js', array( 'rp-admin-meta-boxes' ), RP_VERSION );
 			wp_enqueue_script( 'rp-admin-group-meta-boxes' );
 		}
-		if ( in_array( str_replace( 'edit-', '', $screen_id ), array( 'food_menu' ) ) ) {
-			$post_id  = isset( $post->ID ) ? $post->ID : '';
-
-			$params = array(
-				'post_id'        => isset( $post->ID ) ? $post->ID : '',
-				'featured_label' => __( 'Featured', 'restaurantpress' ),
-			);
-
-			wp_localize_script( 'rp-admin-meta-boxes', 'restaurantpress_admin_meta_boxes', $params );
-		}
 
 		// Widgets Specific
 		if ( in_array( $screen_id, array( 'widgets', 'customize' ) ) ) {

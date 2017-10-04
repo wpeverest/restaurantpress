@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param  mixed $the_food Post object or post ID of the food.
  * @return RP_Food|null|false
  */
-function rp_get_food( $the_food = false, $deprecated = array() ) {
+function rp_get_food( $the_food = false ) {
 	if ( ! did_action( 'restaurantpress_init' ) ) {
 		/* translators: 1: rp_get_food 2: restaurantpress_init */
 		_doing_it_wrong( __FUNCTION__, sprintf( __( '%1$s should not be called before the %2$s action.', 'restaurantpress' ), 'rp_get_food', 'restaurantpress_init' ), '1.4' );
@@ -40,6 +40,8 @@ function rp_placeholder_img_src() {
 
 /**
  * Get the placeholder image.
+ *
+ * @param  string $size
  * @return string
  */
 function rp_placeholder_img( $size = 'food_thumbnail' ) {

@@ -23,6 +23,19 @@ include( RP_ABSPATH . 'includes/rp-term-functions.php' );
 include( RP_ABSPATH . 'includes/rp-widget-functions.php' );
 
 /**
+ * Define a constant if it is not already defined.
+ *
+ * @since 1.4.0
+ * @param string $name  Constant name.
+ * @param string $value Value.
+ */
+function rp_maybe_define_constant( $name, $value ) {
+	if ( ! defined( $name ) ) {
+		define( $name, $value );
+	}
+}
+
+/**
  * Get template part (for templates like the layout-loop).
  *
  * RP_TEMPLATE_DEBUG_MODE will prevent overrides in themes from taking priority.
@@ -159,173 +172,179 @@ function get_restaurantpress_currency() {
  * @return array
  */
 function get_restaurantpress_currencies() {
-	return array_unique(
-		apply_filters( 'restaurantpress_currencies',
-			array(
-				'AED' => __( 'United Arab Emirates dirham', 'restaurantpress' ),
-				'AFN' => __( 'Afghan afghani', 'restaurantpress' ),
-				'ALL' => __( 'Albanian lek', 'restaurantpress' ),
-				'AMD' => __( 'Armenian dram', 'restaurantpress' ),
-				'ANG' => __( 'Netherlands Antillean guilder', 'restaurantpress' ),
-				'AOA' => __( 'Angolan kwanza', 'restaurantpress' ),
-				'ARS' => __( 'Argentine peso', 'restaurantpress' ),
-				'AUD' => __( 'Australian dollar', 'restaurantpress' ),
-				'AWG' => __( 'Aruban florin', 'restaurantpress' ),
-				'AZN' => __( 'Azerbaijani manat', 'restaurantpress' ),
-				'BAM' => __( 'Bosnia and Herzegovina convertible mark', 'restaurantpress' ),
-				'BBD' => __( 'Barbadian dollar', 'restaurantpress' ),
-				'BDT' => __( 'Bangladeshi taka', 'restaurantpress' ),
-				'BGN' => __( 'Bulgarian lev', 'restaurantpress' ),
-				'BHD' => __( 'Bahraini dinar', 'restaurantpress' ),
-				'BIF' => __( 'Burundian franc', 'restaurantpress' ),
-				'BMD' => __( 'Bermudian dollar', 'restaurantpress' ),
-				'BND' => __( 'Brunei dollar', 'restaurantpress' ),
-				'BOB' => __( 'Bolivian boliviano', 'restaurantpress' ),
-				'BRL' => __( 'Brazilian real', 'restaurantpress' ),
-				'BSD' => __( 'Bahamian dollar', 'restaurantpress' ),
-				'BTC' => __( 'Bitcoin', 'restaurantpress' ),
-				'BTN' => __( 'Bhutanese ngultrum', 'restaurantpress' ),
-				'BWP' => __( 'Botswana pula', 'restaurantpress' ),
-				'BYR' => __( 'Belarusian ruble', 'restaurantpress' ),
-				'BZD' => __( 'Belize dollar', 'restaurantpress' ),
-				'CAD' => __( 'Canadian dollar', 'restaurantpress' ),
-				'CDF' => __( 'Congolese franc', 'restaurantpress' ),
-				'CHF' => __( 'Swiss franc', 'restaurantpress' ),
-				'CLP' => __( 'Chilean peso', 'restaurantpress' ),
-				'CNY' => __( 'Chinese yuan', 'restaurantpress' ),
-				'COP' => __( 'Colombian peso', 'restaurantpress' ),
-				'CRC' => __( 'Costa Rican col&oacute;n', 'restaurantpress' ),
-				'CUC' => __( 'Cuban convertible peso', 'restaurantpress' ),
-				'CUP' => __( 'Cuban peso', 'restaurantpress' ),
-				'CVE' => __( 'Cape Verdean escudo', 'restaurantpress' ),
-				'CZK' => __( 'Czech koruna', 'restaurantpress' ),
-				'DJF' => __( 'Djiboutian franc', 'restaurantpress' ),
-				'DKK' => __( 'Danish krone', 'restaurantpress' ),
-				'DOP' => __( 'Dominican peso', 'restaurantpress' ),
-				'DZD' => __( 'Algerian dinar', 'restaurantpress' ),
-				'EGP' => __( 'Egyptian pound', 'restaurantpress' ),
-				'ERN' => __( 'Eritrean nakfa', 'restaurantpress' ),
-				'ETB' => __( 'Ethiopian birr', 'restaurantpress' ),
-				'EUR' => __( 'Euro', 'restaurantpress' ),
-				'FJD' => __( 'Fijian dollar', 'restaurantpress' ),
-				'FKP' => __( 'Falkland Islands pound', 'restaurantpress' ),
-				'GBP' => __( 'Pound sterling', 'restaurantpress' ),
-				'GEL' => __( 'Georgian lari', 'restaurantpress' ),
-				'GGP' => __( 'Guernsey pound', 'restaurantpress' ),
-				'GHS' => __( 'Ghana cedi', 'restaurantpress' ),
-				'GIP' => __( 'Gibraltar pound', 'restaurantpress' ),
-				'GMD' => __( 'Gambian dalasi', 'restaurantpress' ),
-				'GNF' => __( 'Guinean franc', 'restaurantpress' ),
-				'GTQ' => __( 'Guatemalan quetzal', 'restaurantpress' ),
-				'GYD' => __( 'Guyanese dollar', 'restaurantpress' ),
-				'HKD' => __( 'Hong Kong dollar', 'restaurantpress' ),
-				'HNL' => __( 'Honduran lempira', 'restaurantpress' ),
-				'HRK' => __( 'Croatian kuna', 'restaurantpress' ),
-				'HTG' => __( 'Haitian gourde', 'restaurantpress' ),
-				'HUF' => __( 'Hungarian forint', 'restaurantpress' ),
-				'IDR' => __( 'Indonesian rupiah', 'restaurantpress' ),
-				'ILS' => __( 'Israeli new shekel', 'restaurantpress' ),
-				'IMP' => __( 'Manx pound', 'restaurantpress' ),
-				'INR' => __( 'Indian rupee', 'restaurantpress' ),
-				'IQD' => __( 'Iraqi dinar', 'restaurantpress' ),
-				'IRR' => __( 'Iranian rial', 'restaurantpress' ),
-				'IRT' => __( 'Iranian toman', 'restaurantpress' ),
-				'ISK' => __( 'Icelandic kr&oacute;na', 'restaurantpress' ),
-				'JEP' => __( 'Jersey pound', 'restaurantpress' ),
-				'JMD' => __( 'Jamaican dollar', 'restaurantpress' ),
-				'JOD' => __( 'Jordanian dinar', 'restaurantpress' ),
-				'JPY' => __( 'Japanese yen', 'restaurantpress' ),
-				'KES' => __( 'Kenyan shilling', 'restaurantpress' ),
-				'KGS' => __( 'Kyrgyzstani som', 'restaurantpress' ),
-				'KHR' => __( 'Cambodian riel', 'restaurantpress' ),
-				'KMF' => __( 'Comorian franc', 'restaurantpress' ),
-				'KPW' => __( 'North Korean won', 'restaurantpress' ),
-				'KRW' => __( 'South Korean won', 'restaurantpress' ),
-				'KWD' => __( 'Kuwaiti dinar', 'restaurantpress' ),
-				'KYD' => __( 'Cayman Islands dollar', 'restaurantpress' ),
-				'KZT' => __( 'Kazakhstani tenge', 'restaurantpress' ),
-				'LAK' => __( 'Lao kip', 'restaurantpress' ),
-				'LBP' => __( 'Lebanese pound', 'restaurantpress' ),
-				'LKR' => __( 'Sri Lankan rupee', 'restaurantpress' ),
-				'LRD' => __( 'Liberian dollar', 'restaurantpress' ),
-				'LSL' => __( 'Lesotho loti', 'restaurantpress' ),
-				'LYD' => __( 'Libyan dinar', 'restaurantpress' ),
-				'MAD' => __( 'Moroccan dirham', 'restaurantpress' ),
-				'MDL' => __( 'Moldovan leu', 'restaurantpress' ),
-				'MGA' => __( 'Malagasy ariary', 'restaurantpress' ),
-				'MKD' => __( 'Macedonian denar', 'restaurantpress' ),
-				'MMK' => __( 'Burmese kyat', 'restaurantpress' ),
-				'MNT' => __( 'Mongolian t&ouml;gr&ouml;g', 'restaurantpress' ),
-				'MOP' => __( 'Macanese pataca', 'restaurantpress' ),
-				'MRO' => __( 'Mauritanian ouguiya', 'restaurantpress' ),
-				'MUR' => __( 'Mauritian rupee', 'restaurantpress' ),
-				'MVR' => __( 'Maldivian rufiyaa', 'restaurantpress' ),
-				'MWK' => __( 'Malawian kwacha', 'restaurantpress' ),
-				'MXN' => __( 'Mexican peso', 'restaurantpress' ),
-				'MYR' => __( 'Malaysian ringgit', 'restaurantpress' ),
-				'MZN' => __( 'Mozambican metical', 'restaurantpress' ),
-				'NAD' => __( 'Namibian dollar', 'restaurantpress' ),
-				'NGN' => __( 'Nigerian naira', 'restaurantpress' ),
-				'NIO' => __( 'Nicaraguan c&oacute;rdoba', 'restaurantpress' ),
-				'NOK' => __( 'Norwegian krone', 'restaurantpress' ),
-				'NPR' => __( 'Nepalese rupee', 'restaurantpress' ),
-				'NZD' => __( 'New Zealand dollar', 'restaurantpress' ),
-				'OMR' => __( 'Omani rial', 'restaurantpress' ),
-				'PAB' => __( 'Panamanian balboa', 'restaurantpress' ),
-				'PEN' => __( 'Peruvian nuevo sol', 'restaurantpress' ),
-				'PGK' => __( 'Papua New Guinean kina', 'restaurantpress' ),
-				'PHP' => __( 'Philippine peso', 'restaurantpress' ),
-				'PKR' => __( 'Pakistani rupee', 'restaurantpress' ),
-				'PLN' => __( 'Polish z&#x142;oty', 'restaurantpress' ),
-				'PRB' => __( 'Transnistrian ruble', 'restaurantpress' ),
-				'PYG' => __( 'Paraguayan guaran&iacute;', 'restaurantpress' ),
-				'QAR' => __( 'Qatari riyal', 'restaurantpress' ),
-				'RON' => __( 'Romanian leu', 'restaurantpress' ),
-				'RSD' => __( 'Serbian dinar', 'restaurantpress' ),
-				'RUB' => __( 'Russian ruble', 'restaurantpress' ),
-				'RWF' => __( 'Rwandan franc', 'restaurantpress' ),
-				'SAR' => __( 'Saudi riyal', 'restaurantpress' ),
-				'SBD' => __( 'Solomon Islands dollar', 'restaurantpress' ),
-				'SCR' => __( 'Seychellois rupee', 'restaurantpress' ),
-				'SDG' => __( 'Sudanese pound', 'restaurantpress' ),
-				'SEK' => __( 'Swedish krona', 'restaurantpress' ),
-				'SGD' => __( 'Singapore dollar', 'restaurantpress' ),
-				'SHP' => __( 'Saint Helena pound', 'restaurantpress' ),
-				'SLL' => __( 'Sierra Leonean leone', 'restaurantpress' ),
-				'SOS' => __( 'Somali shilling', 'restaurantpress' ),
-				'SRD' => __( 'Surinamese dollar', 'restaurantpress' ),
-				'SSP' => __( 'South Sudanese pound', 'restaurantpress' ),
-				'STD' => __( 'S&atilde;o Tom&eacute; and Pr&iacute;ncipe dobra', 'restaurantpress' ),
-				'SYP' => __( 'Syrian pound', 'restaurantpress' ),
-				'SZL' => __( 'Swazi lilangeni', 'restaurantpress' ),
-				'THB' => __( 'Thai baht', 'restaurantpress' ),
-				'TJS' => __( 'Tajikistani somoni', 'restaurantpress' ),
-				'TMT' => __( 'Turkmenistan manat', 'restaurantpress' ),
-				'TND' => __( 'Tunisian dinar', 'restaurantpress' ),
-				'TOP' => __( 'Tongan pa&#x2bb;anga', 'restaurantpress' ),
-				'TRY' => __( 'Turkish lira', 'restaurantpress' ),
-				'TTD' => __( 'Trinidad and Tobago dollar', 'restaurantpress' ),
-				'TWD' => __( 'New Taiwan dollar', 'restaurantpress' ),
-				'TZS' => __( 'Tanzanian shilling', 'restaurantpress' ),
-				'UAH' => __( 'Ukrainian hryvnia', 'restaurantpress' ),
-				'UGX' => __( 'Ugandan shilling', 'restaurantpress' ),
-				'USD' => __( 'United States dollar', 'restaurantpress' ),
-				'UYU' => __( 'Uruguayan peso', 'restaurantpress' ),
-				'UZS' => __( 'Uzbekistani som', 'restaurantpress' ),
-				'VEF' => __( 'Venezuelan bol&iacute;var', 'restaurantpress' ),
-				'VND' => __( 'Vietnamese &#x111;&#x1ed3;ng', 'restaurantpress' ),
-				'VUV' => __( 'Vanuatu vatu', 'restaurantpress' ),
-				'WST' => __( 'Samoan t&#x101;l&#x101;', 'restaurantpress' ),
-				'XAF' => __( 'Central African CFA franc', 'restaurantpress' ),
-				'XCD' => __( 'East Caribbean dollar', 'restaurantpress' ),
-				'XOF' => __( 'West African CFA franc', 'restaurantpress' ),
-				'XPF' => __( 'CFP franc', 'restaurantpress' ),
-				'YER' => __( 'Yemeni rial', 'restaurantpress' ),
-				'ZAR' => __( 'South African rand', 'restaurantpress' ),
-				'ZMW' => __( 'Zambian kwacha', 'restaurantpress' ),
+	static $currencies;
+
+	if ( ! isset( $currencies ) ) {
+		$currencies = array_unique(
+			apply_filters( 'restaurantpress_currencies',
+				array(
+					'AED' => __( 'United Arab Emirates dirham', 'restaurantpress' ),
+					'AFN' => __( 'Afghan afghani', 'restaurantpress' ),
+					'ALL' => __( 'Albanian lek', 'restaurantpress' ),
+					'AMD' => __( 'Armenian dram', 'restaurantpress' ),
+					'ANG' => __( 'Netherlands Antillean guilder', 'restaurantpress' ),
+					'AOA' => __( 'Angolan kwanza', 'restaurantpress' ),
+					'ARS' => __( 'Argentine peso', 'restaurantpress' ),
+					'AUD' => __( 'Australian dollar', 'restaurantpress' ),
+					'AWG' => __( 'Aruban florin', 'restaurantpress' ),
+					'AZN' => __( 'Azerbaijani manat', 'restaurantpress' ),
+					'BAM' => __( 'Bosnia and Herzegovina convertible mark', 'restaurantpress' ),
+					'BBD' => __( 'Barbadian dollar', 'restaurantpress' ),
+					'BDT' => __( 'Bangladeshi taka', 'restaurantpress' ),
+					'BGN' => __( 'Bulgarian lev', 'restaurantpress' ),
+					'BHD' => __( 'Bahraini dinar', 'restaurantpress' ),
+					'BIF' => __( 'Burundian franc', 'restaurantpress' ),
+					'BMD' => __( 'Bermudian dollar', 'restaurantpress' ),
+					'BND' => __( 'Brunei dollar', 'restaurantpress' ),
+					'BOB' => __( 'Bolivian boliviano', 'restaurantpress' ),
+					'BRL' => __( 'Brazilian real', 'restaurantpress' ),
+					'BSD' => __( 'Bahamian dollar', 'restaurantpress' ),
+					'BTC' => __( 'Bitcoin', 'restaurantpress' ),
+					'BTN' => __( 'Bhutanese ngultrum', 'restaurantpress' ),
+					'BWP' => __( 'Botswana pula', 'restaurantpress' ),
+					'BYR' => __( 'Belarusian ruble', 'restaurantpress' ),
+					'BZD' => __( 'Belize dollar', 'restaurantpress' ),
+					'CAD' => __( 'Canadian dollar', 'restaurantpress' ),
+					'CDF' => __( 'Congolese franc', 'restaurantpress' ),
+					'CHF' => __( 'Swiss franc', 'restaurantpress' ),
+					'CLP' => __( 'Chilean peso', 'restaurantpress' ),
+					'CNY' => __( 'Chinese yuan', 'restaurantpress' ),
+					'COP' => __( 'Colombian peso', 'restaurantpress' ),
+					'CRC' => __( 'Costa Rican col&oacute;n', 'restaurantpress' ),
+					'CUC' => __( 'Cuban convertible peso', 'restaurantpress' ),
+					'CUP' => __( 'Cuban peso', 'restaurantpress' ),
+					'CVE' => __( 'Cape Verdean escudo', 'restaurantpress' ),
+					'CZK' => __( 'Czech koruna', 'restaurantpress' ),
+					'DJF' => __( 'Djiboutian franc', 'restaurantpress' ),
+					'DKK' => __( 'Danish krone', 'restaurantpress' ),
+					'DOP' => __( 'Dominican peso', 'restaurantpress' ),
+					'DZD' => __( 'Algerian dinar', 'restaurantpress' ),
+					'EGP' => __( 'Egyptian pound', 'restaurantpress' ),
+					'ERN' => __( 'Eritrean nakfa', 'restaurantpress' ),
+					'ETB' => __( 'Ethiopian birr', 'restaurantpress' ),
+					'EUR' => __( 'Euro', 'restaurantpress' ),
+					'FJD' => __( 'Fijian dollar', 'restaurantpress' ),
+					'FKP' => __( 'Falkland Islands pound', 'restaurantpress' ),
+					'GBP' => __( 'Pound sterling', 'restaurantpress' ),
+					'GEL' => __( 'Georgian lari', 'restaurantpress' ),
+					'GGP' => __( 'Guernsey pound', 'restaurantpress' ),
+					'GHS' => __( 'Ghana cedi', 'restaurantpress' ),
+					'GIP' => __( 'Gibraltar pound', 'restaurantpress' ),
+					'GMD' => __( 'Gambian dalasi', 'restaurantpress' ),
+					'GNF' => __( 'Guinean franc', 'restaurantpress' ),
+					'GTQ' => __( 'Guatemalan quetzal', 'restaurantpress' ),
+					'GYD' => __( 'Guyanese dollar', 'restaurantpress' ),
+					'HKD' => __( 'Hong Kong dollar', 'restaurantpress' ),
+					'HNL' => __( 'Honduran lempira', 'restaurantpress' ),
+					'HRK' => __( 'Croatian kuna', 'restaurantpress' ),
+					'HTG' => __( 'Haitian gourde', 'restaurantpress' ),
+					'HUF' => __( 'Hungarian forint', 'restaurantpress' ),
+					'IDR' => __( 'Indonesian rupiah', 'restaurantpress' ),
+					'ILS' => __( 'Israeli new shekel', 'restaurantpress' ),
+					'IMP' => __( 'Manx pound', 'restaurantpress' ),
+					'INR' => __( 'Indian rupee', 'restaurantpress' ),
+					'IQD' => __( 'Iraqi dinar', 'restaurantpress' ),
+					'IRR' => __( 'Iranian rial', 'restaurantpress' ),
+					'IRT' => __( 'Iranian toman', 'restaurantpress' ),
+					'ISK' => __( 'Icelandic kr&oacute;na', 'restaurantpress' ),
+					'JEP' => __( 'Jersey pound', 'restaurantpress' ),
+					'JMD' => __( 'Jamaican dollar', 'restaurantpress' ),
+					'JOD' => __( 'Jordanian dinar', 'restaurantpress' ),
+					'JPY' => __( 'Japanese yen', 'restaurantpress' ),
+					'KES' => __( 'Kenyan shilling', 'restaurantpress' ),
+					'KGS' => __( 'Kyrgyzstani som', 'restaurantpress' ),
+					'KHR' => __( 'Cambodian riel', 'restaurantpress' ),
+					'KMF' => __( 'Comorian franc', 'restaurantpress' ),
+					'KPW' => __( 'North Korean won', 'restaurantpress' ),
+					'KRW' => __( 'South Korean won', 'restaurantpress' ),
+					'KWD' => __( 'Kuwaiti dinar', 'restaurantpress' ),
+					'KYD' => __( 'Cayman Islands dollar', 'restaurantpress' ),
+					'KZT' => __( 'Kazakhstani tenge', 'restaurantpress' ),
+					'LAK' => __( 'Lao kip', 'restaurantpress' ),
+					'LBP' => __( 'Lebanese pound', 'restaurantpress' ),
+					'LKR' => __( 'Sri Lankan rupee', 'restaurantpress' ),
+					'LRD' => __( 'Liberian dollar', 'restaurantpress' ),
+					'LSL' => __( 'Lesotho loti', 'restaurantpress' ),
+					'LYD' => __( 'Libyan dinar', 'restaurantpress' ),
+					'MAD' => __( 'Moroccan dirham', 'restaurantpress' ),
+					'MDL' => __( 'Moldovan leu', 'restaurantpress' ),
+					'MGA' => __( 'Malagasy ariary', 'restaurantpress' ),
+					'MKD' => __( 'Macedonian denar', 'restaurantpress' ),
+					'MMK' => __( 'Burmese kyat', 'restaurantpress' ),
+					'MNT' => __( 'Mongolian t&ouml;gr&ouml;g', 'restaurantpress' ),
+					'MOP' => __( 'Macanese pataca', 'restaurantpress' ),
+					'MRO' => __( 'Mauritanian ouguiya', 'restaurantpress' ),
+					'MUR' => __( 'Mauritian rupee', 'restaurantpress' ),
+					'MVR' => __( 'Maldivian rufiyaa', 'restaurantpress' ),
+					'MWK' => __( 'Malawian kwacha', 'restaurantpress' ),
+					'MXN' => __( 'Mexican peso', 'restaurantpress' ),
+					'MYR' => __( 'Malaysian ringgit', 'restaurantpress' ),
+					'MZN' => __( 'Mozambican metical', 'restaurantpress' ),
+					'NAD' => __( 'Namibian dollar', 'restaurantpress' ),
+					'NGN' => __( 'Nigerian naira', 'restaurantpress' ),
+					'NIO' => __( 'Nicaraguan c&oacute;rdoba', 'restaurantpress' ),
+					'NOK' => __( 'Norwegian krone', 'restaurantpress' ),
+					'NPR' => __( 'Nepalese rupee', 'restaurantpress' ),
+					'NZD' => __( 'New Zealand dollar', 'restaurantpress' ),
+					'OMR' => __( 'Omani rial', 'restaurantpress' ),
+					'PAB' => __( 'Panamanian balboa', 'restaurantpress' ),
+					'PEN' => __( 'Peruvian nuevo sol', 'restaurantpress' ),
+					'PGK' => __( 'Papua New Guinean kina', 'restaurantpress' ),
+					'PHP' => __( 'Philippine peso', 'restaurantpress' ),
+					'PKR' => __( 'Pakistani rupee', 'restaurantpress' ),
+					'PLN' => __( 'Polish z&#x142;oty', 'restaurantpress' ),
+					'PRB' => __( 'Transnistrian ruble', 'restaurantpress' ),
+					'PYG' => __( 'Paraguayan guaran&iacute;', 'restaurantpress' ),
+					'QAR' => __( 'Qatari riyal', 'restaurantpress' ),
+					'RON' => __( 'Romanian leu', 'restaurantpress' ),
+					'RSD' => __( 'Serbian dinar', 'restaurantpress' ),
+					'RUB' => __( 'Russian ruble', 'restaurantpress' ),
+					'RWF' => __( 'Rwandan franc', 'restaurantpress' ),
+					'SAR' => __( 'Saudi riyal', 'restaurantpress' ),
+					'SBD' => __( 'Solomon Islands dollar', 'restaurantpress' ),
+					'SCR' => __( 'Seychellois rupee', 'restaurantpress' ),
+					'SDG' => __( 'Sudanese pound', 'restaurantpress' ),
+					'SEK' => __( 'Swedish krona', 'restaurantpress' ),
+					'SGD' => __( 'Singapore dollar', 'restaurantpress' ),
+					'SHP' => __( 'Saint Helena pound', 'restaurantpress' ),
+					'SLL' => __( 'Sierra Leonean leone', 'restaurantpress' ),
+					'SOS' => __( 'Somali shilling', 'restaurantpress' ),
+					'SRD' => __( 'Surinamese dollar', 'restaurantpress' ),
+					'SSP' => __( 'South Sudanese pound', 'restaurantpress' ),
+					'STD' => __( 'S&atilde;o Tom&eacute; and Pr&iacute;ncipe dobra', 'restaurantpress' ),
+					'SYP' => __( 'Syrian pound', 'restaurantpress' ),
+					'SZL' => __( 'Swazi lilangeni', 'restaurantpress' ),
+					'THB' => __( 'Thai baht', 'restaurantpress' ),
+					'TJS' => __( 'Tajikistani somoni', 'restaurantpress' ),
+					'TMT' => __( 'Turkmenistan manat', 'restaurantpress' ),
+					'TND' => __( 'Tunisian dinar', 'restaurantpress' ),
+					'TOP' => __( 'Tongan pa&#x2bb;anga', 'restaurantpress' ),
+					'TRY' => __( 'Turkish lira', 'restaurantpress' ),
+					'TTD' => __( 'Trinidad and Tobago dollar', 'restaurantpress' ),
+					'TWD' => __( 'New Taiwan dollar', 'restaurantpress' ),
+					'TZS' => __( 'Tanzanian shilling', 'restaurantpress' ),
+					'UAH' => __( 'Ukrainian hryvnia', 'restaurantpress' ),
+					'UGX' => __( 'Ugandan shilling', 'restaurantpress' ),
+					'USD' => __( 'United States dollar', 'restaurantpress' ),
+					'UYU' => __( 'Uruguayan peso', 'restaurantpress' ),
+					'UZS' => __( 'Uzbekistani som', 'restaurantpress' ),
+					'VEF' => __( 'Venezuelan bol&iacute;var', 'restaurantpress' ),
+					'VND' => __( 'Vietnamese &#x111;&#x1ed3;ng', 'restaurantpress' ),
+					'VUV' => __( 'Vanuatu vatu', 'restaurantpress' ),
+					'WST' => __( 'Samoan t&#x101;l&#x101;', 'restaurantpress' ),
+					'XAF' => __( 'Central African CFA franc', 'restaurantpress' ),
+					'XCD' => __( 'East Caribbean dollar', 'restaurantpress' ),
+					'XOF' => __( 'West African CFA franc', 'restaurantpress' ),
+					'XPF' => __( 'CFP franc', 'restaurantpress' ),
+					'YER' => __( 'Yemeni rial', 'restaurantpress' ),
+					'ZAR' => __( 'South African rand', 'restaurantpress' ),
+					'ZMW' => __( 'Zambian kwacha', 'restaurantpress' ),
+				)
 			)
-		)
-	);
+		);
+	}
+
+	return $currencies;
 }
 
 /**
@@ -526,7 +545,7 @@ function rp_get_image_size( $image_size ) {
 		$size = array(
 			'width'  => $width,
 			'height' => $height,
-			'crop'   => $crop
+			'crop'   => $crop,
 		);
 
 		$image_size = $width . '_' . $height;
@@ -541,7 +560,7 @@ function rp_get_image_size( $image_size ) {
 		$size = array(
 			'width'  => '300',
 			'height' => '300',
-			'crop'   => 0
+			'crop'   => 0,
 		);
 	}
 
@@ -597,8 +616,8 @@ function rp_get_core_supported_themes() {
 /**
  * Display a RestaurantPress help tip.
  *
- * @param  string $tip Help tip text
- * @param  bool   $allow_html Allow sanitized HTML if true or escape
+ * @param  string $tip Help tip text.
+ * @param  bool   $allow_html Allow sanitized HTML if true or escape.
  * @return string
  */
 function rp_help_tip( $tip, $allow_html = false ) {
@@ -647,4 +666,95 @@ function rp_print_r( $expression, $return = false ) {
 	}
 
 	return false;
+}
+
+/**
+ * Convert plaintext phone number to clickable phone number.
+ *
+ * Remove formatting and allow "+".
+ * Example and specs: https://developer.mozilla.org/en/docs/Web/HTML/Element/a#Creating_a_phone_link
+ *
+ * @since 1.4.0
+ *
+ * @param string  $phone Content to convert phone number.
+ * @return string Content with converted phone number.
+ */
+function rp_make_phone_clickable( $phone ) {
+	$number = trim( preg_replace( '/[^\d|\+]/', '', $phone ) );
+
+	return '<a href="tel:' . esc_attr( $number ) . '">' . esc_html( $phone ) . '</a>';
+}
+
+/**
+ * Read in WooCommerce headers when reading plugin headers.
+ *
+ * @since  1.4.0
+ * @param  array $headers
+ * @return array $headers
+ */
+function rp_enable_rp_plugin_headers( $headers ) {
+	if ( ! class_exists( 'RP_Plugin_Updates' ) ) {
+		include_once( dirname( __FILE__ ) . '/admin/plugin-updates/class-rp-plugin-updates.php' );
+	}
+
+	$headers['RPRequires'] = RP_Plugin_Updates::VERSION_REQUIRED_HEADER;
+	$headers['RPTested']   = RP_Plugin_Updates::VERSION_TESTED_HEADER;
+	return $headers;
+}
+add_filter( 'extra_plugin_headers', 'rp_enable_rp_plugin_headers' );
+
+/**
+ * Delete expired transients.
+ *
+ * Deletes all expired transients. The multi-table delete syntax is used.
+ * to delete the transient record from table a, and the corresponding.
+ * transient_timeout record from table b.
+ *
+ * Based on code inside core's upgrade_network() function.
+ *
+ * @since  1.4.0
+ * @return int Number of transients that were cleared.
+ */
+function rp_delete_expired_transients() {
+	global $wpdb;
+
+	$sql = "DELETE a, b FROM $wpdb->options a, $wpdb->options b
+		WHERE a.option_name LIKE %s
+		AND a.option_name NOT LIKE %s
+		AND b.option_name = CONCAT( '_transient_timeout_', SUBSTRING( a.option_name, 12 ) )
+		AND b.option_value < %d";
+	$rows = $wpdb->query( $wpdb->prepare( $sql, $wpdb->esc_like( '_transient_' ) . '%', $wpdb->esc_like( '_transient_timeout_' ) . '%', time() ) );
+
+	$sql = "DELETE a, b FROM $wpdb->options a, $wpdb->options b
+		WHERE a.option_name LIKE %s
+		AND a.option_name NOT LIKE %s
+		AND b.option_name = CONCAT( '_site_transient_timeout_', SUBSTRING( a.option_name, 17 ) )
+		AND b.option_value < %d";
+	$rows2 = $wpdb->query( $wpdb->prepare( $sql, $wpdb->esc_like( '_site_transient_' ) . '%', $wpdb->esc_like( '_site_transient_timeout_' ) . '%', time() ) );
+
+	return absint( $rows + $rows2 );
+}
+add_action( 'restaurantpress_installed', 'rp_delete_expired_transients' );
+
+/**
+ * Make a URL relative, if possible.
+ *
+ * @since  1.4.0
+ * @param  string $url URL to make relative.
+ * @return string
+ */
+function rp_get_relative_url( $url ) {
+	return rp_is_external_resource( $url ) ? $url : str_replace( array( 'http://', 'https://' ), '//', $url );
+}
+
+/**
+ * See if a resource is remote.
+ *
+ * @since  1.4.0
+ * @param  string $url URL to check.
+ * @return bool
+ */
+function rp_is_external_resource( $url ) {
+	$wp_base = str_replace( array( 'http://', 'https://' ), '//', get_home_url( null, '/', 'http' ) );
+	return strstr( $url, '://' ) && strstr( $wp_base, $url );
 }

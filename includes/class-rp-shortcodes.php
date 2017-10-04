@@ -117,7 +117,7 @@ class RP_Shortcodes {
 						'image'      => $image,
 						'image_grid' => $image_grid,
 						'popup'      => $popup,
-						'attach_url' => $attach_url
+						'attach_url' => $attach_url,
 					);
 				}
 			}
@@ -170,7 +170,7 @@ class RP_Shortcodes {
 			'class'    => '',
 			'orderby'  => 'date',
 			'order'    => 'desc',
-			'operator' => 'IN' // Possible values are 'IN', 'NOT IN', 'AND'.
+			'operator' => 'IN', // Possible values are 'IN', 'NOT IN', 'AND'.
 		), $atts, 'restaurantpress_menu' );
 
 		$group_id   = absint( $atts['id'] );
@@ -179,7 +179,7 @@ class RP_Shortcodes {
 			'post_status'    => 'publish',
 			'orderby'        => $atts['orderby'],
 			'order'          => $atts['order'],
-			'posts_per_page' => -1
+			'posts_per_page' => -1,
 		);
 
 		// Check for Group ID
@@ -207,8 +207,8 @@ class RP_Shortcodes {
 				array(
 					'taxonomy' => 'food_menu_cat',
 					'terms'    => array_map( 'absint', $category ),
-					'operator' => $operator
-				)
+					'operator' => $operator,
+				),
 			);
 		}
 

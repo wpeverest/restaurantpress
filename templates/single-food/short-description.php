@@ -28,5 +28,5 @@ if ( ! $post->post_excerpt ) {
 
 ?>
 <div class="restaurantpress-food-details__short-description">
-    <?php echo apply_filters( 'restaurantpress_short_description', $post->post_excerpt ); ?>
+	<?php echo apply_filters( 'restaurantpress_short_description', $post->post_excerpt ); ?>
 </div>

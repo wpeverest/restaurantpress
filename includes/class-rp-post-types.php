@@ -125,7 +125,7 @@ class RP_Post_Types {
 
 		do_action( 'restaurantpress_register_post_type' );
 
-		$supports = array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'publicize', 'wpcom-markdown' );
+		$supports = array( 'title', 'editor', 'excerpt', 'page-attributes', 'thumbnail', 'custom-fields', 'publicize', 'wpcom-markdown' );
 
 		if ( 'yes' === get_option( 'restaurantpress_enable_reviews', 'yes' ) ) {
 			$supports[] = 'comments';
@@ -213,7 +213,7 @@ class RP_Post_Types {
 					'query_var'           => false,
 					'supports'            => array( 'title' ),
 					'show_in_nav_menus'   => false,
-					'show_in_admin_bar'   => true
+					'show_in_admin_bar'   => true,
 				)
 			)
 		);

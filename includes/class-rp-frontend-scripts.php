@@ -72,7 +72,7 @@ class RP_Frontend_Scripts {
 				'version' => RP_VERSION,
 				'media'   => 'all',
 				'has_rtl' => true,
-			)
+			),
 		) );
 	}
 
@@ -288,25 +288,39 @@ class RP_Frontend_Scripts {
 		}
 
 		$inline_css = '
-			.restaurantpress .chef {
+			.restaurantpress .chef,
+			.restaurantpress .rp-chef-badge {
 				background: %1$s !important;
 			}
 
-			.restaurantpress .chef::before,
-			.restaurantpress .chef::after {
+			.restaurantpress .rp-chef-badge::before,
+			.restaurantpress .rp-chef-badge::after {
 				border-top-color: %1$s !important;
 			}
 
-			.restaurantpress .rp-price {
+			.restaurantpress p.price,
+			.restaurantpress span.price {
+				color: %1$s !important;
+			}
+
+			.restaurantpress span.price {
 				background: %1$s !important;
 			}
 
-			.restaurantpress .rp-price::before {
+			.restaurantpress span.price::before {
 				border-right-color: %1$s !important;
 			}
 
 			.restaurantpress .rp-content-wrapper {
 				border-bottom-color: %1$s !important;
+			}
+
+			.rp-grid-design-layout ins .amount {
+				color: #fff;
+			}
+
+			.restaurantpress-group #restaurant-press-section a {
+				color: %1$s !important;
 			}
 		';
 
@@ -348,8 +362,8 @@ class RP_Frontend_Scripts {
 						'animationLoop'  => false, // Breaks photoswipe pagination if true.
 						'allowOneSlide'  => false,
 					) ),
-					'zoom_enabled'       => apply_filters( 'restaurantpress_single_food_zoom_enabled', 'yes' === get_option( 'restaurantpress_enable_lightbox' ) ),
-					'photoswipe_enabled' => apply_filters( 'restaurantpress_single_food_photoswipe_enabled', 'yes' === get_option( 'restaurantpress_enable_lightbox' ) ),
+					'zoom_enabled'       => apply_filters( 'restaurantpress_single_food_zoom_enabled', 'yes' === get_option( 'restaurantpress_enable_lightbox' ) ? 1 : 0 ),
+					'photoswipe_enabled' => apply_filters( 'restaurantpress_single_food_photoswipe_enabled', 'yes' === get_option( 'restaurantpress_enable_lightbox' ) ? 1 : 0 ),
 					'photoswipe_options' => apply_filters( 'restaurantpress_single_food_photoswipe_options', array(
 						'shareEl'               => false,
 						'closeOnScroll'         => false,
@@ -357,7 +371,7 @@ class RP_Frontend_Scripts {
 						'hideAnimationDuration' => 0,
 						'showAnimationDuration' => 0,
 					) ),
-					'flexslider_enabled' => apply_filters( 'restaurantpress_single_food_flexslider_enabled', 'yes' === get_option( 'restaurantpress_enable_lightbox' ) ),
+					'flexslider_enabled' => apply_filters( 'restaurantpress_single_food_flexslider_enabled', 'yes' === get_option( 'restaurantpress_enable_lightbox' ) ? 1 : 0 ),
 				);
 			break;
 		}

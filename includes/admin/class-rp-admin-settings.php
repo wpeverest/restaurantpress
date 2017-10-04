@@ -128,7 +128,7 @@ class RP_Admin_Settings {
 		wp_enqueue_script( 'restaurantpress-settings', RP()->plugin_url() . '/assets/js/admin/settings' . $suffix . '.js', array( 'jquery', 'jquery-ui-datepicker', 'jquery-ui-sortable', 'iris', 'selectWoo' ), RP_VERSION, true );
 
 		wp_localize_script( 'restaurantpress-settings', 'restaurantpress_settings_params', array(
-			'i18n_nav_warning' => __( 'The changes you made will be lost if you navigate away from this page.', 'restaurantpress' )
+			'i18n_nav_warning' => __( 'The changes you made will be lost if you navigate away from this page.', 'restaurantpress' ),
 		) );
 
 		// Get tabs for the settings page
@@ -140,8 +140,10 @@ class RP_Admin_Settings {
 	/**
 	 * Get a setting from the settings API.
 	 *
-	 * @param mixed $option_name
-	 * @return string
+	 * @param string $option_name
+	 * @param mixed $default
+	 *
+	 * @return mixed
 	 */
 	public static function get_option( $option_name, $default = '' ) {
 		// Array value
@@ -174,7 +176,7 @@ class RP_Admin_Settings {
 			$option_value = stripslashes( $option_value );
 		}
 
-		return $option_value === null ? $default : $option_value;
+		return ( null === $option_value ) ? $default : $option_value;
 	}
 
 	/**
@@ -182,7 +184,7 @@ class RP_Admin_Settings {
 	 *
 	 * Loops though the restaurantpress options array and outputs each field.
 	 *
-	 * @param array $options Opens array to output
+	 * @param array $options Opens array to output.
 	 */
 	public static function output_fields( $options ) {
 		foreach ( $options as $value ) {
@@ -238,7 +240,7 @@ class RP_Admin_Settings {
 					if ( ! empty( $value['desc'] ) ) {
 						echo wpautop( wptexturize( wp_kses_post( $value['desc'] ) ) );
 					}
-					echo '<table class="form-table">'. "\n\n";
+					echo '<table class="form-table">' . "\n\n";
 					if ( ! empty( $value['id'] ) ) {
 						do_action( 'restaurantpress_settings_' . sanitize_title( $value['id'] ) );
 					}
@@ -259,17 +261,8 @@ class RP_Admin_Settings {
 				case 'text':
 				case 'email':
 				case 'number':
-				case 'color' :
 				case 'password' :
-
-					$type         = $value['type'];
 					$option_value = self::get_option( $value['id'], $value['default'] );
-
-					if ( $value['type'] == 'color' ) {
-						$type = 'text';
-						$value['class'] .= 'colorpick';
-						$description .= '<div id="colorPickerDiv_' . esc_attr( $value['id'] ) . '" class="colorpickdiv" style="z-index: 100;background:#eee;border:1px solid #ccc;position:absolute;display:none;"></div>';
-					}
 
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
@@ -277,21 +270,43 @@ class RP_Admin_Settings {
 							<?php echo $tooltip_html; ?>
 						</th>
 						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
-							<?php
-								if ( 'color' == $value['type'] ) {
-									echo '<span class="colorpickpreview" style="background: ' . esc_attr( $option_value ) . ';"></span>';
-								}
-							?>
 							<input
 								name="<?php echo esc_attr( $value['id'] ); ?>"
 								id="<?php echo esc_attr( $value['id'] ); ?>"
-								type="<?php echo esc_attr( $type ); ?>"
+								type="<?php echo esc_attr( $value['type'] ); ?>"
 								style="<?php echo esc_attr( $value['css'] ); ?>"
 								value="<?php echo esc_attr( $option_value ); ?>"
 								class="<?php echo esc_attr( $value['class'] ); ?>"
 								placeholder="<?php echo esc_attr( $value['placeholder'] ); ?>"
 								<?php echo implode( ' ', $custom_attributes ); ?>
 								/> <?php echo $description; ?>
+						</td>
+					</tr><?php
+					break;
+
+				// Color picker.
+				case 'color' :
+					$option_value = self::get_option( $value['id'], $value['default'] );
+
+					?><tr valign="top">
+						<th scope="row" class="titledesc">
+							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?></label>
+							<?php echo $tooltip_html; ?>
+						</th>
+						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">&lrm;
+							<span class="colorpickpreview" style="background: <?php echo esc_attr( $option_value ); ?>"></span>
+							<input
+								name="<?php echo esc_attr( $value['id'] ); ?>"
+								id="<?php echo esc_attr( $value['id'] ); ?>"
+								type="text"
+								dir="ltr"
+								style="<?php echo esc_attr( $value['css'] ); ?>"
+								value="<?php echo esc_attr( $option_value ); ?>"
+								class="<?php echo esc_attr( $value['class'] ); ?>colorpick"
+								placeholder="<?php echo esc_attr( $value['placeholder'] ); ?>"
+								<?php echo implode( ' ', $custom_attributes ); ?>
+								/>&lrm; <?php echo $description; ?>
+								<div id="colorPickerDiv_<?php echo esc_attr( $value['id'] ); ?>" class="colorpickdiv" style="z-index: 100;background:#eee;border:1px solid #ccc;position:absolute;display:none;"></div>
 						</td>
 					</tr><?php
 					break;
@@ -334,7 +349,7 @@ class RP_Admin_Settings {
 						</th>
 						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
 							<select
-								name="<?php echo esc_attr( $value['id'] ); ?><?php if ( $value['type'] == 'multiselect' ) echo '[]'; ?>"
+								name="<?php echo esc_attr( $value['id'] ); ?><?php echo ( 'multiselect' === $value['type'] ) ? '[]' : ''; ?>"
 								id="<?php echo esc_attr( $value['id'] ); ?>"
 								style="<?php echo esc_attr( $value['css'] ); ?>"
 								class="<?php echo esc_attr( $value['class'] ); ?>"
@@ -447,7 +462,7 @@ class RP_Admin_Settings {
 								type="checkbox"
 								class="<?php echo esc_attr( isset( $value['class'] ) ? $value['class'] : '' ); ?>"
 								value="1"
-								<?php checked( $option_value, 'yes'); ?>
+								<?php checked( $option_value, 'yes' ); ?>
 								<?php echo implode( ' ', $custom_attributes ); ?>
 							/> <?php echo $description ?>
 						</label> <?php echo $tooltip_html; ?>
@@ -483,7 +498,7 @@ class RP_Admin_Settings {
 					}
 
 					?><tr valign="top">
-						<th scope="row" class="titledesc"><?php echo esc_html( $value['title'] ) ?> <?php echo $tooltip_html; echo $disabled_message; ?></th>
+						<th scope="row" class="titledesc"><?php echo esc_html( $value['title'] ) ?> <?php echo $tooltip_html . $disabled_message; ?></th>
 						<td class="forminp image_width_settings">
 							<input name="<?php echo esc_attr( $value['id'] ); ?>[width]" <?php echo $disabled_attr; ?> id="<?php echo esc_attr( $value['id'] ); ?>-width" type="text" size="3" value="<?php echo $width; ?>" /> &times; <input name="<?php echo esc_attr( $value['id'] ); ?>[height]" <?php echo $disabled_attr; ?> id="<?php echo esc_attr( $value['id'] ); ?>-height" type="text" size="3" value="<?php echo $height; ?>" />px
 							<label><input name="<?php echo esc_attr( $value['id'] ); ?>[crop]" <?php echo $disabled_attr; ?> id="<?php echo esc_attr( $value['id'] ); ?>-crop" type="checkbox" value="1" <?php checked( 1, $crop ); ?> /> <?php _e( 'Hard crop?', 'restaurantpress' ); ?></label>
@@ -504,7 +519,7 @@ class RP_Admin_Settings {
 	 * given form field. Plugins can call this when implementing their own custom
 	 * settings types.
 	 *
-	 * @param  array $value The form field value array
+	 * @param  array $value The form field value array.
 	 * @return array The description and tip as a 2 element array
 	 */
 	public static function get_field_description( $value ) {
@@ -536,7 +551,7 @@ class RP_Admin_Settings {
 
 		return array(
 			'description'  => $description,
-			'tooltip_html' => $tooltip_html
+			'tooltip_html' => $tooltip_html,
 		);
 	}
 
@@ -545,10 +560,14 @@ class RP_Admin_Settings {
 	 *
 	 * Loops though the restaurantpress options array and outputs each field.
 	 *
-	 * @param  array $options Options array to output
+	 * @param  array $options Options array to output.
+	 * @param  array $data Optional. Data to use for saving. Defaults to $_POST.
 	 * @return bool
 	 */
-	public static function save_fields( $options ) {
+	public static function save_fields( $options, $data = null ) {
+		if ( is_null( $data ) ) {
+			$data = $_POST;
+		}
 		if ( empty( $_POST ) ) {
 			return false;
 		}
@@ -567,17 +586,17 @@ class RP_Admin_Settings {
 				parse_str( $option['id'], $option_name_array );
 				$option_name  = current( array_keys( $option_name_array ) );
 				$setting_name = key( $option_name_array[ $option_name ] );
-				$raw_value    = isset( $_POST[ $option_name ][ $setting_name ] ) ? wp_unslash( $_POST[ $option_name ][ $setting_name ] ) : null;
+				$raw_value    = isset( $data[ $option_name ][ $setting_name ] ) ? wp_unslash( $data[ $option_name ][ $setting_name ] ) : null;
 			} else {
 				$option_name  = $option['id'];
 				$setting_name = '';
-				$raw_value    = isset( $_POST[ $option['id'] ] ) ? wp_unslash( $_POST[ $option['id'] ] ) : null;
+				$raw_value    = isset( $data[ $option['id'] ] ) ? wp_unslash( $data[ $option['id'] ] ) : null;
 			}
 
 			// Format the value based on option type.
 			switch ( $option['type'] ) {
 				case 'checkbox' :
-					$value = is_null( $raw_value ) ? 'no' : 'yes';
+					$value = '1' === $raw_value || 'yes' === $raw_value ? 'yes' : 'no';
 					break;
 				case 'textarea' :
 					$value = wp_kses_post( trim( $raw_value ) );
@@ -596,6 +615,15 @@ class RP_Admin_Settings {
 						$value['height'] = $option['default']['height'];
 						$value['crop']   = $option['default']['crop'];
 					}
+					break;
+				case 'select':
+					$allowed_values = empty( $option['options'] ) ? array() : array_keys( $option['options'] );
+					if ( empty( $option['default'] ) && empty( $allowed_values ) ) {
+						$value = null;
+						break;
+					}
+					$default = ( empty( $option['default'] ) ? $allowed_values[0] : $option['default'] );
+					$value   = in_array( $raw_value, $allowed_values ) ? $raw_value : $default;
 					break;
 				default :
 					$value = rp_clean( $raw_value );

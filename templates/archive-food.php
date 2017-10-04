@@ -31,15 +31,15 @@ get_header( 'food' ); ?>
 		do_action( 'restaurantpress_before_main_content' );
 	?>
 
-    <header class="restaurantpress-foods-header">
+	<header class="restaurantpress-foods-header">
 
 		<?php if ( apply_filters( 'restaurantpress_show_page_title', true ) ) : ?>
 
-			<h1 class="restaurantpress-foods-header__title page-title"><?php //restaurantpress_page_title(); ?></h1>
+			<h1 class="restaurantpress-foods-header__title page-title"><?php restaurantpress_page_title(); ?></h1>
 
 		<?php endif; ?>
 
-    </header>
+	</header>
 
 	<?php
 		/**
