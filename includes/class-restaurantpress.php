@@ -158,6 +158,7 @@ final class RestaurantPress {
 		include_once( RP_ABSPATH . 'includes/rp-core-functions.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-post-types.php' ); // Registers post types
 		include_once( RP_ABSPATH . 'includes/class-rp-install.php' );
+		include_once( RP_ABSPATH . 'includes/class-rp-post-data.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-ajax.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-food-factory.php' ); // Food factory.
 
