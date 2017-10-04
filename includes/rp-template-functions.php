@@ -65,8 +65,8 @@ function rp_body_class( $classes ) {
 
 	} elseif ( is_group_menu_page() ) {
 
+		$classes[] = 'restaurantpress';
 		$classes[] = 'restaurantpress-group';
-		$classes[] = 'restaurantpress-page';
 
 	}
 

@@ -298,11 +298,6 @@ class RP_Frontend_Scripts {
 				border-top-color: %1$s !important;
 			}
 
-			.restaurantpress p.price,
-			.restaurantpress span.price {
-				color: %1$s !important;
-			}
-
 			.restaurantpress span.price {
 				background: %1$s !important;
 			}
@@ -313,6 +308,13 @@ class RP_Frontend_Scripts {
 
 			.restaurantpress .rp-content-wrapper {
 				border-bottom-color: %1$s !important;
+			}
+
+			.restaurantpress-page p.price,
+			.restaurantpress-page span.price,
+			.rp-list-design-layout p.price,
+			.rp-list-design-layout span.price {
+				color: %1$s !important;
 			}
 
 			.rp-grid-design-layout ins .amount {
