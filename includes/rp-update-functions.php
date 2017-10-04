@@ -130,3 +130,11 @@ function rp_update_140_options() {
 function rp_update_140_db_version() {
 	RP_Install::update_db_version( '1.4.0' );
 }
+
+function rp_update_141_db_version() {
+	RP_Install::update_db_version( '1.4.1' );
+}
+
+function rp_update_142_db_version() {
+	RP_Install::update_db_version( '1.4.2' );
+}

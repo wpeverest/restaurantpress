@@ -41,6 +41,12 @@ class RP_Install {
 			'rp_update_140_options',
 			'rp_update_140_db_version',
 		),
+		'1.4.1' => array(
+			'rp_update_141_db_version',
+		),
+		'1.4.2' => array(
+			'rp_update_142_db_version',
+		),
 	);
 
 	/**
