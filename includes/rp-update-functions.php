@@ -14,11 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Update term meta.
+ */
 function rp_update_130_termmeta() {
 	global $wpdb;
 
 	/**
-	 * Migrate term meta to WordPress tables
+	 * Migrate term meta to WordPress tables.
 	 */
 	if ( get_option( 'db_version' ) >= 34370 && $wpdb->get_var( "SHOW TABLES LIKE '{$wpdb->prefix}restaurantpress_termmeta';" ) ) {
 		if ( $wpdb->query( "INSERT INTO {$wpdb->termmeta} ( term_id, meta_key, meta_value ) SELECT restaurantpress_term_id, meta_key, meta_value FROM {$wpdb->prefix}restaurantpress_termmeta;" ) ) {
@@ -28,6 +31,9 @@ function rp_update_130_termmeta() {
 	}
 }
 
+/**
+ * Update food groups.
+ */
 function rp_update_130_food_groups() {
 	global $wpdb;
 
@@ -66,18 +72,30 @@ function rp_update_130_food_groups() {
 	}
 }
 
+/**
+ * Update DB version.
+ */
 function rp_update_130_db_version() {
 	RP_Install::update_db_version( '1.3.0' );
 }
 
+/**
+ * Update DB version.
+ */
 function rp_update_131_db_version() {
 	RP_Install::update_db_version( '1.3.1' );
 }
 
+/**
+ * Update DB version.
+ */
 function rp_update_132_db_version() {
 	RP_Install::update_db_version( '1.3.2' );
 }
 
+/**
+ * Update price.
+ */
 function rp_update_140_price() {
 	global $wpdb;
 
@@ -104,6 +122,9 @@ function rp_update_140_price() {
 	}
 }
 
+/**
+ * Update chef badge meta key.
+ */
 function rp_update_140_chef_badge() {
 	global $wpdb;
 
@@ -119,6 +140,9 @@ function rp_update_140_chef_badge() {
 	);
 }
 
+/**
+ * Update lightbox options.
+ */
 function rp_update_140_options() {
 	$restaurantpress_enable_lightbox = get_option( 'restaurantpress_enable_lightbox' );
 	if ( $restaurantpress_enable_lightbox ) {
@@ -127,14 +151,23 @@ function rp_update_140_options() {
 	}
 }
 
+/**
+ * Update DB version.
+ */
 function rp_update_140_db_version() {
 	RP_Install::update_db_version( '1.4.0' );
 }
 
+/**
+ * Update DB version.
+ */
 function rp_update_141_db_version() {
 	RP_Install::update_db_version( '1.4.1' );
 }
 
+/**
+ * Update DB version.
+ */
 function rp_update_142_db_version() {
 	RP_Install::update_db_version( '1.4.2' );
 }
