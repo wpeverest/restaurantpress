@@ -25,7 +25,7 @@ final class RestaurantPress {
 	 *
 	 * @var string
 	 */
-	public $version = '1.4.0';
+	public $version = '1.4.3';
 
 	/**
 	 * The single instance of the class.
@@ -59,6 +59,7 @@ final class RestaurantPress {
 
 	/**
 	 * Cloning is forbidden.
+	 *
 	 * @since 1.0
 	 */
 	public function __clone() {
@@ -67,6 +68,7 @@ final class RestaurantPress {
 
 	/**
 	 * Unserializing instances of this class is forbidden.
+	 *
 	 * @since 1.0
 	 */
 	public function __wakeup() {
@@ -110,8 +112,8 @@ final class RestaurantPress {
 	/**
 	 * Define constant if not already set.
 	 *
-	 * @param string $name
-	 * @param string|bool $value
+	 * @param string      $name  Constant name.
+	 * @param string|bool $value Constant value.
 	 */
 	private function define( $name, $value ) {
 		if ( ! defined( $name ) ) {
@@ -156,7 +158,7 @@ final class RestaurantPress {
 		 * Core classes.
 		 */
 		include_once( RP_ABSPATH . 'includes/rp-core-functions.php' );
-		include_once( RP_ABSPATH . 'includes/class-rp-post-types.php' ); // Registers post types
+		include_once( RP_ABSPATH . 'includes/class-rp-post-types.php' ); // Registers post types.
 		include_once( RP_ABSPATH . 'includes/class-rp-install.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-post-data.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-ajax.php' );
@@ -176,9 +178,9 @@ final class RestaurantPress {
 	 */
 	public function frontend_includes() {
 		include_once( RP_ABSPATH . 'includes/rp-template-hooks.php' );
-		include_once( RP_ABSPATH . 'includes/class-rp-template-loader.php' );    // Template Loader
-		include_once( RP_ABSPATH . 'includes/class-rp-frontend-scripts.php' );   // Frontend Scripts
-		include_once( RP_ABSPATH . 'includes/class-rp-shortcodes.php' );         // Shortcodes Class
+		include_once( RP_ABSPATH . 'includes/class-rp-template-loader.php' );    // Template Loader.
+		include_once( RP_ABSPATH . 'includes/class-rp-frontend-scripts.php' );   // Frontend Scripts.
+		include_once( RP_ABSPATH . 'includes/class-rp-shortcodes.php' );         // Shortcodes Class.
 	}
 
 	/**
@@ -256,6 +258,7 @@ final class RestaurantPress {
 
 	/**
 	 * Get the plugin url.
+	 *
 	 * @return string
 	 */
 	public function plugin_url() {
@@ -264,6 +267,7 @@ final class RestaurantPress {
 
 	/**
 	 * Get the plugin path.
+	 *
 	 * @return string
 	 */
 	public function plugin_path() {
@@ -272,6 +276,7 @@ final class RestaurantPress {
 
 	/**
 	 * Get the template path.
+	 *
 	 * @return string
 	 */
 	public function template_path() {
@@ -280,6 +285,7 @@ final class RestaurantPress {
 
 	/**
 	 * Get Ajax URL.
+	 *
 	 * @return string
 	 */
 	public function ajax_url() {

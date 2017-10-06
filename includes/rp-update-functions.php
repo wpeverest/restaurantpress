@@ -171,3 +171,10 @@ function rp_update_141_db_version() {
 function rp_update_142_db_version() {
 	RP_Install::update_db_version( '1.4.2' );
 }
+
+/**
+ * Update DB version.
+ */
+function rp_update_143_db_version() {
+	RP_Install::update_db_version( '1.4.3' );
+}
