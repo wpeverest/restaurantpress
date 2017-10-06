@@ -60,13 +60,13 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 
 == Changelog ==
 
-= 1.4.2 - 04/10/2017 =
-* Fix - Custom tab with no class error.
-* Fix - Amount color being changed by themes.
-* Tweak - Support customize selective refresh.
-* Tweak - Disable the use of embeds for groups.
-* Tweak - Lock install routine to only allow for one execution.
-* Dev - Introduced pre-commit Git hook for linting and PHP coding standard.
+= 1.4.3 - XX/10/2017 =
+* Fix - Formats decimals when saved in settings.
+* Fix - Formats curency symbols when saved in settings.
+* Tweak - Process the oEmbeds for food short description.
+* Tweak - Support Jetpack Markdown for food short description.
+* Tweak - Introduced `rp_format_content()` formatting function.
+* Tweak - Introduced `rp_format_phone_number()` formatting function.
 
 [See changelog for all versions](https://raw.githubusercontent.com/wpeverest/restaurantpress/master/CHANGELOG.txt).
 
