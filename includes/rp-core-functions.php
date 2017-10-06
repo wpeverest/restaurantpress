@@ -23,6 +23,19 @@ include( RP_ABSPATH . 'includes/rp-term-functions.php' );
 include( RP_ABSPATH . 'includes/rp-widget-functions.php' );
 
 /**
+ * Short Description (excerpt).
+ */
+add_filter( 'restaurantpress_short_description', 'wptexturize' );
+add_filter( 'restaurantpress_short_description', 'convert_smilies' );
+add_filter( 'restaurantpress_short_description', 'convert_chars' );
+add_filter( 'restaurantpress_short_description', 'wpautop' );
+add_filter( 'restaurantpress_short_description', 'shortcode_unautop' );
+add_filter( 'restaurantpress_short_description', 'prepend_attachment' );
+add_filter( 'restaurantpress_short_description', 'do_shortcode', 11 ); // AFTER wpautop()
+add_filter( 'restaurantpress_short_description', 'rp_format_food_short_description', 9999999 );
+add_filter( 'restaurantpress_short_description', 'rp_do_oembeds' );
+
+/**
  * Define a constant if it is not already defined.
  *
  * @since 1.4.0

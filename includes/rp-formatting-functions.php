@@ -15,9 +15,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Converts a string (e.g. yes or no) to a bool.
+ * Converts a string (e.g. 'yes' or 'no') to a bool.
+ *
  * @since  1.4.0
- * @param  string $string
+ * @param  string $string String to convert.
  * @return bool
  */
 function rp_string_to_bool( $string ) {
@@ -25,10 +26,11 @@ function rp_string_to_bool( $string ) {
 }
 
 /**
- * Converts a bool to a string.
+ * Converts a bool to a 'yes' or 'no'.
+ *
  * @since  1.4.0
- * @param  bool $bool
- * @return string yes or no
+ * @param  bool $bool String to convert.
+ * @return string
  */
 function rp_bool_to_string( $bool ) {
 	if ( ! is_bool( $bool ) ) {
@@ -38,9 +40,67 @@ function rp_bool_to_string( $bool ) {
 }
 
 /**
+ * Trim trailing zeros off prices.
+ *
+ * @param  string|float|int $price Price.
+ * @return string
+ */
+function rp_trim_zeros( $price ) {
+	return preg_replace( '/' . preg_quote( rp_get_price_decimal_separator(), '/' ) . '0++$/', '', $price );
+}
+
+/**
+ * Format decimal numbers ready for DB storage.
+ *
+ * Sanitize, remove decimals, and optionally round + trim off zeros.
+ *
+ * This function does not remove thousands - this should be done before passing a value to the function.
+ *
+ * @param  float|string $number     Expects either a float or a string with a decimal separator only (no thousands).
+ * @param  mixed        $dp number  Number of decimal points to use, blank to use restaurantpress_price_num_decimals, or false to avoid all rounding.
+ * @param  bool         $trim_zeros From end of string.
+ * @return string
+ */
+function rp_format_decimal( $number, $dp = false, $trim_zeros = false ) {
+	$locale   = localeconv();
+	$decimals = array( rp_get_price_decimal_separator(), $locale['decimal_point'], $locale['mon_decimal_point'] );
+
+	// Remove locale from string.
+	if ( ! is_float( $number ) ) {
+		$number = str_replace( $decimals, '.', $number );
+		$number = preg_replace( '/[^0-9\.,-]/', '', rp_clean( $number ) );
+	}
+
+	if ( false !== $dp ) {
+		$dp     = intval( '' == $dp ? rp_get_price_decimals() : $dp );
+		$number = number_format( floatval( $number ), $dp, '.', '' );
+	} elseif ( is_float( $number ) ) {
+		// DP is false - don't use number format, just return a string in our format.
+		$number = rp_clean( str_replace( $decimals, '.', strval( $number ) ) );
+	}
+
+	if ( $trim_zeros && strstr( $number, '.' ) ) {
+		$number = rtrim( rtrim( $number, '0' ), '.' );
+	}
+
+	return $number;
+}
+
+/**
+ * Format a price with RP Currency Locale settings.
+ *
+ * @param  string $value Price to localize.
+ * @return string
+ */
+function rp_format_localized_price( $value ) {
+	return apply_filters( 'restaurantpress_format_localized_price', str_replace( '.', rp_get_price_decimal_separator(), strval( $value ) ), $value );
+}
+
+/**
  * Clean variables using sanitize_text_field. Arrays are cleaned recursively.
  * Non-scalar values are ignored.
- * @param string|array $var
+ *
+ * @param  string|array $var Data to sanitize.
  * @return string|array
  */
 function rp_clean( $var ) {
@@ -52,19 +112,10 @@ function rp_clean( $var ) {
 }
 
 /**
- * Trim trailing zeros off prices.
- *
- * @param  mixed $price
- * @return string
- */
-function rp_trim_zeros( $price ) {
-	return preg_replace( '/' . preg_quote( rp_get_price_decimal_separator(), '/' ) . '0++$/', '', $price );
-}
-
-/**
  * Run rp_clean over posted textarea but maintain line breaks.
+ *
  * @since  1.4.0
- * @param  string $var
+ * @param  string $var Data to sanitize.
  * @return string
  */
 function rp_sanitize_textarea( $var ) {
@@ -74,8 +125,8 @@ function rp_sanitize_textarea( $var ) {
 /**
  * Sanitize a string destined to be a tooltip.
  *
- * @since 1.0.0 Tooltips are encoded with htmlspecialchars to prevent XSS. Should not be used in conjunction with esc_attr()
- * @param string $var
+ * @since  1.0.0 Tooltips are encoded with htmlspecialchars to prevent XSS. Should not be used in conjunction with esc_attr()
+ * @param  string $var Data to sanitize.
  * @return string
  */
 function rp_sanitize_tooltip( $var ) {
@@ -121,16 +172,17 @@ function get_restaurantpress_price_format() {
 
 /**
  * Return the thousand separator for prices.
+ *
  * @since  1.4.0
  * @return string
  */
 function rp_get_price_thousand_separator() {
-	$separator = apply_filters( 'rp_get_price_thousand_separator', get_option( 'restaurantpress_price_thousand_sep' ) );
-	return stripslashes( $separator );
+	return stripslashes( apply_filters( 'rp_get_price_thousand_separator', get_option( 'restaurantpress_price_thousand_sep' ) ) );
 }
 
 /**
  * Return the decimal separator for prices.
+ *
  * @since  1.4.0
  * @return string
  */
@@ -141,12 +193,12 @@ function rp_get_price_decimal_separator() {
 
 /**
  * Return the number of decimals after the decimal point.
+ *
  * @since  1.4
  * @return int
  */
 function rp_get_price_decimals() {
-	$decimals = apply_filters( 'rp_get_price_decimals', get_option( 'restaurantpress_price_num_decimals', 2 ) );
-	return absint( $decimals );
+	return absint( apply_filters( 'rp_get_price_decimals', get_option( 'restaurantpress_price_num_decimals', 2 ) ) );
 }
 
 /**
@@ -154,6 +206,27 @@ function rp_get_price_decimals() {
  *
  * @param float $price
  * @param array $args (default: array())
+ * @return string
+ */
+/**
+ * Format the price with a currency symbol.
+ *
+ * @param  float $price Raw price.
+ * @param  array $args  Arguments to format a price {
+ *     Array of arguments.
+ *     Defaults to empty array.
+ *
+ *     @type string $currency           Currency code.
+ *                                      Defaults to empty string (Use the result from get_restaurantpress_currency()).
+ *     @type string $decimal_separator  Decimal separator.
+ *                                      Defaults the result of rp_get_price_decimal_separator().
+ *     @type string $thousand_separator Thousand separator.
+ *                                      Defaults the result of rp_get_price_thousand_separator().
+ *     @type string $decimals           Number of decimals.
+ *                                      Defaults the result of rp_get_price_decimals().
+ *     @type string $price_format       Price format depending on the currency position.
+ *                                      Defaults the result of get_restaurantpress_price_format().
+ * }
  * @return string
  */
 function rp_price( $price, $args = array() ) {
@@ -207,31 +280,23 @@ function rp_time_format() {
 }
 
 /**
- * Format a sale price for display.
+ * Format phone numbers.
  *
- * @param  string $regular_price
- * @param  string $sale_price
+ * @param  string $phone Phone number.
  * @return string
  */
-function rp_format_sale_price( $regular_price, $sale_price ) {
-	$price = '<del>' . ( is_numeric( $regular_price ) ? rp_price( $regular_price ) : $regular_price ) . '</del> <ins>' . ( is_numeric( $sale_price ) ? rp_price( $sale_price ) : $sale_price ) . '</ins>';
-	return apply_filters( 'restaurantpress_format_sale_price', $price, $regular_price, $sale_price );
-}
-
-/**
- * Format a price with RP Currency Locale settings.
- * @param  string $value
- * @return string
- */
-function rp_format_localized_price( $value ) {
-	return apply_filters( 'restaurantpress_format_localized_price', str_replace( '.', rp_get_price_decimal_separator(), strval( $value ) ), $value );
+function rp_format_phone_number( $phone ) {
+	return str_replace( '.', '-', $phone );
 }
 
 /**
  * Trim a string and append a suffix.
- * @param  string  $string
- * @param  integer $chars
- * @param  string  $suffix
+ *
+ * @param  string  $string String to trim.
+ * @param  integer $chars  Amount of characters.
+ *                         Defaults to 200.
+ * @param  string  $suffix Suffix.
+ *                         Defaults to '...'.
  * @return string
  */
 function rp_trim_string( $string, $chars = 200, $suffix = '...' ) {
@@ -246,39 +311,90 @@ function rp_trim_string( $string, $chars = 200, $suffix = '...' ) {
 }
 
 /**
- * Format decimal numbers ready for DB storage.
+ * Format content to display shortcodes.
  *
- * Sanitize, remove decimals, and optionally round + trim off zeros.
- *
- * This function does not remove thousands - this should be done before passing a value to the function.
- *
- * @param  float|string $number Expects either a float or a string with a decimal separator only (no thousands)
- * @param  mixed $dp number of decimal points to use, blank to use woocommerce_price_num_decimals, or false to avoid all rounding.
- * @param  bool $trim_zeros from end of string
+ * @since  1.4.3
+ * @param  string $raw_string Raw string.
  * @return string
  */
-function rp_format_decimal( $number, $dp = false, $trim_zeros = false ) {
-	$locale   = localeconv();
-	$decimals = array( rp_get_price_decimal_separator(), $locale['decimal_point'], $locale['mon_decimal_point'] );
+function rp_format_content( $raw_string ) {
+	return apply_filters( 'restaurantpress_format_content', apply_filters( 'restaurantpress_short_description', $raw_string ), $raw_string );
+}
 
-	// Remove locale from string.
-	if ( ! is_float( $number ) ) {
-		$number = str_replace( $decimals, '.', $number );
-		$number = preg_replace( '/[^0-9\.,-]/', '', rp_clean( $number ) );
+/**
+ * Format product short description.
+ * Adds support for Jetpack Markdown.
+ *
+ * @codeCoverageIgnore
+ * @since  1.4.3
+ * @param  string $content Food short description.
+ * @return string
+ */
+function rp_format_food_short_description( $content ) {
+	// Add support for Jetpack Markdown.
+	if ( class_exists( 'WPCom_Markdown' ) ) {
+		$markdown = WPCom_Markdown::get_instance();
+
+		return wpautop( $markdown->transform( $content, array(
+			'unslash' => false,
+		) ) );
 	}
 
-	if ( false !== $dp ) {
-		$dp     = intval( '' == $dp ? rp_get_price_decimals() : $dp );
-		$number = number_format( floatval( $number ), $dp, '.', '' );
+	return $content;
+}
 
-	// DP is false - don't use number format, just return a string in our format
-	} elseif ( is_float( $number ) ) {
-		$number = rp_clean( str_replace( $decimals, '.', strval( $number ) ) );
-	}
+/**
+ * Formats curency symbols when saved in settings.
+ *
+ * @codeCoverageIgnore
+ * @param  string $value     Option value.
+ * @param  array  $option    Option name.
+ * @param  string $raw_value Raw value.
+ * @return string
+ */
+function rp_format_option_price_separators( $value, $option, $raw_value ) {
+	return wp_kses_post( $raw_value );
+}
+add_filter( 'restaurantpress_admin_settings_sanitize_option_restaurantpress_price_decimal_sep', 'rp_format_option_price_separators', 10, 3 );
+add_filter( 'restaurantpress_admin_settings_sanitize_option_restaurantpress_price_thousand_sep', 'rp_format_option_price_separators', 10, 3 );
 
-	if ( $trim_zeros && strstr( $number, '.' ) ) {
-		$number = rtrim( rtrim( $number, '0' ), '.' );
-	}
+/**
+ * Formats decimals when saved in settings.
+ *
+ * @codeCoverageIgnore
+ * @param  string $value     Option value.
+ * @param  array  $option    Option name.
+ * @param  string $raw_value Raw value.
+ * @return string
+ */
+function rp_format_option_price_num_decimals( $value, $option, $raw_value ) {
+	return is_null( $raw_value ) ? 2 : absint( $raw_value );
+}
+add_filter( 'restaurantpress_admin_settings_sanitize_option_restaurantpress_price_num_decimals', 'rp_format_option_price_num_decimals', 10, 3 );
 
-	return $number;
+/**
+ * Format a sale price for display.
+ *
+ * @param  string $regular_price Regular price.
+ * @param  string $sale_price    Sale price.
+ * @return string
+ */
+function rp_format_sale_price( $regular_price, $sale_price ) {
+	$price = '<del>' . ( is_numeric( $regular_price ) ? rp_price( $regular_price ) : $regular_price ) . '</del> <ins>' . ( is_numeric( $sale_price ) ? rp_price( $sale_price ) : $sale_price ) . '</ins>';
+	return apply_filters( 'restaurantpress_format_sale_price', $price, $regular_price, $sale_price );
+}
+
+/**
+ * Process oEmbeds.
+ *
+ * @since  1.4.3
+ * @param  string $content Content.
+ * @return string
+ */
+function rp_do_oembeds( $content ) {
+	global $wp_embed;
+
+	$content = $wp_embed->autoembed( $content );
+
+	return $content;
 }
