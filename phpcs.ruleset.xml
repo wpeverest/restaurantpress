@@ -47,7 +47,6 @@
 		<exclude name="WordPress.VIP.RestrictedFunctions.get_posts" />
 		<exclude name="WordPress.VIP.RestrictedFunctions.get_term_by" />
 		<exclude name="WordPress.VIP.RestrictedFunctions.get_term_link" />
-		<exclude name="WordPress.VIP.RestrictedFunctions.get_page_by_title" />
 		<exclude name="WordPress.VIP.RestrictedFunctions.parse_url" />
 		<exclude name="WordPress.VIP.RestrictedFunctions.prevent_path_disclosure" />
 		<exclude name="WordPress.VIP.RestrictedFunctions.runtime_configuration" />
@@ -66,8 +65,6 @@
 		<exclude name="WordPress.WP.EnqueuedResources.NonEnqueuedScript" />
 		<exclude name="WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet" />
 		<exclude name="WordPress.WP.PreparedSQL.NotPrepared" />
-		<exclude name="WordPress.XSS.EscapeOutput.OutputNotEscaped" />
-		<exclude name="WordPress.XSS.EscapeOutput.UnsafePrintingFunction" />
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
 	</rule>
 
