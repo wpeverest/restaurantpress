@@ -66,6 +66,7 @@ class RP_Install {
 		add_action( 'in_plugin_update_message-restaurantpress/restaurantpress.php', array( __CLASS__, 'in_plugin_update_message' ) );
 		add_filter( 'plugin_action_links_' . RP_PLUGIN_BASENAME, array( __CLASS__, 'plugin_action_links' ) );
 		add_filter( 'plugin_row_meta', array( __CLASS__, 'plugin_row_meta' ), 10, 2 );
+		add_filter( 'wpmu_drop_tables', array( __CLASS__, 'wpmu_drop_tables' ) );
 	}
 
 	/**
@@ -127,6 +128,7 @@ class RP_Install {
 		self::create_tables();
 		self::create_roles();
 		self::setup_environment();
+		self::create_cron_jobs();
 		self::maybe_enable_setup_wizard();
 		self::update_rp_version();
 		self::maybe_update_db_version();
@@ -258,6 +260,14 @@ class RP_Install {
 	}
 
 	/**
+	 * Create cron jobs (clear them first).
+	 */
+	private static function create_cron_jobs() {
+		wp_clear_scheduled_hook( 'restaurantpress_cleanup_sessions' );
+		wp_schedule_event( time(), 'twicedaily', 'restaurantpress_cleanup_sessions' );
+	}
+
+	/**
 	 * Default options
 	 *
 	 * Sets up the default options used on the settings page
@@ -303,6 +313,7 @@ class RP_Install {
 
 	/**
 	 * Get Table schema.
+	 *
 	 * @return string
 	 */
 	private static function get_schema() {
@@ -314,16 +325,20 @@ class RP_Install {
 			$charset_collate = $wpdb->get_charset_collate();
 		}
 
-		/*
-		 * Indexes have a maximum size of 767 bytes. Historically, we haven't need to be concerned about that.
-		 * As of WordPress 4.2, however, we moved to utf8mb4, which uses 4 bytes per character. This means that an index which
-		 * used to have room for floor(767/3) = 255 characters, now only has room for floor(767/4) = 191 characters.
+		$tables = "
+CREATE TABLE {$wpdb->prefix}rp_sessions (
+  session_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  session_key char(32) NOT NULL,
+  session_value longtext NOT NULL,
+  session_expiry BIGINT UNSIGNED NOT NULL,
+  PRIMARY KEY  (session_key),
+  UNIQUE KEY session_id (session_id)
+) $charset_collate;
+		";
+
+		/**
+		 * Term meta is only needed for old installs and is now @deprecated by WordPress term meta.
 		 */
-		$max_index_length = 191;
-
-		$tables = '';
-
-		// Term meta is only needed for old installs.
 		if ( ! function_exists( 'get_term_meta' ) ) {
 			$tables .= "
 CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
@@ -333,7 +348,7 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
   meta_value longtext NULL,
   PRIMARY KEY  (meta_id),
   KEY restaurantpress_term_id (restaurantpress_term_id),
-  KEY meta_key (meta_key($max_index_length))
+  KEY meta_key (meta_key(32))
 ) $charset_collate;
 			";
 		}
@@ -496,6 +511,7 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 
 	/**
 	 * Display row meta in the Plugins list table.
+	 *
 	 * @param  array  $plugin_meta
 	 * @param  string $plugin_file
 	 * @return array
@@ -511,6 +527,20 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 		}
 
 		return (array) $plugin_meta;
+	}
+
+	/**
+	 * Uninstall tables when MU blog is deleted.
+	 *
+	 * @param  array $tables
+	 * @return string[]
+	 */
+	public static function wpmu_drop_tables( $tables ) {
+		global $wpdb;
+
+		$tables[] = $wpdb->prefix . 'rp_sessions';
+
+		return $tables;
 	}
 }
 

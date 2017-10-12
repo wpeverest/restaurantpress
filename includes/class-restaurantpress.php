@@ -35,6 +35,13 @@ final class RestaurantPress {
 	protected static $_instance = null;
 
 	/**
+	 * Session instance.
+	 *
+	 * @var RP_Session|RP_Session_Handler
+	 */
+	public $session = null;
+
+	/**
 	 * Food factory instance.
 	 *
 	 * @var RP_Food_Factory
@@ -106,6 +113,7 @@ final class RestaurantPress {
 		$this->define( 'RP_ABSPATH', dirname( RP_PLUGIN_FILE ) . '/' );
 		$this->define( 'RP_PLUGIN_BASENAME', plugin_basename( RP_PLUGIN_FILE ) );
 		$this->define( 'RP_VERSION', $this->version );
+		$this->define( 'RP_SESSION_CACHE_GROUP', 'rp_session_id' );
 		$this->define( 'RP_TEMPLATE_DEBUG_MODE', false );
 	}
 
@@ -153,6 +161,7 @@ final class RestaurantPress {
 		 * Abstract classes.
 		 */
 		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-food.php' ); // Foods.
+		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-session.php' );
 
 		/**
 		 * Core classes.
@@ -163,6 +172,7 @@ final class RestaurantPress {
 		include_once( RP_ABSPATH . 'includes/class-rp-post-data.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-ajax.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-food-factory.php' ); // Food factory.
+		include_once( RP_ABSPATH . 'includes/class-rp-cache-helper.php' ); // Cache Helper.
 
 		if ( $this->is_request( 'admin' ) ) {
 			include_once( RP_ABSPATH . 'includes/admin/class-rp-admin.php' );
@@ -171,12 +181,17 @@ final class RestaurantPress {
 		if ( $this->is_request( 'frontend' ) ) {
 			$this->frontend_includes();
 		}
+
+		if ( $this->is_request( 'frontend' ) || $this->is_request( 'cron' ) ) {
+			include_once( RP_ABSPATH . 'includes/class-rp-session-handler.php' );
+		}
 	}
 
 	/**
 	 * Include required frontend files.
 	 */
 	public function frontend_includes() {
+		include_once( RP_ABSPATH . 'includes/rp-notice-functions.php' );
 		include_once( RP_ABSPATH . 'includes/rp-template-hooks.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-template-loader.php' );    // Template Loader.
 		include_once( RP_ABSPATH . 'includes/class-rp-frontend-scripts.php' );   // Frontend Scripts.
@@ -202,6 +217,12 @@ final class RestaurantPress {
 
 		// Load class instances.
 		$this->food_factory = new RP_Food_Factory(); // Food Factory to create new food instances.
+
+		// Session class, handles session data for users - can be overwritten if custom handler is needed.
+		if ( $this->is_request( 'frontend' ) || $this->is_request( 'cron' ) ) {
+			$session_class  = apply_filters( 'restaurantpress_session_handler', 'RP_Session_Handler' );
+			$this->session  = new $session_class();
+		}
 
 		// Init action.
 		do_action( 'restaurantpress_init' );
