@@ -76,5 +76,5 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 
 == Upgrade Notice ==
 
-= 1.4.0 =
-1.4.0 is a major update so it is important that you make backups, and ensure themes and extensions are 1.4 compatible before upgrading.
+= 1.5.0 =
+1.5.0 is a major update so it is important that you make backups, and ensure themes and extensions are 1.4 compatible before upgrading.
