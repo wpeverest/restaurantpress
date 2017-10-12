@@ -171,6 +171,11 @@ class RP_Frontend_Scripts {
 				'deps'    => array( 'jquery' ),
 				'version' => '2.6.3',
 			),
+			'jquery-blockui' => array(
+				'src'     => self::get_asset_url( 'assets/js/jquery-blockui/jquery.blockUI' . $suffix . '.js' ),
+				'deps'    => array( 'jquery' ),
+				'version' => '2.70',
+			),
 			'photoswipe' => array(
 				'src'     => self::get_asset_url( 'assets/js/photoswipe/photoswipe' . $suffix . '.js' ),
 				'deps'    => array(),
