@@ -66,6 +66,7 @@ class RP_Install {
 		add_action( 'in_plugin_update_message-restaurantpress/restaurantpress.php', array( __CLASS__, 'in_plugin_update_message' ) );
 		add_filter( 'plugin_action_links_' . RP_PLUGIN_BASENAME, array( __CLASS__, 'plugin_action_links' ) );
 		add_filter( 'plugin_row_meta', array( __CLASS__, 'plugin_row_meta' ), 10, 2 );
+		add_filter( 'wpmu_drop_tables', array( __CLASS__, 'wpmu_drop_tables' ) );
 	}
 
 	/**
@@ -501,6 +502,7 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 
 	/**
 	 * Display row meta in the Plugins list table.
+	 *
 	 * @param  array  $plugin_meta
 	 * @param  string $plugin_file
 	 * @return array
@@ -516,6 +518,20 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 		}
 
 		return (array) $plugin_meta;
+	}
+
+	/**
+	 * Uninstall tables when MU blog is deleted.
+	 *
+	 * @param  array $tables
+	 * @return string[]
+	 */
+	public static function wpmu_drop_tables( $tables ) {
+		global $wpdb;
+
+		$tables[] = $wpdb->prefix . 'rp_sessions';
+
+		return $tables;
 	}
 }
 
