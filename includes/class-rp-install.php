@@ -128,6 +128,7 @@ class RP_Install {
 		self::create_tables();
 		self::create_roles();
 		self::setup_environment();
+		self::create_cron_jobs();
 		self::maybe_enable_setup_wizard();
 		self::update_rp_version();
 		self::maybe_update_db_version();
@@ -256,6 +257,14 @@ class RP_Install {
 	public static function update_db_version( $version = null ) {
 		delete_option( 'restaurantpress_db_version' );
 		add_option( 'restaurantpress_db_version', is_null( $version ) ? RP()->version : $version );
+	}
+
+	/**
+	 * Create cron jobs (clear them first).
+	 */
+	private static function create_cron_jobs() {
+		wp_clear_scheduled_hook( 'restaurantpress_cleanup_sessions' );
+		wp_schedule_event( time(), 'twicedaily', 'restaurantpress_cleanup_sessions' );
 	}
 
 	/**

@@ -86,7 +86,7 @@ function rp_add_notice( $message, $notice_type = 'success' ) {
 
 	$notices[ $notice_type ][] = apply_filters( 'restaurantpress_add_' . $notice_type, $message );
 
-	RP()->session->set( 'wc_notices', $notices );
+	RP()->session->set( 'rp_notices', $notices );
 }
 
 /**
