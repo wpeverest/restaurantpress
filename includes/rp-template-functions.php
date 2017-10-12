@@ -15,6 +15,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Remove adjacent_posts_rel_link_wp_head - pointless for food.
+ *
+ * @since 1.5.0
+ */
+function rp_prevent_adjacent_posts_rel_link_wp_head() {
+	if ( is_singular( 'food_menu' ) ) {
+		remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
+	}
+}
+add_action( 'template_redirect', 'rp_prevent_adjacent_posts_rel_link_wp_head' );
+
+/**
  * Show the gallery if JS is disabled.
  *
  * @since 1.4.0
@@ -29,7 +41,7 @@ add_action( 'wp_head', 'rp_gallery_noscript' );
 /**
  * When the_post is called, put food data into a global.
  *
- * @param mixed $post
+ * @param  mixed $post
  * @return RP_Food
  */
 function rp_setup_food_data( $post ) {
@@ -307,7 +319,7 @@ if ( ! function_exists( 'restaurantpress_default_food_tabs' ) ) {
 	function restaurantpress_default_food_tabs( $tabs = array() ) {
 		global $post;
 
-		// Description tab - shows product content
+		// Description tab - shows food content.
 		if ( $post->post_content ) {
 			$tabs['description'] = array(
 				'title'    => __( 'Description', 'restaurantpress' ),
@@ -330,13 +342,13 @@ if ( ! function_exists( 'restaurantpress_sort_food_tabs' ) ) {
 	 */
 	function restaurantpress_sort_food_tabs( $tabs = array() ) {
 
-		// Make sure the $tabs parameter is an array
+		// Make sure the $tabs parameter is an array.
 		if ( ! is_array( $tabs ) ) {
 			trigger_error( 'Function restaurantpress_sort_food_tabs() expects an array as the first parameter. Defaulting to empty array.' );
 			$tabs = array();
 		}
 
-		// Re-order tabs by priority
+		// Re-order tabs by priority.
 		if ( ! function_exists( '_sort_priority_callback' ) ) {
 			function _sort_priority_callback( $a, $b ) {
 				if ( $a['priority'] === $b['priority'] ) {
