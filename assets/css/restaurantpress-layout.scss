@@ -14,6 +14,14 @@
  */
 .restaurantpress, .restaurantpress-page {
 
+	.restaurantpress-message,
+	.restaurantpress-error,
+	.restaurantpress-info {
+		.button {
+			float: right;
+		}
+	}
+
 	/**
 	 * General layout styles
 	 */
@@ -102,6 +110,54 @@
 			ul.tabs {
 				@include menu();
 			}
+		}
+	}
+
+	/**
+	 * Forms
+	 */
+	form {
+		.form-row {
+			@include clearfix();
+
+			label {
+				display: block;
+
+				&.checkbox {
+					display: inline;
+				}
+			}
+
+			select {
+				width: 100%;
+			}
+
+			.input-text {
+				box-sizing: border-box;
+				width: 100%;
+			}
+		}
+
+		.form-row-first,
+		.form-row-last {
+			width: 47%;
+			overflow: visible;
+		}
+
+		.form-row-first {
+			float: left;
+
+			/*rtl:raw:
+			float: right;
+			*/
+		}
+
+		.form-row-last {
+			float: right;
+		}
+
+		.form-row-wide {
+			clear: both;
 		}
 	}
 

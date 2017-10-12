@@ -23,6 +23,14 @@
  * Main RestaurantPress styles
  */
 .restaurantpress {
+	.blockUI.blockOverlay {
+		position: relative;
+		@include loader();
+	}
+
+	.loader {
+		@include loader();
+	}
 
 	.restaurantpress-breadcrumb {
 		@include clearfix();
@@ -65,10 +73,6 @@
 			del {
 				opacity: 0.5;
 			}
-		}
-
-		.food_meta {
-			margin-top: 2em;
 		}
 
 		div.images {
@@ -187,6 +191,10 @@
 			}
 		}
 
+		.food_meta {
+			margin-top: 2em;
+		}
+
 		div.summary {
 			margin-bottom: 2em;
 		}
@@ -275,6 +283,286 @@
 			margin-right: 0;
 			color: $contentbg;
 		}
+	}
+
+	/**
+	 * Buttons
+	 */
+	a.button,
+	button.button,
+	input.button,
+	#respond input#submit {
+		font-size: 100%;
+		margin: 0;
+		line-height: 1;
+		cursor: pointer;
+		position: relative;
+		text-decoration: none;
+		overflow: visible;
+		padding: 0.618em 1em;
+		font-weight: 700;
+		border-radius: 3px;
+		left: auto;
+		color: $secondarytext;
+		background-color: $secondary;
+		border: 0;
+		white-space: nowrap;
+		display: inline-block;
+		background-image: none;
+		box-shadow: none;
+		text-shadow: none;
+
+		&:hover {
+			background-color: $secondary - #111;
+			text-decoration: none;
+			background-image: none;
+			color: $secondarytext;
+		}
+
+		&.alt {
+			background-color: $primary;
+			color: $primarytext;
+			-webkit-font-smoothing: antialiased;
+
+			&:hover {
+				background-color: $primary - #111;
+				color: $primarytext;
+			}
+
+			&.disabled,
+			&:disabled,
+			&:disabled[disabled],
+			&.disabled:hover,
+			&:disabled:hover,
+			&:disabled[disabled]:hover {
+				background-color: $primary;
+				color: $primarytext;
+			}
+		}
+
+		&:disabled,
+		&.disabled,
+		&:disabled[disabled] {
+			color: inherit;
+			cursor: not-allowed;
+			opacity: 0.5;
+			padding: 0.618em 1em;
+
+			&:hover {
+				color: inherit;
+				background-color: $secondary;
+			}
+		}
+	}
+
+	/**
+	 * Forms
+	 */
+	form .form-row {
+		padding: 3px;
+		margin: 0 0 6px;
+
+		[placeholder]:focus::-webkit-input-placeholder {
+			transition: opacity 0.5s 0.5s ease;
+			opacity: 0;
+		}
+
+		label {
+			line-height: 2;
+		}
+
+		label.hidden {
+			visibility: hidden;
+		}
+
+		label.inline {
+			display: inline;
+		}
+
+		select {
+			cursor: pointer;
+			margin: 0;
+		}
+
+		.required {
+			color: red;
+			font-weight: 700;
+			border: 0;
+		}
+
+		.input-checkbox {
+			display: inline;
+			margin: -2px 8px 0 0;
+			text-align: center;
+			vertical-align: middle;
+		}
+
+		input.input-text,
+		textarea {
+			box-sizing: border-box;
+			width: 100%;
+			margin: 0;
+			outline: 0;
+			line-height: 1;
+		}
+
+		textarea {
+			height: 4em;
+			line-height: 1.5;
+			display: block;
+			box-shadow: none;
+		}
+
+		.select2-container {
+			width: 100%;
+			line-height: 2em;
+		}
+
+		&.restaurantpress-invalid {
+			label {
+				color: $red;
+			}
+			.select2-container,
+			input.input-text,
+			select {
+				border-color: $red;
+			}
+		}
+
+		&.restaurantpress-validated {
+			.select2-container,
+			input.input-text,
+			select {
+				border-color: $green - #111;
+			}
+		}
+
+		::-webkit-input-placeholder {
+			line-height: normal;
+		}
+
+		:-moz-placeholder {
+			line-height: normal;
+		}
+
+		:-ms-input-placeholder {
+			line-height: normal;
+		}
+	}
+}
+
+/**
+ * Photoswipe
+ * 1. These styles are required to overwrite default theme button styles (Twenty Twelve adds gradients via background-image).
+ * 2. For zooming on mobile.
+ */
+.pswp {
+	z-index: 999999;
+}
+
+.pswp img {
+	max-width: none;
+}
+
+.restaurantpress img.pswp__img,
+.restaurantpress-page img.pswp__img {
+	max-width: none; /* 2 */
+}
+
+button.pswp__button {
+	box-shadow: none !important;
+	background-image: url('photoswipe/default-skin/default-skin.png') !important;
+}
+
+button.pswp__button,
+button.pswp__button:hover,
+button.pswp__button--arrow--left::before,
+button.pswp__button--arrow--right::before {
+	background-color: transparent !important; /* 1 */
+}
+
+button.pswp__button--arrow--left,
+button.pswp__button--arrow--right,
+button.pswp__button--arrow--left:hover,
+button.pswp__button--arrow--right:hover {
+	background-image: none !important; /* 1 */
+}
+
+button.pswp__button--close:hover {
+	background-position: 0 -44px;
+}
+
+button.pswp__button--zoom:hover {
+	background-position: -88px 0;
+}
+
+/**
+ * Right to left styles
+ */
+.rtl.restaurantpress div.food div.images .flex-control-thumbs li {
+	float: right;
+}
+
+/**
+ * Notices.
+ */
+.restaurantpress-message,
+.restaurantpress-error,
+.restaurantpress-info {
+	padding: 1em 2em 1em 3.5em;
+	margin: 0 0 2em;
+	position: relative;
+	background-color: #f7f6f7;
+	color: $secondarytext;
+	border-top: 3px solid $primary;
+	list-style: none outside;
+	@include clearfix();
+	width: auto;
+	word-wrap: break-word;
+
+	&::before {
+		font-family: 'WooCommerce';
+		content: '\e028';
+		display: inline-block;
+		position: absolute;
+		top: 1em;
+		left: 1.5em;
+	}
+
+	.button {
+		float: right;
+	}
+
+	li {
+		list-style: none outside !important; // Required for default theme compatibility
+		padding-left: 0 !important; // Required for default theme compatibility
+		margin-left: 0 !important; // Required for default theme compatibility
+	}
+}
+
+.restaurantpress-message {
+	border-top-color: #8fae1b;
+
+	&::before {
+		content: '\e015';
+		color: #8fae1b;
+	}
+}
+
+.restaurantpress-info {
+	border-top-color: #1e85be;
+
+	&::before {
+		color: #1e85be;
+	}
+}
+
+.restaurantpress-error {
+	border-top-color: #b81c23;
+
+	&::before {
+		content: '\e016';
+		color: #b81c23;
 	}
 }
 
@@ -614,114 +902,6 @@
 				}
 			}
 		}
-	}
-}
-
-/**
- * Photoswipe
- * 1. These styles are required to overwrite default theme button styles (Twenty Twelve adds gradients via background-image).
- * 2. For zooming on mobile.
- */
-.pswp {
-	z-index: 999999;
-}
-
-.pswp img {
-	max-width: none;
-}
-
-.restaurantpress img.pswp__img,
-.restaurantpress-page img.pswp__img {
-	max-width: none; /* 2 */
-}
-
-button.pswp__button {
-	box-shadow: none !important;
-	background-image: url('photoswipe/default-skin/default-skin.png') !important;
-}
-
-button.pswp__button,
-button.pswp__button:hover,
-button.pswp__button--arrow--left::before,
-button.pswp__button--arrow--right::before {
-	background-color: transparent !important; /* 1 */
-}
-
-button.pswp__button--arrow--left,
-button.pswp__button--arrow--right,
-button.pswp__button--arrow--left:hover,
-button.pswp__button--arrow--right:hover {
-	background-image: none !important; /* 1 */
-}
-
-button.pswp__button--close:hover {
-	background-position: 0 -44px;
-}
-
-button.pswp__button--zoom:hover {
-	background-position: -88px 0;
-}
-
-/**
- * Notices.
- */
-.restaurantpress-message,
-.restaurantpress-error,
-.restaurantpress-info {
-	padding: 1em 2em 1em 3.5em;
-	margin: 0 0 2em;
-	position: relative;
-	background-color: #f7f6f7;
-	color: $secondarytext;
-	border-top: 3px solid $primary;
-	list-style: none outside;
-	@include clearfix();
-	width: auto;
-	word-wrap: break-word;
-
-	&::before {
-		font-family: 'WooCommerce';
-		content: '\e028';
-		display: inline-block;
-		position: absolute;
-		top: 1em;
-		left: 1.5em;
-	}
-
-	.button {
-		float: right;
-	}
-
-	li {
-		list-style: none outside !important; // Required for default theme compatibility
-		padding-left: 0 !important; // Required for default theme compatibility
-		margin-left: 0 !important; // Required for default theme compatibility
-	}
-}
-
-.restaurantpress-message {
-	border-top-color: #8fae1b;
-
-	&::before {
-		content: '\e015';
-		color: #8fae1b;
-	}
-}
-
-.restaurantpress-info {
-	border-top-color: #1e85be;
-
-	&::before {
-		color: #1e85be;
-	}
-}
-
-.restaurantpress-error {
-	border-top-color: #b81c23;
-
-	&::before {
-		content: '\e016';
-		color: #b81c23;
 	}
 }
 
