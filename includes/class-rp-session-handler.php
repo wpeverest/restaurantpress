@@ -1,6 +1,7 @@
 <?php
 /**
- * Class Title
+ * Handle data for the current customers session.
+ * Implements the RP_Session abstract class.
  *
  * @class    RP_Session_Handler
  * @version  1.5.0
