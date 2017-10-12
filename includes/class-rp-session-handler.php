@@ -142,7 +142,7 @@ class RP_Session_Handler extends RP_Session {
 	 * @return string
 	 */
 	private function get_cache_prefix() {
-		return self::_get_cache_prefix( RP_SESSION_CACHE_GROUP );
+		return RP_Cache_Helper::get_cache_prefix( RP_SESSION_CACHE_GROUP );
 	}
 
 	/**
@@ -212,7 +212,7 @@ class RP_Session_Handler extends RP_Session {
 			$wpdb->query( $wpdb->prepare( "DELETE FROM $this->_table WHERE session_expiry < %d", time() ) );
 
 			// Invalidate cache.
-			self::_incr_cache_prefix( RP_SESSION_CACHE_GROUP );
+			RP_Cache_Helper::incr_cache_prefix( RP_SESSION_CACHE_GROUP );
 		}
 	}
 
@@ -285,31 +285,5 @@ class RP_Session_Handler extends RP_Session {
 				'%d'
 			)
 		);
-	}
-
-	/**
-	 * Get prefix for use with wp_cache_set. Allows all cache in a group to be invalidated at once.
-	 *
-	 * @param  string $group
-	 * @return string
-	 */
-	public static function _get_cache_prefix( $group ) {
-		$prefix = wp_cache_get( 'rp_' . $group . '_cache_prefix', $group );
-
-		if ( false === $prefix ) {
-			$prefix = 1;
-			wp_cache_set( 'rp_' . $group . '_cache_prefix', $prefix, $group );
-		}
-
-		return 'rp_cache_' . $prefix . '_';
-	}
-
-	/**
-	 * Increment group cache prefix (invalidates cache).
-	 *
-	 * @param string $group
-	 */
-	public static function _incr_cache_prefix( $group ) {
-		wp_cache_incr( 'rp_' . $group . '_cache_prefix', 1, $group );
 	}
 }

@@ -333,7 +333,7 @@ CREATE TABLE {$wpdb->prefix}rp_sessions (
   session_expiry BIGINT UNSIGNED NOT NULL,
   PRIMARY KEY  (session_key),
   UNIQUE KEY session_id (session_id)
-) $collate;
+) $charset_collate;
 		";
 
 		/**
