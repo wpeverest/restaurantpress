@@ -303,6 +303,7 @@ class RP_Install {
 
 	/**
 	 * Get Table schema.
+	 *
 	 * @return string
 	 */
 	private static function get_schema() {
@@ -314,16 +315,20 @@ class RP_Install {
 			$charset_collate = $wpdb->get_charset_collate();
 		}
 
-		/*
-		 * Indexes have a maximum size of 767 bytes. Historically, we haven't need to be concerned about that.
-		 * As of WordPress 4.2, however, we moved to utf8mb4, which uses 4 bytes per character. This means that an index which
-		 * used to have room for floor(767/3) = 255 characters, now only has room for floor(767/4) = 191 characters.
+		$tables = "
+CREATE TABLE {$wpdb->prefix}rp_sessions (
+  session_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  session_key char(32) NOT NULL,
+  session_value longtext NOT NULL,
+  session_expiry BIGINT UNSIGNED NOT NULL,
+  PRIMARY KEY  (session_key),
+  UNIQUE KEY session_id (session_id)
+) $collate;
+		";
+
+		/**
+		 * Term meta is only needed for old installs and is now @deprecated by WordPress term meta.
 		 */
-		$max_index_length = 191;
-
-		$tables = '';
-
-		// Term meta is only needed for old installs.
 		if ( ! function_exists( 'get_term_meta' ) ) {
 			$tables .= "
 CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
@@ -333,7 +338,7 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
   meta_value longtext NULL,
   PRIMARY KEY  (meta_id),
   KEY restaurantpress_term_id (restaurantpress_term_id),
-  KEY meta_key (meta_key($max_index_length))
+  KEY meta_key (meta_key(32))
 ) $charset_collate;
 			";
 		}
