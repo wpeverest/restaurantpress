@@ -25,7 +25,7 @@ final class RestaurantPress {
 	 *
 	 * @var string
 	 */
-	public $version = '1.4.3';
+	public $version = '1.5.0';
 
 	/**
 	 * The single instance of the class.
@@ -63,7 +63,7 @@ final class RestaurantPress {
 	 * @since 1.0
 	 */
 	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'restaurantpress' ), '1.0' );
+		rp_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'restaurantpress' ), '1.0' );
 	}
 
 	/**
@@ -72,7 +72,7 @@ final class RestaurantPress {
 	 * @since 1.0
 	 */
 	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'restaurantpress' ), '1.0' );
+		rp_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'restaurantpress' ), '1.0' );
 	}
 
 	/**

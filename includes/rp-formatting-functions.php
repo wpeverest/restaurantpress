@@ -313,7 +313,7 @@ function rp_trim_string( $string, $chars = 200, $suffix = '...' ) {
 /**
  * Format content to display shortcodes.
  *
- * @since  1.4.3
+ * @since  1.5.0
  * @param  string $raw_string Raw string.
  * @return string
  */
@@ -326,7 +326,7 @@ function rp_format_content( $raw_string ) {
  * Adds support for Jetpack Markdown.
  *
  * @codeCoverageIgnore
- * @since  1.4.3
+ * @since  1.5.0
  * @param  string $content Food short description.
  * @return string
  */
@@ -387,7 +387,7 @@ function rp_format_sale_price( $regular_price, $sale_price ) {
 /**
  * Process oEmbeds.
  *
- * @since  1.4.3
+ * @since  1.5.0
  * @param  string $content Content.
  * @return string
  */
