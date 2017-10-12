@@ -69,6 +69,8 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 * Tweak - Introduced `rp_set_time_limit()` core function.
 * Tweak - Introduced `rp_format_content()` formatting function.
 * Tweak - Introduced `rp_format_phone_number()` formatting function.
+* Tweak - Introduced `restaurantpress_form_field()` template function.
+* Tweak - Remove `adjacent_posts_rel_link_wp_head` - pointless for food.
 
 [See changelog for all versions](https://raw.githubusercontent.com/wpeverest/restaurantpress/master/CHANGELOG.txt).
 
