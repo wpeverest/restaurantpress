@@ -25,6 +25,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php
 	/**
 	 * restaurantpress_before_single_food hook.
+	 *
+	 * @hooked rp_print_notices - 10
 	 */
 	do_action( 'restaurantpress_before_single_food' );
 
