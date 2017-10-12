@@ -70,7 +70,7 @@ abstract class RP_Session {
 	 * Get a session variable.
 	 *
 	 * @param  string $key
-	 * @param  mixed $default used if the session variable isn't set.
+	 * @param  mixed  $default used if the session variable isn't set.
 	 * @return array|string value of session variable
 	 */
 	public function get( $key, $default = null ) {
