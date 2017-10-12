@@ -68,6 +68,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 * Fix - Undefined function `restaurantpress_page_title`.
 * Tweak - Process the oEmbeds for food short description.
 * Tweak - Drop RP tables in wpmu_drop_tables (for multisite).
+* Tweak - Added phone number and email form validation class.
 * Tweak - Support Jetpack Markdown for food short description.
 * Tweak - Introduced `rp_set_time_limit()` core function.
 * Tweak - Introduced `rp_format_content()` formatting function.
