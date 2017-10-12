@@ -124,6 +124,40 @@ if ( ! function_exists( 'restaurantpress_get_sidebar' ) ) {
 	}
 }
 
+/* Loop *******************************************************************/
+
+if ( ! function_exists( 'restaurantpress_page_title' ) ) {
+
+	/**
+	 * restaurantpress_page_title function.
+	 *
+	 * @param  bool $echo
+	 * @return string
+	 */
+	function restaurantpress_page_title( $echo = true ) {
+
+		if ( is_search() ) {
+			$page_title = sprintf( __( 'Search results: &ldquo;%s&rdquo;', 'restaurantpress' ), get_search_query() );
+
+			if ( get_query_var( 'paged' ) ) {
+				$page_title .= sprintf( __( '&nbsp;&ndash; Page %s', 'restaurantpress' ), get_query_var( 'paged' ) );
+			}
+		} elseif ( is_tax() ) {
+			$page_title = single_term_title( '', false );
+		} else {
+			$page_title = get_the_title();
+		}
+
+		$page_title = apply_filters( 'restaurantpress_page_title', $page_title );
+
+		if ( $echo ) {
+			echo $page_title;
+		} else {
+			return $page_title;
+		}
+	}
+}
+
 /* Single Food ************************************************************/
 
 if ( ! function_exists( 'restaurantpress_show_food_chef_badge' ) ) {
