@@ -69,7 +69,7 @@ abstract class RP_Session {
 	/**
 	 * Get a session variable.
 	 *
-	 * @param string $key
+	 * @param  string $key
 	 * @param  mixed $default used if the session variable isn't set.
 	 * @return array|string value of session variable
 	 */
@@ -94,7 +94,6 @@ abstract class RP_Session {
 	/**
 	 * get_customer_id function.
 	 *
-	 * @access public
 	 * @return int
 	 */
 	public function get_customer_id() {

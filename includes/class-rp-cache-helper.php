@@ -68,7 +68,7 @@ class RP_Cache_Helper {
 	}
 
 	/**
-	 * Display W3 caching notices.
+	 * W3 Total Cache notice.
 	 */
 	public static function notices() {
 		if ( ! function_exists( 'w3tc_pgcache_flush' ) || ! function_exists( 'w3_instance' ) ) {
