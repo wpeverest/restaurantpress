@@ -69,11 +69,6 @@ jQuery( function( $ ) {
 			this.photoswipe_enabled = false === args.photoswipe_enabled ? false : this.photoswipe_enabled;
 		}
 
-		if ( $( this.$target ).hasClass( 'only-photoswipe' ) ) {
-			this.zoom_enabled       = false;
-			this.flexslider_enabled = false;
-		}
-
 		// Bind functions to this.
 		this.initFlexslider       = this.initFlexslider.bind( this );
 		this.initZoom             = this.initZoom.bind( this );
@@ -157,6 +152,10 @@ jQuery( function( $ ) {
 	 * Init zoom.
 	 */
 	FoodGallery.prototype.initZoomForTarget = function( zoomTarget ) {
+		if ( ! this.zoom_enabled ) {
+			return false;
+		}
+
 		var galleryWidth = this.$target.width(),
 			zoomEnabled  = false;
 

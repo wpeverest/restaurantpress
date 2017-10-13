@@ -141,7 +141,7 @@ class RP_Food {
 	 * @return array
 	 */
 	public function get_gallery_image_ids() {
-		return wp_parse_id_list( get_post_meta( $this->get_id(), '_food_image_gallery', true ) );
+		return array_filter( explode( ',', get_post_meta( $this->get_id(), '_food_image_gallery', true ) ) );
 	}
 
 	/*

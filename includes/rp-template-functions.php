@@ -105,6 +105,14 @@ function rp_generator_tag( $gen, $type ) {
 	return $gen;
 }
 
+/**
+ * Disable zoom in group page.
+ */
+function rp_group_zoom_disable( $status ) {
+	return is_group_menu_page() ? false : $status;
+}
+add_filter( 'restaurantpress_single_food_zoom_enabled', 'rp_group_zoom_disable' );
+
 /* Global *****************************************************************/
 
 if ( ! function_exists( 'restaurantpress_output_content_wrapper' ) ) {

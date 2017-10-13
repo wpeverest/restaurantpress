@@ -60,7 +60,7 @@ $count = 1;
 							foreach ( $food_data[ $food_id ] as $food_menu ) {
 								$food = rp_get_food( $food_menu['post_id'] );
 								?>
-								<div class="rp-column-single-block restaurantpress-food-gallery only-photoswipe">
+								<div class="rp-column-single-block restaurantpress-food-gallery">
 									<?php if ( 'no' == $featured_image ) : ?>
 										<figure class ="rp-img">
 											<?php if ( 'yes' == $food_menu['popup'] ) : ?>
