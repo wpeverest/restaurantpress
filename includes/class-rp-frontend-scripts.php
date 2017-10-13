@@ -186,6 +186,11 @@ class RP_Frontend_Scripts {
 				'deps'    => array( 'photoswipe' ),
 				'version' => '4.1.1',
 			),
+			'selectWoo' => array(
+				'src'     => self::get_asset_url( 'assets/js/selectWoo/selectWoo.full' . $suffix . '.js' ),
+				'deps'    => array( 'jquery' ),
+				'version' => '1.0.0',
+			),
 			'rp-single-food' => array(
 				'src'     => self::get_asset_url( 'assets/js/frontend/single-food' . $suffix . '.js' ),
 				'deps'    => array( 'jquery' ),
