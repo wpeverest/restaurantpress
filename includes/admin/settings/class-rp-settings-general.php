@@ -175,7 +175,7 @@ class RP_Settings_General extends RP_Settings_Page {
 					'id'       => 'restaurantpress_primary_color',
 					'type'     => 'color',
 					'css'      => 'width:6em;',
-					'default'  => '#d60e10',
+					'default'  => '#cc4b37',
 					'autoload' => false,
 					'desc_tip' => true,
 				),
