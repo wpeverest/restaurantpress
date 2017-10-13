@@ -76,6 +76,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 * Tweak - Introduced `rp_format_phone_number()` formatting function.
 * Tweak - Introduced `restaurantpress_form_field()` template function.
 * Tweak - Remove `adjacent_posts_rel_link_wp_head` - pointless for food.
+* Tweak - Add a basic screen-reader-text style for themes which do not define it.
 
 [See changelog for all versions](https://raw.githubusercontent.com/wpeverest/restaurantpress/master/CHANGELOG.txt).
 
