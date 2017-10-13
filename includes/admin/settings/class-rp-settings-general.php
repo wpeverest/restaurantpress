@@ -171,7 +171,7 @@ class RP_Settings_General extends RP_Settings_Page {
 
 				array(
 					'title'    => __( 'Primary Color', 'restaurantpress' ),
-					'desc'     => __( 'The primary color for RestaurantPress group layouts. Default <code>#d60e10</code>.', 'restaurantpress' ),
+					'desc'     => __( 'The primary color for RestaurantPress group layouts. Default <code>#cc4b37</code>.', 'restaurantpress' ),
 					'id'       => 'restaurantpress_primary_color',
 					'type'     => 'color',
 					'css'      => 'width:6em;',

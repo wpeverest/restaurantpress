@@ -577,7 +577,7 @@ button.pswp__button--zoom:hover {
 		font-weight: 400;
 
 		a {
-			color: #d40305;
+			color: $restaurantpress;
 			text-decoration: none;
 
 			&:focus {
@@ -836,8 +836,8 @@ button.pswp__button--zoom:hover {
 					transition: all 0.5s ease-in-out;
 
 					&:hover {
-						background: #d60e10;
-						border-color: #d60e10;
+						background: $restaurantpress;
+						border-color: $restaurantpress;
 					}
 				}
 			}
@@ -854,7 +854,7 @@ button.pswp__button--zoom:hover {
 		.rp-content-wrapper {
 			position: relative;
 			padding: 20px 20px 60px;
-			border-bottom: 3px solid #d60e10;
+			border-bottom: 3px solid $restaurantpress;
 			background: #f9f9f9 none repeat scroll 0 0;
 
 			.rp-title {
@@ -875,7 +875,7 @@ button.pswp__button--zoom:hover {
 				color: #fff;
 				font-size: 1.25em;
 				padding: 6px 10px 6px 5px;
-				background: #d60e10 none repeat scroll 0 0;
+				background: $restaurantpress none repeat scroll 0 0;
 
 				.amount {
 					color: white;
@@ -897,7 +897,7 @@ button.pswp__button--zoom:hover {
 					left: -16px;
 					content: '';
 					border-top: 36px solid transparent;
-					border-right: 16px solid #d60e10;
+					border-right: 16px solid $restaurantpress;
 					border-bottom: 0 solid transparent;
 				}
 			}
