@@ -93,15 +93,27 @@ class RP_Shortcodes {
 			$price      = get_post_meta( $post->ID, '_price', true );
 			$chef_badge = get_post_meta( $post->ID, '_chef_badge', true );
 
-			$image_id   = get_post_thumbnail_id( $post ->ID );
-			$attach_url = wp_get_attachment_url( $image_id );
+			$thumbnail_size    = apply_filters( 'restaurantpress_food_thumbnails_large_size', 'full' );
+			$post_thumbnail_id = get_post_thumbnail_id( $post ->ID );
+			$full_size_image   = wp_get_attachment_image_src( $post_thumbnail_id, $thumbnail_size );
+
+			$attributes = array(
+				'title'                   => get_post_field( 'post_title', $post_thumbnail_id ),
+				'data-caption'            => get_post_field( 'post_excerpt', $post_thumbnail_id ),
+				'data-src'                => $full_size_image[0],
+				'data-large_image'        => $full_size_image[0],
+				'data-large_image_width'  => $full_size_image[1],
+				'data-large_image_height' => $full_size_image[2],
+			);
 
 			if ( has_post_thumbnail() ) {
-				$image      = get_the_post_thumbnail( $post->ID, 'food_thumbnail' );
+				$image      = get_the_post_thumbnail( $post->ID, 'food_thumbnail', $attributes );
+				$image_url  = get_the_post_thumbnail_url( $post->ID, 'food_thumbnail' );
 				$image_grid = get_the_post_thumbnail( $post->ID, 'food_grid' );
 				$popup      = 'yes';
 			} else {
 				$image      = rp_placeholder_img();
+				$image_url  = rp_placeholder_img_src();
 				$image_grid = rp_placeholder_img( 'food_grid' );
 				$popup      = 'no';
 			}
@@ -109,15 +121,16 @@ class RP_Shortcodes {
 			foreach ( $food_terms as $term ) {
 				if ( in_array( $term->term_id, $food_group ) ) {
 					$food_data[ $term->term_id ][] = array(
-						'post_id'    => $post_id,
-						'title'      => $title,
-						'content'    => $content,
-						'excerpt'    => $excerpt,
-						'permalink'  => $permalink,
-						'image'      => $image,
-						'image_grid' => $image_grid,
-						'popup'      => $popup,
-						'attach_url' => $attach_url,
+						'post_id'         => $post_id,
+						'title'           => $title,
+						'content'         => $content,
+						'excerpt'         => $excerpt,
+						'permalink'       => $permalink,
+						'image'           => $image,
+						'image_url'       => $image_url,
+						'image_grid'      => $image_grid,
+						'popup'           => $popup,
+						'full_size_image' => $full_size_image,
 					);
 				}
 			}

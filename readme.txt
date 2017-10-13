@@ -63,6 +63,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 = 1.5.0 - XX/10/2017 =
 * Feature - New default session handler.
 * Fix - Conflicts with W3 Total Cache DB Cache.
+* Fix - Display group page image in photoSwipe.
 * Fix - Formats decimals when saved in settings.
 * Fix - Formats curency symbols when saved in settings.
 * Fix - Undefined function `restaurantpress_page_title`.

@@ -58,11 +58,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 						foreach ( $food_data[ $food_id ] as $food_menu ) {
 							$food = rp_get_food( $food_menu['post_id'] );
 							?>
-							<div class="rp-column-3 rp-column-margin">
+							<div class="rp-column-3 rp-column-margin restaurantpress-food-gallery only-photoswipe">
 								<?php if ( 'no' == $featured_image ) : ?>
-									<figure class ="rp-img">
+									<figure class="restaurantpress-food-gallery__wrapper rp-img">
 										<?php if ( 'yes' == $food_menu['popup'] ) : ?>
-											<a href="<?php echo $food_menu['attach_url']; ?>" itemprop="image"><?php echo $food_menu['image_grid']; ?><span class="image-magnify"> <span> + </span> </span></a>
+											<div data-thumb="<?php echo $food_menu['image_url']; ?>" class="restaurantpress-food-gallery__image">
+												<a href="<?php echo esc_url( $food_menu['full_size_image'][0] ); ?>"><?php echo $food_menu['image']; ?><span class="image-magnify"> <span> + </span> </span></a>
+											</div>
 										<?php else : ?>
 											<?php echo $food_menu['image_grid']; ?>
 										<?php endif; ?>

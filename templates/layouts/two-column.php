@@ -60,11 +60,13 @@ $count = 1;
 							foreach ( $food_data[ $food_id ] as $food_menu ) {
 								$food = rp_get_food( $food_menu['post_id'] );
 								?>
-								<div class="rp-column-single-block">
+								<div class="rp-column-single-block restaurantpress-food-gallery only-photoswipe">
 									<?php if ( 'no' == $featured_image ) : ?>
 										<figure class ="rp-img">
 											<?php if ( 'yes' == $food_menu['popup'] ) : ?>
-												<a href="<?php echo $food_menu['attach_url']; ?>" itemprop="image"><?php echo $food_menu['image']; ?></a>
+												<div data-thumb="<?php echo $food_menu['image_url']; ?>" class="restaurantpress-food-gallery__image">
+													<a href="<?php echo esc_url( $food_menu['full_size_image'][0] ); ?>"><?php echo $food_menu['image']; ?></a>
+												</div>
 											<?php else : ?>
 												<?php echo $food_menu['image']; ?>
 											<?php endif; ?>

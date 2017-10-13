@@ -55,7 +55,7 @@ jQuery( function( $ ) {
 		}
 
 		// Make this object available.
-		$target.data( 'product_gallery', this );
+		$target.data( 'food_gallery', this );
 
 		// Pick functionality to initialize...
 		this.flexslider_enabled = $.isFunction( $.fn.flexslider ) && rp_single_food_params.flexslider_enabled;
@@ -67,6 +67,11 @@ jQuery( function( $ ) {
 			this.flexslider_enabled = false === args.flexslider_enabled ? false : this.flexslider_enabled;
 			this.zoom_enabled       = false === args.zoom_enabled ? false : this.zoom_enabled;
 			this.photoswipe_enabled = false === args.photoswipe_enabled ? false : this.photoswipe_enabled;
+		}
+
+		if ( $( this.$target ).hasClass( 'only-photoswipe' ) ) {
+			this.zoom_enabled       = false;
+			this.flexslider_enabled = false;
 		}
 
 		// Bind functions to this.
