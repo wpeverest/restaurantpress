@@ -2,17 +2,17 @@
  * _variables.scss
  * RestaurantPress CSS Variables
  */
-$restaurantpress:   #cc4b37;
+$restaurantpress:   #ff0033;
 $green:             #7ad03a;
 $red:               #a00;
 $orange:            #ffba00;
 $blue:              #2ea2cc;
 
-$primary:           #cc4b37;                                       // Primary color for buttons (alt)
-$primarytext:       desaturate( lighten( $primary, 50% ), 18% );   // Text on primary color bg
+$primary:           #ff0033;                                       // Primary color for buttons (alt)
+$primarytext:       desaturate( lighten( $primary, 52% ), 18% );   // Text on primary color bg
 
-$secondary:         desaturate( lighten( $primary, 40% ), 60% );   // Secondary buttons
-$secondarytext:     desaturate( darken( $secondary, 60% ), 40% );  // Text on secondary color bg
+$secondary:         desaturate( lighten( $primary, 44% ), 91% );   // Secondary buttons
+$secondarytext:     desaturate( darken( $secondary, 64% ), 91% );  // Text on secondary color bg
 
 $highlight:         adjust-hue( $primary, 10deg );                 // Prices, chef flash
 $highlightext:      desaturate( lighten( $highlight, 50% ), 18% ); // Text on highlight color bg

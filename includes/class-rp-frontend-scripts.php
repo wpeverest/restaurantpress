@@ -289,7 +289,7 @@ class RP_Frontend_Scripts {
 	 * @access private
 	 * @param  string $default_color
 	 */
-	private static function create_primary_styles( $default_color = '#cc4b37' ) {
+	private static function create_primary_styles( $default_color = '#ff0033' ) {
 		$primary_color = get_option( 'restaurantpress_primary_color' );
 
 		// Check if the primary color is default?
