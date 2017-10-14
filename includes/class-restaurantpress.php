@@ -49,6 +49,13 @@ final class RestaurantPress {
 	public $food_factory = null;
 
 	/**
+	 * Array of deprecated hook handlers.
+	 *
+	 * @var array of RP_Deprecated_Hooks
+	 */
+	public $deprecated_hook_handlers = array();
+
+	/**
 	 * Main RestaurantPress Instance.
 	 *
 	 * Ensure only one instance of RestaurantPress is loaded or can be loaded.
@@ -161,6 +168,7 @@ final class RestaurantPress {
 		 * Abstract classes.
 		 */
 		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-food.php' ); // Foods.
+		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-deprecated-hooks.php' );
 		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-session.php' );
 
 		/**
@@ -173,6 +181,8 @@ final class RestaurantPress {
 		include_once( RP_ABSPATH . 'includes/class-rp-ajax.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-food-factory.php' ); // Food factory.
 		include_once( RP_ABSPATH . 'includes/class-rp-cache-helper.php' ); // Cache Helper.
+		include_once( RP_ABSPATH . 'includes/class-rp-deprecated-action-hooks.php' );
+		include_once( RP_ABSPATH . 'includes/class-rp-deprecated-filter-hooks.php' );
 
 		if ( $this->is_request( 'admin' ) ) {
 			include_once( RP_ABSPATH . 'includes/admin/class-rp-admin.php' );
@@ -216,7 +226,9 @@ final class RestaurantPress {
 		$this->load_plugin_textdomain();
 
 		// Load class instances.
-		$this->food_factory = new RP_Food_Factory(); // Food Factory to create new food instances.
+		$this->food_factory                        = new RP_Food_Factory(); // Food Factory to create new food instances.
+		$this->deprecated_hook_handlers['actions'] = new RP_Deprecated_Action_Hooks();
+		$this->deprecated_hook_handlers['filters'] = new RP_Deprecated_Filter_Hooks();
 
 		// Session class, handles session data for users - can be overwritten if custom handler is needed.
 		if ( $this->is_request( 'frontend' ) || $this->is_request( 'cron' ) ) {

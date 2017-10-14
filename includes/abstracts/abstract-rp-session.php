@@ -13,6 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * RP_Session class.
+ */
 abstract class RP_Session {
 
 	/** @var int $_customer_id */
