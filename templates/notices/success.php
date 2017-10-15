@@ -27,5 +27,5 @@ if ( ! $messages ) {
 ?>
 
 <?php foreach ( $messages as $message ) : ?>
-	<div class="restaurantpress-success"><?php echo wp_kses_post( $message ); ?></div>
+	<div class="restaurantpress-message"><?php echo wp_kses_post( $message ); ?></div>
 <?php endforeach; ?>

@@ -514,7 +514,7 @@ button.pswp__button--zoom:hover {
 /**
  * Notices.
  */
-.restaurantpress-success,
+.restaurantpress-message,
 .restaurantpress-error,
 .restaurantpress-info {
 	padding: 1em 2em 1em 3.5em;
@@ -530,7 +530,7 @@ button.pswp__button--zoom:hover {
 
 	&::before {
 		font-family: 'RestaurantPress';
-		content: '\e006';
+		content: '\e00b';
 		display: inline-block;
 		position: absolute;
 		top: 1em;
@@ -548,11 +548,11 @@ button.pswp__button--zoom:hover {
 	}
 }
 
-.restaurantpress-success {
+.restaurantpress-message {
 	border-top-color: #8fae1b;
 
 	&::before {
-		content: '\e004';
+		content: '\e007';
 		color: #8fae1b;
 	}
 }
@@ -561,7 +561,7 @@ button.pswp__button--zoom:hover {
 	border-top-color: #b81c23;
 
 	&::before {
-		content: '\e005';
+		content: '\e009';
 		color: #b81c23;
 	}
 }
