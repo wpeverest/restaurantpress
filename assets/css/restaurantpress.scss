@@ -514,7 +514,7 @@ button.pswp__button--zoom:hover {
 /**
  * Notices.
  */
-.restaurantpress-message,
+.restaurantpress-success,
 .restaurantpress-error,
 .restaurantpress-info {
 	padding: 1em 2em 1em 3.5em;
@@ -529,8 +529,8 @@ button.pswp__button--zoom:hover {
 	word-wrap: break-word;
 
 	&::before {
-		font-family: 'WooCommerce';
-		content: '\e028';
+		font-family: 'RestaurantPress';
+		content: '\e006';
 		display: inline-block;
 		position: absolute;
 		top: 1em;
@@ -548,12 +548,21 @@ button.pswp__button--zoom:hover {
 	}
 }
 
-.restaurantpress-message {
+.restaurantpress-success {
 	border-top-color: #8fae1b;
 
 	&::before {
-		content: '\e015';
+		content: '\e004';
 		color: #8fae1b;
+	}
+}
+
+.restaurantpress-error {
+	border-top-color: #b81c23;
+
+	&::before {
+		content: '\e005';
+		color: #b81c23;
 	}
 }
 
@@ -562,15 +571,6 @@ button.pswp__button--zoom:hover {
 
 	&::before {
 		color: #1e85be;
-	}
-}
-
-.restaurantpress-error {
-	border-top-color: #b81c23;
-
-	&::before {
-		content: '\e016';
-		color: #b81c23;
 	}
 }
 

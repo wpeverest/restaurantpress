@@ -17,7 +17,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit;
 }
 
 if ( ! $messages ) {
@@ -27,5 +27,5 @@ if ( ! $messages ) {
 ?>
 
 <?php foreach ( $messages as $message ) : ?>
-	<div class="restaurantpress-message"><?php echo wp_kses_post( $message ); ?></div>
+	<div class="restaurantpress-success"><?php echo wp_kses_post( $message ); ?></div>
 <?php endforeach; ?>
