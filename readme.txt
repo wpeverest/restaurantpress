@@ -60,11 +60,12 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 
 == Changelog ==
 
-= 1.5.0 - XX/10/2017 =
+= 1.5.0 - 16/10/2017 =
 * Feature - New default session handler.
 * Fix - Conflicts with W3 Total Cache DB Cache.
 * Fix - Display group page image in photoSwipe.
 * Fix - Formats decimals when saved in settings.
+* Fix - Format decimal numbers ready for DB storage.
 * Fix - Formats curency symbols when saved in settings.
 * Fix - Undefined function `restaurantpress_page_title`.
 * Tweak - Process the oEmbeds for food short description.
