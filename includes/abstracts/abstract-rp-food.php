@@ -175,10 +175,15 @@ class RP_Food {
 	 * @return string
 	 */
 	public function get_price_suffix( $price = '' ) {
-		if ( '' === $price ) {
-			$price = $this->get_price();
+		$html = '';
+
+		if ( ( $suffix = get_option( 'restaurantpress_price_display_suffix' ) ) ) {
+			if ( '' === $price ) {
+				$price = $this->get_price();
+			}
+			$html = ' <small class="restaurantpress-price-suffix">' . wp_kses_post( $suffix ) . '</small>';
 		}
-		return apply_filters( 'restaurantpress_get_price_suffix', '', $this, $price );
+		return apply_filters( 'restaurantpress_get_price_suffix', $html, $this, $price );
 	}
 
 	/**
@@ -192,7 +197,7 @@ class RP_Food {
 		} elseif ( $this->get_sale_price() ) {
 			$price = rp_format_sale_price( $this->get_regular_price(), $this->get_price() ) . $this->get_price_suffix();
 		} else {
-			$price = rp_price( $this->get_price() );
+			$price = rp_price( $this->get_price() ) . $this->get_price_suffix();
 		}
 
 		return apply_filters( 'restaurantpress_get_price_html', $price, $this );
