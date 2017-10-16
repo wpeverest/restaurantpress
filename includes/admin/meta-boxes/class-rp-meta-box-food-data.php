@@ -133,10 +133,13 @@ class RP_Meta_Box_Food_Data {
 			$sale_price = '';
 		}
 
+		// If sale price is set, respect it as actual price.
+		$price = $sale_price ? $sale_price : $regular_price;
+
 		// Save mata data.
-		update_post_meta( $post_id, '_price', $sale_price ? $sale_price : $regular_price );
-		update_post_meta( $post_id, '_regular_price', $regular_price );
-		update_post_meta( $post_id, '_sale_price', $sale_price );
+		update_post_meta( $post_id, '_price', rp_format_decimal( $price ) );
+		update_post_meta( $post_id, '_regular_price', rp_format_decimal( $regular_price ) );
+		update_post_meta( $post_id, '_sale_price', rp_format_decimal( $sale_price ) );
 		update_post_meta( $post_id, '_chef_badge', $chef_flash );
 		update_post_meta( $post_id, '_featured', $featured );
 	}
