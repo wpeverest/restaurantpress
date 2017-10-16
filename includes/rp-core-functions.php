@@ -646,6 +646,16 @@ function rp_get_core_supported_themes() {
 }
 
 /**
+ * Get user agent string.
+ *
+ * @since  1.5.1
+ * @return string
+ */
+function rp_get_user_agent() {
+	return isset( $_SERVER['HTTP_USER_AGENT'] ) ? strtolower( $_SERVER['HTTP_USER_AGENT'] ) : '';
+}
+
+/**
  * Display a RestaurantPress help tip.
  *
  * @param  string $tip Help tip text.
