@@ -3,11 +3,11 @@
  * Plugin Name: RestaurantPress
  * Plugin URI: https://wpeverest.com/wordpress-plugins/restaurantpress/
  * Description: Allows you to create awesome restaurant menus for restaurants, bars, and cafes in no time. Smartly :)
- * Version: 1.5.0-dev
+ * Version: 1.5.0
  * Author: WPEverest
  * Author URI: https://wpeverest.com
  * Requires at least: 4.4
- * Tested up to: 4.8
+ * Tested up to: 4.9
  *
  * Text Domain: restaurantpress
  * Domain Path: /languages/
