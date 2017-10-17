@@ -22,7 +22,6 @@ class RP_Cache_Helper {
 	 * Hook in methods.
 	 */
 	public static function init() {
-		add_filter( 'nocache_headers', array( __CLASS__, 'set_nocache_constants' ) );
 		add_action( 'admin_notices', array( __CLASS__, 'notices' ) );
 	}
 
