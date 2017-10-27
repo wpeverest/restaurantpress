@@ -64,7 +64,7 @@ add_action( 'the_post', 'rp_setup_food_data' );
 /**
  * Add body classes for RP pages.
  *
- * @param  array $classes
+ * @param  array $classes Body Classes.
  * @return array
  */
 function rp_body_class( $classes ) {
@@ -88,8 +88,8 @@ function rp_body_class( $classes ) {
 /**
  * Output generator tag to aid debugging.
  *
- * @param string $gen
- * @param string $type
+ * @param string $gen  Generator.
+ * @param string $type Type.
  *
  * @return string
  */
@@ -113,7 +113,9 @@ function rp_group_zoom_disable( $status ) {
 }
 add_filter( 'restaurantpress_single_food_zoom_enabled', 'rp_group_zoom_disable' );
 
-/* Global *****************************************************************/
+/**
+ * Global
+ */
 
 if ( ! function_exists( 'restaurantpress_output_content_wrapper' ) ) {
 
@@ -144,14 +146,16 @@ if ( ! function_exists( 'restaurantpress_get_sidebar' ) ) {
 	}
 }
 
-/* Loop *******************************************************************/
+/**
+ * Loop
+ */
 
 if ( ! function_exists( 'restaurantpress_page_title' ) ) {
 
 	/**
-	 * restaurantpress_page_title function.
+	 * Page Title function.
 	 *
-	 * @param  bool $echo
+	 * @param  bool $echo Should echo title.
 	 * @return string
 	 */
 	function restaurantpress_page_title( $echo = true ) {
@@ -171,14 +175,16 @@ if ( ! function_exists( 'restaurantpress_page_title' ) ) {
 		$page_title = apply_filters( 'restaurantpress_page_title', $page_title );
 
 		if ( $echo ) {
-			echo $page_title;
+			echo $page_title; // WPCS: XSS ok.
 		} else {
 			return $page_title;
 		}
 	}
 }
 
-/* Single Food ************************************************************/
+/**
+ * Single Food
+ */
 
 if ( ! function_exists( 'restaurantpress_show_food_chef_badge' ) ) {
 
@@ -321,7 +327,7 @@ if ( ! function_exists( 'restaurantpress_default_food_tabs' ) ) {
 	/**
 	 * Add default food tabs to food pages.
 	 *
-	 * @param  array $tabs
+	 * @param  array $tabs Array of tabs.
 	 * @return array
 	 */
 	function restaurantpress_default_food_tabs( $tabs = array() ) {
@@ -345,7 +351,7 @@ if ( ! function_exists( 'restaurantpress_sort_food_tabs' ) ) {
 	/**
 	 * Sort tabs by priority.
 	 *
-	 * @param  array $tabs
+	 * @param  array $tabs Array of tabs.
 	 * @return array
 	 */
 	function restaurantpress_sort_food_tabs( $tabs = array() ) {
@@ -358,6 +364,14 @@ if ( ! function_exists( 'restaurantpress_sort_food_tabs' ) ) {
 
 		// Re-order tabs by priority.
 		if ( ! function_exists( '_sort_priority_callback' ) ) {
+
+			/**
+			 * Sort Priority Callback Function
+			 *
+			 * @param array $a Comparison A.
+			 * @param array $b Comparison B.
+			 * @return bool
+			 */
 			function _sort_priority_callback( $a, $b ) {
 				if ( $a['priority'] === $b['priority'] ) {
 					return 0;
@@ -372,7 +386,7 @@ if ( ! function_exists( 'restaurantpress_sort_food_tabs' ) ) {
 	}
 }
 
-/* Forms ****************************************************************/
+/* Forms */
 
 if ( ! function_exists( 'restaurantpress_form_field' ) ) {
 
@@ -381,9 +395,9 @@ if ( ! function_exists( 'restaurantpress_form_field' ) ) {
 	 *
 	 * @subpackage Forms
 	 *
-	 * @param string $key
-	 * @param mixed  $args
-	 * @param string $value (default: null)
+	 * @param string $key   Key.
+	 * @param mixed  $args  Arguments.
+	 * @param string $value (default: null).
 	 *
 	 * @return string
 	 */
@@ -427,7 +441,7 @@ if ( ! function_exists( 'restaurantpress_form_field' ) ) {
 			$value = $args['default'];
 		}
 
-		// Custom attribute handling
+		// Custom attribute handling.
 		$custom_attributes         = array();
 		$args['custom_attributes'] = array_filter( (array) $args['custom_attributes'] );
 
@@ -527,7 +541,7 @@ if ( ! function_exists( 'restaurantpress_form_field' ) ) {
 		if ( $args['return'] ) {
 			return $field;
 		} else {
-			echo $field;
+			echo $field; // WPCS: XSS ok.
 		}
 	}
 }
