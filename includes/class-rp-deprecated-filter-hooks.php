@@ -19,8 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class RP_Deprecated_Filter_Hooks extends RP_Deprecated_Hooks {
 
 	/**
-	 * Array of deprecated hooks we need to handle.
-	 * Format of 'new' => 'old'.
+	 * Array of deprecated hooks we need to handle. Format of 'new' => 'old'.
 	 *
 	 * @var array
 	 */
@@ -28,6 +27,7 @@ class RP_Deprecated_Filter_Hooks extends RP_Deprecated_Hooks {
 
 	/**
 	 * Hook into the new hook so we can handle deprecated hooks once fired.
+	 *
 	 * @param string $hook_name
 	 */
 	public function hook_in( $hook_name ) {
