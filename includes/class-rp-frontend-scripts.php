@@ -189,7 +189,7 @@ class RP_Frontend_Scripts {
 			'selectWoo' => array(
 				'src'     => self::get_asset_url( 'assets/js/selectWoo/selectWoo.full' . $suffix . '.js' ),
 				'deps'    => array( 'jquery' ),
-				'version' => '1.0.0',
+				'version' => '1.0.1',
 			),
 			'rp-single-food' => array(
 				'src'     => self::get_asset_url( 'assets/js/frontend/single-food' . $suffix . '.js' ),
