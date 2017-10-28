@@ -179,6 +179,7 @@ final class RestaurantPress {
 		include_once( RP_ABSPATH . 'includes/class-rp-install.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-post-data.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-ajax.php' );
+		include_once( RP_ABSPATH . 'includes/class-rp-data-exception.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-food-factory.php' ); // Food factory.
 		include_once( RP_ABSPATH . 'includes/class-rp-cache-helper.php' ); // Cache Helper.
 		include_once( RP_ABSPATH . 'includes/class-rp-deprecated-action-hooks.php' );
