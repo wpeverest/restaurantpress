@@ -35,7 +35,7 @@ abstract class RP_Settings_Page {
 	protected $label = '';
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 	public function __construct() {
 		add_filter( 'restaurantpress_settings_tabs_array', array( $this, 'add_settings_page' ), 20 );
@@ -45,8 +45,29 @@ abstract class RP_Settings_Page {
 	}
 
 	/**
-	 * Add this page to settings
+	 * Get settings page ID.
+	 *
+	 * @since  1.5.1
+	 * @return string
+	 */
+	public function get_id() {
+		return $this->id;
+	}
+
+	/**
+	 * Get settings page label.
+	 * @since  1.5.1
+	 * @return string
+	 */
+	public function get_label() {
+		return $this->label;
+	}
+
+	/**
+	 * Add this page to settings.
+	 *
 	 * @param array $pages
+	 * @return mixed
 	 */
 	public function add_settings_page( $pages ) {
 		$pages[ $this->id ] = $this->label;
@@ -78,7 +99,7 @@ abstract class RP_Settings_Page {
 
 		$sections = $this->get_sections();
 
-		if ( empty( $sections ) ) {
+		if ( empty( $sections ) || 1 === sizeof( $sections ) ) {
 			return;
 		}
 
@@ -98,6 +119,7 @@ abstract class RP_Settings_Page {
 	 */
 	public function output() {
 		$settings = $this->get_settings();
+
 		RP_Admin_Settings::output_fields( $settings );
 	}
 
