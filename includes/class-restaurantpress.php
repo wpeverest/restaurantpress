@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Main RestaurantPress Class.
  *
  * @class   RestaurantPress
- * @version 1.3.2
+ * @version 1.5.1
  */
 final class RestaurantPress {
 
@@ -47,6 +47,13 @@ final class RestaurantPress {
 	 * @var RP_Food_Factory
 	 */
 	public $food_factory = null;
+
+	/**
+	 * Integrations instance.
+	 *
+	 * @var RP_Integrations
+	 */
+	public $integrations = null;
 
 	/**
 	 * Array of deprecated hook handlers.
@@ -169,6 +176,7 @@ final class RestaurantPress {
 		 */
 		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-food.php' ); // Foods.
 		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-settings-api.php' ); // Settings API (for mailer, and integrations).
+		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-integration.php' ); // An integration with a service.
 		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-deprecated-hooks.php' );
 		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-session.php' );
 
@@ -183,6 +191,7 @@ final class RestaurantPress {
 		include_once( RP_ABSPATH . 'includes/class-rp-ajax.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-data-exception.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-food-factory.php' ); // Food factory.
+		include_once( RP_ABSPATH . 'includes/class-rp-integrations.php' ); // Loads integrations.
 		include_once( RP_ABSPATH . 'includes/class-rp-cache-helper.php' ); // Cache Helper.
 		include_once( RP_ABSPATH . 'includes/class-rp-deprecated-action-hooks.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-deprecated-filter-hooks.php' );
@@ -230,6 +239,7 @@ final class RestaurantPress {
 
 		// Load class instances.
 		$this->food_factory                        = new RP_Food_Factory(); // Food Factory to create new food instances.
+		$this->integrations                        = new RP_Integrations(); // Integrations class.
 		$this->deprecated_hook_handlers['actions'] = new RP_Deprecated_Action_Hooks();
 		$this->deprecated_hook_handlers['filters'] = new RP_Deprecated_Filter_Hooks();
 
