@@ -557,6 +557,12 @@ table.wp-list-table {
 	}
 }
 
+mark.notice {
+	background: #fff;
+	color: $red;
+	margin: 0 0 0 10px;
+}
+
 #food_menu_cat_thumbnail {
 	float: left;
 	margin-right: 10px;
@@ -596,6 +602,13 @@ img.help_tip {
 
 	.subsubsub {
 		margin: -8px 0 0;
+	}
+
+	.rp-admin-breadcrumb {
+		margin-left: 0.5em;
+		a {
+			color: #a46497;
+		}
 	}
 
 	textarea[disabled='disabled'] {
@@ -1168,6 +1181,11 @@ img.tips {
 		margin: 0;
 		padding: 8px;
 	}
+	.description {
+		display: block;
+		color: #999;
+		padding-top: 4px;
+	}
 }
 .select2-dropdown {
 	border-color: #ddd;
@@ -1208,6 +1226,9 @@ img.tips {
 		}
 		.select2-selection__choice {
 			padding: 2px 6px;
+			.description {
+				display: none;
+			}
 		}
 	}
 	.select2-selection__clear {
