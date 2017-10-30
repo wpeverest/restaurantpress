@@ -168,6 +168,7 @@ final class RestaurantPress {
 		 * Abstract classes.
 		 */
 		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-food.php' ); // Foods.
+		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-settings-api.php' ); // Settings API (for mailer, and integrations).
 		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-deprecated-hooks.php' );
 		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-session.php' );
 
