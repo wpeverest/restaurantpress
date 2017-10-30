@@ -175,6 +175,7 @@ final class RestaurantPress {
 		 * Core classes.
 		 */
 		include_once( RP_ABSPATH . 'includes/rp-core-functions.php' );
+		include_once( RP_ABSPATH . 'includes/class-rp-datetime.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-post-types.php' ); // Registers post types.
 		include_once( RP_ABSPATH . 'includes/class-rp-install.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-post-data.php' );
