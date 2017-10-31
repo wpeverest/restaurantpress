@@ -542,6 +542,23 @@ function get_restaurantpress_currency_symbol( $currency = '' ) {
 }
 
 /**
+ * Send HTML emails from RestaurantPress.
+ *
+ * @since 1.5.1
+ *
+ * @param mixed  $to
+ * @param mixed  $subject
+ * @param mixed  $message
+ * @param string $headers (default: "Content-Type: text/html\r\n")
+ * @param string $attachments (default: "")
+ */
+function rp_mail( $to, $subject, $message, $headers = "Content-Type: text/html\r\n", $attachments = "" ) {
+	$mailer = RP()->mailer();
+
+	$mailer->send( $to, $subject, $message, $headers, $attachments );
+}
+
+/**
  * Get an image size.
  *
  * Variable is filtered by restaurantpress_get_image_size_{image_size}.
@@ -656,6 +673,16 @@ function rp_get_user_agent() {
 }
 
 /**
+ * Outputs a "back" link so admin screens can easily jump back a page.
+ *
+ * @param string $label Title of the page to return to.
+ * @param string $url   URL of the page to return to.
+ */
+function rp_back_link( $label, $url ) {
+	echo '<small class="rp-admin-breadcrumb"><a href="' . esc_url( $url ) . '" aria-label="' . esc_attr( $label ) . '">&#x2934;</a></small>';
+}
+
+/**
  * Display a RestaurantPress help tip.
  *
  * @param  string $tip Help tip text.
@@ -720,6 +747,40 @@ function rp_print_r( $expression, $return = false ) {
 	}
 
 	return false;
+}
+
+/**
+ * Switch RestaurantPress to site language.
+ *
+ * @since 1.5.1
+ */
+function rp_switch_to_site_locale() {
+	if ( function_exists( 'switch_to_locale' ) ) {
+		switch_to_locale( get_locale() );
+
+		// Filter on plugin_locale so load_plugin_textdomain loads the correct locale.
+		add_filter( 'plugin_locale', 'get_locale' );
+
+		// Init RP locale.
+		RP()->load_plugin_textdomain();
+	}
+}
+
+/**
+ * Switch RestaurantPress language to original.
+ *
+ * @since 1.5.1
+ */
+function rp_restore_locale() {
+	if ( function_exists( 'restore_previous_locale' ) ) {
+		restore_previous_locale();
+
+		// Remove filter.
+		remove_filter( 'plugin_locale', 'get_locale' );
+
+		// Init RP locale.
+		RP()->load_plugin_textdomain();
+	}
 }
 
 /**

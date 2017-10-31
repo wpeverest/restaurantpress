@@ -89,3 +89,14 @@ function rp_post_content_has_shortcode( $tag = '' ) {
 
 	return is_singular() && is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, $tag );
 }
+
+if ( ! function_exists( 'rp_mailer_enabled' ) ) {
+
+	/**
+	 * Is mailer enabled?
+	 * @return bool
+	 */
+	function rp_mailer_enabled() {
+		return apply_filters( 'rp_mailer_enabled', RP()->mailer()->emails ? true : false );
+	}
+}

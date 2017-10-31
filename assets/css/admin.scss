@@ -563,6 +563,96 @@ mark.notice {
 	margin: 0 0 0 10px;
 }
 
+table.rp_emails {
+	position: relative;
+
+	td {
+		vertical-align: middle;
+		padding: 7px;
+		line-height: 2em;
+	}
+
+	tr:nth-child( odd ) td {
+		background: #f9f9f9;
+	}
+
+	th {
+		padding: 9px 7px !important;
+		vertical-align: middle;
+	}
+
+	td.name {
+		font-weight: 700;
+	}
+
+	.settings {
+		text-align: right;
+	}
+
+	.radio,
+	.default,
+	.status {
+		text-align: center;
+
+		.tips {
+			margin: 0 auto;
+		}
+
+		input {
+			margin: 0;
+		}
+	}
+	th.sort {
+		width: 28px;
+		padding: 0;
+	}
+	td.sort {
+		padding: 0 7px;
+		cursor: move;
+		font-size: 15px;
+		text-align: center;
+		vertical-align: middle;
+
+		&::before {
+			content: '\f333';
+			font-family: 'Dashicons';
+			text-align: center;
+			line-height: 1;
+			color: #999;
+			display: block;
+			width: 17px;
+			float: left;
+			height: 100%;
+		}
+	}
+	.rp-email-settings-table-name {
+		font-weight: 700;
+		span {
+			font-weight: normal;
+			color: #999;
+			margin: 0 0 0 4px !important;
+		}
+	}
+	.rp-email-settings-table-status {
+		text-align: center;
+		width: 1em;
+		.tips {
+			margin: 0 auto;
+		}
+	}
+	.rp-email-settings-table-actions a {
+		@include ir();
+		padding: 0 !important;
+		height: 2em !important;
+		width: 2em;
+
+		&::after {
+			@include icon_dashicons('\f111');
+			line-height: 1.85;
+		}
+	}
+}
+
 #food_menu_cat_thumbnail {
 	float: left;
 	margin-right: 10px;
@@ -590,6 +680,28 @@ img.help_tip {
 	margin: 0 0 0 9px;
 }
 
+.status-enabled,
+.status-manual,
+.status-disabled {
+	font-size: 1.4em;
+	@include ir();
+}
+
+.status-manual::before {
+	@include icon( '\e005' );
+	color: #999;
+}
+
+.status-enabled::before {
+	@include icon( '\e007' );
+	color: #d54e21;
+}
+
+.status-disabled::before {
+	@include icon( '\e008' );
+	color: #ccc;
+}
+
 .restaurantpress {
 
 	h2.rp-nav-tab-wrapper {
@@ -608,6 +720,20 @@ img.help_tip {
 		margin-left: 0.5em;
 		a {
 			color: #a46497;
+		}
+	}
+
+	#template div {
+		margin: 0;
+
+		p .button {
+			float: right;
+			margin-left: 10px;
+			margin-top: -4px;
+		}
+
+		.editor textarea {
+			margin-bottom: 8px;
 		}
 	}
 
@@ -768,6 +894,10 @@ img.help_tip {
 			input {
 				width: auto;
 			}
+		}
+
+		.rp_emails_wrapper {
+			padding: 0 15px 10px 0;
 		}
 	}
 }
