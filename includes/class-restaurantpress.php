@@ -97,6 +97,18 @@ final class RestaurantPress {
 	}
 
 	/**
+	 * Auto-load in-accessible properties on demand.
+	 *
+	 * @param  mixed $key Key name.
+	 * @return mixed
+	 */
+	public function __get( $key ) {
+		if ( in_array( $key, array( 'mailer' ), true ) ) {
+			return $this->$key();
+		}
+	}
+
+	/**
 	 * RestaurantPress Constructor.
 	 */
 	private function __construct() {
@@ -116,6 +128,7 @@ final class RestaurantPress {
 		add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 11 );
 		add_action( 'init', array( $this, 'init' ), 0 );
 		add_action( 'init', array( 'RP_Shortcodes', 'init' ) );
+		add_action( 'init', array( 'RP_Emails', 'init_notificational_emails' ) );
 		add_action( 'init', array( $this, 'wpdb_table_fix' ), 0 );
 		add_action( 'switch_blog', array( $this, 'wpdb_table_fix' ), 0 );
 	}
@@ -189,6 +202,7 @@ final class RestaurantPress {
 		include_once( RP_ABSPATH . 'includes/class-rp-install.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-post-data.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-ajax.php' );
+		include_once( RP_ABSPATH . 'includes/class-rp-emails.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-data-exception.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-food-factory.php' ); // Food factory.
 		include_once( RP_ABSPATH . 'includes/class-rp-integrations.php' ); // Loads integrations.
@@ -348,5 +362,14 @@ final class RestaurantPress {
 			$wpdb->restaurantpress_termmeta = $wpdb->prefix . 'restaurantpress_termmeta';
 			$wpdb->tables[]                 = 'restaurantpress_termmeta';
 		}
+	}
+
+	/**
+	 * Email Class.
+	 *
+	 * @return RP_Emails
+	 */
+	public function mailer() {
+		return RP_Emails::instance();
 	}
 }

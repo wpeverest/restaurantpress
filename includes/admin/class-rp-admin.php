@@ -24,6 +24,7 @@ class RP_Admin {
 	public function __construct() {
 		add_action( 'init', array( $this, 'includes' ) );
 		add_action( 'admin_init', array( $this, 'buffer' ), 1 );
+		add_action( 'admin_init', array( $this, 'preview_emails' ) );
 		add_action( 'admin_footer', 'rp_print_js', 25 );
 		add_filter( 'admin_footer_text', array( $this, 'admin_footer_text' ), 1 );
 	}
@@ -48,6 +49,38 @@ class RP_Admin {
 		include_once( dirname( __FILE__ ) . '/class-rp-admin-assets.php' );
 		include_once( dirname( __FILE__ ) . '/class-rp-admin-tinymce.php' );
 		include_once( dirname( __FILE__ ) . '/class-rp-admin-pointers.php' );
+	}
+
+	/**
+	 * Preview email template.
+	 */
+	public function preview_emails() {
+		if ( isset( $_GET['preview_restaurantpress_mail'] ) ) {
+			if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'preview-mail' ) ) {
+				die( 'Security check' );
+			}
+
+			// Load the mailer class.
+			$mailer = RP()->mailer();
+
+			// Get the preview email subject.
+			$email_heading = __( 'HTML email template', 'restaurantpress' );
+
+			// Get the preview email content.
+			ob_start();
+			include( 'views/html-email-template-preview.php' );
+			$message       = ob_get_clean();
+
+			// Create a new email.
+			$email         = new RP_Email();
+
+			// Wrap the content with the email template and then add styles.
+			$message       = apply_filters( 'restaurantpress_mail_content', $email->style_inline( $mailer->wrap_message( $email_heading, $message ) ) );
+
+			// print the preview email
+			echo $message;
+			exit;
+		}
 	}
 
 	/**
