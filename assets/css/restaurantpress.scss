@@ -80,10 +80,12 @@
 				color: inherit;
 				background: inherit;
 				font-weight: 700;
+				display: inline-block;
 			}
 
 			del {
 				opacity: 0.5;
+				display: inline-block;
 			}
 		}
 
@@ -728,10 +730,12 @@ button.pswp__button--zoom:hover {
 								color: inherit;
 								background: inherit;
 								font-weight: 700;
+								display: inline-block;
 							}
 
 							del {
 								opacity: 0.5;
+								display: inline-block;
 							}
 						}
 					}
@@ -893,10 +897,12 @@ button.pswp__button--zoom:hover {
 					color: inherit;
 					background: inherit;
 					font-weight: 700;
+					display: inline-block;
 				}
 
 				del {
 					opacity: 0.5;
+					display: inline-block;
 				}
 
 				&::before {
