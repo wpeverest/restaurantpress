@@ -63,24 +63,9 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 
 == Changelog ==
 
-= 1.5.0 - 16/10/2017 =
-* Feature - New default session handler.
-* Fix - Conflicts with W3 Total Cache DB Cache.
-* Fix - Display group page image in photoSwipe.
-* Fix - Formats decimals when saved in settings.
-* Fix - Format decimal numbers ready for DB storage.
-* Fix - Formats curency symbols when saved in settings.
-* Fix - Undefined function `restaurantpress_page_title`.
-* Tweak - Process the oEmbeds for food short description.
-* Tweak - Drop RP tables in wpmu_drop_tables (for multisite).
-* Tweak - Added phone number and email form validation class.
-* Tweak - Support Jetpack Markdown for food short description.
-* Tweak - Introduced `rp_set_time_limit()` core function.
-* Tweak - Introduced `rp_format_content()` formatting function.
-* Tweak - Introduced `rp_format_phone_number()` formatting function.
-* Tweak - Introduced `restaurantpress_form_field()` template function.
-* Tweak - Remove `adjacent_posts_rel_link_wp_head` - pointless for food.
-* Tweak - Add a basic screen-reader-text style for themes which do not define it.
+= 1.5.1 - XX/11/2017 =
+* Fix - Currency position with RTL symbols.
+* Fix - Flexslider support for RTL languages and fixes for zoom target in Chrome.
 
 [See changelog for all versions](https://raw.githubusercontent.com/wpeverest/restaurantpress/master/CHANGELOG.txt).
 
