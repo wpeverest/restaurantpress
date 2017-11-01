@@ -149,6 +149,9 @@ class RP_Emails {
 		add_action( 'restaurantpress_email_header', array( $this, 'email_header' ) );
 		add_action( 'restaurantpress_email_footer', array( $this, 'email_footer' ) );
 
+		// Hook for replacing {site_title} in email-footer.
+		add_filter( 'restaurantpress_email_footer_text' , array( $this, 'email_footer_replace_site_title' ) );
+
 		// Let 3rd parties unhook the above via this hook.
 		do_action( 'restaurantpress_email', $this );
 	}
@@ -175,6 +178,15 @@ class RP_Emails {
 	 */
 	public function get_emails() {
 		return $this->emails;
+	}
+
+	/**
+	 * Get blog name formatted for emails.
+	 *
+	 * @return string
+	 */
+	private function get_blogname() {
+		return wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
 	}
 
 	/**
@@ -209,6 +221,16 @@ class RP_Emails {
 	 */
 	public function email_footer() {
 		rp_get_template( 'emails/email-footer.php' );
+	}
+
+	/**
+	 * Filter callback to replace {site_title} in email footer
+	 *
+	 * @param  string $string Email footer text.
+	 * @return string         Email footer text with any replacements done.
+	 */
+	public function email_footer_replace_site_title( $string ) {
+		return str_replace( '{site_title}', $this->get_blogname(), $string );
 	}
 
 	/**

@@ -114,13 +114,13 @@ class RP_Settings_Emails extends RP_Settings_Page {
 
 			array(
 				'title'       => __( 'Footer text', 'restaurantpress' ),
-				'desc'        => __( 'The text to appear in the footer of RestaurantPress emails.', 'restaurantpress' ),
+				'desc'        => sprintf( __( 'The text to appear in the footer of RestaurantPress emails. Available placeholders: %s', 'restaurantpress' ), '{site_title}' ),
 				'id'          => 'restaurantpress_email_footer_text',
 				'css'         => 'width:300px; height: 75px;',
 				'placeholder' => __( 'N/A', 'restaurantpress' ),
 				'type'        => 'textarea',
 				/* translators: %s: site name */
-				'default'     => get_bloginfo( 'name', 'display' ),
+				'default'     => '{site_title}',
 				'autoload'    => false,
 				'desc_tip'    => true,
 			),
