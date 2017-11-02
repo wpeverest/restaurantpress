@@ -373,7 +373,7 @@ if ( ! function_exists( 'restaurantpress_sort_food_tabs' ) ) {
 			 * @return bool
 			 */
 			function _sort_priority_callback( $a, $b ) {
-				if ( $a['priority'] === $b['priority'] ) {
+				if ( ! isset( $a['priority'], $b['priority'] ) || $a['priority'] === $b['priority'] ) {
 					return 0;
 				}
 				return ( $a['priority'] < $b['priority'] ) ? -1 : 1;
