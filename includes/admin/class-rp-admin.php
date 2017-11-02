@@ -77,7 +77,7 @@ class RP_Admin {
 			// Wrap the content with the email template and then add styles.
 			$message       = apply_filters( 'restaurantpress_mail_content', $email->style_inline( $mailer->wrap_message( $email_heading, $message ) ) );
 
-			// print the preview email
+			// Print the preview email.
 			echo $message;
 			exit;
 		}
