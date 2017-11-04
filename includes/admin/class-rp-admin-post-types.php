@@ -39,19 +39,6 @@ class RP_Admin_Post_Types {
 		add_filter( 'post_updated_messages', array( $this, 'post_updated_messages' ) );
 		add_filter( 'bulk_post_updated_messages', array( $this, 'bulk_post_updated_messages' ), 10, 2 );
 
-		// WP List table columns. Defined here so they are always available for events such as inline editing.
-		add_filter( 'manage_food_menu_posts_columns', array( $this, 'food_menu_columns' ) );
-		add_filter( 'manage_food_group_posts_columns', array( $this, 'food_group_columns' ) );
-
-		add_action( 'manage_food_menu_posts_custom_column', array( $this, 'render_food_menu_columns' ), 2 );
-		add_action( 'manage_food_group_posts_custom_column', array( $this, 'render_food_group_columns' ), 2 );
-
-		add_filter( 'manage_edit-food_menu_sortable_columns', array( $this, 'food_menu_sortable_columns' ) );
-		add_filter( 'manage_edit-food_group_sortable_columns', array( $this, 'food_group_sortable_columns' ) );
-
-		add_filter( 'list_table_primary_column', array( $this, 'list_table_primary_column' ), 10, 2 );
-		add_filter( 'post_row_actions', array( $this, 'row_actions' ), 2, 100 );
-
 		// Extra post data and screen elements.
 		add_action( 'edit_form_top', array( $this, 'edit_form_top' ) );
 		add_filter( 'enter_title_here', array( $this, 'enter_title_here' ), 1, 2 );
@@ -92,7 +79,8 @@ class RP_Admin_Post_Types {
 
 	/**
 	 * Change messages when a post type is updated.
-	 * @param  array $messages
+	 *
+	 * @param  array $messages Array of messages.
 	 * @return array
 	 */
 	public function post_updated_messages( $messages ) {
@@ -161,8 +149,9 @@ class RP_Admin_Post_Types {
 
 	/**
 	 * Specify custom bulk actions messages for different post types.
-	 * @param  array $bulk_messages
-	 * @param  array $bulk_counts
+	 *
+	 * @param  array $bulk_messages Array of messages.
+	 * @param  array $bulk_counts Array of how many objects were updated.
 	 * @return array
 	 */
 	public function bulk_post_updated_messages( $bulk_messages, $bulk_counts ) {
@@ -187,216 +176,8 @@ class RP_Admin_Post_Types {
 	}
 
 	/**
-	 * Define custom columns for menus.
-	 * @param  array $existing_columns
-	 * @return array
-	 */
-	public function food_menu_columns( $existing_columns ) {
-		if ( empty( $existing_columns ) && ! is_array( $existing_columns ) ) {
-			$existing_columns = array();
-		}
-
-		unset( $existing_columns['title'], $existing_columns['comments'], $existing_columns['date'] );
-
-		$columns                  = array();
-		$columns['cb']            = '<input type="checkbox" />';
-		$columns['thumb']         = '<span class="rp-image tips" data-tip="' . esc_attr__( 'Image', 'restaurantpress' ) . '">' . __( 'Image', 'restaurantpress' ) . '</span>';
-		$columns['name']          = __( 'Name', 'restaurantpress' );
-		$columns['price']         = __( 'Price', 'restaurantpress' );
-		$columns['food_menu_cat'] = __( 'Categories', 'restaurantpress' );
-		$columns['food_menu_tag'] = __( 'Tags', 'restaurantpress' );
-		$columns['featured']      = '<span class="rp-featured parent-tips" data-tip="' . esc_attr__( 'Featured', 'restaurantpress' ) . '">' . __( 'Featured', 'restaurantpress' ) . '</span>';
-		$columns['date']          = __( 'Date', 'restaurantpress' );
-
-		return array_merge( $columns, $existing_columns );
-	}
-
-	/**
-	 * Define custom columns for groups.
-	 * @param  array $existing_columns
-	 * @return array
-	 */
-	public function food_group_columns( $existing_columns ) {
-		$columns                = array();
-		$columns['cb']          = $existing_columns['cb'];
-		$columns['name']        = __( 'Name', 'restaurantpress' );
-		$columns['group_id']    = __( 'Group ID', 'restaurantpress' );
-		$columns['description'] = __( 'Description', 'restaurantpress' );
-
-		return $columns;
-	}
-
-	/**
-	 * Output custom columns for menu.
-	 * @param string $column
-	 */
-	public function render_food_menu_columns( $column ) {
-		global $post, $the_food;
-
-		if ( empty( $the_food ) || $the_food->get_id() != $post->ID ) {
-			$the_food = rp_get_food( $post );
-		}
-
-		// Only continue if we have a product.
-		if ( empty( $the_food ) ) {
-			return;
-		}
-
-		switch ( $column ) {
-			case 'thumb' :
-				echo '<a href="' . get_edit_post_link( $post->ID ) . '">' . $the_food->get_image( 'thumbnail' ) . '</a>';
-			break;
-			case 'name' :
-				$edit_link = get_edit_post_link( $post->ID );
-				$title     = _draft_or_post_title();
-
-				echo '<strong><a class="row-title" href="' . esc_url( $edit_link ) . '">' . esc_html( $title ) . '</a>';
-
-				_post_states( $post );
-
-				echo '</strong>';
-
-				if ( $post->post_parent > 0 ) {
-					echo '&nbsp;&nbsp;&larr; <a href="' . get_edit_post_link( $post->post_parent ) . '">' . get_the_title( $post->post_parent ) . '</a>';
-				}
-
-				// Excerpt view
-				if ( isset( $_GET['mode'] ) && 'excerpt' == $_GET['mode'] ) {
-					echo apply_filters( 'the_excerpt', $post->post_excerpt );
-				}
-
-				get_inline_data( $post );
-			break;
-			case 'price' :
-				echo $the_food->get_price_html() ? $the_food->get_price_html() : '<span class="na">&ndash;</span>';
-				break;
-			case 'food_menu_cat' :
-			case 'food_menu_tag' :
-				if ( ! $terms = get_the_terms( $post->ID, $column ) ) {
-					echo '<span class="na">&ndash;</span>';
-				} else {
-					$termlist = array();
-					foreach ( $terms as $term ) {
-						$termlist[] = '<a href="' . admin_url( 'edit.php?' . $column . '=' . $term->slug . '&post_type=food_menu' ) . ' ">' . $term->name . '</a>';
-					}
-
-					echo implode( ', ', $termlist );
-				}
-			break;
-			case 'featured' :
-				$url = wp_nonce_url( admin_url( 'admin-ajax.php?action=restaurantpress_feature_food&food_id=' . $post->ID ), 'restaurantpress-feature-food' );
-				echo '<a href="' . esc_url( $url ) . '" aria-label="' . __( 'Toggle featured', 'restaurantpress' ) . '">';
-				if ( $the_food->is_featured() ) {
-					echo '<span class="rp-featured tips" data-tip="' . esc_attr__( 'Yes', 'restaurantpress' ) . '">' . __( 'Yes', 'restaurantpress' ) . '</span>';
-				} else {
-					echo '<span class="rp-featured not-featured tips" data-tip="' . esc_attr__( 'No', 'restaurantpress' ) . '">' . __( 'No', 'restaurantpress' ) . '</span>';
-				}
-				echo '</a>';
-				break;
-			default:
-				break;
-		}
-	}
-
-	/**
-	 * Output custom columns for groups.
-	 * @param string $column
-	 */
-	public function render_food_group_columns( $column ) {
-		global $post;
-
-		switch ( $column ) {
-			case 'name':
-				$edit_link = get_edit_post_link( $post->ID );
-				$title     = _draft_or_post_title();
-
-				echo '<strong><a class="row-title" href="' . esc_url( $edit_link ) . '">' . esc_html( $title ) . '</a>';
-
-				_post_states( $post );
-
-				echo '</strong>';
-			break;
-			case 'group_id' :
-				echo '<span>' . $post->ID . '</span>';
-			break;
-			default:
-				echo wp_kses_post( $post->post_excerpt );
-			break;
-		}
-	}
-
-	/**
-	 * Make columns sortable - https://gist.github.com/906872
-	 * @param  array $columns
-	 * @return array
-	 */
-	public function food_menu_sortable_columns( $columns ) {
-		$custom = array(
-			'name'  => 'title',
-			'price' => 'price',
-		);
-		return wp_parse_args( $custom, $columns );
-	}
-
-	/**
-	 * Make columns sortable - https://gist.github.com/906872
-	 * @param  array $columns
-	 * @return array
-	 */
-	public function food_group_sortable_columns( $columns ) {
-		$custom = array(
-			'name'     => 'title',
-			'group_id' => 'group_id',
-		);
-		return wp_parse_args( $custom, $columns );
-	}
-
-	/**
-	 * Set list table primary column for food group
-	 * Support for WordPress 4.3
-	 *
-	 * @param  string $default
-	 * @param  string $screen_id
-	 *
-	 * @return string
-	 */
-	public function list_table_primary_column( $default, $screen_id ) {
-
-		if ( 'edit-food_menu' === $screen_id ) {
-			return 'name';
-		}
-
-		if ( 'edit-food_group' === $screen_id ) {
-			return 'name';
-		}
-
-		return $default;
-	}
-
-	/**
-	 * Set row actions for food and groups.
-	 *
-	 * @param  array $actions
-	 * @param  WP_Post $post
-	 *
-	 * @return array
-	 */
-	public function row_actions( $actions, $post ) {
-		if ( 'food_menu' === $post->post_type ) {
-			return array_merge( array( 'id' => 'ID: ' . $post->ID ), $actions );
-		}
-
-		if ( 'food_group' === $post->post_type ) {
-			if ( isset( $actions['inline hide-if-no-js'] ) ) {
-				unset( $actions['inline hide-if-no-js'] );
-			}
-		}
-
-		return $actions;
-	}
-
-	/**
 	 * Output extra data on post forms.
+	 *
 	 * @param WP_Post $post
 	 */
 	public function edit_form_top( $post ) {
@@ -405,8 +186,9 @@ class RP_Admin_Post_Types {
 
 	/**
 	 * Change title boxes in admin.
-	 * @param  string $text
-	 * @param  object $post
+	 *
+	 * @param string  $text Text to shown.
+	 * @param WP_Post $post Current post object.
 	 * @return string
 	 */
 	public function enter_title_here( $text, $post ) {
@@ -423,21 +205,23 @@ class RP_Admin_Post_Types {
 	}
 
 	/**
-	 * Print group description textarea field
-	 * @param WP_Post $post
+	 * Print group description textarea field.
+	 *
+	 * @param WP_Post $post Current post object.
 	 */
 	public function edit_form_after_title( $post ) {
 		if ( 'food_group' === $post->post_type ) {
 			?>
-			<textarea id="restaurantpress-group-description" name="excerpt" cols="5" rows="2" placeholder="<?php esc_attr_e( 'Description (optional)', 'restaurantpress' ); ?>"><?php echo $post->post_excerpt; ?></textarea>
+			<textarea id="restaurantpress-group-description" name="excerpt" cols="5" rows="2" placeholder="<?php esc_attr_e( 'Description (optional)', 'restaurantpress' ); ?>"><?php echo $post->post_excerpt; // WPCS: XSS ok. ?></textarea>
 			<?php
 		}
 	}
 
 	/**
 	 * Hidden default Meta-Boxes.
-	 * @param  array  $hidden
-	 * @param  object $screen
+	 *
+	 * @param  array  $hidden Hidden boxes.
+	 * @param  object $screen Current screen.
 	 * @return array
 	 */
 	public function hidden_meta_boxes( $hidden, $screen ) {
