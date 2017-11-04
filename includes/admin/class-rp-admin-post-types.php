@@ -59,9 +59,6 @@ class RP_Admin_Post_Types {
 		add_filter( 'default_hidden_meta_boxes', array( $this, 'hidden_meta_boxes' ), 10, 2 );
 		add_action( 'post_submitbox_misc_actions', array( $this, 'food_data_visibility' ) );
 
-		// Disable post type view mode options
-		add_filter( 'view_mode_post_types', array( $this, 'disable_view_mode_options' ) );
-
 		// Add a post display state for special RP pages.
 		add_filter( 'display_post_states', array( $this, 'add_display_post_states' ), 10, 2 );
 	}
@@ -482,19 +479,6 @@ class RP_Admin_Post_Types {
 			</div>
 		</div>
 		<?php
-	}
-
-	/**
-	 * Removes food menu and group from the list of post types that support "View Mode" switching.
-	 * View mode is seen on posts where you can switch between list or excerpt. Our post types don't support
-	 * it, so we want to hide the useless UI from the screen options tab.
-	 *
-	 * @param  array $post_types Array of post types supporting view mode.
-	 * @return array             Array of post types supporting view mode, without food menu and group
-	 */
-	public function disable_view_mode_options( $post_types ) {
-		unset( $post_types['food_menu'], $post_types['food_group'] );
-		return $post_types;
 	}
 
 	/**
