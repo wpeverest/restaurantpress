@@ -75,6 +75,8 @@ class RP_Admin_Post_Types {
 				include_once( 'list-tables/class-rp-admin-list-table-groups.php' );
 				break;
 		}
+
+		do_action( 'restaurantpress_admin_list_tables_setup_screen', $screen_id );
 	}
 
 	/**
