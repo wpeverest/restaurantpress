@@ -78,7 +78,6 @@ class RP_Admin_Assets {
 		wp_register_script( 'restaurantpress-admin', RP()->plugin_url() . '/assets/js/admin/admin' . $suffix . '.js', array( 'jquery', 'jquery-blockui', 'jquery-ui-sortable', 'jquery-ui-widget', 'jquery-ui-core', 'jquery-tiptip' ), RP_VERSION );
 		wp_register_script( 'jquery-blockui', RP()->plugin_url() . '/assets/js/jquery-blockui/jquery.blockUI' . $suffix . '.js', array( 'jquery' ), '2.70', true );
 		wp_register_script( 'jquery-tiptip', RP()->plugin_url() . '/assets/js/jquery-tiptip/jquery.tipTip' . $suffix . '.js', array( 'jquery' ), RP_VERSION, true );
-		wp_register_script( 'accounting', RP()->plugin_url() . '/assets/js/accounting/accounting' . $suffix . '.js', array( 'jquery' ), '0.4.2' );
 		wp_register_script( 'rp-admin-meta-boxes', RP()->plugin_url() . '/assets/js/admin/meta-boxes' . $suffix . '.js', array( 'jquery', 'jquery-ui-datepicker', 'jquery-ui-sortable', 'jquery-tiptip', 'accounting', 'rp-enhanced-select' ), RP_VERSION );
 		wp_register_script( 'selectWoo', RP()->plugin_url() . '/assets/js/selectWoo/selectWoo.full' . $suffix . '.js', array( 'jquery' ), '1.0.1' );
 		wp_register_script( 'rp-enhanced-select', RP()->plugin_url() . '/assets/js/admin/enhanced-select' . $suffix . '.js', array( 'jquery', 'selectWoo' ), RP_VERSION );
@@ -96,6 +95,12 @@ class RP_Admin_Assets {
 			'ajax_url'                  => admin_url( 'admin-ajax.php' ),
 			'search_customers_nonce'    => wp_create_nonce( 'search-customers' ),
 			'search_categories_nonce'   => wp_create_nonce( 'search-categories' ),
+		) );
+
+		// Accounting
+		wp_register_script( 'accounting', RP()->plugin_url() . '/assets/js/accounting/accounting' . $suffix . '.js', array( 'jquery' ), '0.4.2' );
+		wp_localize_script( 'accounting', 'accounting_params', array(
+			'mon_decimal_point' => wc_get_price_decimal_separator(),
 		) );
 
 		// RestaurantPress admin pages
