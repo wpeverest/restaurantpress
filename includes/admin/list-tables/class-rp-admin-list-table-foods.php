@@ -46,7 +46,7 @@ class RP_Admin_List_Table_Foods extends RP_Admin_List_Table {
 	protected function render_blank_state() {
 		echo '<div class="restaurantpress-BlankState">';
 		echo '<h2 class="restaurantpress-BlankState-message">' . esc_html__( 'Create elegant food/restaurant menus!', 'restaurantpress' ) . '</h2>';
-		echo '<a class="restaurantpress-BlankState-cta button-primary button" href="' . esc_url( admin_url( 'edit.php?post_type=food_menu' ) ) . '">' . esc_html__( 'Add your first menu item!', 'restaurantpress' ) . '</a>';
+		echo '<a class="restaurantpress-BlankState-cta button-primary button" href="' . esc_url( admin_url( 'post-new.php?post_type=food_menu' ) ) . '">' . esc_html__( 'Add your first menu item!', 'restaurantpress' ) . '</a>';
 		echo '</div>';
 	}
 }
