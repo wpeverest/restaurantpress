@@ -13,7 +13,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'RP_Admin_Post_Types', false ) ) :
+if ( class_exists( 'RP_Admin_Post_Types', false ) ) {
+	new RP_Admin_Post_Types();
+	return;
+}
 
 /**
  * RP_Admin_Post_Types Class
@@ -26,11 +29,15 @@ class RP_Admin_Post_Types {
 	 * Constructor.
 	 */
 	public function __construct() {
+		include_once( dirname( __FILE__ ) . '/class-rp-admin-meta-boxes.php' );
+
+		// Load correct list table classes for current screen.
+		add_action( 'current_screen', array( $this, 'setup_screen' ) );
+		add_action( 'check_ajax_referer', array( $this, 'setup_screen' ) );
+
+		// Admin notices.
 		add_filter( 'post_updated_messages', array( $this, 'post_updated_messages' ) );
 		add_filter( 'bulk_post_updated_messages', array( $this, 'bulk_post_updated_messages' ), 10, 2 );
-
-		// Extra post data.
-		add_action( 'edit_form_top', array( $this, 'edit_form_top' ) );
 
 		// WP List table columns. Defined here so they are always available for events such as inline editing.
 		add_filter( 'manage_food_menu_posts_columns', array( $this, 'food_menu_columns' ) );
@@ -45,26 +52,45 @@ class RP_Admin_Post_Types {
 		add_filter( 'list_table_primary_column', array( $this, 'list_table_primary_column' ), 10, 2 );
 		add_filter( 'post_row_actions', array( $this, 'row_actions' ), 2, 100 );
 
-		// Edit post screens
+		// Extra post data and screen elements.
+		add_action( 'edit_form_top', array( $this, 'edit_form_top' ) );
 		add_filter( 'enter_title_here', array( $this, 'enter_title_here' ), 1, 2 );
 		add_action( 'edit_form_after_title', array( $this, 'edit_form_after_title' ) );
 		add_filter( 'default_hidden_meta_boxes', array( $this, 'hidden_meta_boxes' ), 10, 2 );
 		add_action( 'post_submitbox_misc_actions', array( $this, 'food_data_visibility' ) );
 
-		// Meta-Box Class
-		include_once( dirname( __FILE__ ) . '/class-rp-admin-meta-boxes.php' );
-
-		// Disable DFW feature pointer
-		add_action( 'admin_footer', array( $this, 'disable_dfw_feature_pointer' ) );
-
 		// Disable post type view mode options
 		add_filter( 'view_mode_post_types', array( $this, 'disable_view_mode_options' ) );
 
-		// Show blank state
-		add_action( 'manage_posts_extra_tablenav', array( $this, 'maybe_render_blank_state' ) );
-
 		// Add a post display state for special RP pages.
 		add_filter( 'display_post_states', array( $this, 'add_display_post_states' ), 10, 2 );
+	}
+
+	/**
+	 * Looks at the current screen and loads the correct list table handler.
+	 *
+	 * @since 1.6.0
+	 */
+	public function setup_screen() {
+		$screen_id = false;
+
+		if ( function_exists( 'get_current_screen' ) ) {
+			$screen    = get_current_screen();
+			$screen_id = isset( $screen, $screen->id ) ? $screen->id : '';
+		}
+
+		if ( ! empty( $_REQUEST['screen'] ) ) { // WPCS: input var ok.
+			$screen_id = rp_clean( wp_unslash( $_REQUEST['screen'] ) ); // WPCS: input var ok, sanitization ok.
+		}
+
+		switch ( $screen_id ) {
+			case 'edit-food_menu' :
+				include_once( 'list-tables/class-rp-admin-list-table-foods.php' );
+				break;
+			case 'edit-food_group' :
+				include_once( 'list-tables/class-rp-admin-list-table-groups.php' );
+				break;
+		}
 	}
 
 	/**
@@ -459,17 +485,6 @@ class RP_Admin_Post_Types {
 	}
 
 	/**
-	 * Disable DFW feature pointer.
-	 */
-	public function disable_dfw_feature_pointer() {
-		$screen = get_current_screen();
-
-		if ( $screen && 'food_menu' === $screen->id && 'post' === $screen->base ) {
-			remove_action( 'admin_print_footer_scripts', array( 'WP_Internal_Pointers', 'pointer_wp410_dfw' ) );
-		}
-	}
-
-	/**
 	 * Removes food menu and group from the list of post types that support "View Mode" switching.
 	 * View mode is seen on posts where you can switch between list or excerpt. Our post types don't support
 	 * it, so we want to hide the useless UI from the screen options tab.
@@ -480,44 +495,6 @@ class RP_Admin_Post_Types {
 	public function disable_view_mode_options( $post_types ) {
 		unset( $post_types['food_menu'], $post_types['food_group'] );
 		return $post_types;
-	}
-
-	/**
-	 * Show blank slate.
-	 *
-	 * @param string $which
-	 */
-	public function maybe_render_blank_state( $which ) {
-		global $post_type;
-
-		if ( in_array( $post_type, array( 'food_group', 'food_menu' ) ) && 'bottom' === $which ) {
-			$counts = (array) wp_count_posts( $post_type );
-			unset( $counts['auto-draft'] );
-			$count  = array_sum( $counts );
-
-			if ( 0 < $count ) {
-				return;
-			}
-
-			echo '<div class="restaurantpress-BlankState">';
-
-			switch ( $post_type ) {
-				case 'food_group' :
-					?>
-					<h2 class="restaurantpress-BlankState-message"><?php _e( 'Groups are a great way to organize and categorize your food items. They will appear here once created.', 'restaurantpress' ); ?></h2>
-					<a class="restaurantpress-BlankState-cta button-primary button" href="<?php echo esc_url( admin_url( 'post-new.php?post_type=food_group' ) ); ?>"><?php _e( 'Create your first food group!', 'restaurantpress' ); ?></a>
-					<?php
-				break;
-				case 'food_menu' :
-					?>
-					<h2 class="restaurantpress-BlankState-message"><?php _e( 'Create elegant food/restaurant menus!', 'restaurantpress' ); ?></h2>
-					<a class="restaurantpress-BlankState-cta button-primary button" href="<?php echo esc_url( admin_url( 'post-new.php?post_type=food_menu&tutorial=true' ) ); ?>"><?php _e( 'Add your first menu item!', 'restaurantpress' ); ?></a>
-					<?php
-				break;
-			}
-
-			echo '<style type="text/css">#posts-filter .wp-list-table, #posts-filter .tablenav.top, .tablenav.bottom .actions, .wrap .subsubsub  { display: none; } </style></div>';
-		}
 	}
 
 	/**
@@ -535,6 +512,4 @@ class RP_Admin_Post_Types {
 	}
 }
 
-endif;
-
-return new RP_Admin_Post_Types();
+new RP_Admin_Post_Types();
