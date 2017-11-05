@@ -5,7 +5,7 @@
  * @author   WPEverest
  * @category Admin
  * @package  RestaurantPress/Admin
- * @version  1.6.0
+ * @version  1.5.1
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -15,10 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( class_exists( 'RP_Admin_List_Table_Foods', false ) ) {
 	new RP_Admin_List_Table_Foods();
 	return;
-}
-
-if ( ! class_exists( 'RP_Admin_List_Table', false ) ) {
-	include_once( 'abstract-class-rp-admin-list-table.php' );
 }
 
 /**

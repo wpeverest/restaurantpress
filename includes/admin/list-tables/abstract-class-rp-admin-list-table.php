@@ -5,7 +5,7 @@
  * @author   RestaurantPress
  * @category Admin
  * @package  RestaurantPress/Admin
- * @version  1.6.0
+ * @version  1.5.1
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

@@ -31,6 +31,10 @@ class RP_Admin_Post_Types {
 	public function __construct() {
 		include_once( dirname( __FILE__ ) . '/class-rp-admin-meta-boxes.php' );
 
+		if ( ! class_exists( 'RP_Admin_List_Table', false ) ) {
+			include_once( dirname( __FILE__ ) . '/list-tables/abstract-class-rp-admin-list-table.php' );
+		}
+
 		// Load correct list table classes for current screen.
 		add_action( 'current_screen', array( $this, 'setup_screen' ) );
 		add_action( 'check_ajax_referer', array( $this, 'setup_screen' ) );
@@ -53,7 +57,7 @@ class RP_Admin_Post_Types {
 	/**
 	 * Looks at the current screen and loads the correct list table handler.
 	 *
-	 * @since 1.6.0
+	 * @since 1.5.1
 	 */
 	public function setup_screen() {
 		$screen_id = false;
