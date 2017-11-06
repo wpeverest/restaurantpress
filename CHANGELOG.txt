@@ -1,6 +1,6 @@
 == Changelog ==
 
-= 1.5.1 - 16-10-2017 =
+= 1.5.0 - 16-10-2017 =
 * Feature - New default session handler.
 * Fix - Conflicts with W3 Total Cache DB Cache.
 * Fix - Display group page image in photoSwipe.
