@@ -712,8 +712,8 @@ function rp_set_time_limit( $limit = 0 ) {
 }
 
 /**
- * Get rounding precision for internal WC calculations.
- * Will increase the precision of wc_get_price_decimals by 2 decimals, unless WC_ROUNDING_PRECISION is set to a higher number.
+ * Get rounding precision for internal RP calculations.
+ * Will increase the precision of rp_get_price_decimals by 2 decimals, unless WC_ROUNDING_PRECISION is set to a higher number.
  *
  * @since  1.5.1
  * @return int
