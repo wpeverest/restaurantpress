@@ -532,7 +532,7 @@ button.pswp__button--zoom:hover {
 
 	&::before {
 		font-family: 'RestaurantPress';
-		content: '\e00b';
+		content: '\e008';
 		display: inline-block;
 		position: absolute;
 		top: 1em;
@@ -554,7 +554,7 @@ button.pswp__button--zoom:hover {
 	border-top-color: #8fae1b;
 
 	&::before {
-		content: '\e007';
+		content: '\e004';
 		color: #8fae1b;
 	}
 }
@@ -563,7 +563,7 @@ button.pswp__button--zoom:hover {
 	border-top-color: #b81c23;
 
 	&::before {
-		content: '\e009';
+		content: '\e006';
 		color: #b81c23;
 	}
 }
