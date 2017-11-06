@@ -100,7 +100,7 @@ class RP_Admin_Assets {
 		// Accounting
 		wp_register_script( 'accounting', RP()->plugin_url() . '/assets/js/accounting/accounting' . $suffix . '.js', array( 'jquery' ), '0.4.2' );
 		wp_localize_script( 'accounting', 'accounting_params', array(
-			'mon_decimal_point' => wc_get_price_decimal_separator(),
+			'mon_decimal_point' => rp_get_price_decimal_separator(),
 		) );
 
 		// RestaurantPress admin pages
