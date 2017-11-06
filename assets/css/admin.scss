@@ -688,7 +688,7 @@ img.help_tip {
 }
 
 .status-manual::before {
-	@include icon( '\e005' );
+	@include icon( '\e00d' );
 	color: #999;
 }
 
