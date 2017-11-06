@@ -18,7 +18,7 @@
 	@include loader();
 }
 
-.rp_addons_wrap {
+.rp_extensions_wrap {
 
 	.products {
 		overflow: hidden;
@@ -30,8 +30,8 @@
 			width: 19.2%;
 			float: left;
 
-			&:nth-child(5n) {
-				margin: 0 0 1% 0!important;
+			&:nth-child( 5n ) {
+				margin: 0 1% !important;
 			}
 
 			a {
@@ -1185,27 +1185,27 @@ img.tips {
  * Small screen optimisation
  */
 @media only screen and (max-width: 1599px) {
-	.rp_addons_wrap .products li {
+	.rp_extensions_wrap .products li {
 		width: 32.66%;
 	}
-	.rp_addons_wrap .products li:nth-child(5n) {
+	.rp_extensions_wrap .products li:nth-child(5n) {
 		margin: 0 1% 1% 0 !important;
 	}
-	.rp_addons_wrap .products li:nth-child(3n) {
+	.rp_extensions_wrap .products li:nth-child(3n) {
 		margin: 0 0 1% !important;
 	}
 }
 
 @media only screen and (max-width: 1120px) {
-	.rp_addons_wrap .products li {
+	.rp_extensions_wrap .products li {
 		width: 49%;
 		margin: 0 2% 2% 0 !important;
 	}
-	.rp_addons_wrap .products li:nth-child(5n),
-	.rp_addons_wrap .products li:nth-child(3n) {
+	.rp_extensions_wrap .products li:nth-child(5n),
+	.rp_extensions_wrap .products li:nth-child(3n) {
 		margin: 0 2% 2% 0 !important;
 	}
-	.rp_addons_wrap .products li:nth-child(2n) {
+	.rp_extensions_wrap .products li:nth-child(2n) {
 		margin: 0 0 2% 0 !important;
 	}
 }
@@ -1263,7 +1263,7 @@ img.tips {
 		}
 	}
 
-	.rp_addons_wrap .products li {
+	.rp_extensions_wrap .products li {
 		width: 49%;
 	}
 }
@@ -1293,10 +1293,10 @@ img.tips {
 }
 
 @media only screen and (max-width: 480px) {
-	.rp_addons_wrap .products li,
-	.rp_addons_wrap .products li:nth-child(5n),
-	.rp_addons_wrap .products li:nth-child(3n),
-	.rp_addons_wrap .products li:nth-child(2n) {
+	.rp_extensions_wrap .products li,
+	.rp_extensions_wrap .products li:nth-child(5n),
+	.rp_extensions_wrap .products li:nth-child(3n),
+	.rp_extensions_wrap .products li:nth-child(2n) {
 		width: 100%;
 		margin: 0 0 3% !important;
 	}

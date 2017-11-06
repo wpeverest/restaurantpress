@@ -22,7 +22,7 @@ function rp_get_screen_ids() {
 	$screen_ids   = array(
 		'toplevel_page_' . $rp_screen_id,
 		$rp_screen_id . '_page_rp-settings',
-		$rp_screen_id . '_page_rp-addons',
+		$rp_screen_id . '_page_rp-extensions',
 		'edit-food_menu',
 		'food_menu',
 		'edit-food_group',

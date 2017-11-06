@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the RestaurantPress package.
 msgid ""
 msgstr ""
-"Project-Id-Version: RestaurantPress 1.5.0\n"
+"Project-Id-Version: RestaurantPress 1.5.1-dev\n"
 "Report-Msgid-Bugs-To: https://github.com/wpeverest/restaurantpress/issues\n"
-"POT-Creation-Date: 2017-10-16 06:27:49+00:00\n"
+"POT-Creation-Date: 2017-11-06 19:29:02+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,19 +13,27 @@ msgstr ""
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "X-Generator: grunt-wp-i18n1.0.0\n"
 
-#: includes/admin/class-rp-admin-assets.php:113
+#: includes/abstracts/abstract-rp-settings-api.php:746
+msgid "Select all"
+msgstr ""
+
+#: includes/abstracts/abstract-rp-settings-api.php:746
+msgid "Select none"
+msgstr ""
+
+#: includes/admin/class-rp-admin-assets.php:119
 #. translators: %s: decimal
 msgid "Please enter in decimal (%s) format without thousand separators."
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:115
+#: includes/admin/class-rp-admin-assets.php:121
 #. translators: %s: price decimal separator
 msgid ""
 "Please enter in monetary decimal (%s) format without thousand separators "
 "and currency symbols."
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:116
+#: includes/admin/class-rp-admin-assets.php:122
 msgid "Please enter in a value less than the regular price."
 msgstr ""
 
@@ -67,12 +75,15 @@ msgid "Group data"
 msgstr ""
 
 #: includes/admin/class-rp-admin-notices.php:114
-#: includes/admin/class-rp-admin-settings.php:68
+#: includes/admin/class-rp-admin-settings.php:70
+#: includes/emails/class-rp-email.php:765
 msgid "Action failed. Please refresh the page and retry."
 msgstr ""
 
 #: includes/admin/class-rp-admin-notices.php:118
-#: includes/class-restaurantpress.php:80 includes/class-restaurantpress.php:89
+#: includes/class-restaurantpress.php:87 includes/class-restaurantpress.php:96
+#: includes/class-rp-emails.php:62 includes/class-rp-emails.php:71
+#: includes/emails/class-rp-email.php:769
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
@@ -164,278 +175,210 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:87
-#: includes/admin/class-rp-admin-post-types.php:93
+#: includes/admin/class-rp-admin-post-types.php:104
+#: includes/admin/class-rp-admin-post-types.php:110
 msgid "Preview menu item"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:99
+#: includes/admin/class-rp-admin-post-types.php:116
 msgid "View menu item"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:104
+#: includes/admin/class-rp-admin-post-types.php:121
 #. translators: Publish box date format, see https:secure.php.net/date
 msgid "M j, Y @ H:i"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:108
-#: includes/admin/class-rp-admin-post-types.php:111
+#: includes/admin/class-rp-admin-post-types.php:125
+#: includes/admin/class-rp-admin-post-types.php:128
 msgid "Menu Item updated."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:109
-#: includes/admin/class-rp-admin-post-types.php:124
+#: includes/admin/class-rp-admin-post-types.php:126
+#: includes/admin/class-rp-admin-post-types.php:141
 msgid "Custom field updated."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:110
-#: includes/admin/class-rp-admin-post-types.php:125
+#: includes/admin/class-rp-admin-post-types.php:127
+#: includes/admin/class-rp-admin-post-types.php:142
 msgid "Custom field deleted."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:113
+#: includes/admin/class-rp-admin-post-types.php:130
 #. translators: %s: date and time of the revision
 msgid "Menu Item restored to revision from %s"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:114
+#: includes/admin/class-rp-admin-post-types.php:131
 msgid "Menu Item published."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:115
+#: includes/admin/class-rp-admin-post-types.php:132
 msgid "Menu Item saved."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:116
+#: includes/admin/class-rp-admin-post-types.php:133
 msgid "Menu Item submitted."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:117
+#: includes/admin/class-rp-admin-post-types.php:134
 msgid "Menu Item scheduled for: %s."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:118
+#: includes/admin/class-rp-admin-post-types.php:135
 msgid "Menu Item draft updated."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:123
-#: includes/admin/class-rp-admin-post-types.php:126
-#: includes/admin/class-rp-admin-post-types.php:129
+#: includes/admin/class-rp-admin-post-types.php:140
+#: includes/admin/class-rp-admin-post-types.php:143
+#: includes/admin/class-rp-admin-post-types.php:146
 msgid "Group updated."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:128
+#: includes/admin/class-rp-admin-post-types.php:145
 #. translators: %s: date and time of the revision
 msgid "Group restored to revision from %s"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:130
+#: includes/admin/class-rp-admin-post-types.php:147
 msgid "Group saved."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:131
+#: includes/admin/class-rp-admin-post-types.php:148
 msgid "Group submitted."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:132
+#: includes/admin/class-rp-admin-post-types.php:149
 msgid "Group scheduled for: %s."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:133
+#: includes/admin/class-rp-admin-post-types.php:150
 msgid "Group draft updated."
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:148
+#: includes/admin/class-rp-admin-post-types.php:166
 msgid "%s menu item updated."
 msgid_plural "%s menu items updated."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:149
+#: includes/admin/class-rp-admin-post-types.php:167
 msgid "%s menu item not updated, somebody is editing it."
 msgid_plural "%s menu items not updated, somebody is editing them."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:150
+#: includes/admin/class-rp-admin-post-types.php:168
 msgid "%s menu item permanently deleted."
 msgid_plural "%s menu items permanently deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:151
+#: includes/admin/class-rp-admin-post-types.php:169
 msgid "%s menu item moved to the Trash."
 msgid_plural "%s menu items moved to the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:152
+#: includes/admin/class-rp-admin-post-types.php:170
 msgid "%s menu item restored from the Trash."
 msgid_plural "%s menu items restored from the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:156
+#: includes/admin/class-rp-admin-post-types.php:174
 msgid "%s group updated."
 msgid_plural "%s groups updated."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:157
+#: includes/admin/class-rp-admin-post-types.php:175
 msgid "%s group not updated, somebody is editing it."
 msgid_plural "%s groups not updated, somebody is editing them."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:158
+#: includes/admin/class-rp-admin-post-types.php:176
 msgid "%s group permanently deleted."
 msgid_plural "%s groups permanently deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:159
+#: includes/admin/class-rp-admin-post-types.php:177
 msgid "%s group moved to the Trash."
 msgid_plural "%s groups moved to the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:160
+#: includes/admin/class-rp-admin-post-types.php:178
 msgid "%s group restored from the Trash."
 msgid_plural "%s groups restored from the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-rp-admin-post-types.php:180
-#: includes/admin/class-rp-admin-taxonomies.php:249
-msgid "Image"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:181
-#: includes/admin/class-rp-admin-post-types.php:199
-msgid "Name"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:182
-msgid "Price"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:183
-#: includes/class-rp-post-types.php:48
-msgid "Categories"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:184
-#: includes/class-rp-post-types.php:83
-msgid "Tags"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:185
-msgid "Featured"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:186
-#: includes/admin/rp-shortcodes-editor-i18n.php:31
-#: includes/widgets/class-rp-widget-menu.php:55
-msgid "Date"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:200
-#: includes/admin/rp-shortcodes-editor-i18n.php:29
-#: includes/widgets/class-rp-widget-menu.php:48
-msgid "Group ID"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:201
-#: includes/rp-template-functions.php:333
-#: includes/widgets/class-rp-widget-menu.php:40
-#: templates/single-food/tabs/description.php:25
-msgid "Description"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:265
-msgid "Toggle featured"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:267
-#: includes/admin/class-rp-admin-post-types.php:444
-msgid "Yes"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:269
-#: includes/admin/class-rp-admin-post-types.php:444
-msgid "No"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:392
+#: includes/admin/class-rp-admin-post-types.php:203
 msgid "Menu item name"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:395
+#: includes/admin/class-rp-admin-post-types.php:206
 msgid "Group name"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:409
+#: includes/admin/class-rp-admin-post-types.php:221
 msgid "Description (optional)"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:443
+#: includes/admin/class-rp-admin-post-types.php:256
 msgid "Featured:"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:447
+#: includes/admin/class-rp-admin-post-types.php:257
+#: includes/admin/list-tables/class-rp-admin-list-table-foods.php:195
+#: includes/admin/settings/class-rp-settings-emails.php:283
+msgid "Yes"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:257
+#: includes/admin/list-tables/class-rp-admin-list-table-foods.php:197
+msgid "No"
+msgstr ""
+
+#: includes/admin/class-rp-admin-post-types.php:260
 #: includes/class-rp-post-types.php:144 includes/class-rp-post-types.php:190
 msgid "Edit"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:451
+#: includes/admin/class-rp-admin-post-types.php:264
 msgid "This is a featured food"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:453
+#: includes/admin/class-rp-admin-post-types.php:266
 msgid "OK"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:454
+#: includes/admin/class-rp-admin-post-types.php:267
 msgid "Cancel"
 msgstr ""
 
-#: includes/admin/class-rp-admin-post-types.php:507
-msgid ""
-"Groups are a great way to organize and categorize your food items. They "
-"will appear here once created."
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:508
-msgid "Create your first food group!"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:513
-msgid "Create elegant food/restaurant menus!"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:514
-msgid "Add your first menu item!"
-msgstr ""
-
-#: includes/admin/class-rp-admin-post-types.php:531
+#: includes/admin/class-rp-admin-post-types.php:282
 msgid "Group Page"
 msgstr ""
 
-#: includes/admin/class-rp-admin-settings.php:76
+#: includes/admin/class-rp-admin-settings.php:78
 msgid "Your settings have been saved."
 msgstr ""
 
-#: includes/admin/class-rp-admin-settings.php:131
+#: includes/admin/class-rp-admin-settings.php:133
 msgid "The changes you made will be lost if you navigate away from this page."
 msgstr ""
 
-#: includes/admin/class-rp-admin-settings.php:497
+#: includes/admin/class-rp-admin-settings.php:499
 msgid ""
 "The settings of this image size have been disabled because its values are "
 "being overwritten by a filter."
 msgstr ""
 
-#: includes/admin/class-rp-admin-settings.php:504
+#: includes/admin/class-rp-admin-settings.php:506
 msgid "Hard crop?"
 msgstr ""
 
@@ -469,6 +412,11 @@ msgstr ""
 msgid "Use image"
 msgstr ""
 
+#: includes/admin/class-rp-admin-taxonomies.php:249
+#: includes/admin/list-tables/class-rp-admin-list-table-foods.php:87
+msgid "Image"
+msgstr ""
+
 #: includes/admin/class-rp-admin-taxonomies.php:276
 msgid "Thumbnail"
 msgstr ""
@@ -479,17 +427,85 @@ msgid ""
 "categories listed click the \"screen options\" link at the top of the page."
 msgstr ""
 
-#: includes/admin/class-rp-admin.php:71
+#: includes/admin/class-rp-admin.php:67
+msgid "HTML email template"
+msgstr ""
+
+#: includes/admin/class-rp-admin.php:104
 #. translators: 1: RestaurantPress 2:: five stars
 msgid "If you like %1$s please leave us a %2$s rating. A huge thanks in advance!"
 msgstr ""
 
-#: includes/admin/class-rp-admin.php:73
+#: includes/admin/class-rp-admin.php:106
 msgid "Thanks :)"
 msgstr ""
 
-#: includes/admin/class-rp-admin.php:82
+#: includes/admin/class-rp-admin.php:115
 msgid "Thank you for creating with RestaurantPress."
+msgstr ""
+
+#: includes/admin/list-tables/class-rp-admin-list-table-foods.php:44
+msgid "Create elegant food/restaurant menus!"
+msgstr ""
+
+#: includes/admin/list-tables/class-rp-admin-list-table-foods.php:45
+msgid "Add your first menu item!"
+msgstr ""
+
+#: includes/admin/list-tables/class-rp-admin-list-table-foods.php:88
+#: includes/admin/list-tables/class-rp-admin-list-table-groups.php:93
+msgid "Name"
+msgstr ""
+
+#: includes/admin/list-tables/class-rp-admin-list-table-foods.php:89
+msgid "Price"
+msgstr ""
+
+#: includes/admin/list-tables/class-rp-admin-list-table-foods.php:90
+#: includes/class-rp-post-types.php:48
+msgid "Categories"
+msgstr ""
+
+#: includes/admin/list-tables/class-rp-admin-list-table-foods.php:91
+#: includes/class-rp-post-types.php:83
+msgid "Tags"
+msgstr ""
+
+#: includes/admin/list-tables/class-rp-admin-list-table-foods.php:92
+msgid "Featured"
+msgstr ""
+
+#: includes/admin/list-tables/class-rp-admin-list-table-foods.php:93
+#: includes/admin/rp-shortcodes-editor-i18n.php:31
+#: includes/widgets/class-rp-widget-menu.php:55
+msgid "Date"
+msgstr ""
+
+#: includes/admin/list-tables/class-rp-admin-list-table-foods.php:193
+msgid "Toggle featured"
+msgstr ""
+
+#: includes/admin/list-tables/class-rp-admin-list-table-groups.php:44
+msgid ""
+"Groups are a great way to organize and categorize your food items. They "
+"will appear here once created."
+msgstr ""
+
+#: includes/admin/list-tables/class-rp-admin-list-table-groups.php:45
+msgid "Create your first food group!"
+msgstr ""
+
+#: includes/admin/list-tables/class-rp-admin-list-table-groups.php:94
+#: includes/admin/rp-shortcodes-editor-i18n.php:29
+#: includes/widgets/class-rp-widget-menu.php:48
+msgid "Group ID"
+msgstr ""
+
+#: includes/admin/list-tables/class-rp-admin-list-table-groups.php:95
+#: includes/rp-template-functions.php:339
+#: includes/widgets/class-rp-widget-menu.php:40
+#: templates/single-food/tabs/description.php:25
+msgid "Description"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-rp-meta-box-food-data.php:46
@@ -633,6 +649,156 @@ msgstr ""
 
 #: includes/admin/rp-shortcodes-editor-i18n.php:40
 msgid "You need to use a Group ID!"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:28
+msgid "Emails"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:51
+msgid "Email options"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:64
+msgid "Email notifications"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:64
+msgid ""
+"Email notifications sent from RestaurantPress are listed below. Click on an "
+"email to configure it."
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:72
+msgid "Email sender options"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:75
+msgid "\"From\" name"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:76
+msgid "How the sender name appears in outgoing RestaurantPress emails."
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:86
+msgid "\"From\" address"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:87
+msgid "How the sender email appears in outgoing RestaurantPress emails."
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:101
+msgid "Email template"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:101
+msgid ""
+"This section lets you customize the RestaurantPress emails. <a href=\"%s\" "
+"target=\"_blank\">Click here to preview your email template</a>."
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:104
+msgid "Header image"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:105
+msgid ""
+"URL to an image you want to show in the email header. Upload images using "
+"the media uploader (Admin > Media)."
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:109
+#: includes/admin/settings/class-rp-settings-emails.php:120
+msgid "N/A"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:116
+msgid "Footer text"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:117
+msgid ""
+"The text to appear in the footer of RestaurantPress emails. Available "
+"placeholders: %s"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:129
+#. translators: %s: site name
+msgid "Base color"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:131
+#. translators: %s: default color
+msgid "The base color for RestaurantPress email templates. Default %s."
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:141
+msgid "Background color"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:143
+#. translators: %s: default color
+msgid "The background color for RestaurantPress email templates. Default %s."
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:153
+msgid "Body background color"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:155
+#. translators: %s: default color
+msgid "The main body background color. Default %s."
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:165
+msgid "Body text color"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:167
+#. translators: %s: default color
+msgid "The main body text color. Default %s."
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:246
+msgid "Email"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:247
+msgid "Content type"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:248
+msgid "Recipient(s)"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:274
+msgid "Customer"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:281
+msgid "Manually sent"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:281
+msgid "Manual"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:283
+msgid "Enabled"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:285
+msgid "Disabled"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:297
+msgid "Configure"
+msgstr ""
+
+#: includes/admin/settings/class-rp-settings-emails.php:309
+msgid "No notificational emai has been configured."
 msgstr ""
 
 #: includes/admin/settings/class-rp-settings-general.php:42
@@ -787,44 +953,48 @@ msgstr ""
 msgid "Enable gallery lightbox"
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:16
+#: includes/admin/settings/class-rp-settings-integrations.php:28
+msgid "Integration"
+msgstr ""
+
+#: includes/admin/views/html-admin-page-extensions.php:16
 msgid "Browse Extensions"
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:19
+#: includes/admin/views/html-admin-page-extensions.php:19
 msgid "RestaurantPress Extensions"
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:48
+#: includes/admin/views/html-admin-page-extensions.php:48
 msgid ""
 "Our catalog of RestaurantPress Extensions can be found on WPEverest.com "
 "here: <a href=\"%s\">RestaurantPress Extensions Catalog</a>"
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:54
+#: includes/admin/views/html-admin-page-extensions.php:54
 msgid "Looking for a RestaurantPress theme?"
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:55
+#: includes/admin/views/html-admin-page-extensions.php:55
 msgid "We recommend FoodHunt, the <em>official</em> RestaurantPress theme."
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:56
+#: includes/admin/views/html-admin-page-extensions.php:56
 msgid ""
 "FoodHunt is an intuitive, flexible and <strong>free</strong> WordPress "
 "theme offering deep integration with RestaurantPress and many of the most "
 "popular customer-facing extensions."
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:58
+#: includes/admin/views/html-admin-page-extensions.php:58
 msgid "Read all about it"
 msgstr ""
 
-#: includes/admin/views/html-admin-page-addons.php:59
+#: includes/admin/views/html-admin-page-extensions.php:59
 msgid "Download &amp; install"
 msgstr ""
 
-#: includes/admin/views/html-admin-settings.php:33
+#: includes/admin/views/html-admin-settings.php:42
 msgid "Save Changes"
 msgstr ""
 
@@ -878,7 +1048,12 @@ msgstr ""
 msgid "Taking a while? Click here to run it now."
 msgstr ""
 
-#: includes/class-rp-cache-helper.php:85
+#: includes/class-rp-ajax.php:157
+#. translators: 1: user display name 2: user ID 3: user email
+msgid "%1$s (#%2$s &ndash; %3$s)"
+msgstr ""
+
+#: includes/class-rp-cache-helper.php:84
 msgid ""
 "In order for <strong>database caching</strong> to work with RestaurantPress "
 "you must add %1$s to the \"Ignored Query Strings\" option in <a "
@@ -1143,6 +1318,106 @@ msgstr ""
 
 #: includes/class-rp-post-types.php:203
 msgid "This is where you can add new group for your food menu."
+msgstr ""
+
+#: includes/emails/class-rp-email.php:564
+msgid "Enable/Disable"
+msgstr ""
+
+#: includes/emails/class-rp-email.php:566
+msgid "Enable this email notification"
+msgstr ""
+
+#: includes/emails/class-rp-email.php:570
+msgid "Subject"
+msgstr ""
+
+#: includes/emails/class-rp-email.php:574
+#: includes/emails/class-rp-email.php:583
+#. translators: %s: list of placeholders
+msgid "Available placeholders: %s"
+msgstr ""
+
+#: includes/emails/class-rp-email.php:579
+msgid "Email heading"
+msgstr ""
+
+#: includes/emails/class-rp-email.php:588
+msgid "Email type"
+msgstr ""
+
+#: includes/emails/class-rp-email.php:590
+msgid "Choose which format of email to send."
+msgstr ""
+
+#: includes/emails/class-rp-email.php:604
+msgid "Plain text"
+msgstr ""
+
+#: includes/emails/class-rp-email.php:607
+msgid "HTML"
+msgstr ""
+
+#: includes/emails/class-rp-email.php:608
+msgid "Multipart"
+msgstr ""
+
+#: includes/emails/class-rp-email.php:673
+msgid "Could not write to template file."
+msgstr ""
+
+#: includes/emails/class-rp-email.php:719
+msgid "Template file copied to theme."
+msgstr ""
+
+#: includes/emails/class-rp-email.php:748
+msgid "Template file deleted from theme."
+msgstr ""
+
+#: includes/emails/class-rp-email.php:794
+msgid "Return to emails"
+msgstr ""
+
+#: includes/emails/class-rp-email.php:822
+msgid "HTML template"
+msgstr ""
+
+#: includes/emails/class-rp-email.php:823
+msgid "Plain text template"
+msgstr ""
+
+#: includes/emails/class-rp-email.php:848
+msgid "Delete template file"
+msgstr ""
+
+#: includes/emails/class-rp-email.php:851
+msgid "This template has been overridden by your theme and can be found in: %s."
+msgstr ""
+
+#: includes/emails/class-rp-email.php:878
+msgid "Copy file to theme"
+msgstr ""
+
+#: includes/emails/class-rp-email.php:883
+msgid ""
+"To override and edit this email template copy %1$s to your theme folder: "
+"%2$s."
+msgstr ""
+
+#: includes/emails/class-rp-email.php:892
+msgid "File was not found."
+msgstr ""
+
+#: includes/emails/class-rp-email.php:919
+msgid "View template"
+msgstr ""
+
+#: includes/emails/class-rp-email.php:920
+msgid "Hide template"
+msgstr ""
+
+#: includes/emails/class-rp-email.php:931
+msgid "Are you sure you want to delete this template file?"
 msgstr ""
 
 #: includes/libraries/wp-background-process.php:420
@@ -1809,19 +2084,19 @@ msgstr ""
 msgid "This function should not be called before restaurantpress_init."
 msgstr ""
 
-#: includes/rp-template-functions.php:160
+#: includes/rp-template-functions.php:164
 msgid "Search results: &ldquo;%s&rdquo;"
 msgstr ""
 
-#: includes/rp-template-functions.php:163
+#: includes/rp-template-functions.php:167
 msgid "&nbsp;&ndash; Page %s"
 msgstr ""
 
-#: includes/rp-template-functions.php:417
+#: includes/rp-template-functions.php:431
 msgid "required"
 msgstr ""
 
-#: includes/rp-template-functions.php:485
+#: includes/rp-template-functions.php:499
 msgid "Choose an option"
 msgstr ""
 
@@ -1903,52 +2178,52 @@ msgstr ""
 msgid "https://wpeverest.com"
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:86
+#: includes/admin/class-rp-admin-assets.php:85
 msgctxt "enhanced select"
 msgid "No matches found"
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:87
+#: includes/admin/class-rp-admin-assets.php:86
 msgctxt "enhanced select"
 msgid "Loading failed"
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:88
+#: includes/admin/class-rp-admin-assets.php:87
 msgctxt "enhanced select"
 msgid "Please enter 1 or more characters"
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:89
+#: includes/admin/class-rp-admin-assets.php:88
 msgctxt "enhanced select"
 msgid "Please enter %qty% or more characters"
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:90
+#: includes/admin/class-rp-admin-assets.php:89
 msgctxt "enhanced select"
 msgid "Please delete 1 character"
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:91
+#: includes/admin/class-rp-admin-assets.php:90
 msgctxt "enhanced select"
 msgid "Please delete %qty% characters"
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:92
+#: includes/admin/class-rp-admin-assets.php:91
 msgctxt "enhanced select"
 msgid "You can only select 1 item"
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:93
+#: includes/admin/class-rp-admin-assets.php:92
 msgctxt "enhanced select"
 msgid "You can only select %qty% items"
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:94
+#: includes/admin/class-rp-admin-assets.php:93
 msgctxt "enhanced select"
 msgid "Loading more results&hellip;"
 msgstr ""
 
-#: includes/admin/class-rp-admin-assets.php:95
+#: includes/admin/class-rp-admin-assets.php:94
 msgctxt "enhanced select"
 msgid "Searching&hellip;"
 msgstr ""

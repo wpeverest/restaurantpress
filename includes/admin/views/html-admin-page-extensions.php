@@ -1,9 +1,9 @@
 <?php
 /**
- * Admin View: Page - Addons
+ * Admin View: Page - Extensions
  *
  * @var string $view
- * @var object $addons
+ * @var object $extensions
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,9 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<div class="wrap restaurantpress rp_addons_wrap">
+<div class="wrap restaurantpress rp_extensions_wrap">
 	<nav class="nav-tab-wrapper rp-nav-tab-wrapper">
-		<a href="<?php echo esc_url( admin_url( 'admin.php?page=rp-addons' ) ); ?>" class="nav-tab nav-tab-active"><?php _e( 'Browse Extensions', 'restaurantpress' ); ?></a>
+		<a href="<?php echo esc_url( admin_url( 'admin.php?page=rp-extensions' ) ); ?>" class="nav-tab nav-tab-active"><?php _e( 'Browse Extensions', 'restaurantpress' ); ?></a>
 	</nav>
 
 	<h1 class="screen-reader-text"><?php _e( 'RestaurantPress Extensions', 'restaurantpress' ); ?></h1>
@@ -21,24 +21,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php if ( $sections ) : ?>
 		<ul class="subsubsub">
 			<?php foreach ( $sections as $section_id => $section ) : ?>
-				<li><a class="<?php echo $current_section === $section_id ? 'current' : ''; ?>" href="<?php echo admin_url( 'admin.php?page=rp-addons&section=' . esc_attr( $section_id ) ); ?>"><?php echo esc_html( $section->title ); ?></a><?php echo ( end( $section_keys ) !== $section_id ) ? ' |' : ''; ?></li>
+				<li><a class="<?php echo $current_section === $section_id ? 'current' : ''; ?>" href="<?php echo admin_url( 'admin.php?page=rp-extensions&section=' . esc_attr( $section_id ) ); ?>"><?php echo esc_html( $section->title ); ?></a><?php echo ( end( $section_keys ) !== $section_id ) ? ' |' : ''; ?></li>
 			<?php endforeach; ?>
 		</ul>
 		<br class="clear" />
-		<?php if ( $addons = RP_Admin_Addons::get_section_data( $current_section ) ) : ?>
+		<?php if ( $extensions = RP_Admin_Extensions::get_section_data( $current_section ) ) : ?>
 			<ul class="products">
-			<?php foreach ( $addons as $addon ) : ?>
+			<?php foreach ( $extensions as $extension ) : ?>
 				<li class="product">
-					<a href="<?php echo esc_attr( $addon->link ); ?>">
-						<?php if ( ! empty( $addon->image ) ) : ?>
-							<span class="product-image"><img src="<?php echo esc_attr( $addon->image ); ?>"/></span>
+					<a href="<?php echo esc_attr( $extension->link ); ?>">
+						<?php if ( ! empty( $extension->image ) ) : ?>
+							<span class="product-image"><img src="<?php echo esc_attr( $extension->image ); ?>"/></span>
 						<?php else : ?>
-							<h2><?php echo esc_html( $addon->title ); ?></h2>
+							<h2><?php echo esc_html( $extension->title ); ?></h2>
 						<?php endif; ?>
-						<?php if ( ! empty( $addon->price ) ) : ?>
-							<span class="price"><?php wp_kses_post( $addon->price ); ?></span>
+						<?php if ( ! empty( $extension->price ) ) : ?>
+							<span class="price"><?php wp_kses_post( $extension->price ); ?></span>
 						<?php endif; ?>
-						<p><?php echo wp_kses_post( $addon->excerpt ); ?></p>
+						<p><?php echo wp_kses_post( $extension->excerpt ); ?></p>
 					</a>
 				</li>
 			<?php endforeach; ?>

@@ -28,8 +28,8 @@ class RP_Admin_Menu {
 		add_action( 'admin_menu', array( $this, 'admin_menu' ), 9 );
 		add_action( 'admin_menu', array( $this, 'settings_menu' ), 50 );
 
-		if ( apply_filters( 'restaurantpress_show_addons_page', true ) ) {
-			add_action( 'admin_menu', array( $this, 'addons_menu' ), 70 );
+		if ( apply_filters( 'restaurantpress_show_extensions_page', true ) ) {
+			add_action( 'admin_menu', array( $this, 'extensions_menu' ), 70 );
 		}
 
 		add_action( 'admin_head', array( $this, 'menu_unset' ) );
@@ -88,10 +88,10 @@ class RP_Admin_Menu {
 	}
 
 	/**
-	 * Addons menu item.
+	 * Extensions menu item.
 	 */
-	public function addons_menu() {
-		add_submenu_page( 'restaurantpress', __( 'RestaurantPress extensions', 'restaurantpress' ),  __( 'Extensions', 'restaurantpress' ) , 'manage_restaurantpress', 'rp-addons', array( $this, 'addons_page' ) );
+	public function extensions_menu() {
+		add_submenu_page( 'restaurantpress', __( 'RestaurantPress extensions', 'restaurantpress' ),  __( 'Extensions', 'restaurantpress' ) , 'manage_restaurantpress', 'rp-extensions', array( $this, 'extensions_page' ) );
 	}
 
 	/**
@@ -155,10 +155,10 @@ class RP_Admin_Menu {
 	}
 
 	/**
-	 * Init the addons page.
+	 * Init the extensions page.
 	 */
-	public function addons_page() {
-		RP_Admin_Addons::output();
+	public function extensions_page() {
+		RP_Admin_extensions::output();
 	}
 }
 
