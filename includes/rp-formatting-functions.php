@@ -75,8 +75,9 @@ function rp_format_decimal( $number, $dp = false, $trim_zeros = false ) {
 		$dp     = intval( '' == $dp ? rp_get_price_decimals() : $dp );
 		$number = number_format( floatval( $number ), $dp, '.', '' );
 	} elseif ( is_float( $number ) ) {
-		// DP is false - don't use number format, just return a string in our format.
-		$number = rp_clean( str_replace( $decimals, '.', strval( $number ) ) );
+		// DP is false - don't use number format, just return a string using whatever is given. Remove scientific notation using sprintf.
+		$number     = str_replace( $decimals, '.', sprintf( '%.' . rp_get_rounding_precision() . 'f', $number ) );
+		$trim_zeros = true;
 	}
 
 	if ( $trim_zeros && strstr( $number, '.' ) ) {
