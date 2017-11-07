@@ -39,7 +39,7 @@ if ( ! $tab_exists ) {
 		?>
 		<p class="submit">
 			<?php if ( ! isset( $GLOBALS['hide_save_button'] ) ) : ?>
-				<input name="save" class="button-primary" type="submit" value="<?php esc_attr_e( 'Save Changes', 'restaurantpress' ); ?>" />
+				<button name="save" class="button-primary restaurantpress-save-button" type="submit" value="<?php esc_attr_e( 'Save changes', 'restaurantpress' ); ?>"><?php esc_html_e( 'Save changes', 'restaurantpress' ); ?></button>
 			<?php endif; ?>
 			<input type="hidden" name="subtab" id="last_tab" />
 			<?php wp_nonce_field( 'restaurantpress-settings' ); ?>
