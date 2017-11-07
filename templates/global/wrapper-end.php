@@ -23,6 +23,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 $template = rp_get_theme_slug_for_templates();
 
 switch ( $template ) {
+	case 'twentyten' :
+		echo '</div></div>';
+		break;
 	case 'twentyeleven' :
 		echo '</div>';
 		get_sidebar( 'shop' );
@@ -48,6 +51,6 @@ switch ( $template ) {
 		echo '</div></main>';
 		break;
 	default :
-		echo '</div></div>';
+		echo '</div></main>';
 		break;
 }
