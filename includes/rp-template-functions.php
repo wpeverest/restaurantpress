@@ -114,6 +114,44 @@ function rp_group_zoom_disable( $status ) {
 add_filter( 'restaurantpress_single_food_zoom_enabled', 'rp_group_zoom_disable' );
 
 /**
+ * Get a slug identifying the current theme.
+ *
+ * @since  1.6.0
+ * @return string
+ */
+function rp_get_theme_slug_for_templates() {
+	/**
+	 * @hooked rp_check_for_underscores_theme
+	 * @since 1.6.0
+	 */
+	$template = apply_filters( 'restaurantpress_theme_slug_for_templates', get_option( 'template' ) );
+
+	return $template;
+}
+
+/**
+ * Treat all themes that don't formally support RestaurantPress and are based on Underscores as one 'underscores' theme for templates.
+ *
+ * @since  1.6.0
+ * @param  string $template
+ * @return string
+ */
+function rp_check_for_underscores_theme( $template ) {
+	if ( ! current_theme_supports( 'restaurantpress' ) && ! in_array( $template,  rp_get_core_supported_themes() ) ) {
+		$stylesheet = get_stylesheet_directory() . '/style.css';
+		if( file_exists( $stylesheet ) ) {
+			$stylesheet_contents = file_get_contents( $stylesheet );
+			if ( stripos( $stylesheet_contents, 'underscores' ) ) {
+				return 'underscores';
+			}
+		}
+	}
+
+	return $template;
+}
+add_filter( 'restaurantpress_theme_slug_for_templates', 'rp_check_for_underscores_theme' );
+
+/**
  * Global
  */
 
