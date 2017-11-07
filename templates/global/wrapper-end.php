@@ -13,14 +13,14 @@
  * @see     https://docs.wpeverest.com/docs/restaurantpress/template-structure/
  * @author  WPEverest
  * @package RestaurantPress/Templates
- * @version 1.4.0
+ * @version 1.6.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$template = get_option( 'template' );
+$template = rp_get_theme_slug_for_templates();
 
 switch ( $template ) {
 	case 'twentyeleven' :
@@ -43,6 +43,9 @@ switch ( $template ) {
 		break;
 	case 'twentysixteen' :
 		echo '</main></div>';
+		break;
+	case 'underscores' :
+		echo '</div></main>';
 		break;
 	default :
 		echo '</div></div>';

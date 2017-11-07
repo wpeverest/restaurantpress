@@ -194,11 +194,16 @@ jQuery( function( $ ) {
 				});
 			})
 
+			// RestaurantPress Backbone Modal
+			.on( 'rp_backbone_modal_before_remove', function() {
+				$( '.rp-enhanced-select, :input.rp-customer-search' ).filter( '.select2-hidden-accessible' ).selectWoo( 'close' );
+			})
+
 			.trigger( 'rp-enhanced-select-init' );
 
 		$( 'html' ).on( 'click', function( event ) {
 			if ( this === event.target ) {
-				$( '.rp-enhanced-select, :input.rp-customer-search, :input.rp-category-search' ).filter( '.select2-hidden-accessible' ).select2( 'close' );
+				$( '.rp-enhanced-select, :input.rp-customer-search' ).filter( '.select2-hidden-accessible' ).select2( 'close' );
 			}
 		} );
 	} catch( err ) {
