@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'RP_Admin_Menu', false ) ) :
 
 /**
- * RP_Admin_Menu Class
+ * RP_Admin_Menu Class.
  */
 class RP_Admin_Menu {
 
@@ -24,7 +24,7 @@ class RP_Admin_Menu {
 	 * Hook in tabs.
 	 */
 	public function __construct() {
-		// Add menus
+		// Add menus.
 		add_action( 'admin_menu', array( $this, 'admin_menu' ), 9 );
 		add_action( 'admin_menu', array( $this, 'settings_menu' ), 50 );
 
@@ -60,30 +60,32 @@ class RP_Admin_Menu {
 	}
 
 	/**
-	 * Loads gateways and shipping methods into memory for use within settings.
+	 * Loads settings page.
 	 */
 	public function settings_page_init() {
 		global $current_tab, $current_section;
 
-		// Include settings pages
+		// Include settings pages.
 		RP_Admin_Settings::get_settings_pages();
 
-		// Get current tab/section
-		$current_tab     = empty( $_GET['tab'] ) ? 'general' : sanitize_title( $_GET['tab'] );
-		$current_section = empty( $_REQUEST['section'] ) ? '' : sanitize_title( $_REQUEST['section'] );
+		// Get current tab/section.
+		$current_tab     = empty( $_GET['tab'] ) ? 'general' : sanitize_title( wp_unslash( $_GET['tab'] ) );
+		$current_section = empty( $_REQUEST['section'] ) ? '' : sanitize_title( wp_unslash( $_REQUEST['section'] ) );
 
-		// Save settings if data has been posted
+		// Save settings if data has been posted.
+		// @codingStandardsIgnoreStart
 		if ( ! empty( $_POST ) ) {
 			RP_Admin_Settings::save();
 		}
+		// @codingStandardsIgnoreEnd
 
-		// Add any posted messages
+		// Add any posted messages.
 		if ( ! empty( $_GET['rp_error'] ) ) {
-			RP_Admin_Settings::add_error( stripslashes( $_GET['rp_error'] ) );
+			RP_Admin_Settings::add_error( sanitize_title( $_GET['rp_error'] ) );
 		}
 
 		if ( ! empty( $_GET['rp_message'] ) ) {
-			RP_Admin_Settings::add_message( stripslashes( $_GET['rp_message'] ) );
+			RP_Admin_Settings::add_message( sanitize_title( $_GET['rp_message'] ) );
 		}
 	}
 
@@ -100,7 +102,7 @@ class RP_Admin_Menu {
 	public function menu_unset() {
 		global $submenu;
 
-		// Remove 'RestaurantPress' sub menu item
+		// Remove 'RestaurantPress' sub menu item.
 		if ( isset( $submenu['restaurantpress'] ) ) {
 			unset( $submenu['restaurantpress'][0] );
 		}
@@ -108,20 +110,21 @@ class RP_Admin_Menu {
 
 	/**
 	 * Reorder the RP menu items in admin.
-	 * @param  mixed $menu_order
+	 *
+	 * @param  mixed $menu_order Menu Order.
 	 * @return array
 	 */
 	public function menu_order( $menu_order ) {
-		// Initialize our custom order array
+		// Initialize our custom order array.
 		$restaurantpress_menu_order = array();
 
-		// Get the index of our custom separator
+		// Get the index of our custom separator.
 		$restaurantpress_separator = array_search( 'separator-restaurantpress', $menu_order );
 
-		// Get index of food_menu menu
+		// Get index of food menu.
 		$restaurantpress_food_menu = array_search( 'edit.php?post_type=food_menu', $menu_order );
 
-		// Loop through menu order and do some rearranging
+		// Loop through menu order and do some rearranging.
 		foreach ( $menu_order as $index => $item ) {
 
 			if ( ( ( 'restaurantpress' ) == $item ) ) {
@@ -135,7 +138,7 @@ class RP_Admin_Menu {
 			}
 		}
 
-		// Return order
+		// Return order.
 		return $restaurantpress_menu_order;
 	}
 
