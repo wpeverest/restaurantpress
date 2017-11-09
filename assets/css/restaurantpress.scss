@@ -414,11 +414,6 @@
 			margin: 0;
 			outline: 0;
 			line-height: 1;
-
-			&:focus,
-			&:active {
-				border-color: $blue;
-			}
 		}
 
 		textarea {
@@ -529,7 +524,7 @@ button.pswp__button--zoom:hover {
 	position: relative;
 	background-color: #f7f6f7;
 	color: $secondarytext;
-	border-left: 8px solid $primary;
+	border-left: 5px solid $primary;
 	list-style: none outside;
 	@include clearfix();
 	width: auto;
@@ -547,15 +542,18 @@ button.pswp__button--zoom:hover {
 }
 
 .restaurantpress-message {
-	@include notice( #46b450 );
+	border-left-color: $success;
+	background-color: $successbg;
 }
 
 .restaurantpress-error {
-	@include notice( #dc3232 );
+	border-left-color: $error;
+	background-color: $errorbg;
 }
 
 .restaurantpress-info {
-	@include notice( #00a0d2 );
+	border-left-color: $info;
+	background-color: $infobg;
 }
 
 /**

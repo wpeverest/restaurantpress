@@ -150,8 +150,3 @@
 		color: rgba(#000, 0.75);
 	}
 }
-
-@mixin notice( $color: #46b450 ) {
-	border-left-color: $color;
-	background-color: desaturate( lighten( $color, 40% ), 18% );
-}

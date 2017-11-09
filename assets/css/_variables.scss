@@ -20,3 +20,12 @@ $highlightext:      desaturate( lighten( $highlight, 50% ), 18% ); // Text on hi
 $darkgraybg:        #252525;                                       // Content BG - Tabs (active state)
 $contentbg:         #fff;                                          // Content Background
 $subtext:           #777;                                          // small, breadcrumbs etc
+
+$info:              #00a0d2;                                       // Info notice color
+$infobg:            desaturate( lighten( $info, 40% ), 18% );      // Info notice bg
+
+$error:             #dc3232;                                       // Error notice color
+$errorbg:           desaturate( lighten( $error, 40% ), 18% );     // Error notice bg
+
+$success:           #46b450;                                       // Success notice color
+$successbg:         desaturate( lighten( $success, 40% ), 18% );   // Success notice bg
