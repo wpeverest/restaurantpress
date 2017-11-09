@@ -414,6 +414,11 @@
 			margin: 0;
 			outline: 0;
 			line-height: 1;
+
+			&:focus,
+			&:active {
+				border-color: $blue;
+			}
 		}
 
 		textarea {
