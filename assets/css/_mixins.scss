@@ -99,7 +99,7 @@
 	text-transform: none;
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
-	margin-right: .618em;
+	margin-right: 0.618em;
 	content: $glyph;
 	text-decoration: none;
 }
@@ -112,7 +112,7 @@
 	text-transform: none;
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
-	margin-right: .618em;
+	margin-right: 0.618em;
 	content: $glyph;
 	text-decoration: none;
 }
@@ -125,7 +125,7 @@
 	text-transform: none;
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
-	margin-left: .618em;
+	margin-left: 0.618em;
 	content: $glyph;
 	text-decoration: none;
 }
@@ -149,4 +149,9 @@
 		font-size: 2em;
 		color: rgba(#000, 0.75);
 	}
+}
+
+@mixin notice( $color: #46b450 ) {
+	border-left-color: $color;
+	background-color: desaturate( lighten( $color, 40% ), 18% );
 }

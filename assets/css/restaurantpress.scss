@@ -519,12 +519,12 @@ button.pswp__button--zoom:hover {
 .restaurantpress-message,
 .restaurantpress-error,
 .restaurantpress-info {
-	padding: 1em 2em;
+	padding: 1em;
 	margin: 0 0 2em;
 	position: relative;
 	background-color: #f7f6f7;
 	color: $secondarytext;
-	border-left: 3px solid $primary;
+	border-left: 8px solid $primary;
 	list-style: none outside;
 	@include clearfix();
 	width: auto;
@@ -542,27 +542,15 @@ button.pswp__button--zoom:hover {
 }
 
 .restaurantpress-message {
-	border-left-color: #8fae1b;
-
-	&::before {
-		color: #8fae1b;
-	}
+	@include notice( #46b450 );
 }
 
 .restaurantpress-error {
-	border-left-color: #b81c23;
-
-	&::before {
-		color: #b81c23;
-	}
+	@include notice( #dc3232 );
 }
 
 .restaurantpress-info {
-	border-left-color: #1e85be;
-
-	&::before {
-		color: #1e85be;
-	}
+	@include notice( #3d9cd2 );
 }
 
 /**
