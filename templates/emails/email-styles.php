@@ -58,10 +58,14 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 	font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 
-
 #template_header h1,
-#template_header h1 a {
+#template_header h1 a,
+#template_footer #credit p {
 	color: <?php echo esc_attr( $base_text ); ?>;
+}
+
+#template_footer {
+    background: <?php echo esc_attr( $base ); ?>;
 }
 
 #template_footer td {
@@ -72,7 +76,7 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 #template_footer #credit {
 	border:0;
 	color: <?php echo esc_attr( $base_lighter_40 ); ?>;
-	font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+	font-family: Arial;
 	font-size:12px;
 	line-height:125%;
 	text-align:center;
@@ -246,13 +250,5 @@ tbody tr {
 
 .address {
     border-color: #000 !important;
-}
-
-#template_footer {
-    background: <?php echo esc_attr( $base ); ?>;
-}
-
-#template_footer #credit p {
-	color: <?php echo esc_attr( $base_text ); ?>;
 }
 <?php
