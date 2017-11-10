@@ -45,7 +45,7 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 
 #template_container {
 	background-color: <?php echo esc_attr( $body ); ?>;
-	border: 1px solid <?php echo esc_attr( $bg_dark_10 ); ?>;
+	border: 1px solid <?php echo esc_attr( $bg_darker_10 ); ?>;
 }
 
 #template_header {
@@ -59,23 +59,21 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 }
 
 #template_header h1,
-#template_header h1 a,
-#template_footer #credit p {
+#template_header h1 a {
 	color: <?php echo esc_attr( $base_text ); ?>;
 }
 
 #template_footer {
-    background: <?php echo esc_attr( $base ); ?>;
+	background: <?php echo esc_attr( $base ); ?>;
 }
 
 #template_footer td {
 	padding: 0;
-	-webkit-border-radius: 6px;
 }
 
 #template_footer #credit {
-	border:0;
-	color: <?php echo esc_attr( $base_lighter_40 ); ?>;
+	border: 0;
+	color: <?php echo esc_attr( $base_text ); ?>;
 	font-family: Arial;
 	font-size:12px;
 	line-height:125%;
@@ -112,27 +110,39 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 }
 
 #body_content_inner p {
-    line-height: 1.7em;
+	line-height: 1.7em;
 }
 
 #body_content_inner h2 {
-    text-align: right;
-    font-size: 14px;
-}
-
-#body_content_inner #address h2 {
-    text-align: left;
+	font-size: 14px;
 }
 
 #body_content_inner h2 .link {
-    float: left;
-    text-decoration: none ;
-    font-weight: bold ;
+	font-weight: bold;
+}
+
+#body_content_inner #addresses h2,
+#body_content_inner #addresses td {
+	text-align: center !important;
+}
+
+#body_content_inner #addresses h2 {
+	text-align: center;
+	border-left: 3px solid;
+	display: inline-block;
+	border-right: 3px solid;
+	padding: 0 10px;
+	position: relative;
 }
 
 #body_content_inner tr td {
-    border-left: none !important;
+	border-left: none !important;
 	border-right: none !important;
+}
+
+#body_content_inner th.td,
+#body_content_inner tfoot .td {
+	border: none !important;
 }
 
 .td {
@@ -141,7 +151,7 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 }
 
 .address {
-	padding:12px 12px 0;
+	padding: 12px 12px 0;
 	color: <?php echo esc_attr( $text_lighter_20 ); ?>;
 	border: 1px solid <?php echo esc_attr( $body_darker_10 ); ?>;
 }
@@ -216,26 +226,4 @@ img {
 	text-decoration: none;
 	text-transform: capitalize;
 }
-
-#addresses h2 {
-    text-align: left !important;
-}
-
-th.td {
-    border: none !important;
-}
-
-tfoot .td {
-    border: 1px solid #000;
-}
-
-tbody tr {
-    border-top: 1px solid #000 !important;
-    border-bottom: 1px solid #000 !important;
-}
-
-.address {
-    border-color: #000 !important;
-}
-
 <?php
