@@ -44,7 +44,6 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 }
 
 #template_container {
-	box-shadow: 0 1px 4px rgba(0,0,0,0.1) !important;
 	background-color: <?php echo esc_attr( $body ); ?>;
 	border: 1px solid <?php echo esc_attr( $bg_darker_10 ); ?>;
 	border-radius: 3px !important;
@@ -52,7 +51,6 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 
 #template_header {
 	background-color: <?php echo esc_attr( $base ); ?>;
-	border-radius: 3px 3px 0 0 !important;
 	color: <?php echo esc_attr( $base_text ); ?>;
 	border-bottom: 0;
 	font-weight: bold;
@@ -66,19 +64,22 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 	color: <?php echo esc_attr( $base_text ); ?>;
 }
 
+#template_footer {
+    background: <?php echo esc_attr( $base ); ?>;
+}
+
 #template_footer td {
 	padding: 0;
-	-webkit-border-radius: 6px;
 }
 
 #template_footer #credit {
-	border:0;
-	color: <?php echo esc_attr( $base_lighter_40 ); ?>;
+	border: 0;
+	color: <?php echo esc_attr( $base_text ); ?>;
 	font-family: Arial;
 	font-size:12px;
 	line-height:125%;
 	text-align:center;
-	padding: 0 48px 48px 48px;
+	padding: 10px;
 }
 
 #body_content {
@@ -109,13 +110,49 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 	text-align: <?php echo is_rtl() ? 'right' : 'left'; ?>;
 }
 
+#body_content_inner p {
+    line-height: 1.7em;
+}
+
+#body_content_inner h2 {
+    font-size: 14px;
+}
+
+#body_content_inner h2 .link {
+	font-weight: bold;
+}
+
+#body_content_inner #addresses h2,
+#body_content_inner #addresses td {
+    text-align: center !important;
+}
+
+#body_content_inner #addresses h2 {
+	text-align: center;
+	border-left: 3px solid;
+	display: inline-block;
+	border-right: 3px solid;
+	padding: 0 10px;
+	position: relative;
+}
+
+#body_content_inner tr td {
+	border-left: none !important;
+	border-right: none !important;
+}
+
+#body_content_inner th.td,
+#body_content_inner tfoot .td {
+	border: none !important;
+}
+
 .td {
 	color: <?php echo esc_attr( $text_lighter_20 ); ?>;
 	border: 1px solid <?php echo esc_attr( $body_darker_10 ); ?>;
 }
 
 .address {
-	padding:12px 12px 0;
+	padding: 12px 12px 0;
 	color: <?php echo esc_attr( $text_lighter_20 ); ?>;
 	border: 1px solid <?php echo esc_attr( $body_darker_10 ); ?>;
 }
@@ -130,14 +167,19 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 }
 
 #header_wrapper {
-	padding: 36px 48px;
+	padding: 24px 36px;
 	display: block;
+}
+
+#header_wrapper h1 {
+	font-weight: 600;
+	text-align: center;
 }
 
 h1 {
 	color: <?php echo esc_attr( $base ); ?>;
 	font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
-	font-size: 30px;
+	font-size: 24px;
 	font-weight: 300;
 	line-height: 150%;
 	margin: 0;
