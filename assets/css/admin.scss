@@ -688,17 +688,17 @@ img.help_tip {
 }
 
 .status-manual::before {
-	@include icon( '\e007' );
+	@include icon( '\e004' );
 	color: #999;
 }
 
 .status-enabled::before {
-	@include icon( '\e004' );
+	@include icon( '\e005' );
 	color: #d54e21;
 }
 
 .status-disabled::before {
-	@include icon( '\e005' );
+	@include icon( '\e006' );
 	color: #ccc;
 }
 
