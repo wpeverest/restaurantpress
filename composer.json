@@ -11,7 +11,8 @@
     "squizlabs/php_codesniffer": "*",
     "wp-coding-standards/wpcs": "0.13.1",
     "phpunit/phpunit": "6.2.3",
-    "wpeverest/wpeverest-git-hooks": "1.0.0"
+    "wpeverest/wpeverest-git-hooks": "1.0.1",
+    "wimg/php-compatibility": "^8.0"
   },
   "scripts": {
     "pre-update-cmd": [
@@ -21,11 +22,9 @@
       "WPEverest\\GitHooks\\Hooks::preHooks"
     ],
     "post-install-cmd": [
-      "\"vendor/bin/phpcs\" --config-set installed_paths vendor/wp-coding-standards/wpcs",
       "WPEverest\\GitHooks\\Hooks::postHooks"
     ],
     "post-update-cmd": [
-      "\"vendor/bin/phpcs\" --config-set installed_paths vendor/wp-coding-standards/wpcs",
       "WPEverest\\GitHooks\\Hooks::postHooks"
     ]
   }
