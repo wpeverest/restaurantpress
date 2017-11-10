@@ -46,6 +46,7 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 #template_container {
 	background-color: <?php echo esc_attr( $body ); ?>;
 	border: 1px solid <?php echo esc_attr( $bg_darker_10 ); ?>;
+	border-radius: 3px !important;
 }
 
 #template_header {
@@ -64,7 +65,7 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 }
 
 #template_footer {
-	background: <?php echo esc_attr( $base ); ?>;
+    background: <?php echo esc_attr( $base ); ?>;
 }
 
 #template_footer td {
@@ -110,11 +111,11 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 }
 
 #body_content_inner p {
-	line-height: 1.7em;
+    line-height: 1.7em;
 }
 
 #body_content_inner h2 {
-	font-size: 14px;
+    font-size: 14px;
 }
 
 #body_content_inner h2 .link {
@@ -123,7 +124,7 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 
 #body_content_inner #addresses h2,
 #body_content_inner #addresses td {
-	text-align: center !important;
+    text-align: center !important;
 }
 
 #body_content_inner #addresses h2 {
