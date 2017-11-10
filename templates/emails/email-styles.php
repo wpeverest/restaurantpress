@@ -140,10 +140,25 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 	border: 1px solid <?php echo esc_attr( $body_darker_10 ); ?>;
 }
 
+#addresses,
+#addresses td {
+	text-align: center !important;
+}
+
+#addresses h2 {
+	text-align: center;
+	border-left: 3px solid;
+	display: inline-block;
+	border-right: 3px solid;
+	padding: 0 10px;
+	position: relative;
+}
+
 .address {
-	padding:12px 12px 0;
+	padding: 15px;
 	color: <?php echo esc_attr( $text_lighter_20 ); ?>;
-	border: 1px solid <?php echo esc_attr( $body_darker_10 ); ?>;
+	background: <?php echo esc_attr( $body_darker_10 ); ?>;
+	font-style: normal;
 }
 
 .text {
@@ -217,10 +232,6 @@ img {
 	text-transform: capitalize;
 }
 
-#addresses h2 {
-    text-align: left !important;
-}
-
 th.td {
     border: none !important;
 }
@@ -232,10 +243,6 @@ tfoot .td {
 tbody tr {
     border-top: 1px solid #000 !important;
     border-bottom: 1px solid #000 !important;
-}
-
-.address {
-    border-color: #000 !important;
 }
 
 <?php
