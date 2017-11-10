@@ -55,7 +55,7 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 	font-weight: bold;
 	line-height: 100%;
 	vertical-align: middle;
-	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 
 
@@ -72,11 +72,11 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 #template_footer #credit {
 	border:0;
 	color: <?php echo esc_attr( $base_lighter_40 ); ?>;
-	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 	font-size:12px;
 	line-height:125%;
 	text-align:center;
-	padding: 0 48px 48px 48px;
+	padding: 10px;
 }
 
 #body_content {
@@ -101,7 +101,7 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 
 #body_content_inner {
 	color: <?php echo esc_attr( $text_lighter_20 ); ?>;
-	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 	font-size: 14px;
 	line-height: 150%;
 	text-align: <?php echo is_rtl() ? 'right' : 'left'; ?>;
@@ -139,7 +139,7 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 
 .text {
 	color: <?php echo esc_attr( $text ); ?>;
-	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 
 .link {
@@ -147,19 +147,19 @@ $text_lighter_20 = rp_hex_lighter( $text, 20 );
 }
 
 #header_wrapper {
-	padding: 36px 48px;
+	padding: 24px 36px;
 	display: block;
 }
 
 #header_wrapper h1 {
-    font-weight: 600;
+	font-weight: 600;
 	text-align: center;
 }
 
 h1 {
 	color: <?php echo esc_attr( $base ); ?>;
-	font-family: Georgia, 'Times New Roman', Times, serif;
-	font-size: 30px;
+	font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+	font-size: 24px;
 	font-weight: 300;
 	line-height: 150%;
 	margin: 0;
@@ -171,7 +171,7 @@ h1 {
 h2 {
 	color: <?php echo esc_attr( $base ); ?>;
 	display: block;
-	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 	font-size: 18px;
 	font-weight: bold;
 	line-height: 130%;
@@ -182,7 +182,7 @@ h2 {
 h3 {
 	color: <?php echo esc_attr( $base ); ?>;
 	display: block;
-	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 	font-size: 16px;
 	font-weight: bold;
 	line-height: 130%;
@@ -207,7 +207,6 @@ img {
 	text-decoration: none;
 	text-transform: capitalize;
 }
-
 
 #template_container {
     border: 2px solid #000 !important;
@@ -253,12 +252,7 @@ tbody tr {
     background: <?php echo esc_attr( $base ); ?>;
 }
 
-#template_footer #credit {
-    padding: 20px;
-}
-
-#credit p {
+#template_footer #credit p {
 	color: <?php echo esc_attr( $base_text ); ?>;
 }
-
 <?php
