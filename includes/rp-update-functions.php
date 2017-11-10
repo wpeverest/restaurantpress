@@ -178,3 +178,32 @@ function rp_update_142_db_version() {
 function rp_update_150_db_version() {
 	RP_Install::update_db_version( '1.5.0' );
 }
+
+/**
+ * Update image settings to use new aspect ratios and widths.
+ */
+function rp_update_170_image_options() {
+	$old_thumbnail_size = get_option( 'food_thumbnail_image_size', array() );
+	$old_single_size    = get_option( 'food_single_image_size', array() );
+
+	if ( ! empty( $old_thumbnail_size['width'] ) ) {
+		update_option( 'restaurantpress_thumbnail_image_width', absint( $old_thumbnail_size['width'] ) );
+	}
+
+	if ( ! empty( $old_thumbnail_size['crop'] ) ) {
+		update_option( 'restaurantpress_thumbnail_cropping', '1:1' );
+	} elseif ( isset( $old_thumbnail_size['crop'] ) ) {
+		update_option( 'restaurantpress_thumbnail_cropping', 'uncropped' );
+	}
+
+	if ( ! empty( $old_single_size['width'] ) ) {
+		update_option( 'restaurantpress_single_image_width', absint( $old_single_size['width'] ) );
+	}
+}
+
+/**
+ * Update DB Version.
+ */
+function rp_update_170_db_version() {
+	RP_Install::update_db_version( '1.7.0' );
+}

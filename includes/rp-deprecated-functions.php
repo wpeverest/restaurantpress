@@ -121,3 +121,14 @@ function rp_shortcode_tag( $tag = '' ) {
 function rp_taxonomy_metadata_wpdbfix() {
 	rp_deprecated_function( __FUNCTION__, '1.3.2' );
 }
+
+/**
+ * RestaurantPress Core Supported Themes.
+ *
+ * @deprecated 1.7.0
+ * @return string[]
+ */
+function rp_get_core_supported_themes() {
+	rp_deprecated_function( 'rp_get_core_supported_themes()', '1.7' );
+	return array( 'twentyseventeen', 'twentysixteen', 'twentyfifteen', 'twentyfourteen', 'twentythirteen', 'twentytwelve','twentyeleven', 'twentyten' );
+}

@@ -13,7 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'RP_Settings_General', false ) ) :
+if ( ! class_exists( 'RP_Settings_General', false ) ) {
+	return new RP_Settings_General();
+}
 
 /**
  * RP_Settings_General Class
@@ -36,7 +38,6 @@ class RP_Settings_General extends RP_Settings_Page {
 	 * @return array
 	 */
 	public function get_sections() {
-
 		$sections = array(
 			''          	=> __( 'General', 'restaurantpress' ),
 			'display'       => __( 'Display', 'restaurantpress' ),
@@ -69,8 +70,7 @@ class RP_Settings_General extends RP_Settings_Page {
 	/**
 	 * Get settings array.
 	 *
-	 * @param string $current_section
-	 *
+	 * @param string $current_section Current section name.
 	 * @return array
 	 */
 	public function get_settings( $current_section = '' ) {
@@ -80,16 +80,13 @@ class RP_Settings_General extends RP_Settings_Page {
 			$currency_code_options[ $code ] = $name . ' (' . get_restaurantpress_currency_symbol( $code ) . ')';
 		}
 
-		if ( 'display' == $current_section ) {
-
-			$settings = apply_filters( 'restaurantpress_food_settings', array(
-
+		if ( 'display' === $current_section ) {
+			$settings = array(
 				array(
 					'title' => __( 'Single food page', 'restaurantpress' ),
 					'type' 	=> 'title',
 					'id' 	=> 'single_page_options',
 				),
-
 				array(
 					'title'   => __( 'Food page display', 'restaurantpress' ),
 					'desc'    => __( 'Enable single food page display', 'restaurantpress' ),
@@ -97,67 +94,71 @@ class RP_Settings_General extends RP_Settings_Page {
 					'default' => 'no',
 					'type'    => 'checkbox',
 				),
-
 				array(
 					'type' 	=> 'sectionend',
 					'id' 	=> 'single_page_options',
 				),
+			);
 
+			$theme_support           = get_theme_support( 'restaurantpress' );
+			$theme_support           = is_array( $theme_support ) ? $theme_support[0]: false;
+			$image_settings          = array(
 				array(
 					'title' => __( 'Food images', 'restaurantpress' ),
 					'type' 	=> 'title',
-					'desc' 	=> sprintf( __( 'These settings affect the display and dimensions of images in your menu catalog - the display on the front-end will still be affected by CSS styles. After changing these settings you may need to <a target="_blank" href="%s">regenerate your thumbnails</a>.', 'restaurantpress' ), 'https://wordpress.org/plugins/regenerate-thumbnails/' ),
+					'desc' 	=> __( 'These settings change how food images are displayed in your catalog.', 'restaurantpress' ),
 					'id' 	=> 'image_options',
 				),
-
-				array(
-					'title'    => __( 'Food grid images', 'restaurantpress' ),
-					'desc'     => __( 'This size is usually used in food grid listings. (W x H)', 'restaurantpress' ),
-					'id'       => 'food_grid_image_size',
+				'single_image_width' => array(
+					'title'    => __( 'Main image width', 'restaurantpress' ),
+					'desc'     => __( 'This is the width used by the main image on single food pages. These images will be uncropped.', 'restaurantpress' ),
+					'id'       => 'restaurantpress_single_image_width',
 					'css'      => '',
-					'type'     => 'image_width',
-					'default'  => array(
-						'width'  => '370',
-						'height' => '245',
-						'crop'   => 1,
+					'type'     => 'text',
+					'custom_attributes' => array(
+						'size' => 3,
 					),
+					'suffix'   => 'px',
+					'default'  => 600,
 					'desc_tip' => true,
 				),
-
-				array(
-					'title'    => __( 'Single food image', 'restaurantpress' ),
-					'desc'     => __( 'This is the size used by the main image on the food page. (W x H)', 'restaurantpress' ),
-					'id'       => 'food_single_image_size',
+				'thumbnail_image_width' => array(
+					'title'    => __( 'Thumbnail width', 'restaurantpress' ),
+					'desc'     => __( 'This size is used for food archives and food listings.', 'restaurantpress' ),
+					'id'       => 'restaurantpress_thumbnail_image_width',
 					'css'      => '',
-					'type'     => 'image_width',
-					'default'  => array(
-						'width'  => '600',
-						'height' => '600',
-						'crop'   => 1,
+					'type'     => 'text',
+					'custom_attributes' => array(
+						'size' => 3,
 					),
+					'suffix'   => 'px',
+					'default'  => 300,
 					'desc_tip' => true,
 				),
-
 				array(
-					'title'    => __( 'Food thumbnails', 'restaurantpress' ),
-					'desc'     => __( 'This size is usually used for the gallery of images on the food page. (W x H)', 'restaurantpress' ),
-					'id'       => 'food_thumbnail_image_size',
+					'title'    => __( 'Thumbnail cropping', 'restaurantpress' ),
+					'desc'     => __( 'This determines how thumbnails appear. Widths will be fixed, whilst heights may vary.', 'restaurantpress' ),
+					'id'       => 'restaurantpress_thumbnail_cropping',
 					'css'      => '',
-					'type'     => 'image_width',
-					'default'  => array(
-						'width'  => '180',
-						'height' => '180',
-						'crop'   => 1,
-					),
-					'desc_tip' => true,
+					'type'     => 'thumbnail_cropping',
+					'default'  => '1:1',
+					'desc_tip' => false,
 				),
-
 				array(
 					'type' 	=> 'sectionend',
 					'id' 	=> 'image_options',
 				),
+			);
 
-			) );
+			if ( isset( $theme_support['single_image_width'] ) ) {
+				unset( $image_settings['single_image_width'] );
+			}
+
+			if ( isset( $theme_support['thumbnail_image_width'] ) ) {
+				unset( $image_settings['thumbnail_image_width'] );
+			}
+
+			$settings = apply_filters( 'restaurantpress_food_settings', array_merge( $settings, $image_settings ) );
 
 		} else {
 			$settings = apply_filters( 'restaurantpress_general_settings', array(
@@ -289,7 +290,5 @@ class RP_Settings_General extends RP_Settings_Page {
 		return apply_filters( 'restaurantpress_get_settings_' . $this->id, $settings, $current_section );
 	}
 }
-
-endif;
 
 return new RP_Settings_General();
