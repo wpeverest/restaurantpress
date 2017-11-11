@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class RP_AJAX {
 
 	/**
-	 * Hooks in ajax handlers
+	 * Hooks in ajax handlers.
 	 */
 	public static function init() {
 		add_action( 'init', array( __CLASS__, 'define_ajax' ), 0 );
@@ -37,7 +37,7 @@ class RP_AJAX {
 			rp_maybe_define_constant( 'DOING_AJAX', true );
 			rp_maybe_define_constant( 'RP_DOING_AJAX', true );
 			if ( ! WP_DEBUG || ( WP_DEBUG && ! WP_DEBUG_DISPLAY ) ) {
-				@ini_set( 'display_errors', 0 ); // Turn off display_errors during AJAX events to prevent malformed JSON
+				@ini_set( 'display_errors', 0 ); // Turn off display_errors during AJAX events to prevent malformed JSON.
 			}
 			$GLOBALS['wpdb']->hide_errors();
 		}
@@ -53,7 +53,7 @@ class RP_AJAX {
 		@header( 'Content-Type: text/html; charset=' . get_option( 'blog_charset' ) );
 		@header( 'X-Robots-Tag: noindex' );
 		send_nosniff_header();
-		nocache_headers();
+		rp_nocache_headers();
 		status_header( 200 );
 	}
 
@@ -142,7 +142,7 @@ class RP_AJAX {
 			'fields'         => 'all',
 			'orderby'        => 'display_name',
 			'search'         => '*' . $term . '*',
-			'search_columns' => array( 'ID', 'user_login', 'user_email', 'user_nicename' )
+			'search_columns' => array( 'ID', 'user_login', 'user_email', 'user_nicename' ),
 		) ) );
 
 		remove_action( 'pre_user_query', array( __CLASS__, 'json_search_customer_name' ) );
@@ -170,6 +170,7 @@ class RP_AJAX {
 
 	/**
 	 * When searching using the WP_User_Query, search names (user meta) too.
+	 *
 	 * @param  object $query
 	 * @return object
 	 */
@@ -184,7 +185,7 @@ class RP_AJAX {
 		}
 
 		$query->query_from  .= " INNER JOIN {$wpdb->usermeta} AS user_name ON {$wpdb->users}.ID = user_name.user_id AND ( user_name.meta_key = 'first_name' OR user_name.meta_key = 'last_name' ) ";
-		$query->query_where .= $wpdb->prepare( " OR user_name.meta_value LIKE %s ", '%' . $term . '%' );
+		$query->query_where .= $wpdb->prepare( ' OR user_name.meta_value LIKE %s ', '%' . $term . '%' );
 	}
 
 	/**
