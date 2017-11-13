@@ -2,7 +2,7 @@
 /**
  * Setup menus in WP admin.
  *
- * @class    RP_Admin_Menu
+ * @class    RP_Admin_Menus
  * @version  1.0.0
  * @package  RestaurantPress/Admin
  * @category Admin
@@ -13,12 +13,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'RP_Admin_Menu', false ) ) :
+if ( class_exists( 'RP_Admin_Menus', false ) ) {
+	return new RP_Admin_Menus();
+}
 
 /**
- * RP_Admin_Menu Class.
+ * RP_Admin_Menus Class.
  */
-class RP_Admin_Menu {
+class RP_Admin_Menus {
 
 	/**
 	 * Hook in tabs.
@@ -44,7 +46,7 @@ class RP_Admin_Menu {
 		global $menu;
 
 		if ( current_user_can( 'manage_restaurantpress' ) ) {
-			$menu[] = array( '', 'read', 'separator-restaurantpress', '', 'wp-menu-separator restaurantpress' );
+			$menu[] = array( '', 'read', 'separator-restaurantpress', '', 'wp-menu-separator restaurantpress' ); // WPCS: override ok.
 		}
 
 		add_menu_page( __( 'RestaurantPress', 'restaurantpress' ), __( 'RestaurantPress', 'restaurantpress' ), 'manage_restaurantpress', 'restaurantpress', null, null, '57.5' );
@@ -69,23 +71,21 @@ class RP_Admin_Menu {
 		RP_Admin_Settings::get_settings_pages();
 
 		// Get current tab/section.
-		$current_tab     = empty( $_GET['tab'] ) ? 'general' : sanitize_title( wp_unslash( $_GET['tab'] ) );
-		$current_section = empty( $_REQUEST['section'] ) ? '' : sanitize_title( wp_unslash( $_REQUEST['section'] ) );
+		$current_tab     = empty( $_GET['tab'] ) ? 'general' : sanitize_title( wp_unslash( $_GET['tab'] ) ); // WPCS: input var okay, CSRF ok.
+		$current_section = empty( $_REQUEST['section'] ) ? '' : sanitize_title( wp_unslash( $_REQUEST['section'] ) ); // WPCS: input var okay, CSRF ok.
 
 		// Save settings if data has been posted.
-		// @codingStandardsIgnoreStart
-		if ( ! empty( $_POST ) ) {
+		if ( apply_filters( '' !== $current_section ? "restaurantpress_save_settings_{$current_tab}_{$current_section}" : "restaurantpress_save_settings_{$current_tab}", ! empty( $_POST ) ) ) { // WPCS: input var okay, CSRF ok.
 			RP_Admin_Settings::save();
 		}
-		// @codingStandardsIgnoreEnd
 
 		// Add any posted messages.
-		if ( ! empty( $_GET['rp_error'] ) ) {
-			RP_Admin_Settings::add_error( sanitize_title( $_GET['rp_error'] ) );
+		if ( ! empty( $_GET['rp_error'] ) ) { // WPCS: input var okay, CSRF ok.
+			RP_Admin_Settings::add_error( wp_kses_post( wp_unslash( $_GET['rp_error'] ) ) ); // WPCS: input var okay, CSRF ok.
 		}
 
-		if ( ! empty( $_GET['rp_message'] ) ) {
-			RP_Admin_Settings::add_message( sanitize_title( $_GET['rp_message'] ) );
+		if ( ! empty( $_GET['rp_message'] ) ) { // WPCS: input var okay, CSRF ok.
+			RP_Admin_Settings::add_message( wp_kses_post( wp_unslash( $_GET['rp_message'] ) ) ); // WPCS: input var okay, CSRF ok.
 		}
 	}
 
@@ -111,7 +111,7 @@ class RP_Admin_Menu {
 	/**
 	 * Reorder the RP menu items in admin.
 	 *
-	 * @param  mixed $menu_order Menu Order.
+	 * @param  int $menu_order Menu Order.
 	 * @return array
 	 */
 	public function menu_order( $menu_order ) {
@@ -119,21 +119,21 @@ class RP_Admin_Menu {
 		$restaurantpress_menu_order = array();
 
 		// Get the index of our custom separator.
-		$restaurantpress_separator = array_search( 'separator-restaurantpress', $menu_order );
+		$restaurantpress_separator = array_search( 'separator-restaurantpress', $menu_order, true );
 
 		// Get index of food menu.
-		$restaurantpress_food_menu = array_search( 'edit.php?post_type=food_menu', $menu_order );
+		$restaurantpress_food_menu = array_search( 'edit.php?post_type=food_menu', $menu_order, true );
 
 		// Loop through menu order and do some rearranging.
 		foreach ( $menu_order as $index => $item ) {
 
-			if ( ( ( 'restaurantpress' ) == $item ) ) {
+			if ( 'restaurantpress' === $item ) {
 				$restaurantpress_menu_order[] = 'separator-restaurantpress';
 				$restaurantpress_menu_order[] = $item;
 				$restaurantpress_menu_order[] = 'edit.php?post_type=food_menu';
 				unset( $menu_order[ $restaurantpress_separator ] );
 				unset( $menu_order[ $restaurantpress_food_menu ] );
-			} elseif ( ! in_array( $item, array( 'separator-restaurantpress' ) ) ) {
+			} elseif ( ! in_array( $item, array( 'separator-restaurantpress' ), true ) ) {
 				$restaurantpress_menu_order[] = $item;
 			}
 		}
@@ -144,6 +144,7 @@ class RP_Admin_Menu {
 
 	/**
 	 * Custom menu order.
+	 *
 	 * @return bool
 	 */
 	public function custom_menu_order() {
@@ -165,6 +166,4 @@ class RP_Admin_Menu {
 	}
 }
 
-endif;
-
-return new RP_Admin_Menu();
+return new RP_Admin_Menus();
