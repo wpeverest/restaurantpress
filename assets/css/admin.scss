@@ -675,6 +675,7 @@ table.rp_emails {
 		border-radius: 100%;
 	}
 
+	&.disabled,
 	&.restaurantpress-input-toggle--disabled {
 		border-color: #999;
 		background-color: #999;
