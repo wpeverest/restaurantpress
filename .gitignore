@@ -5,11 +5,15 @@ project.properties
 .buildpath
 .project
 .settings*
-.vscode
 .idea
+.vscode
+*.sublime-project
+*.sublime-workspace
+.sublimelinterrc
 
 # Grunt
 /node_modules/
+none
 
 # Sass
 .sass-cache/
@@ -19,6 +23,9 @@ project.properties
 
 # Windows junk
 Thumbs.db
+
+# ApiGen
+/rp-apidocs/
 
 # Composer
 /vendor/
