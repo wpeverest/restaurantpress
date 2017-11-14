@@ -663,6 +663,10 @@ table.rp_emails {
 	border-radius: 10em;
 	position: relative;
 
+	input[type=checkbox] {
+		display: none;
+	}
+
 	&::before {
 		content: '';
 		display: block;
