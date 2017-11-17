@@ -71,42 +71,4 @@
 		return false;
 	});
 
-	// Thumbnail cropping option updates and preview.
-	$( '.restaurantpress-thumbnail-cropping' )
-		.on( 'change input', 'input', function() {
-			var value = $( '.restaurantpress-thumbnail-cropping input:checked' ).val(),
-				$preview_images = $( '.restaurantpress-thumbnail-preview-block__image' );
-
-			if ( 'custom' === value ) {
-
-				var width_ratio  = Math.max( parseInt( $( 'input[name="thumbnail_cropping_aspect_ratio_width"]' ).val(), 10 ), 1 ),
-					height_ratio = Math.max( parseInt( $( 'input[name="thumbnail_cropping_aspect_ratio_height"]' ).val(), 10 ), 1 ),
-					height = ( 90 / width_ratio ) * height_ratio;
-
-				$preview_images.animate( { height: height + 'px' }, 200 );
-
-				$( '.restaurantpress-thumbnail-cropping-aspect-ratio' ).slideDown( 200 );
-
-			} else if ( 'uncropped' === value ) {
-
-				var heights = [ '120', '60', '80' ];
-
-				$preview_images.each( function( index, element ) {
-					var height = heights[ index ];
-					$( element ).animate( { height: height + 'px' }, 200 );
-				} );
-
-				$( '.restaurantpress-thumbnail-cropping-aspect-ratio' ).hide();
-
-			} else {
-				$preview_images.animate( { height: '90px' }, 200 );
-
-				$( '.restaurantpress-thumbnail-cropping-aspect-ratio' ).hide();
-			}
-
-			return false;
-		});
-
-	$( '.restaurantpress-thumbnail-cropping' ).find( 'input' ).change();
-
 })( jQuery );

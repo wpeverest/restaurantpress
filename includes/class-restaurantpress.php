@@ -221,6 +221,8 @@ final class RestaurantPress {
 		include_once( RP_ABSPATH . 'includes/class-rp-cache-helper.php' ); // Cache Helper.
 		include_once( RP_ABSPATH . 'includes/class-rp-deprecated-action-hooks.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-deprecated-filter-hooks.php' );
+		include_once( RP_ABSPATH . 'includes/class-rp-background-emailer.php' );
+		include_once( RP_ABSPATH . 'includes/customizer/class-rp-customizer.php' );
 
 		if ( $this->is_request( 'admin' ) ) {
 			include_once( RP_ABSPATH . 'includes/admin/class-rp-admin.php' );
@@ -243,9 +245,7 @@ final class RestaurantPress {
 	 * @since 1.7.0
 	 */
 	private function theme_support_includes() {
-		$theme_support = array( 'twentyseventeen', 'twentysixteen', 'twentyfifteen', 'twentyfourteen', 'twentythirteen', 'twentytwelve', 'twentyeleven', 'twentyten' );
-
-		if ( $this->is_active_theme( $theme_support ) ) {
+		if ( $this->is_active_theme( array( 'twentyseventeen', 'twentysixteen', 'twentyfifteen', 'twentyfourteen', 'twentythirteen', 'twentytwelve', 'twentyeleven', 'twentyten' ) ) ) {
 			switch ( get_template() ) {
 				case 'twentyten' :
 					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-ten.php' );
