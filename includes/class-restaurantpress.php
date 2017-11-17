@@ -210,6 +210,7 @@ final class RestaurantPress {
 		include_once( RP_ABSPATH . 'includes/class-rp-cache-helper.php' ); // Cache Helper.
 		include_once( RP_ABSPATH . 'includes/class-rp-deprecated-action-hooks.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-deprecated-filter-hooks.php' );
+		include_once( RP_ABSPATH . 'includes/class-rp-background-emailer.php' );
 
 		if ( $this->is_request( 'admin' ) ) {
 			include_once( RP_ABSPATH . 'includes/admin/class-rp-admin.php' );
