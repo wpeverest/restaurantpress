@@ -382,6 +382,7 @@ final class RestaurantPress {
 		add_image_size( 'food_single', $single['width'], $single['height'], $single['crop'] );
 		add_image_size( 'food_grid', $food_grid['width'], $food_grid['height'], $food_grid['crop'] );
 	}
+
 	/**
 	 * Get the plugin url.
 	 *
