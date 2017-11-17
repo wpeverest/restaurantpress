@@ -86,25 +86,34 @@ class RP_Template_Loader {
 	 * @return string[]
 	 */
 	private static function get_template_loader_files( $default_file ) {
-		$search_files   = apply_filters( 'restaurantpress_template_loader_files', array(), $default_file );
-		$search_files[] = 'restaurantpress.php';
+		$templates   = apply_filters( 'restaurantpress_template_loader_files', array(), $default_file );
+		$templates[] = 'restaurantpress.php';
 
 		if ( is_page_template() ) {
-			$search_files[] = get_page_template_slug();
+			$templates[] = get_page_template_slug();
+		}
+
+		if ( is_singular( 'food_menu' ) ) {
+			$object       = get_queried_object();
+			$name_decoded = urldecode( $object->post_name );
+			if ( $name_decoded !== $object->post_name ) {
+				$templates[] = "single-food-{$name_decoded}.php";
+			}
+			$templates[] = "single-product-{$object->post_name}.php";
 		}
 
 		if ( is_food_menu_taxonomy() ) {
-			$term   = get_queried_object();
-			$search_files[] = 'taxonomy-' . $term->taxonomy . '-' . $term->slug . '.php';
-			$search_files[] = RP()->template_path() . 'taxonomy-' . $term->taxonomy . '-' . $term->slug . '.php';
-			$search_files[] = 'taxonomy-' . $term->taxonomy . '.php';
-			$search_files[] = RP()->template_path() . 'taxonomy-' . $term->taxonomy . '.php';
+			$object      = get_queried_object();
+			$templates[] = 'taxonomy-' . $object->taxonomy . '-' . $object->slug . '.php';
+			$templates[] = RP()->template_path() . 'taxonomy-' . $object->taxonomy . '-' . $object->slug . '.php';
+			$templates[] = 'taxonomy-' . $object->taxonomy . '.php';
+			$templates[] = RP()->template_path() . 'taxonomy-' . $object->taxonomy . '.php';
 		}
 
-		$search_files[] = $default_file;
-		$search_files[] = RP()->template_path() . $default_file;
+		$templates[] = $default_file;
+		$templates[] = RP()->template_path() . $default_file;
 
-		return array_unique( $search_files );
+		return array_unique( $templates );
 	}
 }
 

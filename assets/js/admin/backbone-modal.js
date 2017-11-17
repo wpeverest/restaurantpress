@@ -9,8 +9,7 @@
 	 */
 	$.fn.RPBackboneModal = function( options ) {
 		return this.each( function() {
-            var RPeachBackboneModal = new $.RPBackboneModal( $( this ), options )
-			( RPeachBackboneModal() );
+			( new $.RPBackboneModal( $( this ), options ) );
 		});
 	};
 
@@ -25,12 +24,10 @@
 		var settings = $.extend( {}, $.RPBackboneModal.defaultOptions, options );
 
 		if ( settings.template ) {
-
-            var BackboneModal = new $.RPBackboneModal.View({
-                target: settings.template,
-                string: settings.variable
-            });
-            BackboneModal();
+			new $.RPBackboneModal.View({
+				target: settings.template,
+				string: settings.variable
+			});
 		}
 	};
 

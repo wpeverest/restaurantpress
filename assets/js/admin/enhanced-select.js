@@ -203,7 +203,7 @@ jQuery( function( $ ) {
 
 		$( 'html' ).on( 'click', function( event ) {
 			if ( this === event.target ) {
-				$( '.rp-enhanced-select, :input.rp-customer-search' ).filter( '.select2-hidden-accessible' ).select2( 'close' );
+				$( '.rp-enhanced-select, :input.rp-customer-search' ).filter( '.select2-hidden-accessible' ).selectWoo( 'close' );
 			}
 		} );
 	} catch( err ) {

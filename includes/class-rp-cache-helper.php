@@ -28,7 +28,7 @@ class RP_Cache_Helper {
 	/**
 	 * Get prefix for use with wp_cache_set. Allows all cache in a group to be invalidated at once.
 	 *
-	 * @param  string $group
+	 * @param  string $group Group of cache to get.
 	 * @return string
 	 */
 	public static function get_cache_prefix( $group ) {
@@ -45,7 +45,7 @@ class RP_Cache_Helper {
 	/**
 	 * Increment group cache prefix (invalidates cache).
 	 *
-	 * @param string $group
+	 * @param string $group Group of cache to clear.
 	 */
 	public static function incr_cache_prefix( $group ) {
 		wp_cache_incr( 'rp_' . $group . '_cache_prefix', 1, $group );
@@ -54,20 +54,18 @@ class RP_Cache_Helper {
 	/**
 	 * Set constants to prevent caching by some plugins.
 	 *
-	 * Hooked into nocache_headers filter but does not change headers.
-	 *
-	 * @param  array $value
-	 * @return array
+	 * @param  mixed $return Value to return. Previously hooked into a filter.
+	 * @return mixed
 	 */
-	public static function set_nocache_constants( $value ) {
+	public static function set_nocache_constants( $return = true ) {
 		rp_maybe_define_constant( 'DONOTCACHEPAGE', true );
 		rp_maybe_define_constant( 'DONOTCACHEOBJECT', true );
 		rp_maybe_define_constant( 'DONOTCACHEDB', true );
-		return $value;
+		return $return;
 	}
 
 	/**
-	 * W3 Total Cache notice.
+	 * Notices function.
 	 */
 	public static function notices() {
 		if ( ! function_exists( 'w3tc_pgcache_flush' ) || ! function_exists( 'w3_instance' ) ) {
@@ -78,10 +76,10 @@ class RP_Cache_Helper {
 		$enabled  = $config->get_integer( 'dbcache.enabled' );
 		$settings = array_map( 'trim', $config->get_array( 'dbcache.reject.sql' ) );
 
-		if ( $enabled && ! in_array( '_rp_session_', $settings ) ) {
+		if ( $enabled && ! in_array( '_rp_session_', $settings, true ) ) {
 			?>
 			<div class="error">
-				<p><?php printf( __( 'In order for <strong>database caching</strong> to work with RestaurantPress you must add %1$s to the "Ignored Query Strings" option in <a href="%2$s">W3 Total Cache settings</a>.', 'restaurantpress' ), '<code>_rp_session_</code>', admin_url( 'admin.php?page=w3tc_dbcache' ) ); ?></p>
+				<p><?php echo wp_kses_post( sprintf( __( 'In order for <strong>database caching</strong> to work with RestaurantPress you must add %1$s to the "Ignored Query Strings" option in <a href="%2$s">W3 Total Cache settings</a>.', 'restaurantpress' ), '<code>_rp_session_</code>', esc_url( admin_url( 'admin.php?page=w3tc_dbcache' ) ) ) ); ?></p>
 			</div>
 			<?php
 		}

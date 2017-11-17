@@ -736,6 +736,16 @@ function rp_set_time_limit( $limit = 0 ) {
 }
 
 /**
+ * Wrapper for nocache_headers which also disables page caching.
+ *
+ * @since 1.5.1
+ */
+function rp_nocache_headers() {
+	RP_Cache_Helper::set_nocache_constants();
+	nocache_headers();
+}
+
+/**
  * Get rounding precision for internal RP calculations.
  * Will increase the precision of rp_get_price_decimals by 2 decimals, unless WC_ROUNDING_PRECISION is set to a higher number.
  *
