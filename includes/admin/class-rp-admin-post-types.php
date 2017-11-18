@@ -257,14 +257,14 @@ class RP_Admin_Post_Types {
 				echo 'yes' === $current_featured ? __( 'Yes', 'restaurantpress' ) : __( 'No', 'restaurantpress' );
 			?></strong>
 
-			<a href="#featured-visibility" class="edit-featured-visibility hide-if-no-js"><?php _e( 'Edit', 'restaurantpress' ); ?></a>
+			<a href="#featured-visibility" class="edit-featured-visibility hide-if-no-js"><?php esc_html_e( 'Edit', 'restaurantpress' ); ?></a>
 
 			<div id="featured-visibility-select" class="hide-if-js">
 				<input type="hidden" name="current_featured" id="current_featured" value="<?php echo esc_attr( $current_featured ); ?>" />
-				<?php echo '<br /><input type="checkbox" name="_featured" id="_featured" ' . checked( $current_featured, 'yes', false ) . ' data-yes="' . esc_attr( 'Yes', 'restaurantpress' ) . '" data-no="' . esc_attr( 'No', 'restaurantpress' ) . '" /> <label for="_featured">' . __( 'This is a featured food', 'restaurantpress' ) . '</label><br />'; ?>
+				<?php echo '<br /><input type="checkbox" name="_featured" id="_featured" ' . checked( $current_featured, 'yes', false ) . ' data-yes="' . esc_attr( 'Yes', 'restaurantpress' ) . '" data-no="' . esc_attr( 'No', 'restaurantpress' ) . '" /> <label for="_featured">' . esc_html__( 'This is a featured food', 'restaurantpress' ) . '</label><br />'; ?>
 				<p>
-					<a href="#featured-visibility" class="save-post-visibility hide-if-no-js button"><?php _e( 'OK', 'restaurantpress' ); ?></a>
-					<a href="#featured-visibility" class="cancel-post-visibility hide-if-no-js"><?php _e( 'Cancel', 'restaurantpress' ); ?></a>
+					<a href="#featured-visibility" class="save-post-visibility hide-if-no-js button"><?php esc_html_e( 'OK', 'restaurantpress' ); ?></a>
+					<a href="#featured-visibility" class="cancel-post-visibility hide-if-no-js"><?php esc_html_e( 'Cancel', 'restaurantpress' ); ?></a>
 				</p>
 			</div>
 		</div>
