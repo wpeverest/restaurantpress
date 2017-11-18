@@ -1,7 +1,7 @@
 {
   "name": "restaurantpress",
   "title": "RestaurantPress",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "homepage": "https://wpeverest.com/restaurantpress",
   "repository": {
     "type": "git",
@@ -16,15 +16,16 @@
     "grunt-contrib-concat": "~1.0.1",
     "grunt-contrib-cssmin": "~2.2.1",
     "grunt-contrib-jshint": "~1.1.0",
-    "grunt-contrib-uglify": "~3.0.1",
+    "grunt-contrib-uglify": "~3.1.0",
     "grunt-contrib-watch": "~1.0.0",
     "grunt-phpcbf": "^0.1.1",
     "grunt-phpcs": "~0.4.0",
-    "grunt-postcss": "~0.8.0",
+    "grunt-postcss": "~0.9.0",
     "grunt-rtlcss": "~2.0.1",
     "grunt-sass": "~2.0.0",
     "grunt-stylelint": "~0.9.0",
-    "grunt-wp-i18n": "~1.0.0"
+    "grunt-wp-i18n": "~1.0.0",
+    "stylelint": "~8.2.0"
   },
   "engines": {
     "node": ">=0.8.0",
