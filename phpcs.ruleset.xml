@@ -9,23 +9,33 @@
 	<exclude-pattern>tests/cli/</exclude-pattern>
 	<exclude-pattern>apigen/</exclude-pattern>
 	<exclude-pattern>includes/libraries/</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern>
 
+	<!-- Configs -->
+	<config name="minimum_supported_wp_version" value="4.5" />
+	<config name="testVersion" value="5.2-"/>
+
+	<!-- Rules -->
 	<rule ref="PHPCompatibility"/>
 
 	<rule ref="WordPress">
 		<exclude name="WordPress.VIP.RestrictedFunctions" />
 		<exclude name="WordPress.VIP.OrderByRand" />
 	</rule>
-
 	<rule ref="WordPress.VIP.ValidatedSanitizedInput">
 		<properties>
 			<property name="customSanitizingFunctions" type="array" value="rp_clean,rp_sanitize_tooltip" />
 		</properties>
 	</rule>
-
 	<rule ref="WordPress.XSS.EscapeOutput">
 		<properties>
 			<property name="customEscapingFunctions" type="array" value="rp_help_tip,rp_sanitize_tooltip" />
+		</properties>
+	</rule>
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array" value="restaurantpress" />
 		</properties>
 	</rule>
 </ruleset>

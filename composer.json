@@ -9,7 +9,7 @@
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "*",
-    "wp-coding-standards/wpcs": "0.13.1",
+    "wp-coding-standards/wpcs": "^0.14",
     "phpunit/phpunit": "6.2.3",
     "wpeverest/wpeverest-git-hooks": "1.0.1",
     "wimg/php-compatibility": "^8.0",
