@@ -75,8 +75,8 @@ if ( ! class_exists( 'RP_Admin_Settings', false ) ) :
 
 			self::add_message( __( 'Your settings have been saved.', 'restaurantpress' ) );
 
-			// Clear any unwanted data and flush rules.
-			wp_schedule_single_event( time(), 'restaurantpress_flush_rewrite_rules' );
+			// Clear any unwanted data and flush rules on next init.
+			add_option( 'restaurantpress_queue_flush_rewrite_rules', 'true' );
 
 			do_action( 'restaurantpress_settings_saved' );
 		}
