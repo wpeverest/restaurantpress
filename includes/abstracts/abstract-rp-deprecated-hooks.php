@@ -1,14 +1,10 @@
 <?php
 /**
- * RP_Deprecated_Hooks class maps old actions and filters to new ones. This is the base class for handling those deprecated hooks.
+ * Abstract deprecated hooks
  *
- * Based on the WCS_Hook_Deprecator class by Prospress.
- *
- * @class    RP_Deprecated_Hooks
- * @version  1.5.0
- * @package  RestaurantPress/Abstracts
- * @category Abstract Class
- * @author   WPEverest
+ * @package RestaurantPress\Abstracts
+ * @since   1.5.0
+ * @version 1.6.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,7 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * RP_Deprecated_Hooks class.
+ * RP_Deprecated_Hooks class maps old actions and filters to new ones. This is the base class for handling those deprecated hooks.
+ *
+ * Based on the WCS_Hook_Deprecator class by Prospress.
  */
 abstract class RP_Deprecated_Hooks {
 
@@ -26,6 +24,13 @@ abstract class RP_Deprecated_Hooks {
 	 * @var array
 	 */
 	protected $deprecated_hooks = array();
+
+	/**
+	 * Array of versions on each hook has been deprecated.
+	 *
+	 * @var array
+	 */
+	protected $deprecated_version = array();
 
 	/**
 	 * Constructor.
@@ -38,9 +43,9 @@ abstract class RP_Deprecated_Hooks {
 	/**
 	 * Hook into the new hook so we can handle deprecated hooks once fired.
 	 *
-	 * @param string $hook_name
+	 * @param string $hook_name Hook name.
 	 */
-	abstract function hook_in( $hook_name );
+	abstract public function hook_in( $hook_name );
 
 	/**
 	 * Get old hooks to map to new hook.
@@ -74,29 +79,39 @@ abstract class RP_Deprecated_Hooks {
 	/**
 	 * If the old hook is in-use, trigger it.
 	 *
-	 * @param  string $new_hook
-	 * @param  string $old_hook
-	 * @param  array  $new_callback_args
-	 * @param  mixed  $return_value
+	 * @param  string $new_hook          New hook name.
+	 * @param  string $old_hook          Old hook name.
+	 * @param  array  $new_callback_args New callback args.
+	 * @param  mixed  $return_value      Returned value.
 	 * @return mixed
 	 */
-	abstract function handle_deprecated_hook( $new_hook, $old_hook, $new_callback_args, $return_value );
+	abstract public function handle_deprecated_hook( $new_hook, $old_hook, $new_callback_args, $return_value );
+
+	/**
+	 * Get deprecated version.
+	 *
+	 * @param string $old_hook Old hook name.
+	 * @return string
+	 */
+	protected function get_deprecated_version( $old_hook ) {
+		return ! empty( $this->deprecated_version[ $old_hook ] ) ? $this->deprecated_version[ $old_hook ] : RP_VERSION;
+	}
 
 	/**
 	 * Display a deprecated notice for old hooks.
 	 *
-	 * @param string $old_hook
-	 * @param string $new_hook
+	 * @param string $old_hook Old hook.
+	 * @param string $new_hook New hook.
 	 */
 	protected function display_notice( $old_hook, $new_hook ) {
-		rp_deprecated_function( sprintf( 'The "%s" hook uses out of date data structures and', esc_html( $old_hook ) ), RP_VERSION, esc_html( $new_hook ) );
+		rp_deprecated_function( esc_html( $old_hook ), esc_html( $this->get_deprecated_version( $old_hook ) ), esc_html( $new_hook ) );
 	}
 
 	/**
 	 * Fire off a legacy hook with it's args.
 	 *
-	 * @param  string $old_hook
-	 * @param  array  $new_callback_args
+	 * @param  string $old_hook          Old hook name.
+	 * @param  array  $new_callback_args New callback args.
 	 * @return mixed
 	 */
 	abstract protected function trigger_hook( $old_hook, $new_callback_args );
