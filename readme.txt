@@ -63,13 +63,24 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 
 == Changelog ==
 
-= 1.5.1 - XX/11/2017 =
+= 1.6.0 - XX/11/2017 =
+* Feature - Include RP wrapper for DateTime.
+* Feature - RestaurantPress Data Exception Class.
+* Feature - Introduced Integration and mailer class.
+* Feature - Introduced formatting functions for datetime and colors.
+* Feature - Introduced admin Settings API used by Integrations, and Mailer.
+* Tweak - Iris picker validation for HEX color codes.
+* Tweak - Convert input submit elements to button submit elements.
+* Tweak - Usability and accessibility improvement with selectWoo.
 * Fix - Currency position with RTL symbols.
 * Fix - Flexslider support for RTL languages and fixes for zoom target in Chrome.
+* Fix - WP rocket caching issue do not set the constant.
+* Fix - Prevent notice on settings page when accessing invalid tab.
+* Fix - Use an action/option rather than cron to queue rule flushing.
 
 [See changelog for all versions](https://raw.githubusercontent.com/wpeverest/restaurantpress/master/CHANGELOG.txt).
 
 == Upgrade Notice ==
 
-= 1.5.0 =
-1.5.0 is a major update so it is important that you make backups, and ensure themes and extensions are 1.4 compatible before upgrading.
+= 1.6.0 =
+1.6.0 is a major update. Make a full site backup, update your theme and extensions, and ensure they are compatible before upgrading.

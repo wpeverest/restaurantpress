@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Main RestaurantPress Class.
  *
  * @class   RestaurantPress
- * @version 1.5.1
+ * @version 1.6.0
  */
 final class RestaurantPress {
 
@@ -25,7 +25,7 @@ final class RestaurantPress {
 	 *
 	 * @var string
 	 */
-	public $version = '1.5.1';
+	public $version = '1.6.0';
 
 	/**
 	 * The single instance of the class.

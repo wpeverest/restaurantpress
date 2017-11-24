@@ -57,7 +57,7 @@ class RP_Admin_Post_Types {
 	/**
 	 * Looks at the current screen and loads the correct list table handler.
 	 *
-	 * @since 1.5.1
+	 * @since 1.6.0
 	 */
 	public function setup_screen() {
 		$screen_id = false;

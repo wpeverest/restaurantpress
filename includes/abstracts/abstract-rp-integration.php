@@ -6,7 +6,7 @@
  *
  * @class    RP_Integration
  * @extends  RP_Settings_API
- * @version  1.5.1
+ * @version  1.6.0
  * @package  RestaurantPress/Abstracts
  * @category Abstract Class
  * @author   WPEverest

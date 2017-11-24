@@ -3,7 +3,7 @@
  * RestaurantPress Email Settings
  *
  * @class    RP_Settings_Emails
- * @version  1.5.1
+ * @version  1.6.0
  * @package  RestaurantPress/Admin
  * @category Admin
  * @author   WPEverest

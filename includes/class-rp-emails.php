@@ -5,7 +5,7 @@
  * RestaurantPress Emails class which handles the sending on notification emails and email templates. This class loads in available emails.
  *
  * @class    RP_Emails
- * @version  1.5.1
+ * @version  1.6.0
  * @package  RestaurantPress/Classes/Emails
  * @category Class
  * @author   WPEverest
@@ -43,7 +43,7 @@ class RP_Emails {
 	 * Gets the main RP_Emails Instance.
 	 *
 	 * @static
-	 * @since  1.5.1
+	 * @since  1.6.0
 	 * @return RP_Emails Main instance
 	 */
 	public static function instance() {
@@ -56,19 +56,19 @@ class RP_Emails {
 	/**
 	 * Cloning is forbidden.
 	 *
-	 * @since 1.5.1
+	 * @since 1.6.0
 	 */
 	public function __clone() {
-		rp_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'restaurantpress' ), '1.5.1' );
+		rp_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'restaurantpress' ), '1.6.0' );
 	}
 
 	/**
 	 * Unserializing instances of this class is forbidden.
 	 *
-	 * @since 1.5.1
+	 * @since 1.6.0
 	 */
 	public function __wakeup() {
-		rp_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'restaurantpress' ), '1.5.1' );
+		rp_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'restaurantpress' ), '1.6.0' );
 	}
 
 	/**

@@ -546,7 +546,7 @@ function get_restaurantpress_currency_symbol( $currency = '' ) {
 /**
  * Send HTML emails from RestaurantPress.
  *
- * @since 1.5.1
+ * @since 1.6.0
  *
  * @param mixed  $to
  * @param mixed  $subject
@@ -667,7 +667,7 @@ function rp_get_core_supported_themes() {
 /**
  * Get user agent string.
  *
- * @since  1.5.1
+ * @since  1.6.0
  * @return string
  */
 function rp_get_user_agent() {
@@ -716,7 +716,7 @@ function rp_set_time_limit( $limit = 0 ) {
 /**
  * Wrapper for nocache_headers which also disables page caching.
  *
- * @since 1.5.1
+ * @since 1.6.0
  */
 function rp_nocache_headers() {
 	RP_Cache_Helper::set_nocache_constants();
@@ -727,7 +727,7 @@ function rp_nocache_headers() {
  * Get rounding precision for internal RP calculations.
  * Will increase the precision of rp_get_price_decimals by 2 decimals, unless WC_ROUNDING_PRECISION is set to a higher number.
  *
- * @since  1.5.1
+ * @since  1.6.0
  * @return int
  */
 function rp_get_rounding_precision() {
@@ -779,7 +779,7 @@ function rp_print_r( $expression, $return = false ) {
 /**
  * Switch RestaurantPress to site language.
  *
- * @since 1.5.1
+ * @since 1.6.0
  */
 function rp_switch_to_site_locale() {
 	if ( function_exists( 'switch_to_locale' ) ) {
@@ -796,7 +796,7 @@ function rp_switch_to_site_locale() {
 /**
  * Switch RestaurantPress language to original.
  *
- * @since 1.5.1
+ * @since 1.6.0
  */
 function rp_restore_locale() {
 	if ( function_exists( 'restore_previous_locale' ) ) {

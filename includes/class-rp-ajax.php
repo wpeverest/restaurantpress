@@ -46,7 +46,7 @@ class RP_AJAX {
 	/**
 	 * Send headers for RP Ajax Requests.
 	 *
-	 * @since 1.5.1
+	 * @since 1.6.0
 	 */
 	private static function rp_ajax_headers() {
 		send_origin_headers();

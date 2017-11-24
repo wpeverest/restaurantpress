@@ -13,7 +13,7 @@
  * @see     https://docs.wpeverest.com/docs/restaurantpress/template-structure/
  * @author  WPEverest
  * @package RestaurantPress/Templates/Emails
- * @version 1.5.1
+ * @version 1.6.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

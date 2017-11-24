@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the RestaurantPress package.
 msgid ""
 msgstr ""
-"Project-Id-Version: RestaurantPress 1.5.1-dev\n"
+"Project-Id-Version: RestaurantPress 1.6.0-dev\n"
 "Report-Msgid-Bugs-To: https://github.com/wpeverest/restaurantpress/issues\n"
 "POT-Creation-Date: 2017-11-06 19:29:02+00:00\n"
 "MIME-Version: 1.0\n"

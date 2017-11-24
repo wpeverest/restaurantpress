@@ -285,7 +285,7 @@ function rp_time_format() {
  *
  * Based on wcs_strtotime_dark_knight() from WC Subscriptions by Prospress.
  *
- * @since  1.5.1
+ * @since  1.6.0
  *
  * @param string $time_string
  * @param int|null $from_timestamp
@@ -313,7 +313,7 @@ function rp_string_to_timestamp( $time_string, $from_timestamp = null ) {
 /**
  * Convert a date string to a RP_DateTime.
  *
- * @since  1.5.1
+ * @since  1.6.0
  * @param  string $time_string
  * @return RP_DateTime
  */
@@ -343,7 +343,7 @@ function rp_string_to_datetime( $time_string ) {
  *
  * Adapted from https://secure.php.net/manual/en/function.timezone-name-from-abbr.php#89155.
  *
- * @since  1.5.1
+ * @since  1.6.0
  * @return string PHP timezone string for the site
  */
 function rp_timezone_string() {
@@ -627,7 +627,7 @@ function rp_format_sale_price( $regular_price, $sale_price ) {
 /**
  * Format a date for output.
  *
- * @since  1.5.1
+ * @since  1.6.0
  * @param  RP_DateTime $date
  * @param  string $format Defaults to the rp_date_format function if not set.
  * @return string

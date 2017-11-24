@@ -4,7 +4,7 @@
  * timezone is absent.
  *
  * @class    RP_DateTime
- * @version  1.5.1
+ * @version  1.6.0
  * @package  RestaurantPress/Classes
  * @category Class
  * @author   WPEverest
@@ -30,7 +30,7 @@ class RP_DateTime extends DateTime {
 	/**
 	 * Output an ISO 8601 date string in local (WordPress) timezone.
 	 *
-	 * @since  1.5.1
+	 * @since  1.6.0
 	 * @return string
 	 */
 	public function __toString() {
@@ -72,7 +72,7 @@ class RP_DateTime extends DateTime {
 	/**
 	 * Missing in PHP 5.2 so just here so it can be supported consistently.
 	 *
-	 * @since  1.5.1
+	 * @since  1.6.0
 	 * @return int
 	 */
 	public function getTimestamp() {
@@ -82,7 +82,7 @@ class RP_DateTime extends DateTime {
 	/**
 	 * Get the timestamp with the WordPress timezone offset added or subtracted.
 	 *
-	 * @since  1.5.1
+	 * @since  1.6.0
 	 * @return int
 	 */
 	public function getOffsetTimestamp() {
@@ -92,7 +92,7 @@ class RP_DateTime extends DateTime {
 	/**
 	 * Format a date based on the offset timestamp.
 	 *
-	 * @since  1.5.1
+	 * @since  1.6.0
 	 * @param  string $format
 	 * @return string
 	 */
@@ -103,7 +103,7 @@ class RP_DateTime extends DateTime {
 	/**
 	 * Return a localised date based on offset timestamp. Wrapper for date_i18n function.
 	 *
-	 * @since  1.5.1
+	 * @since  1.6.0
 	 * @param  string $format
 	 * @return string
 	 */

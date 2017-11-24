@@ -5,7 +5,7 @@
  * Admin Settings API used by Integrations, and Mailer.
  *
  * @class    RP_Settings_API
- * @version  1.5.1
+ * @version  1.6.0
  * @package  RestaurantPress/Abstracts
  * @category Abstract Class
  * @author   WPEverest
@@ -226,7 +226,7 @@ abstract class RP_Settings_API {
 	 * and make sure the $settings array is either the default
 	 * or the settings stored in the database.
 	 *
-	 * @since 1.5.1
+	 * @since 1.6.0
 	 * @uses  get_option(), add_option()
 	 */
 	public function init_settings() {

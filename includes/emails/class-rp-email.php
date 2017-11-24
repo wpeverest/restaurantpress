@@ -6,7 +6,7 @@
  *
  * @class    RP_Email
  * @extends  RP_Settings_API
- * @version  1.5.1
+ * @version  1.6.0
  * @package  RestaurantPress/Classes/Emails
  * @category Core
  * @author   WPEverest
@@ -197,7 +197,7 @@ class RP_Email extends RP_Settings_API {
  	/**
 	 * Strings to find in subjects/headings.
 	 *
-	 * @deprecated 1.5.1 in favour of placeholders
+	 * @deprecated 1.6.0 in favour of placeholders
 	 * @var array
 	 */
 	public $find = array();
@@ -205,7 +205,7 @@ class RP_Email extends RP_Settings_API {
 	/**
 	 * Strings to replace in subjects/headings.
 	 *
-	 * @deprecated 1.5.1 in favour of placeholders
+	 * @deprecated 1.6.0 in favour of placeholders
 	 * @var array
 	 */
 	public $replace = array();
@@ -304,7 +304,7 @@ class RP_Email extends RP_Settings_API {
 	/**
 	 * Get email subject.
 	 *
-	 * @since  1.5.1
+	 * @since  1.6.0
 	 * @return string
 	 */
 	public function get_default_subject() {
@@ -314,7 +314,7 @@ class RP_Email extends RP_Settings_API {
 	/**
 	 * Get email heading.
 	 *
-	 * @since  1.5.1
+	 * @since  1.6.0
 	 * @return string
 	 */
 	public function get_default_heading() {
@@ -649,7 +649,7 @@ class RP_Email extends RP_Settings_API {
 	/**
 	 * Save the email templates.
 	 *
-	 * @since 1.5.1
+	 * @since 1.6.0
 	 * @param string $template_code
 	 * @param string $template_path
 	 */

@@ -5,7 +5,7 @@
  * Extends Exception to provide additional data.
  *
  * @class    RP_Data_Exception
- * @version  1.5.1
+ * @version  1.6.0
  * @package  RestaurantPress/Classes
  * @category Class
  * @author   WPEverest
