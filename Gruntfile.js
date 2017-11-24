@@ -168,7 +168,10 @@ module.exports = function( grunt ){
 				options: {
 					potFilename: 'restaurantpress.pot',
 					exclude: [
-						'vendor/.*'
+						'apigen/.*',
+						'vendor/.*',
+						'tests/.*',
+						'tmp/.*'
 					]
 				}
 			}
@@ -198,10 +201,35 @@ module.exports = function( grunt ){
 			files: {
 				src: [
 					'**/*.php',         // Include all files
+					'!apigen/**',       // Exclude apigen/
 					'!node_modules/**', // Exclude node_modules/
-					'!vendor/**'        // Exclude vendor/
+					'!tests/**',        // Exclude tests/
+					'!vendor/**',       // Exclude vendor/
+					'!tmp/**'           // Exclude tmp/
 				],
 				expand: true
+			}
+		},
+
+		// Exec shell commands.
+		shell: {
+			options: {
+				stdout: true,
+				stderr: true
+			},
+			apigen: {
+				command: [
+					'apigen generate -q',
+					'cd apigen',
+					'php hook-docs.php'
+				].join( '&&' )
+			}
+		},
+
+		// Clean the directory.
+		clean: {
+			apigen: {
+				src: [ 'wc-apidocs' ]
 			}
 		},
 
@@ -246,6 +274,7 @@ module.exports = function( grunt ){
 
 	// Load NPM tasks to be used here
 	grunt.loadNpmTasks( 'grunt-sass' );
+	grunt.loadNpmTasks( 'grunt-shell' );
 	grunt.loadNpmTasks( 'grunt-phpcs' );
 	grunt.loadNpmTasks( 'grunt-rtlcss' );
 	grunt.loadNpmTasks( 'grunt-postcss' );
@@ -257,6 +286,7 @@ module.exports = function( grunt ){
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 	grunt.loadNpmTasks( 'grunt-contrib-concat' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
+	grunt.loadNpmTasks( 'grunt-contrib-clean' );
 
 	// Register tasks
 	grunt.registerTask( 'default', [
@@ -277,6 +307,11 @@ module.exports = function( grunt ){
 		'postcss',
 		'cssmin',
 		'concat'
+	]);
+
+	grunt.registerTask( 'docs', [
+		'clean:apigen',
+		'shell:apigen'
 	]);
 
 	// Only an alias to 'default' task.
