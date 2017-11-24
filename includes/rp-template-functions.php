@@ -438,7 +438,7 @@ if ( ! function_exists( 'restaurantpress_form_field' ) ) {
 
 		if ( $args['required'] ) {
 			$args['class'][] = 'validate-required';
-			$required = ' <abbr class="required" title="' . esc_attr__( 'required', 'restauranpress-table-reservation' ) . '">*</abbr>';
+			$required = ' <abbr class="required" title="' . esc_attr__( 'required', 'restaurantpress' ) . '">*</abbr>';
 		} else {
 			$required = '';
 		}

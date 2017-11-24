@@ -101,19 +101,19 @@ class RP_Admin_Post_Types {
 			// Preview menu item link.
 			$preview_menu_item_link_html = sprintf( ' <a target="_blank" href="%1$s">%2$s</a>',
 				esc_url( get_preview_post_link( $post ) ),
-				__( 'Preview menu item' )
+				__( 'Preview menu item', 'restaurantpress' )
 			);
 
 			// Scheduled menu item preview link.
 			$scheduled_menu_item_link_html = sprintf( ' <a target="_blank" href="%1$s">%2$s</a>',
 				esc_url( get_permalink( $post_ID ) ),
-				__( 'Preview menu item' )
+				__( 'Preview menu item', 'restaurantpress' )
 			);
 
 			// View menu item link.
 			$view_menu_item_link_html = sprintf( ' <a href="%1$s">%2$s</a>',
 				esc_url( get_permalink( $post_ID ) ),
-				__( 'View menu item' )
+				__( 'View menu item', 'restaurantpress' )
 			);
 		}
 
@@ -131,8 +131,8 @@ class RP_Admin_Post_Types {
 			6 => __( 'Menu Item published.', 'restaurantpress' ) . $view_menu_item_link_html,
 			7 => __( 'Menu Item saved.', 'restaurantpress' ),
 			8 => __( 'Menu Item submitted.', 'restaurantpress' ) . $preview_menu_item_link_html,
-			9 => sprintf( __( 'Menu Item scheduled for: %s.' ), '<strong>' . $scheduled_date . '</strong>' ) . $scheduled_menu_item_link_html,
-			10 => __( 'Menu Item draft updated.' ) . $preview_menu_item_link_html,
+			9 => sprintf( __( 'Menu Item scheduled for: %s.', 'restaurantpress' ), '<strong>' . $scheduled_date . '</strong>' ) . $scheduled_menu_item_link_html,
+			10 => __( 'Menu Item draft updated.', 'restaurantpress' ) . $preview_menu_item_link_html,
 		);
 
 		$messages['food_group'] = array(
