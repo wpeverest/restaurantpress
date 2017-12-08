@@ -27,6 +27,18 @@
     ],
     "post-update-cmd": [
       "WPEverest\\GitHooks\\Hooks::postHooks"
+    ],
+    "phpcs": [
+      "phpcs -s -p --standard=./phpcs.ruleset.xml"
+    ],
+    "phpcbf": [
+      "phpcbf -p --standard=./phpcs.ruleset.xml"
     ]
+  },
+  "extra": {
+    "scripts-description": {
+      "phpcs": "Analyze code against the WordPress coding standard with PHP_CodeSniffer",
+      "phpcbf": "Fix coding standards warnings/errors automattically with PHP Code Beautifier"
+    }
   }
 }
