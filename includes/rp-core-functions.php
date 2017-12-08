@@ -15,12 +15,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Include core functions (available in both admin and frontend).
-include( RP_ABSPATH . 'includes/rp-conditional-functions.php' );
-include( RP_ABSPATH . 'includes/rp-deprecated-functions.php' );
-include( RP_ABSPATH . 'includes/rp-formatting-functions.php' );
-include( RP_ABSPATH . 'includes/rp-food-functions.php' );
-include( RP_ABSPATH . 'includes/rp-term-functions.php' );
-include( RP_ABSPATH . 'includes/rp-widget-functions.php' );
+require RP_ABSPATH . 'includes/rp-conditional-functions.php';
+require RP_ABSPATH . 'includes/rp-deprecated-functions.php';
+require RP_ABSPATH . 'includes/rp-formatting-functions.php';
+require RP_ABSPATH . 'includes/rp-food-functions.php';
+require RP_ABSPATH . 'includes/rp-term-functions.php';
+require RP_ABSPATH . 'includes/rp-widget-functions.php';
 
 /**
  * Short Description (excerpt).
@@ -31,7 +31,7 @@ add_filter( 'restaurantpress_short_description', 'convert_chars' );
 add_filter( 'restaurantpress_short_description', 'wpautop' );
 add_filter( 'restaurantpress_short_description', 'shortcode_unautop' );
 add_filter( 'restaurantpress_short_description', 'prepend_attachment' );
-add_filter( 'restaurantpress_short_description', 'do_shortcode', 11 ); // AFTER wpautop()
+add_filter( 'restaurantpress_short_description', 'do_shortcode', 11 ); // After wpautop().
 add_filter( 'restaurantpress_short_description', 'rp_format_food_short_description', 9999999 );
 add_filter( 'restaurantpress_short_description', 'rp_do_oembeds' );
 
@@ -53,23 +53,23 @@ function rp_maybe_define_constant( $name, $value ) {
  *
  * RP_TEMPLATE_DEBUG_MODE will prevent overrides in themes from taking priority.
  *
- * @param mixed  $slug
- * @param string $name (default: '')
+ * @param mixed  $slug Template slug.
+ * @param string $name Template name (default: '').
  */
 function rp_get_template_part( $slug, $name = '' ) {
 	$template = '';
 
-	// Look in yourtheme/slug-name.php and yourtheme/restaurantpress/slug-name.php
+	// Look in yourtheme/slug-name.php and yourtheme/restaurantpress/slug-name.php.
 	if ( $name && ! RP_TEMPLATE_DEBUG_MODE ) {
 		$template = locate_template( array( "{$slug}-{$name}.php", RP()->template_path() . "{$slug}-{$name}.php" ) );
 	}
 
-	// Get default slug-name.php
+	// Get default slug-name.php.
 	if ( ! $template && $name && file_exists( RP()->plugin_path() . "/templates/{$slug}-{$name}.php" ) ) {
 		$template = RP()->plugin_path() . "/templates/{$slug}-{$name}.php";
 	}
 
-	// If template file doesn't exist, look in yourtheme/slug.php and yourtheme/restaurantpress/slug.php
+	// If template file doesn't exist, look in yourtheme/slug.php and yourtheme/restaurantpress/slug.php.
 	if ( ! $template && ! RP_TEMPLATE_DEBUG_MODE ) {
 		$template = locate_template( array( "{$slug}.php", RP()->template_path() . "{$slug}.php" ) );
 	}
@@ -85,19 +85,20 @@ function rp_get_template_part( $slug, $name = '' ) {
 /**
  * Get other templates (e.g. layout attributes) passing attributes and including the file.
  *
- * @param string $template_name
- * @param array  $args (default: array())
- * @param string $template_path (default: '')
- * @param string $default_path (default: '')
+ * @param string $template_name Template name.
+ * @param array  $args          Arguments. (default: array).
+ * @param string $template_path Template path. (default: '').
+ * @param string $default_path  Default path. (default: '').
  */
 function rp_get_template( $template_name, $args = array(), $template_path = '', $default_path = '' ) {
 	if ( ! empty( $args ) && is_array( $args ) ) {
-		extract( $args );
+		extract( $args ); // @codingStandardsIgnoreLine
 	}
 
 	$located = rp_locate_template( $template_name, $template_path, $default_path );
 
 	if ( ! file_exists( $located ) ) {
+		/* translators: %s template */
 		rp_doing_it_wrong( __FUNCTION__, sprintf( '<code>%s</code> does not exist.', $located ), '1.4.0' );
 		return;
 	}
@@ -107,7 +108,7 @@ function rp_get_template( $template_name, $args = array(), $template_path = '', 
 
 	do_action( 'restaurantpress_before_template_part', $template_name, $template_path, $located, $args );
 
-	include( $located );
+	include $located;
 
 	do_action( 'restaurantpress_after_template_part', $template_name, $template_path, $located, $args );
 }
@@ -117,10 +118,10 @@ function rp_get_template( $template_name, $args = array(), $template_path = '', 
  *
  * @see   rp_get_template
  * @since 1.4.0
- * @param string $template_name
- * @param array  $args
- * @param string $template_path
- * @param string $default_path
+ * @param string $template_name Template name.
+ * @param array  $args          Arguments. (default: array).
+ * @param string $template_path Template path. (default: '').
+ * @param string $default_path  Default path. (default: '').
  *
  * @return string
  */
@@ -135,13 +136,13 @@ function rp_get_template_html( $template_name, $args = array(), $template_path =
  *
  * This is the load order:
  *
- *      yourtheme       /   $template_path   /   $template_name
- *      yourtheme       /   $template_name
- *      $default_path   /   $template_name
+ * yourtheme/$template_path/$template_name
+ * yourtheme/$template_name
+ * $default_path/$template_name
  *
- * @param  string $template_name
- * @param  string $template_path (default: '')
- * @param  string $default_path (default: '')
+ * @param  string $template_name Template name.
+ * @param  string $template_path Template path. (default: '').
+ * @param  string $default_path  Default path. (default: '').
  * @return string
  */
 function rp_locate_template( $template_name, $template_path = '', $default_path = '' ) {
@@ -161,7 +162,7 @@ function rp_locate_template( $template_name, $template_path = '', $default_path 
 		)
 	);
 
-	// Get default template/
+	// Get default template/.
 	if ( ! $template || RP_TEMPLATE_DEBUG_MODE ) {
 		$template = $default_path . $template_name;
 	}
@@ -189,7 +190,8 @@ function get_restaurantpress_currencies() {
 
 	if ( ! isset( $currencies ) ) {
 		$currencies = array_unique(
-			apply_filters( 'restaurantpress_currencies',
+			apply_filters(
+				'restaurantpress_currencies',
 				array(
 					'AED' => __( 'United Arab Emirates dirham', 'restaurantpress' ),
 					'AFN' => __( 'Afghan afghani', 'restaurantpress' ),
@@ -364,7 +366,7 @@ function get_restaurantpress_currencies() {
 /**
  * Get Currency symbol.
  *
- * @param string $currency (default: '')
+ * @param  string $currency Currency. (default: '').
  * @return string
  */
 function get_restaurantpress_currency_symbol( $currency = '' ) {
@@ -372,7 +374,7 @@ function get_restaurantpress_currency_symbol( $currency = '' ) {
 		$currency = get_restaurantpress_currency();
 	}
 
-	$symbols = apply_filters( 'restaurantpress_currency_symbols', array(
+	$symbols         = apply_filters( 'restaurantpress_currency_symbols', array(
 		'AED' => '&#x62f;.&#x625;',
 		'AFN' => '&#x60b;',
 		'ALL' => 'L',
@@ -537,7 +539,6 @@ function get_restaurantpress_currency_symbol( $currency = '' ) {
 		'ZAR' => '&#82;',
 		'ZMW' => 'ZK',
 	) );
-
 	$currency_symbol = isset( $symbols[ $currency ] ) ? $symbols[ $currency ] : '';
 
 	return apply_filters( 'restaurantpress_currency_symbol', $currency_symbol, $currency );
@@ -546,15 +547,13 @@ function get_restaurantpress_currency_symbol( $currency = '' ) {
 /**
  * Send HTML emails from RestaurantPress.
  *
- * @since 1.6.0
- *
- * @param mixed  $to
- * @param mixed  $subject
- * @param mixed  $message
- * @param string $headers (default: "Content-Type: text/html\r\n")
- * @param string $attachments (default: "")
+ * @param mixed  $to          Receiver.
+ * @param mixed  $subject     Subject.
+ * @param mixed  $message     Message.
+ * @param string $headers     Headers. (default: "Content-Type: text/html\r\n").
+ * @param string $attachments Attachments. (default: "").
  */
-function rp_mail( $to, $subject, $message, $headers = "Content-Type: text/html\r\n", $attachments = "" ) {
+function rp_mail( $to, $subject, $message, $headers = "Content-Type: text/html\r\n", $attachments = '' ) {
 	$mailer = RP()->mailer();
 
 	$mailer->send( $to, $subject, $message, $headers, $attachments );
@@ -563,10 +562,14 @@ function rp_mail( $to, $subject, $message, $headers = "Content-Type: text/html\r
 /**
  * Get an image size.
  *
- * Variable is filtered by restaurantpress_get_image_size_{image_size}.
+ * The returned variable is filtered by restaurantpress_get_image_size_{image_size} filter to
+ * allow 3rd party customisation.
  *
- * @param  mixed $image_size
- * @return array
+ * Sizes defined by the theme take priority over settings. Settings are hidden when a theme
+ * defines sizes.
+ *
+ * @param  array|string $image_size Name of the image size to get, or an array of dimensions.
+ * @return array Array of dimensions including width, height, and cropping mode. Cropping mode is 0 for no crop, and 1 for hard crop.
  */
 function rp_get_image_size( $image_size ) {
 	if ( is_array( $image_size ) ) {
@@ -582,7 +585,7 @@ function rp_get_image_size( $image_size ) {
 
 		$image_size = $width . '_' . $height;
 
-	} elseif ( in_array( $image_size, array( 'food_thumbnail', 'food_grid', 'food_single' ) ) ) {
+	} elseif ( in_array( $image_size, array( 'food_thumbnail', 'food_grid', 'food_single' ), true ) ) {
 		$size           = get_option( $image_size . '_image_size', array() );
 		$size['width']  = isset( $size['width'] ) ? $size['width'] : '300';
 		$size['height'] = isset( $size['height'] ) ? $size['height'] : '300';
@@ -601,7 +604,8 @@ function rp_get_image_size( $image_size ) {
 
 /**
  * Queue some JavaScript code to be output in the footer.
- * @param string $code
+ *
+ * @param string $code Code.
  */
 function rp_enqueue_js( $code ) {
 	global $rp_queued_js;
@@ -628,10 +632,11 @@ function rp_print_js() {
 		$js = "<!-- RestaurantPress JavaScript -->\n<script type=\"text/javascript\">\njQuery(function($) { $rp_queued_js });\n</script>\n";
 
 		/**
-		 * restaurantpress_queued_js filter.
+		 * Queued jsfilter.
+		 *
 		 * @param string $js JavaScript code.
 		 */
-		echo apply_filters( 'restaurantpress_queued_js', $js );
+		echo apply_filters( 'restaurantpress_queued_js', $js ); // WPCS: XSS ok.
 
 		unset( $rp_queued_js );
 	}
@@ -649,19 +654,20 @@ function rp_print_js() {
  */
 function rp_setcookie( $name, $value, $expire = 0, $secure = false ) {
 	if ( ! headers_sent() ) {
-		setcookie( $name, $value, $expire, COOKIEPATH ? COOKIEPATH : '/', COOKIE_DOMAIN, $secure );
+		setcookie( $name, $value, $expire, COOKIEPATH ? COOKIEPATH : '/', COOKIE_DOMAIN, $secure, apply_filters( 'restaurantpress_cookie_httponly', false, $name, $value, $expire, $secure ) );
 	} elseif ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
 		headers_sent( $file, $line );
-		trigger_error( "{$name} cookie cannot be set - headers already sent by {$file} on line {$line}", E_USER_NOTICE );
+		trigger_error( "{$name} cookie cannot be set - headers already sent by {$file} on line {$line}", E_USER_NOTICE ); // WPCS: XSS ok.
 	}
 }
 
 /**
  * RestaurantPress Core Supported Themes.
- * @return string[]
+ *
+ * @return array Core Supported themes.
  */
 function rp_get_core_supported_themes() {
-	return array( 'twentyseventeen', 'twentysixteen', 'twentyfifteen', 'twentyfourteen', 'twentythirteen', 'twentytwelve','twentyeleven', 'twentyten' );
+	return array( 'twentyseventeen', 'twentysixteen', 'twentyfifteen', 'twentyfourteen', 'twentythirteen', 'twentytwelve', 'twentyeleven', 'twentyten' );
 }
 
 /**
@@ -671,7 +677,7 @@ function rp_get_core_supported_themes() {
  * @return string
  */
 function rp_get_user_agent() {
-	return isset( $_SERVER['HTTP_USER_AGENT'] ) ? strtolower( $_SERVER['HTTP_USER_AGENT'] ) : '';
+	return isset( $_SERVER['HTTP_USER_AGENT'] ) ? strtolower( rp_clean( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) ) ) : '';
 }
 
 /**
@@ -687,7 +693,7 @@ function rp_back_link( $label, $url ) {
 /**
  * Display a RestaurantPress help tip.
  *
- * @param  string $tip Help tip text.
+ * @param  string $tip        Help tip text.
  * @param  bool   $allow_html Allow sanitized HTML if true or escape.
  * @return string
  */
@@ -705,11 +711,11 @@ function rp_help_tip( $tip, $allow_html = false ) {
  * Wrapper for set_time_limit to see if it is enabled.
  *
  * @since 1.5.0
- * @param int $limit
+ * @param int $limit Time limit.
  */
 function rp_set_time_limit( $limit = 0 ) {
 	if ( function_exists( 'set_time_limit' ) && false === strpos( ini_get( 'disable_functions' ), 'set_time_limit' ) && ! ini_get( 'safe_mode' ) ) {
-		@set_time_limit( $limit );
+		@set_time_limit( $limit ); // @codingStandardsIgnoreLine
 	}
 }
 
@@ -753,10 +759,22 @@ function rp_get_rounding_precision() {
  */
 function rp_print_r( $expression, $return = false ) {
 	$alternatives = array(
-		array( 'func' => 'print_r', 'args' => array( $expression, true ) ),
-		array( 'func' => 'var_export', 'args' => array( $expression, true ) ),
-		array( 'func' => 'json_encode', 'args' => array( $expression ) ),
-		array( 'func' => 'serialize', 'args' => array( $expression ) ),
+		array(
+			'func' => 'print_r',
+			'args' => array( $expression, true ),
+		),
+		array(
+			'func' => 'var_export',
+			'args' => array( $expression, true ),
+		),
+		array(
+			'func' => 'json_encode',
+			'args' => array( $expression ),
+		),
+		array(
+			'func' => 'serialize',
+			'args' => array( $expression ),
+		),
 	);
 
 	$alternatives = apply_filters( 'restaurantpress_print_r_alternatives', $alternatives, $expression );
@@ -767,7 +785,7 @@ function rp_print_r( $expression, $return = false ) {
 			if ( $return ) {
 				return $res;
 			} else {
-				echo $res;
+				echo $res; // WPCS: XSS ok.
 				return true;
 			}
 		}
@@ -818,7 +836,7 @@ function rp_restore_locale() {
  *
  * @since 1.4.0
  *
- * @param string  $phone Content to convert phone number.
+ * @param  string $phone Content to convert phone number.
  * @return string Content with converted phone number.
  */
 function rp_make_phone_clickable( $phone ) {
@@ -831,12 +849,12 @@ function rp_make_phone_clickable( $phone ) {
  * Read in WooCommerce headers when reading plugin headers.
  *
  * @since  1.4.0
- * @param  array $headers
- * @return array $headers
+ * @param  array $headers Headers.
+ * @return array
  */
 function rp_enable_rp_plugin_headers( $headers ) {
 	if ( ! class_exists( 'RP_Plugin_Updates' ) ) {
-		include_once( dirname( __FILE__ ) . '/admin/plugin-updates/class-rp-plugin-updates.php' );
+		include_once dirname( __FILE__ ) . '/admin/plugin-updates/class-rp-plugin-updates.php';
 	}
 
 	$headers['RPRequires'] = RP_Plugin_Updates::VERSION_REQUIRED_HEADER;
@@ -860,19 +878,19 @@ add_filter( 'extra_plugin_headers', 'rp_enable_rp_plugin_headers' );
 function rp_delete_expired_transients() {
 	global $wpdb;
 
-	$sql = "DELETE a, b FROM $wpdb->options a, $wpdb->options b
+	$sql  = "DELETE a, b FROM $wpdb->options a, $wpdb->options b
 		WHERE a.option_name LIKE %s
 		AND a.option_name NOT LIKE %s
 		AND b.option_name = CONCAT( '_transient_timeout_', SUBSTRING( a.option_name, 12 ) )
 		AND b.option_value < %d";
-	$rows = $wpdb->query( $wpdb->prepare( $sql, $wpdb->esc_like( '_transient_' ) . '%', $wpdb->esc_like( '_transient_timeout_' ) . '%', time() ) );
+	$rows = $wpdb->query( $wpdb->prepare( $sql, $wpdb->esc_like( '_transient_' ) . '%', $wpdb->esc_like( '_transient_timeout_' ) . '%', time() ) ); // WPCS: unprepared SQL ok.
 
-	$sql = "DELETE a, b FROM $wpdb->options a, $wpdb->options b
+	$sql   = "DELETE a, b FROM $wpdb->options a, $wpdb->options b
 		WHERE a.option_name LIKE %s
 		AND a.option_name NOT LIKE %s
 		AND b.option_name = CONCAT( '_site_transient_timeout_', SUBSTRING( a.option_name, 17 ) )
 		AND b.option_value < %d";
-	$rows2 = $wpdb->query( $wpdb->prepare( $sql, $wpdb->esc_like( '_site_transient_' ) . '%', $wpdb->esc_like( '_site_transient_timeout_' ) . '%', time() ) );
+	$rows2 = $wpdb->query( $wpdb->prepare( $sql, $wpdb->esc_like( '_site_transient_' ) . '%', $wpdb->esc_like( '_site_transient_timeout_' ) . '%', time() ) ); // WPCS: unprepared SQL ok.
 
 	return absint( $rows + $rows2 );
 }
