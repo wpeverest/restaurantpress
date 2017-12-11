@@ -21,7 +21,12 @@ class RP_Deprecated_Filter_Hooks extends RP_Deprecated_Hooks {
 	 *
 	 * @var array
 	 */
-	protected $deprecated_hooks = array();
+	protected $deprecated_hooks = array(
+		'restaurantpress_get_script_data' => array(
+			'restaurantpress_params',
+			'rp_single_food_params',
+		),
+	);
 
 	/**
 	 * Array of versions on each hook has been deprecated.

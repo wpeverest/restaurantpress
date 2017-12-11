@@ -362,7 +362,7 @@ class RP_Frontend_Scripts {
 	private static function get_script_data( $handle ) {
 		switch ( $handle ) {
 			case 'rp-single-food' :
-				return array(
+				$params = array(
 					'flexslider'         => apply_filters( 'restaurantpress_single_food_carousel_options', array(
 						'rtl'            => is_rtl(),
 						'animation'      => 'slide',
@@ -386,8 +386,12 @@ class RP_Frontend_Scripts {
 					'flexslider_enabled' => apply_filters( 'restaurantpress_single_food_flexslider_enabled', 'yes' === get_option( 'restaurantpress_enable_gallery_slider' ) ? 1 : 0 ),
 				);
 			break;
+			default:
+				$params = false;
+			break;
 		}
-		return false;
+
+		return apply_filters( 'restaurantpress_get_script_data', $params, $handle );
 	}
 
 	/**
