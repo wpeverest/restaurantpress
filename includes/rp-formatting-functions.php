@@ -40,6 +40,29 @@ function rp_bool_to_string( $bool ) {
 }
 
 /**
+ * Sanitize permalink values before insertion into DB.
+ *
+ * Cannot use rp_clean because it sometimes strips % chars and breaks the user's setting.
+ *
+ * @since  1.6.0
+ * @param  string $value
+ * @return string
+ */
+function rp_sanitize_permalink( $value ) {
+	global $wpdb;
+
+	$value = $wpdb->strip_invalid_text_for_column( $wpdb->options, 'option_value', $value );
+
+	if ( is_wp_error( $value ) ) {
+		$value = '';
+	}
+
+	$value = esc_url_raw( $value );
+	$value = str_replace( 'http://', '', $value );
+	return untrailingslashit( $value );
+}
+
+/**
  * Trim trailing zeros off prices.
  *
  * @param  string|float|int $price Price.

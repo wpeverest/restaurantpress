@@ -647,6 +647,31 @@ function rp_setcookie( $name, $value, $expire = 0, $secure = false ) {
 }
 
 /**
+ * Various rewrite rule fixes.
+ *
+ * @since  1.6.0
+ * @param  array $rules Rewrite rule.
+ * @return array
+ */
+function rp_fix_rewrite_rules( $rules ) {
+	global $wp_rewrite;
+
+	$permalinks = rp_get_permalink_structure();
+
+	// Fix the rewrite rules when the food permalink have %food_menu_cat% flag.
+	if ( preg_match( '`/(.+)(/%food_menu_cat%)`', $permalinks['food_rewrite_slug'], $matches ) ) {
+		foreach ( $rules as $rule => $rewrite ) {
+			if ( preg_match( '`^' . preg_quote( $matches[1], '`' ) . '/\(`', $rule ) && preg_match( '/^(index\.php\?food_menu_cat)(?!(.*food_menu))/', $rewrite ) ) {
+				unset( $rules[ $rule ] );
+			}
+		}
+	}
+
+	return $rules;
+}
+add_filter( 'rewrite_rules_array', 'rp_fix_rewrite_rules' );
+
+/**
  * RestaurantPress Core Supported Themes.
  *
  * @return array Core Supported themes.
@@ -757,6 +782,69 @@ function rp_print_r( $expression, $return = false ) {
 	}
 
 	return false;
+}
+
+/**
+ * Get permalink settings for RestaurantPress independent of the user locale.
+ *
+ * @since  1.6.0
+ * @return array
+ */
+function rp_get_permalink_structure() {
+	if ( did_action( 'admin_init' ) ) {
+		rp_switch_to_site_locale();
+	}
+
+	$permalinks = wp_parse_args( (array) get_option( 'restaurantpress_permalinks', array() ), array(
+		'food_base'              => '',
+		'category_base'          => '',
+		'tag_base'               => '',
+		'use_verbose_page_rules' => false,
+	) );
+
+	// Ensure rewrite slugs are set.
+	$permalinks['food_rewrite_slug']     = untrailingslashit( empty( $permalinks['food_base'] ) ? _x( 'food', 'slug', 'restaurantpress' ) : $permalinks['food_base'] );
+	$permalinks['category_rewrite_slug'] = untrailingslashit( empty( $permalinks['category_base'] ) ? _x( 'food-category', 'slug', 'restaurantpress' ) : $permalinks['category_base'] );
+	$permalinks['tag_rewrite_slug']      = untrailingslashit( empty( $permalinks['tag_base'] ) ? _x( 'food-tag', 'slug', 'restaurantpress' ) : $permalinks['tag_base'] );
+
+	if ( did_action( 'admin_init' ) ) {
+		rp_restore_locale();
+	}
+	return $permalinks;
+}
+
+/**
+ * Switch RestaurantPress to site language.
+ *
+ * @since 1.6.0
+ */
+function rp_switch_to_site_locale() {
+	if ( function_exists( 'switch_to_locale' ) ) {
+		switch_to_locale( get_locale() );
+
+		// Filter on plugin_locale so load_plugin_textdomain loads the correct locale.
+		add_filter( 'plugin_locale', 'get_locale' );
+
+		// Init RP locale.
+		RP()->load_plugin_textdomain();
+	}
+}
+
+/**
+ * Switch RestaurantPress language to original.
+ *
+ * @since 1.6.0
+ */
+function rp_restore_locale() {
+	if ( function_exists( 'restore_previous_locale' ) ) {
+		restore_previous_locale();
+
+		// Remove filter.
+		remove_filter( 'plugin_locale', 'get_locale' );
+
+		// Init RP locale.
+		RP()->load_plugin_textdomain();
+	}
 }
 
 /**

@@ -23,6 +23,7 @@ class RP_Admin {
 	 */
 	public function __construct() {
 		add_action( 'init', array( $this, 'includes' ) );
+		add_action( 'current_screen', array( $this, 'conditional_includes' ) );
 		add_action( 'admin_init', array( $this, 'buffer' ), 1 );
 		add_action( 'admin_footer', 'rp_print_js', 25 );
 		add_filter( 'admin_footer_text', array( $this, 'admin_footer_text' ), 1 );
@@ -51,7 +52,23 @@ class RP_Admin {
 	}
 
 	/**
+	 * Include admin files conditionally.
+	 */
+	public function conditional_includes() {
+		if ( ! $screen = get_current_screen() ) {
+			return;
+		}
+
+		switch ( $screen->id ) {
+			case 'options-permalink' :
+				include( 'class-rp-admin-permalink-settings.php' );
+			break;
+		}
+	}
+
+	/**
 	 * Change the admin footer text on RestaurantPress admin pages.
+	 *
 	 * @param  string $footer_text
 	 * @return string
 	 */
