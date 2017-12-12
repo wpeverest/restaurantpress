@@ -545,21 +545,6 @@ function get_restaurantpress_currency_symbol( $currency = '' ) {
 }
 
 /**
- * Send HTML emails from RestaurantPress.
- *
- * @param mixed  $to          Receiver.
- * @param mixed  $subject     Subject.
- * @param mixed  $message     Message.
- * @param string $headers     Headers. (default: "Content-Type: text/html\r\n").
- * @param string $attachments Attachments. (default: "").
- */
-function rp_mail( $to, $subject, $message, $headers = "Content-Type: text/html\r\n", $attachments = '' ) {
-	$mailer = RP()->mailer();
-
-	$mailer->send( $to, $subject, $message, $headers, $attachments );
-}
-
-/**
  * Get an image size.
  *
  * The returned variable is filtered by restaurantpress_get_image_size_{image_size} filter to
@@ -662,32 +647,37 @@ function rp_setcookie( $name, $value, $expire = 0, $secure = false ) {
 }
 
 /**
+ * Various rewrite rule fixes.
+ *
+ * @since  1.6.0
+ * @param  array $rules Rewrite rule.
+ * @return array
+ */
+function rp_fix_rewrite_rules( $rules ) {
+	global $wp_rewrite;
+
+	$permalinks = rp_get_permalink_structure();
+
+	// Fix the rewrite rules when the food permalink have %food_menu_cat% flag.
+	if ( preg_match( '`/(.+)(/%food_menu_cat%)`', $permalinks['food_rewrite_slug'], $matches ) ) {
+		foreach ( $rules as $rule => $rewrite ) {
+			if ( preg_match( '`^' . preg_quote( $matches[1], '`' ) . '/\(`', $rule ) && preg_match( '/^(index\.php\?food_menu_cat)(?!(.*food_menu))/', $rewrite ) ) {
+				unset( $rules[ $rule ] );
+			}
+		}
+	}
+
+	return $rules;
+}
+add_filter( 'rewrite_rules_array', 'rp_fix_rewrite_rules' );
+
+/**
  * RestaurantPress Core Supported Themes.
  *
  * @return array Core Supported themes.
  */
 function rp_get_core_supported_themes() {
 	return array( 'twentyseventeen', 'twentysixteen', 'twentyfifteen', 'twentyfourteen', 'twentythirteen', 'twentytwelve', 'twentyeleven', 'twentyten' );
-}
-
-/**
- * Get user agent string.
- *
- * @since  1.6.0
- * @return string
- */
-function rp_get_user_agent() {
-	return isset( $_SERVER['HTTP_USER_AGENT'] ) ? strtolower( rp_clean( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) ) ) : '';
-}
-
-/**
- * Outputs a "back" link so admin screens can easily jump back a page.
- *
- * @param string $label Title of the page to return to.
- * @param string $url   URL of the page to return to.
- */
-function rp_back_link( $label, $url ) {
-	echo '<small class="rp-admin-breadcrumb"><a href="' . esc_url( $url ) . '" aria-label="' . esc_attr( $label ) . '">&#x2934;</a></small>';
 }
 
 /**
@@ -795,6 +785,35 @@ function rp_print_r( $expression, $return = false ) {
 }
 
 /**
+ * Get permalink settings for RestaurantPress independent of the user locale.
+ *
+ * @since  1.6.0
+ * @return array
+ */
+function rp_get_permalink_structure() {
+	if ( did_action( 'admin_init' ) ) {
+		rp_switch_to_site_locale();
+	}
+
+	$permalinks = wp_parse_args( (array) get_option( 'restaurantpress_permalinks', array() ), array(
+		'food_base'              => '',
+		'category_base'          => '',
+		'tag_base'               => '',
+		'use_verbose_page_rules' => false,
+	) );
+
+	// Ensure rewrite slugs are set.
+	$permalinks['food_rewrite_slug']     = untrailingslashit( empty( $permalinks['food_base'] ) ? _x( 'food', 'slug', 'restaurantpress' ) : $permalinks['food_base'] );
+	$permalinks['category_rewrite_slug'] = untrailingslashit( empty( $permalinks['category_base'] ) ? _x( 'food-category', 'slug', 'restaurantpress' ) : $permalinks['category_base'] );
+	$permalinks['tag_rewrite_slug']      = untrailingslashit( empty( $permalinks['tag_base'] ) ? _x( 'food-tag', 'slug', 'restaurantpress' ) : $permalinks['tag_base'] );
+
+	if ( did_action( 'admin_init' ) ) {
+		rp_restore_locale();
+	}
+	return $permalinks;
+}
+
+/**
  * Switch RestaurantPress to site language.
  *
  * @since 1.6.0
@@ -846,7 +865,7 @@ function rp_make_phone_clickable( $phone ) {
 }
 
 /**
- * Read in WooCommerce headers when reading plugin headers.
+ * Read in RestaurantPress headers when reading plugin headers.
  *
  * @since  1.4.0
  * @param  array $headers Headers.

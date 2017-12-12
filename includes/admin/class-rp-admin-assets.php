@@ -79,8 +79,7 @@ class RP_Admin_Assets {
 		wp_register_script( 'jquery-blockui', RP()->plugin_url() . '/assets/js/jquery-blockui/jquery.blockUI' . $suffix . '.js', array( 'jquery' ), '2.70', true );
 		wp_register_script( 'jquery-tiptip', RP()->plugin_url() . '/assets/js/jquery-tiptip/jquery.tipTip' . $suffix . '.js', array( 'jquery' ), RP_VERSION, true );
 		wp_register_script( 'rp-admin-meta-boxes', RP()->plugin_url() . '/assets/js/admin/meta-boxes' . $suffix . '.js', array( 'jquery', 'jquery-ui-datepicker', 'jquery-ui-sortable', 'jquery-tiptip', 'accounting', 'rp-enhanced-select' ), RP_VERSION );
-		wp_register_script( 'rp-backbone-modal', RP()->plugin_url() . '/assets/js/admin/backbone-modal' . $suffix . '.js', array( 'underscore', 'backbone', 'wp-util' ), RP_VERSION );
-		wp_register_script( 'selectWoo', RP()->plugin_url() . '/assets/js/selectWoo/selectWoo.full' . $suffix . '.js', array( 'jquery' ), '1.0.1' );
+		wp_register_script( 'selectWoo', RP()->plugin_url() . '/assets/js/selectWoo/selectWoo.full' . $suffix . '.js', array( 'jquery' ), '1.0.2' );
 		wp_register_script( 'rp-enhanced-select', RP()->plugin_url() . '/assets/js/admin/enhanced-select' . $suffix . '.js', array( 'jquery', 'selectWoo' ), RP_VERSION );
 		wp_localize_script( 'rp-enhanced-select', 'rp_enhanced_select_params', array(
 			'i18n_no_matches'           => _x( 'No matches found', 'enhanced select', 'restaurantpress' ),
@@ -94,7 +93,6 @@ class RP_Admin_Assets {
 			'i18n_load_more'            => _x( 'Loading more results&hellip;', 'enhanced select', 'restaurantpress' ),
 			'i18n_searching'            => _x( 'Searching&hellip;', 'enhanced select', 'restaurantpress' ),
 			'ajax_url'                  => admin_url( 'admin-ajax.php' ),
-			'search_customers_nonce'    => wp_create_nonce( 'search-customers' ),
 			'search_categories_nonce'   => wp_create_nonce( 'search-categories' ),
 		) );
 

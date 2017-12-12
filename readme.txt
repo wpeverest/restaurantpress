@@ -64,14 +64,13 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 == Changelog ==
 
 = 1.6.0 - XX/11/2017 =
-* Feature - Include RP wrapper for DateTime.
-* Feature - RestaurantPress Data Exception Class.
-* Feature - Introduced Integration and mailer class.
-* Feature - Introduced formatting functions for datetime and colors.
-* Feature - Introduced admin Settings API used by Integrations, and Mailer.
+* Feature - Introduced Integration class.
+* Feature - Introduced formatting functions for colors.
+* Feature - Introduced admin Settings API used by Integrations.
 * Tweak - Iris picker validation for HEX color codes.
 * Tweak - Convert input submit elements to button submit elements.
 * Tweak - Usability and accessibility improvement with selectWoo.
+* Fix - Some focus issues in selectWoo.
 * Fix - Currency position with RTL symbols.
 * Fix - Flexslider support for RTL languages and fixes for zoom target in Chrome.
 * Fix - WP rocket caching issue do not set the constant.
@@ -83,4 +82,4 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 == Upgrade Notice ==
 
 = 1.6.0 =
-1.6.0 is a major update. Make a full site backup, update your theme and extensions, and ensure they are compatible before upgrading.
+1.6.0 is a minor update. Make a full site backup, update your theme and extensions, and ensure they are compatible before upgrading.
