@@ -51,7 +51,6 @@ if ( ! class_exists( 'RP_Admin_Settings', false ) ) :
 				include_once( dirname( __FILE__ ) . '/settings/class-rp-settings-page.php' );
 
 				$settings[] = include( 'settings/class-rp-settings-general.php' );
-				$settings[] = include( 'settings/class-rp-settings-emails.php' );
 				$settings[] = include( 'settings/class-rp-settings-integrations.php' );
 
 				self::$settings = apply_filters( 'restaurantpress_get_settings_pages', $settings );

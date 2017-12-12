@@ -545,21 +545,6 @@ function get_restaurantpress_currency_symbol( $currency = '' ) {
 }
 
 /**
- * Send HTML emails from RestaurantPress.
- *
- * @param mixed  $to          Receiver.
- * @param mixed  $subject     Subject.
- * @param mixed  $message     Message.
- * @param string $headers     Headers. (default: "Content-Type: text/html\r\n").
- * @param string $attachments Attachments. (default: "").
- */
-function rp_mail( $to, $subject, $message, $headers = "Content-Type: text/html\r\n", $attachments = '' ) {
-	$mailer = RP()->mailer();
-
-	$mailer->send( $to, $subject, $message, $headers, $attachments );
-}
-
-/**
  * Get an image size.
  *
  * The returned variable is filtered by restaurantpress_get_image_size_{image_size} filter to
@@ -671,26 +656,6 @@ function rp_get_core_supported_themes() {
 }
 
 /**
- * Get user agent string.
- *
- * @since  1.6.0
- * @return string
- */
-function rp_get_user_agent() {
-	return isset( $_SERVER['HTTP_USER_AGENT'] ) ? strtolower( rp_clean( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) ) ) : '';
-}
-
-/**
- * Outputs a "back" link so admin screens can easily jump back a page.
- *
- * @param string $label Title of the page to return to.
- * @param string $url   URL of the page to return to.
- */
-function rp_back_link( $label, $url ) {
-	echo '<small class="rp-admin-breadcrumb"><a href="' . esc_url( $url ) . '" aria-label="' . esc_attr( $label ) . '">&#x2934;</a></small>';
-}
-
-/**
  * Display a RestaurantPress help tip.
  *
  * @param  string $tip        Help tip text.
@@ -795,40 +760,6 @@ function rp_print_r( $expression, $return = false ) {
 }
 
 /**
- * Switch RestaurantPress to site language.
- *
- * @since 1.6.0
- */
-function rp_switch_to_site_locale() {
-	if ( function_exists( 'switch_to_locale' ) ) {
-		switch_to_locale( get_locale() );
-
-		// Filter on plugin_locale so load_plugin_textdomain loads the correct locale.
-		add_filter( 'plugin_locale', 'get_locale' );
-
-		// Init RP locale.
-		RP()->load_plugin_textdomain();
-	}
-}
-
-/**
- * Switch RestaurantPress language to original.
- *
- * @since 1.6.0
- */
-function rp_restore_locale() {
-	if ( function_exists( 'restore_previous_locale' ) ) {
-		restore_previous_locale();
-
-		// Remove filter.
-		remove_filter( 'plugin_locale', 'get_locale' );
-
-		// Init RP locale.
-		RP()->load_plugin_textdomain();
-	}
-}
-
-/**
  * Convert plaintext phone number to clickable phone number.
  *
  * Remove formatting and allow "+".
@@ -846,7 +777,7 @@ function rp_make_phone_clickable( $phone ) {
 }
 
 /**
- * Read in WooCommerce headers when reading plugin headers.
+ * Read in RestaurantPress headers when reading plugin headers.
  *
  * @since  1.4.0
  * @param  array $headers Headers.

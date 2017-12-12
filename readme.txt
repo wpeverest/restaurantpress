@@ -83,4 +83,4 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 == Upgrade Notice ==
 
 = 1.6.0 =
-1.6.0 is a major update. Make a full site backup, update your theme and extensions, and ensure they are compatible before upgrading.
+1.6.0 is a minor update. Make a full site backup, update your theme and extensions, and ensure they are compatible before upgrading.
