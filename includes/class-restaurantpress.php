@@ -152,13 +152,13 @@ final class RestaurantPress {
 	 */
 	private function is_request( $type ) {
 		switch ( $type ) {
-			case 'admin' :
+			case 'admin':
 				return is_admin();
-			case 'ajax' :
+			case 'ajax':
 				return defined( 'DOING_AJAX' );
-			case 'cron' :
+			case 'cron':
 				return defined( 'DOING_CRON' );
-			case 'frontend' :
+			case 'frontend':
 				return ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' );
 		}
 	}
@@ -176,7 +176,7 @@ final class RestaurantPress {
 		 * Abstract classes.
 		 */
 		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-food.php' ); // Foods.
-		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-settings-api.php' ); // Settings API (for mailer, and integrations).
+		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-settings-api.php' ); // Settings API (for integrations).
 		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-integration.php' ); // An integration with a service.
 		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-deprecated-hooks.php' );
 		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-session.php' );

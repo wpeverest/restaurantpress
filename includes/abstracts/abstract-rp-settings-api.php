@@ -2,7 +2,7 @@
 /**
  * Abstract Settings API Class
  *
- * Admin Settings API used by Integrations, and Mailer.
+ * Admin Settings API used by Integrations.
  *
  * @class    RP_Settings_API
  * @version  1.6.0
