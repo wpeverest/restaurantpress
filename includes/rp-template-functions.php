@@ -240,7 +240,6 @@ if ( ! function_exists( 'restaurantpress_food_loop_start' ) ) {
 		}
 	}
 }
-
 if ( ! function_exists( 'restaurantpress_food_loop_end' ) ) {
 
 	/**
@@ -262,6 +261,36 @@ if ( ! function_exists( 'restaurantpress_food_loop_end' ) ) {
 	}
 }
 
+if ( ! function_exists( 'restaurantpress_template_loop_food_title' ) ) {
+
+	/**
+	 * Show the food title in the food loop. By default this is an H2.
+	 */
+	function restaurantpress_template_loop_food_title() {
+		echo '<h2 class="restaurantpress-loop-food__title">' . get_the_title() . '</h2>';
+	}
+}
+
+if ( ! function_exists( 'restaurantpress_template_loop_food_link_open' ) ) {
+
+	/**
+	 * Insert the opening anchor tag for foods in the loop.
+	 */
+	function restaurantpress_template_loop_food_link_open() {
+		echo '<a href="' . esc_url( get_the_permalink() ) . '" class="restaurantpress-LoopFood-link restaurantpress-loop-food__link">';
+	}
+}
+
+if ( ! function_exists( 'restaurantpress_template_loop_food_link_close' ) ) {
+
+	/**
+	 * Insert the closing anchor tag for foods in the loop.
+	 */
+	function restaurantpress_template_loop_food_link_close() {
+		echo '</a>';
+	}
+}
+
 if ( ! function_exists( 'restaurantpress_taxonomy_archive_description' ) ) {
 
 	/**
@@ -275,6 +304,80 @@ if ( ! function_exists( 'restaurantpress_taxonomy_archive_description' ) ) {
 				echo '<div class="term-description">' . rp_format_content( $term->description ) . '</div>'; // WPCS: XSS ok.
 			}
 		}
+	}
+}
+
+if ( ! function_exists( 'restaurantpress_template_loop_food_thumbnail' ) ) {
+
+	/**
+	 * Get the food thumbnail for the loop.
+	 */
+	function restaurantpress_template_loop_food_thumbnail() {
+		echo restaurantpress_get_food_thumbnail(); // WPCS: XSS ok.
+	}
+}
+if ( ! function_exists( 'restaurantpress_template_loop_price' ) ) {
+
+	/**
+	 * Get the food price for the loop.
+	 */
+	function restaurantpress_template_loop_price() {
+		rp_get_template( 'loop/price.php' );
+	}
+}
+if ( ! function_exists( 'restaurantpress_show_food_loop_chef_badge' ) ) {
+
+	/**
+	 * Get the chef badge for the loop.
+	 *
+	 * @subpackage Loop
+	 */
+	function restaurantpress_show_food_loop_chef_badge() {
+		rp_get_template( 'loop/chef-badge.php' );
+	}
+}
+
+if ( ! function_exists( 'restaurantpress_get_food_thumbnail' ) ) {
+
+	/**
+	 * Get the food thumbnail, or the placeholder if not set.
+	 *
+	 * @subpackage Loop
+	 * @param  string $size (default: 'food_thumbnail').
+	 * @return string
+	 */
+	function restaurantpress_get_food_thumbnail( $size = 'food_thumbnail' ) {
+		global $food;
+
+		$image_size = apply_filters( 'single_food_archive_thumbnail_size', $size );
+
+		return $food ? $food->get_image( $image_size ) : '';
+	}
+}
+
+if ( ! function_exists( 'restaurantpress_pagination' ) ) {
+
+	/**
+	 * Output the pagination.
+	 */
+	function restaurantpress_pagination() {
+		if ( ! rp_get_loop_prop( 'is_paginated' ) ) {
+			return;
+		}
+		$args = array(
+			'total'   => rp_get_loop_prop( 'total_pages' ),
+			'current' => rp_get_loop_prop( 'current_page' ),
+		);
+
+		if ( rp_get_loop_prop( 'is_shortcode' ) ) {
+			$args['base']   = esc_url_raw( add_query_arg( 'food-page', '%#%', false ) );
+			$args['format'] = '?food-page = %#%';
+		} else {
+			$args['base']   = esc_url_raw( str_replace( 999999999, '%#%', remove_query_arg( get_pagenum_link( 999999999, false ) ) ) );
+			$args['format'] = '';
+		}
+
+		rp_get_template( 'loop/pagination.php', $args );
 	}
 }
 

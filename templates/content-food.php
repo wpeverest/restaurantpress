@@ -22,11 +22,48 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $food;
 
-// Ensure visibility
+// Ensure visibility.
 if ( empty( $food ) ) {
 	return;
 }
 ?>
 <li <?php post_class(); ?>>
+	<?php
+	/**
+	 * Hook: restaurantpress_before_menu_loop_item.
+	 *
+	 * @hooked restaurantpress_template_loop_food_link_open - 10
+	 */
+	do_action( 'restaurantpress_before_menu_loop_item' );
 
+	/**
+	 * Hook: restaurantpress_before_menu_loop_item_title.
+	 *
+	 * @hooked restaurantpress_show_food_loop_chef_badge - 10
+	 * @hooked restaurantpress_template_loop_food_thumbnail - 10
+	 */
+	do_action( 'restaurantpress_before_menu_loop_item_title' );
+
+	/**
+	 * Hook: restaurantpress_menu_loop_item_title.
+	 *
+	 * @hooked restaurantpress_template_loop_food_title - 10
+	 */
+	do_action( 'restaurantpress_menu_loop_item_title' );
+
+	/**
+	 * Hook: restaurantpress_after_menu_loop_item_title.
+	 *
+	 * @hooked restaurantpress_template_loop_price - 10
+	 * @hooked restaurantpress_template_loop_description - 10
+	 */
+	do_action( 'restaurantpress_after_menu_loop_item_title' );
+
+	/**
+	 * Hook: restaurantpress_after_menu_loop_item.
+	 *
+	 * @hooked restaurantpress_template_loop_food_link_close - 5
+	 */
+	do_action( 'restaurantpress_after_menu_loop_item' );
+	?>
 </li>

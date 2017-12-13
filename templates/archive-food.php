@@ -49,11 +49,11 @@ do_action( 'restaurantpress_before_main_content' );
 if ( have_posts() ) :
 
 	/**
-	 * Hook: restaurantpress_before_shop_loop.
+	 * Hook: restaurantpress_before_menu_loop.
 	 *
 	 * @hooked rp_print_notices - 10
 	 */
-	do_action( 'restaurantpress_before_food_loop' );
+	do_action( 'restaurantpress_before_menu_loop' );
 
 	restaurantpress_food_loop_start();
 
@@ -61,9 +61,9 @@ if ( have_posts() ) :
 		the_post();
 
 		/**
-		 * Hook: restaurantpress_food_loop.
+		 * Hook: restaurantpress_menu_loop.
 		 */
-		do_action( 'restaurantpress_food_loop' );
+		do_action( 'restaurantpress_menu_loop' );
 
 		rp_get_template_part( 'content', 'food' );
 	endwhile;
@@ -71,11 +71,11 @@ if ( have_posts() ) :
 	restaurantpress_food_loop_end();
 
 	/**
-	 * Hook: restaurantpress_after_food_loop.
+	 * Hook: restaurantpress_after_menu_loop.
 	 *
 	 * @hooked restaurantpress_pagination - 10
 	 */
-	do_action( 'restaurantpress_after_food_loop' );
+	do_action( 'restaurantpress_after_menu_loop' );
 
 else :
 

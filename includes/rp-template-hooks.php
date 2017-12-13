@@ -34,10 +34,12 @@ add_action( 'restaurantpress_before_main_content', 'restaurantpress_output_conte
 add_action( 'restaurantpress_after_main_content', 'restaurantpress_output_content_wrapper_end', 10 );
 
 /**
- * Chef flashes.
+ * Chef badges.
  *
+ * @see restaurantpress_show_food_loop_chef_badge()
  * @see restaurantpress_show_food_chef_badge()
  */
+add_action( 'restaurantpress_before_menu_loop_item_title', 'restaurantpress_show_food_loop_chef_badge', 10 );
 add_action( 'restaurantpress_before_single_food_summary', 'restaurantpress_show_food_chef_badge', 10 );
 
 /**
@@ -60,6 +62,21 @@ add_action( 'restaurantpress_archive_description', 'restaurantpress_taxonomy_arc
  * @see rp_no_foods_found()
  */
 add_action( 'restaurantpress_no_foods_found', 'rp_no_foods_found' );
+
+/**
+ * Food Loop Items.
+ *
+ * @see restaurantpress_template_loop_food_link_open()
+ * @see restaurantpress_template_loop_food_link_close()
+ * @see restaurantpress_template_loop_food_thumbnail()
+ * @see restaurantpress_template_loop_food_title()
+ * @see restaurantpress_template_loop_price()
+ */
+add_action( 'restaurantpress_before_menu_loop_item', 'restaurantpress_template_loop_food_link_open', 10 );
+add_action( 'restaurantpress_after_menu_loop_item', 'restaurantpress_template_loop_food_link_close', 5 );
+add_action( 'restaurantpress_before_menu_loop_item_title', 'restaurantpress_template_loop_food_thumbnail', 10 );
+add_action( 'restaurantpress_menu_loop_item_title', 'restaurantpress_template_loop_food_title', 10 );
+add_action( 'restaurantpress_after_menu_loop_item_title', 'restaurantpress_template_loop_price', 10 );
 
 /**
  * Before Single Products Summary Div.
@@ -93,6 +110,13 @@ add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_sin
 add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_contact', 30 );
 add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_meta', 40 );
 add_action( 'restaurantpress_single_food_summary', 'restaurantpress_template_single_sharing', 50 );
+
+/**
+ * Pagination after menu loops.
+ *
+ * @see restaurantpress_pagination()
+ */
+add_action( 'restaurantpress_after_menu_loop', 'restaurantpress_pagination', 10 );
 
 /**
  * Food page tabs.
