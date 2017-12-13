@@ -37,7 +37,7 @@ class RP_Template_Loader {
 	 * this to the theme (containing a restaurantpress() inside) this will be used for all.
 	 * restaurantpress templates.
 	 *
-	 * @param  string $template The path of the template to include.
+	 * @param  string $template Template to load.
 	 * @return string
 	 */
 	public static function template_loader( $template ) {
@@ -72,6 +72,16 @@ class RP_Template_Loader {
 	private static function get_template_loader_default_file() {
 		if ( is_singular( 'food_menu' ) ) {
 			$default_file = 'single-food_menu.php';
+		} elseif ( is_food_menu_taxonomy() ) {
+			$term = get_queried_object();
+
+			if ( is_tax( 'food_menu_cat' ) || is_tax( 'food_menu_tag' ) ) {
+				$default_file = 'taxonomy-' . $term->taxonomy . '.php';
+			} else {
+				$default_file = 'archive-food.php';
+			}
+		} elseif ( is_post_type_archive( 'food_menu' ) ) {
+			$default_file = 'archive-food.php';
 		} else {
 			$default_file = '';
 		}
