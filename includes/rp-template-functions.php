@@ -64,7 +64,7 @@ add_action( 'the_post', 'rp_setup_food_data' );
 /**
  * Resets the restaurantpress_loop global.
  *
- * @since 3.3.0
+ * @since 1.6.0
  */
 function rp_reset_loop() {
 	unset( $GLOBALS['restaurantpress_loop'] );
@@ -80,6 +80,9 @@ add_action( 'restaurantpress_after_food_loop', 'rp_reset_loop', 999 );
  * @return mixed
  */
 function rp_get_loop_prop( $prop, $default = '' ) {
+	if ( ! $default && 'columns' === $prop ) {
+		$default = 2;
+	}
 	return isset( $GLOBALS['restaurantpress_loop'], $GLOBALS['restaurantpress_loop'][ $prop ] ) ? $GLOBALS['restaurantpress_loop'][ $prop ] : $default;
 }
 

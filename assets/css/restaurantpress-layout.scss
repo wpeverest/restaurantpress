@@ -114,6 +114,107 @@
 	}
 
 	/**
+	 * Food loops
+	 */
+	ul.foods {
+		clear: both;
+		@include clearfix();
+
+		li.food_menu {
+			float: left;
+			margin: 0 3.8% 2.992em 0;
+			padding: 0;
+			position: relative;
+			width: 22.05%;
+			margin-left: 0;
+		}
+
+		li.first {
+			clear: both;
+		}
+
+		li.last {
+			margin-right: 0;
+		}
+	}
+
+	ul.foods {
+		&.columns-1 {
+			li.food_menu {
+				width: 100%;
+				margin-right: 0;
+			}
+		}
+		&.columns-2 {
+			li.food_menu {
+				width: 48%;
+			}
+		}
+		&.columns-3 {
+			li.food_menu {
+				width: 30.75%;
+			}
+		}
+		&.columns-5 {
+			li.food_menu {
+				width: 16.95%;
+			}
+		}
+		&.columns-6 {
+			li.food_menu {
+				width: 13.5%;
+			}
+		}
+	}
+
+	&.columns-1 {
+		ul.foods {
+			li.food_menu {
+				width: 100%;
+				margin-right: 0;
+			}
+		}
+	}
+
+	&.columns-2 {
+		ul.foods {
+			li.food_menu {
+				width: 48%;
+			}
+		}
+	}
+
+	&.columns-3 {
+		ul.foods {
+			li.food_menu {
+				width: 30.75%;
+			}
+		}
+	}
+
+	&.columns-5 {
+		ul.foods {
+			li.food_menu {
+				width: 16.95%;
+			}
+		}
+	}
+
+	&.columns-6 {
+		ul.foods {
+			li.food_menu {
+				width: 13.5%;
+			}
+		}
+	}
+
+	.restaurantpress-pagination {
+		ul.page-numbers {
+			@include menu();
+		}
+	}
+
+	/**
 	 * Forms
 	 */
 	form {
