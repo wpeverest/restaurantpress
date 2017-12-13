@@ -205,7 +205,7 @@ if ( ! function_exists( 'restaurantpress_page_title' ) ) {
 		} elseif ( is_tax() ) {
 			$page_title = single_term_title( '', false );
 		} else {
-			$page_title = get_the_title();
+			$page_title = __( 'Foods', 'restaurantpress' );
 		}
 
 		$page_title = apply_filters( 'restaurantpress_page_title', $page_title );
