@@ -41,7 +41,7 @@ add_action( 'wp_head', 'rp_gallery_noscript' );
 /**
  * When the_post is called, put food data into a global.
  *
- * @param  mixed $post
+ * @param  mixed $post Post Object.
  * @return RP_Food
  */
 function rp_setup_food_data( $post ) {
@@ -107,6 +107,8 @@ function rp_generator_tag( $gen, $type ) {
 
 /**
  * Disable zoom in group page.
+ *
+ * @param bool $status Image zoom status.
  */
 function rp_group_zoom_disable( $status ) {
 	return is_group_menu_page() ? false : $status;
@@ -171,9 +173,11 @@ if ( ! function_exists( 'restaurantpress_page_title' ) ) {
 	function restaurantpress_page_title( $echo = true ) {
 
 		if ( is_search() ) {
+			/* translators: %s: search query */
 			$page_title = sprintf( __( 'Search results: &ldquo;%s&rdquo;', 'restaurantpress' ), get_search_query() );
 
 			if ( get_query_var( 'paged' ) ) {
+				/* translators: %s: page number */
 				$page_title .= sprintf( __( '&nbsp;&ndash; Page %s', 'restaurantpress' ), get_query_var( 'paged' ) );
 			}
 		} elseif ( is_tax() ) {
@@ -188,6 +192,22 @@ if ( ! function_exists( 'restaurantpress_page_title' ) ) {
 			echo $page_title; // WPCS: XSS ok.
 		} else {
 			return $page_title;
+		}
+	}
+}
+
+if ( ! function_exists( 'restaurantpress_taxonomy_archive_description' ) ) {
+
+	/**
+	 * Show an archive description on taxonomy archives.
+	 */
+	function restaurantpress_taxonomy_archive_description() {
+		if ( is_food_menu_taxonomy() && 0 === absint( get_query_var( 'paged' ) ) ) {
+			$term = get_queried_object();
+
+			if ( $term && ! empty( $term->description ) ) {
+				echo '<div class="term-description">' . rp_format_content( $term->description ) . '</div>'; // WPCS: XSS ok.
+			}
 		}
 	}
 }
@@ -485,21 +505,21 @@ if ( ! function_exists( 'restaurantpress_form_field' ) ) {
 		$field_container = '<p class="form-row %1$s" id="%2$s" data-priority="' . esc_attr( $sort ) . '">%3$s</p>';
 
 		switch ( $args['type'] ) {
-			case 'textarea' :
+			case 'textarea':
 				$field .= '<textarea name="' . esc_attr( $key ) . '" class="input-text ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" id="' . esc_attr( $args['id'] ) . '" placeholder="' . esc_attr( $args['placeholder'] ) . '" ' . ( empty( $args['custom_attributes']['rows'] ) ? ' rows="2"' : '' ) . ( empty( $args['custom_attributes']['cols'] ) ? ' cols="5"' : '' ) . implode( ' ', $custom_attributes ) . '>' . esc_textarea( $value ) . '</textarea>';
 				break;
-			case 'checkbox' :
+			case 'checkbox':
 				$field = '<label class="checkbox ' . implode( ' ', $args['label_class'] ) . '" ' . implode( ' ', $custom_attributes ) . '><input type="' . esc_attr( $args['type'] ) . '" class="input-checkbox ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" value="1" ' . checked( $value, 1, false ) . ' /> ' . $args['label'] . $required . '</label>';
 				break;
-			case 'password' :
-			case 'text' :
-			case 'email' :
-			case 'tel' :
-			case 'number' :
+			case 'password':
+			case 'text':
+			case 'email':
+			case 'tel':
+			case 'number':
 				$field .= '<input type="' . esc_attr( $args['type'] ) . '" class="input-text ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" placeholder="' . esc_attr( $args['placeholder'] ) . '"  value="' . esc_attr( $value ) . '" ' . implode( ' ', $custom_attributes ) . ' />';
 				break;
-			case 'select' :
-				$options = $field = '';
+			case 'select':
+				$options = '';
 
 				if ( ! empty( $args['options'] ) ) {
 					foreach ( $args['options'] as $option_key => $option_text ) {
@@ -516,7 +536,7 @@ if ( ! function_exists( 'restaurantpress_form_field' ) ) {
 					$field .= '<select name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" class="select ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" ' . implode( ' ', $custom_attributes ) . ' data-placeholder="' . esc_attr( $args['placeholder'] ) . '">' . $options . '</select>';
 				}
 				break;
-			case 'radio' :
+			case 'radio':
 				$label_id = current( array_keys( $args['options'] ) );
 
 				if ( ! empty( $args['options'] ) ) {

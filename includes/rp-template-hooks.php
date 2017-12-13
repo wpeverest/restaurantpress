@@ -48,6 +48,13 @@ add_action( 'restaurantpress_before_single_food_summary', 'restaurantpress_show_
 add_action( 'restaurantpress_sidebar', 'restaurantpress_get_sidebar', 10 );
 
 /**
+ * Archive descriptions.
+ *
+ * @see restaurantpress_taxonomy_archive_description()
+ */
+add_action( 'restaurantpress_archive_description', 'restaurantpress_taxonomy_archive_description', 10 );
+
+/**
  * Before Single Products Summary Div.
  *
  * @see restaurantpress_show_food_images()
