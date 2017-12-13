@@ -46,6 +46,48 @@ do_action( 'restaurantpress_before_main_content' );
 </header>
 <?php
 
+if ( have_posts() ) :
+
+	/**
+	 * Hook: restaurantpress_before_shop_loop.
+	 *
+	 * @hooked rp_print_notices - 10
+	 */
+	do_action( 'restaurantpress_before_food_loop' );
+
+	restaurantpress_food_loop_start();
+
+	while ( have_posts() ) :
+		the_post();
+
+		/**
+		 * Hook: restaurantpress_food_loop.
+		 */
+		do_action( 'restaurantpress_food_loop' );
+
+		rp_get_template_part( 'content', 'food' );
+	endwhile;
+
+	restaurantpress_food_loop_end();
+
+	/**
+	 * Hook: restaurantpress_after_food_loop.
+	 *
+	 * @hooked restaurantpress_pagination - 10
+	 */
+	do_action( 'restaurantpress_after_food_loop' );
+
+else :
+
+	/**
+	 * Hook: restaurantpress_no_foods_found.
+	 *
+	 * @hooked rp_no_foods_found - 10
+	 */
+	do_action( 'restaurantpress_no_foods_found' );
+
+endif;
+
 /**
  * Hook: restaurantpress_after_main_content.
  *

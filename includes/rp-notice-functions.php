@@ -140,6 +140,7 @@ function rp_print_notices() {
 
 	rp_clear_notices();
 }
+add_action( 'restaurantpress_before_food_loop', 'rp_print_notices', 10 );
 add_action( 'restaurantpress_before_single_food', 'rp_print_notices', 10 );
 
 /**

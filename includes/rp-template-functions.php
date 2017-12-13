@@ -62,6 +62,28 @@ function rp_setup_food_data( $post ) {
 add_action( 'the_post', 'rp_setup_food_data' );
 
 /**
+ * Resets the restaurantpress_loop global.
+ *
+ * @since 3.3.0
+ */
+function rp_reset_loop() {
+	unset( $GLOBALS['restaurantpress_loop'] );
+}
+add_action( 'restaurantpress_after_food_loop', 'rp_reset_loop', 999 );
+
+/**
+ * Gets a property from the woocommerce_loop global.
+ *
+ * @since  1.6.0
+ * @param  string $prop Prop to get.
+ * @param  string $default Default if the prop does not exist.
+ * @return mixed
+ */
+function rp_get_loop_prop( $prop, $default = '' ) {
+	return isset( $GLOBALS['restaurantpress_loop'], $GLOBALS['restaurantpress_loop'][ $prop ] ) ? $GLOBALS['restaurantpress_loop'][ $prop ] : $default;
+}
+
+/**
  * Add body classes for RP pages.
  *
  * @param  array $classes Body Classes.
@@ -192,6 +214,50 @@ if ( ! function_exists( 'restaurantpress_page_title' ) ) {
 			echo $page_title; // WPCS: XSS ok.
 		} else {
 			return $page_title;
+		}
+	}
+}
+
+if ( ! function_exists( 'restaurantpress_food_loop_start' ) ) {
+
+	/**
+	 * Output the start of a food loop. By default this is a UL.
+	 *
+	 * @param  bool $echo Should echo?.
+	 * @return string
+	 */
+	function restaurantpress_food_loop_start( $echo = true ) {
+		ob_start();
+
+		$GLOBALS['restaurantpress_loop']['loop'] = 0;
+
+		rp_get_template( 'loop/loop-start.php' );
+
+		if ( $echo ) {
+			echo ob_get_clean(); // WPCS: XSS ok.
+		} else {
+			return ob_get_clean();
+		}
+	}
+}
+
+if ( ! function_exists( 'restaurantpress_food_loop_end' ) ) {
+
+	/**
+	 * Output the end of a food loop. By default this is a UL.
+	 *
+	 * @param  bool $echo Should echo?.
+	 * @return string
+	 */
+	function restaurantpress_food_loop_end( $echo = true ) {
+		ob_start();
+
+		rp_get_template( 'loop/loop-end.php' );
+
+		if ( $echo ) {
+			echo ob_get_clean(); // WPCS: XSS ok.
+		} else {
+			return ob_get_clean();
 		}
 	}
 }
@@ -573,5 +639,15 @@ if ( ! function_exists( 'restaurantpress_form_field' ) ) {
 		} else {
 			echo $field; // WPCS: XSS ok.
 		}
+	}
+}
+
+if ( ! function_exists( 'rp_no_foods_found' ) ) {
+
+	/**
+	 * Show no foods found message.
+	 */
+	function rp_no_foods_found() {
+		rp_get_template( 'loop/no-foods-found.php' );
 	}
 }

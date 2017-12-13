@@ -55,6 +55,13 @@ add_action( 'restaurantpress_sidebar', 'restaurantpress_get_sidebar', 10 );
 add_action( 'restaurantpress_archive_description', 'restaurantpress_taxonomy_archive_description', 10 );
 
 /**
+ * Foods Loop.
+ *
+ * @see rp_no_foods_found()
+ */
+add_action( 'restaurantpress_no_foods_found', 'rp_no_foods_found' );
+
+/**
  * Before Single Products Summary Div.
  *
  * @see restaurantpress_show_food_images()
