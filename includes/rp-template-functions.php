@@ -423,6 +423,7 @@ if ( ! function_exists( 'restaurantpress_pagination' ) ) {
 		if ( ! rp_get_loop_prop( 'is_paginated' ) ) {
 			return;
 		}
+
 		$args = array(
 			'total'   => rp_get_loop_prop( 'total_pages' ),
 			'current' => rp_get_loop_prop( 'current_page' ),
@@ -432,7 +433,7 @@ if ( ! function_exists( 'restaurantpress_pagination' ) ) {
 			$args['base']   = esc_url_raw( add_query_arg( 'food-page', '%#%', false ) );
 			$args['format'] = '?food-page = %#%';
 		} else {
-			$args['base']   = esc_url_raw( str_replace( 999999999, '%#%', remove_query_arg( get_pagenum_link( 999999999, false ) ) ) );
+			$args['base']   = esc_url_raw( str_replace( 999999999, '%#%', get_pagenum_link( 999999999, false ) ) );
 			$args['format'] = '';
 		}
 

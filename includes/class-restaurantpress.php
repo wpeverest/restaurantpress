@@ -42,6 +42,13 @@ final class RestaurantPress {
 	public $session = null;
 
 	/**
+	 * Query instance.
+	 *
+	 * @var RP_Query
+	 */
+	public $query = null;
+
+	/**
 	 * Food factory instance.
 	 *
 	 * @var RP_Food_Factory
@@ -189,6 +196,7 @@ final class RestaurantPress {
 		include_once( RP_ABSPATH . 'includes/class-rp-install.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-post-data.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-ajax.php' );
+		include_once( RP_ABSPATH . 'includes/class-rp-query.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-food-factory.php' ); // Food factory.
 		include_once( RP_ABSPATH . 'includes/class-rp-integrations.php' ); // Loads integrations.
 		include_once( RP_ABSPATH . 'includes/class-rp-cache-helper.php' ); // Cache Helper.
@@ -206,6 +214,8 @@ final class RestaurantPress {
 		if ( $this->is_request( 'frontend' ) || $this->is_request( 'cron' ) ) {
 			include_once( RP_ABSPATH . 'includes/class-rp-session-handler.php' );
 		}
+
+		$this->query = new RP_Query();
 	}
 
 	/**
