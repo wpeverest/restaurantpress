@@ -62,6 +62,47 @@ function rp_setup_food_data( $post ) {
 add_action( 'the_post', 'rp_setup_food_data' );
 
 /**
+ * Sets up the restaurantpress_loop global from the passed args or from the main query.
+ *
+ * @since 1.6.0
+ * @param array $args Args to pass into the global.
+ */
+function rp_setup_loop( $args = array() ) {
+	if ( isset( $GLOBALS['restaurantpress_loop'] ) ) {
+		return; // If the loop has already been setup, bail.
+	}
+
+	$default_args = array(
+		'loop'         => 0,
+		'columns'      => 2,
+		'name'         => '',
+		'is_shortcode' => false,
+		'is_paginated' => true,
+		'is_search'    => false,
+		'is_filtered'  => false,
+		'total'        => 0,
+		'total_pages'  => 0,
+		'per_page'     => 0,
+		'current_page' => 1,
+	);
+
+	// If this is a main RP query, use global args as defaults.
+	if ( $GLOBALS['wp_query']->get( 'rp_query' ) ) {
+		$default_args = array_merge( $default_args, array(
+			'is_search'    => $GLOBALS['wp_query']->is_search(),
+			'is_filtered'  => is_filtered(),
+			'total'        => $GLOBALS['wp_query']->found_posts,
+			'total_pages'  => $GLOBALS['wp_query']->max_num_pages,
+			'per_page'     => $GLOBALS['wp_query']->get( 'posts_per_page' ),
+			'current_page' => max( 1, $GLOBALS['wp_query']->get( 'paged', 1 ) ),
+		) );
+	}
+
+	$GLOBALS['restaurantpress_loop'] = wp_parse_args( $args, $default_args );
+}
+add_action( 'restaurantpress_before_menu_loop', 'rp_setup_loop' );
+
+/**
  * Resets the restaurantpress_loop global.
  *
  * @since 1.6.0
@@ -69,10 +110,10 @@ add_action( 'the_post', 'rp_setup_food_data' );
 function rp_reset_loop() {
 	unset( $GLOBALS['restaurantpress_loop'] );
 }
-add_action( 'restaurantpress_after_food_loop', 'rp_reset_loop', 999 );
+add_action( 'restaurantpress_after_menu_loop', 'rp_reset_loop', 999 );
 
 /**
- * Gets a property from the woocommerce_loop global.
+ * Gets a property from the restaurantpress_loop global.
  *
  * @since  1.6.0
  * @param  string $prop Prop to get.
@@ -80,10 +121,21 @@ add_action( 'restaurantpress_after_food_loop', 'rp_reset_loop', 999 );
  * @return mixed
  */
 function rp_get_loop_prop( $prop, $default = '' ) {
-	if ( ! $default && 'columns' === $prop ) {
-		$default = 2;
-	}
 	return isset( $GLOBALS['restaurantpress_loop'], $GLOBALS['restaurantpress_loop'][ $prop ] ) ? $GLOBALS['restaurantpress_loop'][ $prop ] : $default;
+}
+
+/**
+ * Sets a property in the restaurantpress_loop global.
+ *
+ * @since 1.6.0
+ * @param string $prop Prop to set.
+ * @param string $value Value to set.
+ */
+function rp_set_loop_prop( $prop, $value = '' ) {
+	if ( ! isset( $GLOBALS['restaurantpress_loop'] ) ) {
+		rp_setup_loop();
+	}
+	$GLOBALS['restaurantpress_loop'][ $prop ] = $value;
 }
 
 /**
@@ -232,14 +284,16 @@ if ( ! function_exists( 'restaurantpress_food_loop_start' ) ) {
 	function restaurantpress_food_loop_start( $echo = true ) {
 		ob_start();
 
-		$GLOBALS['restaurantpress_loop']['loop'] = 0;
+		rp_set_loop_prop( 'loop', 0 );
 
 		rp_get_template( 'loop/loop-start.php' );
 
+		$loop_start = apply_filters( 'restaurantpress_food_loop_start', ob_get_clean() );
+
 		if ( $echo ) {
-			echo ob_get_clean(); // WPCS: XSS ok.
+			echo $loop_start; // WPCS: XSS ok.
 		} else {
-			return ob_get_clean();
+			return $loop_start;
 		}
 	}
 }
@@ -256,10 +310,12 @@ if ( ! function_exists( 'restaurantpress_food_loop_end' ) ) {
 
 		rp_get_template( 'loop/loop-end.php' );
 
+		$loop_end = apply_filters( 'restaurantpress_food_loop_end', ob_get_clean() );
+
 		if ( $echo ) {
-			echo ob_get_clean(); // WPCS: XSS ok.
+			echo $loop_end; // WPCS: XSS ok.
 		} else {
-			return ob_get_clean();
+			return $loop_end;
 		}
 	}
 }
