@@ -106,7 +106,7 @@ class RP_Install {
 			RP_Admin_Notices::add_notice( 'update' );
 		}
 		if ( ! empty( $_GET['force_update_restaurantpress'] ) ) {
-			do_action( 'wp_rp_updater_cron' );
+			do_action( 'wp_' . get_current_blog_id() . '_rp_updater_cron' );
 			wp_safe_redirect( admin_url( 'admin.php?page=rp-settings' ) );
 			exit;
 		}
