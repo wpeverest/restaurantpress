@@ -56,25 +56,6 @@
 		}
 	}
 
-	.restaurantpress-foods-header {
-		margin-bottom: 1.5em;
-		border-top: 1px dashed #b0aeab;
-		border-bottom: 1px dashed #b0aeab;
-
-		h1,
-		.restaurantpress-foods-header__title,
-		.restaurantpress-foods-category__title {
-			margin: 0;
-			padding: 0.5em 0;
-			text-align: center;
-		}
-
-		.term-description p {
-			margin: 0 0 1em;
-			line-height: 1.5;
-		}
-	}
-
 	/**
 	 * Food Page
 	 */
@@ -599,6 +580,29 @@
 
 		:-ms-input-placeholder {
 			line-height: normal;
+		}
+	}
+}
+
+.restaurantpress,
+.restaurantpress-page {
+
+	.restaurantpress-foods-header {
+		margin-bottom: 1.5em;
+		border-top: 1px dashed #b0aeab;
+		border-bottom: 1px dashed #b0aeab;
+
+		h1,
+		.restaurantpress-foods-header__title,
+		.restaurantpress-foods-category__title {
+			margin: 0;
+			padding: 0.5em 0;
+			text-align: center;
+		}
+
+		.term-description p {
+			margin: 0 0 1em;
+			line-height: 1.5;
 		}
 	}
 }
