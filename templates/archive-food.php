@@ -46,7 +46,7 @@ do_action( 'restaurantpress_before_main_content' );
 </header>
 <?php
 
-if ( have_posts() ) :
+if ( have_posts() ) {
 
 	/**
 	 * Hook: restaurantpress_before_menu_loop.
@@ -57,16 +57,18 @@ if ( have_posts() ) :
 
 	restaurantpress_food_loop_start();
 
-	while ( have_posts() ) :
-		the_post();
+	if ( rp_get_loop_prop( 'total' ) ) {
+		while ( have_posts() ) {
+			the_post();
 
-		/**
-		 * Hook: restaurantpress_menu_loop.
-		 */
-		do_action( 'restaurantpress_menu_loop' );
+			/**
+			 * Hook: restaurantpress_menu_loop.
+			 */
+			do_action( 'restaurantpress_menu_loop' );
 
-		rp_get_template_part( 'content', 'food' );
-	endwhile;
+			rp_get_template_part( 'content', 'food' );
+		}
+	}
 
 	restaurantpress_food_loop_end();
 
@@ -76,17 +78,14 @@ if ( have_posts() ) :
 	 * @hooked restaurantpress_pagination - 10
 	 */
 	do_action( 'restaurantpress_after_menu_loop' );
-
-else :
-
+} else {
 	/**
 	 * Hook: restaurantpress_no_foods_found.
 	 *
 	 * @hooked rp_no_foods_found - 10
 	 */
 	do_action( 'restaurantpress_no_foods_found' );
-
-endif;
+}
 
 /**
  * Hook: restaurantpress_after_main_content.
