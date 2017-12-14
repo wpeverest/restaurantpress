@@ -24,8 +24,5 @@ none
 # Windows junk
 Thumbs.db
 
-# ApiGen
-/rp-apidocs/
-
 # Composer
 /vendor/
