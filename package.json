@@ -14,13 +14,13 @@
     "build-watch": "grunt watch"
   },
   "devDependencies": {
-    "autoprefixer": "~7.1.6",
+    "autoprefixer": "~7.2.3",
     "grunt": "~1.0.1",
     "grunt-checktextdomain": "~1.0.1",
     "grunt-contrib-concat": "~1.0.1",
     "grunt-contrib-cssmin": "~2.2.1",
     "grunt-contrib-jshint": "~1.1.0",
-    "grunt-contrib-uglify": "~3.1.0",
+    "grunt-contrib-uglify": "~3.2.1",
     "grunt-contrib-watch": "~1.0.0",
     "grunt-phpcs": "~0.4.0",
     "grunt-postcss": "~0.9.0",
@@ -28,7 +28,7 @@
     "grunt-sass": "~2.0.0",
     "grunt-stylelint": "~0.9.0",
     "grunt-wp-i18n": "~1.0.1",
-    "stylelint": "~8.2.0"
+    "stylelint": "~8.4.0"
   },
   "engines": {
     "node": ">=6.9.4",
