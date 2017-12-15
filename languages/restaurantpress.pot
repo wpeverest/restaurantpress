@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RestaurantPress 1.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/wpeverest/restaurantpress/issues\n"
-"POT-Creation-Date: 2017-12-12 04:34:46+00:00\n"
+"POT-Creation-Date: 2017-12-15 04:23:13+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -83,6 +83,49 @@ msgstr ""
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
+#: includes/admin/class-rp-admin-permalink-settings.php:44
+msgid "Food permalinks"
+msgstr ""
+
+#: includes/admin/class-rp-admin-permalink-settings.php:48
+msgid "Food category base"
+msgstr ""
+
+#: includes/admin/class-rp-admin-permalink-settings.php:55
+msgid "Food tag base"
+msgstr ""
+
+#: includes/admin/class-rp-admin-permalink-settings.php:87
+#. translators: %s: Home URL
+msgid ""
+"If you like, you may enter custom structures for your food URLs here. For "
+"example, using <code>menu</code> would make your food links like "
+"<code>%smenu/sample-food/</code>. This setting affects food URLs only, not "
+"things such as food categories."
+msgstr ""
+
+#: includes/admin/class-rp-admin-permalink-settings.php:101
+msgid "Default"
+msgstr ""
+
+#: includes/admin/class-rp-admin-permalink-settings.php:105
+msgid "Food base"
+msgstr ""
+
+#: includes/admin/class-rp-admin-permalink-settings.php:109
+msgid "Food base with category"
+msgstr ""
+
+#: includes/admin/class-rp-admin-permalink-settings.php:114
+msgid "Custom base"
+msgstr ""
+
+#: includes/admin/class-rp-admin-permalink-settings.php:116
+msgid ""
+"Enter a custom base to use. A base must be set or WordPress will use "
+"default instead."
+msgstr ""
+
 #: includes/admin/class-rp-admin-pointers.php:61
 msgid "Food name"
 msgstr ""
@@ -129,7 +172,7 @@ msgid ""
 msgstr ""
 
 #: includes/admin/class-rp-admin-pointers.php:130
-#: includes/class-rp-post-types.php:86
+#: includes/class-rp-post-types.php:88
 msgid "Food tags"
 msgstr ""
 
@@ -140,7 +183,7 @@ msgid ""
 msgstr ""
 
 #: includes/admin/class-rp-admin-pointers.php:142
-#: includes/class-rp-post-types.php:51
+#: includes/class-rp-post-types.php:53
 msgid "Food categories"
 msgstr ""
 
@@ -339,7 +382,7 @@ msgid "No"
 msgstr ""
 
 #: includes/admin/class-rp-admin-post-types.php:260
-#: includes/class-rp-post-types.php:145 includes/class-rp-post-types.php:191
+#: includes/class-rp-post-types.php:148 includes/class-rp-post-types.php:194
 msgid "Edit"
 msgstr ""
 
@@ -426,16 +469,16 @@ msgid ""
 "categories listed click the \"screen options\" link at the top of the page."
 msgstr ""
 
-#: includes/admin/class-rp-admin.php:71
+#: includes/admin/class-rp-admin.php:88
 #. translators: 1: RestaurantPress 2:: five stars
 msgid "If you like %1$s please leave us a %2$s rating. A huge thanks in advance!"
 msgstr ""
 
-#: includes/admin/class-rp-admin.php:73
+#: includes/admin/class-rp-admin.php:90
 msgid "Thanks :)"
 msgstr ""
 
-#: includes/admin/class-rp-admin.php:82
+#: includes/admin/class-rp-admin.php:99
 msgid "Thank you for creating with RestaurantPress."
 msgstr ""
 
@@ -457,12 +500,12 @@ msgid "Price"
 msgstr ""
 
 #: includes/admin/list-tables/class-rp-admin-list-table-foods.php:90
-#: includes/class-rp-post-types.php:49
+#: includes/class-rp-post-types.php:51
 msgid "Categories"
 msgstr ""
 
 #: includes/admin/list-tables/class-rp-admin-list-table-foods.php:91
-#: includes/class-rp-post-types.php:84
+#: includes/class-rp-post-types.php:86
 msgid "Tags"
 msgstr ""
 
@@ -920,243 +963,243 @@ msgstr ""
 msgid "Free Support"
 msgstr ""
 
-#: includes/class-rp-post-types.php:52
+#: includes/class-rp-post-types.php:54
 msgid "Category"
 msgstr ""
 
-#: includes/class-rp-post-types.php:54
+#: includes/class-rp-post-types.php:56
 msgid "Search categories"
 msgstr ""
 
-#: includes/class-rp-post-types.php:55
+#: includes/class-rp-post-types.php:57
 msgid "All categories"
 msgstr ""
 
-#: includes/class-rp-post-types.php:56
+#: includes/class-rp-post-types.php:58
 msgid "Parent category"
 msgstr ""
 
-#: includes/class-rp-post-types.php:57
+#: includes/class-rp-post-types.php:59
 msgid "Parent category:"
 msgstr ""
 
-#: includes/class-rp-post-types.php:58
+#: includes/class-rp-post-types.php:60
 msgid "Edit category"
 msgstr ""
 
-#: includes/class-rp-post-types.php:59
+#: includes/class-rp-post-types.php:61
 msgid "Update category"
 msgstr ""
 
-#: includes/class-rp-post-types.php:60
+#: includes/class-rp-post-types.php:62
 msgid "Add new category"
 msgstr ""
 
-#: includes/class-rp-post-types.php:61
+#: includes/class-rp-post-types.php:63
 msgid "New category name"
 msgstr ""
 
-#: includes/class-rp-post-types.php:62
+#: includes/class-rp-post-types.php:64
 msgid "No categories found"
 msgstr ""
 
-#: includes/class-rp-post-types.php:87
+#: includes/class-rp-post-types.php:89
 msgid "Tag"
 msgstr ""
 
-#: includes/class-rp-post-types.php:89
+#: includes/class-rp-post-types.php:91
 msgid "Search tags"
 msgstr ""
 
-#: includes/class-rp-post-types.php:90
+#: includes/class-rp-post-types.php:92
 msgid "All tags"
 msgstr ""
 
-#: includes/class-rp-post-types.php:91
+#: includes/class-rp-post-types.php:93
 msgid "Edit tag"
 msgstr ""
 
-#: includes/class-rp-post-types.php:92
+#: includes/class-rp-post-types.php:94
 msgid "Update tag"
 msgstr ""
 
-#: includes/class-rp-post-types.php:93
+#: includes/class-rp-post-types.php:95
 msgid "Add new tag"
 msgstr ""
 
-#: includes/class-rp-post-types.php:94
+#: includes/class-rp-post-types.php:96
 msgid "New tag name"
 msgstr ""
 
-#: includes/class-rp-post-types.php:95
+#: includes/class-rp-post-types.php:97
 msgid "Popular tags"
 msgstr ""
 
-#: includes/class-rp-post-types.php:96
+#: includes/class-rp-post-types.php:98
 msgid "Separate tags with commas"
 msgstr ""
 
-#: includes/class-rp-post-types.php:97
+#: includes/class-rp-post-types.php:99
 msgid "Add or remove tags"
 msgstr ""
 
-#: includes/class-rp-post-types.php:98
+#: includes/class-rp-post-types.php:100
 msgid "Choose from the most used tags"
 msgstr ""
 
-#: includes/class-rp-post-types.php:99
+#: includes/class-rp-post-types.php:101
 msgid "No tags found"
 msgstr ""
 
-#: includes/class-rp-post-types.php:139
+#: includes/class-rp-post-types.php:142
 msgid "Menu Items"
 msgstr ""
 
-#: includes/class-rp-post-types.php:140
+#: includes/class-rp-post-types.php:143
 msgid "Menu Item"
 msgstr ""
 
-#: includes/class-rp-post-types.php:142
+#: includes/class-rp-post-types.php:145
 msgid "All Menu Items"
 msgstr ""
 
-#: includes/class-rp-post-types.php:143
+#: includes/class-rp-post-types.php:146
 msgid "Add Menu Item"
 msgstr ""
 
-#: includes/class-rp-post-types.php:144
+#: includes/class-rp-post-types.php:147
 msgid "Add New Menu Item"
 msgstr ""
 
-#: includes/class-rp-post-types.php:146
+#: includes/class-rp-post-types.php:149
 msgid "Edit Menu Item"
 msgstr ""
 
-#: includes/class-rp-post-types.php:147
+#: includes/class-rp-post-types.php:150
 msgid "New Menu Item"
 msgstr ""
 
-#: includes/class-rp-post-types.php:148 includes/class-rp-post-types.php:149
+#: includes/class-rp-post-types.php:151 includes/class-rp-post-types.php:152
 msgid "View Menu Item"
 msgstr ""
 
-#: includes/class-rp-post-types.php:150
+#: includes/class-rp-post-types.php:153
 msgid "Search Menu Items"
 msgstr ""
 
-#: includes/class-rp-post-types.php:151
+#: includes/class-rp-post-types.php:154
 msgid "No Menu Items found"
 msgstr ""
 
-#: includes/class-rp-post-types.php:152
+#: includes/class-rp-post-types.php:155
 msgid "No Menu Items found in trash"
 msgstr ""
 
-#: includes/class-rp-post-types.php:153
+#: includes/class-rp-post-types.php:156
 msgid "Parent Menu Item"
 msgstr ""
 
-#: includes/class-rp-post-types.php:154
+#: includes/class-rp-post-types.php:157
 msgid "Food image"
 msgstr ""
 
-#: includes/class-rp-post-types.php:155
+#: includes/class-rp-post-types.php:158
 msgid "Set menu image"
 msgstr ""
 
-#: includes/class-rp-post-types.php:156
+#: includes/class-rp-post-types.php:159
 msgid "Remove menu image"
 msgstr ""
 
-#: includes/class-rp-post-types.php:157
+#: includes/class-rp-post-types.php:160
 msgid "Use as menu image"
 msgstr ""
 
-#: includes/class-rp-post-types.php:158
+#: includes/class-rp-post-types.php:161
 msgid "Insert into menu item"
 msgstr ""
 
-#: includes/class-rp-post-types.php:159
+#: includes/class-rp-post-types.php:162
 msgid "Uploaded to this menu item"
 msgstr ""
 
-#: includes/class-rp-post-types.php:160
+#: includes/class-rp-post-types.php:163
 msgid "Filter menu items"
 msgstr ""
 
-#: includes/class-rp-post-types.php:161
+#: includes/class-rp-post-types.php:164
 msgid "Menu items navigation"
 msgstr ""
 
-#: includes/class-rp-post-types.php:162
+#: includes/class-rp-post-types.php:165
 msgid "Menu items list"
 msgstr ""
 
-#: includes/class-rp-post-types.php:164
+#: includes/class-rp-post-types.php:167
 msgid "This is where you can add new foods to your restaurant."
 msgstr ""
 
-#: includes/class-rp-post-types.php:186
+#: includes/class-rp-post-types.php:189
 msgid "Groups"
 msgstr ""
 
-#: includes/class-rp-post-types.php:187
+#: includes/class-rp-post-types.php:190
 msgid "Group"
 msgstr ""
 
-#: includes/class-rp-post-types.php:189
+#: includes/class-rp-post-types.php:192
 msgid "Add Group"
 msgstr ""
 
-#: includes/class-rp-post-types.php:190
+#: includes/class-rp-post-types.php:193
 msgid "Add New Group"
 msgstr ""
 
-#: includes/class-rp-post-types.php:192
+#: includes/class-rp-post-types.php:195
 msgid "Edit Group"
 msgstr ""
 
-#: includes/class-rp-post-types.php:193
+#: includes/class-rp-post-types.php:196
 msgid "New Group"
 msgstr ""
 
-#: includes/class-rp-post-types.php:194
+#: includes/class-rp-post-types.php:197
 msgid "View Groups"
 msgstr ""
 
-#: includes/class-rp-post-types.php:195
+#: includes/class-rp-post-types.php:198
 msgid "View Group"
 msgstr ""
 
-#: includes/class-rp-post-types.php:196
+#: includes/class-rp-post-types.php:199
 msgid "Search Groups"
 msgstr ""
 
-#: includes/class-rp-post-types.php:197
+#: includes/class-rp-post-types.php:200
 msgid "No Groups found"
 msgstr ""
 
-#: includes/class-rp-post-types.php:198
+#: includes/class-rp-post-types.php:201
 msgid "No Groups found in trash"
 msgstr ""
 
-#: includes/class-rp-post-types.php:199
+#: includes/class-rp-post-types.php:202
 msgid "Parent Group"
 msgstr ""
 
-#: includes/class-rp-post-types.php:200
+#: includes/class-rp-post-types.php:203
 msgid "Filter Groups"
 msgstr ""
 
-#: includes/class-rp-post-types.php:201
+#: includes/class-rp-post-types.php:204
 msgid "Groups navigation"
 msgstr ""
 
-#: includes/class-rp-post-types.php:202
+#: includes/class-rp-post-types.php:205
 msgid "Groups list"
 msgstr ""
 
-#: includes/class-rp-post-types.php:204
+#: includes/class-rp-post-types.php:207
 msgid "This is where you can add new group for your food menu."
 msgstr ""
 
@@ -1818,7 +1861,7 @@ msgstr ""
 msgid "%1$s should not be called before the %2$s action."
 msgstr ""
 
-#: includes/rp-food-functions.php:52
+#: includes/rp-food-functions.php:126
 msgid "Placeholder"
 msgstr ""
 
@@ -1973,34 +2016,58 @@ msgctxt "enhanced select"
 msgid "Searching&hellip;"
 msgstr ""
 
-#: includes/class-rp-post-types.php:53
-msgctxt "Admin menu name"
-msgid "Categories"
-msgstr ""
-
-#: includes/class-rp-post-types.php:88
-msgctxt "Admin menu name"
-msgid "Tags"
-msgstr ""
-
-#: includes/class-rp-post-types.php:141
-msgctxt "Admin menu name"
-msgid "Menu Items"
-msgstr ""
-
-#: includes/class-rp-post-types.php:188
-msgctxt "Admin menu name"
-msgid "Groups"
-msgstr ""
-
-#: includes/class-rp-post-types.php:73
+#: includes/admin/class-rp-admin-permalink-settings.php:69
+#: includes/rp-core-functions.php:807
 msgctxt "slug"
 msgid "food-category"
 msgstr ""
 
-#: includes/class-rp-post-types.php:110
+#: includes/admin/class-rp-admin-permalink-settings.php:78
+#: includes/rp-core-functions.php:808
 msgctxt "slug"
 msgid "food-tag"
+msgstr ""
+
+#: includes/admin/class-rp-admin-permalink-settings.php:175
+#: includes/admin/class-rp-admin-permalink-settings.php:178
+#: includes/rp-core-functions.php:806
+msgctxt "slug"
+msgid "food"
+msgstr ""
+
+#: includes/rp-food-functions.php:75
+msgctxt "slug"
+msgid "uncategorized"
+msgstr ""
+
+#: includes/admin/class-rp-admin-permalink-settings.php:89
+msgctxt "default-slug"
+msgid "menu"
+msgstr ""
+
+#: includes/admin/class-rp-admin-permalink-settings.php:90
+msgctxt "default-slug"
+msgid "food"
+msgstr ""
+
+#: includes/class-rp-post-types.php:55
+msgctxt "Admin menu name"
+msgid "Categories"
+msgstr ""
+
+#: includes/class-rp-post-types.php:90
+msgctxt "Admin menu name"
+msgid "Tags"
+msgstr ""
+
+#: includes/class-rp-post-types.php:144
+msgctxt "Admin menu name"
+msgid "Menu Items"
+msgstr ""
+
+#: includes/class-rp-post-types.php:191
+msgctxt "Admin menu name"
+msgid "Groups"
 msgstr ""
 
 #: includes/widgets/class-rp-widget-menu.php:65
