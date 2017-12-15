@@ -222,6 +222,8 @@ module.exports = function( grunt ){
 					'**/*.php',               // Include all files
 					'!includes/libraries/**', // Exclude libraries/
 					'!node_modules/**',       // Exclude node_modules/
+					'!tests/cli/**',          // Exclude tests/cli/
+					'!tmp/**',                // Exclude tmp/
 					'!vendor/**'              // Exclude vendor/
 				]
 			}

@@ -28,6 +28,9 @@
     "post-update-cmd": [
       "WPEverest\\GitHooks\\Hooks::postHooks"
     ],
+    "test": [
+      "phpunit"
+    ],
     "phpcs": [
       "phpcs -s -p --standard=./phpcs.ruleset.xml"
     ],
@@ -37,6 +40,7 @@
   },
   "extra": {
     "scripts-description": {
+      "test": "Run unit tests",
       "phpcs": "Analyze code against the WordPress coding standard with PHP_CodeSniffer",
       "phpcbf": "Fix coding standards warnings/errors automattically with PHP Code Beautifier"
     }
