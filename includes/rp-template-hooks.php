@@ -15,6 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 add_filter( 'body_class', 'rp_body_class' );
+add_filter( 'post_class', 'rp_food_post_class', 20, 3 );
 
 /**
  * WP Header.

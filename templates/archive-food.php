@@ -47,7 +47,7 @@ do_action( 'restaurantpress_before_main_content' );
 
 <!-- Testing -->
 <div class="foods columns-1">
-	<section id="post-65" class="post-65 food_menu type-food_menu status-publish has-post-thumbnail hentry food_menu_cat-breakfast food_menu_tag-test-tag">
+	<section id="post-65" class="post-65 food_menu type-food_menu status-publish has-post-thumbnail hentry food_menu_cat-breakfast food_menu_tag-test-tag first">
 		<span class="chef"><p class="screen-reader-text">Chef!</p></span>
 		<figure class="restaurantpress-food-gallery__wrapper thumbnail">
 			<img width="180" height="180" src="//themegrill.io/wp-content/uploads/2015/10/Bagel-Ham-180x180.jpg" class="attachment-food_thumbnail size-food_thumbnail wp-post-image" alt="" srcset="//themegrill.io/wp-content/uploads/2015/10/Bagel-Ham-180x180.jpg 180w, //themegrill.io/wp-content/uploads/2015/10/Bagel-Ham-150x150.jpg 150w, //themegrill.io/wp-content/uploads/2015/10/Bagel-Ham-600x600.jpg 600w, //themegrill.io/wp-content/uploads/2015/10/Bagel-Ham-300x300.jpg 300w" sizes="(max-width: 180px) 100vw, 180px">
@@ -62,7 +62,7 @@ do_action( 'restaurantpress_before_main_content' );
 			</div>
 		</div>
 	</section>
-	<section id="post-65" class="post-65 food_menu type-food_menu status-publish has-post-thumbnail hentry food_menu_cat-breakfast food_menu_tag-test-tag">
+	<section id="post-65" class="post-65 food_menu type-food_menu status-publish has-post-thumbnail hentry food_menu_cat-breakfast food_menu_tag-test-tag last">
 		<span class="chef"><p class="screen-reader-text">Chef!</p></span>
 		<figure class="restaurantpress-food-gallery__wrapper thumbnail">
 			<img width="180" height="180" src="//themegrill.io/wp-content/uploads/2015/10/Bagel-Ham-180x180.jpg" class="attachment-food_thumbnail size-food_thumbnail wp-post-image" alt="" srcset="//themegrill.io/wp-content/uploads/2015/10/Bagel-Ham-180x180.jpg 180w, //themegrill.io/wp-content/uploads/2015/10/Bagel-Ham-150x150.jpg 150w, //themegrill.io/wp-content/uploads/2015/10/Bagel-Ham-600x600.jpg 600w, //themegrill.io/wp-content/uploads/2015/10/Bagel-Ham-300x300.jpg 300w" sizes="(max-width: 180px) 100vw, 180px">

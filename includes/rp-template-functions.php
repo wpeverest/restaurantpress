@@ -139,6 +139,26 @@ function rp_set_loop_prop( $prop, $value = '' ) {
 }
 
 /**
+ * Output generator tag to aid debugging.
+ *
+ * @param string $gen  Generator.
+ * @param string $type Type.
+ *
+ * @return string
+ */
+function rp_generator_tag( $gen, $type ) {
+	switch ( $type ) {
+		case 'html':
+			$gen .= "\n" . '<meta name="generator" content="RestaurantPress ' . esc_attr( RP_VERSION ) . '">';
+			break;
+		case 'xhtml':
+			$gen .= "\n" . '<meta name="generator" content="RestaurantPress ' . esc_attr( RP_VERSION ) . '" />';
+			break;
+	}
+	return $gen;
+}
+
+/**
  * Add body classes for RP pages.
  *
  * @param  array $classes Body Classes.
@@ -163,23 +183,73 @@ function rp_body_class( $classes ) {
 }
 
 /**
- * Output generator tag to aid debugging.
+ * Get classname for loops based on $restaurantpress_loop global.
  *
- * @param string $gen  Generator.
- * @param string $type Type.
- *
+ * @since 1.6.0
  * @return string
  */
-function rp_generator_tag( $gen, $type ) {
-	switch ( $type ) {
-		case 'html':
-			$gen .= "\n" . '<meta name="generator" content="RestaurantPress ' . esc_attr( RP_VERSION ) . '">';
-			break;
-		case 'xhtml':
-			$gen .= "\n" . '<meta name="generator" content="RestaurantPress ' . esc_attr( RP_VERSION ) . '" />';
-			break;
+function rp_get_loop_class() {
+	global $restaurantpress_loop;
+
+	$restaurantpress_loop['loop']    = ! empty( $restaurantpress_loop['loop'] ) ? $restaurantpress_loop['loop'] + 1 : 1;
+	$restaurantpress_loop['columns'] = max( 1, ! empty( $restaurantpress_loop['columns'] ) ? $restaurantpress_loop['columns'] : apply_filters( 'loop_menu_columns', 4 ) );
+
+	if ( 0 === ( $restaurantpress_loop['loop'] - 1 ) % $restaurantpress_loop['columns'] || 1 === $restaurantpress_loop['columns'] ) {
+		return 'first';
+	} elseif ( 0 === $restaurantpress_loop['loop'] % $restaurantpress_loop['columns'] ) {
+		return 'last';
+	} else {
+		return '';
 	}
-	return $gen;
+}
+
+/**
+ * Get the classes for the product cat div.
+ *
+ * @since 1.6.0
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ * @param object       $category object Optional.
+ *
+ * @return array
+ */
+function rp_get_food_cat_class( $class = '', $category = null ) {
+	$classes   = is_array( $class ) ? $class : array_map( 'trim', explode( ' ', $class ) );
+	$classes[] = 'food-category';
+	$classes[] = 'food';
+	$classes[] = rp_get_loop_class();
+	$classes   = apply_filters( 'food_cat_class', $classes, $class, $category );
+
+	return array_unique( array_filter( $classes ) );
+}
+
+/**
+ * Adds extra post classes for foods.
+ *
+ * @since 1.6.0
+ * @param array        $classes Current classes.
+ * @param string|array $class Additional class.
+ * @param int          $post_id Post ID.
+ * @return array
+ */
+function rp_food_post_class( $classes, $class = '', $post_id = '' ) {
+	if ( ! $post_id || ! in_array( get_post_type( $post_id ), array( 'food_menu' ) ) ) {
+		return $classes;
+	}
+
+	$food = rp_get_food( $post_id );
+
+	if ( $food ) {
+		$classes[] = 'food';
+		$classes[] = rp_get_loop_class();
+	}
+
+	$key = array_search( 'hentry', $classes );
+	if ( false !== $key ) {
+		unset( $classes[ $key ] );
+	}
+
+	return $classes;
 }
 
 /**
