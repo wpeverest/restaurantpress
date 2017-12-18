@@ -27,7 +27,7 @@ if ( empty( $food ) ) {
 	return;
 }
 ?>
-<li <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php
 	/**
 	 * Hook: restaurantpress_before_menu_loop_item.
@@ -66,4 +66,4 @@ if ( empty( $food ) ) {
 	 */
 	do_action( 'restaurantpress_after_menu_loop_item' );
 	?>
-</li>
+</article>

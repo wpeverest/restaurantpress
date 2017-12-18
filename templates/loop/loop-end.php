@@ -15,5 +15,10 @@
  * @package RestaurantPress/Templates
  * @version 1.6.0
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 ?>
-</ul>
+</div>

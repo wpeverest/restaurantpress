@@ -30,8 +30,8 @@
 	 * Foods
 	 */
 	&, &[class*='columns-'] {
-		ul.foods {
-			li.food_menu {
+		div.foods {
+			article.food_menu {
 				width: 48%;
 				float: left;
 				clear: both;

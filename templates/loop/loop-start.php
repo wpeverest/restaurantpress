@@ -15,5 +15,10 @@
  * @package RestaurantPress/Templates
  * @version 1.6.0
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 ?>
-<ul class="foods columns-<?php echo esc_attr( rp_get_loop_prop( 'columns' ) ); ?>">
+<div class="foods columns-<?php echo esc_attr( rp_get_loop_prop( 'columns' ) ); ?>">
