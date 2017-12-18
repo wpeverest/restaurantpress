@@ -310,7 +310,7 @@
 		}
 	}
 
-	div.foods article.food_menu {
+	div.foods section.food_menu {
 		.chef {
 			top: 0;
 			left: 0;
@@ -604,6 +604,12 @@
 			line-height: 1.5;
 		}
 	}
+
+	figure.thumbnail {
+		float: left;
+		margin: 0 20px 0 0;
+		position: relative;
+	}
 }
 
 /**
@@ -704,6 +710,7 @@ button.pswp__button--zoom:hover {
 /**
  * Group page
  */
+.restaurantpress-page,
 .restaurantpress-group {
 	#restaurant-press-section {
 		color: #333;

@@ -27,14 +27,15 @@ if ( empty( $food ) ) {
 	return;
 }
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<section id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+
 	<?php
 	/**
 	 * Hook: restaurantpress_before_menu_loop_item.
 	 *
 	 * @hooked restaurantpress_template_loop_food_link_open - 10
 	 */
-	do_action( 'restaurantpress_before_menu_loop_item' );
+	// do_action( 'restaurantpress_before_menu_loop_item' );
 
 	/**
 	 * Hook: restaurantpress_before_menu_loop_item_title.
@@ -64,6 +65,6 @@ if ( empty( $food ) ) {
 	 *
 	 * @hooked restaurantpress_template_loop_food_link_close - 5
 	 */
-	do_action( 'restaurantpress_after_menu_loop_item' );
+	// do_action( 'restaurantpress_after_menu_loop_item' );
 	?>
-</article>
+</section>

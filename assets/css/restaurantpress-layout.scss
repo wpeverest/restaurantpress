@@ -12,7 +12,8 @@
 /**
  * Styling begins
  */
-.restaurantpress, .restaurantpress-page {
+.restaurantpress,
+.restaurantpress-page {
 
 	.restaurantpress-message,
 	.restaurantpress-error,
@@ -120,7 +121,7 @@
 		clear: both;
 		@include clearfix();
 
-		article.food_menu {
+		section.food_menu {
 			float: left;
 			margin: 0 3.8% 2.992em 0;
 			padding: 0;
@@ -129,39 +130,39 @@
 			margin-left: 0;
 		}
 
-		article.first {
+		section.first {
 			clear: both;
 		}
 
-		article.last {
+		section.last {
 			margin-right: 0;
 		}
 	}
 
 	div.foods {
 		&.columns-1 {
-			article.food_menu {
+			section.food_menu {
 				width: 100%;
 				margin-right: 0;
 			}
 		}
 		&.columns-2 {
-			article.food_menu {
+			section.food_menu {
 				width: 48%;
 			}
 		}
 		&.columns-3 {
-			article.food_menu {
+			section.food_menu {
 				width: 30.75%;
 			}
 		}
 		&.columns-5 {
-			article.food_menu {
+			section.food_menu {
 				width: 16.95%;
 			}
 		}
 		&.columns-6 {
-			article.food_menu {
+			section.food_menu {
 				width: 13.5%;
 			}
 		}
@@ -169,7 +170,7 @@
 
 	&.columns-1 {
 		div.foods {
-			article.food_menu {
+			section.food_menu {
 				width: 100%;
 				margin-right: 0;
 			}
@@ -178,7 +179,7 @@
 
 	&.columns-2 {
 		div.foods {
-			article.food_menu {
+			section.food_menu {
 				width: 48%;
 			}
 		}
@@ -186,7 +187,7 @@
 
 	&.columns-3 {
 		div.foods {
-			article.food_menu {
+			section.food_menu {
 				width: 30.75%;
 			}
 		}
@@ -194,7 +195,7 @@
 
 	&.columns-5 {
 		div.foods {
-			article.food_menu {
+			section.food_menu {
 				width: 16.95%;
 			}
 		}
@@ -202,7 +203,7 @@
 
 	&.columns-6 {
 		div.foods {
-			article.food_menu {
+			section.food_menu {
 				width: 13.5%;
 			}
 		}
