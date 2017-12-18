@@ -326,8 +326,20 @@
 			font-size: 1em;
 		}
 
+		.food_title {
+			clear: none;
+			padding: 0;
+			margin-top: 0;
+			display: inline;
+		}
+
 		a {
+			color: $restaurantpress;
 			text-decoration: none;
+
+			&:focus {
+				border: none;
+			}
 		}
 
 		a img {
@@ -347,11 +359,12 @@
 		}
 
 		.price {
+			float: right;
 			color: $highlight;
 			display: block;
 			font-weight: normal;
 			margin-bottom: 0.5em;
-			font-size: 0.857em;
+			font-size: 1em;
 
 			del {
 				color: inherit;
@@ -609,6 +622,15 @@
 		float: left;
 		margin: 0 20px 0 0;
 		position: relative;
+
+		img {
+			box-shadow: none;
+		}
+	}
+
+	.restaurantpress-food-details__short-description {
+		color: #8c8787;
+		margin-top: 10px;
 	}
 }
 
@@ -710,7 +732,6 @@ button.pswp__button--zoom:hover {
 /**
  * Group page
  */
-.restaurantpress-page,
 .restaurantpress-group {
 	#restaurant-press-section {
 		color: #333;
