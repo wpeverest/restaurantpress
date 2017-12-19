@@ -75,6 +75,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		do_action( 'restaurantpress_after_single_food_summary' );
 	?>
 
-</div><!-- #food-<?php the_ID(); ?> -->
+</div>
 
 <?php do_action( 'restaurantpress_after_single_food_menu' ); ?>

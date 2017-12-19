@@ -296,6 +296,135 @@
 	}
 
 	/**
+	 * Foods loops
+	 */
+	div.foods {
+		margin: 0 0 1em;
+		padding: 0;
+		list-style: none outside;
+		clear: both;
+		@include clearfix();
+
+		li {
+			list-style: none outside;
+		}
+	}
+
+	div.foods section.food_menu {
+		.chef {
+			top: 0;
+			left: 0;
+			right: auto;
+			margin: -0.5em 0 0 -0.5em;
+		}
+
+		h3,
+		.restaurantpress-loop-food__title,
+		.restaurantpress-loop-category__title {
+			padding: 0.5em 0;
+			margin: 0;
+			font-size: 1em;
+			display: inline;
+		}
+
+		a {
+			color: $restaurantpress;
+			text-decoration: none;
+
+			&:focus {
+				border: none;
+			}
+		}
+
+		a img {
+			width: 100%;
+			height: auto;
+			display: block;
+			margin: 0 0 1em;
+			box-shadow: none;
+		}
+
+		strong {
+			display: block;
+		}
+
+		.button {
+			margin-top: 1em;
+		}
+
+		.price {
+			float: right;
+			color: $highlight;
+			display: block;
+			font-weight: normal;
+			margin-bottom: 0.5em;
+			font-size: 1em;
+
+			del {
+				color: inherit;
+				opacity: 0.5;
+				display: inline-block;
+			}
+
+			ins {
+				background: none;
+				font-weight: 700;
+				display: inline-block;
+			}
+
+			.from {
+				font-size: 0.67em;
+				margin: -2px 0 0 0;
+				text-transform: uppercase;
+				color: rgba(desaturate($highlight, 75%), 0.5);
+			}
+		}
+	}
+
+	nav.restaurantpress-pagination {
+		text-align: center;
+
+		ul {
+			display: inline-block;
+			white-space: nowrap;
+			padding: 0;
+			clear: both;
+			border: 1px solid darken( $secondary, 10% );
+			border-right: 0;
+			margin: 1px;
+
+			li {
+				border-right: 1px solid darken( $secondary, 10% );
+				padding: 0;
+				margin: 0;
+				float: left;
+				display: inline;
+				overflow: hidden;
+
+				a,
+				span {
+					margin: 0;
+					text-decoration: none;
+					padding: 0;
+					line-height: 1;
+					font-size: 1em;
+					font-weight: normal;
+					padding: 0.5em;
+					min-width: 1em;
+					display: block;
+				}
+
+				span.current,
+				a:hover,
+				a:focus {
+					background: $secondary;
+					color: darken( $secondary, 40% );
+				}
+			}
+		}
+	}
+
+	/**
 	 * Buttons
 	 */
 	a.button,
@@ -458,6 +587,44 @@
 		:-ms-input-placeholder {
 			line-height: normal;
 		}
+	}
+}
+
+.restaurantpress,
+.restaurantpress-page {
+
+	.restaurantpress-foods-header {
+		margin-bottom: 1.5em;
+		border-top: 1px dashed #b0aeab;
+		border-bottom: 1px dashed #b0aeab;
+
+		h1,
+		.restaurantpress-foods-header__title,
+		.restaurantpress-foods-category__title {
+			margin: 0;
+			padding: 0.5em 0;
+			text-align: center;
+		}
+
+		.term-description p {
+			margin: 0 0 1em;
+			line-height: 1.5;
+		}
+	}
+
+	figure.thumbnail {
+		float: left;
+		margin: 0 20px 0 0;
+		position: relative;
+
+		img {
+			box-shadow: none;
+		}
+	}
+
+	.restaurantpress-food-details__short-description {
+		color: #8c8787;
+		margin-top: 10px;
 	}
 }
 
