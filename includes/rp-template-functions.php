@@ -79,7 +79,6 @@ function rp_setup_loop( $args = array() ) {
 		'is_shortcode' => false,
 		'is_paginated' => true,
 		'is_search'    => false,
-		'is_filtered'  => false,
 		'total'        => 0,
 		'total_pages'  => 0,
 		'per_page'     => 0,
@@ -90,7 +89,6 @@ function rp_setup_loop( $args = array() ) {
 	if ( $GLOBALS['wp_query']->get( 'rp_query' ) ) {
 		$default_args = array_merge( $default_args, array(
 			'is_search'    => $GLOBALS['wp_query']->is_search(),
-			'is_filtered'  => is_filtered(),
 			'total'        => $GLOBALS['wp_query']->found_posts,
 			'total_pages'  => $GLOBALS['wp_query']->max_num_pages,
 			'per_page'     => $GLOBALS['wp_query']->get( 'posts_per_page' ),
