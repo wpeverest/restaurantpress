@@ -74,7 +74,7 @@ function rp_setup_loop( $args = array() ) {
 
 	$default_args = array(
 		'loop'         => 0,
-		'columns'      => 2,
+		'columns'      => 1,
 		'name'         => '',
 		'is_shortcode' => false,
 		'is_paginated' => true,
@@ -396,27 +396,7 @@ if ( ! function_exists( 'restaurantpress_template_loop_food_title' ) ) {
 	 * Show the food title in the food loop. By default this is an H2.
 	 */
 	function restaurantpress_template_loop_food_title() {
-		echo '<h2 class="restaurantpress-loop-food__title">' . get_the_title() . '</h2>';
-	}
-}
-
-if ( ! function_exists( 'restaurantpress_template_loop_food_link_open' ) ) {
-
-	/**
-	 * Insert the opening anchor tag for foods in the loop.
-	 */
-	function restaurantpress_template_loop_food_link_open() {
-		echo '<a href="' . esc_url( get_the_permalink() ) . '" class="restaurantpress-LoopFood-link restaurantpress-loop-food__link">';
-	}
-}
-
-if ( ! function_exists( 'restaurantpress_template_loop_food_link_close' ) ) {
-
-	/**
-	 * Insert the closing anchor tag for foods in the loop.
-	 */
-	function restaurantpress_template_loop_food_link_close() {
-		echo '</a>';
+		echo '<h2 class="restaurantpress-loop-food__title"><a href="' . esc_url( get_the_permalink() ) . '" class="restaurantpress-LoopFood-link restaurantpress-loop-food__link">' . get_the_title() . '</a></h2>';
 	}
 }
 
@@ -442,7 +422,7 @@ if ( ! function_exists( 'restaurantpress_template_loop_food_thumbnail' ) ) {
 	 * Get the food thumbnail for the loop.
 	 */
 	function restaurantpress_template_loop_food_thumbnail() {
-		echo restaurantpress_get_food_thumbnail(); // WPCS: XSS ok.
+		echo '<figure class="restaurantpress-food-gallery__wrapper thumbnail">' . restaurantpress_get_food_thumbnail() . '</figure>'; // WPCS: XSS ok.
 	}
 }
 if ( ! function_exists( 'restaurantpress_template_loop_price' ) ) {
@@ -452,6 +432,17 @@ if ( ! function_exists( 'restaurantpress_template_loop_price' ) ) {
 	 */
 	function restaurantpress_template_loop_price() {
 		rp_get_template( 'loop/price.php' );
+	}
+}
+if ( ! function_exists( 'restaurantpress_template_loop_description' ) ) {
+
+	/**
+	 * Get the food description for the loop.
+	 */
+	function restaurantpress_template_loop_description() {
+		echo '<div class="restaurantpress-food-details__short-description">';
+			echo "<p>Jelly beans biscuit danish tart sweet donut candy canes. Dragée caramels tootsie roll sweet chocolate jelly-o carrot cake cotton candy marshmallow. Pie gummies sweet roll chocolate carrot cake brownie. Ice cream carrot cake chocolate cake topping lollipop pie chupa chups.</p>";
+		echo '</div>';
 	}
 }
 if ( ! function_exists( 'restaurantpress_show_food_loop_chef_badge' ) ) {

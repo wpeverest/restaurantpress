@@ -44,41 +44,6 @@ do_action( 'restaurantpress_before_main_content' );
 	do_action( 'restaurantpress_archive_description' );
 	?>
 </header>
-
-<!-- Testing -->
-<div class="foods columns-1">
-	<section id="post-65" class="post-65 food_menu type-food_menu status-publish has-post-thumbnail hentry food_menu_cat-breakfast food_menu_tag-test-tag first">
-		<span class="chef"><p class="screen-reader-text">Chef!</p></span>
-		<figure class="restaurantpress-food-gallery__wrapper thumbnail">
-			<img width="180" height="180" src="//themegrill.io/wp-content/uploads/2015/10/Bagel-Ham-180x180.jpg" class="attachment-food_thumbnail size-food_thumbnail wp-post-image" alt="" srcset="//themegrill.io/wp-content/uploads/2015/10/Bagel-Ham-180x180.jpg 180w, //themegrill.io/wp-content/uploads/2015/10/Bagel-Ham-150x150.jpg 150w, //themegrill.io/wp-content/uploads/2015/10/Bagel-Ham-600x600.jpg 600w, //themegrill.io/wp-content/uploads/2015/10/Bagel-Ham-300x300.jpg 300w" sizes="(max-width: 180px) 100vw, 180px">
-		</figure>
-		<div class="summary entry-summary">
-			<h2 class="food_title entry-title">
-				<a href="http://themegrill.io/food/cappuccino/" class="restaurantpress-foodItem-link restaurantpress-loop-foodItem__link">Cappuccino</a>
-			</h4>
-			<p class="price"><del><span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">$</span>‎100.00</span></del> <ins><span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">$</span>‎50.00</span></ins></p>
-			<div class="restaurantpress-food-details__short-description">
-				<p>Jelly beans biscuit danish tart sweet donut candy canes. Dragée caramels tootsie roll sweet chocolate jelly-o carrot cake cotton candy marshmallow. Pie gummies sweet roll chocolate carrot cake brownie. Ice cream carrot cake chocolate cake topping lollipop pie chupa chups.</p>
-			</div>
-		</div>
-	</section>
-	<section id="post-65" class="post-65 food_menu type-food_menu status-publish has-post-thumbnail hentry food_menu_cat-breakfast food_menu_tag-test-tag last">
-		<span class="chef"><p class="screen-reader-text">Chef!</p></span>
-		<figure class="restaurantpress-food-gallery__wrapper thumbnail">
-			<img width="180" height="180" src="//themegrill.io/wp-content/uploads/2015/10/Bagel-Ham-180x180.jpg" class="attachment-food_thumbnail size-food_thumbnail wp-post-image" alt="" srcset="//themegrill.io/wp-content/uploads/2015/10/Bagel-Ham-180x180.jpg 180w, //themegrill.io/wp-content/uploads/2015/10/Bagel-Ham-150x150.jpg 150w, //themegrill.io/wp-content/uploads/2015/10/Bagel-Ham-600x600.jpg 600w, //themegrill.io/wp-content/uploads/2015/10/Bagel-Ham-300x300.jpg 300w" sizes="(max-width: 180px) 100vw, 180px">
-		</figure>
-		<div class="summary entry-summary">
-			<h2 class="food_title entry-title">
-				<a href="http://themegrill.io/food/cappuccino/" class="restaurantpress-foodItem-link restaurantpress-loop-foodItem__link">Cappuccino</a>
-			</h4>
-			<p class="price"><del><span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">$</span>‎100.00</span></del> <ins><span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">$</span>‎50.00</span></ins></p>
-			<div class="restaurantpress-food-details__short-description">
-				<p>Jelly beans biscuit danish tart sweet donut candy canes. Dragée caramels tootsie roll sweet chocolate jelly-o carrot cake cotton candy marshmallow. Pie gummies sweet roll chocolate carrot cake brownie. Ice cream carrot cake chocolate cake topping lollipop pie chupa chups.</p>
-			</div>
-		</div>
-	</section>
-</div>
-<!-- End testing -->
 <?php
 
 if ( have_posts() ) {
