@@ -187,14 +187,15 @@ function rp_body_class( $classes ) {
  * @return string
  */
 function rp_get_loop_class() {
-	global $restaurantpress_loop;
+	$loop_index = rp_get_loop_prop( 'loop', 0 );
+	$per_page   = rp_get_loop_prop( 'per_page', apply_filters( 'loop_menu_per_page', 10 ) );
 
-	$restaurantpress_loop['loop']    = ! empty( $restaurantpress_loop['loop'] ) ? $restaurantpress_loop['loop'] + 1 : 1;
-	$restaurantpress_loop['columns'] = max( 1, ! empty( $restaurantpress_loop['columns'] ) ? $restaurantpress_loop['columns'] : apply_filters( 'loop_menu_columns', 4 ) );
+	$loop_index ++;
+	rp_set_loop_prop( 'loop', $loop_index );
 
-	if ( 0 === ( $restaurantpress_loop['loop'] - 1 ) % $restaurantpress_loop['columns'] || 1 === $restaurantpress_loop['columns'] ) {
+	if ( 1 === $loop_index ) {
 		return 'first';
-	} elseif ( 0 === $restaurantpress_loop['loop'] % $restaurantpress_loop['columns'] ) {
+	} elseif ( 0 === $loop_index % $per_page ) {
 		return 'last';
 	} else {
 		return '';
