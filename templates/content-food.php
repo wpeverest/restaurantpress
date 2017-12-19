@@ -47,7 +47,7 @@ if ( empty( $food ) ) {
 			 *
 			 * @hooked restaurantpress_template_loop_food_title - 10
 			 * @hooked restaurantpress_template_loop_price - 20
-			 * @hooked restaurantpress_template_loop_description - 30
+			 * @hooked restaurantpress_template_loop_excerpt - 30
 			 */
 			do_action( 'restaurantpress_menu_loop_item_summary' );
 		?>

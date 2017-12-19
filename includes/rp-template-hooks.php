@@ -70,11 +70,12 @@ add_action( 'restaurantpress_no_foods_found', 'rp_no_foods_found' );
  * @see restaurantpress_template_loop_food_thumbnail()
  * @see restaurantpress_template_loop_food_title()
  * @see restaurantpress_template_loop_price()
+ * @see restaurantpress_template_loop_excerpt()
  */
 add_action( 'restaurantpress_before_menu_loop_item_summary', 'restaurantpress_template_loop_food_thumbnail', 10 );
 add_action( 'restaurantpress_menu_loop_item_summary', 'restaurantpress_template_loop_food_title', 10 );
 add_action( 'restaurantpress_menu_loop_item_summary', 'restaurantpress_template_loop_price', 20 );
-add_action( 'restaurantpress_menu_loop_item_summary', 'restaurantpress_template_loop_description', 30 );
+add_action( 'restaurantpress_menu_loop_item_summary', 'restaurantpress_template_loop_excerpt', 30 );
 
 /**
  * Before Single Products Summary Div.

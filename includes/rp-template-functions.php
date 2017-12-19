@@ -434,15 +434,13 @@ if ( ! function_exists( 'restaurantpress_template_loop_price' ) ) {
 		rp_get_template( 'loop/price.php' );
 	}
 }
-if ( ! function_exists( 'restaurantpress_template_loop_description' ) ) {
+if ( ! function_exists( 'restaurantpress_template_loop_excerpt' ) ) {
 
 	/**
-	 * Get the food description for the loop.
+	 * Output the food short description (excerpt) for the loop.
 	 */
-	function restaurantpress_template_loop_description() {
-		echo '<div class="restaurantpress-food-details__short-description">';
-			echo "<p>Jelly beans biscuit danish tart sweet donut candy canes. Dragée caramels tootsie roll sweet chocolate jelly-o carrot cake cotton candy marshmallow. Pie gummies sweet roll chocolate carrot cake brownie. Ice cream carrot cake chocolate cake topping lollipop pie chupa chups.</p>";
-		echo '</div>';
+	function restaurantpress_template_loop_excerpt() {
+		rp_get_template( 'loop/short-description.php' );
 	}
 }
 if ( ! function_exists( 'restaurantpress_show_food_loop_chef_badge' ) ) {
