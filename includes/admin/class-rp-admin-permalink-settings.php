@@ -102,11 +102,11 @@ class RP_Admin_Permalink_Settings {
 					<td><code class="default-example"><?php echo esc_html( home_url() ); ?>/?food=sample-food</code> <code class="non-default-example"><?php echo esc_html( home_url() ); ?>/<?php echo esc_html( $food_base ); ?>/sample-food/</code></td>
 				</tr>
 				<tr>
-					<th><label><input name="food_permalink" type="radio" value="<?php echo esc_attr( $structures[1] ); ?>" class="rptog" <?php checked( $structures[1], $this->permalinks['food_base'] ); ?> /> <?php esc_html_e( 'Food base', 'restaurantpress' ); ?></label></th>
+					<th><label><input name="food_permalink" type="radio" value="<?php echo esc_attr( $structures[1] ); ?>" class="rptog" <?php checked( $structures[1], $this->permalinks['food_base'] ); ?> /> <?php esc_html_e( 'Menu base', 'restaurantpress' ); ?></label></th>
 					<td><code><?php echo esc_html( home_url() ); ?>/<?php echo esc_html( $base_slug ); ?>/sample-food/</code></td>
 				</tr>
 				<tr>
-					<th><label><input name="food_permalink" type="radio" value="<?php echo esc_attr( $structures[2] ); ?>" class="rptog" <?php checked( $structures[2], $this->permalinks['food_base'] ); ?> /> <?php esc_html_e( 'Food base with category', 'restaurantpress' ); ?></label></th>
+					<th><label><input name="food_permalink" type="radio" value="<?php echo esc_attr( $structures[2] ); ?>" class="rptog" <?php checked( $structures[2], $this->permalinks['food_base'] ); ?> /> <?php esc_html_e( 'Menu base with category', 'restaurantpress' ); ?></label></th>
 					<td><code><?php echo esc_html( home_url() ); ?>/<?php echo esc_html( $base_slug ); ?>/food-category/sample-food/</code></td>
 				</tr>
 				<tr>

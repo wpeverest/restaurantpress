@@ -63,7 +63,9 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 
 == Changelog ==
 
-= 1.6.0 - XX/11/2017 =
+= 1.6.0 - XX/12/2017 =
+* Feature - Archive page template support.
+* Feature - Permalink structur support.
 * Feature - Introduced Integration class.
 * Feature - Introduced formatting functions for colors.
 * Feature - Introduced admin Settings API used by Integrations.
