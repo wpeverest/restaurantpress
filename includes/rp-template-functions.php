@@ -395,7 +395,7 @@ if ( ! function_exists( 'restaurantpress_template_loop_food_title' ) ) {
 	 * Show the food title in the food loop. By default this is an H2.
 	 */
 	function restaurantpress_template_loop_food_title() {
-		echo '<h2 class="restaurantpress-loop-food__title"><a href="' . esc_url( get_the_permalink() ) . '" class="restaurantpress-LoopFood-link restaurantpress-loop-food__link">' . get_the_title() . '</a></h2>';
+		echo '<h4 class="restaurantpress-loop-food__title"><a href="' . esc_url( get_the_permalink() ) . '" class="restaurantpress-LoopFood-link restaurantpress-loop-food__link">' . get_the_title() . '</a></h4>';
 	}
 }
 
