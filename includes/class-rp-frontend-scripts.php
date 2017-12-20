@@ -331,7 +331,8 @@ class RP_Frontend_Scripts {
 				color: #fff;
 			}
 
-			.restaurantpress-group #restaurant-press-section a {
+			.restaurantpress-group #restaurant-press-section a,
+			.restaurantpress-page .restaurantpress-loop-food__title a {
 				color: %1$s !important;
 			}
 		';
