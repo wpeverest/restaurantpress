@@ -20,7 +20,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+$short_description = apply_filters( 'restaurantpress_short_description', has_excerpt() ? get_the_excerpt() : get_the_content( __( 'Read more&hellip;', 'restaurantpress' ) ) );
+
+if ( ! $short_description ) {
+	return;
+}
+
 ?>
 <div class="restaurantpress-food-details__short-description">
-	<?php echo apply_filters( 'restaurantpress_short_description', has_excerpt() ? get_the_excerpt() : get_the_content( __( 'Read more&hellip;', 'restaurantpress' ) ) ); ?>
+	<?php echo $short_description; // WPCS: XSS ok. ?>
 </div>

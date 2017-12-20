@@ -293,6 +293,48 @@
 			margin-right: 0;
 			color: $contentbg;
 		}
+
+		&.small {
+			min-width: 30px;
+			min-height: 30px;
+			line-height: 2.3em;
+		}
+
+		&.grid {
+			top: 0;
+			left: 1.6em;
+			border-radius: 0;
+			min-width: 30px;
+			min-height: 30px;
+			line-height: 2.3em;
+
+			&::before,
+			&::after {
+				position: absolute;
+				bottom: -10px;
+				left: 0;
+				content: '';
+				border-left: 0 solid transparent;
+				border-top: 10px solid $highlight;
+				border-right: 18px solid transparent;
+			}
+
+			&::after {
+				left: auto;
+				right: 0;
+				bottom: -10px;
+				border-left: 18px solid transparent;
+				border-right: 0 solid transparent;
+			}
+
+			.chef-icon {
+				&::before {
+					@include iconbefore( '\e003' );
+					margin-right: 0;
+					color: $contentbg;
+				}
+			}
+		}
 	}
 
 	/**
@@ -316,6 +358,10 @@
 			left: 0;
 			right: auto;
 			margin: -0.5em 0 0 -0.5em;
+
+			&.small {
+				margin-top: 0.3em;
+			}
 		}
 
 		h3,
@@ -808,34 +854,8 @@ button.pswp__button--zoom:hover {
 						border-radius: 3px;
 
 						&.restaurantpress-placeholder {
-							max-width: 100px;
-							max-height: 100px;
-						}
-					}
-
-					.rp-chef-badge {
-						position: absolute;
-						top: -10px;
-						left: -15px;
-						width: 30px;
-						height: 30px;
-						color: #fff;
-						background: #c00;
-						display: block;
-						font-size: 10px;
-						text-align: center;
-						line-height: 3em;
-						border-radius: 3em;
-						text-transform: capitalize;
-
-						.chef-icon {
-							&::before {
-								content: '\e003';
-								font-family: 'RestaurantPress';
-								font-size: 14px;
-								color: #fff;
-								font-style: normal;
-							}
+							max-width: 100%;
+							max-height: 100%;
 						}
 					}
 				}
@@ -908,48 +928,6 @@ button.pswp__button--zoom:hover {
 
 				&.restaurantpress-placeholder {
 					max-height: 245px;
-				}
-			}
-
-			.rp-chef-badge {
-				position: absolute;
-				top: 0;
-				left: 20px;
-				color: #fff;
-				background: #c00;
-				font-size: 12px;
-				padding: 5px 10px;
-				text-align: center;
-				text-transform: capitalize;
-
-				&::before,
-				&::after {
-					position: absolute;
-					bottom: -10px;
-					left: 0;
-					content: '';
-					border-left: 0 solid transparent;
-					border-top: 10px solid #c00;
-					border-right: 18px solid transparent;
-				}
-
-				&::after {
-					bottom: -10px;
-					border-left: 18px solid transparent;
-					border-top: 10px solid #c00;
-					border-right: 0 solid transparent;
-					left: auto;
-					right: 0;
-				}
-
-				.chef-icon {
-					&::before {
-						content: '\e003';
-						font-family: 'RestaurantPress';
-						font-size: 14px;
-						color: #fff;
-						font-style: normal;
-					}
 				}
 			}
 

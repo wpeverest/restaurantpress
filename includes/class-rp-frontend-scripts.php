@@ -298,13 +298,12 @@ class RP_Frontend_Scripts {
 		}
 
 		$inline_css = '
-			.restaurantpress .chef,
-			.restaurantpress .rp-chef-badge {
+			.restaurantpress .chef {
 				background: %1$s !important;
 			}
 
-			.restaurantpress .rp-chef-badge::before,
-			.restaurantpress .rp-chef-badge::after {
+			.restaurantpress .chef.grid::before,
+			.restaurantpress .chef.grid::after {
 				border-top-color: %1$s !important;
 			}
 

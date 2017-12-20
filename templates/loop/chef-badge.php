@@ -25,7 +25,7 @@ global $post, $food;
 ?>
 <?php if ( $food->is_chef_enable() ) : ?>
 
-	<?php echo apply_filters( 'restaurantpress_chef_badge', '<span class="chef"><p class="screen-reader-text">' . esc_html__( 'Chef!', 'restaurantpress' ) . '</p></span>', $post, $food ); ?>
+	<?php echo apply_filters( 'restaurantpress_chef_badge', '<span class="chef small"><p class="screen-reader-text">' . esc_html__( 'Chef!', 'restaurantpress' ) . '</p></span>', $post, $food ); ?>
 
 <?php endif;
 

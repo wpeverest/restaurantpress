@@ -64,15 +64,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<div class="rp-column-single-block restaurantpress-food-gallery">
 									<?php if ( 'no' == $featured_image ) : ?>
 										<figure class="restaurantpress-food-gallery__wrapper rp-img">
+											<?php if ( $food->is_chef_enable() ) : ?>
+												<span class="chef small"><p class="screen-reader-text"><?php esc_html_e( 'Chef!', 'restaurantpress' ); ?></p></span>
+											<?php endif; ?>
 											<?php if ( 'yes' == $food_menu['popup'] ) : ?>
 												<div data-thumb="<?php echo $food_menu['image_url']; ?>" class="restaurantpress-food-gallery__image">
 													<a href="<?php echo esc_url( $food_menu['full_size_image'][0] ); ?>"><?php echo $food_menu['image']; ?></a>
 												</div>
 											<?php else : ?>
 												<?php echo $food_menu['image']; ?>
-											<?php endif; ?>
-											<?php if ( $food->is_chef_enable() ) : ?>
-												<mark class="rp-chef-badge"><i class="chef-icon"> </i></mark>
 											<?php endif; ?>
 										</figure>
 									<?php endif; ?>
