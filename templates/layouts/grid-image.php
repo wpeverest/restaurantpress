@@ -43,13 +43,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 			}
 
 			?><div class="rp-grid-design-layout">
-				<h3 class="rp-category-title">
-					<?php if ( 'yes' == $category_icon && $image ) : ?>
-						<span class="category-icon"><img src="<?php echo esc_url( wp_get_attachment_url( $image_id ) ); ?>" width="24px" height="24px"></span> <?php echo esc_html( $food_term->name ); ?>
-					<?php else : ?>
-						<?php echo esc_html( $food_term->name ); ?>
-					<?php endif; ?>
-				</h3>
+				<header class="restaurantpress-foods-header">
+					<h1 class="restaurantpress-foods-header__title page-title">
+						<?php if ( 'yes' == $category_icon && $image ) : ?>
+							<span class="restaurantpress-foods-header__icon"><img src="<?php echo esc_url( wp_get_attachment_url( $image_id ) ); ?>" width="24px" height="24px"></span> <?php echo esc_html( $food_term->name ); ?>
+						<?php else : ?>
+							<?php echo esc_html( $food_term->name ); ?>
+						<?php endif; ?>
+					</h1>
+				</header>
 				<?php if ( ! empty( $food_term->description ) ) : ?>
 					<p><?php echo esc_html( $food_term->description ); ?></p>
 				<?php endif; ?>

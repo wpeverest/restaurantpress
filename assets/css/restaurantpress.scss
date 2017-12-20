@@ -323,7 +323,6 @@
 		.restaurantpress-loop-category__title {
 			padding: 0.5em 0;
 			margin: 0;
-			font-size: 1em;
 			display: inline;
 		}
 
@@ -591,7 +590,8 @@
 }
 
 .restaurantpress,
-.restaurantpress-page {
+.restaurantpress-page,
+.restaurantpress-group {
 
 	.restaurantpress-foods-header {
 		margin-bottom: 1.5em;
@@ -602,8 +602,24 @@
 		.restaurantpress-foods-header__title,
 		.restaurantpress-foods-category__title {
 			margin: 0;
-			padding: 0.5em 0;
+			padding: 0.3em 0;
 			text-align: center;
+
+			.restaurantpress-foods-header__icon {
+				margin-right: 7px;
+				display: inline-block;
+				line-height: 24px;
+				height: 24px;
+
+				img {
+					width: auto;
+					height: auto;
+					max-width: 24px;
+					max-height: 24px;
+					box-shadow: none;
+					border-radius: 0;
+				}
+			}
 		}
 
 		.term-description p {
@@ -767,33 +783,6 @@ button.pswp__button--zoom:hover {
 
 			.rp-column-margin {
 				margin-bottom: 4%;
-			}
-		}
-	}
-
-	.rp-category-title {
-		padding: 7px 0;
-		text-align: center;
-		margin-bottom: 15px;
-		border-top: 1px dashed #b0aeab;
-		border-bottom: 1px dashed #b0aeab;
-
-		.category-icon {
-			margin-right: 7px;
-			display: inline-block;
-			line-height: 24px;
-			vertical-align: middle;
-			height: 24px;
-			margin-top: -3px;
-
-			img {
-				width: auto;
-				height: auto;
-				max-width: 24px;
-				max-height: 24px;
-				box-shadow: none;
-				border-radius: 0;
-				vertical-align: middle;
 			}
 		}
 	}
@@ -1100,9 +1089,7 @@ button.pswp__button--zoom:hover {
  * Twenty Thirteen specific styles
  */
 .single-food_menu .twentythirteen {
-	.entry-summary,
-	#reply-title,
-	#respond #commentform {
+	.entry-summary {
 		padding: 0;
 	}
 
