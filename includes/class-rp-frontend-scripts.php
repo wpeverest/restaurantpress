@@ -308,7 +308,7 @@ class RP_Frontend_Scripts {
 				border-top-color: %1$s !important;
 			}
 
-			.restaurantpress span.price {
+			.restaurantpress-group span.price {
 				background: %1$s !important;
 			}
 
