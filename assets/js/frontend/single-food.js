@@ -107,23 +107,17 @@ jQuery( function( $ ) {
 		var $target = this.$target,
 			gallery = this;
 
-		$target.flexslider( {
-			selector:       '.restaurantpress-food-gallery__wrapper > .restaurantpress-food-gallery__image',
-			animation:      rp_single_food_params.flexslider.animation,
-			smoothHeight:   rp_single_food_params.flexslider.smoothHeight,
-			directionNav:   rp_single_food_params.flexslider.directionNav,
-			controlNav:     rp_single_food_params.flexslider.controlNav,
-			slideshow:      rp_single_food_params.flexslider.slideshow,
-			animationSpeed: rp_single_food_params.flexslider.animationSpeed,
-			animationLoop:  rp_single_food_params.flexslider.animationLoop, // Breaks photoswipe pagination if true.
-			allowOneSlide:  rp_single_food_params.flexslider.allowOneSlide,
+		var options = $.extend( {
+			selector: '.restaurantpress-food-gallery__wrapper > .restaurantpress-food-gallery__image',
 			start: function() {
 				$target.css( 'opacity', 1 );
 			},
 			after: function( slider ) {
 				gallery.initZoomForTarget( gallery.$images.eq( slider.currentSlide ) );
 			}
-		} );
+		}, rp_single_food_params.flexslider );
+
+		$target.flexslider( options );
 
 		// Trigger resize after main image loads to ensure correct gallery size.
 		$( '.restaurantpress-food-gallery__wrapper .restaurantpress-food-gallery__image:eq(0) .wp-post-image' ).one( 'load', function() {
