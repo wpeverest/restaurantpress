@@ -271,8 +271,8 @@
 	}
 
 	span.chef {
-		min-height: 3.236em;
-		min-width: 3.236em;
+		height: 3.236em;
+		width: 3.236em;
 		padding: 0.202em;
 		font-size: 1em;
 		font-weight: 700;
@@ -294,6 +294,7 @@
 			color: $contentbg;
 		}
 
+		&.grid,
 		&.small {
 			width: 30px;
 			height: 30px;
@@ -304,9 +305,6 @@
 			top: 0;
 			left: 1.6em;
 			border-radius: 0;
-			min-width: 30px;
-			min-height: 30px;
-			line-height: 2.3em;
 
 			&::before,
 			&::after {
