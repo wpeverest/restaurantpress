@@ -212,7 +212,6 @@ final class RestaurantPress {
 		}
 
 		if ( $this->is_request( 'frontend' ) || $this->is_request( 'cron' ) ) {
-			include_once( RP_ABSPATH . 'includes/class-rp-session-handler.php' );
 		}
 
 		$this->query = new RP_Query();
@@ -224,9 +223,10 @@ final class RestaurantPress {
 	public function frontend_includes() {
 		include_once( RP_ABSPATH . 'includes/rp-notice-functions.php' );
 		include_once( RP_ABSPATH . 'includes/rp-template-hooks.php' );
-		include_once( RP_ABSPATH . 'includes/class-rp-template-loader.php' );    // Template Loader.
-		include_once( RP_ABSPATH . 'includes/class-rp-frontend-scripts.php' );   // Frontend Scripts.
-		include_once( RP_ABSPATH . 'includes/class-rp-shortcodes.php' );         // Shortcodes Class.
+		include_once( RP_ABSPATH . 'includes/class-rp-template-loader.php' );  // Template Loader.
+		include_once( RP_ABSPATH . 'includes/class-rp-frontend-scripts.php' ); // Frontend Scripts.
+		include_once( RP_ABSPATH . 'includes/class-rp-shortcodes.php' );       // Shortcodes class.
+		include_once( RP_ABSPATH . 'includes/class-rp-session-handler.php' );  // Session handler class.
 	}
 
 	/**
@@ -252,10 +252,12 @@ final class RestaurantPress {
 		$this->deprecated_hook_handlers['actions'] = new RP_Deprecated_Action_Hooks();
 		$this->deprecated_hook_handlers['filters'] = new RP_Deprecated_Filter_Hooks();
 
-		// Session class, handles session data for users - can be overwritten if custom handler is needed.
-		if ( $this->is_request( 'frontend' ) || $this->is_request( 'cron' ) ) {
+		// Classes/actions loaded for the frontend and for ajax requests.
+		if ( $this->is_request( 'frontend' ) ) {
+			// Session class, handles session data for users - can be overwritten if custom handler is needed.
 			$session_class  = apply_filters( 'restaurantpress_session_handler', 'RP_Session_Handler' );
 			$this->session  = new $session_class();
+			$this->session->init();
 		}
 
 		// Init action.
