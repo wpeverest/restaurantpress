@@ -937,3 +937,29 @@ function rp_is_external_resource( $url ) {
 	$wp_base = str_replace( array( 'http://', 'https://' ), '//', get_home_url( null, '/', 'http' ) );
 	return strstr( $url, '://' ) && strstr( $wp_base, $url );
 }
+
+/**
+ * See if theme/s is activate or not.
+ *
+ * @since  1.6.0
+ * @param  string|array $theme Theme name or array of theme names to check.
+ * @return boolean
+ */
+function rp_is_active_theme( $theme ) {
+	return is_array( $theme ) ? in_array( get_template(), $theme, true ) : get_template() === $theme;
+}
+
+/**
+ * Cleans up session data - cron callback.
+ *
+ * @since 1.6.0
+ */
+function rp_cleanup_session_data() {
+	$session_class = apply_filters( 'restaurantpress_session_handler', 'RP_Session_Handler' );
+	$session       = new $session_class();
+
+	if ( is_callable( array( $session, 'cleanup_sessions' ) ) ) {
+		$session->cleanup_sessions();
+	}
+}
+add_action( 'restaurantpress_cleanup_sessions', 'rp_cleanup_session_data' );

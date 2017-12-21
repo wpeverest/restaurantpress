@@ -249,7 +249,7 @@ class RP_Frontend_Scripts {
 		self::register_styles();
 
 		// Load gallery scripts on food pages only if supported.
-		if ( is_food_menu() || is_group_menu_page() || ( ! empty( $post->post_content ) && strstr( $post->post_content, '[restaurantpress_menu' ) ) ) {
+		if ( is_restaurantpress() || is_group_menu_page() || ( ! empty( $post->post_content ) && strstr( $post->post_content, '[restaurantpress_menu' ) ) ) {
 			if ( 'yes' === get_option( 'restaurantpress_enable_gallery_zoom' ) ) {
 				self::enqueue_script( 'zoom' );
 			}
@@ -341,6 +341,7 @@ class RP_Frontend_Scripts {
 
 	/**
 	 * Localize a RP script once.
+	 *
 	 * @access private
 	 * @since  1.4.0 this needs less wp_script_is() calls due to https://core.trac.wordpress.org/ticket/28404 being added in WP 4.0.
 	 * @param  string $handle
@@ -355,6 +356,7 @@ class RP_Frontend_Scripts {
 
 	/**
 	 * Return data for script handles.
+	 *
 	 * @access private
 	 * @param  string $handle
 	 * @return array|bool

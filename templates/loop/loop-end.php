@@ -1,6 +1,6 @@
 <?php
 /**
- * Product Loop End
+ * Food Loop End
  *
  * This template can be overridden by copying it to yourtheme/restaurantpress/loop/loop-end.php.
  *

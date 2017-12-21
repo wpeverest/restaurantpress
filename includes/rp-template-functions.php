@@ -257,7 +257,7 @@ function rp_food_post_class( $classes, $class = '', $post_id = '' ) {
  * @param bool $status Image zoom status.
  */
 function rp_group_zoom_disable( $status ) {
-	return is_group_menu_page() ? false : $status;
+	return is_post_type_archive( 'food_menu' ) || is_food_menu_taxonomy() || is_group_menu_page() ? false : $status;
 }
 add_filter( 'restaurantpress_single_food_zoom_enabled', 'rp_group_zoom_disable' );
 
@@ -421,7 +421,7 @@ if ( ! function_exists( 'restaurantpress_template_loop_food_thumbnail' ) ) {
 	 * Get the food thumbnail for the loop.
 	 */
 	function restaurantpress_template_loop_food_thumbnail() {
-		echo '<figure class="restaurantpress-food-gallery__wrapper thumbnail">' . restaurantpress_get_food_thumbnail() . '</figure>'; // WPCS: XSS ok.
+		rp_get_template( 'loop/food-image.php' );
 	}
 }
 if ( ! function_exists( 'restaurantpress_template_loop_price' ) ) {
@@ -461,14 +461,15 @@ if ( ! function_exists( 'restaurantpress_get_food_thumbnail' ) ) {
 	 *
 	 * @subpackage Loop
 	 * @param  string $size (default: 'food_thumbnail').
+	 * @param  array  $attr Attributes array.
 	 * @return string
 	 */
-	function restaurantpress_get_food_thumbnail( $size = 'food_thumbnail' ) {
+	function restaurantpress_get_food_thumbnail( $size = 'food_thumbnail', $attr = array() ) {
 		global $food;
 
 		$image_size = apply_filters( 'single_food_archive_thumbnail_size', $size );
 
-		return $food ? $food->get_image( $image_size ) : '';
+		return $food ? $food->get_image( $image_size, $attr ) : '';
 	}
 }
 
