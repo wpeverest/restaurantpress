@@ -212,6 +212,7 @@ final class RestaurantPress {
 		}
 
 		if ( $this->is_request( 'frontend' ) || $this->is_request( 'cron' ) ) {
+			include_once( RP_ABSPATH . 'includes/class-rp-session-handler.php' );
 		}
 
 		$this->query = new RP_Query();
@@ -226,7 +227,6 @@ final class RestaurantPress {
 		include_once( RP_ABSPATH . 'includes/class-rp-template-loader.php' );  // Template Loader.
 		include_once( RP_ABSPATH . 'includes/class-rp-frontend-scripts.php' ); // Frontend Scripts.
 		include_once( RP_ABSPATH . 'includes/class-rp-shortcodes.php' );       // Shortcodes class.
-		include_once( RP_ABSPATH . 'includes/class-rp-session-handler.php' );  // Session handler class.
 	}
 
 	/**
