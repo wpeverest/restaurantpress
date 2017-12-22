@@ -34,6 +34,7 @@ add_filter( 'restaurantpress_short_description', 'prepend_attachment' );
 add_filter( 'restaurantpress_short_description', 'do_shortcode', 11 ); // After wpautop().
 add_filter( 'restaurantpress_short_description', 'rp_format_food_short_description', 9999999 );
 add_filter( 'restaurantpress_short_description', 'rp_do_oembeds' );
+add_filter( 'restaurantpress_short_description', array( $GLOBALS['wp_embed'], 'run_shortcode' ), 8 ); // Before wpautop().
 
 /**
  * Define a constant if it is not already defined.
