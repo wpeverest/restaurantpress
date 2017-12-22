@@ -36,6 +36,9 @@ Step by Step tutorial [ Check documentation](http://docs.wpeverest.com/docs/rest
 * Upload unique icons for menu categories.
 * Translation ready
 
+### Premium Addons
+* [WooCommerce Integration](https://wpeverest.com/wordpress-plugins/restaurantpress/woocommerce-integration/) - Makes online ordering possible by integrating WooCommerce with RestaurantPress. Your customers can now directly order the menu items from your website.
+
 == Installation ==
 
 1. Install the plugin either via the WordPress.org plugin directory, or by uploading the files to your server (in the /wp-content/plugins/ directory).
@@ -63,7 +66,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 
 == Changelog ==
 
-= 1.6.0 - XX/12/2017 =
+= 1.6.0 - 22/12/2017 =
 * Feature - Archive page template support.
 * Feature - Permalink structur support.
 * Feature - Introduced Integration class.
