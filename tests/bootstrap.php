@@ -59,7 +59,7 @@ class RP_Unit_Tests_Bootstrap {
 	 * @since 1.7
 	 */
 	public function load_rp() {
-		require_once $this->plugin_dir . '/restaurantpress.php';
+		require_once( $this->plugin_dir . '/restaurantpress.php' );
 	}
 
 	/**
