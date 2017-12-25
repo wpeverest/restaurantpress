@@ -20,12 +20,8 @@
 			<file>restaurantpress.php</file>
 			<file>uninstall.php</file>
 			<exclude>
-				<directory suffix=".php">./includes/admin/meta-boxes/views</directory>
-				<directory suffix=".php">./includes/admin/plugin-updates/views</directory>
 				<directory suffix=".php">./includes/admin/views</directory>
 				<directory suffix=".php">./includes/libraries</directory>
-				<directory suffix=".php">./includes/updates</directory>
-				<directory suffix=".php">./includes/vendor</directory>
 				<directory suffix=".php">./includes/widgets</directory>
 				<file>./includes/rp-deprecated-functions.php</file>
 				<file>./includes/rp-template-hooks.php</file>

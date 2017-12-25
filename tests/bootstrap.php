@@ -47,7 +47,7 @@ class RP_Unit_Tests_Bootstrap {
 		tests_add_filter( 'setup_theme', array( $this, 'install_rp' ) );
 
 		// Load the WP testing environment.
-		require_once $this->wp_tests_dir . '/includes/bootstrap.php';
+		require_once( $this->wp_tests_dir . '/includes/bootstrap.php' );
 
 		// Load RP testing framework.
 		$this->includes();
