@@ -1,0 +1,28 @@
+engines:
+  phpcodesniffer:
+    enabled: true
+    config:
+      standard: "WordPress"
+  eslint:
+    enabled: true
+  scss-lint:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - php
+      - javascript
+ratings:
+  paths:
+   - "includes/*"
+exclude_paths:
+- "tests/"
+- "i18n/"
+- "includes/libraries/"
+- "includes/updates/"
+- "includes/rp-deprecated-functions.php"
+- "assets/js/accounting/"
+- "assets/js/jquery-*"
+- "assets/js/prettyPhoto/"
+- "assets/js/selectWoo/"
