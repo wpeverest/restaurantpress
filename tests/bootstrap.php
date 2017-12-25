@@ -92,7 +92,15 @@ class RP_Unit_Tests_Bootstrap {
 	 *
 	 * @since 1.7
 	 */
-	public function includes() {}
+	public function includes() {
+
+		// framework
+		require_once( $this->tests_dir . '/framework/class-rp-unit-test-factory.php' );
+		require_once( $this->tests_dir . '/framework/class-rp-mock-session-handler.php' );
+
+		// test cases
+		require_once( $this->tests_dir . '/framework/class-rp-unit-test-case.php' );
+	}
 
 	/**
 	 * Get the single class instance.
