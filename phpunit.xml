@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+	bootstrap="tests/bootstrap.php"
+	backupGlobals="false"
+	colors="true"
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true"
+	verbose="true"
+	syntaxCheck="true"
+	>
+	<testsuites>
+		<testsuite name="RestaurantPress Test Suite">
+			<directory suffix=".php">./tests/unit-tests</directory>
+		</testsuite>
+	</testsuites>
+	<filter>
+		<whitelist addUncoveredFilesFromWhitelist="true">
+			<directory suffix=".php">./includes</directory>
+			<file>restaurantpress.php</file>
+			<file>uninstall.php</file>
+			<exclude>
+				<directory suffix=".php">./includes/admin/meta-boxes/views</directory>
+				<directory suffix=".php">./includes/admin/plugin-updates/views</directory>
+				<directory suffix=".php">./includes/admin/views</directory>
+				<directory suffix=".php">./includes/libraries</directory>
+				<directory suffix=".php">./includes/updates</directory>
+				<directory suffix=".php">./includes/vendor</directory>
+				<directory suffix=".php">./includes/widgets</directory>
+				<file>./includes/rp-deprecated-functions.php</file>
+				<file>./includes/rp-template-hooks.php</file>
+				<file>./includes/rp-widget-functions.php</file>
+			</exclude>
+		</whitelist>
+	</filter>
+</phpunit>

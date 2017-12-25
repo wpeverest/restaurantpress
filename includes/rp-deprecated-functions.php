@@ -98,7 +98,7 @@ function rp_caught_exception( $exception_object, $function = '', $args = array()
 }
 
 /**
- * Wrapper for wc_doing_it_wrong.
+ * Wrapper for rp_doing_it_wrong.
  *
  * @since 1.5.0
  * @param string $function Function used.
