@@ -24,5 +24,9 @@ none
 # Windows junk
 Thumbs.db
 
+# Unit tests
+/tmp
+/tests/bin/tmp
+
 # Composer
 /vendor/
