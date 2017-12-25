@@ -16,7 +16,8 @@
 	<config name="testVersion" value="5.2-"/>
 
 	<!-- Rules -->
-	<rule ref="PHPCompatibility"/>
+	<rule ref="WPEverest-Core" />
+	<rule ref="PHPCompatibility" />
 
 	<rule ref="WordPress">
 		<exclude name="WordPress.VIP.DirectDatabaseQuery.NoCaching" />

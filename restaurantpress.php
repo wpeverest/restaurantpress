@@ -6,13 +6,10 @@
  * Version: 1.6.0
  * Author: WPEverest
  * Author URI: https://wpeverest.com
- *
  * Text Domain: restaurantpress
  * Domain Path: /languages/
  *
- * @package  RestaurantPress
- * @category Core
- * @author   WPEverest
+ * @package RestaurantPress
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

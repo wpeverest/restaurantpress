@@ -11,7 +11,8 @@
     "squizlabs/php_codesniffer": "*",
     "wp-coding-standards/wpcs": "^0.14",
     "phpunit/phpunit": "6.2.3",
-    "wpeverest/wpeverest-git-hooks": "1.0.2",
+    "wpeverest/wpeverest-git-hooks": "*",
+    "wpeverest/wpeverest-sniffs": "*",
     "wimg/php-compatibility": "^8.0",
     "dealerdirect/phpcodesniffer-composer-installer": "^0.4.3"
   },
