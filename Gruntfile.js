@@ -168,7 +168,9 @@ module.exports = function( grunt ){
 				options: {
 					potFilename: 'restaurantpress.pot',
 					exclude: [
-						'vendor/.*'
+						'vendor/.*',
+						'tests/.*',
+						'tmp/.*'
 					]
 				}
 			}
@@ -197,8 +199,11 @@ module.exports = function( grunt ){
 			},
 			files: {
 				src: [
-					'**/*.php',
-					'!node_modules/**'
+					'**/*.php',         // Include all files
+					'!node_modules/**', // Exclude node_modules/
+					'!tests/**',        // Exclude tests/
+					'!vendor/**',       // Exclude vendor/
+					'!tmp/**'           // Exclude tmp/
 				],
 				expand: true
 			}
@@ -210,13 +215,12 @@ module.exports = function( grunt ){
 				bin: 'vendor/bin/phpcs'
 			},
 			dist: {
-				options: {
-					standard: './phpcs.ruleset.xml'
-				},
 				src:  [
 					'**/*.php',               // Include all files
 					'!includes/libraries/**', // Exclude libraries/
 					'!node_modules/**',       // Exclude node_modules/
+					'!tests/cli/**',          // Exclude tests/cli/
+					'!tmp/**',                // Exclude tmp/
 					'!vendor/**'              // Exclude vendor/
 				]
 			}
@@ -259,9 +263,9 @@ module.exports = function( grunt ){
 
 	// Register tasks
 	grunt.registerTask( 'default', [
-		'jshint',
-		'uglify',
-		'css'
+		'js',
+		'css',
+		'i18n'
 	]);
 
 	grunt.registerTask( 'js', [
@@ -278,8 +282,13 @@ module.exports = function( grunt ){
 		'concat'
 	]);
 
+	// Only an alias to 'default' task.
 	grunt.registerTask( 'dev', [
-		'default',
+		'default'
+	]);
+
+	grunt.registerTask( 'i18n', [
+		'checktextdomain',
 		'makepot'
 	]);
 };

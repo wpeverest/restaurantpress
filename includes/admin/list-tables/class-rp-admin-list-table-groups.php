@@ -5,7 +5,7 @@
  * @author   WPEverest
  * @category Admin
  * @package  RestaurantPress/Admin
- * @version  1.5.1
+ * @version  1.6.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

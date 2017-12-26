@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Main RestaurantPress Class.
  *
  * @class   RestaurantPress
- * @version 1.5.1
+ * @version 1.6.0
  */
 final class RestaurantPress {
 
@@ -25,7 +25,7 @@ final class RestaurantPress {
 	 *
 	 * @var string
 	 */
-	public $version = '1.5.1';
+	public $version = '1.6.0';
 
 	/**
 	 * The single instance of the class.
@@ -40,6 +40,13 @@ final class RestaurantPress {
 	 * @var RP_Session|RP_Session_Handler
 	 */
 	public $session = null;
+
+	/**
+	 * Query instance.
+	 *
+	 * @var RP_Query
+	 */
+	public $query = null;
 
 	/**
 	 * Food factory instance.
@@ -97,18 +104,6 @@ final class RestaurantPress {
 	}
 
 	/**
-	 * Auto-load in-accessible properties on demand.
-	 *
-	 * @param  mixed $key Key name.
-	 * @return mixed
-	 */
-	public function __get( $key ) {
-		if ( in_array( $key, array( 'mailer' ), true ) ) {
-			return $this->$key();
-		}
-	}
-
-	/**
 	 * RestaurantPress Constructor.
 	 */
 	private function __construct() {
@@ -128,7 +123,6 @@ final class RestaurantPress {
 		add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 11 );
 		add_action( 'init', array( $this, 'init' ), 0 );
 		add_action( 'init', array( 'RP_Shortcodes', 'init' ) );
-		add_action( 'init', array( 'RP_Emails', 'init_notificational_emails' ) );
 		add_action( 'init', array( $this, 'wpdb_table_fix' ), 0 );
 		add_action( 'switch_blog', array( $this, 'wpdb_table_fix' ), 0 );
 	}
@@ -165,13 +159,13 @@ final class RestaurantPress {
 	 */
 	private function is_request( $type ) {
 		switch ( $type ) {
-			case 'admin' :
+			case 'admin':
 				return is_admin();
-			case 'ajax' :
+			case 'ajax':
 				return defined( 'DOING_AJAX' );
-			case 'cron' :
+			case 'cron':
 				return defined( 'DOING_CRON' );
-			case 'frontend' :
+			case 'frontend':
 				return ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' );
 		}
 	}
@@ -200,7 +194,7 @@ final class RestaurantPress {
 		 * Abstract classes.
 		 */
 		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-food.php' ); // Foods.
-		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-settings-api.php' ); // Settings API (for mailer, and integrations).
+		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-settings-api.php' ); // Settings API (for integrations).
 		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-integration.php' ); // An integration with a service.
 		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-deprecated-hooks.php' );
 		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-session.php' );
@@ -209,13 +203,11 @@ final class RestaurantPress {
 		 * Core classes.
 		 */
 		include_once( RP_ABSPATH . 'includes/rp-core-functions.php' );
-		include_once( RP_ABSPATH . 'includes/class-rp-datetime.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-post-types.php' ); // Registers post types.
 		include_once( RP_ABSPATH . 'includes/class-rp-install.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-post-data.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-ajax.php' );
-		include_once( RP_ABSPATH . 'includes/class-rp-emails.php' );
-		include_once( RP_ABSPATH . 'includes/class-rp-data-exception.php' );
+		include_once( RP_ABSPATH . 'includes/class-rp-query.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-food-factory.php' ); // Food factory.
 		include_once( RP_ABSPATH . 'includes/class-rp-integrations.php' ); // Loads integrations.
 		include_once( RP_ABSPATH . 'includes/class-rp-cache-helper.php' ); // Cache Helper.
@@ -237,6 +229,7 @@ final class RestaurantPress {
 		}
 
 		$this->theme_support_includes();
+		$this->query = new RP_Query();
 	}
 
 	/**
@@ -245,7 +238,7 @@ final class RestaurantPress {
 	 * @since 1.7.0
 	 */
 	private function theme_support_includes() {
-		if ( $this->is_active_theme( array( 'twentyseventeen', 'twentysixteen', 'twentyfifteen', 'twentyfourteen', 'twentythirteen', 'twentytwelve', 'twentyeleven', 'twentyten' ) ) ) {
+		if ( rp_is_active_theme( array( 'twentyseventeen', 'twentysixteen', 'twentyfifteen', 'twentyfourteen', 'twentythirteen', 'twentytwelve', 'twentyeleven', 'twentyten' ) ) ) {
 			switch ( get_template() ) {
 				case 'twentyten' :
 					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-ten.php' );
@@ -281,9 +274,9 @@ final class RestaurantPress {
 	public function frontend_includes() {
 		include_once( RP_ABSPATH . 'includes/rp-notice-functions.php' );
 		include_once( RP_ABSPATH . 'includes/rp-template-hooks.php' );
-		include_once( RP_ABSPATH . 'includes/class-rp-template-loader.php' );    // Template Loader.
-		include_once( RP_ABSPATH . 'includes/class-rp-frontend-scripts.php' );   // Frontend Scripts.
-		include_once( RP_ABSPATH . 'includes/class-rp-shortcodes.php' );         // Shortcodes Class.
+		include_once( RP_ABSPATH . 'includes/class-rp-template-loader.php' );  // Template Loader.
+		include_once( RP_ABSPATH . 'includes/class-rp-frontend-scripts.php' ); // Frontend Scripts.
+		include_once( RP_ABSPATH . 'includes/class-rp-shortcodes.php' );       // Shortcodes class.
 	}
 
 	/**
@@ -309,10 +302,12 @@ final class RestaurantPress {
 		$this->deprecated_hook_handlers['actions'] = new RP_Deprecated_Action_Hooks();
 		$this->deprecated_hook_handlers['filters'] = new RP_Deprecated_Filter_Hooks();
 
-		// Session class, handles session data for users - can be overwritten if custom handler is needed.
-		if ( $this->is_request( 'frontend' ) || $this->is_request( 'cron' ) ) {
+		// Classes/actions loaded for the frontend and for ajax requests.
+		if ( $this->is_request( 'frontend' ) ) {
+			// Session class, handles session data for users - can be overwritten if custom handler is needed.
 			$session_class  = apply_filters( 'restaurantpress_session_handler', 'RP_Session_Handler' );
 			$this->session  = new $session_class();
+			$this->session->init();
 		}
 
 		// Init action.
@@ -429,14 +424,5 @@ final class RestaurantPress {
 			$wpdb->restaurantpress_termmeta = $wpdb->prefix . 'restaurantpress_termmeta';
 			$wpdb->tables[]                 = 'restaurantpress_termmeta';
 		}
-	}
-
-	/**
-	 * Email Class.
-	 *
-	 * @return RP_Emails
-	 */
-	public function mailer() {
-		return RP_Emails::instance();
 	}
 }

@@ -30,9 +30,15 @@ if ( ! class_exists( 'WP_Background_Process', false ) ) {
 class RP_Background_Updater extends WP_Background_Process {
 
 	/**
-	 * @var string
+	 * Initiate new background process.
 	 */
-	protected $action = 'rp_updater';
+	public function __construct() {
+		// Uses unique prefix per blog so each blog has separate queue.
+		$this->prefix = 'wp_' . get_current_blog_id();
+		$this->action = 'rp_updater';
+
+		parent::__construct();
+	}
 
 	/**
 	 * Handle cron healthcheck
@@ -66,6 +72,7 @@ class RP_Background_Updater extends WP_Background_Process {
 
 	/**
 	 * Is the updater running?
+	 *
 	 * @return boolean
 	 */
 	public function is_updating() {

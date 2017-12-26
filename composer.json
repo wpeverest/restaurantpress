@@ -9,9 +9,10 @@
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "*",
-    "wp-coding-standards/wpcs": "0.13.1",
+    "wp-coding-standards/wpcs": "^0.14",
     "phpunit/phpunit": "6.2.3",
-    "wpeverest/wpeverest-git-hooks": "1.0.1",
+    "wpeverest/wpeverest-git-hooks": "*",
+    "wpeverest/wpeverest-sniffs": "*",
     "wimg/php-compatibility": "^8.0",
     "dealerdirect/phpcodesniffer-composer-installer": "^0.4.3"
   },
@@ -27,6 +28,22 @@
     ],
     "post-update-cmd": [
       "WPEverest\\GitHooks\\Hooks::postHooks"
+    ],
+    "test": [
+      "phpunit"
+    ],
+    "phpcs": [
+      "phpcs -s -p"
+    ],
+    "phpcbf": [
+      "phpcbf -p"
     ]
+  },
+  "extra": {
+    "scripts-description": {
+      "test": "Run unit tests",
+      "phpcs": "Analyze code against the WordPress coding standard with PHP_CodeSniffer",
+      "phpcbf": "Fix coding standards warnings/errors automattically with PHP Code Beautifier"
+    }
   }
 }

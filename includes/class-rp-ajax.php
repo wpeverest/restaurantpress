@@ -46,7 +46,7 @@ class RP_AJAX {
 	/**
 	 * Send headers for RP Ajax Requests.
 	 *
-	 * @since 1.5.1
+	 * @since 1.6.0
 	 */
 	private static function rp_ajax_headers() {
 		send_origin_headers();
@@ -81,7 +81,6 @@ class RP_AJAX {
 		// restaurantpress_EVENT => nopriv
 		$ajax_events = array(
 			'feature_food'           => false,
-			'json_search_customers'  => false,
 			'json_search_categories' => false,
 			'rated'                  => false,
 		);
@@ -109,83 +108,6 @@ class RP_AJAX {
 
 		wp_safe_redirect( wp_get_referer() ? remove_query_arg( array( 'trashed', 'untrashed', 'deleted', 'ids' ), wp_get_referer() ) : admin_url( 'edit.php?post_type=food_menu' ) );
 		exit;
-	}
-
-	/**
-	 * Search for customers and return json.
-	 */
-	public static function json_search_customers() {
-		ob_start();
-
-		check_ajax_referer( 'search-customers', 'security' );
-
-		if ( ! current_user_can( 'manage_restaurantpress' ) ) {
-			wp_die( -1 );
-		}
-
-		$term    = rp_clean( stripslashes( $_GET['term'] ) );
-		$exclude = array();
-
-		if ( empty( $term ) ) {
-			wp_die();
-		}
-
-		if ( ! empty( $_GET['exclude'] ) ) {
-			$exclude = array_map( 'intval', explode( ',', $_GET['exclude'] ) );
-		}
-
-		$found_customers = array();
-
-		add_action( 'pre_user_query', array( __CLASS__, 'json_search_customer_name' ) );
-
-		$customers_query = new WP_User_Query( apply_filters( 'restaurantpress_json_search_customers_query', array(
-			'fields'         => 'all',
-			'orderby'        => 'display_name',
-			'search'         => '*' . $term . '*',
-			'search_columns' => array( 'ID', 'user_login', 'user_email', 'user_nicename' ),
-		) ) );
-
-		remove_action( 'pre_user_query', array( __CLASS__, 'json_search_customer_name' ) );
-
-		$customers = $customers_query->get_results();
-
-		if ( ! empty( $customers ) ) {
-			foreach ( $customers as $customer ) {
-				if ( ! in_array( $customer->ID, $exclude ) ) {
-					/* translators: 1: user display name 2: user ID 3: user email */
-					$found_customers[ $customer->ID ] = sprintf(
-						esc_html__( '%1$s (#%2$s &ndash; %3$s)', 'restaurantpress' ),
-						$customer->display_name,
-						$customer->ID,
-						sanitize_email( $customer->user_email )
-					);
-				}
-			}
-		}
-
-		$found_customers = apply_filters( 'restaurantpress_json_search_found_customers', $found_customers );
-
-		wp_send_json( $found_customers );
-	}
-
-	/**
-	 * When searching using the WP_User_Query, search names (user meta) too.
-	 *
-	 * @param  object $query
-	 * @return object
-	 */
-	public static function json_search_customer_name( $query ) {
-		global $wpdb;
-
-		$term = rp_clean( stripslashes( $_GET['term'] ) );
-		if ( method_exists( $wpdb, 'esc_like' ) ) {
-			$term = $wpdb->esc_like( $term );
-		} else {
-			$term = like_escape( $term );
-		}
-
-		$query->query_from  .= " INNER JOIN {$wpdb->usermeta} AS user_name ON {$wpdb->users}.ID = user_name.user_id AND ( user_name.meta_key = 'first_name' OR user_name.meta_key = 'last_name' ) ";
-		$query->query_where .= $wpdb->prepare( ' OR user_name.meta_value LIKE %s ', '%' . $term . '%' );
 	}
 
 	/**

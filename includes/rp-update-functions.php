@@ -180,6 +180,13 @@ function rp_update_150_db_version() {
 }
 
 /**
+ * Update DB version.
+ */
+function rp_update_160_db_version() {
+	RP_Install::update_db_version( '1.6.0' );
+}
+
+/**
  * Update image settings to use new aspect ratios and widths.
  */
 function rp_update_170_image_options() {

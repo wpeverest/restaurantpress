@@ -47,6 +47,12 @@ class RP_Install {
 		'1.4.2' => array(
 			'rp_update_142_db_version',
 		),
+		'1.5.0' => array(
+			'rp_update_150_db_version',
+		),
+		'1.6.0' => array(
+			'rp_update_160_db_version',
+		),
 		'1.7.0' => array(
 			'rp_update_170_image_options',
 			'rp_update_170_db_version',
@@ -77,7 +83,7 @@ class RP_Install {
 	 * Init background updates.
 	 */
 	public static function init_background_updater() {
-		include_once( dirname( __FILE__ ) . '/class-rp-background-updater.php' );
+		include_once dirname( __FILE__ ) . '/class-rp-background-updater.php';
 		self::$background_updater = new RP_Background_Updater();
 	}
 
@@ -104,7 +110,7 @@ class RP_Install {
 			RP_Admin_Notices::add_notice( 'update' );
 		}
 		if ( ! empty( $_GET['force_update_restaurantpress'] ) ) {
-			do_action( 'wp_rp_updater_cron' );
+			do_action( 'wp_' . get_current_blog_id() . '_rp_updater_cron' );
 			wp_safe_redirect( admin_url( 'admin.php?page=rp-settings' ) );
 			exit;
 		}
@@ -149,7 +155,7 @@ class RP_Install {
 	 * @since 1.4.0
 	 */
 	private static function remove_admin_notices() {
-		include_once( dirname( __FILE__ ) . '/admin/class-rp-admin-notices.php' );
+		include_once dirname( __FILE__ ) . '/admin/class-rp-admin-notices.php';
 		RP_Admin_Notices::remove_all_notices();
 	}
 
@@ -256,7 +262,8 @@ class RP_Install {
 
 	/**
 	 * Update DB version to current.
-	 * @param string $version
+	 *
+	 * @param string|null $version New WooCommerce DB version or null.
 	 */
 	public static function update_db_version( $version = null ) {
 		delete_option( 'restaurantpress_db_version' );
@@ -277,8 +284,8 @@ class RP_Install {
 	 * Sets up the default options used on the settings page
 	 */
 	private static function create_options() {
-		// Include settings so that we can run through defaults
-		include_once( dirname( __FILE__ ) . '/admin/class-rp-admin-settings.php' );
+		// Include settings so that we can run through defaults.
+		include_once dirname( __FILE__ ) . '/admin/class-rp-admin-settings.php';
 
 		$settings = RP_Admin_Settings::get_settings_pages();
 
@@ -303,14 +310,14 @@ class RP_Install {
 	 * Set up the database table which the plugin need to function.
 	 *
 	 * Tables:
-	 *    restaurantpress_termmeta - Term meta table - sadly WordPress does not have termmeta so we need our own
+	 *      restaurantpress_termmeta - Term meta table - sadly WordPress does not have termmeta so we need our own
 	 */
 	private static function create_tables() {
 		global $wpdb;
 
 		$wpdb->hide_errors();
 
-		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
 		dbDelta( self::get_schema() );
 	}
@@ -371,7 +378,7 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 		}
 
 		if ( ! isset( $wp_roles ) ) {
-			$wp_roles = new WP_Roles();
+			$wp_roles = new WP_Roles(); // @codingStandardsIgnoreLine
 		}
 
 		$capabilities = self::get_core_capabilities();
@@ -385,13 +392,14 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 
 	/**
 	 * Get capabilities for RestaurantPress.
+	 *
 	 * @return array
 	 */
 	private static function get_core_capabilities() {
 		$capabilities = array();
 
 		$capabilities['core'] = array(
-			'manage_restaurantpress'
+			'manage_restaurantpress',
 		);
 
 		$capability_types = array( 'food_menu', 'food_group' );
@@ -399,7 +407,7 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 		foreach ( $capability_types as $capability_type ) {
 
 			$capabilities[ $capability_type ] = array(
-				// Post type
+				// Post type.
 				"edit_{$capability_type}",
 				"read_{$capability_type}",
 				"delete_{$capability_type}",
@@ -414,7 +422,7 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 				"edit_private_{$capability_type}s",
 				"edit_published_{$capability_type}s",
 
-				// Terms
+				// Terms.
 				"manage_{$capability_type}_terms",
 				"edit_{$capability_type}_terms",
 				"delete_{$capability_type}_terms",
@@ -426,7 +434,7 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 	}
 
 	/**
-	 * Remove roles and capabilities.
+	 * Remove RestaurantPress roles.
 	 */
 	public static function remove_roles() {
 		global $wp_roles;
@@ -436,7 +444,7 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 		}
 
 		if ( ! isset( $wp_roles ) ) {
-			$wp_roles = new WP_Roles();
+			$wp_roles = new WP_Roles(); // @codingStandardsIgnoreLine
 		}
 
 		$capabilities = self::get_core_capabilities();
@@ -469,7 +477,8 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 	}
 
 	/**
-	 * Parse update notice from readme file
+	 * Parse update notice from readme file.
+	 *
 	 * @param  string $content
 	 * @param  string $new_version
 	 * @return string
@@ -502,7 +511,8 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 
 	/**
 	 * Display action links in the Plugins list table.
-	 * @param  array $actions
+	 *
+	 * @param  array $actions Plugin Action links.
 	 * @return array
 	 */
 	public static function plugin_action_links( $actions ) {
@@ -516,8 +526,8 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 	/**
 	 * Display row meta in the Plugins list table.
 	 *
-	 * @param  array  $plugin_meta
-	 * @param  string $plugin_file
+	 * @param  array  $plugin_meta Plugin Row Meta.
+	 * @param  string $plugin_file Plugin Row Meta.
 	 * @return array
 	 */
 	public static function plugin_row_meta( $plugin_meta, $plugin_file ) {
@@ -536,7 +546,7 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 	/**
 	 * Uninstall tables when MU blog is deleted.
 	 *
-	 * @param  array $tables
+	 * @param  array $tables List of tables that will be deleted by WP.
 	 * @return string[]
 	 */
 	public static function wpmu_drop_tables( $tables ) {

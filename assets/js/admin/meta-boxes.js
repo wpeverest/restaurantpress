@@ -12,15 +12,6 @@ jQuery( function ( $ ) {
 		}
 	});
 
-	// Date Picker
-	$( document.body ).on( 'rp-init-datepickers', function() {
-		$( '.date-picker-field, .date-picker' ).datepicker({
-			dateFormat: 'yy-mm-dd',
-			numberOfMonths: 1,
-			showButtonPanel: true
-		});
-	}).trigger( 'rp-init-datepickers' );
-
 	// Tabbed Panels
 	$( document.body ).on( 'rp-init-tabbed-panels', function() {
 		$( 'ul.rp-tabs' ).show();

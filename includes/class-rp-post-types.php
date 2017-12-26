@@ -28,6 +28,7 @@ class RP_Post_Types {
 		add_action( 'init', array( __CLASS__, 'register_post_types' ), 5 );
 		add_action( 'init', array( __CLASS__, 'support_jetpack_omnisearch' ) );
 		add_filter( 'rest_api_allowed_post_types', array( __CLASS__, 'rest_api_allowed_post_types' ) );
+		add_action( 'restaurantpress_after_register_post_type', array( __CLASS__, 'maybe_flush_rewrite_rules' ) );
 		add_action( 'restaurantpress_flush_rewrite_rules', array( __CLASS__, 'flush_rewrite_rules' ) );
 	}
 
@@ -40,6 +41,8 @@ class RP_Post_Types {
 		}
 
 		do_action( 'restaurantpress_register_taxonomy' );
+
+		$permalinks = rp_get_permalink_structure();
 
 		register_taxonomy( 'food_menu_cat',
 			apply_filters( 'restaurantpress_taxonomy_objects_food_menu_cat', array( 'food_menu' ) ),
@@ -69,7 +72,7 @@ class RP_Post_Types {
 					'assign_terms' => 'assign_food_menu_terms',
 				),
 				'rewrite'      => array(
-					'slug'         => _x( 'food-category', 'slug', 'restaurantpress' ),
+					'slug'         => $permalinks['category_rewrite_slug'],
 					'with_front'   => false,
 					'hierarchical' => true,
 				),
@@ -106,7 +109,7 @@ class RP_Post_Types {
 					'assign_terms' => 'assign_food_menu_terms',
 				),
 				'rewrite'               => array(
-					'slug'       => _x( 'food-tag', 'slug', 'restaurantpress' ),
+					'slug'       => $permalinks['tag_rewrite_slug'],
 					'with_front' => false,
 				),
 			) )
@@ -125,7 +128,8 @@ class RP_Post_Types {
 
 		do_action( 'restaurantpress_register_post_type' );
 
-		$supports = array( 'title', 'editor', 'excerpt', 'page-attributes', 'thumbnail', 'custom-fields', 'publicize', 'wpcom-markdown' );
+		$permalinks = rp_get_permalink_structure();
+		$supports   = array( 'title', 'editor', 'excerpt', 'page-attributes', 'thumbnail', 'custom-fields', 'publicize', 'wpcom-markdown' );
 
 		if ( 'yes' === get_option( 'restaurantpress_enable_reviews', 'yes' ) ) {
 			$supports[] = 'comments';
@@ -169,7 +173,7 @@ class RP_Post_Types {
 					'exclude_from_search' => false,
 					'hierarchical'        => false,
 					'query_var'           => true,
-					'rewrite'             => array( 'slug' => 'food', 'with_front' => false, 'feeds' => true ),
+					'rewrite'             => $permalinks['food_rewrite_slug'] ? array( 'slug' => $permalinks['food_rewrite_slug'], 'with_front' => false, 'feeds' => true ) : false,
 					'supports'            => $supports,
 					'has_archive'         => true,
 					'show_in_nav_menus'   => true,
@@ -217,6 +221,8 @@ class RP_Post_Types {
 				)
 			)
 		);
+
+		do_action( 'restaurantpress_after_register_post_type' );
 	}
 
 	/**
@@ -237,6 +243,18 @@ class RP_Post_Types {
 		$post_types[] = 'food_menu';
 
 		return $post_types;
+	}
+
+	/**
+	 * Flush rules if the event is queued.
+	 *
+	 * @since 1.6.0
+	 */
+	public static function maybe_flush_rewrite_rules() {
+		if ( 'true' === get_option( 'restaurantpress_queue_flush_rewrite_rules' ) ) {
+			delete_option( 'restaurantpress_queue_flush_rewrite_rules' );
+			self::flush_rewrite_rules();
+		}
 	}
 
 	/**

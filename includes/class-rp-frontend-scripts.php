@@ -189,7 +189,7 @@ class RP_Frontend_Scripts {
 			'selectWoo' => array(
 				'src'     => self::get_asset_url( 'assets/js/selectWoo/selectWoo.full' . $suffix . '.js' ),
 				'deps'    => array( 'jquery' ),
-				'version' => '1.0.1',
+				'version' => '1.0.2',
 			),
 			'rp-single-food' => array(
 				'src'     => self::get_asset_url( 'assets/js/frontend/single-food' . $suffix . '.js' ),
@@ -249,7 +249,7 @@ class RP_Frontend_Scripts {
 		self::register_styles();
 
 		// Load gallery scripts on food pages only if supported.
-		if ( is_food_menu() || is_group_menu_page() || ( ! empty( $post->post_content ) && strstr( $post->post_content, '[restaurantpress_menu' ) ) ) {
+		if ( is_restaurantpress() || is_group_menu_page() || ( ! empty( $post->post_content ) && strstr( $post->post_content, '[restaurantpress_menu' ) ) ) {
 			if ( 'yes' === get_option( 'restaurantpress_enable_gallery_zoom' ) ) {
 				self::enqueue_script( 'zoom' );
 			}
@@ -298,17 +298,16 @@ class RP_Frontend_Scripts {
 		}
 
 		$inline_css = '
-			.restaurantpress .chef,
-			.restaurantpress .rp-chef-badge {
+			.restaurantpress .chef {
 				background: %1$s !important;
 			}
 
-			.restaurantpress .rp-chef-badge::before,
-			.restaurantpress .rp-chef-badge::after {
+			.restaurantpress .chef.grid::before,
+			.restaurantpress .chef.grid::after {
 				border-top-color: %1$s !important;
 			}
 
-			.restaurantpress span.price {
+			.restaurantpress-group span.price {
 				background: %1$s !important;
 			}
 
@@ -331,7 +330,8 @@ class RP_Frontend_Scripts {
 				color: #fff;
 			}
 
-			.restaurantpress-group #restaurant-press-section a {
+			.restaurantpress-group #restaurant-press-section a,
+			.restaurantpress-page .restaurantpress-loop-food__title a {
 				color: %1$s !important;
 			}
 		';
@@ -341,6 +341,7 @@ class RP_Frontend_Scripts {
 
 	/**
 	 * Localize a RP script once.
+	 *
 	 * @access private
 	 * @since  1.4.0 this needs less wp_script_is() calls due to https://core.trac.wordpress.org/ticket/28404 being added in WP 4.0.
 	 * @param  string $handle
@@ -355,6 +356,7 @@ class RP_Frontend_Scripts {
 
 	/**
 	 * Return data for script handles.
+	 *
 	 * @access private
 	 * @param  string $handle
 	 * @return array|bool
@@ -362,7 +364,7 @@ class RP_Frontend_Scripts {
 	private static function get_script_data( $handle ) {
 		switch ( $handle ) {
 			case 'rp-single-food' :
-				return array(
+				$params = array(
 					'flexslider'         => apply_filters( 'restaurantpress_single_food_carousel_options', array(
 						'rtl'            => is_rtl(),
 						'animation'      => 'slide',
@@ -386,8 +388,12 @@ class RP_Frontend_Scripts {
 					'flexslider_enabled' => apply_filters( 'restaurantpress_single_food_flexslider_enabled', 'yes' === get_option( 'restaurantpress_enable_gallery_slider' ) ? 1 : 0 ),
 				);
 			break;
+			default:
+				$params = false;
+			break;
 		}
-		return false;
+
+		return apply_filters( 'restaurantpress_get_script_data', $params, $handle );
 	}
 
 	/**

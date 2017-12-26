@@ -47,7 +47,7 @@ abstract class RP_Settings_Page {
 	/**
 	 * Get settings page ID.
 	 *
-	 * @since  1.5.1
+	 * @since  1.6.0
 	 * @return string
 	 */
 	public function get_id() {
@@ -56,7 +56,7 @@ abstract class RP_Settings_Page {
 
 	/**
 	 * Get settings page label.
-	 * @since  1.5.1
+	 * @since  1.6.0
 	 * @return string
 	 */
 	public function get_label() {

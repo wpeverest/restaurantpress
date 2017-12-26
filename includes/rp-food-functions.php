@@ -33,7 +33,81 @@ function rp_get_food( $the_food = false ) {
 }
 
 /**
+ * Filter to allow food_menu_cat in the permalinks for foods.
+ *
+ * @param  string  $permalink The existing permalink URL.
+ * @param  WP_Post $post The current post object.
+ * @return string
+ */
+function rp_food_post_type_link( $permalink, $post ) {
+	// Abort if post is not a food_menu.
+	if ( 'food_menu' !== $post->post_type ) {
+		return $permalink;
+	}
+
+	// Abort early if the placeholder rewrite tag isn't in the generated URL.
+	if ( false === strpos( $permalink, '%' ) ) {
+		return $permalink;
+	}
+
+	// Get the custom taxonomy terms in use by this post.
+	$terms = get_the_terms( $post->ID, 'food_menu_cat' );
+
+	if ( ! empty( $terms ) ) {
+		if ( function_exists( 'wp_list_sort' ) ) {
+			$terms = wp_list_sort( $terms, 'term_id', 'ASC' );
+		} else {
+			usort( $terms, '_usort_terms_by_ID' );
+		}
+		$category_object = apply_filters( 'rp_food_menu_post_type_link_food_menu_cat', $terms[0], $terms, $post );
+		$category_object = get_term( $category_object, 'food_menu_cat' );
+		$food_menu_cat   = $category_object->slug;
+
+		if ( $category_object->parent ) {
+			$ancestors = get_ancestors( $category_object->term_id, 'food_menu_cat' );
+			foreach ( $ancestors as $ancestor ) {
+				$ancestor_object = get_term( $ancestor, 'food_menu_cat' );
+				$food_menu_cat   = $ancestor_object->slug . '/' . $food_menu_cat;
+			}
+		}
+	} else {
+		// If no terms are assigned to this post, use a string instead (can't leave the placeholder there).
+		$food_menu_cat = _x( 'uncategorized', 'slug', 'restaurantpress' );
+	}
+
+	$find = array(
+		'%year%',
+		'%monthnum%',
+		'%day%',
+		'%hour%',
+		'%minute%',
+		'%second%',
+		'%post_id%',
+		'%category%',
+		'%food_menu_cat%',
+	);
+
+	$replace = array(
+		date_i18n( 'Y', strtotime( $post->post_date ) ),
+		date_i18n( 'm', strtotime( $post->post_date ) ),
+		date_i18n( 'd', strtotime( $post->post_date ) ),
+		date_i18n( 'H', strtotime( $post->post_date ) ),
+		date_i18n( 'i', strtotime( $post->post_date ) ),
+		date_i18n( 's', strtotime( $post->post_date ) ),
+		$post->ID,
+		$food_menu_cat,
+		$food_menu_cat,
+	);
+
+	$permalink = str_replace( $find, $replace, $permalink );
+
+	return $permalink;
+}
+add_filter( 'post_type_link', 'rp_food_post_type_link', 10, 2 );
+
+/**
  * Get the placeholder image URL.
+ *
  * @return string
  */
 function rp_placeholder_img_src() {
@@ -43,7 +117,7 @@ function rp_placeholder_img_src() {
 /**
  * Get the placeholder image.
  *
- * @param  string $size
+ * @param  string $size Image size.
  * @return string
  */
 function rp_placeholder_img( $size = 'restaurantpress_thumbnail' ) {

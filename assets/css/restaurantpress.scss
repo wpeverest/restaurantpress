@@ -271,8 +271,8 @@
 	}
 
 	span.chef {
-		min-height: 3.236em;
-		min-width: 3.236em;
+		height: 3.236em;
+		width: 3.236em;
 		padding: 0.202em;
 		font-size: 1em;
 		font-weight: 700;
@@ -292,6 +292,178 @@
 			@include iconbefore( '\e003' );
 			margin-right: 0;
 			color: $contentbg;
+		}
+
+		&.grid,
+		&.small {
+			width: 30px;
+			height: 30px;
+			line-height: 2em;
+		}
+
+		&.grid {
+			top: 0;
+			left: 1.6em;
+			border-radius: 0;
+
+			&::before,
+			&::after {
+				position: absolute;
+				bottom: -10px;
+				left: 0;
+				content: '';
+				border-left: 0 solid transparent;
+				border-top: 10px solid $highlight;
+				border-right: 18px solid transparent;
+			}
+
+			&::after {
+				left: auto;
+				right: 0;
+				bottom: -10px;
+				border-left: 18px solid transparent;
+				border-right: 0 solid transparent;
+			}
+
+			.chef-icon {
+				&::before {
+					@include iconbefore( '\e003' );
+					margin-right: 0;
+					color: $contentbg;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Foods loops
+	 */
+	div.foods {
+		margin: 0 0 1em;
+		padding: 0;
+		list-style: none outside;
+		clear: both;
+		@include clearfix();
+
+		li {
+			list-style: none outside;
+		}
+	}
+
+	div.foods section.food_menu {
+		.chef {
+			top: 0;
+			left: 0;
+			right: auto;
+			margin: -0.5em 0 0 -0.5em;
+
+			&.small {
+				margin-top: 0.3em;
+			}
+		}
+
+		h3,
+		.restaurantpress-loop-food__title,
+		.restaurantpress-loop-category__title {
+			padding: 0.5em 0;
+			margin: 0;
+			display: inline;
+		}
+
+		a {
+			color: $restaurantpress;
+			text-decoration: none;
+
+			&:focus {
+				border: none;
+			}
+		}
+
+		a img {
+			width: 100%;
+			height: auto;
+			display: block;
+			margin: 0 0 1em;
+			box-shadow: none;
+		}
+
+		strong {
+			display: block;
+		}
+
+		.button {
+			margin-top: 1em;
+		}
+
+		.price {
+			float: right;
+			color: $highlight;
+			display: block;
+			font-weight: normal;
+			margin-bottom: 0.5em;
+			font-size: 1em;
+
+			del {
+				color: inherit;
+				opacity: 0.5;
+				display: inline-block;
+			}
+
+			ins {
+				background: none;
+				font-weight: 700;
+				display: inline-block;
+			}
+
+			.from {
+				font-size: 0.67em;
+				margin: -2px 0 0 0;
+				text-transform: uppercase;
+				color: rgba(desaturate($highlight, 75%), 0.5);
+			}
+		}
+	}
+
+	nav.restaurantpress-pagination {
+		text-align: center;
+
+		ul {
+			display: inline-block;
+			white-space: nowrap;
+			padding: 0;
+			clear: both;
+			border: 1px solid darken( $secondary, 10% );
+			border-right: 0;
+			margin: 1px;
+
+			li {
+				border-right: 1px solid darken( $secondary, 10% );
+				padding: 0;
+				margin: 0;
+				float: left;
+				display: inline;
+				overflow: hidden;
+
+				a,
+				span {
+					margin: 0;
+					text-decoration: none;
+					padding: 0;
+					line-height: 1;
+					font-size: 1em;
+					font-weight: normal;
+					padding: 0.5em;
+					min-width: 1em;
+					display: block;
+				}
+
+				span.current,
+				a:hover,
+				a:focus {
+					background: $secondary;
+					color: darken( $secondary, 40% );
+				}
+			}
 		}
 	}
 
@@ -461,6 +633,61 @@
 	}
 }
 
+.restaurantpress,
+.restaurantpress-page,
+.restaurantpress-group {
+
+	.restaurantpress-foods-header {
+		margin-bottom: 1.5em;
+		border-top: 1px dashed #b0aeab;
+		border-bottom: 1px dashed #b0aeab;
+
+		h1,
+		.restaurantpress-foods-header__title,
+		.restaurantpress-foods-category__title {
+			margin: 0;
+			padding: 0.3em 0;
+			text-align: center;
+
+			.restaurantpress-foods-header__icon {
+				margin-right: 7px;
+				display: inline-block;
+				line-height: 24px;
+				height: 24px;
+
+				img {
+					width: auto;
+					height: auto;
+					max-width: 24px;
+					max-height: 24px;
+					box-shadow: none;
+					border-radius: 0;
+				}
+			}
+		}
+
+		.term-description p {
+			margin: 0 0 1em;
+			line-height: 1.5;
+		}
+	}
+
+	figure.thumbnail {
+		float: left;
+		margin: 0 20px 0 0;
+		position: relative;
+
+		img {
+			box-shadow: none;
+		}
+	}
+
+	.restaurantpress-food-details__short-description {
+		color: #8c8787;
+		margin-top: 10px;
+	}
+}
+
 /**
  * Photoswipe
  * 1. These styles are required to overwrite default theme button styles (Twenty Twelve adds gradients via background-image).
@@ -604,33 +831,6 @@ button.pswp__button--zoom:hover {
 		}
 	}
 
-	.rp-category-title {
-		padding: 7px 0;
-		text-align: center;
-		margin-bottom: 15px;
-		border-top: 1px dashed #b0aeab;
-		border-bottom: 1px dashed #b0aeab;
-
-		.category-icon {
-			margin-right: 7px;
-			display: inline-block;
-			line-height: 24px;
-			vertical-align: middle;
-			height: 24px;
-			margin-top: -3px;
-
-			img {
-				width: auto;
-				height: auto;
-				max-width: 24px;
-				max-height: 24px;
-				box-shadow: none;
-				border-radius: 0;
-				vertical-align: middle;
-			}
-		}
-	}
-
 	.rp-list-design-layout {
 		@include clearfix();
 
@@ -652,34 +852,8 @@ button.pswp__button--zoom:hover {
 						border-radius: 3px;
 
 						&.restaurantpress-placeholder {
-							max-width: 100px;
-							max-height: 100px;
-						}
-					}
-
-					.rp-chef-badge {
-						position: absolute;
-						top: -10px;
-						left: -15px;
-						width: 30px;
-						height: 30px;
-						color: #fff;
-						background: #c00;
-						display: block;
-						font-size: 10px;
-						text-align: center;
-						line-height: 3em;
-						border-radius: 3em;
-						text-transform: capitalize;
-
-						.chef-icon {
-							&::before {
-								content: '\e003';
-								font-family: 'RestaurantPress';
-								font-size: 14px;
-								color: #fff;
-								font-style: normal;
-							}
+							max-width: 100%;
+							max-height: 100%;
 						}
 					}
 				}
@@ -752,48 +926,6 @@ button.pswp__button--zoom:hover {
 
 				&.restaurantpress-placeholder {
 					max-height: 245px;
-				}
-			}
-
-			.rp-chef-badge {
-				position: absolute;
-				top: 0;
-				left: 20px;
-				color: #fff;
-				background: #c00;
-				font-size: 12px;
-				padding: 5px 10px;
-				text-align: center;
-				text-transform: capitalize;
-
-				&::before,
-				&::after {
-					position: absolute;
-					bottom: -10px;
-					left: 0;
-					content: '';
-					border-left: 0 solid transparent;
-					border-top: 10px solid #c00;
-					border-right: 18px solid transparent;
-				}
-
-				&::after {
-					bottom: -10px;
-					border-left: 18px solid transparent;
-					border-top: 10px solid #c00;
-					border-right: 0 solid transparent;
-					left: auto;
-					right: 0;
-				}
-
-				.chef-icon {
-					&::before {
-						content: '\e003';
-						font-family: 'RestaurantPress';
-						font-size: 14px;
-						color: #fff;
-						font-style: normal;
-					}
 				}
 			}
 
@@ -933,9 +1065,7 @@ button.pswp__button--zoom:hover {
  * Twenty Thirteen specific styles
  */
 .single-food_menu .twentythirteen {
-	.entry-summary,
-	#reply-title,
-	#respond #commentform {
+	.entry-summary {
 		padding: 0;
 	}
 
@@ -967,4 +1097,11 @@ body:not( .search-results ) .twentysixteen .entry-summary {
 .twentysixteen .price ins {
 	background: inherit;
 	color: inherit;
+}
+
+/**
+ * Spacious specific styles
+ */
+.spacious {
+	padding-top: 0 !important;
 }

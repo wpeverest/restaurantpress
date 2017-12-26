@@ -1,9 +1,9 @@
 === RestaurantPress ===
 Contributors: WPEverest, shivapoudel
 Tags: restaurant, appetizer, food, cafe, menu, dining, drink
-Requires at least: 4.4
+Requires at least: 4.7
 Tested up to: 4.9
-Stable tag: 1.5.0
+Stable tag: 1.6.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -36,6 +36,9 @@ Step by Step tutorial [ Check documentation](http://docs.wpeverest.com/docs/rest
 * Upload unique icons for menu categories.
 * Translation ready
 
+### Premium Addons
+* [WooCommerce Integration](https://wpeverest.com/wordpress-plugins/restaurantpress/woocommerce-integration/) - Makes online ordering possible by integrating WooCommerce with RestaurantPress. Your customers can now directly order the menu items from your website.
+
 == Installation ==
 
 1. Install the plugin either via the WordPress.org plugin directory, or by uploading the files to your server (in the /wp-content/plugins/ directory).
@@ -63,13 +66,25 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 
 == Changelog ==
 
-= 1.5.1 - XX/11/2017 =
+= 1.6.0 - 22/12/2017 =
+* Feature - Archive page template support.
+* Feature - Permalink structur support.
+* Feature - Introduced Integration class.
+* Feature - Introduced formatting functions for colors.
+* Feature - Introduced admin Settings API used by Integrations.
+* Tweak - Iris picker validation for HEX color codes.
+* Tweak - Convert input submit elements to button submit elements.
+* Tweak - Usability and accessibility improvement with selectWoo.
+* Fix - Some focus issues in selectWoo.
 * Fix - Currency position with RTL symbols.
 * Fix - Flexslider support for RTL languages and fixes for zoom target in Chrome.
+* Fix - WP rocket caching issue do not set the constant.
+* Fix - Prevent notice on settings page when accessing invalid tab.
+* Fix - Use an action/option rather than cron to queue rule flushing.
 
 [See changelog for all versions](https://raw.githubusercontent.com/wpeverest/restaurantpress/master/CHANGELOG.txt).
 
 == Upgrade Notice ==
 
-= 1.5.0 =
-1.5.0 is a major update so it is important that you make backups, and ensure themes and extensions are 1.4 compatible before upgrading.
+= 1.6.0 =
+1.6.0 is a minor update. Make a full site backup, update your theme and extensions, and ensure they are compatible before upgrading.

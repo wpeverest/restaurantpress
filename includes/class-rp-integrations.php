@@ -5,7 +5,7 @@
  * Loads Integrations into RestaurantPress.
  *
  * @class    RP_Integrations
- * @version  1.5.1
+ * @version  1.6.0
  * @package  RestaurantPress/Classes/Integrations
  * @category Class
  * @author   WPEverest

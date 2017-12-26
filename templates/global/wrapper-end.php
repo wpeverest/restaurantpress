@@ -23,34 +23,31 @@ if ( ! defined( 'ABSPATH' ) ) {
 $template = rp_get_theme_slug_for_templates();
 
 switch ( $template ) {
-	case 'twentyten' :
+	case 'twentyten':
 		echo '</div></div>';
 		break;
-	case 'twentyeleven' :
+	case 'twentyeleven':
 		echo '</div>';
 		get_sidebar( 'shop' );
 		echo '</div>';
 		break;
-	case 'twentytwelve' :
+	case 'twentytwelve':
 		echo '</div></div>';
 		break;
-	case 'twentythirteen' :
+	case 'twentythirteen':
 		echo '</div></div>';
 		break;
-	case 'twentyfourteen' :
+	case 'twentyfourteen':
 		echo '</div></div></div>';
 		get_sidebar( 'content' );
 		break;
-	case 'twentyfifteen' :
+	case 'twentyfifteen':
 		echo '</div></div>';
 		break;
-	case 'twentysixteen' :
+	case 'twentysixteen':
 		echo '</main></div>';
 		break;
-	case 'underscores' :
-		echo '</div></main>';
-		break;
-	default :
+	default:
 		echo '</div></main>';
 		break;
 }

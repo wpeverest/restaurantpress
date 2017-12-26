@@ -22,11 +22,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $post;
 
-if ( ! $post->post_excerpt ) {
+$short_description = apply_filters( 'restaurantpress_short_description', $post->post_excerpt );
+
+if ( ! $short_description ) {
 	return;
 }
 
 ?>
 <div class="restaurantpress-food-details__short-description">
-	<?php echo apply_filters( 'restaurantpress_short_description', $post->post_excerpt ); ?>
+	<?php echo $short_description; // WPCS: XSS ok. ?>
 </div>

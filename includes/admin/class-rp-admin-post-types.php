@@ -57,7 +57,7 @@ class RP_Admin_Post_Types {
 	/**
 	 * Looks at the current screen and loads the correct list table handler.
 	 *
-	 * @since 1.5.1
+	 * @since 1.6.0
 	 */
 	public function setup_screen() {
 		$screen_id = false;
@@ -101,19 +101,19 @@ class RP_Admin_Post_Types {
 			// Preview menu item link.
 			$preview_menu_item_link_html = sprintf( ' <a target="_blank" href="%1$s">%2$s</a>',
 				esc_url( get_preview_post_link( $post ) ),
-				__( 'Preview menu item' )
+				__( 'Preview menu item', 'restaurantpress' )
 			);
 
 			// Scheduled menu item preview link.
 			$scheduled_menu_item_link_html = sprintf( ' <a target="_blank" href="%1$s">%2$s</a>',
 				esc_url( get_permalink( $post_ID ) ),
-				__( 'Preview menu item' )
+				__( 'Preview menu item', 'restaurantpress' )
 			);
 
 			// View menu item link.
 			$view_menu_item_link_html = sprintf( ' <a href="%1$s">%2$s</a>',
 				esc_url( get_permalink( $post_ID ) ),
-				__( 'View menu item' )
+				__( 'View menu item', 'restaurantpress' )
 			);
 		}
 
@@ -131,8 +131,8 @@ class RP_Admin_Post_Types {
 			6 => __( 'Menu Item published.', 'restaurantpress' ) . $view_menu_item_link_html,
 			7 => __( 'Menu Item saved.', 'restaurantpress' ),
 			8 => __( 'Menu Item submitted.', 'restaurantpress' ) . $preview_menu_item_link_html,
-			9 => sprintf( __( 'Menu Item scheduled for: %s.' ), '<strong>' . $scheduled_date . '</strong>' ) . $scheduled_menu_item_link_html,
-			10 => __( 'Menu Item draft updated.' ) . $preview_menu_item_link_html,
+			9 => sprintf( __( 'Menu Item scheduled for: %s.', 'restaurantpress' ), '<strong>' . $scheduled_date . '</strong>' ) . $scheduled_menu_item_link_html,
+			10 => __( 'Menu Item draft updated.', 'restaurantpress' ) . $preview_menu_item_link_html,
 		);
 
 		$messages['food_group'] = array(
@@ -257,14 +257,14 @@ class RP_Admin_Post_Types {
 				echo 'yes' === $current_featured ? __( 'Yes', 'restaurantpress' ) : __( 'No', 'restaurantpress' );
 			?></strong>
 
-			<a href="#featured-visibility" class="edit-featured-visibility hide-if-no-js"><?php _e( 'Edit', 'restaurantpress' ); ?></a>
+			<a href="#featured-visibility" class="edit-featured-visibility hide-if-no-js"><?php esc_html_e( 'Edit', 'restaurantpress' ); ?></a>
 
 			<div id="featured-visibility-select" class="hide-if-js">
 				<input type="hidden" name="current_featured" id="current_featured" value="<?php echo esc_attr( $current_featured ); ?>" />
-				<?php echo '<br /><input type="checkbox" name="_featured" id="_featured" ' . checked( $current_featured, 'yes', false ) . ' data-yes="' . esc_attr( 'Yes', 'restaurantpress' ) . '" data-no="' . esc_attr( 'No', 'restaurantpress' ) . '" /> <label for="_featured">' . __( 'This is a featured food', 'restaurantpress' ) . '</label><br />'; ?>
+				<?php echo '<br /><input type="checkbox" name="_featured" id="_featured" ' . checked( $current_featured, 'yes', false ) . ' data-yes="' . esc_attr( 'Yes', 'restaurantpress' ) . '" data-no="' . esc_attr( 'No', 'restaurantpress' ) . '" /> <label for="_featured">' . esc_html__( 'This is a featured food', 'restaurantpress' ) . '</label><br />'; ?>
 				<p>
-					<a href="#featured-visibility" class="save-post-visibility hide-if-no-js button"><?php _e( 'OK', 'restaurantpress' ); ?></a>
-					<a href="#featured-visibility" class="cancel-post-visibility hide-if-no-js"><?php _e( 'Cancel', 'restaurantpress' ); ?></a>
+					<a href="#featured-visibility" class="save-post-visibility hide-if-no-js button"><?php esc_html_e( 'OK', 'restaurantpress' ); ?></a>
+					<a href="#featured-visibility" class="cancel-post-visibility hide-if-no-js"><?php esc_html_e( 'Cancel', 'restaurantpress' ); ?></a>
 				</p>
 			</div>
 		</div>

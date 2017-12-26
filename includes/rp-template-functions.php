@@ -41,7 +41,7 @@ add_action( 'wp_head', 'rp_gallery_noscript' );
 /**
  * When the_post is called, put food data into a global.
  *
- * @param  mixed $post
+ * @param  mixed $post Post Object.
  * @return RP_Food
  */
 function rp_setup_food_data( $post ) {
@@ -60,6 +60,101 @@ function rp_setup_food_data( $post ) {
 	return $GLOBALS['food'];
 }
 add_action( 'the_post', 'rp_setup_food_data' );
+
+/**
+ * Sets up the restaurantpress_loop global from the passed args or from the main query.
+ *
+ * @since 1.6.0
+ * @param array $args Args to pass into the global.
+ */
+function rp_setup_loop( $args = array() ) {
+	if ( isset( $GLOBALS['restaurantpress_loop'] ) ) {
+		return; // If the loop has already been setup, bail.
+	}
+
+	$default_args = array(
+		'loop'         => 0,
+		'columns'      => 1,
+		'name'         => '',
+		'is_shortcode' => false,
+		'is_paginated' => true,
+		'is_search'    => false,
+		'total'        => 0,
+		'total_pages'  => 0,
+		'per_page'     => 0,
+		'current_page' => 1,
+	);
+
+	// If this is a main RP query, use global args as defaults.
+	if ( $GLOBALS['wp_query']->get( 'rp_query' ) ) {
+		$default_args = array_merge( $default_args, array(
+			'is_search'    => $GLOBALS['wp_query']->is_search(),
+			'total'        => $GLOBALS['wp_query']->found_posts,
+			'total_pages'  => $GLOBALS['wp_query']->max_num_pages,
+			'per_page'     => $GLOBALS['wp_query']->get( 'posts_per_page' ),
+			'current_page' => max( 1, $GLOBALS['wp_query']->get( 'paged', 1 ) ),
+		) );
+	}
+
+	$GLOBALS['restaurantpress_loop'] = wp_parse_args( $args, $default_args );
+}
+add_action( 'restaurantpress_before_menu_loop', 'rp_setup_loop' );
+
+/**
+ * Resets the restaurantpress_loop global.
+ *
+ * @since 1.6.0
+ */
+function rp_reset_loop() {
+	unset( $GLOBALS['restaurantpress_loop'] );
+}
+add_action( 'restaurantpress_after_menu_loop', 'rp_reset_loop', 999 );
+
+/**
+ * Gets a property from the restaurantpress_loop global.
+ *
+ * @since  1.6.0
+ * @param  string $prop Prop to get.
+ * @param  string $default Default if the prop does not exist.
+ * @return mixed
+ */
+function rp_get_loop_prop( $prop, $default = '' ) {
+	return isset( $GLOBALS['restaurantpress_loop'], $GLOBALS['restaurantpress_loop'][ $prop ] ) ? $GLOBALS['restaurantpress_loop'][ $prop ] : $default;
+}
+
+/**
+ * Sets a property in the restaurantpress_loop global.
+ *
+ * @since 1.6.0
+ * @param string $prop Prop to set.
+ * @param string $value Value to set.
+ */
+function rp_set_loop_prop( $prop, $value = '' ) {
+	if ( ! isset( $GLOBALS['restaurantpress_loop'] ) ) {
+		rp_setup_loop();
+	}
+	$GLOBALS['restaurantpress_loop'][ $prop ] = $value;
+}
+
+/**
+ * Output generator tag to aid debugging.
+ *
+ * @param string $gen  Generator.
+ * @param string $type Type.
+ *
+ * @return string
+ */
+function rp_generator_tag( $gen, $type ) {
+	switch ( $type ) {
+		case 'html':
+			$gen .= "\n" . '<meta name="generator" content="RestaurantPress ' . esc_attr( RP_VERSION ) . '">';
+			break;
+		case 'xhtml':
+			$gen .= "\n" . '<meta name="generator" content="RestaurantPress ' . esc_attr( RP_VERSION ) . '" />';
+			break;
+	}
+	return $gen;
+}
 
 /**
  * Add body classes for RP pages.
@@ -86,30 +181,83 @@ function rp_body_class( $classes ) {
 }
 
 /**
- * Output generator tag to aid debugging.
+ * Get classname for loops based on $restaurantpress_loop global.
  *
- * @param string $gen  Generator.
- * @param string $type Type.
- *
+ * @since 1.6.0
  * @return string
  */
-function rp_generator_tag( $gen, $type ) {
-	switch ( $type ) {
-		case 'html':
-			$gen .= "\n" . '<meta name="generator" content="RestaurantPress ' . esc_attr( RP_VERSION ) . '">';
-			break;
-		case 'xhtml':
-			$gen .= "\n" . '<meta name="generator" content="RestaurantPress ' . esc_attr( RP_VERSION ) . '" />';
-			break;
+function rp_get_loop_class() {
+	$loop_index = rp_get_loop_prop( 'loop', 0 );
+	$per_page   = rp_get_loop_prop( 'per_page', apply_filters( 'loop_menu_per_page', 10 ) );
+
+	$loop_index ++;
+	rp_set_loop_prop( 'loop', $loop_index );
+
+	if ( 1 === $loop_index ) {
+		return 'first';
+	} elseif ( 0 === $loop_index % $per_page ) {
+		return 'last';
+	} else {
+		return '';
 	}
-	return $gen;
+}
+
+/**
+ * Get the classes for the product cat div.
+ *
+ * @since 1.6.0
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ * @param object       $category object Optional.
+ *
+ * @return array
+ */
+function rp_get_food_cat_class( $class = '', $category = null ) {
+	$classes   = is_array( $class ) ? $class : array_map( 'trim', explode( ' ', $class ) );
+	$classes[] = 'food-category';
+	$classes[] = 'food';
+	$classes[] = rp_get_loop_class();
+	$classes   = apply_filters( 'food_cat_class', $classes, $class, $category );
+
+	return array_unique( array_filter( $classes ) );
+}
+
+/**
+ * Adds extra post classes for foods.
+ *
+ * @since 1.6.0
+ * @param array        $classes Current classes.
+ * @param string|array $class Additional class.
+ * @param int          $post_id Post ID.
+ * @return array
+ */
+function rp_food_post_class( $classes, $class = '', $post_id = '' ) {
+	if ( ! $post_id || ! in_array( get_post_type( $post_id ), array( 'food_menu' ) ) ) {
+		return $classes;
+	}
+
+	$food = rp_get_food( $post_id );
+
+	if ( $food ) {
+		$classes[] = 'food';
+		$classes[] = rp_get_loop_class();
+	}
+
+	$key = array_search( 'hentry', $classes );
+	if ( false !== $key ) {
+		unset( $classes[ $key ] );
+	}
+
+	return $classes;
 }
 
 /**
  * Disable zoom in group page.
+ *
+ * @param bool $status Image zoom status.
  */
 function rp_group_zoom_disable( $status ) {
-	return is_group_menu_page() ? false : $status;
+	return is_post_type_archive( 'food_menu' ) || is_food_menu_taxonomy() || is_group_menu_page() ? false : $status;
 }
 add_filter( 'restaurantpress_single_food_zoom_enabled', 'rp_group_zoom_disable' );
 
@@ -171,15 +319,17 @@ if ( ! function_exists( 'restaurantpress_page_title' ) ) {
 	function restaurantpress_page_title( $echo = true ) {
 
 		if ( is_search() ) {
+			/* translators: %s: search query */
 			$page_title = sprintf( __( 'Search results: &ldquo;%s&rdquo;', 'restaurantpress' ), get_search_query() );
 
 			if ( get_query_var( 'paged' ) ) {
+				/* translators: %s: page number */
 				$page_title .= sprintf( __( '&nbsp;&ndash; Page %s', 'restaurantpress' ), get_query_var( 'paged' ) );
 			}
 		} elseif ( is_tax() ) {
 			$page_title = single_term_title( '', false );
 		} else {
-			$page_title = get_the_title();
+			$page_title = __( 'Foods', 'restaurantpress' );
 		}
 
 		$page_title = apply_filters( 'restaurantpress_page_title', $page_title );
@@ -189,6 +339,164 @@ if ( ! function_exists( 'restaurantpress_page_title' ) ) {
 		} else {
 			return $page_title;
 		}
+	}
+}
+
+if ( ! function_exists( 'restaurantpress_food_loop_start' ) ) {
+
+	/**
+	 * Output the start of a food loop. By default this is a UL.
+	 *
+	 * @param  bool $echo Should echo?.
+	 * @return string
+	 */
+	function restaurantpress_food_loop_start( $echo = true ) {
+		ob_start();
+
+		rp_set_loop_prop( 'loop', 0 );
+
+		rp_get_template( 'loop/loop-start.php' );
+
+		$loop_start = apply_filters( 'restaurantpress_food_loop_start', ob_get_clean() );
+
+		if ( $echo ) {
+			echo $loop_start; // WPCS: XSS ok.
+		} else {
+			return $loop_start;
+		}
+	}
+}
+if ( ! function_exists( 'restaurantpress_food_loop_end' ) ) {
+
+	/**
+	 * Output the end of a food loop. By default this is a UL.
+	 *
+	 * @param  bool $echo Should echo?.
+	 * @return string
+	 */
+	function restaurantpress_food_loop_end( $echo = true ) {
+		ob_start();
+
+		rp_get_template( 'loop/loop-end.php' );
+
+		$loop_end = apply_filters( 'restaurantpress_food_loop_end', ob_get_clean() );
+
+		if ( $echo ) {
+			echo $loop_end; // WPCS: XSS ok.
+		} else {
+			return $loop_end;
+		}
+	}
+}
+
+if ( ! function_exists( 'restaurantpress_template_loop_food_title' ) ) {
+
+	/**
+	 * Show the food title in the food loop. By default this is an H2.
+	 */
+	function restaurantpress_template_loop_food_title() {
+		echo '<h4 class="restaurantpress-loop-food__title"><a href="' . esc_url( get_the_permalink() ) . '" class="restaurantpress-LoopFood-link restaurantpress-loop-food__link">' . get_the_title() . '</a></h4>';
+	}
+}
+
+if ( ! function_exists( 'restaurantpress_taxonomy_archive_description' ) ) {
+
+	/**
+	 * Show an archive description on taxonomy archives.
+	 */
+	function restaurantpress_taxonomy_archive_description() {
+		if ( is_food_menu_taxonomy() && 0 === absint( get_query_var( 'paged' ) ) ) {
+			$term = get_queried_object();
+
+			if ( $term && ! empty( $term->description ) ) {
+				echo '<div class="term-description">' . rp_format_content( $term->description ) . '</div>'; // WPCS: XSS ok.
+			}
+		}
+	}
+}
+
+if ( ! function_exists( 'restaurantpress_template_loop_food_thumbnail' ) ) {
+
+	/**
+	 * Get the food thumbnail for the loop.
+	 */
+	function restaurantpress_template_loop_food_thumbnail() {
+		rp_get_template( 'loop/food-image.php' );
+	}
+}
+if ( ! function_exists( 'restaurantpress_template_loop_price' ) ) {
+
+	/**
+	 * Get the food price for the loop.
+	 */
+	function restaurantpress_template_loop_price() {
+		rp_get_template( 'loop/price.php' );
+	}
+}
+if ( ! function_exists( 'restaurantpress_template_loop_excerpt' ) ) {
+
+	/**
+	 * Output the food short description (excerpt) for the loop.
+	 */
+	function restaurantpress_template_loop_excerpt() {
+		rp_get_template( 'loop/short-description.php' );
+	}
+}
+if ( ! function_exists( 'restaurantpress_show_food_loop_chef_badge' ) ) {
+
+	/**
+	 * Get the chef badge for the loop.
+	 *
+	 * @subpackage Loop
+	 */
+	function restaurantpress_show_food_loop_chef_badge() {
+		rp_get_template( 'loop/chef-badge.php' );
+	}
+}
+
+if ( ! function_exists( 'restaurantpress_get_food_thumbnail' ) ) {
+
+	/**
+	 * Get the food thumbnail, or the placeholder if not set.
+	 *
+	 * @subpackage Loop
+	 * @param  string $size (default: 'food_thumbnail').
+	 * @param  array  $attr Attributes array.
+	 * @return string
+	 */
+	function restaurantpress_get_food_thumbnail( $size = 'food_thumbnail', $attr = array() ) {
+		global $food;
+
+		$image_size = apply_filters( 'single_food_archive_thumbnail_size', $size );
+
+		return $food ? $food->get_image( $image_size, $attr ) : '';
+	}
+}
+
+if ( ! function_exists( 'restaurantpress_pagination' ) ) {
+
+	/**
+	 * Output the pagination.
+	 */
+	function restaurantpress_pagination() {
+		if ( ! rp_get_loop_prop( 'is_paginated' ) ) {
+			return;
+		}
+
+		$args = array(
+			'total'   => rp_get_loop_prop( 'total_pages' ),
+			'current' => rp_get_loop_prop( 'current_page' ),
+		);
+
+		if ( rp_get_loop_prop( 'is_shortcode' ) ) {
+			$args['base']   = esc_url_raw( add_query_arg( 'food-page', '%#%', false ) );
+			$args['format'] = '?food-page = %#%';
+		} else {
+			$args['base']   = esc_url_raw( str_replace( 999999999, '%#%', get_pagenum_link( 999999999, false ) ) );
+			$args['format'] = '';
+		}
+
+		rp_get_template( 'loop/pagination.php', $args );
 	}
 }
 
@@ -438,7 +746,7 @@ if ( ! function_exists( 'restaurantpress_form_field' ) ) {
 
 		if ( $args['required'] ) {
 			$args['class'][] = 'validate-required';
-			$required = ' <abbr class="required" title="' . esc_attr__( 'required', 'restauranpress-table-reservation' ) . '">*</abbr>';
+			$required = ' <abbr class="required" title="' . esc_attr__( 'required', 'restaurantpress' ) . '">*</abbr>';
 		} else {
 			$required = '';
 		}
@@ -485,21 +793,21 @@ if ( ! function_exists( 'restaurantpress_form_field' ) ) {
 		$field_container = '<p class="form-row %1$s" id="%2$s" data-priority="' . esc_attr( $sort ) . '">%3$s</p>';
 
 		switch ( $args['type'] ) {
-			case 'textarea' :
+			case 'textarea':
 				$field .= '<textarea name="' . esc_attr( $key ) . '" class="input-text ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" id="' . esc_attr( $args['id'] ) . '" placeholder="' . esc_attr( $args['placeholder'] ) . '" ' . ( empty( $args['custom_attributes']['rows'] ) ? ' rows="2"' : '' ) . ( empty( $args['custom_attributes']['cols'] ) ? ' cols="5"' : '' ) . implode( ' ', $custom_attributes ) . '>' . esc_textarea( $value ) . '</textarea>';
 				break;
-			case 'checkbox' :
+			case 'checkbox':
 				$field = '<label class="checkbox ' . implode( ' ', $args['label_class'] ) . '" ' . implode( ' ', $custom_attributes ) . '><input type="' . esc_attr( $args['type'] ) . '" class="input-checkbox ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" value="1" ' . checked( $value, 1, false ) . ' /> ' . $args['label'] . $required . '</label>';
 				break;
-			case 'password' :
-			case 'text' :
-			case 'email' :
-			case 'tel' :
-			case 'number' :
+			case 'password':
+			case 'text':
+			case 'email':
+			case 'tel':
+			case 'number':
 				$field .= '<input type="' . esc_attr( $args['type'] ) . '" class="input-text ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" placeholder="' . esc_attr( $args['placeholder'] ) . '"  value="' . esc_attr( $value ) . '" ' . implode( ' ', $custom_attributes ) . ' />';
 				break;
-			case 'select' :
-				$options = $field = '';
+			case 'select':
+				$options = '';
 
 				if ( ! empty( $args['options'] ) ) {
 					foreach ( $args['options'] as $option_key => $option_text ) {
@@ -516,7 +824,7 @@ if ( ! function_exists( 'restaurantpress_form_field' ) ) {
 					$field .= '<select name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" class="select ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" ' . implode( ' ', $custom_attributes ) . ' data-placeholder="' . esc_attr( $args['placeholder'] ) . '">' . $options . '</select>';
 				}
 				break;
-			case 'radio' :
+			case 'radio':
 				$label_id = current( array_keys( $args['options'] ) );
 
 				if ( ! empty( $args['options'] ) ) {
@@ -553,5 +861,15 @@ if ( ! function_exists( 'restaurantpress_form_field' ) ) {
 		} else {
 			echo $field; // WPCS: XSS ok.
 		}
+	}
+}
+
+if ( ! function_exists( 'rp_no_foods_found' ) ) {
+
+	/**
+	 * Show no foods found message.
+	 */
+	function rp_no_foods_found() {
+		rp_get_template( 'loop/no-foods-found.php' );
 	}
 }

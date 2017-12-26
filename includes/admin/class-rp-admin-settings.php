@@ -51,7 +51,6 @@ if ( ! class_exists( 'RP_Admin_Settings', false ) ) :
 				include_once( dirname( __FILE__ ) . '/settings/class-rp-settings-page.php' );
 
 				$settings[] = include( 'settings/class-rp-settings-general.php' );
-				$settings[] = include( 'settings/class-rp-settings-emails.php' );
 				$settings[] = include( 'settings/class-rp-settings-integrations.php' );
 
 				self::$settings = apply_filters( 'restaurantpress_get_settings_pages', $settings );
@@ -75,8 +74,8 @@ if ( ! class_exists( 'RP_Admin_Settings', false ) ) :
 
 			self::add_message( __( 'Your settings have been saved.', 'restaurantpress' ) );
 
-			// Clear any unwanted data and flush rules.
-			wp_schedule_single_event( time(), 'restaurantpress_flush_rewrite_rules' );
+			// Clear any unwanted data and flush rules on next init.
+			add_option( 'restaurantpress_queue_flush_rewrite_rules', 'true' );
 
 			do_action( 'restaurantpress_settings_saved' );
 		}
@@ -657,7 +656,7 @@ if ( ! class_exists( 'RP_Admin_Settings', false ) ) :
 						}
 						break;
 					case 'select':
-						$allowed_values = empty( $option['options'] ) ? array() : array_keys( $option['options'] );
+						$allowed_values = empty( $option['options'] ) ? array() : array_map( 'strval', array_keys( $option['options'] ) );
 						if ( empty( $option['default'] ) && empty( $allowed_values ) ) {
 							$value = null;
 							break;

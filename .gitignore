@@ -24,8 +24,9 @@ none
 # Windows junk
 Thumbs.db
 
-# ApiGen
-/rp-apidocs/
+# Unit tests
+/tmp
+/tests/bin/tmp
 
 # Composer
 /vendor/
