@@ -171,17 +171,6 @@ final class RestaurantPress {
 	}
 
 	/**
-	 * Check the active theme.
-	 *
-	 * @since  1.7.0
-	 * @param  string $theme Theme slug to check.
-	 * @return bool
-	 */
-	private function is_active_theme( $theme ) {
-		return is_array( $theme ) ? in_array( get_template(), $theme, true ) : get_template() === $theme;
-	}
-
-	/**
 	 * Includes the required core files used in admin and on the frontend.
 	 */
 	public function includes() {

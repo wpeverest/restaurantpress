@@ -546,21 +546,6 @@ function get_restaurantpress_currency_symbol( $currency = '' ) {
 }
 
 /**
- * Send HTML emails from RestaurantPress.
- *
- * @param mixed  $to          Receiver.
- * @param mixed  $subject     Subject.
- * @param mixed  $message     Message.
- * @param string $headers     Headers. (default: "Content-Type: text/html\r\n").
- * @param string $attachments Attachments. (default: "").
- */
-function rp_mail( $to, $subject, $message, $headers = "Content-Type: text/html\r\n", $attachments = '' ) {
-	$mailer = RP()->mailer();
-
-	$mailer->send( $to, $subject, $message, $headers, $attachments );
-}
-
-/**
  * Get an image size by name or defined dimensions.
  *
  * The returned variable is filtered by restaurantpress_get_image_size_{image_size} filter to

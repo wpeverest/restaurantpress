@@ -4,7 +4,6 @@
  *
  * @version 1.7.0
  * @package RestaurantPress
- * @author  WPEverest
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -38,6 +37,7 @@ class RP_Customizer {
 			'title'          => __( 'RestaurantPress', 'restaurantpress' ),
 		) );
 
+		$this->add_colors_section( $wp_customize );
 		$this->add_food_images_section( $wp_customize );
 	}
 
@@ -105,7 +105,69 @@ class RP_Customizer {
 	 * @return boolean
 	 */
 	public function is_active() {
-		return is_group_page() || rp_post_content_has_shortcode( 'restaurantpress_group' );
+		return is_restaurantpress() || rp_post_content_has_shortcode( 'restaurantpress_group' );
+	}
+
+	/**
+	 * Store notice section.
+	 *
+	 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
+	 */
+	private function add_colors_section( $wp_customize ) {
+		$wp_customize->add_section(
+			'restaurantpress_colors',
+			array(
+				'title'    => __( 'Colors', 'restaurantpress' ),
+				'priority' => 10,
+				'panel'    => 'restaurantpress',
+			)
+		);
+
+		// Primary Color.
+		$wp_customize->add_setting(
+			'restaurantpress_primary_color',
+			array(
+				'default'           => '#ff0033',
+				'type'              => 'option',
+				'capability'        => 'manage_restaurantpress',
+				'sanitize_callback' => 'sanitize_hex_color',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'restaurantpress_primary_color',
+				array(
+					'label'    => __( 'Primary Color', 'restaurantpress' ),
+					'section'  => 'restaurantpress_colors',
+					'settings' => 'restaurantpress_primary_color',
+					'priority' => 1
+				)
+			)
+		);
+
+		// Single page display.
+		$wp_customize->add_setting(
+			'restaurantpress_food_single_page',
+			array(
+				'default'              => 'yes',
+				'type'                 => 'option',
+				'capability'           => 'manage_restaurantpress',
+				'sanitize_callback'    => 'rp_bool_to_string',
+				'sanitize_js_callback' => 'rp_string_to_bool',
+			)
+		);
+
+		$wp_customize->add_control(
+			'restaurantpress_food_single_page',
+			array(
+				'label'       => __( 'Enable single food page display', 'restaurantpress' ),
+				'section'     => 'restaurantpress_colors',
+				'settings'    => 'restaurantpress_food_single_page',
+				'type'        => 'checkbox',
+			)
+		);
 	}
 
 	/**
