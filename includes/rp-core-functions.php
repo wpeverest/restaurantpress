@@ -4,8 +4,6 @@
  *
  * General core functions available on both the front-end and admin.
  *
- * @author   WPEverest
- * @category Core
  * @package  RestaurantPress/Functions
  * @version  1.0.0
  */
@@ -573,7 +571,7 @@ function rp_get_image_size( $image_size ) {
 			'crop'   => isset( $image_size[2] ) ? $image_size[2] : 1,
 		);
 		$image_size = $size['width'] . '_' . $size['height'];
-	} elseif ( in_array( $image_size, array( 'single', 'food_single', 'restaurantpress' ), true ) ) {
+	} elseif ( in_array( $image_size, array( 'single', 'food_single', 'restaurantpress_single' ), true ) ) {
 		// If the theme supports restaurantpress, take image sizes from that definition.
 		if ( isset( $theme_support['single_image_width'] ) ) {
 			$size['width'] = $theme_support['single_image_width'];
@@ -583,7 +581,7 @@ function rp_get_image_size( $image_size ) {
 		$size['height'] = 9999999999;
 		$size['crop']   = 0;
 		$image_size     = 'single';
-	} elseif ( in_array( $image_size, array( 'thumbnail', 'food_thumbnail', 'food_grid' ), true ) ) {
+	} elseif ( in_array( $image_size, array( 'thumbnail', 'food_thumbnail', 'food_grid', 'restaurantpress_thumbnail' ), true ) ) {
 		// If the theme supports restaurantpress, take image sizes from that definition.
 		if ( isset( $theme_support['thumbnail_image_width'] ) ) {
 			$size['width'] = $theme_support['thumbnail_image_width'];
