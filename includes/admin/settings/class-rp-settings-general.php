@@ -69,23 +69,6 @@ class RP_Settings_General extends RP_Settings_Page {
 		$settings = apply_filters( 'restaurantpress_general_settings', array(
 
 			array(
-				'title' => __( 'Single food page', 'restaurantpress' ),
-				'type' 	=> 'title',
-				'id' 	=> 'single_page_options',
-			),
-			array(
-				'title'   => __( 'Food page display', 'restaurantpress' ),
-				'desc'    => __( 'Enable single food page display', 'restaurantpress' ),
-				'id'      => 'restaurantpress_single_page_display',
-				'default' => 'no',
-				'type'    => 'checkbox',
-			),
-			array(
-				'type' 	=> 'sectionend',
-				'id' 	=> 'single_page_options',
-			),
-
-			array(
 				'title' => __( 'Color options', 'restaurantpress' ),
 				'type'  => 'title',
 				'desc'  => __( 'This section is moved to customizer for live color change preview.', 'restaurantpress' ),

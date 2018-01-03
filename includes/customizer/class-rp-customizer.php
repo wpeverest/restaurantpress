@@ -38,6 +38,7 @@ class RP_Customizer {
 		) );
 
 		$this->add_colors_section( $wp_customize );
+		$this->add_food_page_section( $wp_customize );
 		$this->add_food_images_section( $wp_customize );
 	}
 
@@ -109,7 +110,7 @@ class RP_Customizer {
 	}
 
 	/**
-	 * Store notice section.
+	 * Colors section.
 	 *
 	 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
 	 */
@@ -123,7 +124,6 @@ class RP_Customizer {
 			)
 		);
 
-		// Primary Color.
 		$wp_customize->add_setting(
 			'restaurantpress_primary_color',
 			array(
@@ -146,8 +146,23 @@ class RP_Customizer {
 				)
 			)
 		);
+	}
 
-		// Single page display.
+	/**
+	 * Food page section.
+	 *
+	 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
+	 */
+	private function add_food_page_section( $wp_customize ) {
+		$wp_customize->add_section(
+			'restaurantpress_food_page',
+			array(
+				'title'    => __( 'Food Page', 'restaurantpress' ),
+				'priority' => 10,
+				'panel'    => 'restaurantpress',
+			)
+		);
+
 		$wp_customize->add_setting(
 			'restaurantpress_food_single_page',
 			array(
@@ -162,8 +177,8 @@ class RP_Customizer {
 		$wp_customize->add_control(
 			'restaurantpress_food_single_page',
 			array(
-				'label'       => __( 'Enable single food page display', 'restaurantpress' ),
-				'section'     => 'restaurantpress_colors',
+				'label'       => __( 'Enable single food page', 'restaurantpress' ),
+				'section'     => 'restaurantpress_food_page',
 				'settings'    => 'restaurantpress_food_single_page',
 				'type'        => 'checkbox',
 			)
