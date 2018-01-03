@@ -222,28 +222,28 @@ final class RestaurantPress {
 	private function theme_support_includes() {
 		if ( rp_is_active_theme( array( 'twentyseventeen', 'twentysixteen', 'twentyfifteen', 'twentyfourteen', 'twentythirteen', 'twentytwelve', 'twentyeleven', 'twentyten' ) ) ) {
 			switch ( get_template() ) {
-				case 'twentyten' :
+				case 'twentyten':
 					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-ten.php' );
 					break;
-				case 'twentyeleven' :
+				case 'twentyeleven':
 					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-eleven.php' );
 					break;
-				case 'twentytwelve' :
+				case 'twentytwelve':
 					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-twelve.php' );
 					break;
-				case 'twentythirteen' :
+				case 'twentythirteen':
 					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-thirteen.php' );
 					break;
-				case 'twentyfourteen' :
+				case 'twentyfourteen':
 					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-fourteen.php' );
 					break;
-				case 'twentyfifteen' :
+				case 'twentyfifteen':
 					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-fifteen.php' );
 					break;
-				case 'twentysixteen' :
+				case 'twentysixteen':
 					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-sixteen.php' );
 					break;
-				case 'twentyseventeen' :
+				case 'twentyseventeen':
 					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-seventeen.php' );
 					break;
 			}
