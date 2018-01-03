@@ -287,13 +287,12 @@ class RP_Frontend_Scripts {
 	 *
 	 * @uses   wp_add_inline_style()
 	 * @access private
-	 * @param  string $default_color
 	 */
-	private static function create_primary_styles( $default_color = '#ff0033' ) {
-		$primary_color = get_option( 'restaurantpress_primary_color' );
+	private static function create_primary_styles() {
+		$restaurantpress_colors = get_option( 'restaurantpress_colors', array() );
 
 		// Check if the primary color is default?
-		if ( $primary_color === $default_color ) {
+		if ( '#ff0033' === $restaurantpress_colors['primary'] ) {
 			return;
 		}
 
@@ -336,7 +335,7 @@ class RP_Frontend_Scripts {
 			}
 		';
 
-		wp_add_inline_style( 'restaurantpress-general', sprintf( $inline_css, esc_attr( $primary_color ) ) );
+		wp_add_inline_style( 'restaurantpress-general', sprintf( $inline_css, esc_attr( $restaurantpress_colors['primary'] ) ) );
 	}
 
 	/**

@@ -125,7 +125,7 @@ class RP_Customizer {
 		);
 
 		$wp_customize->add_setting(
-			'restaurantpress_primary_color',
+			'restaurantpress_colors[primary]',
 			array(
 				'default'           => '#ff0033',
 				'type'              => 'option',
@@ -137,11 +137,11 @@ class RP_Customizer {
 		$wp_customize->add_control(
 			new WP_Customize_Color_Control(
 				$wp_customize,
-				'restaurantpress_primary_color',
+				'restaurantpress_colors[primary]',
 				array(
 					'label'    => __( 'Primary Color', 'restaurantpress' ),
 					'section'  => 'restaurantpress_colors',
-					'settings' => 'restaurantpress_primary_color',
+					'settings' => 'restaurantpress_colors[primary]',
 					'priority' => 1
 				)
 			)

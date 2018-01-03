@@ -190,11 +190,19 @@ function rp_update_160_db_version() {
  * Update single page options.
  */
 function rp_update_170_options() {
+	$primary_color = get_option( 'restaurantpress_primary_color' );
+
+	if ( $primary_color ) {
+		$update_options['primary'] = $primary_color;
+		update_option( 'restaurantpress_colors', $update_options );
+	}
+
 	// restaurantpress_single_page_display option has been removed in 1.7.
 	if ( 'no' === get_option( 'restaurantpress_single_page_display' ) ) {
 		update_option( 'restaurantpress_food_single_page', 'no' );
 	}
 
+	delete_option( 'restaurantpress_primary_color' );
 	delete_option( 'restaurantpress_single_page_display' );
 }
 
