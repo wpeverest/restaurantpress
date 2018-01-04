@@ -289,7 +289,9 @@ class RP_Frontend_Scripts {
 	 * @access private
 	 */
 	private static function create_primary_styles() {
-		$restaurantpress_colors = get_option( 'restaurantpress_colors', array() );
+		$restaurantpress_colors = get_option( 'restaurantpress_colors', array(
+			'primary' => '#ff0033',
+		) );
 
 		// Check if the primary color is default?
 		if ( '#ff0033' === $restaurantpress_colors['primary'] ) {
