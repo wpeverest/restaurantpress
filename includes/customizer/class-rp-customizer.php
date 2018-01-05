@@ -20,6 +20,7 @@ class RP_Customizer {
 	 */
 	public function __construct() {
 		add_action( 'customize_register', array( $this, 'add_sections' ) );
+		add_action( 'customize_preview_init', array( $this, 'live_preview' ) );
 		add_action( 'customize_controls_print_styles', array( $this, 'add_styles' ) );
 		add_action( 'customize_controls_print_scripts', array( $this, 'add_scripts' ), 30 );
 	}
@@ -40,6 +41,16 @@ class RP_Customizer {
 		$this->add_colors_section( $wp_customize );
 		$this->add_food_page_section( $wp_customize );
 		$this->add_food_images_section( $wp_customize );
+	}
+
+	/**
+	 * Customizer live preview.
+	 */
+	public function live_preview() {
+		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+		wp_enqueue_script( 'tinycolor', RP()->plugin_url() . '/assets/js/TinyColor/tinycolor' . $suffix . '.js', array( 'jquery' ), '1.1.1', true );
+		wp_enqueue_script( 'restaurantpress-customizer', RP()->plugin_url() . '/assets/js/admin/customizer' . $suffix . '.js', array( 'jquery', 'customize-preview', 'tinycolor' ), RP_VERSION, true );
 	}
 
 	/**
@@ -129,6 +140,7 @@ class RP_Customizer {
 			array(
 				'default'           => '#ff0033',
 				'type'              => 'option',
+				'transport'         => 'postMessage',
 				'capability'        => 'manage_restaurantpress',
 				'sanitize_callback' => 'sanitize_hex_color',
 			)
