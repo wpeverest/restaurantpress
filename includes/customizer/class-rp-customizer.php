@@ -21,6 +21,9 @@ class RP_Customizer {
 	public function __construct() {
 		add_action( 'customize_register', array( $this, 'add_sections' ) );
 		add_action( 'customize_preview_init', array( $this, 'live_preview' ) );
+		add_action( 'customize_save_after', array( $this, 'save_after' ) );
+		add_action( 'wp_head', array( $this, 'header_output' ), 99999 );
+
 		add_action( 'customize_controls_print_styles', array( $this, 'add_styles' ) );
 		add_action( 'customize_controls_print_scripts', array( $this, 'add_scripts' ), 30 );
 	}
@@ -51,6 +54,70 @@ class RP_Customizer {
 
 		wp_enqueue_script( 'tinycolor', RP()->plugin_url() . '/assets/js/TinyColor/tinycolor' . $suffix . '.js', array( 'jquery' ), '1.1.1', true );
 		wp_enqueue_script( 'restaurantpress-customizer', RP()->plugin_url() . '/assets/js/admin/customizer' . $suffix . '.js', array( 'jquery', 'customize-preview', 'tinycolor' ), RP_VERSION, true );
+	}
+
+	/**
+	 * Compile the SCSS.
+	 *
+	 * @return string
+	 */
+	protected function compile_scss() {
+		if ( ! class_exists( 'scssc' ) && ! class_exists( 'scss_formatter_nested' ) ) {
+			include_once '../libraries/class-scss.php';
+		}
+
+		// Get options
+		$colors = get_option( 'restaurantpress_colors' );
+
+		ob_start();
+		include 'views/scss.php';
+		$scss = ob_get_clean();
+
+		$compiler     = new scssc;
+		$compiler->setFormatter( 'scss_formatter_compressed' );
+		$compiled_css = $compiler->compile( trim( $scss ) );
+
+		return $compiled_css;
+	}
+
+	/**
+	 * Save the colors.
+	 *
+	 * @param WP_Customize_Manager $customize
+	 */
+	public function save_after( $customize ) {
+		if ( ! isset( $_REQUEST['customized'] ) ) {
+			return;
+		}
+
+		$customized = json_decode( stripslashes( $_REQUEST['customized'] ), true );
+		$save       = false;
+
+		foreach ( $customized as $key => $value ) {
+			if ( false !== strpos( $key, $this->section_slug ) ) {
+				$save = true;
+				break;
+			}
+		}
+
+		if ( $save ) {
+			$css = $this->compile_scss();
+
+			update_option( 'restaurantpress_colors_css', $css );
+		}
+	}
+
+	/**
+	 * Header output.
+	 */
+	public function header_output() {
+		$css = get_option( 'restaurantpress_colors_css' );
+
+		echo "<!-- RestaurantPress Colors -->\n";
+		echo "<style type=\"text/css\">\n";
+		echo $css;
+		echo "\n</style>\n";
+		echo "<!--/RestaurantPress Colors-->\n";
 	}
 
 	/**
