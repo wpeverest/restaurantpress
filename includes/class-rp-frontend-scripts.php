@@ -277,9 +277,6 @@ class RP_Frontend_Scripts {
 				self::enqueue_style( $handle, $args['src'], $args['deps'], $args['version'], $args['media'], $args['has_rtl'] );
 			}
 		}
-
-		// Inline Styles
-		self::create_primary_styles();
 	}
 
 	/**

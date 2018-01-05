@@ -23,7 +23,6 @@ class RP_Customizer {
 		add_action( 'customize_preview_init', array( $this, 'live_preview' ) );
 		add_action( 'customize_save_after', array( $this, 'save_after' ) );
 		add_action( 'wp_head', array( $this, 'header_output' ), 99999 );
-
 		add_action( 'customize_controls_print_styles', array( $this, 'add_styles' ) );
 		add_action( 'customize_controls_print_scripts', array( $this, 'add_scripts' ), 30 );
 	}
@@ -52,8 +51,7 @@ class RP_Customizer {
 	public function live_preview() {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		wp_enqueue_script( 'tinycolor', RP()->plugin_url() . '/assets/js/TinyColor/tinycolor' . $suffix . '.js', array( 'jquery' ), '1.1.1', true );
-		wp_enqueue_script( 'restaurantpress-customizer', RP()->plugin_url() . '/assets/js/admin/customizer' . $suffix . '.js', array( 'jquery', 'customize-preview', 'tinycolor' ), RP_VERSION, true );
+		wp_enqueue_script( 'restaurantpress-customizer', RP()->plugin_url() . '/assets/js/admin/customizer' . $suffix . '.js', array( 'jquery', 'customize-preview' ), RP_VERSION, true );
 	}
 
 	/**
@@ -63,11 +61,13 @@ class RP_Customizer {
 	 */
 	protected function compile_scss() {
 		if ( ! class_exists( 'scssc' ) && ! class_exists( 'scss_formatter_nested' ) ) {
-			include_once '../libraries/class-scss.php';
+			include_once RP()->plugin_path() . '/includes/libraries/class-scss.php';
 		}
 
-		// Get options
-		$colors = get_option( 'restaurantpress_colors' );
+		// Get options.
+		$colors = get_option( 'restaurantpress_colors', array(
+			'primary' => '#ff0033',
+		) );
 
 		ob_start();
 		include 'views/scss.php';
@@ -94,7 +94,7 @@ class RP_Customizer {
 		$save       = false;
 
 		foreach ( $customized as $key => $value ) {
-			if ( false !== strpos( $key, $this->section_slug ) ) {
+			if ( false !== strpos( $key, 'restaurantpress_colors' ) ) {
 				$save = true;
 				break;
 			}

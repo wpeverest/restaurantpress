@@ -1,54 +1,29 @@
-/* global tinycolor */
 ( function( $ ) {
-
-	function isDark( color ) {
-		var rgb = tinycolor( color ).toRgb(),
-			brightness = ( ( rgb.r * 299 ) + ( rgb.g * 587 ) + ( rgb.b * 114 ) ) / 1000;
-
-		return brightness < 155;
-	}
-
-	function changeColor( color, adjustment, saturation ) {
-		if ( isDark( color ) ) {
-			return tinycolor( color ).lighten( adjustment ).desaturate( saturation ).toString();
-		} else {
-			return tinycolor( color ).darken( adjustment ).desaturate( saturation ).toString();
-		}
-	}
-
-	function colorZeroPad( number ) {
-		var total = 6 - number.length;
-
-		if ( 0 === total ) {
-			return number;
-		}
-
-		for ( var i = 0; i < total; i++ ) {
-			number = '0' + number;
-		}
-
-		return number;
-	}
-
-	function subtractColor( color, subtract ) {
-		return '#' + colorZeroPad( Math.abs( parseInt( color.replace( '#', '' ), 16 ) - parseInt( subtract.replace( '#', '' ), 16 ) ).toString( 16 ) );
-	}
 
 	// Primary Color.
 	wp.customize( 'restaurantpress_colors[primary]', function( value ) {
 		value.bind( function( primary ) {
-			var css         = '',
-				primaryText = changeColor( primary, 50, 18 );
-
-			// Buttons.
-			css += '.restaurantpress #respond input#submit.alt:hover, .restaurantpress a.button.alt:hover, .restaurantpress button.button.alt:hover, .restaurantpress input.button.alt:hover { background-color: ' + subtractColor( primary, '#111111' ) + '; color: ' + primaryText + ' }';
+			var css = '';
 
 			// Chef badge.
-			css += '.restaurantpress span.chef { background-color: ' + primary + '; color: ' + primaryText + '; }';
+			css += '.restaurantpress span.chef { background-color: ' + primary + '; }';
+			css += '.restaurantpress span.chef.grid::before, .restaurantpress span.chef.grid::after { border-top-color: ' + primary + '; }';
+
+			// Page title.
+			css += '.restaurantpress-page .restaurantpress-loop-food__title a, .restaurantpress-group #restaurant-press-section a { color: ' + primary + '; }';
+
+			// Group/page price.
+			css += '.restaurantpress span.price::before { border-right-color: ' + primary + '; }';
+			css += '.restaurantpress-group span.price { color: ' + primary + '; }';
+			css += '.restaurantpress-group .rp-list-design-layout p.price, .restaurantpress-group .rp-list-design-layout span.price { color: ' + primary + '; }';
+
+			// Group layout page.
+			css += '.restaurantpress-group .rp-grid-design-layout ins .amount { color: #fff; }';
+			css += '.restaurantpress-group .rp-grid-design-layout .rp-content-wrapper { border-bottom-color: ' + primary + '; }';
 
 			$( '#restaurantpress-colors-primary' ).remove();
 			$( 'head' ).append( '<style id="restaurantpress-colors-primary">' + css + '</style>' );
-		});
-	});
+		} );
+	} );
 
 })( jQuery );
