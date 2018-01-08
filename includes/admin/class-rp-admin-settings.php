@@ -213,6 +213,9 @@ if ( ! class_exists( 'RP_Admin_Settings', false ) ) :
 				if ( ! isset( $value['placeholder'] ) ) {
 					$value['placeholder'] = '';
 				}
+				if ( ! isset( $value['suffix'] ) ) {
+					$value['suffix'] = '';
+				}
 
 				// Custom attribute handling.
 				$custom_attributes = array();
@@ -279,7 +282,7 @@ if ( ! class_exists( 'RP_Admin_Settings', false ) ) :
 									class="<?php echo esc_attr( $value['class'] ); ?>"
 									placeholder="<?php echo esc_attr( $value['placeholder'] ); ?>"
 									<?php echo implode( ' ', $custom_attributes ); // WPCS: XSS ok. ?>
-									/> <?php echo $description; // WPCS: XSS ok. ?>
+									/><?php echo esc_html( $value['suffix'] ); ?> <?php echo $description; // WPCS: XSS ok. ?>
 							</td>
 						</tr>
 						<?php
@@ -489,7 +492,7 @@ if ( ! class_exists( 'RP_Admin_Settings', false ) ) :
 						}
 						break;
 
-					// Image width settings.
+					// Image width settings. @todo deprecate and remove in 2.0. No longer needed by core.
 					case 'image_width':
 						$image_size       = str_replace( '_image_size', '', $value['id'] );
 						$size             = rp_get_image_size( $image_size );

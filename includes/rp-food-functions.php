@@ -120,7 +120,7 @@ function rp_placeholder_img_src() {
  * @param  string $size Image size.
  * @return string
  */
-function rp_placeholder_img( $size = 'food_thumbnail' ) {
+function rp_placeholder_img( $size = 'restaurantpress_thumbnail' ) {
 	$dimensions = rp_get_image_size( $size );
 
 	return apply_filters( 'restaurantpress_placeholder_img', '<img src="' . rp_placeholder_img_src() . '" alt="' . esc_attr__( 'Placeholder', 'restaurantpress' ) . '" width="' . esc_attr( $dimensions['width'] ) . '" class="restaurantpress-placeholder wp-post-image" height="' . esc_attr( $dimensions['height'] ) . '" />', $size, $dimensions );

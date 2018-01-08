@@ -53,6 +53,11 @@ class RP_Install {
 		'1.6.0' => array(
 			'rp_update_160_db_version',
 		),
+		'1.7.0' => array(
+			'rp_update_170_options',
+			'rp_update_170_image_options',
+			'rp_update_170_db_version',
+		),
 	);
 
 	/**

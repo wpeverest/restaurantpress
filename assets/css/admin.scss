@@ -725,6 +725,10 @@ img.help_tip {
 			box-sizing: border-box;
 		}
 
+		input[size] {
+			width: auto !important;
+		}
+
 		// Ignore nested inputs.
 		table {
 			select,

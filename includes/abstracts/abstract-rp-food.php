@@ -206,12 +206,12 @@ class RP_Food {
 	/**
 	 * Returns the main food image.
 	 *
-	 * @param string $size (default: 'food_thumbnail')
+	 * @param string $size (default: 'restaurantpress_thumbnail')
 	 * @param array $attr
 	 * @param bool $placeholder True to return $placeholder if no image is found, or false to return an empty string.
 	 * @return string
 	 */
-	public function get_image( $size = 'food_thumbnail', $attr = array(), $placeholder = true ) {
+	public function get_image( $size = 'restaurantpress_thumbnail', $attr = array(), $placeholder = true ) {
 		if ( has_post_thumbnail( $this->get_id() ) ) {
 			$image = get_the_post_thumbnail( $this->get_id(), $size, $attr );
 		} elseif ( ( $parent_id = wp_get_post_parent_id( $this->get_id() ) ) && has_post_thumbnail( $parent_id ) ) {

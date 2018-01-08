@@ -200,6 +200,7 @@ final class RestaurantPress {
 		include_once( RP_ABSPATH . 'includes/class-rp-cache-helper.php' ); // Cache Helper.
 		include_once( RP_ABSPATH . 'includes/class-rp-deprecated-action-hooks.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-deprecated-filter-hooks.php' );
+		include_once( RP_ABSPATH . 'includes/customizer/class-rp-customizer.php' );
 
 		if ( $this->is_request( 'admin' ) ) {
 			include_once( RP_ABSPATH . 'includes/admin/class-rp-admin.php' );
@@ -209,7 +210,44 @@ final class RestaurantPress {
 			$this->frontend_includes();
 		}
 
+		$this->theme_support_includes();
 		$this->query = new RP_Query();
+	}
+
+	/**
+	 * Include classes for theme support.
+	 *
+	 * @since 1.7.0
+	 */
+	private function theme_support_includes() {
+		if ( rp_is_active_theme( array( 'twentyseventeen', 'twentysixteen', 'twentyfifteen', 'twentyfourteen', 'twentythirteen', 'twentytwelve', 'twentyeleven', 'twentyten' ) ) ) {
+			switch ( get_template() ) {
+				case 'twentyten':
+					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-ten.php' );
+					break;
+				case 'twentyeleven':
+					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-eleven.php' );
+					break;
+				case 'twentytwelve':
+					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-twelve.php' );
+					break;
+				case 'twentythirteen':
+					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-thirteen.php' );
+					break;
+				case 'twentyfourteen':
+					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-fourteen.php' );
+					break;
+				case 'twentyfifteen':
+					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-fifteen.php' );
+					break;
+				case 'twentysixteen':
+					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-sixteen.php' );
+					break;
+				case 'twentyseventeen':
+					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-seventeen.php' );
+					break;
+			}
+		}
 	}
 
 	/**
@@ -297,15 +335,30 @@ final class RestaurantPress {
 
 	/**
 	 * Add RP Image sizes to WP.
+	 *
+	 * As of 1.7, image sizes can be registered via themes using add_theme_support for restaurantpress
+	 * and defining an array of args. If these are not defined, we will use defaults. This is
+	 * handled in rp_get_image_size function.
+	 *
+	 * 1.7 sizes:
+	 *
+	 * thumbnail - Used in food listings.
+	 * single - Used on single food pages for the main image.
+	 *
+	 * food_thumbnail, food_single, food_grid, registered for bw compat. @todo remove in 2.0.
+	 *
+	 * @since 1.7
 	 */
 	private function add_image_sizes() {
-		$food_grid      = rp_get_image_size( 'food_grid' );
-		$food_single    = rp_get_image_size( 'food_single' );
-		$food_thumbnail = rp_get_image_size( 'food_thumbnail' );
+		$thumbnail = rp_get_image_size( 'thumbnail' );
+		$single    = rp_get_image_size( 'single' );
+		$food_grid = rp_get_image_size( 'food_grid' );
 
+		add_image_size( 'restaurantpress_thumbnail', $thumbnail['width'], $thumbnail['height'], $thumbnail['crop'] );
+		add_image_size( 'restaurantpress_single', $single['width'], $single['height'], $single['crop'] );
+		add_image_size( 'food_thumbnail', $thumbnail['width'], $thumbnail['height'], $thumbnail['crop'] );
+		add_image_size( 'food_single', $single['width'], $single['height'], $single['crop'] );
 		add_image_size( 'food_grid', $food_grid['width'], $food_grid['height'], $food_grid['crop'] );
-		add_image_size( 'food_single', $food_single['width'], $food_single['height'], $food_single['crop'] );
-		add_image_size( 'food_thumbnail', $food_thumbnail['width'], $food_thumbnail['height'], $food_thumbnail['crop'] );
 	}
 
 	/**

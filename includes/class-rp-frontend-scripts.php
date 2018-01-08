@@ -277,66 +277,6 @@ class RP_Frontend_Scripts {
 				self::enqueue_style( $handle, $args['src'], $args['deps'], $args['version'], $args['media'], $args['has_rtl'] );
 			}
 		}
-
-		// Inline Styles
-		self::create_primary_styles();
-	}
-
-	/**
-	 * Enqueues front-end CSS for primary color.
-	 *
-	 * @uses   wp_add_inline_style()
-	 * @access private
-	 * @param  string $default_color
-	 */
-	private static function create_primary_styles( $default_color = '#ff0033' ) {
-		$primary_color = get_option( 'restaurantpress_primary_color' );
-
-		// Check if the primary color is default?
-		if ( $primary_color === $default_color ) {
-			return;
-		}
-
-		$inline_css = '
-			.restaurantpress .chef {
-				background: %1$s !important;
-			}
-
-			.restaurantpress .chef.grid::before,
-			.restaurantpress .chef.grid::after {
-				border-top-color: %1$s !important;
-			}
-
-			.restaurantpress-group span.price {
-				background: %1$s !important;
-			}
-
-			.restaurantpress span.price::before {
-				border-right-color: %1$s !important;
-			}
-
-			.restaurantpress .rp-content-wrapper {
-				border-bottom-color: %1$s !important;
-			}
-
-			.restaurantpress-page p.price,
-			.restaurantpress-page span.price,
-			.rp-list-design-layout p.price,
-			.rp-list-design-layout span.price {
-				color: %1$s !important;
-			}
-
-			.rp-grid-design-layout ins .amount {
-				color: #fff;
-			}
-
-			.restaurantpress-group #restaurant-press-section a,
-			.restaurantpress-page .restaurantpress-loop-food__title a {
-				color: %1$s !important;
-			}
-		';
-
-		wp_add_inline_style( 'restaurantpress-general', sprintf( $inline_css, esc_attr( $primary_color ) ) );
 	}
 
 	/**

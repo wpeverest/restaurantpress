@@ -74,7 +74,7 @@ class RP_Admin_Notices {
 	 * Reset notices for themes when switched or a new version of RP is installed.
 	 */
 	public static function reset_admin_notices() {
-		if ( ! current_theme_supports( 'restaurantpress' ) && ! in_array( get_option( 'template' ), rp_get_core_supported_themes() ) ) {
+		if ( ! current_theme_supports( 'restaurantpress' ) ) {
 			self::add_notice( 'theme_support' );
 		}
 	}
@@ -195,7 +195,7 @@ class RP_Admin_Notices {
 	 * Show the Theme Check notice.
 	 */
 	public static function theme_check_notice() {
-		if ( ! current_theme_supports( 'restaurantpress' ) && ! in_array( get_option( 'template' ), rp_get_core_supported_themes() ) ) {
+		if ( ! current_theme_supports( 'restaurantpress' ) ) {
 			include( 'views/html-notice-theme-support.php' );
 		} else {
 			self::remove_notice( 'theme_support' );
