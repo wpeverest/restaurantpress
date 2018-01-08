@@ -184,7 +184,7 @@ class RP_Customizer {
 	 * @return boolean
 	 */
 	public function is_active() {
-		return is_restaurantpress() || rp_post_content_has_shortcode( 'restaurantpress_group' );
+		return is_restaurantpress() || rp_post_content_has_shortcode( 'restaurantpress_menu' );
 	}
 
 	/**
@@ -196,9 +196,10 @@ class RP_Customizer {
 		$wp_customize->add_section(
 			'restaurantpress_colors',
 			array(
-				'title'    => __( 'Colors', 'restaurantpress' ),
-				'priority' => 10,
-				'panel'    => 'restaurantpress',
+				'title'           => __( 'Colors', 'restaurantpress' ),
+				'priority'        => 10,
+				'active_callback' => array( $this, 'is_active' ),
+				'panel'           => 'restaurantpress',
 			)
 		);
 

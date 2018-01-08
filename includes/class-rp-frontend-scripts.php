@@ -280,64 +280,6 @@ class RP_Frontend_Scripts {
 	}
 
 	/**
-	 * Enqueues front-end CSS for primary color.
-	 *
-	 * @uses   wp_add_inline_style()
-	 * @access private
-	 */
-	private static function create_primary_styles() {
-		$restaurantpress_colors = get_option( 'restaurantpress_colors', array(
-			'primary' => '#ff0033',
-		) );
-
-		// Check if the primary color is default?
-		if ( '#ff0033' === $restaurantpress_colors['primary'] ) {
-			return;
-		}
-
-		$inline_css = '
-			.restaurantpress .chef {
-				background: %1$s !important;
-			}
-
-			.restaurantpress .chef.grid::before,
-			.restaurantpress .chef.grid::after {
-				border-top-color: %1$s !important;
-			}
-
-			.restaurantpress-group span.price {
-				background: %1$s !important;
-			}
-
-			.restaurantpress span.price::before {
-				border-right-color: %1$s !important;
-			}
-
-			.restaurantpress .rp-content-wrapper {
-				border-bottom-color: %1$s !important;
-			}
-
-			.restaurantpress-page p.price,
-			.restaurantpress-page span.price,
-			.rp-list-design-layout p.price,
-			.rp-list-design-layout span.price {
-				color: %1$s !important;
-			}
-
-			.rp-grid-design-layout ins .amount {
-				color: #fff;
-			}
-
-			.restaurantpress-group #restaurant-press-section a,
-			.restaurantpress-page .restaurantpress-loop-food__title a {
-				color: %1$s !important;
-			}
-		';
-
-		wp_add_inline_style( 'restaurantpress-general', sprintf( $inline_css, esc_attr( $restaurantpress_colors['primary'] ) ) );
-	}
-
-	/**
 	 * Localize a RP script once.
 	 *
 	 * @access private
