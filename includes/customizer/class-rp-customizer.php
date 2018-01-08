@@ -297,7 +297,7 @@ class RP_Customizer {
 			array(
 				'title'           => __( 'Food Images', 'restaurantpress' ),
 				'priority'        => 20,
-				// 'active_callback' => array( $this, 'is_active' ),
+				'active_callback' => array( $this, 'is_active' ),
 				'panel'           => 'restaurantpress',
 			)
 		);

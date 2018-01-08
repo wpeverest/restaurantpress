@@ -26,8 +26,8 @@ class RP_Twenty_Twelve {
 
 		// Declare theme support for features.
 		add_theme_support( 'restaurantpress', array(
-			'thumbnail_image_width' => 140,
-			'single_image_width'    => 300,
+			// 'thumbnail_image_width' => 140,
+			// 'single_image_width'    => 300,
 		) );
 	}
 
