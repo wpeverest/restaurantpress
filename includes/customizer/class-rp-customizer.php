@@ -347,7 +347,7 @@ class RP_Customizer {
 				array(
 					'label'       => __( 'Thumbnail width', 'restaurantpress' ),
 					'description' => __( 'This size is used for food archives and food listings.', 'restaurantpress' ),
-					'section'     => 'restaurantpress_product_images',
+					'section'     => 'restaurantpress_food_images',
 					'settings'    => 'thumbnail_image_width',
 					'type'        => 'number',
 					'input_attrs' => array( 'min' => 0, 'step'  => 1 ),
