@@ -355,7 +355,7 @@ class RP_Customizer {
 			);
 		}
 
-		include_once( RP_ABSPATH . 'includes/customizer/class-rp-customizer-control-cropping.php' );
+		include_once RP_ABSPATH . 'includes/customizer/class-rp-customizer-control-cropping.php';
 
 		$wp_customize->add_setting(
 			'restaurantpress_thumbnail_cropping',

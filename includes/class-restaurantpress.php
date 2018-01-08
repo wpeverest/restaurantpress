@@ -13,8 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Main RestaurantPress Class.
  *
- * @class   RestaurantPress
- * @version 1.6.0
+ * @class RestaurantPress
  */
 final class RestaurantPress {
 
@@ -23,7 +22,7 @@ final class RestaurantPress {
 	 *
 	 * @var string
 	 */
-	public $version = '1.6.0';
+	public $version = '1.7.0';
 
 	/**
 	 * The single instance of the class.
@@ -201,6 +200,7 @@ final class RestaurantPress {
 		include_once( RP_ABSPATH . 'includes/class-rp-deprecated-action-hooks.php' );
 		include_once( RP_ABSPATH . 'includes/class-rp-deprecated-filter-hooks.php' );
 		include_once( RP_ABSPATH . 'includes/customizer/class-rp-customizer.php' );
+		include_once( RP_ABSPATH . 'includes/class-rp-regenerate-images.php' ); // Image regeneration class.
 
 		if ( $this->is_request( 'admin' ) ) {
 			include_once( RP_ABSPATH . 'includes/admin/class-rp-admin.php' );
