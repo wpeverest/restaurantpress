@@ -23,14 +23,30 @@ $primary: <?php echo $colors['primary']; ?>;
 			border-top-color: $primary;
 		}
 	}
+
+	div.food_menu {
+		span.price,
+		p.price {
+			color: $primary;
+		}
+	}
+
+	div.foods {
+		section.food_menu {
+			.price {
+				color: $primary;
+			}
+
+			.restaurantpress-loop-food__title a {
+				color: $primary;
+			}
+		}
+	}
 }
 
 .restaurantpress-group {
-	.rp-list-design-layout {
-		p.price,
-		span.price {
-			color: $primary;
-		}
+	#restaurant-press-section a {
+		color: $primary;
 	}
 
 	.rp-grid-design-layout {
@@ -50,14 +66,13 @@ $primary: <?php echo $colors['primary']; ?>;
 			}
 		}
 	}
-}
 
-.restaurantpress-page p.price,
-.restaurantpress-page span.price {
-	color: $primary;
-}
-
-.restaurantpress-group #restaurant-press-section a,
-.restaurantpress-page .restaurantpress-loop-food__title a {
-	color: $primary;
+	.rp-list-design-layout {
+		.rp-content-wrapper {
+			p.price,
+			span.price {
+				color: $primary !important;
+			}
+		}
+	}
 }
