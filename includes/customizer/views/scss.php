@@ -23,17 +23,9 @@ $primary: <?php echo $colors['primary']; ?>;
 			border-top-color: $primary;
 		}
 	}
-
-	span.price::before {
-		border-right-color: $primary;
-	}
 }
 
 .restaurantpress-group {
-	span.price {
-		background: $primary;
-	}
-
 	.rp-list-design-layout {
 		p.price,
 		span.price {
@@ -48,6 +40,14 @@ $primary: <?php echo $colors['primary']; ?>;
 
 		.rp-content-wrapper {
 			border-bottom-color: $primary;
+
+			span.price {
+				background-color: $primary;
+
+				&::before {
+					border-right-color: $primary;
+				}
+			}
 		}
 	}
 }
