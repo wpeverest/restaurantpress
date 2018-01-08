@@ -41,7 +41,7 @@ class RP_Customizer {
 		) );
 
 		$this->add_colors_section( $wp_customize );
-		$this->add_food_page_section( $wp_customize );
+		$this->add_food_group_section( $wp_customize );
 		$this->add_food_images_section( $wp_customize );
 	}
 
@@ -184,7 +184,25 @@ class RP_Customizer {
 	 * @return boolean
 	 */
 	public function is_active() {
-		return is_restaurantpress() || rp_post_content_has_shortcode( 'restaurantpress_menu' );
+		return is_restaurantpress() || rp_post_content_has_shortcode( 'restaurantpress_menu' ) || ! current_theme_supports( 'restaurantpress' );
+	}
+
+	/**
+	 * Should our settings show on group layout?
+	 *
+	 * @return boolean
+	 */
+	public function is_group_active() {
+		return is_group_menu_page();
+	}
+
+	/**
+	 * Should our settings show on food archives?
+	 *
+	 * @return boolean
+	 */
+	public function is_foods_archive() {
+		return is_food_menu_taxonomy() || is_food_menu_category() || ! current_theme_supports( 'restaurantpress' );
 	}
 
 	/**
@@ -196,10 +214,9 @@ class RP_Customizer {
 		$wp_customize->add_section(
 			'restaurantpress_colors',
 			array(
-				'title'           => __( 'Colors', 'restaurantpress' ),
-				'priority'        => 10,
-				'active_callback' => array( $this, 'is_active' ),
-				'panel'           => 'restaurantpress',
+				'title'    => __( 'Colors', 'restaurantpress' ),
+				'priority' => 10,
+				'panel'    => 'restaurantpress',
 			)
 		);
 
@@ -229,17 +246,18 @@ class RP_Customizer {
 	}
 
 	/**
-	 * Food page section.
+	 * Food group section.
 	 *
 	 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
 	 */
-	private function add_food_page_section( $wp_customize ) {
+	private function add_food_group_section( $wp_customize ) {
 		$wp_customize->add_section(
-			'restaurantpress_food_page',
+			'restaurantpress_food_group',
 			array(
-				'title'    => __( 'Food Page', 'restaurantpress' ),
-				'priority' => 10,
-				'panel'    => 'restaurantpress',
+				'title'           => __( 'Food Group', 'restaurantpress' ),
+				'priority'        => 10,
+				'active_callback' => array( $this, 'is_group_active' ),
+				'panel'           => 'restaurantpress',
 			)
 		);
 
@@ -258,7 +276,7 @@ class RP_Customizer {
 			'restaurantpress_food_single_page',
 			array(
 				'label'       => __( 'Enable single food page', 'restaurantpress' ),
-				'section'     => 'restaurantpress_food_page',
+				'section'     => 'restaurantpress_food_group',
 				'settings'    => 'restaurantpress_food_single_page',
 				'type'        => 'checkbox',
 			)
