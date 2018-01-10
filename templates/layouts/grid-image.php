@@ -30,10 +30,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			$count = 1;
 			$food_term = get_term_by( 'id', $food_id, 'food_menu_cat' );
-			if( !isset( $food_term ) || empty( $food_term ) ) {
+			if ( empty( $food_term ) ) {
 				continue;
 			}
-			
+
 			$term_id   = intval( $food_term->term_id );
 
 			// Get post meta data
