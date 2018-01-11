@@ -32,6 +32,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 					$food      = rp_get_food( $food_id );
 					$food_term = get_term_by( 'id', $food_id, 'food_menu_cat' );
+					if ( empty( $food_term ) ) {
+						continue;
+					}
+
 					$term_id   = intval( $food_term->term_id );
 
 					// Get post meta data
