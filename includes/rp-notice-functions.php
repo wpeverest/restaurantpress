@@ -59,7 +59,7 @@ function rp_has_notice( $message, $notice_type = 'success' ) {
 
 	$notices = RP()->session->get( 'rp_notices', array() );
 	$notices = isset( $notices[ $notice_type ] ) ? $notices[ $notice_type ] : array();
-	return array_search( $message, $notices ) !== false;
+	return array_search( $message, $notices, true ) !== false;
 }
 
 /**
