@@ -4,10 +4,8 @@
  *
  * Functions for error/message handling and display.
  *
- * @author   WPEverest
- * @category Core
- * @package  RestaurantPress/Functions
- * @version  1.5.0
+ * @package RestaurantPress/Functions
+ * @version 1.5.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -19,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * particular notice type specified by $notice_type.
  *
  * @since  1.5.0
- * @param  string $notice_type The name of the notice type - either error, success or notice. [optional]
+ * @param  string $notice_type Optional. The name of the notice type - either error, success or notice.
  * @return int
  */
 function rp_notice_count( $notice_type = '' ) {
@@ -33,12 +31,12 @@ function rp_notice_count( $notice_type = '' ) {
 
 	if ( isset( $all_notices[ $notice_type ] ) ) {
 
-		$notice_count = absint( sizeof( $all_notices[ $notice_type ] ) );
+		$notice_count = count( $all_notices[ $notice_type ] );
 
 	} elseif ( empty( $notice_type ) ) {
 
 		foreach ( $all_notices as $notices ) {
-			$notice_count += absint( sizeof( $all_notices ) );
+			$notice_count += count( $notices );
 		}
 	}
 
@@ -50,7 +48,7 @@ function rp_notice_count( $notice_type = '' ) {
  *
  * @since  1.5.0
  * @param  string $message The text to display in the notice.
- * @param  string $notice_type The singular name of the notice type - either error, success or notice. [optional]
+ * @param  string $notice_type Optional. The singular name of the notice type - either error, success or notice.
  * @return bool
  */
 function rp_has_notice( $message, $notice_type = 'success' ) {
@@ -67,9 +65,9 @@ function rp_has_notice( $message, $notice_type = 'success' ) {
 /**
  * Add and store a notice.
  *
- * @since 2.1
+ * @since 1.5.0
  * @param string $message The text to display in the notice.
- * @param string $notice_type The singular name of the notice type - either error, success or notice. [optional]
+ * @param string $notice_type Optional. The singular name of the notice type - either error, success or notice.
  */
 function rp_add_notice( $message, $notice_type = 'success' ) {
 	if ( ! did_action( 'restaurantpress_init' ) ) {
@@ -79,7 +77,7 @@ function rp_add_notice( $message, $notice_type = 'success' ) {
 
 	$notices = RP()->session->get( 'rp_notices', array() );
 
-	// Backward compatibility
+	// Backward compatibility.
 	if ( 'success' === $notice_type ) {
 		$message = apply_filters( 'restaurantpress_add_message', $message );
 	}
@@ -93,7 +91,7 @@ function rp_add_notice( $message, $notice_type = 'success' ) {
  * Set all notices at once.
  *
  * @since 1.5.0
- * @param mixed $notices
+ * @param mixed $notices Array of notices.
  */
 function rp_set_notices( $notices ) {
 	if ( ! did_action( 'restaurantpress_init' ) ) {
@@ -148,7 +146,7 @@ add_action( 'restaurantpress_before_single_food', 'rp_print_notices', 10 );
  *
  * @since 2.1
  * @param string $message The text to display in the notice.
- * @param string $notice_type The singular name of the notice type - either error, success or notice. [optional]
+ * @param string $notice_type Optional. The singular name of the notice type - either error, success or notice.
  */
 function rp_print_notice( $message, $notice_type = 'success' ) {
 	if ( 'success' === $notice_type ) {
@@ -164,7 +162,7 @@ function rp_print_notice( $message, $notice_type = 'success' ) {
  * Returns all queued notices, optionally filtered by a notice type.
  *
  * @since  1.5.0
- * @param  string $notice_type The singular name of the notice type - either error, success or notice. [optional]
+ * @param  string $notice_type Optional. The singular name of the notice type - either error, success or notice.
  * @return array|mixed
  */
 function rp_get_notices( $notice_type = '' ) {
@@ -189,7 +187,7 @@ function rp_get_notices( $notice_type = '' ) {
 /**
  * Add notices for WP Errors.
  *
- * @param WP_Error $errors
+ * @param WP_Error $errors Errors.
  */
 function rp_add_wp_error_notices( $errors ) {
 	if ( is_wp_error( $errors ) && $errors->get_error_messages() ) {
