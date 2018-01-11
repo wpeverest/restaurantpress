@@ -2,11 +2,9 @@
 /**
  * RestaurantPress Admin Settings Class
  *
- * @class    RP_Admin_Settings
- * @version  1.0.0
- * @package  RestaurantPress/Admin
- * @category Admin
- * @author   WPEverest
+ * @class   RP_Admin_Settings
+ * @version 1.0.0
+ * @package RestaurantPress/Admin
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -492,32 +490,6 @@ if ( ! class_exists( 'RP_Admin_Settings', false ) ) :
 						}
 						break;
 
-					// Image width settings. @todo deprecate and remove in 2.0. No longer needed by core.
-					case 'image_width':
-						$image_size       = str_replace( '_image_size', '', $value['id'] );
-						$size             = rp_get_image_size( $image_size );
-						$width            = isset( $size['width'] ) ? $size['width'] : $value['default']['width'];
-						$height           = isset( $size['height'] ) ? $size['height'] : $value['default']['height'];
-						$crop             = isset( $size['crop'] ) ? $size['crop'] : $value['default']['crop'];
-						$disabled_attr    = '';
-						$disabled_message = '';
-
-						if ( has_filter( 'restaurantpress_get_image_size_' . $image_size ) ) {
-							$disabled_attr = 'disabled="disabled"';
-							$disabled_message = '<p><small>' . esc_html__( 'The settings of this image size have been disabled because its values are being overwritten by a filter.', 'restaurantpress' ) . '</small></p>';
-						}
-
-						?>
-						<tr valign="top">
-							<th scope="row" class="titledesc"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html . $disabled_message; // WPCS: XSS ok. ?></th>
-							<td class="forminp image_width_settings">
-								<input name="<?php echo esc_attr( $value['id'] ); ?>[width]" <?php echo $disabled_attr; // WPCS: XSS ok. ?> id="<?php echo esc_attr( $value['id'] ); ?>-width" type="text" size="3" value="<?php echo esc_attr( $width ); ?>" /> &times; <input name="<?php echo esc_attr( $value['id'] ); ?>[height]" <?php echo $disabled_attr; // WPCS: XSS ok. ?> id="<?php echo esc_attr( $value['id'] ); ?>-height" type="text" size="3" value="<?php echo esc_attr( $height ); ?>" />px
-								<label><input name="<?php echo esc_attr( $value['id'] ); ?>[crop]" <?php echo $disabled_attr; // WPCS: XSS ok. ?> id="<?php echo esc_attr( $value['id'] ); ?>-crop" type="checkbox" value="1" <?php checked( 1, $crop ); ?> /> <?php esc_html_e( 'Hard crop?', 'restaurantpress' ); ?></label>
-							</td>
-						</tr>
-						<?php
-						break;
-
 					// Single page selects.
 					case 'single_select_page':
 						$args = array(
@@ -642,18 +614,6 @@ if ( ! class_exists( 'RP_Admin_Settings', false ) ) :
 						break;
 					case 'multiselect':
 						$value = array_filter( array_map( 'rp_clean', (array) $raw_value ) );
-						break;
-					case 'image_width':
-						$value = array();
-						if ( isset( $raw_value['width'] ) ) {
-							$value['width']  = rp_clean( $raw_value['width'] );
-							$value['height'] = rp_clean( $raw_value['height'] );
-							$value['crop']   = isset( $raw_value['crop'] ) ? 1 : 0;
-						} else {
-							$value['width']  = $option['default']['width'];
-							$value['height'] = $option['default']['height'];
-							$value['crop']   = $option['default']['crop'];
-						}
 						break;
 					case 'select':
 						$allowed_values = empty( $option['options'] ) ? array() : array_map( 'strval', array_keys( $option['options'] ) );

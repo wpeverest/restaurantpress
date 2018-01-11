@@ -2,9 +2,9 @@
 /**
  * Handle frontend scripts.
  *
- * @class    RP_Frontend_Scripts
- * @version  1.0.0
- * @package  RestaurantPress/Classes
+ * @package RestaurantPress\Classes
+ * @version 1.0.0
+ * @since   1.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -18,18 +18,21 @@ class RP_Frontend_Scripts {
 
 	/**
 	 * Contains an array of script handles registered by RP.
+	 *
 	 * @var array
 	 */
 	private static $scripts = array();
 
 	/**
 	 * Contains an array of script handles registered by RP.
+	 *
 	 * @var array
 	 */
 	private static $styles = array();
 
 	/**
 	 * Contains an array of script handles localized by RP.
+	 *
 	 * @var array
 	 */
 	private static $wp_localize_scripts = array();
@@ -39,12 +42,14 @@ class RP_Frontend_Scripts {
 	 */
 	public static function init() {
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'load_scripts' ) );
+		add_action( 'customize_preview_init', array( __CLASS__, 'customizer_live_preview' ) );
 		add_action( 'wp_print_scripts', array( __CLASS__, 'localize_printed_scripts' ), 5 );
 		add_action( 'wp_print_footer_scripts', array( __CLASS__, 'localize_printed_scripts' ), 5 );
 	}
 
 	/**
 	 * Get styles for the frontend.
+	 *
 	 * @access private
 	 * @return array
 	 */
@@ -61,7 +66,7 @@ class RP_Frontend_Scripts {
 				'src'     => self::get_asset_url( 'assets/css/restaurantpress-smallscreen.css' ),
 				'deps'    => 'restaurantpress-layout',
 				'version' => RP_VERSION,
-				'media'   => 'only screen and (max-width: ' . apply_filters( 'restaurantpress_style_smallscreen_breakpoint', $breakpoint = '768px' ) . ')',
+				'media'   => 'only screen and (max-width: ' . apply_filters( 'restaurantpress_style_smallscreen_breakpoint', '768px' ) . ')',
 				'has_rtl' => true,
 			),
 			'restaurantpress-general' => array(
@@ -262,11 +267,13 @@ class RP_Frontend_Scripts {
 			self::enqueue_script( 'rp-single-food' );
 		}
 
-		// Global frontend scripts
+		// Global frontend scripts.
 		self::enqueue_script( 'restaurantpress' );
 
-		// CSS Styles
-		if ( $enqueue_styles = self::get_styles() ) {
+		// CSS Styles.
+		$enqueue_styles = self::get_styles();
+
+		if ( $enqueue_styles ) {
 			foreach ( $enqueue_styles as $handle => $args ) {
 				if ( ! isset( $args['has_rtl'] ) ) {
 					$args['has_rtl'] = false;
@@ -275,6 +282,18 @@ class RP_Frontend_Scripts {
 				self::enqueue_style( $handle, $args['src'], $args['deps'], $args['version'], $args['media'], $args['has_rtl'] );
 			}
 		}
+
+		// Custom RP colors inline style.
+		wp_add_inline_style( 'restaurantpress-general', get_option( 'restaurantpress_colors_css' ) );
+	}
+
+	/**
+	 * Register/enqueue customizer live preview.
+	 */
+	public static function customizer_live_preview() {
+		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+		wp_enqueue_script( 'restaurantpress-customizer', self::get_asset_url( '/assets/js/frontend/customizer' . $suffix . '.js' ), array( 'jquery', 'customize-preview' ), RP_VERSION, true );
 	}
 
 	/**
@@ -285,7 +304,9 @@ class RP_Frontend_Scripts {
 	 * @param  string $handle
 	 */
 	private static function localize_script( $handle ) {
-		if ( ! in_array( $handle, self::$wp_localize_scripts ) && wp_script_is( $handle ) && ( $data = self::get_script_data( $handle ) ) ) {
+		$data = self::get_script_data( $handle );
+
+		if ( ! in_array( $handle, self::$wp_localize_scripts ) && wp_script_is( $handle ) && $data ) {
 			$name                        = str_replace( '-', '_', $handle ) . '_params';
 			self::$wp_localize_scripts[] = $handle;
 			wp_localize_script( $handle, $name, apply_filters( $name, $data ) );
@@ -301,7 +322,7 @@ class RP_Frontend_Scripts {
 	 */
 	private static function get_script_data( $handle ) {
 		switch ( $handle ) {
-			case 'rp-single-food' :
+			case 'rp-single-food':
 				$params = array(
 					'flexslider'         => apply_filters( 'restaurantpress_single_food_carousel_options', array(
 						'rtl'            => is_rtl(),
@@ -326,10 +347,10 @@ class RP_Frontend_Scripts {
 					) ),
 					'flexslider_enabled' => apply_filters( 'restaurantpress_single_food_flexslider_enabled', 'yes' === get_option( 'restaurantpress_enable_gallery_slider' ) ? 1 : 0 ),
 				);
-			break;
+				break;
 			default:
 				$params = false;
-			break;
+				break;
 		}
 
 		return apply_filters( 'restaurantpress_get_script_data', $params, $handle );
