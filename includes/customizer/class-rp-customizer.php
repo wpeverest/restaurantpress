@@ -20,7 +20,6 @@ class RP_Customizer {
 	 */
 	public function __construct() {
 		add_action( 'customize_register', array( $this, 'add_sections' ) );
-		add_action( 'customize_preview_init', array( $this, 'live_preview' ) );
 		add_action( 'customize_save_after', array( $this, 'save_after' ) );
 		add_action( 'wp_head', array( $this, 'header_output' ), 99999 );
 		add_action( 'customize_controls_print_styles', array( $this, 'add_styles' ) );
@@ -46,15 +45,6 @@ class RP_Customizer {
 	}
 
 	/**
-	 * Customizer live preview.
-	 */
-	public function live_preview() {
-		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-
-		wp_enqueue_script( 'restaurantpress-customizer', RP()->plugin_url() . '/assets/js/admin/customizer' . $suffix . '.js', array( 'jquery', 'customize-preview' ), RP_VERSION, true );
-	}
-
-	/**
 	 * Compile the SCSS.
 	 *
 	 * @return string
@@ -73,7 +63,7 @@ class RP_Customizer {
 		include 'views/scss.php';
 		$scss = ob_get_clean();
 
-		$compiler     = new scssc;
+		$compiler     = new scssc();
 		$compiler->setFormatter( 'scss_formatter_compressed' );
 		$compiled_css = $compiler->compile( trim( $scss ) );
 
@@ -83,7 +73,7 @@ class RP_Customizer {
 	/**
 	 * Save the colors.
 	 *
-	 * @param WP_Customize_Manager $customize
+	 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
 	 */
 	public function save_after( $customize ) {
 		if ( ! isset( $_REQUEST['customized'] ) ) {

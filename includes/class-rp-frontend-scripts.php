@@ -2,11 +2,9 @@
 /**
  * Handle frontend scripts.
  *
- * @class    RP_Frontend_Scripts
- * @version  1.0.0
- * @package  RestaurantPress/Classes
- * @category Class
- * @author   WPEverest
+ * @class   RP_Frontend_Scripts
+ * @version 1.0.0
+ * @package RestaurantPress/Classes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -20,18 +18,21 @@ class RP_Frontend_Scripts {
 
 	/**
 	 * Contains an array of script handles registered by RP.
+	 *
 	 * @var array
 	 */
 	private static $scripts = array();
 
 	/**
 	 * Contains an array of script handles registered by RP.
+	 *
 	 * @var array
 	 */
 	private static $styles = array();
 
 	/**
 	 * Contains an array of script handles localized by RP.
+	 *
 	 * @var array
 	 */
 	private static $wp_localize_scripts = array();
@@ -41,12 +42,14 @@ class RP_Frontend_Scripts {
 	 */
 	public static function init() {
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'load_scripts' ) );
+		add_action( 'customize_preview_init', array( __CLASS__, 'customizer_live_preview' ) );
 		add_action( 'wp_print_scripts', array( __CLASS__, 'localize_printed_scripts' ), 5 );
 		add_action( 'wp_print_footer_scripts', array( __CLASS__, 'localize_printed_scripts' ), 5 );
 	}
 
 	/**
 	 * Get styles for the frontend.
+	 *
 	 * @access private
 	 * @return array
 	 */
@@ -63,7 +66,7 @@ class RP_Frontend_Scripts {
 				'src'     => self::get_asset_url( 'assets/css/restaurantpress-smallscreen.css' ),
 				'deps'    => 'restaurantpress-layout',
 				'version' => RP_VERSION,
-				'media'   => 'only screen and (max-width: ' . apply_filters( 'restaurantpress_style_smallscreen_breakpoint', $breakpoint = '768px' ) . ')',
+				'media'   => 'only screen and (max-width: ' . apply_filters( 'restaurantpress_style_smallscreen_breakpoint', '768px' ) . ')',
 				'has_rtl' => true,
 			),
 			'restaurantpress-general' => array(
@@ -277,6 +280,15 @@ class RP_Frontend_Scripts {
 				self::enqueue_style( $handle, $args['src'], $args['deps'], $args['version'], $args['media'], $args['has_rtl'] );
 			}
 		}
+	}
+
+	/**
+	 * Register/enqueue customizer live preview.
+	 */
+	public static function customizer_live_preview() {
+		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+		wp_enqueue_script( 'restaurantpress-customizer', self::get_asset_url( '/assets/js/frontend/customizer' . $suffix . '.js' ), array( 'jquery', 'customize-preview' ), RP_VERSION, true );
 	}
 
 	/**
