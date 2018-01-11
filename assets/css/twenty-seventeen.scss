@@ -102,19 +102,6 @@
 	}
 }
 
-.chef {
-	background-color: #fff;
-	position: absolute;
-	top: 0;
-	left: 0;
-	display: inline-block;
-	padding: .5em 1em;
-	font-size: 13px;
-	font-size: 0.8125rem;
-	text-transform: uppercase;
-	font-weight: 800;
-}
-
 .price {
 	del {
 		opacity: .5;
@@ -165,10 +152,19 @@
 }
 
 /**
- * Shop page
+ * Food page
  */
 .restaurantpress-result-count {
 	padding: .75em 0;
+}
+
+/**
+ * Group page
+ */
+.restaurantpress-group {
+	.entry-content {
+		width: 100% !important;
+	}
 }
 
 /**
@@ -242,7 +238,6 @@ div.foods {
 	}
 
 	.restaurantpress-food-gallery__image:nth-child(n+2) {
-		width: 25%;
 		display: inline-block;
 	}
 
@@ -307,12 +302,6 @@ div.foods {
 
 	li {
 		margin-right: 1em;
-
-		&.active {
-			a {
-				box-shadow: 0 3px 0 rgba(15, 15, 15, 1);
-			}
-		}
 	}
 }
 
