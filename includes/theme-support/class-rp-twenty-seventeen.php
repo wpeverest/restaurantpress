@@ -43,7 +43,7 @@ class RP_Twenty_Seventeen {
 	 * @return array
 	 */
 	public static function enqueue_styles( $styles ) {
-		unset( $styles['restaurantpress-general'] );
+		// unset( $styles['restaurantpress-general'] );
 
 		$styles['restaurantpress-twenty-seventeen'] = array(
 			'src'     => str_replace( array( 'http:', 'https:' ), '', RP()->plugin_url() ) . '/assets/css/twenty-seventeen.css',
