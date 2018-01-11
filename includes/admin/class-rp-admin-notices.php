@@ -2,11 +2,9 @@
 /**
  * Display notices in admin.
  *
- * @class    RP_Admin_Notices
- * @version  1.3.0
- * @package  RestaurantPress/Admin
- * @category Admin
- * @author   WPEverest
+ * @class   RP_Admin_Notices
+ * @version 1.3.0
+ * @package RestaurantPress/Admin
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -20,12 +18,14 @@ class RP_Admin_Notices {
 
 	/**
 	 * Stores notices.
+	 *
 	 * @var array
 	 */
 	private static $notices = array();
 
 	/**
 	 * Array of notices - name => callback
+	 *
 	 * @var array
 	 */
 	private static $core_notices = array(
@@ -39,7 +39,6 @@ class RP_Admin_Notices {
 		self::$notices = get_option( 'restaurantpress_admin_notices', array() );
 
 		add_action( 'switch_theme', array( __CLASS__, 'reset_admin_notices' ) );
-		add_action( 'restaurantpress_installed', array( __CLASS__, 'reset_admin_notices' ) );
 		add_action( 'wp_loaded', array( __CLASS__, 'hide_notices' ) );
 		add_action( 'shutdown', array( __CLASS__, 'store_notices' ) );
 
@@ -56,7 +55,8 @@ class RP_Admin_Notices {
 	}
 
 	/**
-	 * Get notices
+	 * Get notices.
+	 *
 	 * @return array
 	 */
 	public static function get_notices() {
@@ -71,17 +71,9 @@ class RP_Admin_Notices {
 	}
 
 	/**
-	 * Reset notices for themes when switched or a new version of RP is installed.
-	 */
-	public static function reset_admin_notices() {
-		if ( ! current_theme_supports( 'restaurantpress' ) ) {
-			self::add_notice( 'theme_support' );
-		}
-	}
-
-	/**
 	 * Show a notice.
-	 * @param string $name
+	 *
+	 * @param string $name Notice name.
 	 */
 	public static function add_notice( $name ) {
 		self::$notices = array_unique( array_merge( self::get_notices(), array( $name ) ) );
@@ -89,7 +81,8 @@ class RP_Admin_Notices {
 
 	/**
 	 * Remove a notice from being displayed.
-	 * @param  string $name
+	 *
+	 * @param string $name Notice name.
 	 */
 	public static function remove_notice( $name ) {
 		self::$notices = array_diff( self::get_notices(), array( $name ) );
@@ -98,7 +91,8 @@ class RP_Admin_Notices {
 
 	/**
 	 * See if a notice is being shown.
-	 * @param  string  $name
+	 *
+	 * @param  string $name Notice name.
 	 * @return boolean
 	 */
 	public static function has_notice( $name ) {
@@ -110,15 +104,15 @@ class RP_Admin_Notices {
 	 */
 	public static function hide_notices() {
 		if ( isset( $_GET['rp-hide-notice'] ) && isset( $_GET['_rp_notice_nonce'] ) ) {
-			if ( ! wp_verify_nonce( $_GET['_rp_notice_nonce'], 'restaurantpress_hide_notices_nonce' ) ) {
-				wp_die( __( 'Action failed. Please refresh the page and retry.', 'restaurantpress' ) );
+			if ( ! wp_verify_nonce( wp_unslash( $_GET['_rp_notice_nonce'] ), 'restaurantpress_hide_notices_nonce' ) ) { // WPCS: input var ok, sanitization ok.
+				wp_die( esc_html__( 'Action failed. Please refresh the page and retry.', 'restaurantpress' ) );
 			}
 
 			if ( ! current_user_can( 'manage_restaurantpress' ) ) {
-				wp_die( __( 'Cheatin&#8217; huh?', 'restaurantpress' ) );
+				wp_die( esc_html__( 'Cheatin&#8217; huh?', 'restaurantpress' ) );
 			}
 
-			$hide_notice = sanitize_text_field( $_GET['rp-hide-notice'] );
+			$hide_notice = sanitize_text_field( wp_unslash( $_GET['rp-hide-notice'] ) );
 			self::remove_notice( $hide_notice );
 			do_action( 'restaurantpress_hide_' . $hide_notice . '_notice' );
 		}
@@ -133,7 +127,7 @@ class RP_Admin_Notices {
 		if ( ! empty( $notices ) ) {
 			wp_enqueue_style( 'restaurantpress-activation', plugins_url( '/assets/css/activation.css', RP_PLUGIN_FILE ) );
 
-			// Add RTL support
+			// Add RTL support.
 			wp_style_add_data( 'restaurantpress-activation', 'rtl', 'replace' );
 
 			foreach ( $notices as $notice ) {
@@ -148,8 +142,9 @@ class RP_Admin_Notices {
 
 	/**
 	 * Add a custom notice.
-	 * @param string $name
-	 * @param string $notice_html
+	 *
+	 * @param string $name Notice name.
+	 * @param string $notice_html Notice html.
 	 */
 	public static function add_custom_notice( $name, $notice_html ) {
 		self::add_notice( $name );
@@ -188,17 +183,6 @@ class RP_Admin_Notices {
 			}
 		} else {
 			include( 'views/html-notice-updated.php' );
-		}
-	}
-
-	/**
-	 * Show the Theme Check notice.
-	 */
-	public static function theme_check_notice() {
-		if ( ! current_theme_supports( 'restaurantpress' ) ) {
-			include( 'views/html-notice-theme-support.php' );
-		} else {
-			self::remove_notice( 'theme_support' );
 		}
 	}
 }

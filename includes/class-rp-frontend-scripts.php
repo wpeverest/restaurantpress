@@ -329,6 +329,7 @@ class RP_Frontend_Scripts {
 						'allowOneSlide'  => false,
 					) ),
 					'zoom_enabled'       => apply_filters( 'restaurantpress_single_food_zoom_enabled', 'yes' === get_option( 'restaurantpress_enable_gallery_zoom' ) ? 1 : 0 ),
+					'zoom_options'       => apply_filters( 'restaurantpress_single_food_zoom_options', array() ),
 					'photoswipe_enabled' => apply_filters( 'restaurantpress_single_food_photoswipe_enabled', 'yes' === get_option( 'restaurantpress_enable_gallery_lightbox' ) ? 1 : 0 ),
 					'photoswipe_options' => apply_filters( 'restaurantpress_single_food_photoswipe_options', array(
 						'shareEl'               => false,
