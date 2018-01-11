@@ -21,7 +21,6 @@ class RP_Customizer {
 	public function __construct() {
 		add_action( 'customize_register', array( $this, 'add_sections' ) );
 		add_action( 'customize_save_after', array( $this, 'save_after' ) );
-		add_action( 'wp_head', array( $this, 'header_output' ), 99999 );
 		add_action( 'customize_controls_print_styles', array( $this, 'add_styles' ) );
 		add_action( 'customize_controls_print_scripts', array( $this, 'add_scripts' ), 30 );
 	}
@@ -63,7 +62,7 @@ class RP_Customizer {
 		include 'views/scss.php';
 		$scss = ob_get_clean();
 
-		$compiler     = new scssc();
+		$compiler = new scssc();
 		$compiler->setFormatter( 'scss_formatter_compressed' );
 		$compiled_css = $compiler->compile( trim( $scss ) );
 
@@ -75,12 +74,12 @@ class RP_Customizer {
 	 *
 	 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
 	 */
-	public function save_after( $customize ) {
+	public function save_after( $wp_customize ) {
 		if ( ! isset( $_REQUEST['customized'] ) ) {
 			return;
 		}
 
-		$customized = json_decode( stripslashes( $_REQUEST['customized'] ), true );
+		$customized = json_decode( stripslashes( wp_unslash( $_REQUEST['customized'] ) ), true ); // WPCS: sanitization ok.
 		$save       = false;
 
 		foreach ( $customized as $key => $value ) {
@@ -95,19 +94,6 @@ class RP_Customizer {
 
 			update_option( 'restaurantpress_colors_css', $css );
 		}
-	}
-
-	/**
-	 * Header output.
-	 */
-	public function header_output() {
-		$css = get_option( 'restaurantpress_colors_css' );
-
-		echo "<!-- RestaurantPress Colors -->\n";
-		echo "<style type=\"text/css\">\n";
-		echo $css;
-		echo "\n</style>\n";
-		echo "<!--/RestaurantPress Colors-->\n";
 	}
 
 	/**
@@ -229,7 +215,7 @@ class RP_Customizer {
 					'label'    => __( 'Primary Color', 'restaurantpress' ),
 					'section'  => 'restaurantpress_colors',
 					'settings' => 'restaurantpress_colors[primary]',
-					'priority' => 1
+					'priority' => 1,
 				)
 			)
 		);
@@ -279,9 +265,6 @@ class RP_Customizer {
 	 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
 	 */
 	private function add_food_images_section( $wp_customize ) {
-		$theme_support = get_theme_support( 'restaurantpress' );
-		$theme_support = is_array( $theme_support ) ? $theme_support[0]: false;
-
 		$wp_customize->add_section(
 			'restaurantpress_food_images',
 			array(
@@ -292,9 +275,9 @@ class RP_Customizer {
 			)
 		);
 
-		if ( ! isset( $theme_support['single_image_width'] ) ) {
+		if ( ! rp_get_theme_support( 'single_image_width' ) ) {
 			$wp_customize->add_setting(
-				'single_image_width',
+				'restaurantpress_single_image_width',
 				array(
 					'default'              => 600,
 					'type'                 => 'option',
@@ -305,12 +288,12 @@ class RP_Customizer {
 			);
 
 			$wp_customize->add_control(
-				'single_image_width',
+				'restaurantpress_single_image_width',
 				array(
 					'label'       => __( 'Main image width', 'restaurantpress' ),
 					'description' => __( 'This is the width used by the main image on single food pages. These images will remain uncropped.', 'restaurantpress' ),
 					'section'     => 'restaurantpress_food_images',
-					'settings'    => 'single_image_width',
+					'settings'    => 'restaurantpress_single_image_width',
 					'type'        => 'number',
 					'input_attrs' => array(
 						'min'  => 0,
@@ -320,9 +303,9 @@ class RP_Customizer {
 			);
 		}
 
-		if ( ! isset( $theme_support['thumbnail_image_width'] ) ) {
+		if ( ! rp_get_theme_support( 'thumbnail_image_width' ) ) {
 			$wp_customize->add_setting(
-				'thumbnail_image_width',
+				'restaurantpress_thumbnail_image_width',
 				array(
 					'default'              => 300,
 					'type'                 => 'option',
@@ -333,14 +316,17 @@ class RP_Customizer {
 			);
 
 			$wp_customize->add_control(
-				'thumbnail_image_width',
+				'restaurantpress_thumbnail_image_width',
 				array(
 					'label'       => __( 'Thumbnail width', 'restaurantpress' ),
 					'description' => __( 'This size is used for food archives and food listings.', 'restaurantpress' ),
 					'section'     => 'restaurantpress_food_images',
-					'settings'    => 'thumbnail_image_width',
+					'settings'    => 'restaurantpress_thumbnail_image_width',
 					'type'        => 'number',
-					'input_attrs' => array( 'min' => 0, 'step'  => 1 ),
+					'input_attrs' => array(
+						'min'  => 0,
+						'step' => 1,
+					),
 				)
 			);
 		}
