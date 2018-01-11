@@ -1,0 +1,390 @@
+/**
+ * Twenty Seventeen integration styles
+ */
+@import 'mixins';
+
+/**
+ * Fonts
+ */
+@font-face {
+	font-family: 'RestaurantPress';
+	src: url('../fonts/RestaurantPress.eot');
+	src: url('../fonts/RestaurantPress.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/RestaurantPress.woff') format('woff'),
+		url('../fonts/RestaurantPress.ttf') format('truetype'),
+		url('../fonts/RestaurantPress.svg#RestaurantPress') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/**
+ * Mixins
+ */
+@mixin link() {
+	box-shadow: 0 1px 0 rgba(15, 15, 15, 1);
+	transition: box-shadow ease-in-out 130ms;
+
+	&:hover {
+		box-shadow: 0 3px 0 rgba(15, 15, 15, 1);
+	}
+}
+
+@mixin link_white() {
+	color: #fff;
+	box-shadow: 0 1px 0 rgba(#fff, 1) !important;
+	transition: box-shadow ease-in-out 130ms;
+
+	&:hover {
+		color: #fff !important;
+		box-shadow: 0 3px 0 rgba(#fff, 1) !important;
+	}
+}
+
+/**
+ * Global elements
+ */
+ .restaurantpress {
+	.blockUI.blockOverlay {
+		position: relative;
+		@include loader();
+	}
+
+	.loader {
+		@include loader();
+	}
+}
+
+.restaurantpress-breadcrumb {
+	padding-bottom: 2em;
+	margin-bottom: 4em;
+	border-bottom: 1px solid #eee;
+	font-size: 13px;
+	font-size: 0.8125rem;
+
+	a {
+		@include link();
+	}
+}
+
+.restaurantpress-pagination {
+	padding-top: 2em;
+	margin-top: 4em;
+	border-top: 1px solid #eee;
+	font-size: 13px;
+	font-size: 0.8125rem;
+
+	ul.page-numbers {
+		padding: 0;
+		display: block;
+	}
+
+	span.page-numbers,
+	a.page-numbers,
+	.next.page-numbers,
+	.prev.page-numbers {
+		padding: 0.5em 1em;
+		background: #ddd;
+		display: inline-block;
+		font-size: 1em;
+		float: none;
+		line-height: 1.5;
+		border-radius: 2px;
+		transition: background-color ease-in-out .3s;
+	}
+
+	span.page-numbers {
+		background-color: #fff;
+	}
+
+	a.page-numbers:hover {
+		background-color: #767676;
+		color: #fff;
+	}
+}
+
+.chef {
+	background-color: #fff;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: inline-block;
+	padding: .5em 1em;
+	font-size: 13px;
+	font-size: 0.8125rem;
+	text-transform: uppercase;
+	font-weight: 800;
+}
+
+.price {
+	del {
+		opacity: .5;
+		display: inline-block;
+	}
+	ins {
+		display: inline-block;
+	}
+}
+
+.required {
+	color: firebrick;
+
+	&[title] {
+		border-bottom: none;
+	}
+}
+
+.restaurantpress-message,
+.restaurantpress-error,
+.restaurantpress-info {
+	margin-bottom: 1.5em;
+	padding: 2em;
+	background: #eee;
+}
+
+.restaurantpress-message {
+	background: teal;
+	color: #fff;
+}
+
+.restaurantpress-error {
+	background: firebrick;
+	color: #fff;
+}
+
+.restaurantpress-info {
+	background: royalblue;
+	color: #fff;
+}
+
+.restaurantpress-message,
+.restaurantpress-error,
+.restaurantpress-info {
+	a {
+		@include link_white();
+	}
+}
+
+/**
+ * Shop page
+ */
+.restaurantpress-result-count {
+	padding: .75em 0;
+}
+
+/**
+ * Foods
+ */
+div.foods {
+	section.food_menu {
+		list-style: none;
+
+		.price,
+		.star-rating {
+			display: block;
+			margin-bottom: .75em;
+		}
+
+		.button {
+			@include link();
+
+			&.loading {
+				opacity: .5;
+			}
+		}
+	}
+}
+
+.restaurantpress-loop-product__title {
+	font-size: 13px;
+	font-size: 0.8125rem;
+	text-transform: uppercase;
+	font-weight: 800;
+	letter-spacing: 0.15em;
+}
+
+/**
+ * Single product
+ */
+.single-food_menu {
+	div.food {
+		position: relative;
+	}
+
+	.single-featured-image-header {
+		display: none;
+	}
+
+	.summary {
+		margin-bottom: 3em;
+
+		p.price {
+			margin-bottom: 2em;
+		}
+	}
+}
+
+.restaurantpress-food-gallery {
+	position: relative;
+	margin-bottom: 3em;
+
+	figure {
+		margin: 0;
+		padding: 0;
+	}
+
+	.restaurantpress-food-gallery__wrapper {
+		margin: 0;
+		padding: 0;
+	}
+
+	.zoomImg {
+		background-color: #fff;
+	}
+
+	.restaurantpress-food-gallery__image:nth-child(n+2) {
+		width: 25%;
+		display: inline-block;
+	}
+
+	.flex-control-thumbs {
+		li {
+			list-style: none;
+			float: left;
+			cursor: pointer;
+		}
+
+		img {
+			opacity: .5;
+
+			&:hover,
+			&.flex-active {
+				opacity: 1;
+			}
+		}
+	}
+
+	img {
+		display: block;
+	}
+}
+
+.restaurantpress-food-gallery--columns-3 {
+	.flex-control-thumbs li {
+		width: 33.3333%;
+	}
+	.flex-control-thumbs li:nth-child(3n+1) {
+		clear: left;
+	}
+}
+
+.restaurantpress-food-gallery--columns-4 {
+	.flex-control-thumbs li {
+		width: 25%;
+	}
+	.flex-control-thumbs li:nth-child(4n+1) {
+		clear: left;
+	}
+}
+
+.restaurantpress-food-gallery--columns-5 {
+	.flex-control-thumbs li {
+		width: 20%;
+	}
+	.flex-control-thumbs li:nth-child(5n+1) {
+		clear: left;
+	}
+}
+
+.restaurantpress-food-gallery__trigger {
+	position: absolute;
+	top: 1em;
+	right: 1em;
+	z-index: 99;
+}
+
+.restaurantpress-tabs {
+	margin-bottom: 2em;
+
+	li {
+		margin-right: 1em;
+
+		&.active {
+			a {
+				box-shadow: 0 3px 0 rgba(15, 15, 15, 1);
+			}
+		}
+	}
+}
+
+/**
+ * Photoswipe
+ * 1. These styles are required to overwrite default theme button styles (Twenty Twelve adds gradients via background-image).
+ */
+
+button.pswp__button,
+button.pswp__button:hover,
+button.pswp__button--arrow--left::before,
+button.pswp__button--arrow--right::before {
+	background-color: transparent !important; /* 1 */
+}
+
+button.pswp__button--close:hover {
+	background-position: 0 -44px;
+}
+
+button.pswp__button--zoom:hover {
+	background-position: -88px 0;
+}
+
+.pswp img {
+	max-width: none;
+}
+
+.colors-dark {
+	.page-numbers {
+		color: #444;
+
+		&.next, &.prev {
+			color: #ddd;
+		}
+	}
+
+	.select2-container--default {
+		.select2-results {
+			.select2-results__options {
+				background:#333;
+			}
+			.select2-results__option[data-selected="true"]{
+				color: #333;
+			}
+		}
+
+		.select2-selection--single {
+			background-color: #333;
+			border: 1px solid #555;
+
+			.select2-selection__rendered {
+				color: #ccc;
+			}
+		}
+	}
+
+	.select2-container--focus .select2-selection {
+		border-color: white;
+	}
+}
+
+/**
+ * Layout stuff
+ */
+@media screen and (min-width: 48em) {
+	.has-sidebar.restaurantpress-page:not(.error404) {
+		#primary {
+			width: 74%;
+		}
+
+		#secondary {
+			width: 20%;
+		}
+	}
+}
