@@ -7,8 +7,6 @@
  * @class    RP_Food
  * @version  1.4.0
  * @package  RestaurantPress/Abstracts
- * @category Abstract Class
- * @author   WPEverest
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -31,7 +29,7 @@ class RP_Food {
 	 * Set ID.
 	 *
 	 * @since 1.4.0
-	 * @param int $id
+	 * @param int $id Object ID.
 	 */
 	public function set_id( $id ) {
 		$this->id = absint( $id );
@@ -123,7 +121,8 @@ class RP_Food {
 	 * @return array
 	 */
 	public function get_category_ids() {
-		return get_the_terms( $this->get_id(), 'food_menu_cat' );
+		$terms_result = get_the_terms( $this->get_id(), 'food_menu_cat' );
+		return ! empty( $terms_result ) ? $terms_result : array();
 	}
 
 	/**
@@ -132,7 +131,8 @@ class RP_Food {
 	 * @return array
 	 */
 	public function get_tag_ids() {
-		return get_the_terms( $this->get_id(), 'food_menu_tag' );
+		$terms_result = get_the_terms( $this->get_id(), 'food_menu_tag' );
+		return ! empty( $terms_result ) ? $terms_result : array();
 	}
 
 	/**
@@ -175,9 +175,10 @@ class RP_Food {
 	 * @return string
 	 */
 	public function get_price_suffix( $price = '' ) {
-		$html = '';
+		$html   = '';
+		$suffix = get_option( 'restaurantpress_price_display_suffix' );
 
-		if ( ( $suffix = get_option( 'restaurantpress_price_display_suffix' ) ) ) {
+		if ( $suffix ) {
 			if ( '' === $price ) {
 				$price = $this->get_price();
 			}
@@ -206,15 +207,17 @@ class RP_Food {
 	/**
 	 * Returns the main food image.
 	 *
-	 * @param string $size (default: 'restaurantpress_thumbnail')
-	 * @param array $attr
-	 * @param bool $placeholder True to return $placeholder if no image is found, or false to return an empty string.
+	 * @param string $size (default: 'restaurantpress_thumbnail').
+	 * @param array  $attr Attributes data.
+	 * @param bool   $placeholder True to return $placeholder if no image is found, or false to return an empty string.
 	 * @return string
 	 */
 	public function get_image( $size = 'restaurantpress_thumbnail', $attr = array(), $placeholder = true ) {
+		$parent_id = wp_get_post_parent_id( $this->get_id() );
+
 		if ( has_post_thumbnail( $this->get_id() ) ) {
 			$image = get_the_post_thumbnail( $this->get_id(), $size, $attr );
-		} elseif ( ( $parent_id = wp_get_post_parent_id( $this->get_id() ) ) && has_post_thumbnail( $parent_id ) ) {
+		} elseif ( $parent_id && has_post_thumbnail( $parent_id ) ) {
 			$image = get_the_post_thumbnail( $parent_id, $size, $attr );
 		} elseif ( $placeholder ) {
 			$image = rp_placeholder_img( $size );
