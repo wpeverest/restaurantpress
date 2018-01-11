@@ -1,14 +1,17 @@
 <?php
+/**
+ * Twenty Twelve support.
+ *
+ * @package RestaurantPress\Classes
+ * @since   1.7.0
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
- * Twenty Twelve support.
- *
- * @class   RP_Twenty_Twelve
- * @since   1.7.0
- * @package RestaurantPress/Classes
+ * RP_Twenty_Twelve Class.
  */
 class RP_Twenty_Twelve {
 
@@ -26,8 +29,8 @@ class RP_Twenty_Twelve {
 
 		// Declare theme support for features.
 		add_theme_support( 'restaurantpress', array(
-			// 'thumbnail_image_width' => 140,
-			// 'single_image_width'    => 300,
+			'thumbnail_image_width' => 140,
+			'single_image_width'    => 300,
 		) );
 	}
 

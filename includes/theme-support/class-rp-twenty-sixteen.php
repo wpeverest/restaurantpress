@@ -1,14 +1,17 @@
 <?php
+/**
+ * Twenty Sixteen support.
+ *
+ * @package RestaurantPress\Classes
+ * @since   1.7.0
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
- * Twenty Sixteen support.
- *
- * @class   RP_Twenty_Sixteen
- * @since   1.7.0
- * @package RestaurantPress/Classes
+ * RP_Twenty_Sixteen Class.
  */
 class RP_Twenty_Sixteen {
 
