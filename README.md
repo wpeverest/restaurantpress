@@ -1,4 +1,13 @@
-# [RestaurantPress](https://wpeverest.com/wordpress-plugins/restaurantpress/) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/) [![Build Status](https://travis-ci.org/wpeverest/restaurantpress.svg?branch=master)](https://travis-ci.org/wpeverest/restaurantpress) [![codecov](https://codecov.io/gh/wpeverest/restaurantpress/branch/master/graph/badge.svg)](https://codecov.io/gh/wpeverest/restaurantpress)
+# [RestaurantPress](https://wpeverest.com/wordpress-plugins/restaurantpress/)
+
+<p align="left">
+  <a href="https://packagist.org/packages/wpeverest/restaurantpress"><img src="https://poser.pugx.org/wpeverest/restaurantpress/license" alt="license"></a> 
+  <a href="https://packagist.org/packages/wpeverest/restaurantpress"><img src="https://poser.pugx.org/wpeverest/restaurantpress/v/stable" alt="Latest Stable Version"></a>
+  <img src="https://img.shields.io/wordpress/plugin/dt/restaurantpress.svg" alt="WordPress.org downloads">
+  <img src="https://img.shields.io/wordpress/plugin/r/restaurantpress.svg" alt="WordPress.org rating">
+  <a href="https://travis-ci.org/wpeverest/restaurantpress"><img src="https://travis-ci.org/wpeverest/restaurantpress.svg?branch=master" alt="Build Status"></a>
+  <a href="https://codecov.io/gh/wpeverest/restaurantpress"><img src="https://codecov.io/gh/wpeverest/restaurantpress/branch/master/graph/badge.svg" alt="codecov"></a>
+</p>
 
 Welcome to the RestaurantPress repository on GitHub. Here you can browse the source, look at open issues and keep track of development. We recommend all developers to follow the [WPEverest blog](https://wpeverest.com/blog) to stay up to date about everything happening in the project. You can also [follow @WPEverest](https://twitter.com/WPEverest) on Twitter for the latest development updates.
 
