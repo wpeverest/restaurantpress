@@ -17,7 +17,10 @@
 
 	<!-- Rules -->
 	<rule ref="WPEverest-Core" />
-	<rule ref="PHPCompatibility" />
+	<rule ref="PHPCompatibility">
+		<exclude name="PHPCompatibility.PHP.NewKeywords.t_namespaceFound" />
+		<exclude-pattern>tests/</exclude-pattern>
+	</rule>
 
 	<rule ref="WordPress">
 		<exclude name="WordPress.VIP.DirectDatabaseQuery.NoCaching" />
