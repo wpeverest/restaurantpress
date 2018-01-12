@@ -2,7 +2,7 @@
 
 = 1.6.0 - 22/12/2017 =
 * Feature - Archive page template support.
-* Feature - Permalink structur support.
+* Feature - Permalink structure support.
 * Feature - Introduced Integration class.
 * Feature - Introduced formatting functions for colors.
 * Feature - Introduced admin Settings API used by Integrations.
