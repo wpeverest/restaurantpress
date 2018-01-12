@@ -1,5 +1,21 @@
 == Changelog ==
 
+= 1.6.0 - 22/12/2017 =
+* Feature - Archive page template support.
+* Feature - Permalink structur support.
+* Feature - Introduced Integration class.
+* Feature - Introduced formatting functions for colors.
+* Feature - Introduced admin Settings API used by Integrations.
+* Tweak - Iris picker validation for HEX color codes.
+* Tweak - Convert input submit elements to button submit elements.
+* Tweak - Usability and accessibility improvement with selectWoo.
+* Fix - Some focus issues in selectWoo.
+* Fix - Currency position with RTL symbols.
+* Fix - Flexslider support for RTL languages and fixes for zoom target in Chrome.
+* Fix - WP rocket caching issue do not set the constant.
+* Fix - Prevent notice on settings page when accessing invalid tab.
+* Fix - Use an action/option rather than cron to queue rule flushing.
+
 = 1.5.0 - 16-10-2017 =
 * Feature - New default session handler.
 * Fix - Conflicts with W3 Total Cache DB Cache.

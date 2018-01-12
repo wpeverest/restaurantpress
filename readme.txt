@@ -66,25 +66,22 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 
 == Changelog ==
 
-= 1.6.0 - 22/12/2017 =
-* Feature - Archive page template support.
-* Feature - Permalink structur support.
-* Feature - Introduced Integration class.
-* Feature - Introduced formatting functions for colors.
-* Feature - Introduced admin Settings API used by Integrations.
-* Tweak - Iris picker validation for HEX color codes.
-* Tweak - Convert input submit elements to button submit elements.
-* Tweak - Usability and accessibility improvement with selectWoo.
-* Fix - Some focus issues in selectWoo.
-* Fix - Currency position with RTL symbols.
-* Fix - Flexslider support for RTL languages and fixes for zoom target in Chrome.
-* Fix - WP rocket caching issue do not set the constant.
-* Fix - Prevent notice on settings page when accessing invalid tab.
-* Fix - Use an action/option rather than cron to queue rule flushing.
+= 1.7.0 - XX/01/2018 =
+* Feature - Improved default appearance in Twenty Seventeen themes which do not support RestaurantPress.
+* Feature - Added new options to the WordPress Appearance Customizer; control the primary color, and image sizes.
+* Feature - Improved how image sizes are defined and calculated. Set an aspect ratio (custom, 1:1, uncropped) and image sizes will be automagically calculated based on widths.
+* Feature - Changing image sizes will trigger automatic thumbnail regeneration in the background.
+* Feature - New default placeholders.
+* Fix - Fix rm_notice_count logic.
+* Fix - Fix error if empty categories in groups.
+* Tweak - Remove deprecated jQuery load call.
+* Tweak - Only load session handler class on frontend not during cron.
+* Dev - Pass through options to zoom, flexslider, and photoswipe.
+* Dev - Travis-CI and codecov service integration for build tests.
 
 [See changelog for all versions](https://raw.githubusercontent.com/wpeverest/restaurantpress/master/CHANGELOG.txt).
 
 == Upgrade Notice ==
 
-= 1.6.0 =
-1.6.0 is a minor update. Make a full site backup, update your theme and extensions, and ensure they are compatible before upgrading.
+= 1.7.0 =
+1.7.0 is a minor update. Make a full site backup, update your theme and extensions, and ensure they are compatible before upgrading.
