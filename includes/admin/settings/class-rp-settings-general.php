@@ -2,11 +2,9 @@
 /**
  * RestaurantPress General Settings
  *
- * @class    RP_Settings_General
- * @version  1.0.0
- * @package  RestaurantPress/Admin
- * @category Admin
- * @author   WPEverest
+ * @class   RP_Settings_General
+ * @version 1.0.0
+ * @package RestaurantPress/Admin
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -75,9 +73,17 @@ class RP_Settings_General extends RP_Settings_Page {
 				'id'    => 'color_options',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'color_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'color_options',
+			),
 
-			array( 'title' => __( 'Currency options', 'restaurantpress' ), 'type' => 'title', 'desc' => __( 'The following options affect how prices are displayed on the frontend.', 'restaurantpress' ), 'id' => 'pricing_options' ),
+			array(
+				'title' => __( 'Currency options', 'restaurantpress' ),
+				'type'  => 'title',
+				'desc'  => __( 'The following options affect how prices are displayed on the frontend.', 'restaurantpress' ),
+				'id'    => 'pricing_options',
+			),
 
 			array(
 				'title'    => __( 'Currency', 'restaurantpress' ),
@@ -98,10 +104,10 @@ class RP_Settings_General extends RP_Settings_Page {
 				'default'  => 'left',
 				'type'     => 'select',
 				'options'  => array(
-					'left'        => __( 'Left', 'restaurantpress' ) . ' (' . get_restaurantpress_currency_symbol() . '&#x200e;99.99)',
-					'right'       => __( 'Right', 'restaurantpress' ) . ' (99.99' . get_restaurantpress_currency_symbol() . '&#x200f;)',
-					'left_space'  => __( 'Left with space', 'restaurantpress' ) . ' (' . get_restaurantpress_currency_symbol() . '&#x200e;&nbsp;99.99)',
-					'right_space' => __( 'Right with space', 'restaurantpress' ) . ' (99.99&nbsp;' . get_restaurantpress_currency_symbol() . '&#x200f;)',
+					'left'        => __( 'Left', 'restaurantpress' ),
+					'right'       => __( 'Right', 'restaurantpress' ),
+					'left_space'  => __( 'Left with space', 'restaurantpress' ),
+					'right_space' => __( 'Right with space', 'restaurantpress' ),
 				),
 				'desc_tip' => true,
 			),
@@ -140,7 +146,10 @@ class RP_Settings_General extends RP_Settings_Page {
 				),
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'pricing_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'pricing_options',
+			),
 
 			array(
 				'title' => __( 'Gallery options', 'restaurantpress' ),
@@ -176,7 +185,10 @@ class RP_Settings_General extends RP_Settings_Page {
 				'autoload'        => false,
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'gallery_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'gallery_options',
+			),
 
 		) );
 

@@ -185,19 +185,19 @@ class RP_Tests_Formatting_Functions extends RP_Unit_Test_Case {
 		$currency_pos = get_option( 'restaurantpress_currency_pos' );
 
 		// Default format (left).
-		$this->assertEquals( '%1$s&#x200e;%2$s', get_restaurantpress_price_format() );
+		$this->assertEquals( '%1$s%2$s', get_restaurantpress_price_format() );
 
 		// Right.
 		update_option( 'restaurantpress_currency_pos', 'right' );
-		$this->assertEquals( '%2$s%1$s&#x200f;', get_restaurantpress_price_format() );
+		$this->assertEquals( '%2$s%1$s', get_restaurantpress_price_format() );
 
 		// Left space.
 		update_option( 'restaurantpress_currency_pos', 'left_space' );
-		$this->assertEquals( '%1$s&#x200e;&nbsp;%2$s', get_restaurantpress_price_format() );
+		$this->assertEquals( '%1$s&nbsp;%2$s', get_restaurantpress_price_format() );
 
 		// Right space.
 		update_option( 'restaurantpress_currency_pos', 'right_space' );
-		$this->assertEquals( '%2$s&nbsp;%1$s&#x200f;', get_restaurantpress_price_format() );
+		$this->assertEquals( '%2$s&nbsp;%1$s', get_restaurantpress_price_format() );
 
 		// Restore default.
 		update_option( 'restaurantpress_currency_pos', $currency_pos );
@@ -273,26 +273,26 @@ class RP_Tests_Formatting_Functions extends RP_Unit_Test_Case {
 	 */
 	public function test_rp_price() {
 		// Common prices.
-		$this->assertEquals( '<span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>&#x200e;1.00</span>', rp_price( 1 ) );
-		$this->assertEquals( '<span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>&#x200e;1.10</span>', rp_price( 1.1 ) );
-		$this->assertEquals( '<span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>&#x200e;1.17</span>', rp_price( 1.17 ) );
-		$this->assertEquals( '<span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>&#x200e;1,111.17</span>', rp_price( 1111.17 ) );
-		$this->assertEquals( '<span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>&#x200e;0.00</span>', rp_price( 0 ) );
+		$this->assertEquals( '<span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>1.00</span>', rp_price( 1 ) );
+		$this->assertEquals( '<span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>1.10</span>', rp_price( 1.1 ) );
+		$this->assertEquals( '<span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>1.17</span>', rp_price( 1.17 ) );
+		$this->assertEquals( '<span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>1,111.17</span>', rp_price( 1111.17 ) );
+		$this->assertEquals( '<span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>0.00</span>', rp_price( 0 ) );
 
 		// Different currency.
-		$this->assertEquals( '<span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&pound;</span>&#x200e;1,111.17</span>', rp_price( 1111.17, array( 'currency' => 'GBP' ) ) );
+		$this->assertEquals( '<span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&pound;</span>1,111.17</span>', rp_price( 1111.17, array( 'currency' => 'GBP' ) ) );
 
 		// Negative price.
-		$this->assertEquals( '<span class="restaurantpress-Price-amount amount">-<span class="restaurantpress-Price-currencySymbol">&#36;</span>&#x200e;1.17</span>', rp_price( -1.17 ) );
+		$this->assertEquals( '<span class="restaurantpress-Price-amount amount">-<span class="restaurantpress-Price-currencySymbol">&#36;</span>1.17</span>', rp_price( -1.17 ) );
 
 		// Bogus prices.
-		$this->assertEquals( '<span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>&#x200e;0.00</span>', rp_price( null ) );
-		$this->assertEquals( '<span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>&#x200e;0.00</span>', rp_price( 'Q' ) );
-		$this->assertEquals( '<span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>&#x200e;0.00</span>', rp_price( 'ಠ_ಠ' ) );
+		$this->assertEquals( '<span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>0.00</span>', rp_price( null ) );
+		$this->assertEquals( '<span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>0.00</span>', rp_price( 'Q' ) );
+		$this->assertEquals( '<span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>0.00</span>', rp_price( 'ಠ_ಠ' ) );
 
 		// Trim zeros.
 		add_filter( 'restaurantpress_price_trim_zeros', '__return_true' );
-		$this->assertEquals( '<span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>&#x200e;1</span>', rp_price( 1.00 ) );
+		$this->assertEquals( '<span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>1</span>', rp_price( 1.00 ) );
 		remove_filter( 'restaurantpress_price_trim_zeros', '__return_true' );
 	}
 
@@ -350,7 +350,7 @@ class RP_Tests_Formatting_Functions extends RP_Unit_Test_Case {
 	 * @since 1.7.0
 	 */
 	public function test_rp_format_sale_price() {
-		$this->assertEquals( '<del><span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>&#x200e;10.00</span></del> <ins><span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>&#x200e;5.00</span></ins>', rp_format_sale_price( '10', '5' ) );
+		$this->assertEquals( '<del><span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>10.00</span></del> <ins><span class="restaurantpress-Price-amount amount"><span class="restaurantpress-Price-currencySymbol">&#36;</span>5.00</span></ins>', rp_format_sale_price( '10', '5' ) );
 	}
 
 	/**

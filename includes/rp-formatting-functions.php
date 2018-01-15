@@ -4,10 +4,8 @@
  *
  * Functions for formatting data.
  *
- * @author   WPEverest
- * @category Core
- * @package  RestaurantPress/Functions
- * @version  1.4.0
+ * @package RestaurantPress/Functions
+ * @version 1.4.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -45,7 +43,7 @@ function rp_bool_to_string( $bool ) {
  * Cannot use rp_clean because it sometimes strips % chars and breaks the user's setting.
  *
  * @since  1.6.0
- * @param  string $value
+ * @param  string $value Permalink.
  * @return string
  */
 function rp_sanitize_permalink( $value ) {
@@ -95,7 +93,7 @@ function rp_format_decimal( $number, $dp = false, $trim_zeros = false ) {
 	}
 
 	if ( false !== $dp ) {
-		$dp     = intval( '' == $dp ? rp_get_price_decimals() : $dp );
+		$dp     = intval( '' === $dp ? rp_get_price_decimals() : $dp );
 		$number = number_format( floatval( $number ), $dp, '.', '' );
 	} elseif ( is_float( $number ) ) {
 		// DP is false - don't use number format, just return a string using whatever is given. Remove scientific notation using sprintf.
@@ -174,21 +172,21 @@ function rp_sanitize_tooltip( $var ) {
  */
 function get_restaurantpress_price_format() {
 	$currency_pos = get_option( 'restaurantpress_currency_pos' );
-	$format = '%1$s%2$s';
+	$format       = '%1$s%2$s';
 
 	switch ( $currency_pos ) {
-		case 'left' :
-			$format = '%1$s&#x200e;%2$s';
-		break;
-		case 'right' :
-			$format = '%2$s%1$s&#x200f;';
-		break;
-		case 'left_space' :
-			$format = '%1$s&#x200e;&nbsp;%2$s';
-		break;
-		case 'right_space' :
-			$format = '%2$s&nbsp;%1$s&#x200f;';
-		break;
+		case 'left':
+			$format = '%1$s%2$s';
+			break;
+		case 'right':
+			$format = '%2$s%1$s';
+			break;
+		case 'left_space':
+			$format = '%1$s&nbsp;%2$s';
+			break;
+		case 'right_space':
+			$format = '%2$s&nbsp;%1$s';
+			break;
 	}
 
 	return apply_filters( 'restaurantpress_price_format', $format, $currency_pos );
@@ -277,10 +275,10 @@ function rp_price( $price, $args = array() ) {
 	/**
 	 * Filters the string of price markup.
 	 *
-	 * @param string $return 			Price HTML markup.
-	 * @param string $price	            Formatted price.
-	 * @param array  $args     			Pass on the args.
-	 * @param float  $unformatted_price	Price as float to allow plugins custom formatting.
+	 * @param string $return            Price HTML markup.
+	 * @param string $price             Formatted price.
+	 * @param array  $args              Pass on the args.
+	 * @param float  $unformatted_price Price as float to allow plugins custom formatting.
 	 */
 	return apply_filters( 'rp_price', $return, $price, $args, $unformatted_price );
 }
