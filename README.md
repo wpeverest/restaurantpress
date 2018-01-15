@@ -16,9 +16,6 @@ If you are not a developer, please use the [RestaurantPress plugin page](https:/
 ## Documentation
 * [RestaurantPress Documentation](https://docs.wpeverest.com/docs/restaurantpress/)
 
-## Reporting Security Issues
-To disclose a security issue to our team, [please submit a report via HackerOne here](https://hackerone.com/wpeverest/).
-
 ## Support
 This repository is not suitable for support. Please don't use our issue tracker for support requests, but for core RestaurantPress issues only. Support can take place through the appropriate channels:
 
