@@ -38,7 +38,6 @@ class RP_Admin_Notices {
 	public static function init() {
 		self::$notices = get_option( 'restaurantpress_admin_notices', array() );
 
-		add_action( 'switch_theme', array( __CLASS__, 'reset_admin_notices' ) );
 		add_action( 'wp_loaded', array( __CLASS__, 'hide_notices' ) );
 		add_action( 'shutdown', array( __CLASS__, 'store_notices' ) );
 
