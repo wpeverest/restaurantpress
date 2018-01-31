@@ -4,17 +4,15 @@
  *
  * Uninstalls the plugin deletes user roles, tables, and options.
  *
- * @author   WPEverest
- * @category Core
- * @package  RestaurantPress/Uninstaller
- * @version  1.0.0
+ * @package RestaurantPress\Uninstaller
+ * @version 1.0.0
  */
 
-if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
-	exit;
-}
+defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
 
 global $wpdb, $wp_version;
+
+wp_clear_scheduled_hook( 'restaurantpress_cleanup_sessions' );
 
 /*
  * Only remove ALL plugin data if RP_REMOVE_ALL_DATA constant is set to true in user's
@@ -36,9 +34,9 @@ if ( defined( 'RP_REMOVE_ALL_DATA' ) && true === RP_REMOVE_ALL_DATA ) {
 	$wpdb->query( "DELETE FROM {$wpdb->posts} WHERE post_type IN ( 'food_menu', 'food_group' );" );
 	$wpdb->query( "DELETE meta FROM {$wpdb->postmeta} meta LEFT JOIN {$wpdb->posts} posts ON posts.ID = meta.post_id WHERE posts.ID IS NULL;" );
 
-	// Delete terms if > WP 4.2 (term splitting was added in 4.2)
+	// Delete terms if > WP 4.2 (term splitting was added in 4.2).
 	if ( version_compare( $wp_version, '4.2', '>=' ) ) {
-		// Delete term taxonomies
+		// Delete term taxonomies.
 		foreach ( array( 'food_menu_cat' ) as $taxonomy ) {
 			$wpdb->delete(
 				$wpdb->term_taxonomy,
@@ -48,13 +46,13 @@ if ( defined( 'RP_REMOVE_ALL_DATA' ) && true === RP_REMOVE_ALL_DATA ) {
 			);
 		}
 
-		// Delete orphan relationships
+		// Delete orphan relationships.
 		$wpdb->query( "DELETE tr FROM {$wpdb->term_relationships} tr LEFT JOIN {$wpdb->posts} posts ON posts.ID = tr.object_id WHERE posts.ID IS NULL;" );
 
-		// Delete orphan terms
+		// Delete orphan terms.
 		$wpdb->query( "DELETE t FROM {$wpdb->terms} t LEFT JOIN {$wpdb->term_taxonomy} tt ON t.term_id = tt.term_id WHERE tt.term_id IS NULL;" );
 
-		// Delete orphan term meta
+		// Delete orphan term meta.
 		if ( ! empty( $wpdb->termmeta ) ) {
 			$wpdb->query( "DELETE tm FROM {$wpdb->termmeta} tm LEFT JOIN {$wpdb->term_taxonomy} tt ON tm.term_id = tt.term_id WHERE tt.term_id IS NULL;" );
 		}
