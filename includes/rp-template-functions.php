@@ -8,9 +8,7 @@
  * @version 1.4.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Remove adjacent_posts_rel_link_wp_head - pointless for food.
