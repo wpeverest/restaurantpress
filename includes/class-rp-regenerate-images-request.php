@@ -33,6 +33,9 @@ class RP_Regenerate_Images_Request extends RP_Background_Process {
 		$this->prefix = 'wp_' . get_current_blog_id();
 		$this->action = 'rp_regenerate_images';
 
+		// This is needed to prevent timeouts due to threading. See https://core.trac.wordpress.org/ticket/36534.
+		@putenv( 'MAGICK_THREAD_LIMIT=1' ); // @codingStandardsIgnoreLine.
+
 		parent::__construct();
 	}
 
