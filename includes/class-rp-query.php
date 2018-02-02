@@ -2,9 +2,8 @@
 /**
  * Contains the query functions for RestaurantPress which alter the front-end post queries and loops
  *
- * @version 3.2.0
+ * @version 1.7.0
  * @package RestaurantPress\Classes
- * @author  WPEverest
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -61,9 +60,7 @@ class RP_Query {
 	 */
 	public function init_query_vars() {
 		// Query vars to add to WP.
-		$this->query_vars = array(
-			'food-page' => '',
-		);
+		$this->query_vars = array();
 	}
 
 	/**
