@@ -6,9 +6,7 @@
  * @since   1.3.2
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Main RestaurantPress Class.
@@ -175,36 +173,36 @@ final class RestaurantPress {
 		/**
 		 * Class autoloader.
 		 */
-		include_once( RP_ABSPATH . 'includes/class-rp-autoloader.php' );
+		include_once RP_ABSPATH . 'includes/class-rp-autoloader.php';
 
 		/**
 		 * Abstract classes.
 		 */
-		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-food.php' ); // Foods.
-		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-settings-api.php' ); // Settings API (for integrations).
-		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-integration.php' ); // An integration with a service.
-		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-deprecated-hooks.php' );
-		include_once( RP_ABSPATH . 'includes/abstracts/abstract-rp-session.php' );
+		include_once RP_ABSPATH . 'includes/abstracts/abstract-rp-food.php'; // Foods.
+		include_once RP_ABSPATH . 'includes/abstracts/abstract-rp-settings-api.php'; // Settings API (for integrations).
+		include_once RP_ABSPATH . 'includes/abstracts/abstract-rp-integration.php'; // An integration with a service.
+		include_once RP_ABSPATH . 'includes/abstracts/abstract-rp-deprecated-hooks.php';
+		include_once RP_ABSPATH . 'includes/abstracts/abstract-rp-session.php';
 
 		/**
 		 * Core classes.
 		 */
-		include_once( RP_ABSPATH . 'includes/rp-core-functions.php' );
-		include_once( RP_ABSPATH . 'includes/class-rp-post-types.php' ); // Registers post types.
-		include_once( RP_ABSPATH . 'includes/class-rp-install.php' );
-		include_once( RP_ABSPATH . 'includes/class-rp-post-data.php' );
-		include_once( RP_ABSPATH . 'includes/class-rp-ajax.php' );
-		include_once( RP_ABSPATH . 'includes/class-rp-query.php' );
-		include_once( RP_ABSPATH . 'includes/class-rp-food-factory.php' ); // Food factory.
-		include_once( RP_ABSPATH . 'includes/class-rp-integrations.php' ); // Loads integrations.
-		include_once( RP_ABSPATH . 'includes/class-rp-cache-helper.php' ); // Cache Helper.
-		include_once( RP_ABSPATH . 'includes/class-rp-deprecated-action-hooks.php' );
-		include_once( RP_ABSPATH . 'includes/class-rp-deprecated-filter-hooks.php' );
-		include_once( RP_ABSPATH . 'includes/customizer/class-rp-customizer.php' );
-		include_once( RP_ABSPATH . 'includes/class-rp-regenerate-images.php' ); // Image regeneration class.
+		include_once RP_ABSPATH . 'includes/rp-core-functions.php';
+		include_once RP_ABSPATH . 'includes/class-rp-post-types.php';
+		include_once RP_ABSPATH . 'includes/class-rp-install.php';
+		include_once RP_ABSPATH . 'includes/class-rp-post-data.php';
+		include_once RP_ABSPATH . 'includes/class-rp-ajax.php';
+		include_once RP_ABSPATH . 'includes/class-rp-query.php';
+		include_once RP_ABSPATH . 'includes/class-rp-food-factory.php';
+		include_once RP_ABSPATH . 'includes/class-rp-integrations.php';
+		include_once RP_ABSPATH . 'includes/class-rp-cache-helper.php';
+		include_once RP_ABSPATH . 'includes/class-rp-deprecated-action-hooks.php';
+		include_once RP_ABSPATH . 'includes/class-rp-deprecated-filter-hooks.php';
+		include_once RP_ABSPATH . 'includes/customizer/class-rp-customizer.php';
+		include_once RP_ABSPATH . 'includes/class-rp-regenerate-images.php';
 
 		if ( $this->is_request( 'admin' ) ) {
-			include_once( RP_ABSPATH . 'includes/admin/class-rp-admin.php' );
+			include_once RP_ABSPATH . 'includes/admin/class-rp-admin.php';
 		}
 
 		if ( $this->is_request( 'frontend' ) ) {
@@ -224,28 +222,28 @@ final class RestaurantPress {
 		if ( rp_is_active_theme( array( 'twentyseventeen', 'twentysixteen', 'twentyfifteen', 'twentyfourteen', 'twentythirteen', 'twentytwelve', 'twentyeleven', 'twentyten' ) ) ) {
 			switch ( get_template() ) {
 				case 'twentyten':
-					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-ten.php' );
+					include_once RP_ABSPATH . 'includes/theme-support/class-rp-twenty-ten.php';
 					break;
 				case 'twentyeleven':
-					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-eleven.php' );
+					include_once RP_ABSPATH . 'includes/theme-support/class-rp-twenty-eleven.php';
 					break;
 				case 'twentytwelve':
-					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-twelve.php' );
+					include_once RP_ABSPATH . 'includes/theme-support/class-rp-twenty-twelve.php';
 					break;
 				case 'twentythirteen':
-					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-thirteen.php' );
+					include_once RP_ABSPATH . 'includes/theme-support/class-rp-twenty-thirteen.php';
 					break;
 				case 'twentyfourteen':
-					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-fourteen.php' );
+					include_once RP_ABSPATH . 'includes/theme-support/class-rp-twenty-fourteen.php';
 					break;
 				case 'twentyfifteen':
-					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-fifteen.php' );
+					include_once RP_ABSPATH . 'includes/theme-support/class-rp-twenty-fifteen.php';
 					break;
 				case 'twentysixteen':
-					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-sixteen.php' );
+					include_once RP_ABSPATH . 'includes/theme-support/class-rp-twenty-sixteen.php';
 					break;
 				case 'twentyseventeen':
-					include_once( RP_ABSPATH . 'includes/theme-support/class-rp-twenty-seventeen.php' );
+					include_once RP_ABSPATH . 'includes/theme-support/class-rp-twenty-seventeen.php';
 					break;
 			}
 		}
@@ -255,19 +253,19 @@ final class RestaurantPress {
 	 * Include required frontend files.
 	 */
 	public function frontend_includes() {
-		include_once( RP_ABSPATH . 'includes/rp-notice-functions.php' );
-		include_once( RP_ABSPATH . 'includes/rp-template-hooks.php' );
-		include_once( RP_ABSPATH . 'includes/class-rp-template-loader.php' );  // Template Loader.
-		include_once( RP_ABSPATH . 'includes/class-rp-frontend-scripts.php' ); // Frontend Scripts.
-		include_once( RP_ABSPATH . 'includes/class-rp-shortcodes.php' );       // Shortcodes class.
-		include_once( RP_ABSPATH . 'includes/class-rp-session-handler.php' );  // Session handler class.
+		include_once RP_ABSPATH . 'includes/rp-notice-functions.php';
+		include_once RP_ABSPATH . 'includes/rp-template-hooks.php';
+		include_once RP_ABSPATH . 'includes/class-rp-template-loader.php';
+		include_once RP_ABSPATH . 'includes/class-rp-frontend-scripts.php';
+		include_once RP_ABSPATH . 'includes/class-rp-shortcodes.php';
+		include_once RP_ABSPATH . 'includes/class-rp-session-handler.php';
 	}
 
 	/**
 	 * Function used to Init RestaurantPress Template Functions - This makes them pluggable by plugins and themes.
 	 */
 	public function include_template_functions() {
-		include_once( RP_ABSPATH . 'includes/rp-template-functions.php' );
+		include_once RP_ABSPATH . 'includes/rp-template-functions.php';
 	}
 
 	/**
@@ -281,8 +279,8 @@ final class RestaurantPress {
 		$this->load_plugin_textdomain();
 
 		// Load class instances.
-		$this->food_factory                        = new RP_Food_Factory(); // Food Factory to create new food instances.
-		$this->integrations                        = new RP_Integrations(); // Integrations class.
+		$this->food_factory                        = new RP_Food_Factory();
+		$this->integrations                        = new RP_Integrations();
 		$this->deprecated_hook_handlers['actions'] = new RP_Deprecated_Action_Hooks();
 		$this->deprecated_hook_handlers['filters'] = new RP_Deprecated_Filter_Hooks();
 
@@ -342,12 +340,8 @@ final class RestaurantPress {
 	 *
 	 * 1.7 sizes:
 	 *
-	 * thumbnail - Used in food listings.
-	 * single - Used on single food pages for the main image.
-	 *
-	 * food_thumbnail, food_single, food_grid, registered for bw compat. @todo remove in 2.0.
-	 *
-	 * @since 1.7
+	 * restaurantpress_thumbnail - Used in food listings.
+	 * restaurantpress_single - Used on single food pages for the main image.
 	 */
 	public function add_image_sizes() {
 		$thumbnail = rp_get_image_size( 'thumbnail' );
@@ -356,6 +350,11 @@ final class RestaurantPress {
 
 		add_image_size( 'restaurantpress_thumbnail', $thumbnail['width'], $thumbnail['height'], $thumbnail['crop'] );
 		add_image_size( 'restaurantpress_single', $single['width'], $single['height'], $single['crop'] );
+
+		// 2x thumbnail size for retina.
+		add_image_size( 'restaurantpress_thumbnail_2x', $thumbnail['width'] * 2, $thumbnail['height'] * 2, $thumbnail['crop'] );
+
+		// Registered for bw compat. @todo remove in 2.0.
 		add_image_size( 'food_thumbnail', $thumbnail['width'], $thumbnail['height'], $thumbnail['crop'] );
 		add_image_size( 'food_single', $single['width'], $single['height'], $single['crop'] );
 		add_image_size( 'food_grid', $food_grid['width'], $food_grid['height'], $food_grid['crop'] );

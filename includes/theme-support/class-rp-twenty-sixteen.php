@@ -6,12 +6,10 @@
  * @since   1.7.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
- * RP_Twenty_Sixteen Class.
+ * RP_Twenty_Sixteen class.
  */
 class RP_Twenty_Sixteen {
 
@@ -29,8 +27,8 @@ class RP_Twenty_Sixteen {
 
 		// Declare theme support for features.
 		add_theme_support( 'restaurantpress', array(
-			'thumbnail_image_width' => 186,
-			'single_image_width'    => 390,
+			'thumbnail_image_width' => 250,
+			'single_image_width'    => 400,
 		) );
 	}
 

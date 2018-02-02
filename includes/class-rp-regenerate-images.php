@@ -9,9 +9,7 @@
  * @since   1.7.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Regenerate Images Class.
@@ -99,21 +97,22 @@ class RP_Regenerate_Images {
 		}
 
 		if ( ! function_exists( 'wp_crop_image' ) ) {
-			include( ABSPATH . 'wp-admin/includes/image.php' );
+			include ABSPATH . 'wp-admin/includes/image.php';
 		}
 
 		$wp_uploads     = wp_upload_dir( null, false );
 		$wp_uploads_dir = $wp_uploads['basedir'];
 		$wp_uploads_url = $wp_uploads['baseurl'];
 
-		$original_image_file_path   = get_attached_file( $attachment->ID );
+		$original_image_file_path = get_attached_file( $attachment->ID );
 
 		if ( ! file_exists( $original_image_file_path ) || ! getimagesize( $original_image_file_path ) ) {
 			return $image;
 		}
 
 		$info = pathinfo( $original_image_file_path );
-		$ext = $info['extension'];
+		$ext  = $info['extension'];
+
 		list( $orig_w, $orig_h ) = getimagesize( $original_image_file_path );
 		// Get image size after cropping.
 		$image_size = rp_get_image_size( $size );

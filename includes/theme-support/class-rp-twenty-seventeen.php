@@ -6,12 +6,10 @@
  * @since   1.7.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
- * RP_Twenty_Seventeen Class.
+ * RP_Twenty_Seventeen class.
  */
 class RP_Twenty_Seventeen {
 
@@ -31,8 +29,8 @@ class RP_Twenty_Seventeen {
 
 		// Declare theme support for features.
 		add_theme_support( 'restaurantpress', array(
-			'thumbnail_image_width' => 150,
-			'single_image_width'    => 322,
+			'thumbnail_image_width' => 250,
+			'single_image_width'    => 350,
 		) );
 	}
 
@@ -43,8 +41,6 @@ class RP_Twenty_Seventeen {
 	 * @return array
 	 */
 	public static function enqueue_styles( $styles ) {
-		// unset( $styles['restaurantpress-general'] );
-
 		$styles['restaurantpress-twenty-seventeen'] = array(
 			'src'     => str_replace( array( 'http:', 'https:' ), '', RP()->plugin_url() ) . '/assets/css/twenty-seventeen.css',
 			'deps'    => '',
