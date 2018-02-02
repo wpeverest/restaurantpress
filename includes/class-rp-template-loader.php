@@ -3,15 +3,10 @@
  * Template Loader
  *
  * @class    RP_Template_Loader
- * @version  1.4.0
- * @package  RestaurantPress/Classes
- * @category Class
- * @author   WPEverest
+ * @package  RestaurantPress\Classes
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
  * RP_Template_Loader Class.
@@ -45,7 +40,9 @@ class RP_Template_Loader {
 			return $template;
 		}
 
-		if ( $default_file = self::get_template_loader_default_file() ) {
+		$default_file = self::get_template_loader_default_file();
+
+		if ( $default_file ) {
 			/**
 			 * Filter hook to choose which files to find before RestaurantPress does it's own logic.
 			 *
