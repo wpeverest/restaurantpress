@@ -11,14 +11,16 @@
  * the readme will list any important changes.
  *
  * @see     https://docs.wpeverest.com/docs/restaurantpress/template-structure/
- * @author  WPEverest
  * @package RestaurantPress/Templates
  * @version 1.6.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
+
+$total   = isset( $total ) ? $total : rp_get_loop_prop( 'total_pages' );
+$current = isset( $current ) ? $current : rp_get_loop_prop( 'current_page' );
+$base    = isset( $base ) ? $base : esc_url_raw( str_replace( 999999999, '%#%', get_pagenum_link( 999999999, false ) ) );
+$format  = isset( $format ) ? $format : '';
 
 if ( $total <= 1 ) {
 	return;
@@ -26,7 +28,7 @@ if ( $total <= 1 ) {
 ?>
 <nav class="restaurantpress-pagination">
 	<?php
-		echo paginate_links( apply_filters( 'restaurantpress_pagination_args', array(
+		echo paginate_links( apply_filters( 'restaurantpress_pagination_args', array( // WPCS: XSS ok.
 			'base'         => $base,
 			'format'       => $format,
 			'add_args'     => false,

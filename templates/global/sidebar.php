@@ -11,14 +11,11 @@
  * the readme will list any important changes.
  *
  * @see     https://docs.wpeverest.com/docs/restaurantpress/template-structure/
- * @author  WPEverest
  * @package RestaurantPress/Templates
  * @version 1.4.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 get_sidebar( 'food' );
 
