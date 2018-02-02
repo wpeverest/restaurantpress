@@ -38,7 +38,36 @@ class RP_Settings_General extends RP_Settings_Page {
 
 		$settings = $this->get_settings( $current_section );
 
+		$this->food_display_settings_moved_notice();
+
 		RP_Admin_Settings::output_fields( $settings );
+	}
+
+	/**
+	 * Show a notice showing where some options have moved.
+	 *
+	 * @since 1.7.0
+	 * @todo  remove in next major release.
+	 */
+	private function food_display_settings_moved_notice() {
+		if ( get_user_meta( get_current_user_id(), 'dismissed_food_display_settings_moved_notice', true ) ) {
+			return;
+		}
+		?>
+		<div id="message" class="updated restaurantpress-message inline">
+			<a class="restaurantpress-message-close notice-dismiss" style="top:0;" href="<?php echo esc_url( wp_nonce_url( add_query_arg( 'rp-hide-notice', 'food_display_settings_moved' ), 'restaurantpress_hide_notices_nonce', '_rp_notice_nonce' ) ); ?>"><?php esc_html_e( 'Dismiss', 'restaurantpress' ); ?></a>
+
+			<p><?php
+			/* translators: %s: URL to customizer. */
+			echo wp_kses( sprintf( __( 'Looking for the food display and options? They can now be found in the Customizer. <a href="%s">Go see them in action here.</a>', 'restaurantpress' ), esc_url( admin_url( 'customize.php?url=' . home_url( '/' ) . '&autofocus[panel]=restaurantpress' ) ) ), array(
+				'a' => array(
+					'href'  => array(),
+					'title' => array(),
+				),
+			) );
+			?></p>
+		</div>
+		<?php
 	}
 
 	/**
@@ -65,18 +94,6 @@ class RP_Settings_General extends RP_Settings_Page {
 		}
 
 		$settings = apply_filters( 'restaurantpress_general_settings', array(
-
-			array(
-				'title' => __( 'Color options', 'restaurantpress' ),
-				'type'  => 'title',
-				'desc'  => __( 'This section is moved to customizer for live color change preview.', 'restaurantpress' ),
-				'id'    => 'color_options',
-			),
-
-			array(
-				'type' => 'sectionend',
-				'id'   => 'color_options',
-			),
 
 			array(
 				'title' => __( 'Currency options', 'restaurantpress' ),

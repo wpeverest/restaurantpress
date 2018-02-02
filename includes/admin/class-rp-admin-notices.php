@@ -112,7 +112,11 @@ class RP_Admin_Notices {
 			}
 
 			$hide_notice = sanitize_text_field( wp_unslash( $_GET['rp-hide-notice'] ) );
+
 			self::remove_notice( $hide_notice );
+
+			update_user_meta( get_current_user_id(), 'dismissed_' . $hide_notice . '_notice', true );
+
 			do_action( 'restaurantpress_hide_' . $hide_notice . '_notice' );
 		}
 	}
