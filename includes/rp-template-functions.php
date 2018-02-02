@@ -64,10 +64,6 @@ add_action( 'the_post', 'rp_setup_food_data' );
  * @param array $args Args to pass into the global.
  */
 function rp_setup_loop( $args = array() ) {
-	if ( isset( $GLOBALS['restaurantpress_loop'] ) ) {
-		return; // If the loop has already been setup, bail.
-	}
-
 	$default_args = array(
 		'loop'         => 0,
 		'columns'      => 1,
