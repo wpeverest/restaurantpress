@@ -122,6 +122,8 @@ add_action( 'restaurantpress_after_menu_loop', 'rp_reset_loop', 999 );
  * @return mixed
  */
 function rp_get_loop_prop( $prop, $default = '' ) {
+	rp_setup_loop(); // Ensure shop loop is setup.
+
 	return isset( $GLOBALS['restaurantpress_loop'], $GLOBALS['restaurantpress_loop'][ $prop ] ) ? $GLOBALS['restaurantpress_loop'][ $prop ] : $default;
 }
 
