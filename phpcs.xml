@@ -13,7 +13,7 @@
 
 	<!-- Configs -->
 	<config name="minimum_supported_wp_version" value="4.7" />
-	<config name="testVersion" value="5.2-"/>
+	<config name="testVersion" value="5.2-" />
 
 	<!-- Rules -->
 	<rule ref="WPEverest-Core" />
@@ -33,7 +33,7 @@
 	</rule>
 	<rule ref="WordPress.VIP.ValidatedSanitizedInput">
 		<properties>
-			<property name="customSanitizingFunctions" type="array" value="rp_clean,rp_sanitize_tooltip" />
+			<property name="customSanitizingFunctions" type="array" value="rp_clean,rp_sanitize_tooltip,rp_sanitize_permalink" />
 		</properties>
 	</rule>
 	<rule ref="WordPress.XSS.EscapeOutput">
@@ -48,5 +48,14 @@
 	</rule>
 	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
 		<exclude-pattern>includes/**/abstract-*.php</exclude-pattern>
+		<exclude-pattern>tests/</exclude-pattern>
+	</rule>
+	<rule ref="Generic.Commenting">
+		<exclude-pattern>tests/</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.Commenting">
+		<exclude-pattern>tests/</exclude-pattern>
+		<exclude name="Squiz.Commenting.LongConditionClosingComment" />
+		<exclude name="Squiz.Commenting.PostStatementComment" />
 	</rule>
 </ruleset>

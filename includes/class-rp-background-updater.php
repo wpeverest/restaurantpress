@@ -2,32 +2,22 @@
 /**
  * Background Updater
  *
- * Uses https://github.com/A5hleyRich/wp-background-processing to handle DB
- * updates in the background.
- *
- * @class    RP_Background_Updater
- * @version  1.3.2
- * @package  RestaurantPress/Classes
- * @category Class
- * @author   WPEverest
+ * @version 1.3.2
+ * @package RestaurantPress/Classes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'WP_Async_Request', false ) ) {
-	include_once( dirname( __FILE__ ) . '/libraries/wp-async-request.php' );
-}
-
-if ( ! class_exists( 'WP_Background_Process', false ) ) {
-	include_once( dirname( __FILE__ ) . '/libraries/wp-background-process.php' );
+if ( ! class_exists( 'RP_Background_Process', false ) ) {
+	include_once dirname( __FILE__ ) . '/abstracts/class-rp-background-process.php';
 }
 
 /**
  * RP_Background_Updater Class.
  */
-class RP_Background_Updater extends WP_Background_Process {
+class RP_Background_Updater extends RP_Background_Process {
 
 	/**
 	 * Initiate new background process.
