@@ -19,6 +19,13 @@ if ( ! class_exists( 'RP_Background_Process', false ) ) {
 class RP_Regenerate_Images_Request extends RP_Background_Process {
 
 	/**
+	 * Stores the attachment ID being processed.
+	 *
+	 * @var integer
+	 */
+	protected $attachment_id = 0;
+
+	/**
 	 * Initiate new background process.
 	 */
 	public function __construct() {
@@ -44,14 +51,14 @@ class RP_Regenerate_Images_Request extends RP_Background_Process {
 			include( ABSPATH . 'wp-admin/includes/image.php' );
 		}
 
-		$attachment_id = absint( $item['attachment_id'] );
+		$this->attachment_id = absint( $item['attachment_id'] );
+		$attachment          = get_post( $this->attachment_id );
 
-		$attachment = get_post( $attachment_id );
 		if ( ! $attachment || 'attachment' !== $attachment->post_type || 'image/' !== substr( $attachment->post_mime_type, 0, 6 ) ) {
 			return false;
 		}
 
-		$fullsizepath = get_attached_file( $attachment->ID );
+		$fullsizepath = get_attached_file( $this->attachment_id );
 
 		// Check if the file exists, if not just remove item from queue.
 		if ( false === $fullsizepath || ! file_exists( $fullsizepath ) ) {
