@@ -2,19 +2,16 @@
 /**
  * RestaurantPress Meta Box Functions
  *
- * @author   WPEverest
- * @category Core
- * @package  RestaurantPress/Admin/Functions
- * @version  1.0.0
+ * @package RestaurantPress\Admin\Functions
+ * @version 1.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Output a text input box.
- * @param array $field
+ *
+ * @param array $field Field data.
  */
 function restaurantpress_wp_text_input( $field ) {
 	global $thepostid, $post;
@@ -27,23 +24,23 @@ function restaurantpress_wp_text_input( $field ) {
 	$field['value']         = isset( $field['value'] ) ? $field['value'] : get_post_meta( $thepostid, $field['id'], true );
 	$field['name']          = isset( $field['name'] ) ? $field['name'] : $field['id'];
 	$field['type']          = isset( $field['type'] ) ? $field['type'] : 'text';
+	$field['desc_tip']      = isset( $field['desc_tip'] ) ? $field['desc_tip'] : false;
 	$data_type              = empty( $field['data_type'] ) ? '' : $field['data_type'];
 
 	switch ( $data_type ) {
-		case 'price' :
+		case 'price':
 			$field['class'] .= ' rp_input_price';
 			$field['value']  = rp_format_localized_price( $field['value'] );
 			break;
-		case 'url' :
+		case 'url':
 			$field['class'] .= ' rp_input_url';
 			$field['value']  = esc_url( $field['value'] );
 			break;
-
-		default :
+		default:
 			break;
 	}
 
-	// Custom attribute handling
+	// Custom attribute handling.
 	$custom_attributes = array();
 
 	if ( ! empty( $field['custom_attributes'] ) && is_array( $field['custom_attributes'] ) ) {
@@ -53,22 +50,26 @@ function restaurantpress_wp_text_input( $field ) {
 		}
 	}
 
-	echo '<p class="form-field ' . esc_attr( $field['id'] ) . '_field ' . esc_attr( $field['wrapper_class'] ) . '"><label for="' . esc_attr( $field['id'] ) . '">' . wp_kses_post( $field['label'] ) . '</label><input type="' . esc_attr( $field['type'] ) . '" class="' . esc_attr( $field['class'] ) . '" style="' . esc_attr( $field['style'] ) . '" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['id'] ) . '" value="' . esc_attr( $field['value'] ) . '" placeholder="' . esc_attr( $field['placeholder'] ) . '" ' . implode( ' ', $custom_attributes ) . ' /> ';
+	echo '<p class="form-field ' . esc_attr( $field['id'] ) . '_field ' . esc_attr( $field['wrapper_class'] ) . '">
+		<label for="' . esc_attr( $field['id'] ) . '">' . wp_kses_post( $field['label'] ) . '</label>';
 
-	if ( ! empty( $field['description'] ) ) {
-
-		if ( isset( $field['desc_tip'] ) && false !== $field['desc_tip'] ) {
-			echo rp_help_tip( $field['description'] );
-		} else {
-			echo '<span class="description">' . wp_kses_post( $field['description'] ) . '</span>';
-		}
+	if ( ! empty( $field['description'] ) && false !== $field['desc_tip'] ) {
+		echo rp_help_tip( $field['description'] );
 	}
+
+	echo '<input type="' . esc_attr( $field['type'] ) . '" class="' . esc_attr( $field['class'] ) . '" style="' . esc_attr( $field['style'] ) . '" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['id'] ) . '" value="' . esc_attr( $field['value'] ) . '" placeholder="' . esc_attr( $field['placeholder'] ) . '" ' . implode( ' ', $custom_attributes ) . ' /> ';
+
+	if ( ! empty( $field['description'] ) && false === $field['desc_tip'] ) {
+		echo '<span class="description">' . wp_kses_post( $field['description'] ) . '</span>';
+	}
+
 	echo '</p>';
 }
 
 /**
  * Output a hidden input box.
- * @param array $field
+ *
+ * @param array $field Field data.
  */
 function restaurantpress_wp_hidden_input( $field ) {
 	global $thepostid, $post;
@@ -82,7 +83,8 @@ function restaurantpress_wp_hidden_input( $field ) {
 
 /**
  * Output a textarea input box.
- * @param array $field
+ *
+ * @param array $field Field data.
  */
 function restaurantpress_wp_textarea_input( $field ) {
 	global $thepostid, $post;
@@ -93,8 +95,12 @@ function restaurantpress_wp_textarea_input( $field ) {
 	$field['style']         = isset( $field['style'] ) ? $field['style'] : '';
 	$field['wrapper_class'] = isset( $field['wrapper_class'] ) ? $field['wrapper_class'] : '';
 	$field['value']         = isset( $field['value'] ) ? $field['value'] : get_post_meta( $thepostid, $field['id'], true );
+	$field['desc_tip']      = isset( $field['desc_tip'] ) ? $field['desc_tip'] : false;
+	$field['name']          = isset( $field['name'] ) ? $field['name'] : $field['id'];
+	$field['rows']          = isset( $field['rows'] ) ? $field['rows'] : 2;
+	$field['cols']          = isset( $field['cols'] ) ? $field['cols'] : 20;
 
-	// Custom attribute handling
+	// Custom attribute handling.
 	$custom_attributes = array();
 
 	if ( ! empty( $field['custom_attributes'] ) && is_array( $field['custom_attributes'] ) ) {
@@ -104,22 +110,26 @@ function restaurantpress_wp_textarea_input( $field ) {
 		}
 	}
 
-	echo '<p class="form-field ' . esc_attr( $field['id'] ) . '_field ' . esc_attr( $field['wrapper_class'] ) . '"><label for="' . esc_attr( $field['id'] ) . '">' . wp_kses_post( $field['label'] ) . '</label><textarea class="' . esc_attr( $field['class'] ) . '" style="' . esc_attr( $field['style'] ) . '"  name="' . esc_attr( $field['id'] ) . '" id="' . esc_attr( $field['id'] ) . '" placeholder="' . esc_attr( $field['placeholder'] ) . '" rows="2" cols="20" ' . implode( ' ', $custom_attributes ) . '>' . esc_textarea( $field['value'] ) . '</textarea> ';
+	echo '<p class="form-field ' . esc_attr( $field['id'] ) . '_field ' . esc_attr( $field['wrapper_class'] ) . '">
+		<label for="' . esc_attr( $field['id'] ) . '">' . wp_kses_post( $field['label'] ) . '</label>';
 
-	if ( ! empty( $field['description'] ) ) {
-
-		if ( isset( $field['desc_tip'] ) && false !== $field['desc_tip'] ) {
-			echo rp_help_tip( $field['description'] );
-		} else {
-			echo '<span class="description">' . wp_kses_post( $field['description'] ) . '</span>';
-		}
+	if ( ! empty( $field['description'] ) && false !== $field['desc_tip'] ) {
+		echo rp_help_tip( $field['description'] );
 	}
+
+	echo '<textarea class="' . esc_attr( $field['class'] ) . '" style="' . esc_attr( $field['style'] ) . '"  name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['id'] ) . '" placeholder="' . esc_attr( $field['placeholder'] ) . '" rows="' . esc_attr( $field['rows'] ) . '" cols="' . esc_attr( $field['cols'] ) . '" ' . implode( ' ', $custom_attributes ) . '>' . esc_textarea( $field['value'] ) . '</textarea> ';
+
+	if ( ! empty( $field['description'] ) && false === $field['desc_tip'] ) {
+		echo '<span class="description">' . wp_kses_post( $field['description'] ) . '</span>';
+	}
+
 	echo '</p>';
 }
 
 /**
  * Output a checkbox input box.
- * @param array $field
+ *
+ * @param array $field Field data.
  */
 function restaurantpress_wp_checkbox( $field ) {
 	global $thepostid, $post;
@@ -133,7 +143,7 @@ function restaurantpress_wp_checkbox( $field ) {
 	$field['name']          = isset( $field['name'] ) ? $field['name'] : $field['id'];
 	$field['desc_tip']      = isset( $field['desc_tip'] ) ? $field['desc_tip'] : false;
 
-	// Custom attribute handling
+	// Custom attribute handling.
 	$custom_attributes = array();
 
 	if ( ! empty( $field['custom_attributes'] ) && is_array( $field['custom_attributes'] ) ) {
@@ -143,15 +153,17 @@ function restaurantpress_wp_checkbox( $field ) {
 		}
 	}
 
-	echo '<p class="form-field ' . esc_attr( $field['id'] ) . '_field ' . esc_attr( $field['wrapper_class'] ) . '"><label for="' . esc_attr( $field['id'] ) . '">' . wp_kses_post( $field['label'] ) . '</label><input type="checkbox" class="' . esc_attr( $field['class'] ) . '" style="' . esc_attr( $field['style'] ) . '" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['id'] ) . '" value="' . esc_attr( $field['cbvalue'] ) . '" ' . checked( $field['value'], $field['cbvalue'], false ) . '  ' . implode( ' ', $custom_attributes ) . '/> ';
+	echo '<p class="form-field ' . esc_attr( $field['id'] ) . '_field ' . esc_attr( $field['wrapper_class'] ) . '">
+		<label for="' . esc_attr( $field['id'] ) . '">' . wp_kses_post( $field['label'] ) . '</label>';
 
-	if ( ! empty( $field['description'] ) ) {
+	if ( ! empty( $field['description'] ) && false !== $field['desc_tip'] ) {
+		echo rp_help_tip( $field['description'] );
+	}
 
-		if ( isset( $field['desc_tip'] ) && false !== $field['desc_tip'] ) {
-			echo rp_help_tip( $field['description'] );
-		} else {
-			echo '<span class="description">' . wp_kses_post( $field['description'] ) . '</span>';
-		}
+	echo '<input type="checkbox" class="' . esc_attr( $field['class'] ) . '" style="' . esc_attr( $field['style'] ) . '" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['id'] ) . '" value="' . esc_attr( $field['cbvalue'] ) . '" ' . checked( $field['value'], $field['cbvalue'], false ) . '  ' . implode( ' ', $custom_attributes ) . '/> ';
+
+	if ( ! empty( $field['description'] ) && false === $field['desc_tip'] ) {
+		echo '<span class="description">' . wp_kses_post( $field['description'] ) . '</span>';
 	}
 
 	echo '</p>';
@@ -159,7 +171,8 @@ function restaurantpress_wp_checkbox( $field ) {
 
 /**
  * Output a select input box.
- * @param array $field
+ *
+ * @param array $field Field data.
  */
 function restaurantpress_wp_select( $field ) {
 	global $thepostid, $post;
@@ -170,8 +183,9 @@ function restaurantpress_wp_select( $field ) {
 	$field['wrapper_class'] = isset( $field['wrapper_class'] ) ? $field['wrapper_class'] : '';
 	$field['value']         = isset( $field['value'] ) ? $field['value'] : get_post_meta( $thepostid, $field['id'], true );
 	$field['name']          = isset( $field['name'] ) ? $field['name'] : $field['id'];
+	$field['desc_tip']      = isset( $field['desc_tip'] ) ? $field['desc_tip'] : false;
 
-	// Custom attribute handling
+	// Custom attribute handling.
 	$custom_attributes = array();
 
 	if ( ! empty( $field['custom_attributes'] ) && is_array( $field['custom_attributes'] ) ) {
@@ -181,7 +195,14 @@ function restaurantpress_wp_select( $field ) {
 		}
 	}
 
-	echo '<p class="form-field ' . esc_attr( $field['id'] ) . '_field ' . esc_attr( $field['wrapper_class'] ) . '"><label for="' . esc_attr( $field['id'] ) . '">' . wp_kses_post( $field['label'] ) . '</label><select id="' . esc_attr( $field['id'] ) . '" name="' . esc_attr( $field['name'] ) . '" class="' . esc_attr( $field['class'] ) . '" style="' . esc_attr( $field['style'] ) . '" ' . implode( ' ', $custom_attributes ) . '>';
+	echo '<p class="form-field ' . esc_attr( $field['id'] ) . '_field ' . esc_attr( $field['wrapper_class'] ) . '">
+		<label for="' . esc_attr( $field['id'] ) . '">' . wp_kses_post( $field['label'] ) . '</label>';
+
+	if ( ! empty( $field['description'] ) && false !== $field['desc_tip'] ) {
+		echo rp_help_tip( $field['description'] );
+	}
+
+	echo '<select id="' . esc_attr( $field['id'] ) . '" name="' . esc_attr( $field['name'] ) . '" class="' . esc_attr( $field['class'] ) . '" style="' . esc_attr( $field['style'] ) . '" ' . implode( ' ', $custom_attributes ) . '>';
 
 	foreach ( $field['options'] as $key => $value ) {
 		echo '<option value="' . esc_attr( $key ) . '" ' . selected( esc_attr( $field['value'] ), esc_attr( $key ), false ) . '>' . esc_html( $value ) . '</option>';
@@ -189,20 +210,17 @@ function restaurantpress_wp_select( $field ) {
 
 	echo '</select> ';
 
-	if ( ! empty( $field['description'] ) ) {
-
-		if ( isset( $field['desc_tip'] ) && false !== $field['desc_tip'] ) {
-			echo rp_help_tip( $field['description'] );
-		} else {
-			echo '<span class="description">' . wp_kses_post( $field['description'] ) . '</span>';
-		}
+	if ( ! empty( $field['description'] ) && false === $field['desc_tip'] ) {
+		echo '<span class="description">' . wp_kses_post( $field['description'] ) . '</span>';
 	}
+
 	echo '</p>';
 }
 
 /**
  * Output a radio input box.
- * @param array $field
+ *
+ * @param array $field Field data.
  */
 function restaurantpress_wp_radio( $field ) {
 	global $thepostid, $post;
@@ -213,8 +231,15 @@ function restaurantpress_wp_radio( $field ) {
 	$field['wrapper_class'] = isset( $field['wrapper_class'] ) ? $field['wrapper_class'] : '';
 	$field['value']         = isset( $field['value'] ) ? $field['value'] : get_post_meta( $thepostid, $field['id'], true );
 	$field['name']          = isset( $field['name'] ) ? $field['name'] : $field['id'];
+	$field['desc_tip']      = isset( $field['desc_tip'] ) ? $field['desc_tip'] : false;
 
-	echo '<fieldset class="form-field ' . esc_attr( $field['id'] ) . '_field ' . esc_attr( $field['wrapper_class'] ) . '"><legend>' . wp_kses_post( $field['label'] ) . '</legend><ul class="rp-radios">';
+	echo '<fieldset class="form-field ' . esc_attr( $field['id'] ) . '_field ' . esc_attr( $field['wrapper_class'] ) . '"><legend>' . wp_kses_post( $field['label'] ) . '</legend>';
+
+	if ( ! empty( $field['description'] ) && false !== $field['desc_tip'] ) {
+		echo rp_help_tip( $field['description'] );
+	}
+
+	echo '<ul class="rp-radios">';
 
 	foreach ( $field['options'] as $key => $value ) {
 
@@ -230,13 +255,8 @@ function restaurantpress_wp_radio( $field ) {
 	}
 	echo '</ul>';
 
-	if ( ! empty( $field['description'] ) ) {
-
-		if ( isset( $field['desc_tip'] ) && false !== $field['desc_tip'] ) {
-			echo rp_help_tip( $field['description'] );
-		} else {
-			echo '<span class="description">' . wp_kses_post( $field['description'] ) . '</span>';
-		}
+	if ( ! empty( $field['description'] ) && false === $field['desc_tip'] ) {
+		echo '<span class="description">' . wp_kses_post( $field['description'] ) . '</span>';
 	}
 
 	echo '</fieldset>';
