@@ -189,8 +189,7 @@ function get_restaurantpress_currencies() {
 
 	if ( ! isset( $currencies ) ) {
 		$currencies = array_unique(
-			apply_filters(
-				'restaurantpress_currencies',
+			apply_filters( 'restaurantpress_currencies',
 				array(
 					'AED' => __( 'United Arab Emirates dirham', 'restaurantpress' ),
 					'AFN' => __( 'Afghan afghani', 'restaurantpress' ),
@@ -373,7 +372,7 @@ function get_restaurantpress_currency_symbol( $currency = '' ) {
 		$currency = get_restaurantpress_currency();
 	}
 
-	$symbols         = apply_filters( 'restaurantpress_currency_symbols', array(
+	$symbols = apply_filters( 'restaurantpress_currency_symbols', array(
 		'AED' => '&#x62f;.&#x625;',
 		'AFN' => '&#x60b;',
 		'ALL' => 'L',
@@ -530,9 +529,9 @@ function get_restaurantpress_currency_symbol( $currency = '' ) {
 		'VND' => '&#8363;',
 		'VUV' => 'Vt',
 		'WST' => 'T',
-		'XAF' => 'Fr',
+		'XAF' => 'CFA',
 		'XCD' => '&#36;',
-		'XOF' => 'Fr',
+		'XOF' => 'CFA',
 		'XPF' => 'Fr',
 		'YER' => '&#xfdfc;',
 		'ZAR' => '&#82;',
