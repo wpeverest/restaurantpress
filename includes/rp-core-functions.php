@@ -607,22 +607,22 @@ function rp_get_image_size( $image_size ) {
 
 	if ( is_array( $image_size ) ) {
 		$size       = array(
-			'width'  => isset( $image_size[0] ) ? $image_size[0] : 600,
-			'height' => isset( $image_size[1] ) ? $image_size[1] : 600,
-			'crop'   => isset( $image_size[2] ) ? $image_size[2] : 1,
+			'width'  => isset( $image_size[0] ) ? absint( $image_size[0] ) : 600,
+			'height' => isset( $image_size[1] ) ? absint( $image_size[1] ) : 600,
+			'crop'   => isset( $image_size[2] ) ? absint( $image_size[2] ) : 1,
 		);
 		$image_size = $size['width'] . '_' . $size['height'];
 	} elseif ( in_array( $image_size, array( 'single', 'food_single', 'restaurantpress_single' ), true ) ) {
-		$size['width']  = rp_get_theme_support( 'single_image_width', get_option( 'restaurantpress_single_image_width', 600 ) );
-		$size['height'] = 9999999999;
+		$size['width']  = absint( rp_get_theme_support( 'single_image_width', get_option( 'restaurantpress_single_image_width', 600 ) ) );
+		$size['height'] = '';
 		$size['crop']   = 0;
 		$image_size     = 'single';
 	} elseif ( in_array( $image_size, array( 'thumbnail', 'food_thumbnail', 'food_grid', 'restaurantpress_thumbnail' ), true ) ) {
-		$size['width'] = rp_get_theme_support( 'thumbnail_image_width', get_option( 'restaurantpress_thumbnail_image_width', 300 ) );
+		$size['width'] = absint( rp_get_theme_support( 'thumbnail_image_width', get_option( 'restaurantpress_thumbnail_image_width', 300 ) ) );
 		$cropping      = get_option( 'restaurantpress_thumbnail_cropping', '1:1' );
 
 		if ( 'uncropped' === $cropping ) {
-			$size['height'] = 9999999999;
+			$size['height'] = '';
 			$size['crop']   = 0;
 		} elseif ( 'custom' === $cropping ) {
 			$width          = max( 1, get_option( 'restaurantpress_thumbnail_cropping_custom_width', '4' ) );
