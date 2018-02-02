@@ -500,7 +500,7 @@ if ( ! class_exists( 'RP_Admin_Settings', false ) ) :
 							'show_option_none' => ' ',
 							'class'            => $value['class'],
 							'echo'             => false,
-							'selected'         => absint( self::get_option( $value['id'] ) ),
+							'selected'         => absint( self::get_option( $value['id'], $value['default'] ) ),
 						);
 
 						if ( isset( $value['args'] ) ) {
