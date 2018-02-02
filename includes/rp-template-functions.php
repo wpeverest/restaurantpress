@@ -94,6 +94,11 @@ function rp_setup_loop( $args = array() ) {
 		) );
 	}
 
+	// Merge any existing values.
+	if ( isset( $GLOBALS['restaurantpress_loop'] ) ) {
+		$default_args = array_merge( $default_args, $GLOBALS['restaurantpress_loop'] );
+	}
+
 	$GLOBALS['restaurantpress_loop'] = wp_parse_args( $args, $default_args );
 }
 add_action( 'restaurantpress_before_menu_loop', 'rp_setup_loop' );

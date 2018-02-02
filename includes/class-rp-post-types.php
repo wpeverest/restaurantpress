@@ -4,11 +4,9 @@
  *
  * Registers post types and taxonomies.
  *
- * @class    RP_Post_Types
- * @version  1.0.0
- * @package  RestaurantPress/Classes/Menu Items
- * @category Class
- * @author   WPEverest
+ * @class   RP_Post_Types
+ * @version 1.0.0
+ * @package RestaurantPress/Classes/Menu Items
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -135,6 +133,17 @@ class RP_Post_Types {
 			$supports[] = 'comments';
 		}
 
+		if ( current_theme_supports( 'restaurantpress' ) ) {
+			$has_archive = true;
+		} else {
+			$has_archive = false;
+		}
+
+		// If theme support changes, we may need to flush permalinks since some are changed based on this flag.
+		if ( update_option( 'current_theme_supports_restaurantpress', current_theme_supports( 'restaurantpress' ) ? 1 : 0 ) ) {
+			add_option( 'restaurantpress_queue_flush_rewrite_rules', 'true' );
+		}
+
 		register_post_type( 'food_menu',
 			apply_filters( 'restaurantpress_register_post_type_food_menu',
 				array(
@@ -175,7 +184,7 @@ class RP_Post_Types {
 					'query_var'           => true,
 					'rewrite'             => $permalinks['food_rewrite_slug'] ? array( 'slug' => $permalinks['food_rewrite_slug'], 'with_front' => false, 'feeds' => true ) : false,
 					'supports'            => $supports,
-					'has_archive'         => true,
+					'has_archive'         => $has_archive,
 					'show_in_nav_menus'   => true,
 					'show_in_rest'        => true,
 				)
