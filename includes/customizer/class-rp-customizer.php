@@ -6,9 +6,7 @@
  * @package RestaurantPress
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
  * RP_Customizer class.
@@ -155,33 +153,6 @@ class RP_Customizer {
 	}
 
 	/**
-	 * Should our settings show?
-	 *
-	 * @return boolean
-	 */
-	public function is_active() {
-		return is_restaurantpress() || rp_post_content_has_shortcode( 'restaurantpress_menu' ) || ! current_theme_supports( 'restaurantpress' );
-	}
-
-	/**
-	 * Should our settings show on group layout?
-	 *
-	 * @return boolean
-	 */
-	public function is_group_active() {
-		return is_group_menu_page();
-	}
-
-	/**
-	 * Should our settings show on food archives?
-	 *
-	 * @return boolean
-	 */
-	public function is_foods_archive() {
-		return is_food_menu_taxonomy() || is_food_menu_category() || ! current_theme_supports( 'restaurantpress' );
-	}
-
-	/**
 	 * Colors section.
 	 *
 	 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
@@ -230,10 +201,9 @@ class RP_Customizer {
 		$wp_customize->add_section(
 			'restaurantpress_food_group',
 			array(
-				'title'           => __( 'Food Group', 'restaurantpress' ),
-				'priority'        => 10,
-				'active_callback' => array( $this, 'is_group_active' ),
-				'panel'           => 'restaurantpress',
+				'title'    => __( 'Food Group', 'restaurantpress' ),
+				'priority' => 10,
+				'panel'    => 'restaurantpress',
 			)
 		);
 
@@ -268,10 +238,9 @@ class RP_Customizer {
 		$wp_customize->add_section(
 			'restaurantpress_food_images',
 			array(
-				'title'           => __( 'Food Images', 'restaurantpress' ),
-				'priority'        => 20,
-				'active_callback' => array( $this, 'is_active' ),
-				'panel'           => 'restaurantpress',
+				'title'    => __( 'Food Images', 'restaurantpress' ),
+				'priority' => 20,
+				'panel'    => 'restaurantpress',
 			)
 		);
 
@@ -336,10 +305,10 @@ class RP_Customizer {
 		$wp_customize->add_setting(
 			'restaurantpress_thumbnail_cropping',
 			array(
-				'default'              => '1:1',
-				'type'                 => 'option',
-				'capability'           => 'manage_restaurantpress',
-				'sanitize_callback'    => 'rp_clean',
+				'default'           => '1:1',
+				'type'              => 'option',
+				'capability'        => 'manage_restaurantpress',
+				'sanitize_callback' => 'rp_clean',
 			)
 		);
 
@@ -378,15 +347,15 @@ class RP_Customizer {
 					),
 					'label'    => __( 'Thumbnail cropping', 'restaurantpress' ),
 					'choices'  => array(
-						'1:1'             => array(
+						'1:1'       => array(
 							'label'       => __( '1:1', 'restaurantpress' ),
 							'description' => __( 'Images will be cropped into a square', 'restaurantpress' ),
 						),
-						'custom'          => array(
+						'custom'    => array(
 							'label'       => __( 'Custom', 'restaurantpress' ),
 							'description' => __( 'Images will be cropped to a custom aspect ratio', 'restaurantpress' ),
 						),
-						'uncropped'       => array(
+						'uncropped' => array(
 							'label'       => __( 'Uncropped', 'restaurantpress' ),
 							'description' => __( 'Images will display using the aspect ratio in which they were uploaded', 'restaurantpress' ),
 						),

@@ -59,7 +59,7 @@ class RP_Settings_General extends RP_Settings_Page {
 
 			<p><?php
 			/* translators: %s: URL to customizer. */
-			echo wp_kses( sprintf( __( 'Looking for the food display and options? They can now be found in the Customizer. <a href="%s">Go see them in action here.</a>', 'restaurantpress' ), esc_url( admin_url( 'customize.php?url=' . home_url( '/' ) . '&autofocus[panel]=restaurantpress' ) ) ), array(
+			echo wp_kses( sprintf( __( 'Looking for the food display and options? They can now be found in the Customizer. <a href="%s">Go see them in action here.</a>', 'restaurantpress' ), esc_url( admin_url( 'customize.php?autofocus[panel]=restaurantpress' ) ) ), array(
 				'a' => array(
 					'href'  => array(),
 					'title' => array(),
