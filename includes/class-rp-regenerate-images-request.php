@@ -7,22 +7,16 @@
  * @since   1.7.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'WP_Async_Request', false ) ) {
-	include_once( dirname( __FILE__ ) . '/libraries/wp-async-request.php' );
-}
-
-if ( ! class_exists( 'WP_Background_Process', false ) ) {
-	include_once( dirname( __FILE__ ) . '/libraries/wp-background-process.php' );
+if ( ! class_exists( 'RP_Background_Process', false ) ) {
+	include_once dirname( __FILE__ ) . '/abstracts/class-rp-background-process.php';
 }
 
 /**
- * Class that extends WP_Background_Process to process image regeneration in the background
+ * Class that extends RP_Background_Process to process image regeneration in the background
  */
-class RP_Regenerate_Images_Request extends WP_Background_Process {
+class RP_Regenerate_Images_Request extends RP_Background_Process {
 
 	/**
 	 * Initiate new background process.
