@@ -32,7 +32,7 @@ class RP_Regenerate_Images {
 		include_once RP_ABSPATH . 'includes/class-rp-regenerate-images-request.php';
 		self::$background_process = new RP_Regenerate_Images_Request();
 
-		if ( apply_filters( 'restaurantpress_resize_images', true ) && ! is_admin() ) {
+		if ( ! is_admin() ) {
 			// Handle on-the-fly image resizing.
 			add_filter( 'wp_get_attachment_image_src', array( __CLASS__, 'maybe_resize_image' ), 10, 4 );
 		}
@@ -56,8 +56,12 @@ class RP_Regenerate_Images {
 	 * @return array
 	 */
 	public static function maybe_resize_image( $image, $attachment_id, $size, $icon ) {
+		if ( ! apply_filters( 'restaurantpress_resize_images', true ) ) {
+			return $image;
+		}
+
 		// Use a whitelist of sizes we want to resize. Ignore others.
-		if ( ! in_array( $size, array( 'restaurantpress_thumbnail', 'restaurantpress_single', 'food_grid', 'food_thumbnail', 'food_single' ), true ) ) {
+		if ( ! in_array( $size, apply_filters( 'restaurantpress_image_sizes_to_resize', array( 'restaurantpress_thumbnail', 'restaurantpress_single', 'food_grid', 'food_thumbnail', 'food_single' ), true ) ) ) {
 			return $image;
 		}
 
