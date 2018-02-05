@@ -29,18 +29,16 @@
 	/**
 	 * Foods
 	 */
-	&, &[class*='columns-'] {
-		div.foods {
-			section.food_menu {
-				width: 48%;
-				float: left;
-				clear: both;
-				margin: 0 0 2.992em;
+	div.foods[class*='columns-'] {
+		section.food_menu {
+			width: 48%;
+			float: left;
+			clear: both;
+			margin: 0 0 2.992em;
 
-				&:nth-child( 2n ) {
-					float: right;
-					clear: none !important; // This should never clear.
-				}
+			&:nth-child( 2n ) {
+				float: right;
+				clear: none !important; // This should never clear.
 			}
 		}
 	}
