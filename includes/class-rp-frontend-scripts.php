@@ -172,7 +172,7 @@ class RP_Frontend_Scripts {
 			'flexslider' => array(
 				'src'     => self::get_asset_url( 'assets/js/flexslider/jquery.flexslider' . $suffix . '.js' ),
 				'deps'    => array( 'jquery' ),
-				'version' => '2.6.1',
+				'version' => '2.7.0',
 			),
 			'jquery-blockui' => array(
 				'src'     => self::get_asset_url( 'assets/js/jquery-blockui/jquery.blockUI' . $suffix . '.js' ),
