@@ -2,11 +2,9 @@
 /**
  * Installation related functions and actions.
  *
- * @class    RP_Install
- * @version  1.0.0
- * @package  RestaurantPress/Classes
- * @category Admin
- * @author   WPEverest
+ * @class   RP_Install
+ * @version 1.0.0
+ * @package RestaurantPress\Classes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -94,7 +92,7 @@ class RP_Install {
 	 * This check is done on all requests and runs if the versions do not match.
 	 */
 	public static function check_version() {
-		if ( ! defined( 'IFRAME_REQUEST' ) && get_option( 'restaurantpress_version' ) !== RP()->version ) {
+		if ( ! defined( 'IFRAME_REQUEST' ) && version_compare( get_option( 'restaurantpress_version' ), RP()->version, '<' ) ) {
 			self::install();
 			do_action( 'restaurantpress_updated' );
 		}
