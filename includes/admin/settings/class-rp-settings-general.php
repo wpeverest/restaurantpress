@@ -57,17 +57,19 @@ class RP_Settings_General extends RP_Settings_Page {
 		<div id="message" class="updated restaurantpress-message inline">
 			<a class="restaurantpress-message-close notice-dismiss" style="top:0;" href="<?php echo esc_url( wp_nonce_url( add_query_arg( 'rp-hide-notice', 'food_display_settings_moved' ), 'restaurantpress_hide_notices_nonce', '_rp_notice_nonce' ) ); ?>"><?php esc_html_e( 'Dismiss', 'restaurantpress' ); ?></a>
 
-			<p>
-			<?php
+			<p><?php
 			/* translators: %s: URL to customizer. */
-			echo wp_kses( sprintf( __( 'Looking for the food display and color options? They can now be found in the Customizer. <a href="%s">Go see them in action here.</a>', 'restaurantpress' ), esc_url( admin_url( 'customize.php?autofocus[panel]=restaurantpress' ) ) ), array(
+			echo wp_kses( sprintf( __( 'Looking for the food display and color options? They can now be found in the Customizer. <a href="%s">Go see them in action here.</a>', 'restaurantpress' ), esc_url( add_query_arg( array(
+				'autofocus' => array(
+					'panel' => 'restaurantpress',
+				),
+			), admin_url( 'customize.php' ) ) ) ), array(
 				'a' => array(
 					'href'  => array(),
 					'title' => array(),
 				),
 			) );
-			?>
-			</p>
+			?></p>
 		</div>
 		<?php
 	}
