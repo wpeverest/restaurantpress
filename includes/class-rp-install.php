@@ -324,6 +324,8 @@ class RP_Install {
 	/**
 	 * Get Table schema.
 	 *
+	 * When adding or removing a table, make sure to update the list of tables in RP_Install::get_tables().
+	 *
 	 * @return string
 	 */
 	private static function get_schema() {
@@ -364,6 +366,50 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 		}
 
 		return $tables;
+	}
+
+	/**
+	 * Return a list of RestaurantPress tables. Used to make sure all RP tables are dropped when uninstalling the plugin
+	 * in a single site or multi site environment.
+	 *
+	 * @return array RP tables.
+	 */
+	public static function get_tables() {
+		global $wpdb;
+
+		$tables = array(
+			"{$wpdb->prefix}rp_sessions",
+		);
+
+		if ( ! function_exists( 'get_term_meta' ) ) {
+			// This table is only needed for old installs and is now @deprecated by WordPress term meta.
+			$tables[] = "{$wpdb->prefix}restaurantpress_termmeta";
+		}
+
+		return $tables;
+	}
+
+	/**
+	 * Drop RestaurantPress tables.
+	 */
+	public static function drop_tables() {
+		global $wpdb;
+
+		$tables = self::get_tables();
+
+		foreach ( $tables as $table ) {
+			$wpdb->query( "DROP TABLE IF EXISTS {$table}" ); // phpcs:ignore WordPress.WP.PreparedSQL.NotPrepared
+		}
+	}
+
+	/**
+	 * Uninstall tables when MU blog is deleted.
+	 *
+	 * @param  array $tables List of tables that will be deleted by WP.
+	 * @return string[]
+	 */
+	public static function wpmu_drop_tables( $tables ) {
+		return array_merge( $tables, self::get_tables() );
 	}
 
 	/**
@@ -540,20 +586,6 @@ CREATE TABLE {$wpdb->prefix}restaurantpress_termmeta (
 		}
 
 		return (array) $plugin_meta;
-	}
-
-	/**
-	 * Uninstall tables when MU blog is deleted.
-	 *
-	 * @param  array $tables List of tables that will be deleted by WP.
-	 * @return string[]
-	 */
-	public static function wpmu_drop_tables( $tables ) {
-		global $wpdb;
-
-		$tables[] = $wpdb->prefix . 'rp_sessions';
-
-		return $tables;
 	}
 }
 

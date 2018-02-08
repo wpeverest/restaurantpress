@@ -20,12 +20,13 @@ wp_clear_scheduled_hook( 'restaurantpress_cleanup_sessions' );
  * and to ensure only the site owner can perform this action.
  */
 if ( defined( 'RP_REMOVE_ALL_DATA' ) && true === RP_REMOVE_ALL_DATA ) {
+	include_once dirname( __FILE__ ) . '/includes/class-rp-install.php';
+
 	// Roles + caps.
-	include_once( dirname( __FILE__ ) . '/includes/class-rp-install.php' );
 	RP_Install::remove_roles();
 
 	// Tables.
-	$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}restaurantpress_termmeta" );
+	RP_Install::drop_tables();
 
 	// Delete options.
 	$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE 'restaurantpress\_%';" );
