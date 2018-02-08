@@ -64,7 +64,7 @@ class RP_Meta_Box_Food_Images {
 				?>
 			</ul>
 
-			<input type="hidden" id="food_image_gallery" name="food_image_gallery" value="<?php echo esc_attr( $food_image_gallery ); ?>" />
+			<input type="hidden" id="food_image_gallery" name="food_image_gallery" value="<?php echo esc_attr( implode( ',', $food_image_gallery ) ); ?>" />
 
 		</div>
 		<p class="add_food_images hide-if-no-js">
