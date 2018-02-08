@@ -352,7 +352,7 @@ final class RestaurantPress {
 		add_image_size( 'restaurantpress_single', $single['width'], $single['height'], $single['crop'] );
 
 		// 2x thumbnail size for retina.
-		add_image_size( 'restaurantpress_thumbnail_2x', $thumbnail['width'] * 2, $thumbnail['height'] * 2, $thumbnail['crop'] );
+		add_image_size( 'restaurantpress_thumbnail_2x', $thumbnail['width'] * 2, '' !== $thumbnail['height'] ? $thumbnail['height'] * 2 : '', $thumbnail['crop'] );
 
 		// Registered for bw compat. @todo remove in 2.0.
 		add_image_size( 'food_thumbnail', $thumbnail['width'], $thumbnail['height'], $thumbnail['crop'] );
