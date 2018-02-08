@@ -140,7 +140,7 @@ class RP_Post_Types {
 		}
 
 		// If theme support changes, we may need to flush permalinks since some are changed based on this flag.
-		if ( update_option( 'current_theme_supports_restaurantpress', current_theme_supports( 'restaurantpress' ) ? 1 : 0 ) ) {
+		if ( update_option( 'current_theme_supports_restaurantpress', current_theme_supports( 'restaurantpress' ) ? 'yes' : 'no' ) ) {
 			add_option( 'restaurantpress_queue_flush_rewrite_rules', 'true' );
 		}
 
