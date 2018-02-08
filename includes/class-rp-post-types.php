@@ -141,7 +141,7 @@ class RP_Post_Types {
 
 		// If theme support changes, we may need to flush permalinks since some are changed based on this flag.
 		if ( update_option( 'current_theme_supports_restaurantpress', current_theme_supports( 'restaurantpress' ) ? 'yes' : 'no' ) ) {
-			add_option( 'restaurantpress_queue_flush_rewrite_rules', 'true' );
+			add_option( 'restaurantpress_queue_flush_rewrite_rules', 'yes' );
 		}
 
 		register_post_type( 'food_menu',
@@ -260,8 +260,8 @@ class RP_Post_Types {
 	 * @since 1.6.0
 	 */
 	public static function maybe_flush_rewrite_rules() {
-		if ( 'true' === get_option( 'restaurantpress_queue_flush_rewrite_rules' ) ) {
-			delete_option( 'restaurantpress_queue_flush_rewrite_rules' );
+		if ( 'yes' === get_option( 'restaurantpress_queue_flush_rewrite_rules' ) ) {
+			update_option( 'restaurantpress_queue_flush_rewrite_rules', 'no' );
 			self::flush_rewrite_rules();
 		}
 	}
