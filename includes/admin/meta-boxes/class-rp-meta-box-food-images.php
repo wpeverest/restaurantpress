@@ -4,11 +4,8 @@
  *
  * Display the food images meta box.
  *
- * @class    RP_Meta_Box_Food_Short_Description
- * @version  1.0.0
- * @package  RestaurantPress/Admin/Meta Boxes
- * @category Admin
- * @author   WPEverest
+ * @version 1.0.0
+ * @package RestaurantPress/Admin/Meta Boxes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -23,48 +20,48 @@ class RP_Meta_Box_Food_Images {
 	/**
 	 * Output the metabox.
 	 *
-	 * @param WP_Post $post
+	 * @param WP_Post $post Post Current post object.
 	 */
 	public static function output( $post ) {
 		?>
 		<div id="food_images_container">
 			<ul class="food_images">
 				<?php
-					$food_image_gallery  = get_post_meta( $post->ID, '_food_image_gallery', true );
-					$attachments         = array_filter( explode( ',', $food_image_gallery ) );
-					$update_meta         = false;
-					$updated_gallery_ids = array();
+				$food_image_gallery  = get_post_meta( $post->ID, '_food_image_gallery', true );
+				$attachments         = array_filter( explode( ',', $food_image_gallery ) );
+				$update_meta         = false;
+				$updated_gallery_ids = array();
 
-					if ( ! empty( $attachments ) ) {
-						foreach ( $attachments as $attachment_id ) {
-							$attachment = wp_get_attachment_image( $attachment_id, 'thumbnail' );
+				if ( ! empty( $attachments ) ) {
+					foreach ( $attachments as $attachment_id ) {
+						$attachment = wp_get_attachment_image( $attachment_id, 'thumbnail' );
 
-							// if attachment is empty skip
-							if ( empty( $attachment ) ) {
-								$update_meta = true;
-								continue;
-							}
-
-							echo '<li class="image" data-attachment_id="' . esc_attr( $attachment_id ) . '">
-								' . $attachment . '
-								<ul class="actions">
-									<li><a href="#" class="delete tips" data-tip="' . esc_attr__( 'Delete image', 'restaurantpress' ) . '">' . __( 'Delete', 'restaurantpress' ) . '</a></li>
-								</ul>
-							</li>';
-
-							// rebuild ids to be saved
-							$updated_gallery_ids[] = $attachment_id;
+						// If attachment is empty skip.
+						if ( empty( $attachment ) ) {
+							$update_meta = true;
+							continue;
 						}
 
-						// need to update food meta to set new gallery ids
-						if ( $update_meta ) {
-							update_post_meta( $post->ID, '_food_image_gallery', implode( ',', $updated_gallery_ids ) );
-						}
+						echo '<li class="image" data-attachment_id="' . esc_attr( $attachment_id ) . '">
+							' . $attachment . '
+							<ul class="actions">
+								<li><a href="#" class="delete tips" data-tip="' . esc_attr__( 'Delete image', 'restaurantpress' ) . '">' . __( 'Delete', 'restaurantpress' ) . '</a></li>
+							</ul>
+						</li>';
+
+						// Rebuild ids to be saved.
+						$updated_gallery_ids[] = $attachment_id;
 					}
+
+					// Need to update food meta to set new gallery ids.
+					if ( $update_meta ) {
+						update_post_meta( $post->ID, '_food_image_gallery', implode( ',', $updated_gallery_ids ) );
+					}
+				}
 				?>
 			</ul>
 
-			<input type="hidden" id="food_image_gallery" name="food_image_gallery" value="<?php echo esc_attr( implode( ',', $food_image_gallery ) ); ?>" />
+			<input type="hidden" id="food_image_gallery" name="food_image_gallery" value="<?php echo esc_attr( implode( ',', $updated_gallery_ids ) ); ?>" />
 
 		</div>
 		<p class="add_food_images hide-if-no-js">
@@ -76,8 +73,8 @@ class RP_Meta_Box_Food_Images {
 	/**
 	 * Save meta box data.
 	 *
-	 * @param int $post_id
-	 * @param WP_Post $post
+	 * @param int     $post_id Post ID.
+	 * @param WP_Post $post    Current post object.
 	 */
 	public static function save( $post_id, $post ) {
 		$attachment_ids = isset( $_POST['food_image_gallery'] ) ? array_filter( explode( ',', rp_clean( $_POST['food_image_gallery'] ) ) ) : array();
