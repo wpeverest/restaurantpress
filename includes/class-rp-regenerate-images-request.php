@@ -123,6 +123,17 @@ class RP_Regenerate_Images_Request extends RP_Background_Process {
 					$new_metadata['sizes'][ $old_size ] = $old_metadata['sizes'][ $old_size ];
 				}
 			}
+
+			// Handle legacy sizes.
+			if ( isset( $new_metadata['sizes']['food_thumbnail'], $new_metadata['sizes']['restaurantpress_thumbnail'] ) ) {
+				$new_metadata['sizes']['food_thumbnail'] = $new_metadata['sizes']['restaurantpress_thumbnail'];
+			}
+			if ( isset( $new_metadata['sizes']['food_grid'], $new_metadata['sizes']['restaurantpress_thumbnail'] ) ) {
+				$new_metadata['sizes']['food_grid'] = $new_metadata['sizes']['restaurantpress_thumbnail'];
+			}
+			if ( isset( $new_metadata['sizes']['food_single'], $new_metadata['sizes']['restaurantpress_single'] ) ) {
+				$new_metadata['sizes']['food_single'] = $new_metadata['sizes']['restaurantpress_single'];
+			}
 		}
 
 		// Update the meta data with the new size values.
