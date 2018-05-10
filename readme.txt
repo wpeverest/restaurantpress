@@ -66,7 +66,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 
 == Changelog ==
 
-= 1.7.0 - XX/02/2018 =
+= 1.7.0 - 13/02/2018 =
 * Feature - Improved default appearance in Twenty Seventeen themes which do not support RestaurantPress.
 * Feature - Added new options to the WordPress Appearance Customizer; control the primary color, and image sizes.
 * Feature - Improved how image sizes are defined and calculated. Set an aspect ratio (custom, 1:1, uncropped) and image sizes will be automagically calculated based on widths.
