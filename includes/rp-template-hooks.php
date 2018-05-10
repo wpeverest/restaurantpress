@@ -4,10 +4,8 @@
  *
  * Action/filter hooks used for RestaurantPress functions/templates.
  *
- * @author   WPEverest
- * @category Core
- * @package  RestaurantPress/Templates
- * @version  1.4.0
+ * @package RestaurantPress/Templates
+ * @version 1.4.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -22,8 +20,8 @@ add_filter( 'post_class', 'rp_food_post_class', 20, 3 );
  *
  * @see rp_generator_tag()
  */
-add_action( 'get_the_generator_html', 'rp_generator_tag', 10, 2 );
-add_action( 'get_the_generator_xhtml', 'rp_generator_tag', 10, 2 );
+add_filter( 'get_the_generator_html', 'rp_generator_tag', 10, 2 );
+add_filter( 'get_the_generator_xhtml', 'rp_generator_tag', 10, 2 );
 
 /**
  * Content Wrappers.
