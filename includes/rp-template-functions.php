@@ -187,7 +187,7 @@ function rp_body_class( $classes ) {
  */
 function rp_get_loop_class() {
 	$loop_index = rp_get_loop_prop( 'loop', 0 );
-	$per_page   = rp_get_loop_prop( 'per_page', apply_filters( 'loop_menu_per_page', 10 ) );
+	$per_page   = absint( max( 1, rp_get_loop_prop( 'per_page', apply_filters( 'loop_menu_per_page', 10 ) ) );
 
 	$loop_index ++;
 	rp_set_loop_prop( 'loop', $loop_index );
