@@ -2,8 +2,8 @@
 Contributors: WPEverest, shivapoudel
 Tags: restaurant, appetizer, food, cafe, menu, dining, drink
 Requires at least: 4.7
-Tested up to: 4.9
-Stable tag: 1.7.0
+Tested up to: 5.0
+Stable tag: 1.8.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -66,6 +66,8 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 
 == Changelog ==
 
+= 1.8.0 - XX/11/2018 =
+
 = 1.7.0 - 13/02/2018 =
 * Feature - Improved default appearance in Twenty Seventeen themes which do not support RestaurantPress.
 * Feature - Added new options to the WordPress Appearance Customizer; control the primary color, and image sizes.
@@ -83,5 +85,5 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 
 == Upgrade Notice ==
 
-= 1.7.0 =
-1.7.0 is a minor update. Make a full site backup, update your theme and extensions, and ensure they are compatible before upgrading.
+= 1.8.0 =
+1.8.0 is a minor update. Make a full site backup, update your theme and extensions, and ensure they are compatible before upgrading.
