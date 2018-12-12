@@ -86,7 +86,8 @@ module.exports = function( grunt ){
 		// Compile all .scss files.
 		sass: {
 			options: {
-				sourcemap: 'none'
+				sourcemap: 'none',
+				implementation: require( 'node-sass' )
 			},
 			compile: {
 				files: [{
@@ -141,7 +142,7 @@ module.exports = function( grunt ){
 				files: [
 					'<%= dirs.css %>/*.scss'
 				],
-				tasks: ['sass', 'rtlcss', 'cssmin', 'concat']
+				tasks: ['sass', 'rtlcss', 'postcss', 'cssmin', 'concat']
 			},
 			js: {
 				files: [

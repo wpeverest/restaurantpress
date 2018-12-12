@@ -1103,3 +1103,34 @@ body:not( .search-results ) .twentysixteen .entry-summary {
 .spacious {
 	padding-top: 0 !important;
 }
+
+/* Gutenberg Block
+----------------------------------------------------------------------------- */
+
+.edit-post-visual-editor {
+	.restaurantpress-gutenberg-group-selector-wrap {
+		.components-placeholder__label {
+			margin-bottom: 0;
+
+			svg {
+				width: 75px;
+				height: 75px;
+				color: #ff0033;
+			}
+		}
+		.components-placeholder__instructions {
+			color: #23282d;
+			font-size: 1.3em;
+			font-weight: 600;
+		}
+		.components-placeholder__fieldset {
+			.components-base-control {
+				width: 100%;
+			}
+		}
+	}
+}
+
+div.rp-gutenberg-form-selector input[type=button]:disabled {
+	cursor: not-allowed;
+}

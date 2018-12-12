@@ -57,9 +57,9 @@ class RP_Admin_TinyMCE {
 	 * @return array $buttons
 	 */
 	public function register_shortcode_button( $buttons ) {
-		if ( $this->is_shortcode_enabled() ) {
+		// if ( $this->is_shortcode_enabled() ) {
 			array_push( $buttons, '|', 'restaurantpress_shortcodes' );
-		}
+		// }
 
 		return $buttons;
 	}
@@ -72,9 +72,9 @@ class RP_Admin_TinyMCE {
 	public function add_shortcode_tinymce_plugin( $plugins ) {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		if ( $this->is_shortcode_enabled() ) {
+		// if ( $this->is_shortcode_enabled() ) {
 			$plugins['restaurantpress_shortcodes'] = RP()->plugin_url() . '/assets/js/admin/editor' . $suffix . '.js';
-		}
+		// }
 
 		return $plugins;
 	}
@@ -97,9 +97,9 @@ class RP_Admin_TinyMCE {
 	 * @return array
 	 */
 	public function add_tinymce_locales( $locales ) {
-		if ( $this->is_shortcode_enabled() ) {
+		// if ( $this->is_shortcode_enabled() ) {
 			$locales['restaurantpress_shortcodes'] = RP()->plugin_path() . '/includes/admin/rp-shortcodes-editor-i18n.php';
-		}
+		// }
 
 		return $locales;
 	}

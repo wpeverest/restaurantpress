@@ -46,7 +46,7 @@ class RP_Admin_Post_Types {
 		// Extra post data and screen elements.
 		add_action( 'edit_form_top', array( $this, 'edit_form_top' ) );
 		add_filter( 'enter_title_here', array( $this, 'enter_title_here' ), 1, 2 );
-		add_action( 'edit_form_after_title', array( $this, 'edit_form_after_title' ) );
+		add_action( 'current_screen', array( $this, 'edit_group_form_after_title' ) );
 		add_filter( 'default_hidden_meta_boxes', array( $this, 'hidden_meta_boxes' ), 10, 2 );
 		add_action( 'post_submitbox_misc_actions', array( $this, 'food_data_visibility' ) );
 
@@ -211,16 +211,32 @@ class RP_Admin_Post_Types {
 	}
 
 	/**
+	 * Looks at the current screen and adds an action on group edit screen to print group description.
+	 *
+	 * @since 1.8.0
+	 */
+	public function edit_group_form_after_title() {
+		$screen_id = false;
+
+		if ( function_exists( 'get_current_screen' ) ) {
+			$screen    = get_current_screen();
+			$screen_id = isset( $screen, $screen->id ) ? $screen->id : '';
+		}
+
+		if ( 'food_group' == $screen_id ) {
+			add_action( 'edit_form_after_title', array( $this, 'edit_form_after_title' ) );
+		}
+	}
+
+	/**
 	 * Print group description textarea field.
 	 *
 	 * @param WP_Post $post Current post object.
 	 */
 	public function edit_form_after_title( $post ) {
-		if ( 'food_group' === $post->post_type ) {
-			?>
-			<textarea id="restaurantpress-group-description" name="excerpt" cols="5" rows="2" placeholder="<?php esc_attr_e( 'Description (optional)', 'restaurantpress' ); ?>"><?php echo $post->post_excerpt; // WPCS: XSS ok. ?></textarea>
-			<?php
-		}
+		?>
+		<textarea id="restaurantpress-group-description" name="excerpt" cols="5" rows="2" placeholder="<?php esc_attr_e( 'Description (optional)', 'restaurantpress' ); ?>"><?php echo $post->post_excerpt; // WPCS: XSS ok. ?></textarea>
+		<?php
 	}
 
 	/**

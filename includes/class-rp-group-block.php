@@ -18,6 +18,7 @@ class RP_Group_Block {
 	 */
 	public function __construct() {
 		add_action( 'init', array( $this, 'register_block' ) );
+		add_action( 'enqueue_block_assets', array( $this, 'enqueue_editor_assets' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_editor_assets' ) );
 	}
 
@@ -30,9 +31,15 @@ class RP_Group_Block {
 		}
 
 		register_block_type( 'restaurantpress/group-selector', array(
-			'attributes'      => array(
-				'groupId'       => array(
+			'attributes' => array(
+				'groupId'      => array(
 					'type' => 'string',
+				),
+				'orderBy'      => array(
+					'type' => 'string',
+				),
+				'displayOrder' => array(
+					'type' => 'boolean',
 				),
 			),
 			'editor_style'    => 'restaurantpress-group-block-editor',
@@ -44,9 +51,21 @@ class RP_Group_Block {
 	/**
 	 * Load Gutenberg block scripts.
 	 */
+	public function enqueue_editor_assets() {
+		wp_enqueue_style(
+			'restaurantpress-layout',
+			RP()->plugin_url() . '/assets/css/restaurantpress-layout.css',
+			array( 'wp-edit-blocks' ),
+			defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? filemtime( RP()->plugin_path() . '/assets/css/restaurantpress-layout.css' ) : RP_VERSION
+		);
+	}
+
+	/**
+	 * Load Gutenberg block scripts.
+	 */
 	public function enqueue_block_editor_assets() {
 		wp_register_style(
-			'restaurantpress-menu-block-editor',
+			'restaurantpress-group-block-editor',
 			RP()->plugin_url() . '/assets/css/restaurantpress.css',
 			array( 'wp-edit-blocks' ),
 			defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? filemtime( RP()->plugin_path() . '/assets/css/restaurantpress.css' ) : RP_VERSION
@@ -60,21 +79,33 @@ class RP_Group_Block {
 			true
 		);
 
-		$group_args = array(
-			'post_type'     => 'food_group',
-			'orderby'       => 'id',
-			'order'         => 'DESC',
-			'no_found_rows' => true,
-			'nopaging'      => true,
-		);
 		$group_block_data = array(
-			'groups' => get_posts( $group_args ),
+			'groups' => get_posts(
+				array(
+					'post_type'     => 'food_group',
+					'orderby'       => 'id',
+					'order'         => 'DESC',
+					'no_found_rows' => true,
+					'nopaging'      => true,
+				)
+			),
+			'orderby'  => array(
+				'date'       => __( 'Date', 'restaurantpress' ),
+				'title'      => __( 'Title', 'restaurantpress' ),
+				'rand'       => __( 'Random', 'restaurantpress' ),
+				'menu_order' => __( 'Menu Order', 'restaurantpress' ),
+				'none'       => __( 'None', 'restaurantpress' ),
+			),
 			'i18n'   => array(
-				'title'         => esc_html__( 'RestaurantPress Group', 'everest-forms' ),
-				'description'   => esc_html__( 'Select &#38; display one of your food group.', 'everest-forms' ),
-				'group_select'   => esc_html__( 'Select a Group', 'everest-forms' ),
-				'group_settings' => esc_html__( 'Group Settings', 'everest-forms' ),
-				'group_selected' => esc_html__( 'Group', 'everest-forms' ),
+				'title'            => __( 'RestaurantPress Group', 'everest-forms' ),
+				'description'      => __( 'Select & display one of your food group.', 'everest-forms' ),
+				'group_select'     => __( 'Select a Group', 'everest-forms' ),
+				'group_selected'   => __( 'Group', 'everest-forms' ),
+				'group_settings'   => __( 'Group Settings', 'everest-forms' ),
+				'order_select'     => __( 'Select a order by', 'everest-forms' ),
+				'orderby_selected' => __( 'Order BY', 'everest-forms' ),
+				'order_toogle'     => __( 'Order', 'restaurantpress' ),
+				'order_toogleHelp' => __( 'Order in ASC order', 'restaurantpress' ),
 			)
 		);
 		wp_localize_script( 'restaurantpress-group-block-editor', 'rp_group_block_data', $group_block_data );
