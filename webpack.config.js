@@ -1,8 +1,8 @@
 module.exports = {
-	entry: './assets/js/admin/gutenberg/form-block.js',
+	entry: './assets/js/admin/gutenberg/group-block.js',
 	output: {
 		path: __dirname,
-		filename: 'assets/js/admin/gutenberg/form-block.min.js',
+		filename: 'assets/js/admin/gutenberg/group-block.min.js',
 	},
 	module: {
 		loaders: [

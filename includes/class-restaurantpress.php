@@ -194,6 +194,7 @@ final class RestaurantPress {
 		include_once RP_ABSPATH . 'includes/class-rp-ajax.php';
 		include_once RP_ABSPATH . 'includes/class-rp-query.php';
 		include_once RP_ABSPATH . 'includes/class-rp-food-factory.php';
+		include_once RP_ABSPATH . 'includes/class-rp-group-block.php';
 		include_once RP_ABSPATH . 'includes/class-rp-integrations.php';
 		include_once RP_ABSPATH . 'includes/class-rp-cache-helper.php';
 		include_once RP_ABSPATH . 'includes/class-rp-deprecated-action-hooks.php';
