@@ -131,6 +131,7 @@ class RP_Group_Block {
 				'id'      => $group_id,
 				'orderby' => $order_by,
 				'order'   => $is_order,
+				'class'   => 'restaurantpress-group'
 			)
 		);
 	}
