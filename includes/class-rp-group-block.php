@@ -105,7 +105,7 @@ class RP_Group_Block {
 				'order_select'     => __( 'Select a order by', 'everest-forms' ),
 				'orderby_selected' => __( 'Order BY', 'everest-forms' ),
 				'order_toogle'     => __( 'Order', 'restaurantpress' ),
-				'order_toogleHelp' => __( 'Order in ASC order', 'restaurantpress' ),
+				'order_toogleHelp' => __( 'Toggle to display in ascending order.', 'restaurantpress' ),
 			)
 		);
 		wp_localize_script( 'restaurantpress-group-block-editor', 'rp_group_block_data', $group_block_data );
@@ -119,6 +119,8 @@ class RP_Group_Block {
 	 */
 	public function get_group_html( $attr ) {
 		$group_id = ! empty( $attr['groupId'] ) ? absint( $attr['groupId'] ) : 0;
+		$order_by = ! empty( $attr['orderBy'] ) ? rp_clean( $attr['orderBy'] ) : 'date';
+		$is_order = isset( $attr['displayOrder'] ) && rp_string_to_bool( $attr['displayOrder'] ) ? 'ASC' : 'DESC';
 
 		if ( empty( $group_id ) ) {
 			return '';
@@ -126,7 +128,9 @@ class RP_Group_Block {
 
 		return RP_Shortcodes::menu(
 			array(
-				'id' => $group_id,
+				'id'      => $group_id,
+				'orderby' => $order_by,
+				'order'   => $is_order,
 			)
 		);
 	}
