@@ -62,6 +62,7 @@ class RP_Post_Types {
 						'not_found'         => __( 'No categories found', 'restaurantpress' ),
 					),
 				'show_ui'      => true,
+				'show_in_rest' => true,
 				'query_var'    => true,
 				'capabilities' => array(
 					'manage_terms' => 'manage_food_menu_terms',
@@ -99,6 +100,7 @@ class RP_Post_Types {
 						'not_found'                  => __( 'No tags found', 'restaurantpress' ),
 					),
 				'show_ui'      => true,
+				'show_in_rest' => true,
 				'query_var'    => true,
 				'capabilities' => array(
 					'manage_terms' => 'manage_food_menu_terms',
