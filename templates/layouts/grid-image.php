@@ -69,7 +69,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									<figure class="restaurantpress-food-gallery__wrapper rp-img">
 										<?php if ( $food->is_chef_enable() ) : ?>
 											<span class="chef grid">
-												<span class="chef-icon"><p class="screen-reader-text"><?php esc_html_e( 'Chef!', 'restaurantpress' ); ?></p></span>
+												<span class="chef-icon"><span class="screen-reader-text"><?php esc_html_e( 'Chef!', 'restaurantpress' ); ?></span></span>
 											</span>
 										<?php endif; ?>
 										<?php if ( 'yes' == $food_menu['popup'] ) : ?>
