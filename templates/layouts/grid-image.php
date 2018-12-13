@@ -90,7 +90,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 												<?php echo $food_menu['title']; ?>
 											<?php endif; ?>
 										</h4>
-									</div> <!--rp-title-price-wrap end -->
+									</div>
 									<p class="rp-desc"><?php
 										if ( $food_menu['excerpt'] ) {
 											echo $food_menu['excerpt'];
@@ -100,10 +100,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 									?></p>
 									<?php do_action( 'restaurantpress_after_food_loop_item', $food, 'grid_image' ); ?>
 									<?php if ( $food->get_price_html() ) : ?>
-										<span class="price"><?php echo $food->get_price_html(); ?></span>
+										<div class="price-wrapper"><span class="price"><?php echo $food->get_price_html(); ?></span></div>
 									<?php endif; ?>
-								</div> <!--rp-content-wrapper end-->
-							</div> <!--rp-column-single-block end -->
+								</div>
+							</div>
 							<?php if ( 0 == $count % 3 ) {
 								echo '<div class="clear"></div>';
 							}
@@ -112,7 +112,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							?>
 						<?php }
 					} ?>
-				</div> <!-- rp column wrapper end -->
+				</div>
 			</div>
 		<?php } ?>
 	</div>

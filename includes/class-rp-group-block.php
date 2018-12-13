@@ -126,7 +126,7 @@ class RP_Group_Block {
 			return '';
 		}
 
-		return RP_Shortcodes::menu(
+		$shortcode = RP_Shortcodes::menu(
 			array(
 				'id'      => $group_id,
 				'orderby' => $order_by,
@@ -134,6 +134,8 @@ class RP_Group_Block {
 				'class'   => 'restaurantpress-group'
 			)
 		);
+
+		return str_replace( array("\n", "\r"), '', $shortcode );
 	}
 }
 
