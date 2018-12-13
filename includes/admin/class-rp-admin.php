@@ -47,8 +47,12 @@ class RP_Admin {
 		include_once( dirname( __FILE__ ) . '/class-rp-admin-menus.php' );
 		include_once( dirname( __FILE__ ) . '/class-rp-admin-notices.php' );
 		include_once( dirname( __FILE__ ) . '/class-rp-admin-assets.php' );
-		include_once( dirname( __FILE__ ) . '/class-rp-admin-tinymce.php' );
 		include_once( dirname( __FILE__ ) . '/class-rp-admin-pointers.php' );
+
+		// Load TinyMCE button.
+		if ( ! function_exists( 'register_block_type' ) ) {
+			include_once( dirname( __FILE__ ) . '/class-rp-admin-tinymce.php' );
+		}
 	}
 
 	/**
