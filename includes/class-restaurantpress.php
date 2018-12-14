@@ -20,7 +20,7 @@ final class RestaurantPress {
 	 *
 	 * @var string
 	 */
-	public $version = '1.7.0';
+	public $version = '1.8.0';
 
 	/**
 	 * The single instance of the class.

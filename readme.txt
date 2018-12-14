@@ -66,20 +66,11 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 
 == Changelog ==
 
-= 1.8.0 - XX/11/2018 =
-
-= 1.7.0 - 13/02/2018 =
-* Feature - Improved default appearance in Twenty Seventeen themes which do not support RestaurantPress.
-* Feature - Added new options to the WordPress Appearance Customizer; control the primary color, and image sizes.
-* Feature - Improved how image sizes are defined and calculated. Set an aspect ratio (custom, 1:1, uncropped) and image sizes will be automagically calculated based on widths.
-* Feature - Changing image sizes will trigger automatic thumbnail regeneration in the background.
-* Feature - New default placeholders.
-* Fix - Fix rm_notice_count logic.
-* Fix - Fix error if empty categories in groups.
-* Tweak - Remove deprecated jQuery load call.
-* Tweak - Only load session handler class on frontend not during cron.
-* Dev - Pass through options to zoom, flexslider, and photoswipe.
-* Dev - Travis-CI and codecov service integration for build tests.
+= 1.8.0 - 14/11/2018 =
+* Feature - Introduced RestaurantPress Group block.
+* Tweak - Disable Gutenberg for food_menu post type.
+* Tweak - Show taxanomies in REST for gutenberg compatibility.
+* Tweak - Load TinyMCE shortcode only if WP 5.0+ is not installed.
 
 [See changelog for all versions](https://raw.githubusercontent.com/wpeverest/restaurantpress/master/CHANGELOG.txt).
 
