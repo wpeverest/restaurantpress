@@ -135,7 +135,7 @@ class RP_Group_Block {
 			)
 		);
 
-		return str_replace( array("\n", "\r"), '', $shortcode );
+		return str_replace( array( '\n', '\r' ), '', $shortcode );
 	}
 }
 
