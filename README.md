@@ -1,8 +1,6 @@
 # [RestaurantPress](https://wpeverest.com/wordpress-plugins/restaurantpress/)
 
 <p align="left">
-  <a href="https://packagist.org/packages/wpeverest/restaurantpress"><img src="https://poser.pugx.org/wpeverest/restaurantpress/license" alt="license"></a> 
-  <a href="https://packagist.org/packages/wpeverest/restaurantpress"><img src="https://poser.pugx.org/wpeverest/restaurantpress/v/stable" alt="Latest Stable Version"></a>
   <img src="https://img.shields.io/wordpress/plugin/dt/restaurantpress.svg" alt="WordPress.org downloads">
   <img src="https://img.shields.io/wordpress/plugin/r/restaurantpress.svg" alt="WordPress.org rating">
   <a href="https://travis-ci.org/wpeverest/restaurantpress"><img src="https://travis-ci.org/wpeverest/restaurantpress.svg?branch=master" alt="Build Status"></a>
