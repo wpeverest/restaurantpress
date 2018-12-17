@@ -66,11 +66,10 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 
 == Changelog ==
 
-= 1.8.0 - 14/11/2018 =
+= 1.8.0 - 17/11/2018 =
 * Feature - Introduced RestaurantPress Group block.
 * Tweak - Disable Gutenberg for food_menu post type.
 * Tweak - Show taxanomies in REST for gutenberg compatibility.
-* Tweak - Load TinyMCE shortcode only if WP 5.0+ is not installed.
 
 [See changelog for all versions](https://raw.githubusercontent.com/wpeverest/restaurantpress/master/CHANGELOG.txt).
 
