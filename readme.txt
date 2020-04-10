@@ -2,8 +2,8 @@
 Contributors: WPEverest, shivapoudel
 Tags: restaurant, appetizer, food, cafe, menu, dining, drink
 Requires at least: 4.7
-Tested up to: 5.0
-Stable tag: 1.8.0
+Tested up to: 5.4
+Stable tag: 1.8.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -66,6 +66,9 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 
 == Changelog ==
 
+= 1.8.1 - 10/04/2019 =
+* Tested upto WordPress 5.4.
+
 = 1.8.0 - 17/11/2018 =
 * Feature - Introduced RestaurantPress Group block.
 * Tweak - Disable Gutenberg for food_menu post type.
@@ -77,3 +80,6 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 
 = 1.8.0 =
 1.8.0 is a minor update. Make a full site backup, update your theme and extensions, and ensure they are compatible before upgrading.
+
+= 1.8.1 =
+This update makes sure the plugin is WordPress 5.4 compatible.

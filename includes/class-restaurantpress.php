@@ -20,7 +20,7 @@ final class RestaurantPress {
 	 *
 	 * @var string
 	 */
-	public $version = '1.8.0';
+	public $version = '1.8.1';
 
 	/**
 	 * The single instance of the class.
@@ -288,8 +288,8 @@ final class RestaurantPress {
 		// Classes/actions loaded for the frontend and for ajax requests.
 		if ( $this->is_request( 'frontend' ) ) {
 			// Session class, handles session data for users - can be overwritten if custom handler is needed.
-			$session_class  = apply_filters( 'restaurantpress_session_handler', 'RP_Session_Handler' );
-			$this->session  = new $session_class();
+			$session_class = apply_filters( 'restaurantpress_session_handler', 'RP_Session_Handler' );
+			$this->session = new $session_class();
 			$this->session->init();
 		}
 
