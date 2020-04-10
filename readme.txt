@@ -67,7 +67,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/wpeverest/res
 == Changelog ==
 
 = 1.8.1 - 10/04/2019 =
-* Version Bump - Tested upto WordPress 5.4.
+* Tested upto WordPress 5.4.
 
 = 1.8.0 - 17/11/2018 =
 * Feature - Introduced RestaurantPress Group block.
