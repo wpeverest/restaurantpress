@@ -11,7 +11,7 @@ jobs:
       uses: actions/checkout@v2
     - name: WordPress Plugin Deploy
       id: deploy
-      uses: shivapoudel/action-wordpress-plugin-deploy@master
+      uses: 10up/action-wordpress-plugin-deploy@master
       with:
         generate-zip: true
       env:
@@ -23,6 +23,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ${{ steps.deploy.outputs.zip_path }}
+        asset_path: ${{github.workspace}}/${{ github.event.repository.name }}.zip
         asset_name: ${{ github.event.repository.name }}.zip
         asset_content_type: application/zip
